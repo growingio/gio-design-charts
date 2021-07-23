@@ -1,24 +1,23 @@
-
 .legend {
-    text-align: center;
+  text-align: center;
 }
 
 .legend-label-block {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 1;
-    background-color: #ffffff;
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-    border-radius: 2px;
-    vertical-align: sub;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  background-color: #ffffff;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border-radius: 2px;
+  vertical-align: sub;
 }
 
 .legend-label {
-    display: inline;
-    font-size: 12px;
-    line-height: 1;
-    margin-right: 20px;
-    cursor: pointer;
+  display: inline;
+  font-size: 12px;
+  line-height: 1;
+  margin-right: 20px;
+  cursor: pointer;
 }
