@@ -42,6 +42,9 @@ export const renderChart = (
   const axis = config.axis || [];
   chart.axis.apply(chart, axis);
 
+  // We don't use default legend
+  chart.legend(false);
+
   // chart.interaction("element-highlight-by-x");
 
   return chart;

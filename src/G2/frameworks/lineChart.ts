@@ -9,9 +9,7 @@ export const lineChart = (
   config: any = {}
 ) => {
   const chart = renderChart(id, data, legends, config);
-
   const lineConfig = config.line || {};
-  console.log("cccccc", lineConfig);
   chart
     .line()
     .position(lineConfig.position)
@@ -26,17 +24,16 @@ export const lineChart = (
       return style;
     });
 
-  chart
-    .point()
-    .position(lineConfig.position)
-    .color(lineConfig.color)
-    .shape("circle")
-    .style(lineConfig.color, (label: string) => {
-      const legend = legends[label] || {};
-      const style = { stroke: "#fff", fill: legend.color } as any;
-      return style;
-    });
-  chart.legend(false);
+  // chart
+  //   .point()
+  //   .position(lineConfig.position)
+  //   .color(lineConfig.color)
+  //   .shape("circle")
+  //   .style(lineConfig.color, (label: string) => {
+  //     const legend = legends[label] || {};
+  //     const style = { stroke: "#fff", fill: legend.color } as any;
+  //     return style;
+  //   });
 
   chart.render();
   return chart;

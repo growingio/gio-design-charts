@@ -26,7 +26,6 @@ const Basic = (props: IBasicProps) => {
   const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
   const [chart, setChart] = useState<Chart>();
   const { legends, setLegends, updateLegends } = useLegends();
-
   const [hoverItem, setHoverItem] = useState([]);
 
   useEffect(() => {
