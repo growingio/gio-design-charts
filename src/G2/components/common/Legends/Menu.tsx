@@ -1,17 +1,18 @@
 import React from "react";
+import { ILegend } from "../../../interface";
 import Legend from "./Legend";
 
 const Menu = (props: any) => {
   const { legends, onClick } = props;
   return (
     <div className="dropdown">
-      <span>其余5项</span>
+      <span>其余{legends?.length || 0}项</span>
       <div className="dropdown-content">
-        {Object.keys(legends).map((label: string) => {
-          const legend = legends[label] || {};
+        {legends.map((legend: ILegend) => {
+          const { name } = legend;
           return (
-            <div key={label} className="dropdown-item">
-              <Legend label={label} data={legend} onClick={onClick} />
+            <div key={name} className="dropdown-item">
+              <Legend label={name} data={legend} onClick={onClick} />
             </div>
           );
         })}

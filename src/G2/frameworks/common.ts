@@ -35,7 +35,7 @@ export const renderChart = (id: HTMLElement | null, data: any, config: any) => {
 
   // tooltip config can be false to disable tooltip
   const tooltip = config.tooltip ?? {};
-  chart.tooltip({ ...tooltip, enterable: false });
+  chart.tooltip({ ...tooltip });
 
   // Use array for axis config
   // See detail
@@ -48,4 +48,17 @@ export const renderChart = (id: HTMLElement | null, data: any, config: any) => {
   // chart.interaction("element-highlight-by-x");
 
   return chart;
+};
+
+export const handleLegendBehavior = (
+  chart: Chart,
+  legends: ILegends,
+  color: string
+) => {
+  if (color) {
+    chart.filter(color, (value: string) => {
+      return !!(legends[value] || {}).active;
+    });
+    chart.render(true);
+  }
 };

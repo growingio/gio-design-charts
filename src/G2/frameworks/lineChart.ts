@@ -1,6 +1,6 @@
 import { Chart } from "@antv/g2";
 import { ILegend, ILegends } from "../interface";
-import { renderChart } from "./common";
+import { handleLegendBehavior, renderChart } from "./common";
 
 export const lineChart = (
   id: HTMLElement | null,
@@ -26,18 +26,6 @@ export const lineChart = (
       }
       return style;
     });
-
-  // chart
-  //   .point()
-  //   .position(lineConfig.position)
-  //   .color(lineConfig.color)
-  //   .shape("circle")
-  //   .style(lineConfig.color, (label: string) => {
-  //     const legend = legends[label] || {};
-  //     const style = { stroke: "#fff", fill: legend.color } as any;
-  //     return style;
-  //   });
-
   chart.render();
   return chart;
 };
@@ -45,9 +33,9 @@ export const lineChart = (
 export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
   const lineConfig = config.line;
   if (lineConfig.color) {
-    chart.filter(lineConfig.color, (value: string) => {
-      return !!(legends[value] || {}).active;
-    });
-    chart.render(true);
+    const barConfig = config.bar || {};
+    if (barConfig.color) {
+      handleLegendBehavior(chart, legends, lineConfig.color);
+    }
   }
 };

@@ -1,4 +1,17 @@
-export default [
+export const dataWithOneBar = [{ company: "Apple", type: "整体", value: 30 }];
+
+export const dataWithMultiBar = [
+  { company: "Apple", value: 30 },
+  { company: "Google", value: 13 },
+  { company: "阿里巴巴", value: 60 },
+  { company: "腾讯", value: 24 },
+  { company: "百度", value: 46 },
+  { company: "网易", value: 36 },
+  { company: "Microsoft", value: 12 },
+  { company: "字节跳动", value: 5 },
+];
+
+export const dataWithGroup = [
   { company: "Apple", type: "整体", value: 30 },
   { company: "Facebook", type: "整体", value: 35 },
   { company: "Google", type: "整体", value: 28 },

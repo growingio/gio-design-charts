@@ -39,7 +39,6 @@ const Basic = (props: IBasicProps) => {
         follow: true,
         shared: true,
         customItems: (items: any) => {
-          console.log(items);
           setHoverItem(items);
           return items;
         },

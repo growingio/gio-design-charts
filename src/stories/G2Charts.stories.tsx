@@ -5,5 +5,13 @@ export default {
   },
 };
 
-export { default as BarChart } from "./g2/bar/Story";
-export { default as LineChart } from "./g2/line/Story";
+export {
+  BarWithOne as BasicBar,
+  BarWithMulti as MultiBar,
+  BarWithGroup as BasicGroupBar,
+} from "./g2/bar/Story";
+export {
+  LineWithOneLine as BasicLine,
+  LineWithDash as DashedLine,
+  LineWithMenu as MultiLegendLine,
+} from "./g2/line/Story";

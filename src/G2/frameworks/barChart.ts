@@ -1,6 +1,6 @@
 import { Chart } from "@antv/g2";
 import { ILegends } from "../interface";
-import { renderChart } from "./common";
+import { handleLegendBehavior, renderChart } from "./common";
 
 export const barChart = (
   id: HTMLElement | null,
@@ -11,17 +11,22 @@ export const barChart = (
   const chart = renderChart(id, data, config);
 
   const barConfig = config.bar || {};
-  chart
-    .interval()
-    .position(barConfig.position)
-    .color(barConfig.color)
-    .adjust([
-      {
-        type: "dodge",
-        marginRatio: 0,
-      },
-    ])
-    .style(barConfig.color, (label: string) => {
+  console.log("barConfig", barConfig);
+  let interval: any = chart.interval();
+  if (barConfig.position) {
+    interval = interval.position(barConfig.position);
+  }
+  if (barConfig.color) {
+    interval = interval.color(barConfig.color);
+  }
+  interval.adjust([
+    {
+      type: "dodge",
+      marginRatio: 0,
+    },
+  ]);
+  if (barConfig.color) {
+    interval.style(barConfig.color, (label: string) => {
       const legend = legends[label] || {};
       // if (label === "Apple") {
       //   return {
@@ -31,6 +36,8 @@ export const barChart = (
       // }
       return { fill: legend.color };
     });
+  }
+
   chart.render();
 
   return chart;
@@ -38,8 +45,7 @@ export const barChart = (
 
 export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
   const barConfig = config.bar || {};
-  chart.filter(barConfig.color, (value: string) => {
-    return !!(legends[value] || {}).active;
-  });
-  chart.render(true);
+  if (barConfig.color) {
+    handleLegendBehavior(chart, legends, barConfig.color);
+  }
 };
