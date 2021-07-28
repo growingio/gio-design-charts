@@ -55,9 +55,13 @@ LineWithOneLine.args = {
 export const LineWithDash = Template.bind({});
 LineWithDash.args = {
   legends: [
-    "Tokyo",
+    "长春",
     {
-      name: "London",
+      name: "哈尔滨",
+      lineDash: true,
+    },
+    {
+      name: "石家庄",
       lineDash: LINEDASH_1,
     },
   ],

@@ -24,7 +24,7 @@ export interface ILegend {
   name: string;
   active?: boolean;
   color?: string;
-  lineDash?: Array<number>;
+  lineDash?: boolean | Array<number>;
 }
 export interface IChartProps {
   config: any;

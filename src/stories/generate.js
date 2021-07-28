@@ -1,4 +1,4 @@
-function generate() {
+(function generate() {
   var monthes = [
     "一月",
     "二月",
@@ -14,7 +14,7 @@ function generate() {
     "12月",
   ];
   var cities = [
-    "北京",
+    // "北京",
     // "上海",
     // "深证",
     // "郑州",
@@ -26,9 +26,9 @@ function generate() {
     // "长沙",
     // "合肥",
     // "南京",
-    // "长春",
-    // "哈尔滨",
-    // "石家庄",
+    "长春",
+    "哈尔滨",
+    "石家庄",
   ];
   var data = [];
   monthes.map(function (month) {
@@ -41,4 +41,4 @@ function generate() {
     });
   });
   console.log(data);
-}
+})();

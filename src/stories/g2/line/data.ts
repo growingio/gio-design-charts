@@ -61,30 +61,186 @@ export const dataWithOneLine = [
   },
 ];
 export const dataWithDash = [
-  { month: "Jan", city: "Tokyo", temperature: 7 },
-  { month: "Jan", city: "London", temperature: 3.9 },
-  { month: "Feb", city: "Tokyo", temperature: 6.9 },
-  { month: "Feb", city: "London", temperature: 4.2 },
-  { month: "Mar", city: "Tokyo", temperature: 9.5 },
-  { month: "Mar", city: "London", temperature: 5.7 },
-  { month: "Apr", city: "Tokyo", temperature: 14.5 },
-  { month: "Apr", city: "London", temperature: 8.5 },
-  { month: "May", city: "Tokyo", temperature: 18.4 },
-  { month: "May", city: "London", temperature: 11.9 },
-  { month: "Jun", city: "Tokyo", temperature: 21.5 },
-  { month: "Jun", city: "London", temperature: 15.2 },
-  { month: "Jul", city: "Tokyo", temperature: 25.2 },
-  { month: "Jul", city: "London", temperature: 17 },
-  { month: "Aug", city: "Tokyo", temperature: 26.5 },
-  { month: "Aug", city: "London", temperature: 16.6 },
-  { month: "Sep", city: "Tokyo", temperature: 23.3 },
-  { month: "Sep", city: "London", temperature: 14.2 },
-  { month: "Oct", city: "Tokyo", temperature: 18.3 },
-  { month: "Oct", city: "London", temperature: 10.3 },
-  { month: "Nov", city: "Tokyo", temperature: 13.9 },
-  { month: "Nov", city: "London", temperature: 6.6 },
-  { month: "Dec", city: "Tokyo", temperature: 9.6 },
-  { month: "Dec", city: "London", temperature: 4.8 },
+  {
+    month: "一月",
+    city: "长春",
+    temperature: 13.92,
+  },
+  {
+    month: "一月",
+    city: "哈尔滨",
+    temperature: 21.2,
+  },
+  {
+    month: "一月",
+    city: "石家庄",
+    temperature: 21.1,
+  },
+  {
+    month: "二月",
+    city: "长春",
+    temperature: 28.67,
+  },
+  {
+    month: "二月",
+    city: "哈尔滨",
+    temperature: 14.24,
+  },
+  {
+    month: "二月",
+    city: "石家庄",
+    temperature: 16.82,
+  },
+  {
+    month: "三月",
+    city: "长春",
+    temperature: 24.91,
+  },
+  {
+    month: "三月",
+    city: "哈尔滨",
+    temperature: 11.65,
+  },
+  {
+    month: "三月",
+    city: "石家庄",
+    temperature: 13.3,
+  },
+  {
+    month: "四月",
+    city: "长春",
+    temperature: 29.37,
+  },
+  {
+    month: "四月",
+    city: "哈尔滨",
+    temperature: 20.66,
+  },
+  {
+    month: "四月",
+    city: "石家庄",
+    temperature: 23.64,
+  },
+  {
+    month: "五月",
+    city: "长春",
+    temperature: 23.77,
+  },
+  {
+    month: "五月",
+    city: "哈尔滨",
+    temperature: 20.93,
+  },
+  {
+    month: "五月",
+    city: "石家庄",
+    temperature: 28.93,
+  },
+  {
+    month: "六月",
+    city: "长春",
+    temperature: 21.18,
+  },
+  {
+    month: "六月",
+    city: "哈尔滨",
+    temperature: 16.46,
+  },
+  {
+    month: "六月",
+    city: "石家庄",
+    temperature: 23.79,
+  },
+  {
+    month: "7月",
+    city: "长春",
+    temperature: 27.89,
+  },
+  {
+    month: "7月",
+    city: "哈尔滨",
+    temperature: 14.74,
+  },
+  {
+    month: "7月",
+    city: "石家庄",
+    temperature: 11.64,
+  },
+  {
+    month: "8月",
+    city: "长春",
+    temperature: 24.9,
+  },
+  {
+    month: "8月",
+    city: "哈尔滨",
+    temperature: 12.69,
+  },
+  {
+    month: "8月",
+    city: "石家庄",
+    temperature: 24.88,
+  },
+  {
+    month: "9月",
+    city: "长春",
+    temperature: 14.91,
+  },
+  {
+    month: "9月",
+    city: "哈尔滨",
+    temperature: 22.16,
+  },
+  {
+    month: "9月",
+    city: "石家庄",
+    temperature: 13.4,
+  },
+  {
+    month: "10月",
+    city: "长春",
+    temperature: 28.08,
+  },
+  {
+    month: "10月",
+    city: "哈尔滨",
+    temperature: 17.59,
+  },
+  {
+    month: "10月",
+    city: "石家庄",
+    temperature: 17.76,
+  },
+  {
+    month: "11月",
+    city: "长春",
+    temperature: 15.53,
+  },
+  {
+    month: "11月",
+    city: "哈尔滨",
+    temperature: 24.35,
+  },
+  {
+    month: "11月",
+    city: "石家庄",
+    temperature: 28.02,
+  },
+  {
+    month: "12月",
+    city: "长春",
+    temperature: 10.68,
+  },
+  {
+    month: "12月",
+    city: "哈尔滨",
+    temperature: 14.79,
+  },
+  {
+    month: "12月",
+    city: "石家庄",
+    temperature: 23.3,
+  },
 ];
 
 export const dataWithMenu = [

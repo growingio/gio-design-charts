@@ -1,6 +1,5 @@
-import { Chart } from "@antv/g2";
 import { useCallback, useState } from "react";
-import { colors, ILegend, ILegends } from "../../interface";
+import { colors, ILegend, ILegends, LINEDASH_1 } from "../../interface";
 
 const getLegends = (
   type: "line" | "bar",
@@ -16,11 +15,19 @@ const getLegends = (
         type,
       };
     } else {
+      const { lineDash } = legend;
+      const lineDashCfg = {} as any;
+      if (lineDash === true) {
+        lineDashCfg.lineDash = LINEDASH_1;
+      } else if (lineDash) {
+        lineDashCfg.lineDash = lineDash;
+      }
       legends[legend.name] = {
         ...legend,
         color: legend.color || colors[index % colors.length],
         active: true,
         type,
+        ...lineDashCfg,
       };
     }
   });

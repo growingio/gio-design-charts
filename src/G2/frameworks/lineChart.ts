@@ -33,9 +33,6 @@ export const lineChart = (
 export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
   const lineConfig = config.line;
   if (lineConfig.color) {
-    const barConfig = config.bar || {};
-    if (barConfig.color) {
-      handleLegendBehavior(chart, legends, lineConfig.color);
-    }
+    handleLegendBehavior(chart, legends, lineConfig.color);
   }
 };
