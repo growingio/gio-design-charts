@@ -9,6 +9,8 @@ export {
   BarWithOne as BasicBar,
   BarWithMulti as MultiBar,
   BarWithGroup as BasicGroupBar,
+  StackingDiagramBar,
+  PercentBar,
 } from "./g2/bar/Story";
 export {
   LineWithOneLine as BasicLine,

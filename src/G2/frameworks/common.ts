@@ -45,6 +45,8 @@ export const renderChart = (id: HTMLElement | null, data: any, config: any) => {
   // We don't use default legend
   chart.legend(false);
 
+  chart.interaction("active-region");
+
   // chart.interaction("element-highlight-by-x");
 
   return chart;

@@ -11,16 +11,22 @@ const Legends = (props: any) => {
 
   const [tiled, setTiled] = useState([] as ILegend[]);
   const [grouped, setGrouped] = useState([] as ILegend[]);
+  const [enableClick, setEnableClick] = useState(true);
 
   const onClickLegend = useCallback(
     (label: string) => {
-      onClick(label);
+      enableClick && onClick(label);
     },
-    [onClick]
+    [onClick, enableClick]
   );
 
   useEffect(() => {
     const legendValues: ILegend[] = Object.values(legends) || [];
+    if (legendValues.length <= 1) {
+      setEnableClick(false);
+    } else {
+      setEnableClick(true);
+    }
     if (legendValues && legendValues.length > 5) {
       setTiled(legendValues.slice(0, 5));
       setGrouped(legendValues.slice(5));

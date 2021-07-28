@@ -11,7 +11,6 @@ export const barChart = (
   const chart = renderChart(id, data, config);
 
   const barConfig = config.bar || {};
-  console.log("barConfig", barConfig);
   let interval: any = chart.interval();
   if (barConfig.position) {
     interval = interval.position(barConfig.position);
@@ -19,12 +18,15 @@ export const barChart = (
   if (barConfig.color) {
     interval = interval.color(barConfig.color);
   }
-  interval.adjust([
-    {
-      type: "dodge",
-      marginRatio: 0,
-    },
-  ]);
+  if (barConfig.adjust) {
+    interval.adjust(barConfig.adjust);
+  }
+  // interval.adjust([
+  //   {
+  //     type: "dodge",
+  //     marginRatio: 0,
+  //   },
+  // ]);
   if (barConfig.color) {
     interval.style(barConfig.color, (label: string) => {
       const legend = legends[label] || {};

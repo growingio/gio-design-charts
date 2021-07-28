@@ -6,7 +6,7 @@ const Item = (props: any) => {
 
   const styles = lineDash
     ? { border: `1px dashed ${color}`, height: 0, width: "12px" }
-    : { backgroundColor: color };
+    : { backgroundColor: color || data.color };
 
   return (
     <div className="item">

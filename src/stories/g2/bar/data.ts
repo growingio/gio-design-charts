@@ -21,7 +21,25 @@ export const dataWithGroup = [
   { company: "Apple", type: "技术岗", value: 23 },
   { company: "Facebook", type: "技术岗", value: 18 },
   { company: "Google", type: "技术岗", value: 20 },
-  { company: "Apple", type: "技术岗", value: 35 },
-  { company: "Facebook", type: "技术岗", value: 30 },
-  { company: "Google", type: "技术岗", value: 25 },
+  { company: "Apple", type: "业务岗", value: 35 },
+  { company: "Facebook", type: "业务岗", value: 30 },
+  { company: "Google", type: "业务岗", value: 25 },
 ];
+
+const getPercentData = (data: any[], type: string) => {
+  const totalMapping = {} as any;
+  data.map((item: any) => {
+    totalMapping[item[type]] = (totalMapping[item[type]] || 0) + item.value;
+  });
+  const newData = [] as any[];
+  data.map((item: any) => {
+    newData.push({
+      ...item,
+      value:
+        Number((item.value / totalMapping[item[type]]).toFixed(2)) * 100 - 1,
+    });
+  });
+  return newData as any[];
+};
+
+export const percentData = getPercentData(dataWithGroup, "type");

@@ -1,7 +1,12 @@
 import { ComponentStory } from "@storybook/react";
 import BarChart from "../../../G2/components/BarChart";
 import Card from "../../components/Card";
-import { dataWithGroup, dataWithMultiBar, dataWithOneBar } from "./data";
+import {
+  dataWithGroup,
+  dataWithMultiBar,
+  dataWithOneBar,
+  percentData,
+} from "./data";
 
 const Template: ComponentStory<typeof BarChart> = (args) => (
   <Card>
@@ -65,6 +70,40 @@ BarWithGroup.args = {
     bar: {
       position: "type*value",
       color: "company",
+      adjust: [
+        {
+          type: "dodge",
+          marginRatio: 0,
+        },
+      ],
+    },
+  },
+};
+
+export const StackingDiagramBar = Template.bind({ title: "堆积图" });
+StackingDiagramBar.args = {
+  legends: ["Apple", "Facebook", "Google"],
+  data: dataWithGroup,
+  config: {
+    ...config,
+    bar: {
+      position: "type*value",
+      color: "company",
+      adjust: "stack",
+    },
+  },
+};
+
+export const PercentBar = Template.bind({ title: "堆积图" });
+PercentBar.args = {
+  legends: ["Apple", "Facebook", "Google"],
+  data: percentData,
+  config: {
+    ...config,
+    bar: {
+      position: "type*value",
+      color: "company",
+      adjust: "stack",
     },
   },
 };

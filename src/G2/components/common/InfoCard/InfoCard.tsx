@@ -11,7 +11,6 @@ export interface IInfoCardProps {
 
 const InfoCard = (props: IInfoCardProps) => {
   const { items, legends } = props;
-
   return (
     <div className="gio-chart-infocard">
       <div className="title">{items?.[0]?.title}</div>
