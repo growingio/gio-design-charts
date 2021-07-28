@@ -20,6 +20,7 @@ export const DEFAULT_OTERH_COLOR = "#CACEDB";
 export const DISABLE_COLOR = "#ADB2C2";
 
 export interface ILegend {
+  type?: "line" | "bar";
   name: string;
   active?: boolean;
   color?: string;

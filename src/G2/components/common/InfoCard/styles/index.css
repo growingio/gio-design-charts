@@ -22,6 +22,7 @@
   text-align: left;
   line-height: 1;
 }
+
 .gio-chart-infocard .item .block {
   display: inline-block;
   font-size: 14px;
@@ -32,6 +33,16 @@
   margin-right: 8px;
   border-radius: 2px;
   vertical-align: sub;
+}
+
+.gio-chart-infocard .item .bar {
+  height: 14px;
+  vertical-align: sub;
+}
+
+.gio-chart-infocard .item .line {
+  height: 2px;
+  vertical-align: middle;
 }
 
 .gio-chart-infocard .value {

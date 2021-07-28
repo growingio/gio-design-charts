@@ -10,6 +10,7 @@ const LineChart = (props: IChartProps) => {
 
   return (
     <Basic
+      type="line"
       data={data}
       legends={legendProps}
       config={config}

@@ -9,6 +9,7 @@ const BarChart = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   return (
     <Basic
+      type="bar"
       data={data}
       legends={legendProps}
       config={config}

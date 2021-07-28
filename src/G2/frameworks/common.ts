@@ -4,15 +4,9 @@ import { ILegends } from "../interface";
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
 
-export const renderChart = (
-  id: HTMLElement | null,
-  data: any,
-  legends: ILegends,
-  config: any
-) => {
-  const chartConfig = config.chart || {};
+const generateChart = (chartConfig: any, id: HTMLElement) => {
   // Set defualt chart config
-  const chart = new Chart({
+  const renderChart = new Chart({
     ...chartConfig,
     container: id as HTMLElement,
     autoFit:
@@ -21,6 +15,12 @@ export const renderChart = (
         : chartConfig.autoFit,
     height: chartConfig.height || DEFAULT_HEIGHT,
   });
+  return renderChart;
+};
+
+export const renderChart = (id: HTMLElement | null, data: any, config: any) => {
+  const chartConfig = config.chart || {};
+  const chart = generateChart(chartConfig, id as HTMLElement);
 
   // Set Data
   chart.data(data);
@@ -35,7 +35,7 @@ export const renderChart = (
 
   // tooltip config can be false to disable tooltip
   const tooltip = config.tooltip ?? {};
-  chart.tooltip(tooltip);
+  chart.tooltip({ ...tooltip, enterable: false });
 
   // Use array for axis config
   // See detail

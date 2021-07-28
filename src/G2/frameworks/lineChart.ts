@@ -8,13 +8,16 @@ export const lineChart = (
   legends: ILegends,
   config: any = {}
 ) => {
-  const chart = renderChart(id, data, legends, config);
+  const chart = renderChart(id, data, config);
   const lineConfig = config.line || {};
   chart
-    .line()
+    .line({
+      theme: {
+        strokeWidth: 2,
+      },
+    })
     .position(lineConfig.position)
     .color(lineConfig.color)
-    .shape("smooth")
     .style(lineConfig.color, (label: string) => {
       const legend = legends[label] || {};
       const style = { stroke: legend.color } as any;

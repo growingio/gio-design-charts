@@ -12,10 +12,12 @@ import InfoCard from "./common/InfoCard/InfoCard";
 export interface IBasicProps extends IChartProps {
   callChart: any;
   handleLegend: any;
+  type?: "bar" | "line";
 }
 
 const Basic = (props: IBasicProps) => {
   const {
+    type,
     data,
     legends: legendProps = [],
     config = {},
@@ -29,7 +31,7 @@ const Basic = (props: IBasicProps) => {
   const [hoverItem, setHoverItem] = useState([]);
 
   useEffect(() => {
-    const genLegends = getLegends(legendProps);
+    const genLegends = getLegends(type || "bar", legendProps);
     let tooltip = {} as any;
     if (tooltipRef.current) {
       tooltip = {
@@ -43,18 +45,21 @@ const Basic = (props: IBasicProps) => {
         },
       };
     }
-    const renderChart = callChart(root.current, data, genLegends, {
-      ...config,
-      tooltip,
-    });
+    let renderChart: any;
+    if (root.current) {
+      renderChart = callChart(root.current, data, genLegends, {
+        ...config,
+        tooltip,
+      });
 
-    setLegends(genLegends);
-    setChart(renderChart);
+      setLegends(genLegends);
+      setChart(renderChart);
+    }
 
     return () => {
-      renderChart.destroy();
+      renderChart?.destroy();
     };
-  }, [data, legendProps, config]);
+  }, [data, legendProps, config, type]);
 
   const onClickLegend = useCallback(
     (label: string) => {

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCallback } from "react";
 import Legend from "./Legend";
+import LegendMenu from "./Menu";
+
+import "./styles/index.css";
 
 const Legends = (props: any) => {
   const { legends, onClick } = props;
@@ -11,8 +14,8 @@ const Legends = (props: any) => {
     [onClick]
   );
   return (
-    <div className="legend">
-      {Object.keys(legends).map((label: string, index: number) => {
+    <div className="gio-chart-legend legend">
+      {Object.keys(legends).map((label: string) => {
         const legend = legends[label] || {};
         return (
           <Legend
@@ -23,6 +26,7 @@ const Legends = (props: any) => {
           />
         );
       })}
+      <LegendMenu legends={legends} onClick={onClickLegend} />
     </div>
   );
 };

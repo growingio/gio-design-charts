@@ -8,20 +8,30 @@ export interface ILegendProps {
   onClick?: any;
 }
 
-const Legend = (props: any) => {
+const Legend = (props: ILegendProps) => {
   const { label, data, onClick } = props;
   const onClickLabel = useCallback(() => {
     onClick && onClick(label);
   }, [label, onClick]);
+  const { active, color, lineDash, type } = data || {};
+  let styles = {} as React.CSSProperties;
+  styles = lineDash
+    ? {
+        border: `1px dashed ${active ? color : DISABLE_COLOR}`,
+        height: 0,
+        width: 12,
+      }
+    : { backgroundColor: active ? color : DISABLE_COLOR };
+
   return (
     <span
       className="legend-label"
       onClick={onClickLabel}
-      style={{ color: data.active ? "" : DISABLE_COLOR }}
+      style={{ color: active ? "" : DISABLE_COLOR }}
     >
       <div
-        className="legend-label-block"
-        style={{ backgroundColor: data.active ? data.color : DISABLE_COLOR }}
+        className={`legend-label-block legend-label-block-${type}`}
+        style={styles}
       />
       {label}
     </span>

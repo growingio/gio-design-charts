@@ -8,7 +8,7 @@ export const barChart = (
   legends: ILegends,
   config: any
 ) => {
-  const chart = renderChart(id, data, legends, config);
+  const chart = renderChart(id, data, config);
 
   const barConfig = config.bar || {};
   chart
