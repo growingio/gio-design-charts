@@ -1,0 +1,48 @@
+.legend {
+  text-align: center;
+}
+
+.legend-label-block {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  background-color: #ffffff;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border-radius: 2px;
+  vertical-align: sub;
+}
+
+.legend-label-block-bar {
+  width: 14px;
+  height: 14px;
+  vertical-align: sub;
+}
+
+.legend-label-block-line {
+  width: 14px;
+  height: 2px;
+  vertical-align: middle;
+}
+
+.legend-label-block-dashed {
+  width: 12px;
+  height: 0px;
+  vertical-align: middle;
+}
+
+.legend-label-block-line-dashed {
+  width: 14px;
+  height: 0px;
+  background-color: #ffffff;
+  vertical-align: middle;
+}
+
+.legend-label {
+  display: inline;
+  font-size: 12px;
+  line-height: 1;
+  margin-right: 20px;
+  cursor: pointer;
+}
