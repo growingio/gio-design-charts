@@ -7,7 +7,7 @@ import "./styles/index.css";
 import { ILegend } from "../../../interface";
 
 const Legends = (props: any) => {
-  const { legends, onClick } = props;
+  const { legends, onClick, offsetWidth } = props;
 
   const [tiled, setTiled] = useState([] as ILegend[]);
   const [grouped, setGrouped] = useState([] as ILegend[]);
@@ -27,13 +27,14 @@ const Legends = (props: any) => {
     } else {
       setEnableClick(true);
     }
+    const count = Number((offsetWidth / 125).toFixed(0)) - 1;
     if (legendValues && legendValues.length > 5) {
-      setTiled(legendValues.slice(0, 5));
-      setGrouped(legendValues.slice(5));
+      setTiled(legendValues.slice(0, count));
+      setGrouped(legendValues.slice(count));
     } else {
       setTiled(legendValues);
     }
-  }, [legends]);
+  }, [legends, offsetWidth]);
   return (
     <div className="gio-chart-legend legend">
       {tiled?.map((legend: ILegend) => {

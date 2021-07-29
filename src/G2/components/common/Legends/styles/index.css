@@ -6,6 +6,7 @@
   display: inline-block;
   font-size: 12px;
   color: #1248e9;
+  vertical-align: bottom;
 }
 .gio-chart-legend .dropdown-content {
   display: none;
@@ -15,9 +16,10 @@
   box-shadow: 0px 8px 24px rgba(36, 46, 89, 0.1);
   padding: 16px;
   border-radius: 4px;
-
   z-index: 1;
   color: #242e59;
+  max-height: 360px;
+  overflow-y: scroll;
 }
 
 .gio-chart-legend .dropdown:hover .dropdown-content {
@@ -27,4 +29,9 @@
 .gio-chart-legend .dropdown-item {
   text-align: left;
   margin-bottom: 8px;
+}
+
+.gio-chart-legend .dropdown-item:last-child {
+  text-align: left;
+  margin-bottom: 0px;
 }

@@ -28,12 +28,13 @@ const Legend = (props: ILegendProps) => {
       className="legend-label"
       onClick={onClickLabel}
       style={{ color: active ? "" : DISABLE_COLOR }}
+      title={label}
     >
       <div
         className={`legend-label-block legend-label-block-${type}`}
         style={styles}
       />
-      {label}
+      <div className="legend-label-text">{label}</div>
     </span>
   );
 };

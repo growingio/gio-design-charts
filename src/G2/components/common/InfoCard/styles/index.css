@@ -6,6 +6,8 @@
   padding: 16px 4px;
   width: 220px;
   /* display: flex; */
+  max-height: 360px;
+  overflow-y: scroll;
 }
 
 .gio-chart-infocard .title {

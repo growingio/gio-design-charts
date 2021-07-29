@@ -2,6 +2,7 @@ import React, { LegacyRef, useEffect } from "react";
 import { Chart } from "@antv/g2";
 import { useState } from "react";
 import { useCallback } from "react";
+import { throttle } from "lodash";
 
 import "../styles/default.css";
 import Legends from "./common/Legends";
@@ -29,15 +30,16 @@ const Basic = (props: IBasicProps) => {
   const [chart, setChart] = useState<Chart>();
   const { legends, setLegends, updateLegends } = useLegends();
   const [hoverItem, setHoverItem] = useState([]);
+  const [offsetWidth, setOffsetWidth] = useState(800);
 
+  // Init Chart
   useEffect(() => {
     const genLegends = getLegends(type || "bar", legendProps);
-    let tooltip = {} as any;
+    let tooltip = config.tooltip || {};
     if (tooltipRef.current) {
       tooltip = {
+        ...tooltip,
         container: tooltipRef.current,
-        follow: true,
-        shared: true,
         customItems: (items: any) => {
           setHoverItem(items);
           return items;
@@ -50,15 +52,33 @@ const Basic = (props: IBasicProps) => {
         ...config,
         tooltip,
       });
-
+      setOffsetWidth(root?.current?.offsetWidth || 800);
       setLegends(genLegends);
       setChart(renderChart);
     }
-
     return () => {
       renderChart?.destroy();
     };
   }, [data, legendProps, config, type]);
+
+  const onResize = useCallback(() => {
+    if (root?.current?.offsetWidth) {
+      console.log(root?.current?.offsetWidth);
+      setOffsetWidth(root?.current?.offsetWidth || 800);
+    }
+  }, [root]);
+
+  // Listener resize
+  useEffect(() => {
+    if (root.current) {
+      const observer = new MutationObserver(onResize);
+      const config = { attributes: true, childList: true, subtree: true };
+      observer.observe(root.current as HTMLElement, config);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [root]);
 
   const onClickLegend = useCallback(
     (label: string) => {
@@ -70,8 +90,12 @@ const Basic = (props: IBasicProps) => {
 
   return (
     <div className="legend">
-      <Legends legends={legends} onClick={onClickLegend} />
-      <div ref={root} />
+      <Legends
+        legends={legends}
+        offsetWidth={offsetWidth}
+        onClick={onClickLegend}
+      />
+      <div ref={root} onReset={onResize} />
       <div style={{ visibility: "collapse" }}>
         <div ref={tooltipRef} className="g2-tooltip">
           <InfoCard legends={legends} items={hoverItem} />

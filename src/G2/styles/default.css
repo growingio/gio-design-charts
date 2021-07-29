@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.legend-label-text {
+  max-width: 85px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .legend-label-block {
   display: inline-block;
   font-size: 14px;
@@ -11,13 +20,13 @@
   height: 14px;
   margin-right: 8px;
   border-radius: 2px;
-  vertical-align: sub;
+  vertical-align: middle;
 }
 
 .legend-label-block-bar {
   width: 14px;
   height: 14px;
-  vertical-align: sub;
+  vertical-align: middle;
 }
 
 .legend-label-block-line {

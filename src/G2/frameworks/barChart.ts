@@ -32,8 +32,9 @@ export const barChart = (
       const legend = legends[label] || {};
       // if (label === "Apple") {
       //   return {
-      //     fill: legend.color,
-      //     //   fillStyle: 'p(a)http://localhost:6006/333.png',
+      //     // fill: legend.color,
+      //     fill: "p(n)http://localhost:6006/333.png",
+      //     background: { style: { fill: legend.color } },
       //   };
       // }
       return { fill: legend.color };

@@ -28,6 +28,7 @@ const config = {
   tooltip: {
     showCrosshairs: true,
     shared: true,
+    enterable: true,
   },
   axis: [
     "temperature",
@@ -72,10 +73,10 @@ LineWithDash.args = {
 export const LineWithMenu = Template.bind({});
 LineWithMenu.args = {
   legends: [
-    "北京",
+    "北京的天气真热啊",
     "上海",
     "深证",
-    "郑州",
+    "郑州的雨下的真大",
     "杭州",
     "兰州",
     "福州",

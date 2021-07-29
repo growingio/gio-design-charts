@@ -24,6 +24,8 @@ export const lineChart = (
       if (legend.lineDash) {
         style.lineDash = legend.lineDash;
       }
+      // default width of line is 2px
+      style.lineWidth = 2;
       return style;
     });
   chart.render();

@@ -23,6 +23,7 @@ const config = {
   tooltip: {
     enterable: true,
     showContent: true,
+    // shared: true,
   },
 };
 
