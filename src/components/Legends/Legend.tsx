@@ -1,6 +1,6 @@
 import React from "react";
 import { useCallback } from "react";
-import { DISABLE_COLOR } from "../../../interface";
+import { DISABLE_COLOR } from "../../interface";
 
 export interface ILegendProps {
   label: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ILegend } from "../../../interface";
+import { ILegend } from "../../interface";
 import Legend from "./Legend";
 
 const Menu = (props: any) => {

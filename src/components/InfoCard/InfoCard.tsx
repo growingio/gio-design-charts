@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ILegend, ILegends } from "../../../interface";
+import { ILegend, ILegends } from "../../interface";
 import Item from "./Item";
 
 import "./styles/index.css";

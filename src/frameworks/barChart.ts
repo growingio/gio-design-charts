@@ -1,5 +1,5 @@
 import { Chart } from "@antv/g2";
-import { ILegends } from "../interface";
+import { IChartConfig, IChartOptions, ILegends } from "../interface";
 import { handleLegendBehavior, renderChart } from "./common";
 
 const interval = (chart: Chart, config: any, styleCallback?: any) => {
@@ -25,13 +25,9 @@ const interval = (chart: Chart, config: any, styleCallback?: any) => {
   }
 };
 
-export const barChart = (
-  id: HTMLElement | null,
-  data: any,
-  legends: ILegends,
-  config: any
-) => {
-  const chart = renderChart(id, data, config);
+export const barChart = (options: IChartOptions, config: IChartConfig) => {
+  const { legends } = options;
+  const chart = renderChart(options, config);
 
   interval(chart, config, (label: string) => {
     const legend = legends[label] || {};

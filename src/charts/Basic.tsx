@@ -5,10 +5,10 @@ import { useCallback } from "react";
 import { throttle } from "lodash";
 
 import "../styles/default.css";
-import Legends from "./common/Legends";
+import Legends from "../components/Legends";
 import getLegends, { useLegends } from "./hooks/getLegends";
 import { IChartProps } from "../interface";
-import InfoCard from "./common/InfoCard/InfoCard";
+import InfoCard from "../components/InfoCard/InfoCard";
 
 export interface IBasicProps extends IChartProps {
   callChart: any;
@@ -48,10 +48,13 @@ const Basic = (props: IBasicProps) => {
     }
     let renderChart: any;
     if (root.current) {
-      renderChart = callChart(root.current, data, genLegends, {
-        ...config,
-        tooltip,
-      });
+      renderChart = callChart(
+        { id: root.current, data, legends: genLegends },
+        {
+          ...config,
+          tooltip,
+        }
+      );
       setOffsetWidth(root?.current?.offsetWidth || 800);
       setLegends(genLegends);
       setChart(renderChart);

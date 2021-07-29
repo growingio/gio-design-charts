@@ -4,7 +4,7 @@ import Legend from "./Legend";
 import LegendMenu from "./Menu";
 
 import "./styles/index.css";
-import { ILegend } from "../../../interface";
+import { ILegend } from "../../interface";
 
 const Legends = (props: any) => {
   const { legends, onClick, offsetWidth } = props;

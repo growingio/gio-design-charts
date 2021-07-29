@@ -1,5 +1,5 @@
 import { Chart } from "@antv/g2";
-import { ILegends } from "../interface";
+import { IChartConfig, IChartOptions, ILegends } from "../interface";
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
@@ -18,9 +18,10 @@ const generateChart = (chartConfig: any, id: HTMLElement) => {
   return renderChart;
 };
 
-export const renderChart = (id: HTMLElement | null, data: any, config: any) => {
-  const chartConfig = config.chart || {};
-  const chart = generateChart(chartConfig, id as HTMLElement);
+export const renderChart = (options: IChartOptions, config: IChartConfig) => {
+  const { id, data } = options;
+  const basicConfig = config.chart || {};
+  const chart = generateChart(basicConfig, id as HTMLElement);
 
   // Set Data
   chart.data(data);

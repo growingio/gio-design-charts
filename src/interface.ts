@@ -26,12 +26,23 @@ export interface ILegend {
   color?: string;
   lineDash?: boolean | Array<number>;
 }
+
+export interface ILegends {
+  [name: string]: ILegend;
+}
 export interface IChartProps {
   config: any;
   data: any;
   legends: Array<ILegend | string>;
 }
 
-export interface ILegends {
-  [name: string]: ILegend;
+export interface IChartOptions {
+  id: HTMLElement;
+  data: any;
+  legends: ILegends;
+  [key: string]: any;
+}
+
+export interface IChartConfig {
+  [key: string]: any;
 }

@@ -1,15 +1,15 @@
 import { Chart } from "@antv/g2";
-import { ILegend, ILegends } from "../interface";
+import { IChartConfig, IChartOptions, ILegend, ILegends } from "../interface";
 import { handleLegendBehavior, renderChart } from "./common";
 
 export const lineChart = (
-  id: HTMLElement | null,
-  data: any,
-  legends: ILegends,
-  config: any = {}
+  options: IChartOptions,
+  config: IChartConfig = {}
 ) => {
-  const chart = renderChart(id, data, config);
+  const { legends } = options;
+  const chart = renderChart(options, config);
   const lineConfig = config.line || {};
+
   chart
     .line({
       theme: {
