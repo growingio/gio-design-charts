@@ -2,14 +2,7 @@ import { Chart } from "@antv/g2";
 import { ILegends } from "../interface";
 import { handleLegendBehavior, renderChart } from "./common";
 
-export const barChart = (
-  id: HTMLElement | null,
-  data: any,
-  legends: ILegends,
-  config: any
-) => {
-  const chart = renderChart(id, data, config);
-
+const interval = (chart: Chart, config: any, styleCallback?: any) => {
   const barConfig = config.bar || {};
   let interval: any = chart.interval();
   if (barConfig.position) {
@@ -27,19 +20,33 @@ export const barChart = (
   //     marginRatio: 0,
   //   },
   // ]);
-  if (barConfig.color) {
-    interval.style(barConfig.color, (label: string) => {
-      const legend = legends[label] || {};
-      // if (label === "Apple") {
-      //   return {
-      //     // fill: legend.color,
-      //     fill: "p(n)http://localhost:6006/333.png",
-      //     background: { style: { fill: legend.color } },
-      //   };
-      // }
-      return { fill: legend.color };
-    });
+  if (barConfig.color && styleCallback) {
+    interval.style(barConfig.color, styleCallback);
   }
+};
+
+export const barChart = (
+  id: HTMLElement | null,
+  data: any,
+  legends: ILegends,
+  config: any
+) => {
+  const chart = renderChart(id, data, config);
+
+  interval(chart, config, (label: string) => {
+    const legend = legends[label] || {};
+    return { fill: legend.color };
+  });
+
+  interval(chart, config, (label: string) => {
+    const legend = legends[label] || {};
+    if (label === "Apple") {
+      return {
+        fill: "p(n)http://localhost:6006/acorn_PNG37019.png",
+      };
+    }
+    return { fill: legend.color, height: 300 };
+  });
 
   chart.render();
 

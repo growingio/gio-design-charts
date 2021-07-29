@@ -1,7 +1,7 @@
 import { ComponentStory } from "@storybook/react";
-import LineChart from "../../../G2/components/LineChart";
+import LineChart from "../../../components/LineChart";
 import { dataWithDash, dataWithOneLine, dataWithMenu } from "./data";
-import { LINEDASH_1 } from "../../../G2/interface";
+import { LINEDASH_1 } from "../../../interface";
 import Card from "../../components/Card";
 
 const Template: ComponentStory<typeof LineChart> = (args) => (

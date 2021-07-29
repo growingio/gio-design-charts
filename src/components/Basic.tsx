@@ -72,8 +72,9 @@ const Basic = (props: IBasicProps) => {
   useEffect(() => {
     if (root.current) {
       const observer = new MutationObserver(onResize);
-      const config = { attributes: true, childList: true, subtree: true };
-      observer.observe(root.current as HTMLElement, config);
+      const targetNode = root?.current as HTMLElement;
+      const targetConfig = { attributes: true, childList: true, subtree: true };
+      observer.observe(targetNode, targetConfig);
       return () => {
         observer.disconnect();
       };
