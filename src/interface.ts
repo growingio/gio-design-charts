@@ -1,29 +1,26 @@
-export const LINEDASH_1 = [2, 5];
-export const LINEDASH_2 = [2, 7];
-
-export const colors = [
-  "#5F87FF",
-  "#FFDD63",
-  "#62CE6C",
-  "#FFA455",
-  "#60BCFA",
-  "#DB7892",
-  "#5D9BA4",
-  "#FFB7AE",
-  "#04A375",
-  "#D770E0",
-  "#7569AB",
-  "#FF7955",
-];
-
-export const DEFAULT_OTERH_COLOR = "#CACEDB";
-export const DISABLE_COLOR = "#ADB2C2";
+export enum ChartType {
+  LINE = "line",
+  BAR = "bar",
+}
 
 export interface ILegend {
-  type?: "line" | "bar";
+  // 图表Chart的类型，可为BAR、LINE等
+  type?: ChartType;
+
+  // 图例Legend的名称
   name: string;
+
+  // 是否已经激活显示图例，默认为true
   active?: boolean;
+
+  // 设置图例的颜色，默认为12中显色定义
   color?: string;
+
+  // 柱状图的柱子是否为虚线
+  dashed?: boolean;
+
+  // 折线图的线是否为虚线，当是true，则显示默认虚线样子，若不是，请定义虚线
+  // 详细设置请查看 https://g2.antv.vision/zh/docs/api/shape/shape-attrs#%E7%BA%BF%E6%9D%A1%E5%B1%9E%E6%80%A7
   lineDash?: boolean | Array<number>;
 }
 
@@ -40,6 +37,7 @@ export interface IChartOptions {
   id: HTMLElement;
   data: any;
   legends: ILegends;
+  hasDashed?: boolean;
   [key: string]: any;
 }
 

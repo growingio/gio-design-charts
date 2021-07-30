@@ -1,6 +1,6 @@
 import React from "react";
 import { lineChart, handleLegend } from "../frameworks/lineChart";
-import { IChartProps } from "../interface";
+import { ChartType, IChartProps } from "../interface";
 
 import "../styles/default.css";
 import Basic from "./Basic";
@@ -10,7 +10,7 @@ const LineChart = (props: IChartProps) => {
 
   return (
     <Basic
-      type="line"
+      type={ChartType.LINE}
       data={data}
       legends={legendProps}
       config={config}

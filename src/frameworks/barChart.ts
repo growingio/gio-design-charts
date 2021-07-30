@@ -1,8 +1,17 @@
 import { Chart } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
+import { colors, DEFAULT_REDIUS } from "../theme";
 import { handleLegendBehavior, renderChart } from "./common";
 
-const interval = (chart: Chart, config: any, styleCallback?: any) => {
+import "./shapes/intervalDefaultElement";
+import { setCustomInfo } from "./utils";
+
+const interval = (
+  chart: Chart,
+  options: IChartOptions,
+  config: IChartConfig,
+  styleCallback?: any
+) => {
   const barConfig = config.bar || {};
   let interval: any = chart.interval();
   if (barConfig.position) {
@@ -14,38 +23,51 @@ const interval = (chart: Chart, config: any, styleCallback?: any) => {
   if (barConfig.adjust) {
     interval.adjust(barConfig.adjust);
   }
-  // interval.adjust([
-  //   {
-  //     type: "dodge",
-  //     marginRatio: 0,
-  //   },
-  // ]);
   if (barConfig.color && styleCallback) {
     interval.style(barConfig.color, styleCallback);
   }
+  interval.shape("company", ["default-element"]);
+  return interval;
 };
 
 export const barChart = (options: IChartOptions, config: IChartConfig) => {
-  const { legends } = options;
+  const { legends, hasDashed } = options;
   const chart = renderChart(options, config);
+  const dashedBars: string[] = [];
 
-  interval(chart, config, (label: string) => {
-    const legend = legends[label] || {};
-    return { fill: legend.color };
+  chart.theme({
+    styleSheet: {
+      paletteQualitative10: colors,
+    },
   });
 
-  interval(chart, config, (label: string) => {
+  // 渲染出基本柱状图
+  interval(chart, options, config, (label: string) => {
     const legend = legends[label] || {};
-    if (label === "Apple") {
-      return {
-        fill: "p(n)http://localhost:6006/acorn_PNG37019.png",
-      };
+    if (legend?.dashed) {
+      dashedBars.push(label);
     }
-    return { fill: legend.color, height: 300 };
+    return {
+      fill: legend.color,
+      radius: DEFAULT_REDIUS,
+    };
   });
 
+  // 若有条纹柱子，需要再次绘制
+  if (hasDashed) {
+    const intervalObj = interval(chart, options, config, (label: string) => {
+      const legend = legends[label] || {};
+      if (legend.dashed) {
+        return {
+          fill: "p(n)http://localhost:6006/acorn_PNG37019.png",
+          radius: DEFAULT_REDIUS,
+        };
+      }
+      return { fill: legend.color, radius: DEFAULT_REDIUS };
+    });
+    intervalObj.customInfo(setCustomInfo(options, config));
+  }
   chart.render();
-
   return chart;
 };
 

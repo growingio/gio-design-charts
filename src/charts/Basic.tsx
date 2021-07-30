@@ -2,18 +2,17 @@ import React, { LegacyRef, useEffect } from "react";
 import { Chart } from "@antv/g2";
 import { useState } from "react";
 import { useCallback } from "react";
-import { throttle } from "lodash";
 
 import "../styles/default.css";
 import Legends from "../components/Legends";
 import getLegends, { useLegends } from "./hooks/getLegends";
-import { IChartProps } from "../interface";
+import { ChartType, IChartProps } from "../interface";
 import InfoCard from "../components/InfoCard/InfoCard";
 
 export interface IBasicProps extends IChartProps {
   callChart: any;
   handleLegend: any;
-  type?: "bar" | "line";
+  type?: ChartType;
 }
 
 const Basic = (props: IBasicProps) => {
@@ -34,7 +33,10 @@ const Basic = (props: IBasicProps) => {
 
   // Init Chart
   useEffect(() => {
-    const genLegends = getLegends(type || "bar", legendProps);
+    const [genLegends, hasDashed] = getLegends(
+      type || ChartType.BAR,
+      legendProps
+    );
     let tooltip = config.tooltip || {};
     if (tooltipRef.current) {
       tooltip = {
@@ -49,7 +51,7 @@ const Basic = (props: IBasicProps) => {
     let renderChart: any;
     if (root.current) {
       renderChart = callChart(
-        { id: root.current, data, legends: genLegends },
+        { id: root.current, data, legends: genLegends, hasDashed },
         {
           ...config,
           tooltip,

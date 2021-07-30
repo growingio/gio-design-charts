@@ -1,8 +1,8 @@
 import { ComponentStory } from "@storybook/react";
 import LineChart from "../../../charts/LineChart";
 import { dataWithDash, dataWithOneLine, dataWithMenu } from "./data";
-import { LINEDASH_1 } from "../../../interface";
 import Card from "../../components/Card";
+import { DEFAULT_LINEDASH } from "../../../theme";
 
 const Template: ComponentStory<typeof LineChart> = (args) => (
   <Card>
@@ -63,7 +63,7 @@ LineWithDash.args = {
     },
     {
       name: "石家庄",
-      lineDash: LINEDASH_1,
+      lineDash: DEFAULT_LINEDASH,
     },
   ],
   data: dataWithDash,

@@ -45,12 +45,12 @@ BarWithMulti.args = {
   legends: [
     "Apple",
     "Google",
-    "阿里巴巴",
-    "腾讯",
-    "百度",
-    "网易",
-    "Microsoft",
-    "字节跳动",
+    // "阿里巴巴",
+    // "腾讯",
+    // "百度",
+    // "网易",
+    // "Microsoft",
+    // "字节跳动",
   ],
   data: dataWithMultiBar,
   config: {
@@ -64,7 +64,7 @@ BarWithMulti.args = {
 
 export const BarWithGroup = Template.bind({});
 BarWithGroup.args = {
-  legends: ["Apple", "Facebook", "Google"],
+  legends: ["Apple", { name: "Facebook", dashed: true }, "Google"],
   data: dataWithGroup,
   config: {
     ...config,
@@ -101,6 +101,16 @@ PercentBar.args = {
   data: percentData,
   config: {
     ...config,
+    axis: [
+      "value",
+      {
+        label: {
+          formatter: (val: string) => {
+            return `${val}%`;
+          },
+        },
+      },
+    ],
     bar: {
       position: "type*value",
       color: "company",

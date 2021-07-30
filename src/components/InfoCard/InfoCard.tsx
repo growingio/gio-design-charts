@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ILegend, ILegends } from "../../interface";
 import Item from "./Item";
 
