@@ -8,7 +8,7 @@ const getLegends = (
 ): [ILegends, boolean] => {
   const legends = {} as ILegends;
   let hasDashed = false;
-  legendProps.map((legend: string | ILegend, index: number) => {
+  legendProps?.map((legend: string | ILegend, index: number) => {
     if (typeof legend === "string") {
       legends[legend] = {
         name: legend,
@@ -35,6 +35,7 @@ const getLegends = (
         ...lineDashCfg,
       };
     }
+    return legend;
   });
   return [legends, hasDashed];
 };

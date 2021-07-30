@@ -45,19 +45,19 @@ BarWithMulti.args = {
   legends: [
     "Apple",
     "Google",
-    // "阿里巴巴",
-    // "腾讯",
-    // "百度",
-    // "网易",
-    // "Microsoft",
-    // "字节跳动",
+    "阿里巴巴",
+    "腾讯",
+    "百度",
+    "网易",
+    "Microsoft",
+    "字节跳动",
   ],
   data: dataWithMultiBar,
   config: {
     ...config,
     bar: {
       position: "company*value",
-      // color: "company",
+      color: "company",
     },
   },
 };

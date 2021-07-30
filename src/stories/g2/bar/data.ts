@@ -3,17 +3,17 @@ export const dataWithOneBar = [{ company: "Apple", type: "整体", value: 30 }];
 export const dataWithMultiBar = [
   { company: "Apple", value: 10 },
   { company: "Google", value: 13 },
-  // { company: "阿里巴巴", value: 60 },
-  // { company: "腾讯", value: 24 },
-  // { company: "百度", value: 46 },
-  // { company: "网易", value: 36 },
-  // { company: "Microsoft", value: 12 },
-  // { company: "字节跳动", value: 5 },
+  { company: "阿里巴巴", value: 60 },
+  { company: "腾讯", value: 24 },
+  { company: "百度", value: 46 },
+  { company: "网易", value: 36 },
+  { company: "Microsoft", value: 12 },
+  { company: "字节跳动", value: 5 },
 ];
 
 export const dataWithGroup = [
-  { company: "Apple", type: "整体", value: 0 },
   { company: "Facebook", type: "整体", value: 35 },
+  { company: "Apple", type: "整体", value: 0 },
   { company: "Google", type: "整体", value: 28 },
   { company: "Apple", type: "非技术岗", value: 40 },
   { company: "Facebook", type: "非技术岗", value: 65 },
@@ -30,14 +30,18 @@ const getPercentData = (data: any[], type: string) => {
   const totalMapping = {} as any;
   data.map((item: any) => {
     totalMapping[item[type]] = (totalMapping[item[type]] || 0) + item.value;
+    return item;
   });
   const newData = [] as any[];
+
   data.map((item: any) => {
+    const value =
+      Number((item.value / totalMapping[item[type]]).toFixed(2)) * 100 - 1;
     newData.push({
       ...item,
-      value:
-        Number((item.value / totalMapping[item[type]]).toFixed(2)) * 100 - 1,
+      value: value > 0 ? value : 0,
     });
+    return item;
   });
   return newData as any[];
 };

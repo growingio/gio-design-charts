@@ -7,7 +7,7 @@
   width: 220px;
   /* display: flex; */
   max-height: 360px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .gio-chart-infocard .title {

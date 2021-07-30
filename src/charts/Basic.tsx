@@ -64,7 +64,7 @@ const Basic = (props: IBasicProps) => {
     return () => {
       renderChart?.destroy();
     };
-  }, [data, legendProps, config, type]);
+  }, [data, legendProps, config, type, callChart]);
 
   const onResize = useCallback(() => {
     if (root?.current?.offsetWidth) {
@@ -84,14 +84,14 @@ const Basic = (props: IBasicProps) => {
         observer.disconnect();
       };
     }
-  }, [root]);
+  }, [root, onResize]);
 
   const onClickLegend = useCallback(
     (label: string) => {
       const newLegends = updateLegends(label);
       handleLegend(chart as Chart, newLegends, config);
     },
-    [chart, legends, config]
+    [chart, legends, config, handleLegend, updateLegends]
   );
 
   return (

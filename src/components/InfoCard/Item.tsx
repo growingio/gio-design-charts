@@ -1,12 +1,20 @@
 import React from "react";
+import { getBackgroundImage } from "../utils/styles";
 
 const Item = (props: any) => {
   const { data, legend = {} } = props;
-  const { color, lineDash, type } = legend;
+  const { color, lineDash, type, dashed } = legend;
+
+  const backgroundImage = dashed ? getBackgroundImage() : {};
 
   const styles = lineDash
-    ? { border: `1px dashed ${color}`, height: 0, width: "12px" }
-    : { backgroundColor: color || data.color };
+    ? {
+        border: `1px dashed ${color}`,
+        height: 0,
+        width: "12px",
+        ...backgroundImage,
+      }
+    : { backgroundColor: color || data.color, ...backgroundImage };
 
   return (
     <div className="item">

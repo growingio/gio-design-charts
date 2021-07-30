@@ -1,6 +1,7 @@
 import React from "react";
 import { useCallback } from "react";
-import { DISABLE_COLOR } from "../../interface";
+import { DISABLE_COLOR } from "../../theme";
+import { getBackgroundImage } from "../utils/styles";
 
 export interface ILegendProps {
   label: string;
@@ -13,15 +14,18 @@ const Legend = (props: ILegendProps) => {
   const onClickLabel = useCallback(() => {
     onClick && onClick(label);
   }, [label, onClick]);
-  const { active, color, lineDash, type } = data || {};
+  const { active, color, lineDash, type, dashed } = data || {};
   let styles = {} as React.CSSProperties;
+
+  const backgroundImage = dashed ? getBackgroundImage() : {};
   styles = lineDash
     ? {
         border: `1px dashed ${active ? color : DISABLE_COLOR}`,
         height: 0,
         width: 12,
+        ...backgroundImage,
       }
-    : { backgroundColor: active ? color : DISABLE_COLOR };
+    : { backgroundColor: active ? color : DISABLE_COLOR, ...backgroundImage };
 
   return (
     <span

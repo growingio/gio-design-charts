@@ -1,33 +1,37 @@
 import { IGroup, registerShape } from "@antv/g2";
 
 // import { parseRadius, clamp } from "@antv/util";
-import { parseRadius } from "@antv/g2/lib/geometry/shape/interval/util";
-import { getRelateLegend } from "../utils";
+import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from "../../theme";
+import { getRelateLegend, isStack, isTopBar, isUseDash } from "../utils";
 
-const minHeight = 4;
+function getFillAttrs(shapeInfo: any) {
+  const stack = isStack(shapeInfo);
+  const topBar = isTopBar(shapeInfo);
 
-function getFillAttrs(cfg: any) {
-  return {
-    ...cfg.defaultStyle,
-    ...cfg.style,
-    fill: cfg.color,
-    fillOpacity: cfg.opacity,
-  };
-}
-
-function getRectPath(points: any[]) {
-  const path = [];
-  for (let i = 0; i < points.length; i++) {
-    const point = points[i];
-    if (point) {
-      const action = i === 0 ? "M" : "L";
-      path.push([action, point.x, point.y]);
+  // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
+  // 最上面的rect，取决于传入data的第一条数据
+  if (stack) {
+    if (!topBar) {
+      const {
+        radius: defaultRadius,
+        ...otherDefaultStyle
+      } = shapeInfo.defaultStyle;
+      const { radius, ...otherStyle } = shapeInfo.style;
+      return {
+        ...otherDefaultStyle,
+        ...otherStyle,
+        fill: shapeInfo.color,
+        fillOpacity: shapeInfo.opacity,
+      };
     }
   }
-  const first = points[0];
-  path.push(["L", first.x, first.y]);
-  path.push(["z"]);
-  return path;
+
+  return {
+    ...shapeInfo.defaultStyle,
+    ...shapeInfo.style,
+    fill: shapeInfo.color,
+    fillOpacity: shapeInfo.opacity,
+  };
 }
 
 // function addRadius(path: any[]) {
@@ -56,14 +60,19 @@ function getRectPath(points: any[]) {
 //   return temp;
 // }
 
-function getRectAttrs(points: any[], shapeInfo: any) {
+// 重新绘制rect，设置最小高度
+function getRectAttrs(points: any[]) {
   const width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
+
   return {
-    x: shapeInfo.x - width / 2,
-    y: height <= minHeight ? shapeInfo.y - (minHeight - height) : shapeInfo.y,
+    x: (points[0].x + points[1].x) / 2,
+    y:
+      height <= DEFAULT_MIN_HEIGHT
+        ? points[1].y - (DEFAULT_MIN_HEIGHT - height)
+        : points[1].y,
     width: width - 4,
-    height: height <= minHeight ? minHeight : height,
+    height: height <= DEFAULT_MIN_HEIGHT ? DEFAULT_MIN_HEIGHT : height,
   };
 }
 
@@ -76,25 +85,22 @@ function getRectAttrs(points: any[], shapeInfo: any) {
 registerShape("interval", "default-element", {
   draw(shapeInfo: any, container: IGroup) {
     const legend = getRelateLegend(shapeInfo);
-    console.log(legend);
+    const useDash = isUseDash(shapeInfo);
     const attrs = getFillAttrs(shapeInfo);
     const group = container.addGroup();
     const points = (this as any).parsePoints(shapeInfo.points); // 转换为画布坐标
 
-    const styles = legend.dashed
-      ? {
-          fill: "p(n)/acorn_PNG37019.png",
-        }
-      : {};
-
+    const styles =
+      useDash && legend.dashed
+        ? { fill: `p(a)${BAR_TEXTURE}` }
+        : { fill: legend.color || shapeInfo.color };
     group.addShape("rect", {
       attrs: {
         ...attrs,
-        ...getRectAttrs(points, shapeInfo), // 获取 rect 绘图信息
+        ...getRectAttrs(points), // 获取 rect 绘图信息
         ...styles,
       },
     });
-
     return group;
   },
 });

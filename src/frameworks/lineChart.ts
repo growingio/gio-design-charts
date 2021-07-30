@@ -1,5 +1,5 @@
 import { Chart } from "@antv/g2";
-import { IChartConfig, IChartOptions, ILegend, ILegends } from "../interface";
+import { IChartConfig, IChartOptions, ILegends } from "../interface";
 import { handleLegendBehavior, renderChart } from "./common";
 
 export const lineChart = (
