@@ -19,7 +19,7 @@
   z-index: 1;
   color: #242e59;
   max-height: 360px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .gio-chart-legend .dropdown:hover .dropdown-content {

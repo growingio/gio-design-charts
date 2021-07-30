@@ -14,7 +14,7 @@ export const dataWithMultiBar = [
 export const dataWithGroup = [
   { company: "Facebook", type: "整体", value: 35 },
   { company: "Apple", type: "整体", value: 0 },
-  { company: "Google", type: "整体", value: 28 },
+  { company: "Google", type: "整体", value: 1 },
   { company: "Apple", type: "非技术岗", value: 40 },
   { company: "Facebook", type: "非技术岗", value: 65 },
   { company: "Google", type: "非技术岗", value: 47 },

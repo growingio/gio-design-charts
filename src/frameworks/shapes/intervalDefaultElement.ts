@@ -1,31 +1,9 @@
 import { IGroup, registerShape } from "@antv/g2";
 
-// import { parseRadius, clamp } from "@antv/util";
 import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from "../../theme";
 import { getRelateLegend, isStack, isTopBar, isUseDash } from "../utils";
 
 function getFillAttrs(shapeInfo: any) {
-  const stack = isStack(shapeInfo);
-  const topBar = isTopBar(shapeInfo);
-
-  // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
-  // 最上面的rect，取决于传入data的第一条数据
-  if (stack) {
-    if (!topBar) {
-      const {
-        radius: defaultRadius,
-        ...otherDefaultStyle
-      } = shapeInfo.defaultStyle;
-      const { radius, ...otherStyle } = shapeInfo.style;
-      return {
-        ...otherDefaultStyle,
-        ...otherStyle,
-        fill: shapeInfo.color,
-        fillOpacity: shapeInfo.opacity,
-      };
-    }
-  }
-
   return {
     ...shapeInfo.defaultStyle,
     ...shapeInfo.style,
@@ -68,11 +46,14 @@ function getRectAttrs(points: any[]) {
   return {
     x: (points[0].x + points[1].x) / 2,
     y:
-      height <= DEFAULT_MIN_HEIGHT
+      height <= DEFAULT_MIN_HEIGHT && height !== 0
         ? points[1].y - (DEFAULT_MIN_HEIGHT - height)
         : points[1].y,
     width: width - 4,
-    height: height <= DEFAULT_MIN_HEIGHT ? DEFAULT_MIN_HEIGHT : height,
+    height:
+      height <= DEFAULT_MIN_HEIGHT && height !== 0
+        ? DEFAULT_MIN_HEIGHT
+        : height,
   };
 }
 
@@ -94,12 +75,28 @@ registerShape("interval", "default-element", {
       useDash && legend.dashed
         ? { fill: `p(a)${BAR_TEXTURE}` }
         : { fill: legend.color || shapeInfo.color };
+
+    const newAttrs = {
+      ...attrs,
+      ...getRectAttrs(points), // 获取 rect 绘图信息
+      ...styles,
+    };
+
+    const { radius, ...otherAttrs } = newAttrs;
+
+    const stack = isStack(shapeInfo);
+    const topBar = isTopBar(shapeInfo);
+    // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
+    // 最上面的rect，取决于传入data的第一条数据
+    // 所以，当rect是堆积图，并且不是最高的bar，则需要隐藏radius
+    let radiusObj: any = { radius };
+    radiusObj = stack && !topBar ? {} : radiusObj;
+
+    // 当高度为0时，对应的value数值为0，则不需要显示默认的高度，这是需要取消radius的设定，防止多余的渲染
+    radiusObj = newAttrs.height === 0 ? {} : radiusObj;
+
     group.addShape("rect", {
-      attrs: {
-        ...attrs,
-        ...getRectAttrs(points), // 获取 rect 绘图信息
-        ...styles,
-      },
+      attrs: { ...otherAttrs, ...radiusObj },
     });
     return group;
   },

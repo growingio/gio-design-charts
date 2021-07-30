@@ -68,7 +68,6 @@ const Basic = (props: IBasicProps) => {
 
   const onResize = useCallback(() => {
     if (root?.current?.offsetWidth) {
-      console.log(root?.current?.offsetWidth);
       setOffsetWidth(root?.current?.offsetWidth || 800);
     }
   }, [root]);
