@@ -1,12 +1,19 @@
 import { IChartConfig, IChartOptions } from "../interface";
 
+export const getShapeConfig = (config: IChartConfig, type?: string) => {
+  if (type) {
+    return config[type] || {};
+  }
+  return config.bar || config.column || config.line || {};
+};
+
 export const setCustomInfo = (
   options: IChartOptions,
   config: IChartConfig = {},
   info: any = {}
 ) => {
   const { legends, data } = options;
-  const shapeConfig = config.bar || config.line || {};
+  const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };
   if (info.isStack) {
     customInfo["topData"] = data?.[0];

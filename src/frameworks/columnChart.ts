@@ -1,27 +1,31 @@
 import { Chart } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
-import { BAR_TEXTURE, colors, DEFAULT_REDIUS } from "../theme";
+import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from "../theme";
 import { handleLegendBehavior, renderChart } from "./common";
 
-import "./shapes/intervalDefaultElement";
-import { setCustomInfo } from "./utils";
+import "./shapes/intervalColumnElement";
+import "./shapes/intervalBarElement";
+import { getShapeConfig, setCustomInfo } from "./utils";
 
 const interval = (
   chart: Chart,
   options: IChartOptions,
   config: IChartConfig,
-  useDash: boolean,
+  intervalConfig: any,
   styleCallback?: any
 ) => {
-  const barConfig = config.column || {};
-  const customInfo = { useDash } as { [key: string]: any };
+  const barConfig = getShapeConfig(config);
+  const customInfo = intervalConfig || {};
   let interval: any = chart.interval();
   if (barConfig.position) {
     interval = interval.position(barConfig.position);
   }
   if (barConfig.color) {
     interval = interval.color(barConfig.color);
-    interval.shape(barConfig.color, ["default-element"]);
+    console.log(`${intervalConfig.chartType || "column"}-element`);
+    interval.shape(barConfig.color, [
+      `${intervalConfig.chartType || "column"}-element`,
+    ]);
   }
   if (barConfig.adjust) {
     interval.adjust(barConfig.adjust);
@@ -32,52 +36,77 @@ const interval = (
   if (barConfig.color && styleCallback) {
     interval.style(barConfig.color, styleCallback);
   }
+
+  if (barConfig?.label) {
+    interval.label.apply(interval, barConfig.label);
+  }
+
   interval.customInfo(setCustomInfo(options, config, customInfo));
   return interval;
 };
 
-export const barChart = (options: IChartOptions, config: IChartConfig) => {
+export const handleInterval = (
+  options: IChartOptions,
+  config: IChartConfig,
+  type: string = "column"
+) => {
   const { legends, hasDashed } = options;
   const chart = renderChart(options, config);
   const dashedBars: string[] = [];
 
-  chart.theme({
-    styleSheet: {
-      paletteQualitative10: colors,
-    },
-  });
+  const radius = type === "column" ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
-  interval(chart, options, config, false, (label: string) => {
-    const legend = legends[label] || {};
-    if (legend?.dashed) {
-      dashedBars.push(label);
+  interval(
+    chart,
+    options,
+    config,
+    { chartType: type, useDash: false },
+    (label: string) => {
+      const legend = legends[label] || {};
+      if (legend?.dashed) {
+        dashedBars.push(label);
+      }
+      return {
+        fill: legend.color,
+        radius,
+      };
     }
-    return {
-      fill: legend.color,
-      radius: DEFAULT_REDIUS,
-    };
-  });
+  );
 
   // 若有条纹柱子，需要再次绘制
   if (hasDashed) {
-    interval(chart, options, config, true, (label: string) => {
-      const legend = legends[label] || {};
-      if (legend.dashed) {
-        return {
-          fill: `p(a)${BAR_TEXTURE}`,
-          radius: DEFAULT_REDIUS,
-        };
+    interval(
+      chart,
+      options,
+      config,
+      {
+        chartType: type,
+        useDash: true,
+      },
+      (label: string) => {
+        const legend = legends[label] || {};
+        if (legend.dashed) {
+          return {
+            fill: `p(a)${BAR_TEXTURE}`,
+            radius,
+          };
+        }
+        return { fill: legend.color, radius };
       }
-      return { fill: legend.color, radius: DEFAULT_REDIUS };
-    });
+    );
   }
+  return chart;
+};
+
+export const columnChart = (options: IChartOptions, config: IChartConfig) => {
+  const chart = handleInterval(options, config);
   chart.render();
   return chart;
 };
 
 export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
-  const barConfig = config.column || {};
+  const barConfig = getShapeConfig(config, "column");
   if (barConfig.color) {
     handleLegendBehavior(chart, legends, barConfig.color);
   }

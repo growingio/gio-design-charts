@@ -1,6 +1,12 @@
 import React, { CSSProperties } from "react";
 import Card from "../../components/Card";
 import {
+  BarDefaultExample,
+  BarWithGroupExample,
+  PercentBarExample,
+  StackingDiagramBarExample,
+} from "../bar/Story";
+import {
   ColumnWithGroupExample,
   ColumnWithMultiExample,
   ColumnWithOneExample,
@@ -98,22 +104,26 @@ const Dashboard = () => {
         <div>
           <div style={leftStyles}>
             <Card>
-              <LineWithOneLineExample />
+              <BarDefaultExample />
             </Card>
           </div>
           <div style={rightStyles}>
             <Card>
-              <LineWithDashExample />
+              <BarWithGroupExample />
             </Card>
           </div>
         </div>
         <div>
           <div style={leftStyles}>
             <Card>
-              <LineWithMenuExample />
+              <StackingDiagramBarExample />
             </Card>
           </div>
-          <div style={rightStyles}> </div>
+          <div style={rightStyles}>
+            <Card>
+              <PercentBarExample />
+            </Card>
+          </div>
         </div>
       </div>
     </>

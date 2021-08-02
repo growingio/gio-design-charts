@@ -1,6 +1,7 @@
 import { Chart } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
 import { handleLegendBehavior, renderChart } from "./common";
+import { getShapeConfig } from "./utils";
 
 export const lineChart = (
   options: IChartOptions,
@@ -8,7 +9,7 @@ export const lineChart = (
 ) => {
   const { legends } = options;
   const chart = renderChart(options, config);
-  const lineConfig = config.line || {};
+  const lineConfig = getShapeConfig(config, "line");
 
   chart
     .line({
@@ -33,7 +34,7 @@ export const lineChart = (
 };
 
 export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
-  const lineConfig = config.line;
+  const lineConfig = getShapeConfig(config, "line");
   if (lineConfig.color) {
     handleLegendBehavior(chart, legends, lineConfig.color);
   }

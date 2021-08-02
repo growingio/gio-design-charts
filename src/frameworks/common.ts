@@ -1,5 +1,6 @@
 import { Chart } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
+import { colors } from "../theme";
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
@@ -49,6 +50,14 @@ export const renderChart = (options: IChartOptions, config: IChartConfig) => {
   chart.interaction("active-region");
 
   // chart.interaction("element-highlight-by-x");
+
+  // set default colors, althought we have set default color for each legend.
+  // but it's still necessary to add default colors for theme
+  chart.theme({
+    styleSheet: {
+      paletteQualitative10: colors,
+    },
+  });
 
   return chart;
 };

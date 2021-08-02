@@ -19,3 +19,10 @@ export {
   LineWithDash as DashedLine,
   LineWithMenu as MultiLegendLine,
 } from "./g2/line/Story";
+
+export {
+  BarDefault as BasicBar,
+  BarWithGroup as GroupBar,
+  StackingDiagramBar,
+  PercentBar,
+} from "./g2/bar/Story";
