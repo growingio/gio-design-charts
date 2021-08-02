@@ -8,12 +8,12 @@ export default {
 export { Dashboard } from "./g2/dashboard";
 
 export {
-  BarWithOne as BasicBar,
-  BarWithMulti as MultiBar,
-  BarWithGroup as BasicGroupBar,
-  StackingDiagramBar,
-  PercentBar,
-} from "./g2/bar/Story";
+  ColumnWithOne as BasicColumn,
+  ColumnWithMulti as MultiColumn,
+  ColumnWithGroup as BasicGroupColumn,
+  StackingDiagramColumn,
+  PercentColumn,
+} from "./g2/column/Story";
 export {
   LineWithOneLine as BasicLine,
   LineWithDash as DashedLine,

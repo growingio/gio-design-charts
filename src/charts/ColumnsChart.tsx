@@ -1,5 +1,5 @@
 import React from "react";
-import { barChart, handleLegend } from "../frameworks/barChart";
+import { barChart, handleLegend } from "../frameworks/columnChart";
 
 import "../styles/default.css";
 import { ChartType, IChartProps } from "../interface";
@@ -10,7 +10,7 @@ const BarChart = (props: IChartProps) => {
 
   return (
     <Basic
-      type={ChartType.BAR}
+      type={ChartType.COLUMN}
       data={data}
       legends={legendProps}
       config={config}

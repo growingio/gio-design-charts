@@ -1,6 +1,7 @@
 export enum ChartType {
   LINE = "line",
   BAR = "bar",
+  COLUMN = "column",
 }
 
 export interface ILegend {

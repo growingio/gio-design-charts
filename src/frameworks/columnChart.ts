@@ -13,7 +13,7 @@ const interval = (
   useDash: boolean,
   styleCallback?: any
 ) => {
-  const barConfig = config.bar || {};
+  const barConfig = config.column || {};
   const customInfo = { useDash } as { [key: string]: any };
   let interval: any = chart.interval();
   if (barConfig.position) {
@@ -77,7 +77,7 @@ export const barChart = (options: IChartOptions, config: IChartConfig) => {
 };
 
 export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
-  const barConfig = config.bar || {};
+  const barConfig = config.column || {};
   if (barConfig.color) {
     handleLegendBehavior(chart, legends, barConfig.color);
   }
