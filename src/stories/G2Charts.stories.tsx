@@ -18,6 +18,8 @@ export {
   LineWithOneLine as BasicLine,
   LineWithDash as DashedLine,
   LineWithMenu as MultiLegendLine,
+  LineWithArea as AreaLine,
+  LineWithMultiArea as MultiAreaLine
 } from "./g2/line/Story";
 
 export {

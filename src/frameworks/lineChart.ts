@@ -29,6 +29,14 @@ export const lineChart = (
       style.lineWidth = 2;
       return style;
     });
+
+  if (lineConfig.area) {
+    chart
+      .area()
+      .position(lineConfig.area)
+      .color(lineConfig.color); // style ?
+  }
+
   chart.render();
   return { chart };
 };

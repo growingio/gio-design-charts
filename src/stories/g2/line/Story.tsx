@@ -1,6 +1,6 @@
 import { ComponentStory } from "@storybook/react";
 import LineChart from "../../../charts/LineChart";
-import { dataWithDash, dataWithOneLine, dataWithMenu } from "./data";
+import { dataWithDash, dataWithOneLine, dataWithMenu, dataWithOneLineArea } from "./data";
 import Card from "../../components/Card";
 import { DEFAULT_LINEDASH } from "../../../theme";
 
@@ -103,3 +103,41 @@ const LineWithMenuArgs = {
 LineWithMenu.args = { ...LineWithMenuArgs };
 
 export const LineWithMenuExample = () => <LineChart {...LineWithMenuArgs} />;
+
+export const LineWithArea = Template.bind({});
+const LineWithAreaArgs = {
+  legends: ["北京"],
+  data: dataWithOneLine,
+  config: {
+    ...config,
+    line: {
+      position: "month*temperature",
+      color: "city",
+      area: "month*temperature",
+    },
+  },
+};
+
+LineWithArea.args = { ...LineWithAreaArgs };
+
+export const LineWithAreaExample = () => <LineChart {...LineWithMenuArgs} />;
+
+// dataWithDash
+
+export const LineWithMultiArea = Template.bind({});
+const LineWithMultiAreaArgs = {
+  legends: ["北京", "哈尔滨", "石家庄"],
+  data: dataWithDash,
+  config: {
+    ...config,
+    line: {
+      position: "month*temperature",
+      color: "city",
+      area: "month*temperature",
+    },
+  },
+};
+
+LineWithMultiArea.args = { ...LineWithMultiAreaArgs };
+
+export const LineWithMultiAreaExample = () => <LineChart {...LineWithMultiAreaArgs} />;
