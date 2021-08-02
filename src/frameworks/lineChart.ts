@@ -1,4 +1,4 @@
-import { Chart } from "@antv/g2";
+import { Chart, View } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
 import { handleLegendBehavior, renderChart } from "./common";
 import { getShapeConfig } from "./utils";
@@ -30,12 +30,18 @@ export const lineChart = (
       return style;
     });
   chart.render();
-  return chart;
+  return { chart };
 };
 
-export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
+export const handleLegend = (
+  charts: (Chart | View)[],
+  legends: ILegends,
+  config: any
+) => {
   const lineConfig = getShapeConfig(config, "line");
   if (lineConfig.color) {
-    handleLegendBehavior(chart, legends, lineConfig.color);
+    charts.map((chart: Chart | View) => {
+      handleLegendBehavior(chart, legends, lineConfig.color);
+    });
   }
 };

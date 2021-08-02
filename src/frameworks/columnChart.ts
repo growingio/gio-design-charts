@@ -1,14 +1,13 @@
-import { Chart } from "@antv/g2";
+import { Chart, View } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from "../theme";
 import { handleLegendBehavior, renderChart } from "./common";
 
-import "./shapes/intervalColumnElement";
-import "./shapes/intervalBarElement";
+import "./shapes/intervalDefaultElement";
 import { getShapeConfig, setCustomInfo } from "./utils";
 
-const interval = (
-  chart: Chart,
+export const interval = (
+  chart: Chart | View,
   options: IChartOptions,
   config: IChartConfig,
   intervalConfig: any,
@@ -22,7 +21,6 @@ const interval = (
   }
   if (barConfig.color) {
     interval = interval.color(barConfig.color);
-    console.log(`${intervalConfig.chartType || "column"}-element`);
     interval.shape(barConfig.color, [
       `${intervalConfig.chartType || "column"}-element`,
     ]);
@@ -40,7 +38,14 @@ const interval = (
   if (barConfig?.label) {
     interval.label.apply(interval, barConfig.label);
   }
-
+  interval.animate({
+    enter: {
+      animation: "fade-in", // 动画名称
+      easing: "easeQuadIn", // 动画缓动效果
+      delay: 0, // 动画延迟执行时间
+      duration: 100, // 动画执行时间
+    },
+  });
   interval.customInfo(setCustomInfo(options, config, customInfo));
   return interval;
 };
@@ -68,6 +73,8 @@ export const handleInterval = (
         dashedBars.push(label);
       }
       return {
+        stroke: "#fff",
+        strokeWidth: 1,
         fill: legend.color,
         radius,
       };
@@ -102,12 +109,18 @@ export const handleInterval = (
 export const columnChart = (options: IChartOptions, config: IChartConfig) => {
   const chart = handleInterval(options, config);
   chart.render();
-  return chart;
+  return { chart };
 };
 
-export const handleLegend = (chart: Chart, legends: ILegends, config: any) => {
+export const handleLegend = (
+  charts: (Chart | View)[],
+  legends: ILegends,
+  config: any
+) => {
   const barConfig = getShapeConfig(config, "column");
   if (barConfig.color) {
-    handleLegendBehavior(chart, legends, barConfig.color);
+    charts.map((chart: Chart | View) => {
+      handleLegendBehavior(chart, legends, barConfig.color);
+    });
   }
 };

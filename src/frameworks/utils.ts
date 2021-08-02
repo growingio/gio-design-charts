@@ -4,7 +4,7 @@ export const getShapeConfig = (config: IChartConfig, type?: string) => {
   if (type) {
     return config[type] || {};
   }
-  return config.bar || config.column || config.line || {};
+  return config.bar || config.column || config.line || config.funnel || {};
 };
 
 export const setCustomInfo = (

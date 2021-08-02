@@ -26,3 +26,5 @@ export {
   StackingDiagramBar,
   PercentBar,
 } from "./g2/bar/Story";
+
+export { FunnelWithLink } from "./g2/funnel/Story";

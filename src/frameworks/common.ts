@@ -1,28 +1,38 @@
-import { Chart } from "@antv/g2";
+import { Chart, View } from "@antv/g2";
 import { IChartConfig, IChartOptions, ILegends } from "../interface";
 import { colors } from "../theme";
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
 
-const generateChart = (chartConfig: any, id: HTMLElement) => {
+export const generateChart = (options: IChartOptions, config: IChartConfig) => {
+  const { id } = options;
+  const basicConfig = config.chart || {};
   // Set defualt chart config
   const renderChart = new Chart({
-    ...chartConfig,
+    ...basicConfig,
     container: id as HTMLElement,
     autoFit:
-      chartConfig.autoFit === undefined
+      basicConfig.autoFit === undefined
         ? DEFAULT_AUTO_FIT
-        : chartConfig.autoFit,
-    height: chartConfig.height || DEFAULT_HEIGHT,
+        : basicConfig.autoFit,
+    height: basicConfig.height || DEFAULT_HEIGHT,
   });
+  // const linkView = renderChart.createView();
+
+  // linkView.on("afterrender", function (event: any) {
+  //   console.log("==========");
+  //   addLinkByElement(event?.view);
+  // });
   return renderChart;
 };
 
-export const renderChart = (options: IChartOptions, config: IChartConfig) => {
-  const { id, data } = options;
-  const basicConfig = config.chart || {};
-  const chart = generateChart(basicConfig, id as HTMLElement);
+export const fetchChartConfig = (
+  chart: Chart | View,
+  options: IChartConfig,
+  config: IChartConfig
+) => {
+  const { data } = options;
 
   // Set Data
   chart.data(data);
@@ -62,8 +72,13 @@ export const renderChart = (options: IChartOptions, config: IChartConfig) => {
   return chart;
 };
 
+export const renderChart = (options: IChartOptions, config: IChartConfig) => {
+  const chart = generateChart(options, config);
+  return fetchChartConfig(chart, options, config);
+};
+
 export const handleLegendBehavior = (
-  chart: Chart,
+  chart: Chart | View,
   legends: ILegends,
   color: string
 ) => {

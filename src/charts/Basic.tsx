@@ -1,5 +1,5 @@
 import React, { LegacyRef, useEffect } from "react";
-import { Chart } from "@antv/g2";
+import { Chart, View } from "@antv/g2";
 import { useState } from "react";
 import { useCallback } from "react";
 
@@ -27,6 +27,7 @@ const Basic = (props: IBasicProps) => {
   const root: LegacyRef<HTMLDivElement> = React.createRef();
   const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
   const [chart, setChart] = useState<Chart>();
+  const [views, setViews] = useState<View[]>([]);
   const { legends, setLegends, updateLegends } = useLegends();
   const [hoverItem, setHoverItem] = useState([]);
   const [offsetWidth, setOffsetWidth] = useState(800);
@@ -48,9 +49,9 @@ const Basic = (props: IBasicProps) => {
         },
       };
     }
-    let renderChart: any;
+    let existChart: any;
     if (root.current) {
-      renderChart = callChart(
+      const { chart: renderChart, views: renderViews = [] } = callChart(
         { id: root.current, data, legends: genLegends, hasDashed },
         {
           ...config,
@@ -60,9 +61,11 @@ const Basic = (props: IBasicProps) => {
       setOffsetWidth(root?.current?.offsetWidth || 800);
       setLegends(genLegends);
       setChart(renderChart);
+      setViews(renderViews);
+      existChart = renderChart;
     }
     return () => {
-      renderChart?.destroy();
+      existChart?.destroy();
     };
   }, [data, legendProps, config, type, callChart]);
 
@@ -88,9 +91,9 @@ const Basic = (props: IBasicProps) => {
   const onClickLegend = useCallback(
     (label: string) => {
       const newLegends = updateLegends(label);
-      handleLegend(chart as Chart, newLegends, config);
+      handleLegend([chart, ...views], newLegends, config);
     },
-    [chart, legends, config, handleLegend, updateLegends]
+    [chart, views, legends, config, handleLegend, updateLegends]
   );
 
   return (
