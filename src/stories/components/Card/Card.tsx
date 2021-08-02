@@ -8,6 +8,10 @@ const Card = (props: any) => {
         border: "1px solid #EBEDF5",
         borderRadius: "4px",
         padding: 20,
+        margin: 8,
+        height: 350,
+        display: "block",
+        position: "relative",
       }}
     >
       {children}

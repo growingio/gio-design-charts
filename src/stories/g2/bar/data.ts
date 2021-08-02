@@ -47,3 +47,78 @@ const getPercentData = (data: any[], type: string) => {
 };
 
 export const percentData = getPercentData(dataWithGroup, "type");
+
+export const dataWithGroupStack = [
+  {
+    type: "上月",
+    category: "投入",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "本月",
+    category: "投入",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "上月",
+    category: "产出",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "本月",
+    category: "产出",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "上月",
+    category: "收益",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "本月",
+    category: "收益",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "上月",
+    category: "利润",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+  {
+    type: "本月",
+    category: "利润",
+    北京: 1,
+    天津: 2,
+    上海: 3,
+    重庆: 4,
+    深圳: 5,
+  },
+];

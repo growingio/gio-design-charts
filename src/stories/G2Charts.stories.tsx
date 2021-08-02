@@ -5,6 +5,8 @@ export default {
   },
 };
 
+export { Dashboard } from "./g2/dashboard";
+
 export {
   BarWithOne as BasicBar,
   BarWithMulti as MultiBar,

@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof LineChart> = (args) => (
 const config = {
   chart: {
     autoFit: true,
-    height: 400,
+    height: 300,
   },
   scale: [
     {
@@ -47,14 +47,19 @@ const config = {
 };
 
 export const LineWithOneLine = Template.bind({});
-LineWithOneLine.args = {
+const LineWithOneLineArgs = {
   legends: ["北京"],
   data: dataWithOneLine,
   config,
 };
+LineWithOneLine.args = { ...LineWithOneLineArgs };
+
+export const LineWithOneLineExample = () => (
+  <LineChart {...LineWithOneLineArgs} />
+);
 
 export const LineWithDash = Template.bind({});
-LineWithDash.args = {
+const LineWithDashArgs = {
   legends: [
     "长春",
     {
@@ -69,9 +74,12 @@ LineWithDash.args = {
   data: dataWithDash,
   config,
 };
+LineWithDash.args = { ...LineWithDashArgs };
+
+export const LineWithDashExample = () => <LineChart {...LineWithDashArgs} />;
 
 export const LineWithMenu = Template.bind({});
-LineWithMenu.args = {
+const LineWithMenuArgs = {
   legends: [
     "北京的天气真热啊",
     "上海",
@@ -92,3 +100,6 @@ LineWithMenu.args = {
   data: dataWithMenu,
   config,
 };
+LineWithMenu.args = { ...LineWithMenuArgs };
+
+export const LineWithMenuExample = () => <LineChart {...LineWithMenuArgs} />;

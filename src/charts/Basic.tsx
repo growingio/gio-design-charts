@@ -94,7 +94,7 @@ const Basic = (props: IBasicProps) => {
   );
 
   return (
-    <div className="legend">
+    <div className="gio-chart-next">
       <Legends
         legends={legends}
         offsetWidth={offsetWidth}

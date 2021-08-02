@@ -3,6 +3,7 @@ import BarChart from "../../../charts/BarChart";
 import Card from "../../components/Card";
 import {
   dataWithGroup,
+  dataWithGroupStack,
   dataWithMultiBar,
   dataWithOneBar,
   percentData,
@@ -17,7 +18,7 @@ const Template: ComponentStory<typeof BarChart> = (args) => (
 const config = {
   chart: {
     autoFit: true,
-    height: 400,
+    height: 300,
   },
   scale: ["value", { nice: true }],
   tooltip: {
@@ -28,7 +29,7 @@ const config = {
 };
 
 export const BarWithOne = Template.bind({});
-BarWithOne.args = {
+const BarWithOneArgs = {
   legends: ["Apple"],
   data: dataWithOneBar,
   config: {
@@ -39,9 +40,11 @@ BarWithOne.args = {
     },
   },
 };
+BarWithOne.args = { ...BarWithOneArgs };
+export const BarWithOneExample = () => <BarChart {...BarWithOneArgs} />;
 
 export const BarWithMulti = Template.bind({});
-BarWithMulti.args = {
+const BarWithMultiArgs = {
   legends: [
     "Apple",
     "Google",
@@ -61,9 +64,11 @@ BarWithMulti.args = {
     },
   },
 };
+BarWithMulti.args = BarWithMultiArgs;
+export const BarWithMultiExample = () => <BarChart {...BarWithMultiArgs} />;
 
 export const BarWithGroup = Template.bind({});
-BarWithGroup.args = {
+const BarWithGroupArgs = {
   legends: ["Apple", { name: "Facebook", dashed: true }, "Google"],
   data: dataWithGroup,
   config: {
@@ -80,9 +85,11 @@ BarWithGroup.args = {
     },
   },
 };
+BarWithGroup.args = BarWithGroupArgs;
+export const BarWithGroupExample = () => <BarChart {...BarWithGroupArgs} />;
 
 export const StackingDiagramBar = Template.bind({ title: "堆积图" });
-StackingDiagramBar.args = {
+const StackingDiagramBarArgs = {
   legends: ["Apple", "Facebook", "Google"],
   data: dataWithGroup,
   config: {
@@ -94,9 +101,13 @@ StackingDiagramBar.args = {
     },
   },
 };
+StackingDiagramBar.args = StackingDiagramBarArgs;
+export const StackingDiagramBarExample = () => (
+  <BarChart {...StackingDiagramBarArgs} />
+);
 
 export const PercentBar = Template.bind({ title: "堆积图" });
-PercentBar.args = {
+const PercentBarArgs = {
   legends: ["Apple", "Facebook", "Google"],
   data: percentData,
   config: {
@@ -118,3 +129,23 @@ PercentBar.args = {
     },
   },
 };
+PercentBar.args = PercentBarArgs;
+export const PercentBarExample = () => <BarChart {...PercentBarArgs} />;
+
+export const GroupAndStackBar = Template.bind({});
+const GroupAndStackBarArgs = {
+  legends: [],
+  data: dataWithGroupStack,
+  config: {
+    ...config,
+    bar: {
+      position: "type*value",
+      color: "company",
+      adjust: "stack",
+    },
+  },
+};
+GroupAndStackBar.args = GroupAndStackBarArgs;
+export const GroupAndStackBarExample = () => (
+  <BarChart {...GroupAndStackBarArgs} />
+);
