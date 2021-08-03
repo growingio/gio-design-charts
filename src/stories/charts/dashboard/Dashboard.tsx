@@ -1,24 +1,25 @@
 import React, { CSSProperties } from "react";
-import Frame from "../../components/Frame";
+import Frame from "../../components/frame";
 import {
   BarDefaultExample,
   BarWithGroupExample,
   PercentBarExample,
   StackingDiagramBarExample,
-} from "../bar/Story";
+} from "../bar/Bar.stories";
 import {
   ColumnWithGroupExample,
   ColumnWithMultiExample,
   ColumnWithOneExample,
   PercentColumnExample,
   StackingDiagramColumnExample,
-} from "../column/Story";
+} from "../column/Column.stories";
+import { FunnelWithLinkExample } from "../funnel/Funnel.stories";
 
 import {
   LineWithOneLineExample,
   LineWithDashExample,
   LineWithMenuExample,
-} from "../line/Story";
+} from "../line/Line.stories";
 
 const titleStyle: CSSProperties = {
   fontSize: "24px",
@@ -91,6 +92,7 @@ const Dashboard = () => {
             <PercentBarExample />
           </Frame>
         </div>
+        <FunnelWithLinkExample />
       </div>
     </>
   );

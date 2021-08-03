@@ -1,8 +1,15 @@
 import { ComponentStory } from "@storybook/react";
 import LineChart from "../../../charts/LineChart";
-import { dataWithDash, dataWithOneLine, dataWithMenu, dataWithOneLineArea } from "./data";
-import Card from "../../components/Card";
+import { dataWithDash, dataWithOneLine, dataWithMenu } from "./data";
+import Card from "../../components/card";
 import { DEFAULT_LINEDASH } from "../../../theme";
+
+export default {
+  title: "Charts/折线图&面积图",
+  argTypes: {
+    backgroundColor: { control: "color" },
+  },
+};
 
 const Template: ComponentStory<typeof LineChart> = (args) => (
   <Card>
@@ -46,7 +53,7 @@ const config = {
   },
 };
 
-export const LineWithOneLine = Template.bind({});
+const LineWithOneLine = Template.bind({});
 const LineWithOneLineArgs = {
   legends: ["北京"],
   data: dataWithOneLine,
@@ -54,12 +61,12 @@ const LineWithOneLineArgs = {
 };
 LineWithOneLine.storyName = "折线图 Line Chart";
 LineWithOneLine.args = { ...LineWithOneLineArgs };
-
 export const LineWithOneLineExample = () => (
-  <LineChart {...LineWithOneLineArgs} />
+  <LineWithOneLine {...LineWithOneLineArgs} />
 );
+LineWithOneLineExample.storyName = "折线图 Line Chart";
 
-export const LineWithDash = Template.bind({});
+const LineWithDash = Template.bind({});
 const LineWithDashArgs = {
   legends: [
     "长春",
@@ -76,12 +83,12 @@ const LineWithDashArgs = {
   config,
 };
 
-LineWithDash.storyName = "对比折线图";
 LineWithDash.args = { ...LineWithDashArgs };
 
-export const LineWithDashExample = () => <LineChart {...LineWithDashArgs} />;
+export const LineWithDashExample = () => <LineWithDash {...LineWithDashArgs} />;
+LineWithDashExample.storyName = "对比折线图";
 
-export const LineWithMenu = Template.bind({});
+const LineWithMenu = Template.bind({});
 const LineWithMenuArgs = {
   legends: [
     "北京的天气真热啊",
@@ -103,12 +110,12 @@ const LineWithMenuArgs = {
   data: dataWithMenu,
   config,
 };
-LineWithMenu.storyName = "多纬度折线图";
 LineWithMenu.args = { ...LineWithMenuArgs };
 
-export const LineWithMenuExample = () => <LineChart {...LineWithMenuArgs} />;
+export const LineWithMenuExample = () => <LineWithMenu {...LineWithMenuArgs} />;
+LineWithMenuExample.storyName = "多纬度折线图";
 
-export const LineWithArea = Template.bind({});
+const LineWithArea = Template.bind({});
 const LineWithAreaArgs = {
   legends: ["北京"],
   data: dataWithOneLine,
@@ -123,12 +130,10 @@ const LineWithAreaArgs = {
 };
 
 LineWithArea.args = { ...LineWithAreaArgs };
+export const LineWithAreaExample = () => <LineWithArea {...LineWithAreaArgs} />;
+LineWithAreaExample.storyName = "面积图";
 
-export const LineWithAreaExample = () => <LineChart {...LineWithMenuArgs} />;
-
-// dataWithDash
-
-export const LineWithMultiArea = Template.bind({});
+const LineWithMultiArea = Template.bind({});
 const LineWithMultiAreaArgs = {
   legends: ["北京", "哈尔滨", "石家庄"],
   data: dataWithDash,
@@ -144,4 +149,7 @@ const LineWithMultiAreaArgs = {
 
 LineWithMultiArea.args = { ...LineWithMultiAreaArgs };
 
-export const LineWithMultiAreaExample = () => <LineChart {...LineWithMultiAreaArgs} />;
+export const LineWithMultiAreaExample = () => (
+  <LineWithMultiArea {...LineWithMultiAreaArgs} />
+);
+LineWithMultiAreaExample.storyName = "复杂面积图";

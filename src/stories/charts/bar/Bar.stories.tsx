@@ -1,8 +1,15 @@
 import { ComponentStory } from "@storybook/react";
 import BarChart from "../../../charts/BarChart";
-import Card from "../../components/Card";
+import Card from "../../components/card";
 import { dataWithGroup, percentData } from "../column/data";
 import { data } from "./data";
+
+export default {
+  title: "Charts/条形图 Bar Chart",
+  argTypes: {
+    backgroundColor: { control: "color" },
+  },
+};
 
 const Template: ComponentStory<typeof BarChart> = (args) => (
   <Card>
@@ -23,7 +30,7 @@ const config = {
   },
 };
 
-export const BarDefault = Template.bind({});
+const BarDefault = Template.bind({});
 const BarDefaultArgs = {
   legends: [
     "金融保险",
@@ -55,11 +62,11 @@ const BarDefaultArgs = {
     },
   },
 };
-BarDefault.storyName = "条形图 Bar Chart";
 BarDefault.args = { ...BarDefaultArgs };
-export const BarDefaultExample = () => <BarChart {...BarDefaultArgs} />;
+export const BarDefaultExample = () => <BarDefault {...BarDefaultArgs} />;
+BarDefaultExample.storyName = "条形图 Bar Chart";
 
-export const BarWithGroup = Template.bind({});
+const BarWithGroup = Template.bind({});
 const barWithGroupArgs = {
   legends: ["Apple", { name: "Facebook", dashed: true }, "Google"],
   data: dataWithGroup,
@@ -78,11 +85,11 @@ const barWithGroupArgs = {
     },
   },
 };
-BarWithGroup.storyName = "分组条形图";
 BarWithGroup.args = barWithGroupArgs;
-export const BarWithGroupExample = () => <BarChart {...barWithGroupArgs} />;
+export const BarWithGroupExample = () => <BarWithGroup {...barWithGroupArgs} />;
+BarWithGroupExample.storyName = "分组条形图";
 
-export const StackingDiagramBar = Template.bind({ title: "堆积图" });
+const StackingDiagramBar = Template.bind({ title: "堆积图" });
 const StackingDiagramBarArgs = {
   legends: ["Apple", "Facebook", "Google"],
   data: dataWithGroup,
@@ -96,13 +103,13 @@ const StackingDiagramBarArgs = {
     },
   },
 };
-StackingDiagramBar.storyName = "堆积条形图";
 StackingDiagramBar.args = StackingDiagramBarArgs;
 export const StackingDiagramBarExample = () => (
-  <BarChart {...StackingDiagramBarArgs} />
+  <StackingDiagramBar {...StackingDiagramBarArgs} />
 );
+StackingDiagramBarExample.storyName = "堆积条形图";
 
-export const PercentBar = Template.bind({ title: "堆积图" });
+const PercentBar = Template.bind({ title: "堆积图" });
 const PercentBarArgs = {
   legends: ["Apple", "Facebook", "Google"],
   data: percentData,
@@ -126,6 +133,6 @@ const PercentBarArgs = {
     },
   },
 };
-PercentBar.storyName = "百分比堆积条形图";
 PercentBar.args = PercentBarArgs;
-export const PercentBarExample = () => <BarChart {...PercentBarArgs} />;
+export const PercentBarExample = () => <PercentBar {...PercentBarArgs} />;
+PercentBarExample.storyName = "百分比堆积条形图";

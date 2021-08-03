@@ -1,7 +1,14 @@
 import { ComponentStory } from "@storybook/react";
 import FunnelChart from "../../../charts/FunnelChart";
-import Card from "../../components/Card";
+import Card from "../../components/card";
 import { dataWithMultiBar } from "../column/data";
+
+export default {
+  title: "Charts/漏斗图 Funnel Chart",
+  argTypes: {
+    backgroundColor: { control: "color" },
+  },
+};
 
 const Template: ComponentStory<typeof FunnelChart> = (args) => (
   <Card>
@@ -22,7 +29,7 @@ const config = {
   },
 };
 
-export const FunnelWithLink = Template.bind({});
+const FunnelWithLink = Template.bind({});
 const FunnelWithLinkArgs = {
   legends: [
     "Apple",
@@ -45,6 +52,9 @@ const FunnelWithLinkArgs = {
 };
 FunnelWithLink.storyName = "漏斗图探索";
 FunnelWithLink.args = FunnelWithLinkArgs;
+
 export const FunnelWithLinkExample = () => (
-  <FunnelChart {...FunnelWithLinkArgs} />
+  <FunnelWithLink {...FunnelWithLinkArgs} />
 );
+
+FunnelWithLinkExample.storyName = "漏斗图探索";

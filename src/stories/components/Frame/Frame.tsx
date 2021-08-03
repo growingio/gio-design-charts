@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import Card from "../Card";
+import Card from "../card";
 
 const leftStyles: CSSProperties = {
   width: "50%",

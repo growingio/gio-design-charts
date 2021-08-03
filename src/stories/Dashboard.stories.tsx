@@ -1,7 +1,7 @@
-import { default as DashboardComponent } from "./g2/dashboard/Dashboard";
+import { default as DashboardComponent } from "./charts/dashboard/Dashboard";
 
 export default {
-  title: "Example/Dashboard",
+  title: "Charts/Dashboard",
   component: DashboardComponent,
   parameters: {
     docs: {
