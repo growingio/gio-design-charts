@@ -3,11 +3,17 @@ import BarChart from "../../../charts/BarChart";
 import Card from "../../components/card";
 import { dataWithGroup, percentData } from "../column/data";
 import { data } from "./data";
+import Docs from "./Bar.mdx";
 
 export default {
   title: "Charts/条形图 Bar Chart",
   argTypes: {
     backgroundColor: { control: "color" },
+  },
+  parameters: {
+    docs: {
+      page: Docs,
+    },
   },
 };
 

@@ -1,13 +1,13 @@
-import React, { LegacyRef, useEffect } from "react";
-import { Chart, View } from "@antv/g2";
-import { useState } from "react";
-import { useCallback } from "react";
+import React, { LegacyRef, useEffect } from 'react';
+import { Chart, View } from '@antv/g2';
+import { useState } from 'react';
+import { useCallback } from 'react';
 
-import "../styles/default.css";
-import Legends from "../components/Legends";
-import getLegends, { useLegends } from "./hooks/getLegends";
-import { ChartType, IChartProps } from "../interface";
-import InfoCard from "../components/InfoCard/InfoCard";
+import '../styles/default.css';
+import Legends from '../components/Legends';
+import getLegends, { useLegends } from './hooks/getLegends';
+import { ChartType, IChartProps } from '../interface';
+import InfoCard from '../components/InfoCard/InfoCard';
 
 export interface IBasicProps extends IChartProps {
   callChart: any;
@@ -16,14 +16,7 @@ export interface IBasicProps extends IChartProps {
 }
 
 const Basic = (props: IBasicProps) => {
-  const {
-    type,
-    data,
-    legends: legendProps = [],
-    config = {},
-    callChart,
-    handleLegend,
-  } = props;
+  const { type, data, legends: legendProps = [], config = {}, callChart, handleLegend } = props;
   const root: LegacyRef<HTMLDivElement> = React.createRef();
   const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
   const [chart, setChart] = useState<Chart>();
@@ -34,10 +27,7 @@ const Basic = (props: IBasicProps) => {
 
   // Init Chart
   useEffect(() => {
-    const [genLegends, hasDashed] = getLegends(
-      type || ChartType.BAR,
-      legendProps
-    );
+    const [genLegends, hasDashed] = getLegends(type || ChartType.BAR, legendProps);
     let tooltip = config.tooltip || {};
     if (tooltipRef.current) {
       tooltip = {
@@ -98,13 +88,9 @@ const Basic = (props: IBasicProps) => {
 
   return (
     <div className="gio-chart-next">
-      <Legends
-        legends={legends}
-        offsetWidth={offsetWidth}
-        onClick={onClickLegend}
-      />
+      <Legends legends={legends} offsetWidth={offsetWidth} onClick={onClickLegend} />
       <div ref={root} onReset={onResize} />
-      <div style={{ visibility: "collapse" }}>
+      <div style={{ visibility: 'collapse' }}>
         <div ref={tooltipRef} className="g2-tooltip">
           <InfoCard legends={legends} items={hoverItem} />
         </div>
