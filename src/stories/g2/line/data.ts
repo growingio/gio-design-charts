@@ -60,6 +60,8 @@ export const dataWithOneLine = [
     temperature: 22.86,
   },
 ];
+
+export const dataWithOneLineArea = dataWithOneLine.map(_ => ({ month: _.month, city: _.city }))
 export const dataWithDash = [
   {
     month: "一月",
