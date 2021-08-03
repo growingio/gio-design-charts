@@ -1,28 +1,25 @@
 export default {
-  title: "Example/G2 Charts",
+  title: "Example/Charts",
   argTypes: {
     backgroundColor: { control: "color" },
   },
 };
 
-export { Dashboard } from "./g2/dashboard";
+// export { Dashboard } from "./g2/dashboard";
 
 export {
-  ColumnWithOne as BasicColumn,
-  ColumnWithMulti as MultiColumn,
-  ColumnWithGroup as BasicGroupColumn,
+  ColumnWithOne,
+  ColumnWithMulti,
+  ColumnWithGroup,
   StackingDiagramColumn,
   PercentColumn,
 } from "./g2/column/Story";
-export {
-  LineWithOneLine as BasicLine,
-  LineWithDash as DashedLine,
-  LineWithMenu as MultiLegendLine,
-} from "./g2/line/Story";
+
+export { LineWithOneLine, LineWithDash, LineWithMenu } from "./g2/line/Story";
 
 export {
-  BarDefault as BasicBar,
-  BarWithGroup as GroupBar,
+  BarDefault,
+  BarWithGroup,
   StackingDiagramBar,
   PercentBar,
 } from "./g2/bar/Story";

@@ -40,6 +40,7 @@ const ColumnWithOneArgs = {
     },
   },
 };
+ColumnWithOne.storyName = "柱状图 Column Chart";
 ColumnWithOne.args = { ...ColumnWithOneArgs };
 export const ColumnWithOneExample = () => (
   <ColumnChart {...ColumnWithOneArgs} />
@@ -66,6 +67,7 @@ const ColumnWithMultiArgs = {
     },
   },
 };
+ColumnWithMulti.storyName = "多维度柱状图";
 ColumnWithMulti.args = ColumnWithMultiArgs;
 export const ColumnWithMultiExample = () => (
   <ColumnChart {...ColumnWithMultiArgs} />
@@ -89,6 +91,7 @@ const ColumnWithGroupArgs = {
     },
   },
 };
+ColumnWithGroup.storyName = "分组多维度柱状图";
 ColumnWithGroup.args = ColumnWithGroupArgs;
 export const ColumnWithGroupExample = () => (
   <ColumnChart {...ColumnWithGroupArgs} />
@@ -107,6 +110,7 @@ const StackingDiagramColumnArgs = {
     },
   },
 };
+StackingDiagramColumn.storyName = "堆积多维度柱状图";
 StackingDiagramColumn.args = StackingDiagramColumnArgs;
 export const StackingDiagramColumnExample = () => (
   <ColumnChart {...StackingDiagramColumnArgs} />
@@ -135,6 +139,7 @@ const PercentColumnArgs = {
     },
   },
 };
+PercentColumn.storyName = "百分比柱状图";
 PercentColumn.args = PercentColumnArgs;
 export const PercentColumnExample = () => (
   <ColumnChart {...PercentColumnArgs} />
@@ -153,6 +158,7 @@ const GroupAndStackColumnArgs = {
     },
   },
 };
+GroupAndStackColumn.storyName = "百分比柱状图1";
 GroupAndStackColumn.args = GroupAndStackColumnArgs;
 export const GroupAndStackColumnExample = () => (
   <ColumnChart {...GroupAndStackColumnArgs} />

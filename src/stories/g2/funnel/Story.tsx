@@ -43,6 +43,7 @@ const FunnelWithLinkArgs = {
     },
   },
 };
+FunnelWithLink.storyName = "漏斗图探索";
 FunnelWithLink.args = FunnelWithLinkArgs;
 export const FunnelWithLinkExample = () => (
   <FunnelChart {...FunnelWithLinkArgs} />

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import Card from "../../components/Card";
+import Frame from "../../components/Frame";
 import {
   BarDefaultExample,
   BarWithGroupExample,
@@ -26,104 +26,70 @@ const titleStyle: CSSProperties = {
   padding: "8px 20px",
 };
 
-const leftStyles: CSSProperties = {
-  width: "50%",
-  float: "left",
-};
-
-const rightStyles: CSSProperties = {
-  width: "50%",
-  float: "right",
-};
-
 const Dashboard = () => {
   return (
     <>
       <div style={{ display: "flow-root" }}>
         <div style={titleStyle}>折线图</div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <LineWithOneLineExample />
-            </Card>
-          </div>
-          <div style={rightStyles}>
-            <Card>
-              <LineWithDashExample />
-            </Card>
-          </div>
+          <Frame type="left">
+            <LineWithOneLineExample />
+          </Frame>
+          <Frame type="right">
+            <LineWithDashExample />
+          </Frame>
         </div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <LineWithMenuExample />
-            </Card>
-          </div>
-          <div style={rightStyles}> </div>
+          <Frame type="left">
+            <LineWithMenuExample />
+          </Frame>
+          <Frame type="right" />
         </div>
       </div>
 
       <div style={{ display: "flow-root" }}>
         <div style={titleStyle}>柱状图</div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <ColumnWithOneExample />
-            </Card>
-          </div>
-          <div style={rightStyles}>
-            <Card>
-              <ColumnWithMultiExample />
-            </Card>
-          </div>
+          <Frame type="left">
+            <ColumnWithOneExample />
+          </Frame>
+          <Frame type="right">
+            <ColumnWithMultiExample />
+          </Frame>
         </div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <ColumnWithGroupExample />
-            </Card>
-          </div>
-          <div style={rightStyles}>
-            <Card>
-              <StackingDiagramColumnExample />
-            </Card>
-          </div>
+          <Frame type="left">
+            <ColumnWithGroupExample />
+          </Frame>
+          <Frame type="right">
+            <StackingDiagramColumnExample />
+          </Frame>
         </div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <PercentColumnExample />
-            </Card>
-          </div>
-          <div style={rightStyles} />
+          <Frame type="left">
+            <PercentColumnExample />
+          </Frame>
+          <Frame type="right" />
         </div>
       </div>
 
       <div style={{ display: "flow-root" }}>
         <div style={titleStyle}>条形图</div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <BarDefaultExample />
-            </Card>
-          </div>
-          <div style={rightStyles}>
-            <Card>
-              <BarWithGroupExample />
-            </Card>
-          </div>
+          <Frame type="left">
+            <BarDefaultExample />
+          </Frame>
+          <Frame type="right">
+            <BarWithGroupExample />
+          </Frame>
         </div>
         <div>
-          <div style={leftStyles}>
-            <Card>
-              <StackingDiagramBarExample />
-            </Card>
-          </div>
-          <div style={rightStyles}>
-            <Card>
-              <PercentBarExample />
-            </Card>
-          </div>
+          <Frame type="left">
+            <StackingDiagramBarExample />
+          </Frame>
+          <Frame type="right">
+            <PercentBarExample />
+          </Frame>
         </div>
       </div>
     </>

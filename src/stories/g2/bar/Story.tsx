@@ -55,6 +55,7 @@ const BarDefaultArgs = {
     },
   },
 };
+BarDefault.storyName = "条形图 Bar Chart";
 BarDefault.args = { ...BarDefaultArgs };
 export const BarDefaultExample = () => <BarChart {...BarDefaultArgs} />;
 
@@ -77,6 +78,7 @@ const barWithGroupArgs = {
     },
   },
 };
+BarWithGroup.storyName = "分组条形图";
 BarWithGroup.args = barWithGroupArgs;
 export const BarWithGroupExample = () => <BarChart {...barWithGroupArgs} />;
 
@@ -94,6 +96,7 @@ const StackingDiagramBarArgs = {
     },
   },
 };
+StackingDiagramBar.storyName = "堆积条形图";
 StackingDiagramBar.args = StackingDiagramBarArgs;
 export const StackingDiagramBarExample = () => (
   <BarChart {...StackingDiagramBarArgs} />
@@ -123,5 +126,6 @@ const PercentBarArgs = {
     },
   },
 };
+PercentBar.storyName = "百分比堆积条形图";
 PercentBar.args = PercentBarArgs;
 export const PercentBarExample = () => <BarChart {...PercentBarArgs} />;

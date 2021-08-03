@@ -1,13 +1,12 @@
 import { Element, IGroup, View } from "@antv/g2";
-import { useEffect, useState } from "react";
 
 function getLinkPath(element: Element, nextElement: Element) {
   const bbox = element.shape.getCanvasBBox();
   const nextBBox = nextElement.shape.getCanvasBBox();
   const path = [
-    ["M", bbox.maxX, bbox.minY],
+    ["M", bbox.maxX, bbox.minY + 2],
     ["L", nextBBox.minX, nextBBox.minY + 2],
-    ["L", nextBBox.minX, nextBBox.maxY + 2],
+    ["L", nextBBox.minX, nextBBox.maxY],
     ["L", bbox.maxX, bbox.maxY],
     ["L", bbox.maxX, bbox.minY],
     ["Z"],
@@ -71,9 +70,7 @@ export const addLinkByElementHigh = () => {
   let groups = [] as any[];
   return function (view: View, delay: number = 600) {
     if (groups.length > 0) {
-      groups.map((group: any) => {
-        group && group.remove();
-      });
+      groups.map((group) => group?.remove());
       groups = [];
     }
     addLinkByElement(view, delay, groups);

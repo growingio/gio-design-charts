@@ -52,6 +52,7 @@ const LineWithOneLineArgs = {
   data: dataWithOneLine,
   config,
 };
+LineWithOneLine.storyName = "折线图 Line Chart";
 LineWithOneLine.args = { ...LineWithOneLineArgs };
 
 export const LineWithOneLineExample = () => (
@@ -74,6 +75,8 @@ const LineWithDashArgs = {
   data: dataWithDash,
   config,
 };
+
+LineWithDash.storyName = "对比折线图";
 LineWithDash.args = { ...LineWithDashArgs };
 
 export const LineWithDashExample = () => <LineChart {...LineWithDashArgs} />;
@@ -100,6 +103,7 @@ const LineWithMenuArgs = {
   data: dataWithMenu,
   config,
 };
+LineWithMenu.storyName = "多纬度折线图";
 LineWithMenu.args = { ...LineWithMenuArgs };
 
 export const LineWithMenuExample = () => <LineChart {...LineWithMenuArgs} />;

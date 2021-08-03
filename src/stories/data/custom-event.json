@@ -1,0 +1,30 @@
+{
+  "data": [
+    [1627228800000, 0],
+    [1627315200000, 1],
+    [1627401600000, 1],
+    [1627488000000, 1],
+    [1627574400000, 1],
+    [1627660800000, 0],
+    [1627747200000, 0]
+  ],
+  "meta": {
+    "columns": [
+      {
+        "id": "tm",
+        "name": "时间",
+        "isDim": true,
+        "isRate": false,
+        "isDuration": false
+      },
+      {
+        "id": "J1GllyGj",
+        "name": "test_0726",
+        "isDim": false,
+        "isRate": false,
+        "isDuration": false
+      }
+    ],
+    "fetchedTimestamp": 1627876258941
+  }
+}
