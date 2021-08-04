@@ -1,18 +1,12 @@
-import { ComponentStory } from "@storybook/react";
-import ColumnChart from "../../../charts/ColumnsChart";
-import Card from "../../components/card";
-import {
-  dataWithGroup,
-  dataWithGroupStack,
-  dataWithMultiBar,
-  dataWithOneBar,
-  percentData,
-} from "./data";
+import { ComponentStory } from '@storybook/react';
+import ColumnChart from '../../../charts/ColumnsChart';
+import Card from '../../components/card';
+import { dataWithGroup, dataWithGroupStack, dataWithMultiBar, dataWithOneBar, percentData } from './data';
 
 export default {
-  title: "Charts/柱状图 Column Chart",
+  title: 'Charts/柱状图 Column Chart',
   argTypes: {
-    backgroundColor: { control: "color" },
+    backgroundColor: { control: 'color' },
   },
 };
 
@@ -27,7 +21,7 @@ const config = {
     autoFit: true,
     height: 300,
   },
-  scale: ["value", { nice: true }],
+  scale: ['value', { nice: true }],
   tooltip: {
     enterable: true,
     showContent: true,
@@ -35,63 +29,48 @@ const config = {
   },
 };
 
-const ColumnWithOne = Template.bind({});
+export const ColumnWithOne = Template.bind({});
 const ColumnWithOneArgs = {
-  legends: ["Apple"],
+  legends: ['Apple'],
   data: dataWithOneBar,
   config: {
     ...config,
     column: {
-      position: "type*value",
-      color: "company",
+      position: 'type*value',
+      color: 'company',
     },
   },
 };
 ColumnWithOne.args = { ...ColumnWithOneArgs };
-export const ColumnWithOneExample = () => (
-  <ColumnWithOne {...ColumnWithOneArgs} />
-);
-ColumnWithOneExample.storyName = "柱状图 Column Chart";
+ColumnWithOne.storyName = '基础柱状图';
 
-const ColumnWithMulti = Template.bind({});
+export const ColumnWithMulti = Template.bind({});
 const ColumnWithMultiArgs = {
-  legends: [
-    "Apple",
-    "Google",
-    "阿里巴巴",
-    "腾讯",
-    "百度",
-    "网易",
-    "Microsoft",
-    "字节跳动",
-  ],
+  legends: ['Apple', 'Google', '阿里巴巴', '腾讯', '百度', '网易', 'Microsoft', '字节跳动'],
   data: dataWithMultiBar,
   config: {
     ...config,
     column: {
-      position: "company*value",
-      color: "company",
+      position: 'company*value',
+      color: 'company',
     },
   },
 };
 ColumnWithMulti.args = ColumnWithMultiArgs;
-export const ColumnWithMultiExample = () => (
-  <ColumnWithMulti {...ColumnWithMultiArgs} />
-);
-ColumnWithMultiExample.storyName = "多维度柱状图";
+ColumnWithMulti.storyName = '多维度柱状图';
 
-const ColumnWithGroup = Template.bind({});
+export const ColumnWithGroup = Template.bind({});
 const ColumnWithGroupArgs = {
-  legends: ["Apple", { name: "Facebook", dashed: true }, "Google"],
+  legends: ['Apple', { name: 'Facebook', dashed: true }, 'Google'],
   data: dataWithGroup,
   config: {
     ...config,
     column: {
-      position: "type*value",
-      color: "company",
+      position: 'type*value',
+      color: 'company',
       adjust: [
         {
-          type: "dodge",
+          type: 'dodge',
           marginRatio: 0,
         },
       ],
@@ -99,38 +78,33 @@ const ColumnWithGroupArgs = {
   },
 };
 ColumnWithGroup.args = ColumnWithGroupArgs;
-export const ColumnWithGroupExample = () => (
-  <ColumnWithGroup {...ColumnWithGroupArgs} />
-);
-ColumnWithGroupExample.storyName = "分组多维度柱状图";
+ColumnWithGroup.storyName = '分组多维度柱状图';
 
-const StackingDiagramColumn = Template.bind({ title: "堆积图" });
+export const StackingDiagramColumn = Template.bind({ title: '堆积图' });
 const StackingDiagramColumnArgs = {
-  legends: ["Apple", "Facebook", "Google"],
+  legends: ['Apple', 'Facebook', 'Google'],
   data: dataWithGroup,
   config: {
     ...config,
     column: {
-      position: "type*value",
-      color: "company",
-      adjust: "stack",
+      position: 'type*value',
+      color: 'company',
+      adjust: 'stack',
     },
   },
 };
 StackingDiagramColumn.args = StackingDiagramColumnArgs;
-export const StackingDiagramColumnExample = () => (
-  <StackingDiagramColumn {...StackingDiagramColumnArgs} />
-);
-StackingDiagramColumnExample.storyName = "堆积多维度柱状图";
+// export const StackingDiagramColumnExample = () => <StackingDiagramColumn {...StackingDiagramColumnArgs} />;
+StackingDiagramColumn.storyName = '堆积多维度柱状图';
 
-const PercentColumn = Template.bind({ title: "堆积图" });
+export const PercentColumn = Template.bind({ title: '堆积图' });
 const PercentColumnArgs = {
-  legends: ["Apple", "Facebook", "Google"],
+  legends: ['Apple', 'Facebook', 'Google'],
   data: percentData,
   config: {
     ...config,
     axis: [
-      "value",
+      'value',
       {
         label: {
           formatter: (val: string) => {
@@ -140,17 +114,15 @@ const PercentColumnArgs = {
       },
     ],
     column: {
-      position: "type*value",
-      color: "company",
-      adjust: "stack",
+      position: 'type*value',
+      color: 'company',
+      adjust: 'stack',
     },
   },
 };
 PercentColumn.args = PercentColumnArgs;
-export const PercentColumnExample = () => (
-  <PercentColumn {...PercentColumnArgs} />
-);
-PercentColumnExample.storyName = "百分比柱状图";
+// export const PercentColumnExample = () => <PercentColumn {...PercentColumnArgs} />;
+PercentColumn.storyName = '百分比柱状图';
 
 // const GroupAndStackColumn = Template.bind({});
 // const GroupAndStackColumnArgs = {
