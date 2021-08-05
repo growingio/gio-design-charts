@@ -9,6 +9,8 @@ import getLegends, { useLegends } from './hooks/getLegends';
 import { ChartType, IChartProps } from '../interface';
 import InfoCard from '../components/InfoCard/InfoCard';
 
+import * as styles from './styles/basic.module.less';
+
 export interface IBasicProps extends IChartProps {
   callChart: any;
   handleLegend: any;
@@ -23,7 +25,7 @@ const Basic = (props: IBasicProps) => {
   const [views, setViews] = useState<View[]>([]);
   const { legends, setLegends, updateLegends } = useLegends();
   const [hoverItem, setHoverItem] = useState([]);
-  const [offsetWidth, setOffsetWidth] = useState(800);
+  const [offset, setOffset] = useState({ width: 800, height: 300 });
 
   // Init Chart
   useEffect(() => {
@@ -48,7 +50,7 @@ const Basic = (props: IBasicProps) => {
           tooltip,
         }
       );
-      setOffsetWidth(root?.current?.offsetWidth || 800);
+      setOffset({ width: root?.current?.offsetWidth || 800, height: root?.current?.offsetHeight });
       setLegends(genLegends);
       setChart(renderChart);
       setViews(renderViews);
@@ -61,10 +63,11 @@ const Basic = (props: IBasicProps) => {
 
   const onResize = useCallback(() => {
     if (root?.current?.offsetWidth) {
-      setOffsetWidth(root?.current?.offsetWidth || 800);
+      setOffset({ width: root?.current?.offsetWidth || 800, height: root?.current?.offsetHeight });
     }
   }, [root]);
 
+  // console.log(styles, styles.defaultTitle);
   // Listener resize
   useEffect(() => {
     if (root.current) {
@@ -87,12 +90,14 @@ const Basic = (props: IBasicProps) => {
   );
 
   return (
-    <div className="gio-chart-next">
-      <Legends legends={legends} offsetWidth={offsetWidth} onClick={onClickLegend} />
-      <div ref={root} onReset={onResize} />
-      <div style={{ visibility: 'collapse' }}>
-        <div ref={tooltipRef} className="g2-tooltip">
-          <InfoCard legends={legends} items={hoverItem} />
+    <div className={styles.chart}>
+      <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
+      <div>
+        <div>
+          <div ref={root} onReset={onResize} />
+          <div ref={tooltipRef} className="g2-tooltip">
+            <InfoCard legends={legends} items={hoverItem} />
+          </div>
         </div>
       </div>
     </div>

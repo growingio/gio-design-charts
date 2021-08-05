@@ -1,7 +1,7 @@
-import { IGroup, registerShape } from "@antv/g2";
+import { IGroup, registerShape } from '@antv/g2';
 
-import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from "../../theme";
-import { getRelateLegend, isStack, isTopBar, isUseDash } from "../utils";
+import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from '../../theme';
+import { getRelateLegend, isStack, isTopBar, isUseDash } from '../utils';
 
 export function getFillAttrs(shapeInfo: any) {
   return {
@@ -16,7 +16,6 @@ export function getFillAttrs(shapeInfo: any) {
 function getBarRectAttrs(points: any[]) {
   const width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
-  console.log("=======");
   return { x: points[0].x, y: points[0].y - height, width, height: height - 2 };
 }
 
@@ -27,34 +26,20 @@ function getRectAttrs(points: any[]) {
 
   return {
     x: (points[0].x + points[1].x) / 2,
-    y:
-      height <= DEFAULT_MIN_HEIGHT && height !== 0
-        ? points[1].y - (DEFAULT_MIN_HEIGHT - height)
-        : points[1].y,
+    y: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? points[1].y - (DEFAULT_MIN_HEIGHT - height) : points[1].y,
     width: width - 4,
-    height:
-      height <= DEFAULT_MIN_HEIGHT && height !== 0
-        ? DEFAULT_MIN_HEIGHT
-        : height,
+    height: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? DEFAULT_MIN_HEIGHT : height,
   };
 }
 
-function drawRect(
-  main: any,
-  shapeInfo: any,
-  container: IGroup,
-  handleRectAttrs: any
-) {
+function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs: any) {
   const legend = getRelateLegend(shapeInfo);
   const useDash = isUseDash(shapeInfo);
   const attrs = getFillAttrs(shapeInfo);
   const group = container.addGroup();
   const points = main.parsePoints(shapeInfo.points); // 转换为画布坐标
 
-  const styles =
-    useDash && legend.dashed
-      ? { fill: `p(a)${BAR_TEXTURE}` }
-      : { fill: legend.color || shapeInfo.color };
+  const styles = useDash && legend.dashed ? { fill: `p(a)${BAR_TEXTURE}` } : { fill: legend.color || shapeInfo.color };
 
   const newAttrs = {
     ...attrs,
@@ -81,7 +66,7 @@ function drawRect(
     strokeWidthObj = { strokeWidth: 0 };
     radiusObj = radiusObj;
   }
-  group.addShape("rect", {
+  group.addShape('rect', {
     attrs: { ...otherAttrs, ...radiusObj, ...strokeWidthObj },
   });
   return group;
@@ -93,13 +78,13 @@ function drawRect(
 // 2. 矩形自带圆角
 // 3. 实现加载条纹图片
 // 参考 https://g2.antv.vision/zh/examples/column/stack#rounded-stacked
-registerShape("interval", "column-element", {
+registerShape('interval', 'column-element', {
   draw(shapeInfo: any, container: IGroup) {
     return drawRect(this as any, shapeInfo, container, getRectAttrs);
   },
 });
 
-registerShape("interval", "bar-element", {
+registerShape('interval', 'bar-element', {
   draw(shapeInfo: any, container: IGroup) {
     return drawRect(this as any, shapeInfo, container, getBarRectAttrs);
   },

@@ -1,5 +1,6 @@
-import React from "react";
-import { getBackgroundImage } from "../utils/styles";
+import React from 'react';
+import { getBackgroundImage } from '../utils/styles';
+import * as styles from './styles/index.module.less';
 
 const Item = (props: any) => {
   const { data, legend = {} } = props;
@@ -7,19 +8,19 @@ const Item = (props: any) => {
 
   const backgroundImage = dashed ? getBackgroundImage() : {};
 
-  const styles = lineDash
+  const stylesLine = lineDash
     ? {
         border: `1px dashed ${color}`,
         height: 0,
-        width: "12px",
+        width: '12px',
         ...backgroundImage,
       }
     : { backgroundColor: color || data.color, ...backgroundImage };
 
   return (
-    <div className="item">
-      <span className="label">
-        <div className={`block ${type}`} style={styles} />
+    <div className={styles.item}>
+      <span className={styles.label}>
+        <div className={`${styles.block} ${styles[type as 'bar' | 'line']}`} style={stylesLine} />
         {data.name}
       </span>
       <span className="value">{data.value}</span>

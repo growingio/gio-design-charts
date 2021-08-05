@@ -1,6 +1,6 @@
-import { Chart, View } from "@antv/g2";
-import { IChartConfig, IChartOptions, ILegends } from "../interface";
-import { colors } from "../theme";
+import { Chart, View } from '@antv/g2';
+import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { colors } from '../theme';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
@@ -12,10 +12,7 @@ export const generateChart = (options: IChartOptions, config: IChartConfig) => {
   const renderChart = new Chart({
     ...basicConfig,
     container: id as HTMLElement,
-    autoFit:
-      basicConfig.autoFit === undefined
-        ? DEFAULT_AUTO_FIT
-        : basicConfig.autoFit,
+    autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
   });
   // const linkView = renderChart.createView();
@@ -27,11 +24,7 @@ export const generateChart = (options: IChartOptions, config: IChartConfig) => {
   return renderChart;
 };
 
-export const fetchChartConfig = (
-  chart: Chart | View,
-  options: IChartConfig,
-  config: IChartConfig
-) => {
+export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, config: IChartConfig) => {
   const { data } = options;
 
   // Set Data
@@ -53,11 +46,16 @@ export const fetchChartConfig = (
   // See detail
   const axis = config.axis || [];
   chart.axis.apply(chart, axis);
+  // Support multi axis config
+  const axises = config.axises || [];
+  axises.map((a: any) => {
+    chart.axis.apply(chart, a);
+  });
 
   // We don't use default legend
   chart.legend(false);
 
-  chart.interaction("active-region");
+  chart.interaction('active-region');
 
   // chart.interaction("element-highlight-by-x");
 
@@ -77,11 +75,7 @@ export const renderChart = (options: IChartOptions, config: IChartConfig) => {
   return fetchChartConfig(chart, options, config);
 };
 
-export const handleLegendBehavior = (
-  chart: Chart | View,
-  legends: ILegends,
-  color: string
-) => {
+export const handleLegendBehavior = (chart: Chart | View, legends: ILegends, color: string) => {
   if (color) {
     chart.filter(color, (value: string) => {
       return !!(legends[value] || {}).active;

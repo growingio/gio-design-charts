@@ -1,8 +1,8 @@
-import React from "react";
-import { ILegend, ILegends } from "../../interface";
-import Item from "./Item";
+import React from 'react';
+import { ILegend, ILegends } from '../../interface';
+import Item from './Item';
 
-import "./styles/index.css";
+import * as styles from './styles/index.module.less';
 
 export interface IInfoCardProps {
   legends: ILegends;
@@ -12,7 +12,7 @@ export interface IInfoCardProps {
 const InfoCard = (props: IInfoCardProps) => {
   const { items, legends } = props;
   return (
-    <div className="gio-chart-infocard">
+    <div className={styles.infocard}>
       <div className="title">{items?.[0]?.title}</div>
       {items.map((item: ILegend) => {
         return (

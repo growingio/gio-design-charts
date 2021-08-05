@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
-import { useEffect } from "react";
-import Legend from "./Legend";
-import LegendMenu from "./Menu";
+import React, { useState, useCallback } from 'react';
+import { useEffect } from 'react';
+import Legend from './Legend';
+import LegendMenu from './Menu';
 
-import "./styles/index.css";
-import { ILegend } from "../../interface";
+import { ILegend } from '../../interface';
+import * as styles from './styles/index.module.less';
 
 const Legends = (props: any) => {
   const { legends, onClick, offsetWidth } = props;
@@ -36,21 +36,12 @@ const Legends = (props: any) => {
     }
   }, [legends, offsetWidth]);
   return (
-    <div className="gio-chart-legend legend">
+    <div className={styles.legends}>
       {tiled?.map((legend: ILegend) => {
         const { name } = legend;
-        return (
-          <Legend
-            key={name}
-            label={name}
-            data={legend}
-            onClick={onClickLegend}
-          />
-        );
+        return <Legend key={name} label={name} data={legend} onClick={onClickLegend} />;
       })}
-      {grouped && grouped.length > 0 && (
-        <LegendMenu legends={grouped} onClick={onClickLegend} />
-      )}
+      {grouped && grouped.length > 0 && <LegendMenu legends={grouped} onClick={onClickLegend} />}
     </div>
   );
 };

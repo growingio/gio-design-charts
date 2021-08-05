@@ -1,7 +1,9 @@
-import React from "react";
-import { useCallback } from "react";
-import { DISABLE_COLOR } from "../../theme";
-import { getBackgroundImage } from "../utils/styles";
+import React from 'react';
+import { useCallback } from 'react';
+import { DISABLE_COLOR } from '../../theme';
+import { getBackgroundImage } from '../utils/styles';
+
+import * as styles from './styles/index.module.less';
 
 export interface ILegendProps {
   label: string;
@@ -15,10 +17,10 @@ const Legend = (props: ILegendProps) => {
     onClick && onClick(label);
   }, [label, onClick]);
   const { active, color, lineDash, type, dashed } = data || {};
-  let styles = {} as React.CSSProperties;
+  let stylesLine = {} as React.CSSProperties;
 
   const backgroundImage = dashed ? getBackgroundImage() : {};
-  styles = lineDash
+  stylesLine = lineDash
     ? {
         border: `1px dashed ${active ? color : DISABLE_COLOR}`,
         height: 0,
@@ -28,17 +30,9 @@ const Legend = (props: ILegendProps) => {
     : { backgroundColor: active ? color : DISABLE_COLOR, ...backgroundImage };
 
   return (
-    <span
-      className="legend-label"
-      onClick={onClickLabel}
-      style={{ color: active ? "" : DISABLE_COLOR }}
-      title={label}
-    >
-      <div
-        className={`legend-label-block legend-label-block-${type}`}
-        style={styles}
-      />
-      <div className="legend-label-text">{label}</div>
+    <span className={styles.legend} onClick={onClickLabel} style={{ color: active ? '' : DISABLE_COLOR }} title={label}>
+      <div className={`${styles.block} ${styles[type as 'bar' | 'line']}`} style={stylesLine} />
+      <div className={styles.text}>{label}</div>
     </span>
   );
 };
