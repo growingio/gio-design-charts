@@ -13,7 +13,7 @@ const InfoCard = (props: IInfoCardProps) => {
   const { items, legends } = props;
   return (
     <div className={styles.infocard}>
-      <div className="title">{items?.[0]?.title}</div>
+      <div className={styles.title}>{items?.[0]?.title}</div>
       {items.map((item: ILegend) => {
         return (
           <div key={item.name}>

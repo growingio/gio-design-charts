@@ -1,15 +1,12 @@
-import { Chart, View } from "@antv/g2";
-import { IChartConfig, IChartOptions, ILegends } from "../interface";
-import { handleLegendBehavior, renderChart } from "./common";
-import { getShapeConfig } from "./utils";
+import { Chart, View } from '@antv/g2';
+import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { handleLegendBehavior, renderChart } from './common';
+import { getShapeConfig } from './utils';
 
-export const lineChart = (
-  options: IChartOptions,
-  config: IChartConfig = {}
-) => {
+export const lineChart = (options: IChartOptions, config: IChartConfig = {}) => {
   const { legends } = options;
   const chart = renderChart(options, config);
-  const lineConfig = getShapeConfig(config, "line");
+  const lineConfig = getShapeConfig(config, 'line');
 
   chart
     .line({
@@ -31,22 +28,15 @@ export const lineChart = (
     });
 
   if (lineConfig.area) {
-    chart
-      .area()
-      .position(lineConfig.area)
-      .color(lineConfig.color); // style ?
+    chart.area().position(lineConfig.area).color(lineConfig.color); // style ?
   }
 
   chart.render();
   return { chart };
 };
 
-export const handleLegend = (
-  charts: (Chart | View)[],
-  legends: ILegends,
-  config: any
-) => {
-  const lineConfig = getShapeConfig(config, "line");
+export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
+  const lineConfig = getShapeConfig(config, 'line');
   if (lineConfig.color) {
     charts.map((chart: Chart | View) => {
       handleLegendBehavior(chart, legends, lineConfig.color);

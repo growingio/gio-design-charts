@@ -67,8 +67,8 @@ export const handleInterval = (
       dashedBars.push(label);
     }
     return {
-      stroke: '#fff',
-      strokeWidth: 1,
+      // stroke: '#fff',
+      // strokeWidth: 1,
       fill: legend.color,
       radius,
     };

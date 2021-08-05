@@ -13,22 +13,25 @@ export function getFillAttrs(shapeInfo: any) {
 }
 
 // 重新绘制rect，设置最小高度
-function getBarRectAttrs(points: any[]) {
-  const width = Math.abs(points[0].x - points[2].x);
+function getBarRectAttrs(points: any[], stack?: boolean) {
+  let width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
+  const defualtWidth = stack ? 0 : DEFAULT_MIN_HEIGHT;
+  width = width < DEFAULT_MIN_HEIGHT ? (width === 0 ? width : defualtWidth) : width - 1;
   return { x: points[0].x, y: points[0].y - height, width, height: height - 2 };
 }
 
 // 重新绘制rect，设置最小高度
-function getRectAttrs(points: any[]) {
+function getRectAttrs(points: any[], stack?: boolean) {
   const width = Math.abs(points[0].x - points[2].x);
-  const height = Math.abs(points[0].y - points[2].y);
-
+  let height = Math.abs(points[0].y - points[2].y);
+  const defualtHeight = stack ? height : DEFAULT_MIN_HEIGHT;
+  height = height < DEFAULT_MIN_HEIGHT ? (height === 0 ? 0 : defualtHeight) : height - 1;
   return {
     x: (points[0].x + points[1].x) / 2,
-    y: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? points[1].y - (DEFAULT_MIN_HEIGHT - height) : points[1].y,
+    y: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? points[1].y - 1 : points[1].y,
     width: width - 4,
-    height: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? DEFAULT_MIN_HEIGHT : height,
+    height,
   };
 }
 
@@ -38,19 +41,21 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
   const attrs = getFillAttrs(shapeInfo);
   const group = container.addGroup();
   const points = main.parsePoints(shapeInfo.points); // 转换为画布坐标
+  const stack = isStack(shapeInfo);
+  const topBar = isTopBar(shapeInfo);
 
   const styles = useDash && legend.dashed ? { fill: `p(a)${BAR_TEXTURE}` } : { fill: legend.color || shapeInfo.color };
 
   const newAttrs = {
     ...attrs,
-    ...handleRectAttrs(points), // 获取 rect 绘图信息
+    ...handleRectAttrs(points, stack), // 获取 rect 绘图信息
     ...styles,
   };
 
   const { radius, strokeWidth, ...otherAttrs } = newAttrs;
 
-  const stack = isStack(shapeInfo);
-  const topBar = isTopBar(shapeInfo);
+  console.log('strokeWidth', strokeWidth);
+
   // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
   // 最上面的rect，取决于传入data的第一条数据
   // 所以，当rect是堆积图，并且不是最高的bar，则需要隐藏radius
@@ -67,7 +72,7 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
     radiusObj = radiusObj;
   }
   group.addShape('rect', {
-    attrs: { ...otherAttrs, ...radiusObj, ...strokeWidthObj },
+    attrs: { ...otherAttrs, ...radiusObj },
   });
   return group;
 }
