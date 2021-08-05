@@ -1,10 +1,10 @@
-import { Chart, View } from "@antv/g2";
-import { IChartConfig, IChartOptions, ILegends } from "../interface";
-import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from "../theme";
-import { handleLegendBehavior, renderChart } from "./common";
+import { Chart, View } from '@antv/g2';
+import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
+import { handleLegendBehavior, renderChart } from './common';
 
-import "./shapes/intervalDefaultElement";
-import { getShapeConfig, setCustomInfo } from "./utils";
+import './shapes/intervalDefaultElement';
+import { getShapeConfig, setCustomInfo } from './utils';
 
 export const interval = (
   chart: Chart | View,
@@ -21,13 +21,11 @@ export const interval = (
   }
   if (barConfig.color) {
     interval = interval.color(barConfig.color);
-    interval.shape(barConfig.color, [
-      `${intervalConfig.chartType || "column"}-element`,
-    ]);
+    interval.shape(barConfig.color, [`${intervalConfig.chartType || 'column'}-element`]);
   }
   if (barConfig.adjust) {
     interval.adjust(barConfig.adjust);
-    if (barConfig.adjust === "stack") {
+    if (barConfig.adjust === 'stack') {
       customInfo.isStack = true;
     }
   }
@@ -40,8 +38,8 @@ export const interval = (
   }
   interval.animate({
     enter: {
-      animation: "fade-in", // 动画名称
-      easing: "easeQuadIn", // 动画缓动效果
+      animation: 'fade-in', // 动画名称
+      easing: 'easeQuadIn', // 动画缓动效果
       delay: 0, // 动画延迟执行时间
       duration: 100, // 动画执行时间
     },
@@ -51,35 +49,30 @@ export const interval = (
 };
 
 export const handleInterval = (
+  chart: Chart | View,
   options: IChartOptions,
   config: IChartConfig,
-  type: string = "column"
+  type: string = 'column'
 ) => {
   const { legends, hasDashed } = options;
-  const chart = renderChart(options, config);
+  // const chart = renderChart(options, config);
   const dashedBars: string[] = [];
 
-  const radius = type === "column" ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
+  const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
-  interval(
-    chart,
-    options,
-    config,
-    { chartType: type, useDash: false },
-    (label: string) => {
-      const legend = legends[label] || {};
-      if (legend?.dashed) {
-        dashedBars.push(label);
-      }
-      return {
-        stroke: "#fff",
-        strokeWidth: 1,
-        fill: legend.color,
-        radius,
-      };
+  interval(chart, options, config, { chartType: type, useDash: false }, (label: string) => {
+    const legend = legends[label] || {};
+    if (legend?.dashed) {
+      dashedBars.push(label);
     }
-  );
+    return {
+      stroke: '#fff',
+      strokeWidth: 1,
+      fill: legend.color,
+      radius,
+    };
+  });
 
   // 若有条纹柱子，需要再次绘制
   if (hasDashed) {
@@ -107,17 +100,14 @@ export const handleInterval = (
 };
 
 export const columnChart = (options: IChartOptions, config: IChartConfig) => {
-  const chart = handleInterval(options, config);
+  const chart = renderChart(options, config);
+  handleInterval(chart, options, config);
   chart.render();
   return { chart };
 };
 
-export const handleLegend = (
-  charts: (Chart | View)[],
-  legends: ILegends,
-  config: any
-) => {
-  const barConfig = getShapeConfig(config, "column");
+export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
+  const barConfig = getShapeConfig(config, 'column');
   if (barConfig.color) {
     charts.map((chart: Chart | View) => {
       handleLegendBehavior(chart, legends, barConfig.color);

@@ -5,7 +5,7 @@ import Card from '../../components/card';
 import { DEFAULT_LINEDASH } from '../../../theme';
 
 export default {
-  title: 'Charts/折线图&面积图',
+  title: 'Charts/折线图',
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -106,40 +106,3 @@ const LineWithMenuArgs = {
 };
 LineWithMenu.args = { ...LineWithMenuArgs };
 LineWithMenu.storyName = '多纬度折线图';
-
-const LineWithArea = Template.bind({});
-const LineWithAreaArgs = {
-  legends: ['北京'],
-  data: dataWithOneLine,
-  config: {
-    ...config,
-    line: {
-      position: 'month*temperature',
-      color: 'city',
-      area: 'month*temperature',
-    },
-  },
-};
-
-LineWithArea.args = { ...LineWithAreaArgs };
-export const LineWithAreaExample = () => <LineWithArea {...LineWithAreaArgs} />;
-LineWithAreaExample.storyName = '面积图';
-
-const LineWithMultiArea = Template.bind({});
-const LineWithMultiAreaArgs = {
-  legends: ['北京', '哈尔滨', '石家庄'],
-  data: dataWithDash,
-  config: {
-    ...config,
-    line: {
-      position: 'month*temperature',
-      color: 'city',
-      area: 'month*temperature',
-    },
-  },
-};
-
-LineWithMultiArea.args = { ...LineWithMultiAreaArgs };
-
-export const LineWithMultiAreaExample = () => <LineWithMultiArea {...LineWithMultiAreaArgs} />;
-LineWithMultiAreaExample.storyName = '复杂面积图';
