@@ -1,12 +1,12 @@
-import { ComponentStory } from "@storybook/react";
-import FunnelChart from "../../../charts/FunnelChart";
-import Card from "../../components/card";
-import { dataWithMultiBar } from "../column/data";
+import { ComponentStory } from '@storybook/react';
+import FunnelChart from '../../../charts/FunnelChart';
+import Card from '../../components1/card';
+import { dataWithMultiBar } from '../column/data';
 
 export default {
-  title: "Charts/漏斗图 Funnel Chart",
+  title: 'Charts/漏斗图 Funnel Chart',
   argTypes: {
-    backgroundColor: { control: "color" },
+    backgroundColor: { control: 'color' },
   },
 };
 
@@ -21,7 +21,7 @@ const config = {
     autoFit: true,
     height: 300,
   },
-  scale: ["value", { nice: true }],
+  scale: ['value', { nice: true }],
   tooltip: {
     enterable: true,
     showContent: true,
@@ -31,30 +31,19 @@ const config = {
 
 const FunnelWithLink = Template.bind({});
 const FunnelWithLinkArgs = {
-  legends: [
-    "Apple",
-    "Google",
-    "阿里巴巴",
-    "腾讯",
-    "百度",
-    "网易",
-    "Microsoft",
-    "字节跳动",
-  ],
+  legends: ['Apple', 'Google', '阿里巴巴', '腾讯', '百度', '网易', 'Microsoft', '字节跳动'],
   data: dataWithMultiBar,
   config: {
     ...config,
     funnel: {
-      position: "company*value",
-      color: "company",
+      position: 'company*value',
+      color: 'company',
     },
   },
 };
-FunnelWithLink.storyName = "漏斗图探索";
+FunnelWithLink.storyName = '漏斗图探索';
 FunnelWithLink.args = FunnelWithLinkArgs;
 
-export const FunnelWithLinkExample = () => (
-  <FunnelWithLink {...FunnelWithLinkArgs} />
-);
+export const FunnelWithLinkExample = () => <FunnelWithLink {...FunnelWithLinkArgs} />;
 
-FunnelWithLinkExample.storyName = "漏斗图探索";
+FunnelWithLinkExample.storyName = '漏斗图探索';
