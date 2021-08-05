@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
 import LineChart from '../../../charts/LineChart';
 import { dataWithDash, dataWithOneLine, dataWithMenu } from './data';
-import Card from '../../components1/card';
+import Card from '../../components/card';
 import { DEFAULT_LINEDASH } from '../../../theme';
 
 export default {

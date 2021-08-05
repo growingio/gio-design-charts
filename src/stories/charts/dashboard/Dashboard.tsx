@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { IChartConfig, IChartProps } from '../../../interface';
-import Frame from '../../components1/frame';
+import Frame from '../../components/frame';
 import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../bar/Bar.stories';
 import {
   ColumnWithGroup,

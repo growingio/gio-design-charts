@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 import BarChart from '../../../charts/BarChart';
-import Card from '../../components1/card';
+import Card from '../../components/card';
 import { dataWithGroup, percentData } from '../column/data';
 import { data } from './data';
 import Docs from './Bar.mdx';
