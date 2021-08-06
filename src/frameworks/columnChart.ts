@@ -15,11 +15,11 @@ export const interval = (
 ) => {
   const barConfig = getShapeConfig(config);
   const customInfo = intervalConfig || {};
-  let interval: any = chart.interval({
-    // intervalPadding: 40,
-    // maxColumnWidth: 40,
-    // minColumnWidth: 40,
-  });
+  const intevalConfig = barConfig.interval || {};
+  let interval: any = chart.interval(intevalConfig);
+  // intervalPadding: 40,
+  // maxColumnWidth: 40,
+  // minColumnWidth: 40,
   if (barConfig.position) {
     interval = interval.position(barConfig.position);
   }

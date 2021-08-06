@@ -18,7 +18,7 @@ function getBarRectAttrs(points: any[], stack?: boolean) {
   const height = Math.abs(points[0].y - points[2].y);
   const defualtWidth = stack ? 0 : DEFAULT_MIN_HEIGHT;
   width = width < DEFAULT_MIN_HEIGHT ? (width === 0 ? width : defualtWidth) : width - 1;
-  return { x: points[0].x, y: points[0].y - height, width, height: height - 2 };
+  return { x: points[0].x, y: points[0].y - height, width, height };
 }
 
 // 重新绘制rect，设置最小高度
@@ -30,7 +30,7 @@ function getRectAttrs(points: any[], stack?: boolean) {
   return {
     x: (points[0].x + points[1].x) / 2,
     y: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? points[1].y - 1 : points[1].y,
-    width: width - 4,
+    width,
     height,
   };
 }
@@ -53,8 +53,6 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
   };
 
   const { radius, strokeWidth, ...otherAttrs } = newAttrs;
-
-  console.log('strokeWidth', strokeWidth);
 
   // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
   // 最上面的rect，取决于传入data的第一条数据

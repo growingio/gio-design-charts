@@ -1,4 +1,5 @@
 import { Element, Scale } from '@antv/g2';
+import { AdjustOption } from '@antv/g2/lib/interface';
 
 export enum ChartType {
   LINE = 'line',
@@ -43,7 +44,7 @@ export interface IChartProps {
   data: any;
   /**
    图例数组，是字符串或者图例对象
-   @description ILgend
+   * 
    */
   legends: Array<ILegend | string>;
 }
@@ -58,6 +59,34 @@ export interface IChartOptions {
 
 export interface IChartConfig {
   [key: string]: any;
+  /**
+   * 用来创建柱状图的配置
+   */
+  column?: IShape;
+
+  /**
+   * 用来创建折线图的配置
+   */
+  line?: IShape;
+
+  /**
+   * 用来创建条形图的配置
+   */
+  bar?: IShape;
+
+  /**
+   * 用来创建面积图的配置
+   */
+  area?: IShape;
+}
+
+export interface IShape {
+  /**
+   * 设置数据调整方式
+   * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
+   * @param {AdjustOption}
+   */
+  adjust?: string | string[] | AdjustOption | AdjustOption[];
 }
 
 export interface IReportThing {
