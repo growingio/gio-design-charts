@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import VerticalMenu from './VerticalMenu';
 
-const BarChart = (props: IChartProps) => {
+const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   const [fetchConfig, setFetchConfig] = useState(config);
   useEffect(() => {
@@ -17,12 +17,12 @@ const BarChart = (props: IChartProps) => {
       axisOption.line = null;
     }
     // setFetchConfig({ ...config, axis: ['type', { line: null, subTickLine: null }] });
-    setFetchConfig({ ...config, axis: [false] });
-  }, [config]);
-  console.log(fetchConfig);
+    // const chartConfig = config?.chart || {};
+    // setFetchConfig({ ...config, chart: { ...chartConfig, height: legendProps.length * 80 }, axis: [false] });
+  }, [config, legendProps]);
   return (
     <Basic
-      leftComponent={VerticalMenu}
+      // leftComponent={VerticalMenu}
       type={ChartType.BAR}
       data={data}
       legends={legendProps}

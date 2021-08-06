@@ -4,7 +4,7 @@ import { ChartType, IChartProps } from '../interface';
 
 import Basic from './Basic';
 
-const LineChart = (props: IChartProps) => {
+const LineChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   return (

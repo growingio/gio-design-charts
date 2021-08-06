@@ -1,0 +1,30 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { LineChart } from '../../../index';
+
+# Line Chart 折线图
+
+## 定义
+
+Line Chart 折线图。
+
+- 最适用：折线图用于显示数据在一个连续的时间间隔或者时间跨度上的变化，它的特点是反映事物随时间或有序类别而变化的趋势。
+- 折线图时间上是由一个个的点组成，为了更好的识别趋势而将一个个的点连接成线条。点点相连的线条永远为直线，使用曲线会使趋势的变化失去真实性和精确度。
+
+## 基础样式
+
+- 线条宽度为 2px
+- 横纵坐标的显示参考【坐标轴规范】。注：纵坐标的展示方法取决于所展示数据中的最大值/最高点。
+  （可配置在图表中最高点/最低点是否标出）
+- hover 时，用【信息卡片】承载具体的数值信息，并通常带有辅助线。
+
+## 参数说明
+
+<ArgsTable of={LineChart} />
+
+## 使用案例
+
+- [基础折线图](/story/charts-折线图-line-chart--line-with-one-line)
+- [对比折线图](/story/charts-折线图-line-chart--line-with-dash)
+- [多维度折线图](/story/charts-折线图-line-chart--line-with-menu)
+
+### 默认

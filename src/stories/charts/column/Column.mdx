@@ -1,0 +1,30 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { ColumnChart } from '../../../index';
+
+# Column Chart 柱状图
+
+## 定义
+
+- 柱状图，使用垂直的柱子显示类别之间的数值比较。其中一个轴表示需要对比的分类维度，另一个轴代表相应的数值。
+- 柱子的方向将柱图分为“横向柱图”，即【条形图】；和“纵向柱图”，即【柱状图】。
+- 通常而言，在需要对比不同维度时，由于【条形图】对名称的展示更加友好，更倾向使用【条形图】；而【柱状图】更适合横坐标为【时间标记】的场景和存在负值的场景。
+
+## 基础样式
+
+- 柱图与横坐标标记对齐
+- 保证【柱宽度】与【柱间距】比例为 1：1
+- 当图表区域缩小到【柱间距＜ 40px】时，柱宽度固定为 40px，向右排列，展示不全通过水平滚动条查看。
+
+## 参数说明
+
+<ArgsTable of={ColumnChart} />
+
+## 使用案例
+
+- [基础柱状图](/story/charts-柱状图-column-chart--column-with-one)
+- [多维度柱状图](/story/charts-柱状图-column-chart--column-with-multi)
+- [分组多维度柱状图](/story/charts-柱状图-column-chart--column-with-group)
+- [堆积多维度柱状图](/story/charts-柱状图-column-chart--stacking-diagram-column)
+- [百分比柱状图](/story/charts-柱状图-column-chart--percent-column)
+
+### 默认

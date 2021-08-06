@@ -84,7 +84,6 @@ const Basic = (props: IBasicProps) => {
     }
   }, [root]);
 
-  // console.log(styles, styles.defaultTitle);
   // Listener resize
   useEffect(() => {
     if (root.current) {

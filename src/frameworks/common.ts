@@ -15,12 +15,6 @@ export const generateChart = (options: IChartOptions, config: IChartConfig) => {
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
   });
-  // const linkView = renderChart.createView();
-
-  // linkView.on("afterrender", function (event: any) {
-  //   console.log("==========");
-  //   addLinkByElement(event?.view);
-  // });
   return renderChart;
 };
 

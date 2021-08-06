@@ -1,12 +1,19 @@
 import { ComponentStory } from '@storybook/react';
-import ColumnChart from '../../../charts/ColumnsChart';
+import { ColumnChart } from '../../../index';
 import Card from '../../components/card';
-import { dataWithGroup, dataWithGroupStack, dataWithMultiBar, dataWithOneBar, percentData } from './data';
+import { dataWithGroup, dataWithMultiBar, dataWithOneBar, percentData } from './data';
+import Docs from './Column.mdx';
 
 export default {
   title: 'Charts/柱状图 Column Chart',
   argTypes: {
     backgroundColor: { control: 'color' },
+  },
+  component: ColumnChart,
+  parameters: {
+    docs: {
+      page: Docs,
+    },
   },
 };
 

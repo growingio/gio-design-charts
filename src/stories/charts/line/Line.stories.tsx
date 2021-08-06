@@ -1,13 +1,20 @@
 import { ComponentStory } from '@storybook/react';
-import LineChart from '../../../charts/LineChart';
+import { LineChart } from '../../../index';
 import { dataWithDash, dataWithOneLine, dataWithMenu } from './data';
 import Card from '../../components/card';
 import { DEFAULT_LINEDASH } from '../../../theme';
+import Docs from './Line.mdx';
 
 export default {
-  title: 'Charts/折线图',
+  title: 'Charts/折线图 Line Chart',
   argTypes: {
     backgroundColor: { control: 'color' },
+  },
+  component: LineChart,
+  parameters: {
+    docs: {
+      page: Docs,
+    },
   },
 };
 

@@ -10,7 +10,6 @@ export const barChart = (options: IChartOptions, config: IChartConfig) => {
   const linkView = chart.createView();
 
   linkView.on('afterrender', function (event: any) {
-    console.log('============cccc after render');
     const geometries = event?.view?.geometries?.[0];
     if (geometries && geometries?.elements) {
       reporter({ scale: geometries.getXScale(), elements: geometries?.elements });

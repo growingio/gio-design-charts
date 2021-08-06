@@ -4,7 +4,7 @@ import { funnelChart, handleLegend } from '../frameworks/funnelChart';
 import { ChartType, IChartProps } from '../interface';
 import Basic from './Basic';
 
-const BarChart = (props: IChartProps) => {
+const FunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   return (
@@ -19,4 +19,4 @@ const BarChart = (props: IChartProps) => {
   );
 };
 
-export default BarChart;
+export default FunnelChart;

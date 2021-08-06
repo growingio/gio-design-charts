@@ -2,11 +2,18 @@ import { ComponentStory } from '@storybook/react';
 import LineChart from '../../../charts/LineChart';
 import { dataWithDash, dataWithOneLine } from '../line/data';
 import Card from '../../components/card';
+import Docs from './Area.mdx';
 
 export default {
-  title: 'Charts/面积图',
+  title: 'Charts/面积图 Area Chart',
+  component: LineChart,
   argTypes: {
     backgroundColor: { control: 'color' },
+  },
+  parameters: {
+    docs: {
+      page: Docs,
+    },
   },
 };
 

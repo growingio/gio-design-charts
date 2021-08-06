@@ -1,0 +1,21 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { LineChart } from '../../../index';
+
+# Are Chart 面积图
+
+## 基础样式
+
+- 堆积线图的阴影覆盖面积用其维度颜色的 80%透明度表示。高透明度为了确保在未来可能的 Dark Mode 下的可见度。
+- 堆积图的上下顺序遵照【颜色序列】。
+- hover 时，信息卡片承载具体数值信息或百分比，取决于数值堆积图或者百分比堆积图。
+
+## 参数说明
+
+<ArgsTable of={LineChart} />
+
+## 使用案例
+
+- [基础面积图](/story/charts-面积图-area-chart--line-with-area-example)
+- [复杂面积图](/story/charts-面积图-area-chart--line-with-multi-area-example)
+
+### 默认

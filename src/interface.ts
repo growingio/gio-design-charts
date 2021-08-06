@@ -7,7 +7,9 @@ export enum ChartType {
 }
 
 export interface ILegend {
-  // 图表Chart的类型，可为BAR、LINE等
+  /**
+   图表Chart的类型，可为BAR、LINE等
+   */
   type?: ChartType;
 
   // 图例Legend的名称
@@ -31,8 +33,18 @@ export interface ILegends {
   [name: string]: ILegend;
 }
 export interface IChartProps {
+  /**
+   Chart的基础配置，设定theme, scale, tooltip
+   */
   config: any;
+  /**
+   Chart数据
+   */
   data: any;
+  /**
+   图例数组，是字符串或者图例对象
+   @description ILgend
+   */
   legends: Array<ILegend | string>;
 }
 
