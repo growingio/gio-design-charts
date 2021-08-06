@@ -18,6 +18,8 @@ module.exports = {
     {
       name: '@storybook/preset-create-react-app',
       options: {
+        // fixed can't parse less file issue
+        // https://github.com/storybookjs/storybook/issues/9796#issuecomment-638091704
         craOverrides: {
           fileLoaderExcludes: ['less'],
         },

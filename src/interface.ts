@@ -1,7 +1,9 @@
+import { Element, Scale } from '@antv/g2';
+
 export enum ChartType {
-  LINE = "line",
-  BAR = "bar",
-  COLUMN = "column",
+  LINE = 'line',
+  BAR = 'bar',
+  COLUMN = 'column',
 }
 
 export interface ILegend {
@@ -44,4 +46,9 @@ export interface IChartOptions {
 
 export interface IChartConfig {
   [key: string]: any;
+}
+
+export interface IReportThing {
+  elements?: Element[];
+  scale?: Scale;
 }

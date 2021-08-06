@@ -5,15 +5,19 @@ import { fetchChartConfig, generateChart, handleLegendBehavior } from './common'
 import { getShapeConfig } from './utils';
 
 export const barChart = (options: IChartOptions, config: IChartConfig) => {
+  const { reporter } = options;
   const chart = generateChart(options, config);
   const linkView = chart.createView();
 
-  // linkView.on('afterrender', function (event: any) {
-  //   const geometries = event?.view?.geometries?.[0];
-  //   console.log(geometries?.elements);
-  //   console.log(geometries.getXScale());
-  //   console.log(geometries.getXYFields());
-  // });
+  linkView.on('afterrender', function (event: any) {
+    console.log('============cccc after render');
+    const geometries = event?.view?.geometries?.[0];
+    if (geometries && geometries?.elements) {
+      reporter({ scale: geometries.getXScale(), elements: geometries?.elements });
+    }
+    // console.log(geometries.getXScale());
+    // console.log(geometries.getXYFields());
+  });
   fetchChartConfig(linkView, options, config);
   handleInterval(linkView, options, config, 'bar');
   linkView.coordinate().transpose();

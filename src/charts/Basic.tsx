@@ -1,12 +1,11 @@
 import React, { LegacyRef, useEffect } from 'react';
-import { Chart, View } from '@antv/g2';
+import { Chart, Element, Scale, View } from '@antv/g2';
 import { useState } from 'react';
 import { useCallback } from 'react';
 
-import '../styles/default.css';
 import Legends from '../components/Legends';
 import getLegends, { useLegends } from './hooks/getLegends';
-import { ChartType, IChartProps } from '../interface';
+import { ChartType, IChartProps, IReportThing } from '../interface';
 import InfoCard from '../components/InfoCard/InfoCard';
 
 import * as styles from './styles/basic.module.less';
@@ -15,10 +14,19 @@ export interface IBasicProps extends IChartProps {
   callChart: any;
   handleLegend: any;
   type?: ChartType;
+  leftComponent?: React.FC<any>;
 }
 
 const Basic = (props: IBasicProps) => {
-  const { type, data, legends: legendProps = [], config = {}, callChart, handleLegend } = props;
+  const {
+    type,
+    data,
+    legends: legendProps = [],
+    config = {},
+    callChart,
+    handleLegend,
+    leftComponent: LeftComponent,
+  } = props;
   const root: LegacyRef<HTMLDivElement> = React.createRef();
   const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
   const [chart, setChart] = useState<Chart>();
@@ -26,6 +34,15 @@ const Basic = (props: IBasicProps) => {
   const { legends, setLegends, updateLegends } = useLegends();
   const [hoverItem, setHoverItem] = useState([]);
   const [offset, setOffset] = useState({ width: 800, height: 300 });
+
+  // define report thing objects
+  // const [elements, setElements] = useState([] as Element[]);
+  // const [scale, setScale] = useState({} as Scale);
+  const [reportThing, setReportThing] = useState({});
+
+  const defineReporter = useCallback((thing: IReportThing) => {
+    setReportThing(thing);
+  }, []);
 
   // Init Chart
   useEffect(() => {
@@ -44,7 +61,7 @@ const Basic = (props: IBasicProps) => {
     let existChart: any;
     if (root.current) {
       const { chart: renderChart, views: renderViews = [] } = callChart(
-        { id: root.current, data, legends: genLegends, hasDashed },
+        { id: root.current, data, legends: genLegends, hasDashed, reporter: defineReporter },
         {
           ...config,
           tooltip,
@@ -89,11 +106,18 @@ const Basic = (props: IBasicProps) => {
     [chart, views, legends, config, handleLegend, updateLegends]
   );
 
+  const width = 100;
+
   return (
     <div className={styles.chart}>
       <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
-      <div>
-        <div>
+      <div className={styles.main}>
+        {LeftComponent && (
+          <div className={styles.left} style={{ height: offset.height, width }}>
+            <LeftComponent height={offset.height} width={width} {...reportThing} />
+          </div>
+        )}
+        <div className={styles.right}>
           <div ref={root} onReset={onResize} />
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCard legends={legends} items={hoverItem} />

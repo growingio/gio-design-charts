@@ -1,11 +1,11 @@
 import React from 'react';
-import { barChart, handleLegend } from '../frameworks/barChart';
+import { barChart, handleLegend } from '../../frameworks/barChart';
 
-import '../styles/default.css';
-import { ChartType, IChartProps } from '../interface';
-import Basic from './Basic';
+import { ChartType, IChartProps } from '../../interface';
+import Basic from '../Basic';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import VerticalMenu from './VerticalMenu';
 
 const BarChart = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
@@ -16,11 +16,13 @@ const BarChart = (props: IChartProps) => {
     if (axisOption) {
       axisOption.line = null;
     }
-    setFetchConfig({ ...config, axis: ['type', { line: null, subTickLine: null }] });
+    // setFetchConfig({ ...config, axis: ['type', { line: null, subTickLine: null }] });
+    setFetchConfig({ ...config, axis: [false] });
   }, [config]);
   console.log(fetchConfig);
   return (
     <Basic
+      leftComponent={VerticalMenu}
       type={ChartType.BAR}
       data={data}
       legends={legendProps}

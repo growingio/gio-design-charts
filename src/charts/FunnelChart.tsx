@@ -1,9 +1,8 @@
-import React from "react";
-import { funnelChart, handleLegend } from "../frameworks/funnelChart";
+import React from 'react';
+import { funnelChart, handleLegend } from '../frameworks/funnelChart';
 
-import "../styles/default.css";
-import { ChartType, IChartProps } from "../interface";
-import Basic from "./Basic";
+import { ChartType, IChartProps } from '../interface';
+import Basic from './Basic';
 
 const BarChart = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;

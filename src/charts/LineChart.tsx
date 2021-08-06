@@ -1,9 +1,8 @@
-import React from "react";
-import { lineChart, handleLegend } from "../frameworks/lineChart";
-import { ChartType, IChartProps } from "../interface";
+import React from 'react';
+import { lineChart, handleLegend } from '../frameworks/lineChart';
+import { ChartType, IChartProps } from '../interface';
 
-import "../styles/default.css";
-import Basic from "./Basic";
+import Basic from './Basic';
 
 const LineChart = (props: IChartProps) => {
   const { data, legends: legendProps = [], config } = props;
