@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import LineChart from '../../../charts/LineChart';
+import { LineChart } from '../../../index';
 import { dataWithDash, dataWithOneLine } from '../line/data';
 import Card from '../../components/card';
 import Docs from './Area.mdx';
