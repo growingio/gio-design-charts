@@ -3,10 +3,10 @@ import { Chart, Element, Scale, View } from '@antv/g2';
 import { useState } from 'react';
 import { useCallback } from 'react';
 
-import Legends from '../components/Legends';
+import Legends from '../common/Legends';
 import getLegends, { useLegends } from './hooks/getLegends';
 import { ChartType, IChartProps, IReportThing } from '../interface';
-import InfoCard from '../components/InfoCard/InfoCard';
+import InfoCard from '../common/InfoCard/InfoCard';
 
 import * as styles from './styles/basic.module.less';
 
