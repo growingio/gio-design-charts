@@ -2,7 +2,7 @@ import React from 'react';
 import { barChart, handleLegend } from '../../frameworks/barChart';
 
 import { ChartType, IChartProps } from '../../interface';
-import Basic from '../Basic';
+import Basic from '../base';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import VerticalMenu from './VerticalMenu';

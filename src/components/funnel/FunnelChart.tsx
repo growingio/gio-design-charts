@@ -1,14 +1,14 @@
 import React from 'react';
-import { funnelChart, handleLegend } from '../frameworks/funnelChart';
+import { funnelChart, handleLegend } from '../../frameworks/funnelChart';
 
-import { ChartType, IChartProps } from '../interface';
-import Basic from './Basic';
+import { ChartType, IChartProps } from '../../interface';
+import BasicChart from '../base';
 
 const FunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   return (
-    <Basic
+    <BasicChart
       type={ChartType.BAR}
       data={data}
       legends={legendProps}

@@ -1,14 +1,14 @@
 import React, { LegacyRef, useEffect } from 'react';
-import { Chart, Element, Scale, View } from '@antv/g2';
+import { Chart, View } from '@antv/g2';
 import { useState } from 'react';
 import { useCallback } from 'react';
 
-import Legends from '../common/Legends';
-import getLegends, { useLegends } from './hooks/getLegends';
-import { ChartType, IChartProps, IReportThing } from '../interface';
-import InfoCard from '../common/InfoCard/InfoCard';
+import Legends from '../../common/Legends';
+import getLegends, { useLegends } from '../hooks/getLegends';
+import { ChartType, IChartProps, IReportThing } from '../../interface';
+import InfoCard from '../../common/InfoCard/InfoCard';
 
-import * as styles from './styles/basic.module.less';
+import * as styles from './styles/base.module.less';
 
 export interface IBasicProps extends IChartProps {
   callChart: any;
