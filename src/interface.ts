@@ -46,13 +46,13 @@ export interface IChartProps {
    图例数组，是字符串或者图例对象
    * 
    */
-  legends: Array<ILegend | string>;
+  legends: (ILegend | string)[];
 }
 
 export interface IChartOptions {
-  id: HTMLElement;
-  data: any;
-  legends: ILegends;
+  id?: HTMLElement;
+  data?: any;
+  legends?: ILegends;
   hasDashed?: boolean;
   [key: string]: any;
 }

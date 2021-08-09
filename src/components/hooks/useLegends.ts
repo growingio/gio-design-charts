@@ -1,15 +1,12 @@
-import { useCallback, useState } from "react";
-import { ChartType, ILegend, ILegends } from "../../interface";
-import { colors, DEFAULT_LINEDASH } from "../../theme";
+import { useCallback, useState } from 'react';
+import { ChartType, ILegend, ILegends } from '../../interface';
+import { colors, DEFAULT_LINEDASH } from '../../theme';
 
-const getLegends = (
-  type: ChartType,
-  legendProps: Array<string | ILegend>
-): [ILegends, boolean] => {
+export const getLegends = (type: ChartType, legendProps: Array<string | ILegend>): [ILegends, boolean] => {
   const legends = {} as ILegends;
   let hasDashed = false;
   legendProps?.map((legend: string | ILegend, index: number) => {
-    if (typeof legend === "string") {
+    if (typeof legend === 'string') {
       legends[legend] = {
         name: legend,
         color: colors[index % colors.length],
@@ -40,7 +37,7 @@ const getLegends = (
   return [legends, hasDashed];
 };
 
-export const useLegends = () => {
+const useLegends = () => {
   const [legends, setLegends] = useState({} as ILegends);
   const updateLegends = useCallback(
     (label: string) => {
@@ -56,4 +53,4 @@ export const useLegends = () => {
   return { legends, setLegends, updateLegends };
 };
 
-export default getLegends;
+export default useLegends;

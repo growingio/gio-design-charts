@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useCallback } from 'react';
 
 import Legends from '../../common/Legends';
-import getLegends, { useLegends } from '../hooks/getLegends';
+import useLegends, { getLegends } from '../hooks/useLegends';
 import { ChartType, IChartProps, IReportThing } from '../../interface';
 import InfoCard from '../../common/InfoCard/InfoCard';
 

@@ -12,7 +12,6 @@ export const hasDodge = (config: IShape) => {
       if (typeof a === 'string' && a === dodge) {
         return true;
       }
-      console.log(typeof a);
       if (typeof a === 'object' && a?.type === dodge) {
         return true;
       }

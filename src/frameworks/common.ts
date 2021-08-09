@@ -19,7 +19,7 @@ export const generateChart = (options: IChartOptions, config: IChartConfig) => {
 };
 
 export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, config: IChartConfig) => {
-  const { data } = options;
+  const { data = [] } = options;
 
   // Set Data
   chart.data(data);
@@ -33,9 +33,12 @@ export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, con
   chart.scale.apply(chart, scale);
 
   // tooltip config can be false to disable tooltip
-  const tooltip = config.tooltip ?? {};
-  chart.tooltip({ ...tooltip });
-
+  try {
+    const tooltip = config.tooltip ?? {};
+    chart.tooltip.call(chart, { ...tooltip });
+  } catch (err) {
+    console.log(err);
+  }
   // Use array for axis config
   // See detail
   const axis = config.axis || [];
@@ -72,7 +75,7 @@ export const renderChart = (options: IChartOptions, config: IChartConfig) => {
 export const handleLegendBehavior = (chart: Chart | View, legends: ILegends, color: string) => {
   if (color) {
     chart.filter(color, (value: string) => {
-      return !!(legends[value] || {}).active;
+      return !!(legends?.[value] || {}).active;
     });
     chart.render(true);
   }

@@ -9,7 +9,7 @@ import { getShapeConfig } from './utils';
 const addInterval = (chart: Chart | View, options: IChartOptions, config: IChartConfig) => {
   const { legends } = options;
   interval(chart, options, config, {}, (label: string) => {
-    const legend = legends[label] || {};
+    const legend = legends?.[label] || {};
     return {
       stroke: '#fff',
       // strokeWidth: 1,

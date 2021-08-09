@@ -1,5 +1,5 @@
 import { Chart, View } from '@antv/g2';
-import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from './common';
 
@@ -66,7 +66,7 @@ export const handleInterval = (
 
   // 渲染出基本柱状图
   interval(chart, options, config, { chartType: type, useDash: false }, (label: string) => {
-    const legend = legends[label] || {};
+    const legend = legends?.[label] || ({} as ILegend);
     if (legend?.dashed) {
       dashedBars.push(label);
     }
@@ -89,7 +89,7 @@ export const handleInterval = (
         useDash: true,
       },
       (label: string) => {
-        const legend = legends[label] || {};
+        const legend = legends?.[label] || ({} as ILegend);
         if (legend.dashed) {
           return {
             fill: `p(a)${BAR_TEXTURE}`,

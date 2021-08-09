@@ -7,7 +7,7 @@ import { ILegend } from '../../interface';
 import * as styles from './styles/index.module.less';
 
 const Legends = (props: any) => {
-  const { legends, onClick, offsetWidth } = props;
+  const { legends = {}, onClick, offsetWidth } = props;
 
   const [tiled, setTiled] = useState([] as ILegend[]);
   const [grouped, setGrouped] = useState([] as ILegend[]);

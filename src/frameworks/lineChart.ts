@@ -1,9 +1,13 @@
 import { Chart, View } from '@antv/g2';
-import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { handleLegendBehavior, renderChart } from './common';
 import { getShapeConfig } from './utils';
 
 export const lineChart = (options: IChartOptions, config: IChartConfig = {}) => {
+  const { id } = options;
+  if (!id) {
+    return;
+  }
   const { legends } = options;
   const chart = renderChart(options, config);
   const lineConfig = getShapeConfig(config, 'line');
@@ -17,7 +21,7 @@ export const lineChart = (options: IChartOptions, config: IChartConfig = {}) => 
     .position(lineConfig.position)
     .color(lineConfig.color)
     .style(lineConfig.color, (label: string) => {
-      const legend = legends[label] || {};
+      const legend = legends?.[label] || ({} as ILegend);
       const style = { stroke: legend.color } as any;
       if (legend.lineDash) {
         style.lineDash = legend.lineDash;

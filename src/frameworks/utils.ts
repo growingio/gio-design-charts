@@ -1,4 +1,4 @@
-import { IChartConfig, IChartOptions } from "../interface";
+import { IChartConfig, IChartOptions } from '../interface';
 
 export const getShapeConfig = (config: IChartConfig, type?: string) => {
   if (type) {
@@ -7,16 +7,12 @@ export const getShapeConfig = (config: IChartConfig, type?: string) => {
   return config.bar || config.column || config.line || config.funnel || {};
 };
 
-export const setCustomInfo = (
-  options: IChartOptions,
-  config: IChartConfig = {},
-  info: any = {}
-) => {
+export const setCustomInfo = (options: IChartOptions, config: IChartConfig = {}, info: any = {}) => {
   const { legends, data } = options;
   const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };
   if (info.isStack) {
-    customInfo["topData"] = data?.[0];
+    customInfo['topData'] = data?.[0];
   }
   return {
     type: shapeConfig.color,
@@ -27,9 +23,9 @@ export const setCustomInfo = (
 
 export const getRelateLegend = (shapeInfo: any) => {
   const { customInfo, data = {} } = shapeInfo;
-  const { type = "", legends = {} } = customInfo || {};
+  const { type = '', legends = {} } = customInfo || {};
   const name = data[type];
-  return legends[name] || {};
+  return legends?.[name] || {};
 };
 
 export const isUseDash = (shapeInfo: any) => {
