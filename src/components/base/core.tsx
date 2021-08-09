@@ -5,6 +5,11 @@ import { ChartType, IChartConfig, IChartOptions, ILegend, IReportThing } from '.
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 
+export interface IDirectorProps {
+  options: IChartOptions;
+  children: JSX.Element;
+}
+
 export interface IChartCanvasProps {
   type: ChartType;
   callChart: any;
@@ -16,6 +21,7 @@ export interface IChartCanvasProps {
   // interceptors: any;
 }
 
+// In core, we only force on render chart and provide basic chart options
 const core = (HighConponent: any) => {
   return (props: IChartCanvasProps) => {
     const { config, callChart, data, legendList, type, handleLegend } = props;
@@ -78,6 +84,7 @@ const core = (HighConponent: any) => {
       },
       [getCharts, legends, chartOptions, config, handleLegend, updateLegends]
     );
+
     return (
       <HighConponent options={chartOptions} onClickLegend={onClickLegend}>
         <div ref={root} />

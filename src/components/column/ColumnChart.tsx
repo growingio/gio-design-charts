@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { columnChart, handleLegend } from '../../frameworks/columnChart';
 
 import { ChartType, IChartProps } from '../../interface';
-import Basic from '../base';
+import LegendDirector from '../base/LegendDirector';
 import { defaultGroupInterval, defaultInterval } from './settings';
 import { hasDodge } from './utils';
 
@@ -26,10 +26,10 @@ const ColumnChart: React.FC<IChartProps> = (props: IChartProps) => {
     setAssignConfig(Object.assign({}, config));
   }, [config]);
   return (
-    <Basic
+    <LegendDirector
       type={ChartType.COLUMN}
       data={data}
-      legends={legendProps}
+      legendList={legendProps}
       config={assginConfig}
       callChart={columnChart}
       handleLegend={handleLegend}

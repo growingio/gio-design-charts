@@ -2,10 +2,9 @@ import React from 'react';
 import { barChart, handleLegend } from '../../frameworks/barChart';
 
 import { ChartType, IChartProps } from '../../interface';
-import Basic from '../base';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import VerticalMenu from './VerticalMenu';
+import LegendDirector from '../base/LegendDirector';
 
 const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
@@ -21,11 +20,11 @@ const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
     // setFetchConfig({ ...config, chart: { ...chartConfig, height: legendProps.length * 80 }, axis: [false] });
   }, [config, legendProps]);
   return (
-    <Basic
+    <LegendDirector
       // leftComponent={VerticalMenu}
       type={ChartType.BAR}
       data={data}
-      legends={legendProps}
+      legendList={legendProps}
       config={fetchConfig}
       callChart={barChart}
       handleLegend={handleLegend}

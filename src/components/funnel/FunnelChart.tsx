@@ -2,16 +2,16 @@ import React from 'react';
 import { funnelChart, handleLegend } from '../../frameworks/funnelChart';
 
 import { ChartType, IChartProps } from '../../interface';
-import BasicChart from '../base';
+import LegendDirector from '../base/LegendDirector';
 
 const FunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   return (
-    <BasicChart
+    <LegendDirector
       type={ChartType.BAR}
       data={data}
-      legends={legendProps}
+      legendList={legendProps}
       config={config}
       callChart={funnelChart}
       handleLegend={handleLegend}
