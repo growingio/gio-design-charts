@@ -1147,3 +1147,41 @@ export const dataWithMenu = [
     temperature: 13.4,
   },
 ];
+
+export const dataWithOnelineDate = [
+  {
+    date: 1625414400000,
+    value: 3711,
+    metric: '访问的总次数'
+  },
+  {
+    date: 1625500800000,
+    value: 12662,
+    metric: '访问的总次数'
+  },
+  {
+    date: 1625587200000,
+    value: 3742,
+    metric: '访问的总次数'
+  },
+  {
+    date: 1625673600000,
+    value: 2377,
+    metric: '访问的总次数'
+  },
+  {
+    date: 1625760000000,
+    value: 2153,
+    metric: '访问的总次数'
+  },
+  {
+    date: 1625846400000,
+    value: 1860,
+    metric: '访问的总次数'
+  },
+  {
+    date: 1625932800000,
+    value: 2579,
+    metric: '访问的总次数'
+  }
+]

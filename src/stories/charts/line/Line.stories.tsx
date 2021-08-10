@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 import { LineChart } from '../../../index';
-import { dataWithDash, dataWithOneLine, dataWithMenu } from './data';
+import { dataWithDash, dataWithOneLine, dataWithMenu, dataWithOnelineDate } from './data';
 import Card from '../../components/card';
 import { DEFAULT_LINEDASH } from '../../../theme';
 import Docs from './Line.mdx';
@@ -113,3 +113,54 @@ const LineWithMenuArgs = {
 };
 LineWithMenu.args = { ...LineWithMenuArgs };
 LineWithMenu.storyName = '多纬度折线图';
+
+export const LineWithOneLineDate = Template.bind({});
+
+const LineWithOneLineDateConfig = {
+  chart: {
+    autoFit: true,
+    height: 400,
+  },
+  scale: [
+    {
+      date: {
+        type: 'timeCat',
+      },
+      value: {
+        min: 0,
+        // type: 'quantize',
+        // type: 'quantile',
+        // ticks: [0, 2000, 4000, 8000, 10000],
+        tickCount: 5,
+        nice: true,
+        formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      },
+    },
+  ],
+  tooltip: {
+    showCrosshairs: true,
+    shared: true,
+    enterable: true,
+  },
+  axis: [
+    'value',
+    {
+      label: {
+        formatter: (val: string) => {
+          return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        },
+      },
+    },
+  ],
+  line: {
+    position: 'date*value',
+    color: 'metric',
+  },
+};
+const LineWithOneLineDateArgs = {
+  legends: [],
+  data: dataWithOnelineDate,
+  config: LineWithOneLineDateConfig,
+};
+LineWithOneLineDate.storyName = '时间*数字';
+LineWithOneLineDate.args = { ...LineWithOneLineDateArgs };

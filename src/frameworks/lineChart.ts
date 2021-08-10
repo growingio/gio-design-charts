@@ -22,7 +22,10 @@ export const lineChart = (options: IChartOptions, config: IChartConfig = {}) => 
     .color(lineConfig.color)
     .style(lineConfig.color, (label: string) => {
       const legend = legends?.[label] || ({} as ILegend);
-      const style = { stroke: legend.color } as any;
+      const style = {} as any;
+      if(legend.color) {
+        style.stroke = legend.color
+      }
       if (legend.lineDash) {
         style.lineDash = legend.lineDash;
       }
