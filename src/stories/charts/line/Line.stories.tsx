@@ -133,7 +133,7 @@ const LineWithOneLineDateConfig = {
         // ticks: [0, 2000, 4000, 8000, 10000],
         tickCount: 5,
         nice: true,
-        formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
       },
     },
   ],

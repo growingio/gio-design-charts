@@ -9,5 +9,5 @@ export const dataWith3Columns = [
   { type: '2.加入购物车', value: 12300 },
   { type: '3.进入购物车', value: 2300 },
   { type: '4.完成购买', value: 100 },
-  { type: '5.完成购买', value: 100 },
+  // { type: '5.完成购买', value: 100 },
 ];

@@ -24,15 +24,15 @@ module.exports = {
     },
   ],
   // .storybook/main.js
-  // typescript: {
-  //   check: false,
-  //   checkOptions: {},
-  //   reactDocgen: 'react-docgen-typescript',
-  //   reactDocgenTypescriptOptions: {
-  //     shouldExtractLiteralValuesFromEnum: true,
-  //     propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-  //   },
-  // },
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
   features: {
     postcss: false,
   },

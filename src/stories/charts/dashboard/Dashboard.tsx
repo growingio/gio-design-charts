@@ -9,7 +9,7 @@ import {
   PercentColumn,
   StackingDiagramColumn,
 } from '../column/Column.stories';
-import { FunnelWithLinkExample } from '../funnel/Funnel.stories';
+// import { FunnelWithLinkExample } from '../funnel/Funnel.stories';
 
 import { LineWithOneLine, LineWithDash, LineWithMenu } from '../line/Line.stories';
 
