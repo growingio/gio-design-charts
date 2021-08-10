@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { funnelChart, handleLegend } from '../../frameworks/funnelChart';
 
 import { ChartType, IChartProps } from '../../interface';

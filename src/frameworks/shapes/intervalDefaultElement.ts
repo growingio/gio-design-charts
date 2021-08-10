@@ -52,25 +52,25 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
     ...styles,
   };
 
-  const { radius, strokeWidth, ...otherAttrs } = newAttrs;
+  const { radius, stroke, ...otherAttrs } = newAttrs;
 
   // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
   // 最上面的rect，取决于传入data的第一条数据
   // 所以，当rect是堆积图，并且不是最高的bar，则需要隐藏radius
   let radiusObj: any = { radius };
-  let strokeWidthObj: any = {};
+  let fetchStyles: any = {};
   radiusObj = stack && !topBar ? {} : radiusObj;
 
   // 当高度为0时，对应的value数值为0，则不需要显示默认的高度，这是需要取消radius的设定，防止多余的渲染
   radiusObj = newAttrs.height === 0 || newAttrs.width === 0 ? {} : radiusObj;
   if (newAttrs.height === 0 || newAttrs.width === 0) {
-    radiusObj = { strokeWidth: 0 };
+    radiusObj = {};
   } else {
-    strokeWidthObj = { strokeWidth: 0 };
+    fetchStyles = { stroke };
     radiusObj = radiusObj;
   }
   group.addShape('rect', {
-    attrs: { ...otherAttrs, ...radiusObj },
+    attrs: { ...otherAttrs, ...radiusObj, ...fetchStyles },
   });
   return group;
 }

@@ -16,6 +16,8 @@ export const interval = (
   const barConfig = getShapeConfig(config);
   const customInfo = intervalConfig || {};
   const intevalConfig = barConfig.interval || {};
+  const hideLabel = options?.control?.hideLabel;
+
   let interval: any = chart.interval(intevalConfig);
   // intervalPadding: 40,
   // maxColumnWidth: 40,
@@ -37,7 +39,7 @@ export const interval = (
     interval.style(barConfig.color, styleCallback);
   }
 
-  if (barConfig?.label) {
+  if (barConfig?.label && !hideLabel) {
     interval.label.apply(interval, barConfig.label);
   }
   interval.animate({

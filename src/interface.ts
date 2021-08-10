@@ -54,6 +54,10 @@ export interface IChartOptions {
   data?: any;
   legends?: ILegends;
   hasDashed?: boolean;
+  /**
+   * set default styles for line or interval
+   */
+  defaultStyles?: any;
   [key: string]: any;
 }
 
