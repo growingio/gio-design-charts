@@ -18,10 +18,13 @@ export const interval = (
   const intevalConfig = barConfig.interval || {};
   const hideLabel = options?.control?.hideLabel;
 
-  let interval: any = chart.interval(intevalConfig);
-  // intervalPadding: 40,
-  // maxColumnWidth: 40,
-  // minColumnWidth: 40,
+  let interval: any = chart.interval({
+    ...intevalConfig,
+
+    // intervalPadding: 40,
+    // maxColumnWidth: 40,
+    // minColumnWidth: 40,
+  });
   if (barConfig.position) {
     interval = interval.position(barConfig.position);
   }
