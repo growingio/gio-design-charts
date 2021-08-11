@@ -3,7 +3,7 @@ import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { DEFAULT_REDIUS } from '../theme';
 import { interval } from './columnChart';
 import { fetchChartConfig, generateChart, handleLegendBehavior } from './common';
-import { addLinkByElementHigh } from './shapes/elementLink';
+import { addLinkByElementHigh } from './tools/elementLink';
 import { getShapeConfig } from './utils';
 
 const fetchInterval = (chart: Chart | View, options: IChartOptions, config: IChartConfig) => {

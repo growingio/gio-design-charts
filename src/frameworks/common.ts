@@ -1,9 +1,12 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, registerGeometryLabel, View } from '@antv/g2';
 import { IChartConfig, IChartOptions, ILegends } from '../interface';
 import { colors } from '../theme';
+import IntervalLabel from './tools/intervalLabel';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
+
+registerGeometryLabel('interval-label', IntervalLabel);
 
 export const generateChart = (options: IChartOptions, config: IChartConfig) => {
   const { id } = options;

@@ -3,7 +3,7 @@ import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from './common';
 
-import './shapes/intervalDefaultElement';
+import './tools/intervalDefaultElement';
 import { getShapeConfig, setCustomInfo } from './utils';
 
 export const interval = (

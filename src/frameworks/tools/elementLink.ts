@@ -1,5 +1,5 @@
 import { Element, IGroup, View } from '@antv/g2';
-import { getMiddleCoordinate, getMiddleRect } from './utils';
+import { getArrowPolygon, getMiddleCoordinate, getMiddleRect } from './utils';
 
 function getLinkPath(element: Element, nextElement: Element) {
   const bbox = element.shape.getCanvasBBox();
@@ -33,15 +33,23 @@ function addLinkShape(group: IGroup, element: Element, nextElement: Element) {
 const addTextShape = (group: IGroup, prev: Element, next: Element, text: string) => {
   if (text) {
     const width = 60;
-    const height = 30;
+    const height = 22;
+    // group.addShape({
+    //   type: 'rect',
+    //   attrs: {
+    //     ...getMiddleRect(getMiddleCoordinate(prev, next), width, height),
+    //     fill: '#fff',
+    //     stroke: '#C4C4C4',
+    //     strokeWidth: 4,
+    //     radius: [4, 4, 4, 4],
+    //   },
+    // });
     group.addShape({
-      type: 'rect',
+      type: 'polygon',
       attrs: {
-        ...getMiddleRect(prev, next, width, height),
+        points: getArrowPolygon(getMiddleCoordinate(prev, next), width, height),
         fill: '#fff',
         stroke: '#C4C4C4',
-        strokeWidth: 4,
-        radius: [4, 4, 4, 4],
       },
     });
     group.addShape({
@@ -91,7 +99,9 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
       addTextShape(textGroup, prev, next, texts[index]);
     });
     return group;
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const addLinkByElement = (view: View, group: any[] = [], options: any) => {

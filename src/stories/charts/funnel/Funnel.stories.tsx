@@ -80,6 +80,7 @@ const FunnelWith3ColumnsArgs = {
       label: [
         'value',
         {
+          type: 'interval-label',
           style: {
             fill: '#343434',
           },
