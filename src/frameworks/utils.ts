@@ -8,7 +8,7 @@ export const getShapeConfig = (config: IChartConfig, type?: string) => {
 };
 
 export const setCustomInfo = (options: IChartOptions, config: IChartConfig = {}, info: any = {}) => {
-  const { legends, data } = options;
+  const { legends, data, defaultStyles } = options;
   const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };
   if (info.isStack) {
@@ -17,6 +17,7 @@ export const setCustomInfo = (options: IChartOptions, config: IChartConfig = {},
   return {
     type: shapeConfig.color,
     legends,
+    defaultStyles,
     ...customInfo,
   };
 };
@@ -26,6 +27,10 @@ export const getRelateLegend = (shapeInfo: any) => {
   const { type = '', legends = {} } = customInfo || {};
   const name = data[type];
   return legends?.[name] || {};
+};
+
+export const getDefaultStyles = (shapeInfo: any) => {
+  return shapeInfo?.customInfo?.defaultStyles || {};
 };
 
 export const isUseDash = (shapeInfo: any) => {

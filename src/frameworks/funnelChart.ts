@@ -1,8 +1,9 @@
 import { Chart, View } from '@antv/g2';
+import { isEmpty } from 'lodash';
 import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
-import { DEFAULT_REDIUS } from '../theme';
+import { colors, DEFAULT_REDIUS } from '../theme';
 import { interval } from './columnChart';
-import { fetchChartConfig, generateChart, handleLegendBehavior } from './common';
+import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
 import { addLinkByElementHigh } from './tools/elementLink';
 import { getShapeConfig } from './utils';
 
@@ -20,10 +21,13 @@ const fetchInterval = (chart: Chart | View, options: IChartOptions, config: ICha
 };
 
 export const comparativeFunnelChart = (options: IChartOptions, config: IChartConfig) => {
+  const { interceptors, legends } = options;
   const chart = generateChart(options, config);
   const sourceData = options?.data?.source || [];
   const covertData = options?.data?.covert || [];
   const texts = options?.data?.texts || [];
+
+  const emptyLegends = isEmpty(legends);
 
   const backgroundView = chart.createView();
   const backgroundOptions = {
@@ -34,25 +38,34 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
     },
     defaultStyles: {
       opacity: 0.2,
+      color: emptyLegends ? colors[0] : '',
     },
   };
   fetchChartConfig(backgroundView, backgroundOptions, config);
   fetchInterval(backgroundView, backgroundOptions, config);
-  backgroundView.render();
 
   const addLinkByElement = addLinkByElementHigh();
 
   const linkView = chart.createView();
-  const linkOptions = { ...options, data: sourceData };
+  const linkOptions = {
+    ...options,
+    data: sourceData,
+    defaultStyles: {
+      color: emptyLegends ? colors[0] : '',
+    },
+  };
   linkView.on('afterrender', function (event: any) {
     if (sourceData.length !== 0) {
       addLinkByElement(event?.view, { texts });
     }
   });
-  fetchChartConfig(linkView, linkOptions, config);
-  fetchInterval(linkView, linkOptions, config);
+  // should add view.render() for linkView, it can trigger afterrender event.
   linkView.render();
 
+  fetchChartConfig(linkView, linkOptions, config);
+  fetchInterval(linkView, linkOptions, config);
+  fetchTooltip(chart, config);
+  interceptors.bindElementEvents(chart);
   chart.legend(false);
   chart.render();
   return { chart, views: [linkView, backgroundView] };

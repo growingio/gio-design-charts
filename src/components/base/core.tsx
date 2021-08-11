@@ -16,7 +16,7 @@ export interface IChartCanvasProps {
   legendList: (string | ILegend)[];
   handleLegend: any;
   config: IChartConfig;
-  // options?: IChartOptions;
+  defaultOptions?: IChartOptions;
   data: any;
   // interceptors: any;
 }
@@ -24,15 +24,15 @@ export interface IChartCanvasProps {
 // In core, we only force on render chart and provide basic chart options
 const core = (HighConponent: any) => {
   return (props: IChartCanvasProps) => {
-    const { config, callChart, data, legendList, type, handleLegend } = props;
+    const { config, callChart, data, legendList, type, handleLegend, defaultOptions = {} } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
     const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
     const [hoverItem, setHoverItem] = useState([]);
 
     const { legends, setLegends, updateLegends } = useLegends();
-    const [chartOptions, setChartOptions] = useState({} as IChartOptions);
+    const [chartOptions, setChartOptions] = useState(defaultOptions as IChartOptions);
 
-    const { getCharts, interceptors } = useInterceptors();
+    const { getCharts, getTriggerAction, interceptors } = useInterceptors();
 
     const defineReporter = useCallback((thing: IReportThing) => {
       // setReportThing(thing);
@@ -60,7 +60,7 @@ const core = (HighConponent: any) => {
       if (root.current && data) {
         const [genLegends, hasDashed] = getLegends(type, legendList);
         const { chart, views = [] } = callChart(
-          { id: root.current, data, reporter: defineReporter, legends: genLegends, hasDashed },
+          { id: root.current, data, reporter: defineReporter, legends: genLegends, hasDashed, interceptors },
           {
             ...config,
             tooltip,
@@ -85,13 +85,16 @@ const core = (HighConponent: any) => {
       [getCharts, legends, chartOptions, config, handleLegend, updateLegends]
     );
 
-    console.log('-----------');
-
     return (
       <HighConponent options={{ ...chartOptions, getCharts }} onClickLegend={onClickLegend}>
         <div ref={root} />
         <div ref={tooltipRef} className="g2-tooltip">
-          <InfoCard legends={legends || {}} items={hoverItem} />
+          <InfoCard
+            legends={legends || {}}
+            items={hoverItem}
+            options={{ ...chartOptions, ...defaultOptions }}
+            trigger={getTriggerAction()}
+          />
         </div>
       </HighConponent>
     );

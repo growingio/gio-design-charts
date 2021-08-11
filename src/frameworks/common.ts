@@ -4,6 +4,7 @@ import { colors } from '../theme';
 import IntervalLabel from './tools/intervalLabel';
 import { intervalAdjustPosition } from '@antv/g2/lib/geometry/label/layout/interval/adjust-position';
 import { intervalHideOverlap } from '@antv/g2/lib/geometry/label/layout/interval/hide-overlap';
+import { chart } from '../components/base/styles/base.module.less';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
@@ -25,6 +26,23 @@ export const generateChart = (options: IChartOptions, config: IChartConfig) => {
   return renderChart;
 };
 
+/**
+ * It seems the tooltip is invalid when it's set on View.
+ * It should be set in Chart instance and it should be called behind create view.
+ * @param chart
+ * @param config
+ * @returns
+ */
+export const fetchTooltip = (chart: Chart | View, config: IChartConfig) => {
+  try {
+    const tooltip = config.tooltip ?? {};
+    chart.tooltip.call(chart, { ...tooltip });
+  } catch (err) {
+    console.log(err);
+  }
+  return chart;
+};
+
 export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, config: IChartConfig) => {
   const { data = [] } = options;
 
@@ -40,12 +58,7 @@ export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, con
   chart.scale.apply(chart, scale);
 
   // tooltip config can be false to disable tooltip
-  try {
-    const tooltip = config.tooltip ?? {};
-    chart.tooltip.call(chart, { ...tooltip });
-  } catch (err) {
-    console.log(err);
-  }
+  fetchTooltip(chart, config);
   // Use array for axis config
   // See detail
   const axis = config.axis || [];

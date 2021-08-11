@@ -1,7 +1,7 @@
 import { IGroup, registerShape } from '@antv/g2';
 
 import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from '../../theme';
-import { getRelateLegend, isStack, isTopBar, isUseDash } from '../utils';
+import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from '../utils';
 
 export function getFillAttrs(shapeInfo: any) {
   return {
@@ -36,15 +36,19 @@ function getRectAttrs(points: any[], stack?: boolean) {
 }
 
 function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs: any) {
+  const defaultStyles = getDefaultStyles(shapeInfo);
   const legend = getRelateLegend(shapeInfo);
+  const stack = isStack(shapeInfo);
+  const topBar = isTopBar(shapeInfo);
   const useDash = isUseDash(shapeInfo);
+
   const attrs = getFillAttrs(shapeInfo);
   const group = container.addGroup();
   const points = main.parsePoints(shapeInfo.points); // 转换为画布坐标
-  const stack = isStack(shapeInfo);
-  const topBar = isTopBar(shapeInfo);
-
-  const styles = useDash && legend.dashed ? { fill: `p(a)${BAR_TEXTURE}` } : { fill: legend.color || shapeInfo.color };
+  const styles =
+    useDash && legend.dashed
+      ? { fill: `p(a)${BAR_TEXTURE}` }
+      : { fill: legend.color || defaultStyles.color || shapeInfo.color };
 
   const newAttrs = {
     ...attrs,
