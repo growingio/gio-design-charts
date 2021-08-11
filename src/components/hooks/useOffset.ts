@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, RefObject, useState } from 'react';
 
-const useOffset = (rootRef: RefObject<HTMLDivElement>) => {
+const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: () => void) => {
   const [offset, setOffset] = useState({} as { width: number; height: number });
   const onResize = useCallback(() => {
-    if (rootRef?.current?.offsetWidth) {
+    if (rootRef?.current?.offsetWidth && rootRef?.current?.offsetWidth !== offset.width) {
       setOffset({ width: rootRef?.current?.offsetWidth || 800, height: rootRef?.current?.offsetHeight });
+      watchReset?.();
     }
   }, [rootRef]);
 

@@ -1,5 +1,19 @@
 import { Element } from '@antv/g2';
 
+export const getLinkPath = (prev: Element, next: Element): (string | number)[][] => {
+  const bbox = prev.shape.getCanvasBBox();
+  const nextBBox = next.shape.getCanvasBBox();
+  const path = [
+    ['M', bbox.maxX, bbox.minY + 2],
+    ['L', nextBBox.minX, nextBBox.minY + 2],
+    ['L', nextBBox.minX, nextBBox.maxY],
+    ['L', bbox.maxX, bbox.maxY],
+    ['L', bbox.maxX, bbox.minY],
+    ['Z'],
+  ];
+  return path;
+};
+
 /**
  * 获取两个柱状elements上端连线的中间点
  *
@@ -7,7 +21,7 @@ import { Element } from '@antv/g2';
  * @param next 右边柱状element
  * @returns {x, y}
  */
-export const getMiddleCoordinate = (prev: Element, next: Element) => {
+export const getMiddleCoordinate = (prev: Element, next: Element): { x: number; y: number } => {
   const bbox = prev.shape.getCanvasBBox();
   const nextBBox = next.shape.getCanvasBBox();
   return { x: (nextBBox.minX + bbox.maxX) / 2, y: (nextBBox.minY + bbox.minY) / 2 };
@@ -31,7 +45,7 @@ export const getMiddleRect = (point: { x: number; y: number }, width: number, he
  * @param height the height of the whole polygon
  * @returns
  */
-export const getArrowPolygon = (point: { x: number; y: number }, width: number, height: number) => {
+export const getArrowPolygon = (point: { x: number; y: number }, width: number, height: number): [number, number][] => {
   const { x, y } = point;
   return [
     [x - width * 0.45, y - height * 0.5],

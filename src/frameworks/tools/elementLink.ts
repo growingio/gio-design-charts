@@ -1,67 +1,18 @@
 import { Element, IGroup, View } from '@antv/g2';
-import { getArrowPolygon, getMiddleCoordinate, getMiddleRect } from './utils';
+import { drawLinkPath, drawPolygon, drawText } from './brush';
+import { getArrowPolygon, getLinkPath, getMiddleCoordinate } from './utils';
 
-function getLinkPath(element: Element, nextElement: Element) {
-  const bbox = element.shape.getCanvasBBox();
-  const nextBBox = nextElement.shape.getCanvasBBox();
-  const path = [
-    ['M', bbox.maxX, bbox.minY + 2],
-    ['L', nextBBox.minX, nextBBox.minY + 2],
-    ['L', nextBBox.minX, nextBBox.maxY],
-    ['L', bbox.maxX, bbox.maxY],
-    ['L', bbox.maxX, bbox.minY],
-    ['Z'],
-  ];
-  return path;
-}
-
-function addLinkShape(group: IGroup, element: Element, nextElement: Element) {
-  const style = {
-    opacity: 0.1,
-    fill: '#5F87FF',
-  };
-  group.addShape({
-    type: 'path',
-    attrs: {
-      ...style,
-      path: getLinkPath(element, nextElement),
-      label: 'test2222',
-    },
-  });
+function addLinkShape(group: IGroup, prev: Element, next: Element) {
+  group.addShape(drawLinkPath(getLinkPath(prev, next)));
 }
 
 const addTextShape = (group: IGroup, prev: Element, next: Element, text: string) => {
   if (text) {
     const width = 60;
     const height = 22;
-    // group.addShape({
-    //   type: 'rect',
-    //   attrs: {
-    //     ...getMiddleRect(getMiddleCoordinate(prev, next), width, height),
-    //     fill: '#fff',
-    //     stroke: '#C4C4C4',
-    //     strokeWidth: 4,
-    //     radius: [4, 4, 4, 4],
-    //   },
-    // });
-    group.addShape({
-      type: 'polygon',
-      attrs: {
-        points: getArrowPolygon(getMiddleCoordinate(prev, next), width, height),
-        fill: '#fff',
-        stroke: '#C4C4C4',
-      },
-    });
-    group.addShape({
-      type: 'text',
-      attrs: {
-        ...getMiddleCoordinate(prev, next),
-        text,
-        textBaseline: 'middle',
-        textAlign: 'center',
-        fill: '#000',
-      },
-    });
+
+    group.addShape(drawPolygon(getArrowPolygon(getMiddleCoordinate(prev, next), width, height)));
+    group.addShape(drawText(getMiddleCoordinate(prev, next), text) as any);
   }
 };
 

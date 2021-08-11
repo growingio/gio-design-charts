@@ -1,3 +1,4 @@
+import { Chart, View } from '@antv/g2';
 import React, { LegacyRef } from 'react';
 import Legends from '../../common/Legends';
 import useOffset from '../hooks/useOffset';
@@ -11,11 +12,15 @@ export interface ILegendDirectorProps extends IDirectorProps {
 const LegendDirector = (props: ILegendDirectorProps) => {
   const directorRef: LegacyRef<HTMLDivElement> = React.createRef();
   const { options = {}, onClickLegend } = props;
-  const offset = useOffset(directorRef);
-
+  const { legends, getCharts } = options;
+  const watchReset = () => {
+    const charts = getCharts?.();
+    charts?.map((view: Chart | View) => view?.render(true));
+  };
+  const offset = useOffset(directorRef, watchReset);
   return (
     <div className={styles.chart} ref={directorRef}>
-      <Legends legends={options.legends} offsetWidth={offset.width} onClick={onClickLegend} />
+      <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
       {props.children}
     </div>
   );

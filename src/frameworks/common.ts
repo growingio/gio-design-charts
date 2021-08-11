@@ -1,12 +1,16 @@
-import { Chart, registerGeometryLabel, View } from '@antv/g2';
+import { Chart, registerGeometryLabel, registerGeometryLabelLayout, View } from '@antv/g2';
 import { IChartConfig, IChartOptions, ILegends } from '../interface';
 import { colors } from '../theme';
 import IntervalLabel from './tools/intervalLabel';
+import { intervalAdjustPosition } from '@antv/g2/lib/geometry/label/layout/interval/adjust-position';
+import { intervalHideOverlap } from '@antv/g2/lib/geometry/label/layout/interval/hide-overlap';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
 
 registerGeometryLabel('interval-label', IntervalLabel);
+registerGeometryLabelLayout('interval-label-adjust-position', intervalAdjustPosition);
+registerGeometryLabelLayout('interval-label-hide-overlap', intervalHideOverlap);
 
 export const generateChart = (options: IChartOptions, config: IChartConfig) => {
   const { id } = options;

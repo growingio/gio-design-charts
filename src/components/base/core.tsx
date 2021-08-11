@@ -85,8 +85,10 @@ const core = (HighConponent: any) => {
       [getCharts, legends, chartOptions, config, handleLegend, updateLegends]
     );
 
+    console.log('-----------');
+
     return (
-      <HighConponent options={chartOptions} onClickLegend={onClickLegend}>
+      <HighConponent options={{ ...chartOptions, getCharts }} onClickLegend={onClickLegend}>
         <div ref={root} />
         <div ref={tooltipRef} className="g2-tooltip">
           <InfoCard legends={legends || {}} items={hoverItem} />
