@@ -65,7 +65,7 @@ const FunnelWithBasicArgs = {
     },
   },
 };
-FunnelWithBasic.storyName = '基础柱状';
+FunnelWithBasic.storyName = '占位柱子';
 FunnelWithBasic.args = FunnelWithBasicArgs;
 
 export const FunnelWith3Columns = ComparativeTemplate.bind({});
@@ -89,5 +89,5 @@ const FunnelWith3ColumnsArgs = {
     },
   },
 };
-FunnelWith3Columns.storyName = '三条柱状';
+FunnelWith3Columns.storyName = '基础漏斗';
 FunnelWith3Columns.args = FunnelWith3ColumnsArgs;
