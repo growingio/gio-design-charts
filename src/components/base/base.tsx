@@ -119,7 +119,7 @@ const Basic = (props: IBasicProps) => {
         <div className={styles.right}>
           <div ref={root} onReset={onResize} />
           <div ref={tooltipRef} className="g2-tooltip">
-            <InfoCard legends={legends} items={hoverItem} />
+            <InfoCard legends={legends} triggerItems={hoverItem} config={config} />
           </div>
         </div>
       </div>

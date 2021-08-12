@@ -19,10 +19,10 @@ const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
     // const chartConfig = config?.chart || {};
     // setFetchConfig({ ...config, chart: { ...chartConfig, height: legendProps.length * 80 }, axis: [false] });
   }, [config, legendProps]);
+  config.type = ChartType.BAR;
   return (
     <LegendDirector
       // leftComponent={VerticalMenu}
-      type={ChartType.BAR}
       data={data}
       legendList={legendProps}
       config={fetchConfig}

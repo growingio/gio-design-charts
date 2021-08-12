@@ -11,7 +11,7 @@ export interface IDirectorProps {
 }
 
 export interface IChartCanvasProps {
-  type: ChartType;
+  // type: ChartType;
   callChart: any;
   legendList: (string | ILegend)[];
   handleLegend: any;
@@ -24,7 +24,7 @@ export interface IChartCanvasProps {
 // In core, we only force on render chart and provide basic chart options
 const core = (HighConponent: any) => {
   return (props: IChartCanvasProps) => {
-    const { config, callChart, data, legendList, type, handleLegend, defaultOptions = {} } = props;
+    const { config, callChart, data, legendList, handleLegend, defaultOptions = {} } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
     const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
     const [hoverItem, setHoverItem] = useState([]);
@@ -58,7 +58,7 @@ const core = (HighConponent: any) => {
       }
       let existChart: any;
       if (root.current && data) {
-        const [genLegends, hasDashed] = getLegends(type, legendList);
+        const [genLegends, hasDashed] = getLegends(config.type, legendList);
         const { chart, views = [] } = callChart(
           { id: root.current, data, reporter: defineReporter, legends: genLegends, hasDashed, interceptors },
           {
@@ -74,7 +74,7 @@ const core = (HighConponent: any) => {
       return () => {
         existChart?.destroy();
       };
-    }, [data, legendList, config, type, callChart]);
+    }, [data, legendList, config, callChart]);
 
     const onClickLegend = useCallback(
       (label: string) => {
@@ -91,9 +91,10 @@ const core = (HighConponent: any) => {
         <div ref={tooltipRef} className="g2-tooltip">
           <InfoCard
             legends={legends || {}}
-            items={hoverItem}
+            triggerItems={hoverItem}
             options={{ ...chartOptions, ...defaultOptions }}
             trigger={getTriggerAction()}
+            config={config}
           />
         </div>
       </HighConponent>

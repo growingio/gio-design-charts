@@ -1,7 +1,7 @@
 import { Chart, View } from '@antv/g2';
 import { IChartConfig, IChartOptions, ILegends } from '../interface';
 import { handleInterval } from './columnChart';
-import { fetchChartConfig, generateChart, handleLegendBehavior } from './common';
+import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
 import { getShapeConfig } from './utils';
 
 export const barChart = (options: IChartOptions, config: IChartConfig) => {
@@ -14,14 +14,13 @@ export const barChart = (options: IChartOptions, config: IChartConfig) => {
     if (geometries && geometries?.elements) {
       reporter({ scale: geometries.getXScale(), elements: geometries?.elements });
     }
-    // console.log(geometries.getXScale());
-    // console.log(geometries.getXYFields());
   });
   fetchChartConfig(linkView, options, config);
   handleInterval(linkView, options, config, 'bar');
   linkView.coordinate().transpose();
   linkView.render();
 
+  fetchTooltip(chart, config);
   chart.coordinate().transpose();
   chart.legend(false);
   chart.render();

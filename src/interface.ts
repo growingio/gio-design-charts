@@ -5,6 +5,7 @@ export enum ChartType {
   LINE = 'line',
   BAR = 'bar',
   COLUMN = 'column',
+  FUNNEL = 'funnel',
 }
 
 export interface ILegend {

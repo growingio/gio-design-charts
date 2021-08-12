@@ -9,9 +9,10 @@ import LegendDirector from '../base/LegendDirector';
 const LineChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config } = props;
 
+  config.type = ChartType.LINE;
+
   return (
     <LegendDirector
-      type={ChartType.LINE}
       data={data}
       legendList={legendProps}
       config={config}

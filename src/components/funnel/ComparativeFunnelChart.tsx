@@ -9,7 +9,6 @@ import LegendDirector from '../base/LegendDirector';
 
 const ComparativeFunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
-
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
       return {
@@ -34,7 +33,7 @@ const ComparativeFunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
         covertData.push({ ...item });
       } else {
         texts.push(`${((item?.value / prev?.value || 0) * 100).toFixed(2)}%`);
-        covertData.push({ ...item, value: prev?.value || 0 });
+        covertData.push({ ...item, value: prev?.value || 0, prev: prev });
         prev = item;
       }
     });
@@ -44,10 +43,9 @@ const ComparativeFunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
       texts,
     });
   }, [data]);
-
+  config.type = ChartType.FUNNEL;
   return (
     <LegendDirector
-      type={ChartType.BAR}
       data={comparativeData}
       legendList={legendProps}
       defaultOptions={defaultOptions}

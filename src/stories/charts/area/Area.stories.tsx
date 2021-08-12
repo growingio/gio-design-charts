@@ -78,7 +78,7 @@ LineWithAreaExample.storyName = '面积图';
 
 const LineWithMultiArea = Template.bind({});
 const LineWithMultiAreaArgs = {
-  legends: ['北京', '哈尔滨', '石家庄'],
+  legends: ['长春', '哈尔滨', '石家庄'],
   data: dataWithDash,
   config: {
     ...config,

@@ -25,9 +25,9 @@ const ColumnChart: React.FC<IChartProps> = (props: IChartProps) => {
 
     setAssignConfig(Object.assign({}, config));
   }, [config]);
+  config.type = ChartType.COLUMN;
   return (
     <LegendDirector
-      type={ChartType.COLUMN}
       data={data}
       legendList={legendProps}
       config={assginConfig}
