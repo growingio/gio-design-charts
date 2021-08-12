@@ -6,49 +6,33 @@ import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelCha
 import { ChartType, IChartProps } from '../../interface';
 import { colors } from '../../theme';
 import LegendDirector from '../base/LegendDirector';
+import { getGroupData, getSingleData } from './utils';
 
 const ComparativeFunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
-  const defaultOptions = useMemo(() => {
-    if (isEmpty(legendProps)) {
-      return {
-        defaultStyles: {
-          color: colors[0],
-        },
-      };
-    }
-    return {};
-  }, [legendProps]);
+  //   const defaultOptions = useMemo(() => {
+  //     if (isEmpty(legendProps)) {
+  //       return {
+  //         defaultStyles: {
+  //           color: colors[0],
+  //         },
+  //       };
+  //     }
+  //     return {};
+  //   }, [legendProps]);
 
   const [comparativeData, setComparativeData] = useState({});
+
   useEffect(() => {
-    const covertData = [] as any[];
-    const texts = [] as string[];
-    let prev = {} as any;
-    data.map((item: any, index: number) => {
-      if (index === 0) {
-        covertData.push({ ...item });
-        prev = item;
-      } else if (item?.isPlaceholder) {
-        covertData.push({ ...item });
-      } else {
-        texts.push(`${((item?.value / prev?.value || 0) * 100).toFixed(2)}%`);
-        covertData.push({ ...item, value: prev?.value || 0, prev: prev });
-        prev = item;
-      }
-    });
-    setComparativeData({
-      source: data,
-      covert: covertData,
-      texts,
-    });
+    setComparativeData(getGroupData(data, config));
   }, [data]);
   config.type = ChartType.FUNNEL;
+
   return (
     <LegendDirector
       data={comparativeData}
       legendList={legendProps}
-      defaultOptions={defaultOptions}
+      //   defaultOptions={defaultOptions}
       config={config}
       callChart={comparativeFunnelChart}
       handleLegend={handleLegend}

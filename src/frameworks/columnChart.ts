@@ -14,13 +14,15 @@ export const interval = (
   styleCallback?: any
 ) => {
   const barConfig = getShapeConfig(config);
-  const customInfo = intervalConfig || {};
-  const intevalConfig = barConfig.interval || {};
+  const customInfo = intervalConfig?.customInfo || {};
+  const intervalStyles = intervalConfig?.intervalStyles || {};
+  const shapeConfig = barConfig.interval || {};
   const hideLabel = options?.control?.hideLabel;
 
   let interval: any = chart.interval({
-    ...intevalConfig,
-
+    ...shapeConfig,
+    ...intervalStyles,
+    // dodgePadding: 8,
     // intervalPadding: 40,
     // maxColumnWidth: 40,
     // minColumnWidth: 40,
@@ -53,6 +55,13 @@ export const interval = (
       duration: 100, // 动画执行时间
     },
   });
+  interval.state({
+    selected: {
+      style: {
+        fill: '#E8684A',
+      },
+    },
+  });
   interval.customInfo(setCustomInfo(options, config, customInfo));
   return interval;
 };
@@ -70,7 +79,7 @@ export const handleInterval = (
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
-  interval(chart, options, config, { chartType: type, useDash: false }, (label: string) => {
+  interval(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
     const legend = legends?.[label] || ({} as ILegend);
     if (legend?.dashed) {
       dashedBars.push(label);
@@ -90,8 +99,10 @@ export const handleInterval = (
       options,
       config,
       {
-        chartType: type,
-        useDash: true,
+        customInfo: {
+          chartType: type,
+          useDash: true,
+        },
       },
       (label: string) => {
         const legend = legends?.[label] || ({} as ILegend);
@@ -111,6 +122,8 @@ export const handleInterval = (
 export const columnChart = (options: IChartOptions, config: IChartConfig) => {
   const chart = renderChart(options, config);
   handleInterval(chart, options, config);
+  chart.interaction('element-highlight-by-color');
+  chart.interaction('element-link');
   chart.render();
   return { chart };
 };

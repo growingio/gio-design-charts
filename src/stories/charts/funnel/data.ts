@@ -28,3 +28,26 @@ export const dataWith7Columns = [
   { type: '6.完成购买', value: 2033 },
   { type: '7.完成购买', value: 102 },
 ];
+
+export const dataWithGroup = [
+  { type: '1.商品详情页｜浏览', city: '北京', value: 21734 },
+  { type: '1.商品详情页｜浏览', city: '上海', value: 21734 },
+  { type: '1.商品详情页｜浏览', city: '南京', value: 21734 },
+  { type: '1.商品详情页｜浏览', city: '深圳', value: 21734 },
+  { type: '1.商品详情页｜浏览', city: '广东', value: 21734 },
+  { type: '2.加入购物车', city: '北京', value: 18734 },
+  { type: '2.加入购物车', city: '上海', value: 17734 },
+  { type: '2.加入购物车', city: '南京', value: 18334 },
+  { type: '2.加入购物车', city: '深圳', value: 18634 },
+  { type: '2.加入购物车', city: '广东', value: 16734 },
+  { type: '3.进入购物车', city: '北京', value: 6839 },
+  { type: '3.进入购物车', city: '上海', value: 8539 },
+  { type: '3.进入购物车', city: '南京', value: 7839 },
+  { type: '3.进入购物车', city: '深圳', value: 7939 },
+  { type: '3.进入购物车', city: '广东', value: 8139 },
+  { type: '4.完成购买', city: '北京', value: 1320 },
+  { type: '4.完成购买', city: '上海', value: 2420 },
+  { type: '4.完成购买', city: '南京', value: 4420 },
+  { type: '4.完成购买', city: '深圳', value: 2420 },
+  { type: '4.完成购买', city: '广东', value: 3420 },
+];

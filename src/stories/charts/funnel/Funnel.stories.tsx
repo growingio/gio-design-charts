@@ -1,10 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { ComparativeFunnelChart } from '../../../components/funnel';
-import { FunnelChart } from '../../../index';
+import { FunnelChart, FunnelGroupChart } from '../../../index';
 import Card from '../../components/card';
 import { dataWithMultiBar } from '../column/data';
 
-import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel } from './data';
+import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';
 
 export default {
   title: 'Charts/漏斗图 Funnel Chart',
@@ -49,7 +48,7 @@ FunnelWithLink.args = FunnelWithLinkArgs;
 
 const ComparativeTemplate: ComponentStory<typeof FunnelChart> = (args) => (
   <Card>
-    <ComparativeFunnelChart {...args} />
+    <FunnelChart {...args} />
   </Card>
 );
 
@@ -139,3 +138,46 @@ const FunnelWith7ColumnsArgs = {
 };
 FunnelWith7Columns.storyName = '7个事件漏斗';
 FunnelWith7Columns.args = FunnelWith7ColumnsArgs;
+
+const GroupTemplate: ComponentStory<typeof FunnelChart> = (args) => (
+  <Card>
+    <FunnelGroupChart {...args} />
+  </Card>
+);
+
+export const FunnelWithGroup = GroupTemplate.bind({});
+const FunnelWithGroupArgs = {
+  legends: ['北京', '上海', '南京', '深圳', '广东'],
+  data: dataWithGroup,
+  isGroup: true,
+  config: {
+    ...config,
+    tooltip: {
+      enterable: true,
+      showContent: true,
+      // shared: true,
+      showMarkers: false,
+    },
+    funnel: {
+      position: 'type*value',
+      color: 'city',
+      adjust: [
+        {
+          type: 'dodge',
+          marginRatio: 0,
+        },
+      ],
+      label: [
+        'value',
+        {
+          type: 'interval-label',
+          style: {
+            fill: '#343434',
+          },
+        },
+      ],
+    },
+  },
+};
+FunnelWithGroup.storyName = '分组漏斗';
+FunnelWithGroup.args = FunnelWithGroupArgs;

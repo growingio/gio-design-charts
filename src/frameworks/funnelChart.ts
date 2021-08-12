@@ -9,15 +9,27 @@ import { getShapeConfig } from './utils';
 
 const fetchInterval = (chart: Chart | View, options: IChartOptions, config: IChartConfig) => {
   const { legends, defaultStyles = {} } = options;
-  return interval(chart, options, config, {}, (label: string) => {
-    const legend = legends?.[label] || ({} as ILegend);
-    return {
-      stroke: '#fff',
-      fill: legend.color,
-      radius: DEFAULT_REDIUS,
-      ...defaultStyles,
-    };
-  });
+  return interval(
+    chart,
+    options,
+    config,
+    {
+      intervalStyles: {
+        dodgePadding: 4,
+        minColumnWidth: 40,
+      },
+    },
+    (label: string) => {
+      const legend = legends?.[label] || ({} as ILegend);
+      return {
+        stroke: '#fff',
+        strokeWidth: 1,
+        fill: legend.color,
+        radius: DEFAULT_REDIUS,
+        ...defaultStyles,
+      };
+    }
+  );
 };
 
 export const comparativeFunnelChart = (options: IChartOptions, config: IChartConfig) => {
@@ -26,6 +38,7 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
   const sourceData = options?.data?.source || [];
   const covertData = options?.data?.covert || [];
   const texts = options?.data?.texts || [];
+  const isGroup = options?.data?.isGroup;
 
   const emptyLegends = isEmpty(legends);
 
@@ -43,6 +56,8 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
   };
   fetchChartConfig(backgroundView, backgroundOptions, config);
   fetchInterval(backgroundView, backgroundOptions, config);
+  backgroundView.interaction('element-active');
+  backgroundView.render();
 
   const addLinkByElement = addLinkByElementHigh();
 
@@ -55,15 +70,19 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
     },
   };
   linkView.on('afterrender', function (event: any) {
-    if (sourceData.length !== 0) {
+    if (!isGroup && sourceData.length !== 0) {
       addLinkByElement(event?.view, { texts });
     }
   });
   // should add view.render() for linkView, it can trigger afterrender event.
-  linkView.render();
-
+  linkView.interaction('element-highlight-by-color');
+  linkView.interaction('element-link');
   fetchChartConfig(linkView, linkOptions, config);
   fetchInterval(linkView, linkOptions, config);
+  linkView.interaction('element-active');
+  linkView.render();
+
+  chart.interaction('element-active');
   fetchTooltip(chart, config);
   interceptors.bindElementEvents(chart);
   chart.legend(false);

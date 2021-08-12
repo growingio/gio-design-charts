@@ -4,6 +4,9 @@ export const getShapeConfig = (config: IChartConfig, type?: string) => {
   if (type) {
     return config[type] || {};
   }
+  if (config.type) {
+    return config[config.type] || {};
+  }
   return config.bar || config.column || config.line || config.funnel || {};
 };
 
