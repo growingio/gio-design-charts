@@ -24,14 +24,14 @@ function getBarRectAttrs(points: any[], stack?: boolean) {
 // 重新绘制rect，设置最小高度
 function getRectAttrs(points: any[], stack?: boolean) {
   const width = Math.abs(points[0].x - points[2].x);
-  let height = Math.abs(points[0].y - points[2].y);
+  const height = Math.abs(points[0].y - points[2].y);
   const defualtHeight = stack ? height : DEFAULT_MIN_HEIGHT;
-  height = height < DEFAULT_MIN_HEIGHT ? (height === 0 ? 0 : defualtHeight) : height - 1;
+  let fixedHeight = height < DEFAULT_MIN_HEIGHT ? (height === 0 ? 0 : defualtHeight) : height - 1;
   return {
     x: (points[0].x + points[1].x) / 2,
-    y: height <= DEFAULT_MIN_HEIGHT && height !== 0 ? points[1].y - 1 : points[1].y,
+    y: fixedHeight <= DEFAULT_MIN_HEIGHT && fixedHeight !== 0 ? points[1].y - (fixedHeight - height) - 1 : points[1].y,
     width,
-    height,
+    height: fixedHeight,
   };
 }
 

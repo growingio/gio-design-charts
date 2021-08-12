@@ -4,7 +4,7 @@ import { FunnelChart } from '../../../index';
 import Card from '../../components/card';
 import { dataWithMultiBar } from '../column/data';
 
-import { dataWith3Columns, dataWithBasicFunnel } from './data';
+import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel } from './data';
 
 export default {
   title: 'Charts/漏斗图 Funnel Chart',
@@ -91,3 +91,51 @@ const FunnelWith3ColumnsArgs = {
 };
 FunnelWith3Columns.storyName = '基础漏斗';
 FunnelWith3Columns.args = FunnelWith3ColumnsArgs;
+
+export const FunnelWith6Columns = ComparativeTemplate.bind({});
+const FunnelWith6ColumnsArgs = {
+  legends: [],
+  data: dataWith6Columns,
+  config: {
+    ...config,
+    funnel: {
+      position: 'type*value',
+      color: 'type',
+      label: [
+        'value',
+        {
+          type: 'interval-label',
+          style: {
+            fill: '#343434',
+          },
+        },
+      ],
+    },
+  },
+};
+FunnelWith6Columns.storyName = '6个事件漏斗';
+FunnelWith6Columns.args = FunnelWith6ColumnsArgs;
+
+export const FunnelWith7Columns = ComparativeTemplate.bind({});
+const FunnelWith7ColumnsArgs = {
+  legends: [],
+  data: dataWith7Columns,
+  config: {
+    ...config,
+    funnel: {
+      position: 'type*value',
+      color: 'type',
+      label: [
+        'value',
+        {
+          type: 'interval-label',
+          style: {
+            fill: '#343434',
+          },
+        },
+      ],
+    },
+  },
+};
+FunnelWith7Columns.storyName = '7个事件漏斗';
+FunnelWith7Columns.args = FunnelWith7ColumnsArgs;

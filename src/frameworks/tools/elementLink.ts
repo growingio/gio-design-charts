@@ -1,4 +1,5 @@
 import { Element, IGroup, View } from '@antv/g2';
+import { FUNNEL_CRITICAL_COUNT } from '../../theme';
 import { drawLinkPath, drawPolygon, drawText } from './brush';
 import { getArrowPolygon, getLinkPath, getMiddleCoordinate } from './utils';
 
@@ -10,13 +11,14 @@ const addTextShape = (group: IGroup, prev: Element, next: Element, text: string)
   if (text) {
     const width = 60;
     const height = 22;
-
-    group.addShape(drawPolygon(getArrowPolygon(getMiddleCoordinate(prev, next), width, height)));
-    group.addShape(drawText(getMiddleCoordinate(prev, next), text) as any);
+    const centerPoint = getMiddleCoordinate(prev, next);
+    const arrowPolygonPoints = getArrowPolygon(centerPoint, width, height);
+    group.addShape(drawPolygon(arrowPolygonPoints));
+    group.addShape(drawText(centerPoint, text) as any);
   }
 };
 
-const groupElements = (elements: Element[], callback: any) => {
+const reduceElements = (elements: Element[], callback: any) => {
   let prevEle = undefined;
   let count = 0;
   for (let i = 0; i < elements.length; i++) {
@@ -45,9 +47,11 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
     const elements = view.geometries?.[0]?.elements;
     groups.push(group);
     groups.push(textGroup);
-    groupElements(elements, (prev: Element, next: Element, index: number) => {
+    reduceElements(elements, (prev: Element, next: Element, index: number) => {
       addLinkShape(group, prev, next);
-      addTextShape(textGroup, prev, next, texts[index]);
+      if (texts.length < FUNNEL_CRITICAL_COUNT) {
+        addTextShape(textGroup, prev, next, texts[index]);
+      }
     });
     return group;
   } catch (err) {
