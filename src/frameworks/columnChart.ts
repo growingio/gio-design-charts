@@ -6,7 +6,7 @@ import { handleLegendBehavior, renderChart } from './common';
 import './tools/intervalShape';
 import { getShapeConfig, setCustomInfo } from './utils';
 
-export const interval = (
+export const intervalShape = (
   chart: Chart | View,
   options: IChartOptions,
   config: IChartConfig,
@@ -79,7 +79,7 @@ export const handleInterval = (
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
-  interval(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
+  intervalShape(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
     const legend = legends?.[label] || ({} as ILegend);
     if (legend?.dashed) {
       dashedBars.push(label);
@@ -94,7 +94,7 @@ export const handleInterval = (
 
   // 若有条纹柱子，需要再次绘制
   if (hasDashed) {
-    interval(
+    intervalShape(
       chart,
       options,
       config,

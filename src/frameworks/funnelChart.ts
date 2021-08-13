@@ -2,14 +2,14 @@ import { Chart, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
 import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { colors, DEFAULT_REDIUS } from '../theme';
-import { interval } from './columnChart';
+import { intervalShape } from './columnChart';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
 import { addLinkByElementHigh } from './tools/elementLink';
 import { getShapeConfig } from './utils';
 
 const fetchInterval = (chart: Chart | View, options: IChartOptions, config: IChartConfig) => {
   const { legends, defaultStyles = {} } = options;
-  return interval(
+  return intervalShape(
     chart,
     options,
     config,

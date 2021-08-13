@@ -1,22 +1,22 @@
 import { Chart, View } from '@antv/g2';
 import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { handleLegendBehavior, renderChart } from './common';
+import { lineShape } from './lineChart';
 import { getShapeConfig } from './utils';
 
-export const lineShape = (chart: Chart | View, options: IChartOptions, shapeConfig: any) => {
+export const areaShape = (chart: Chart | View, options: IChartOptions, shapeConfig: any) => {
   const { legends } = options;
-  const line = chart.line({
+  const area = chart.area({
     theme: {
-      strokeWidth: 2,
+      strokeWidth: 0,
     },
   });
-
+  area.position(shapeConfig.position);
+  area.color(shapeConfig.color);
   if (shapeConfig.adjust) {
-    line.adjust.apply(line, shapeConfig.adjust);
+    area.adjust.apply(area, shapeConfig.adjust);
   }
-  line.position(shapeConfig.position);
-  line.color(shapeConfig.color);
-  line.style(shapeConfig.color, (label: string) => {
+  area.style(shapeConfig.color, (label: string) => {
     const legend = legends?.[label] || ({} as ILegend);
     const style = {} as any;
     if (legend.color) {
@@ -26,26 +26,29 @@ export const lineShape = (chart: Chart | View, options: IChartOptions, shapeConf
       style.lineDash = legend.lineDash;
     }
     // default width of line is 2px
-    style.lineWidth = 2;
+    style.lineWidth = 0;
     return style;
   });
-  return line;
+  return area;
 };
 
-export const lineChart = (options: IChartOptions, config: IChartConfig = {}) => {
+export const areaChart = (options: IChartOptions, config: IChartConfig = {}) => {
   const { id } = options;
   if (!id) {
     return;
   }
   const chart = renderChart(options, config);
-  const lineConfig = getShapeConfig(config, 'line');
-  lineShape(chart, options, lineConfig);
+  const areaConfig = getShapeConfig(config, 'area');
+
+  lineShape(chart, options, areaConfig);
+  areaShape(chart, options, areaConfig);
+
   chart.render();
   return { chart };
 };
 
 export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
-  const lineConfig = getShapeConfig(config, 'line');
+  const lineConfig = getShapeConfig(config, 'area');
   if (lineConfig.color) {
     charts.map((chart: Chart | View) => {
       handleLegendBehavior(chart, legends, lineConfig.color);

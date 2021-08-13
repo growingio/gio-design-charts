@@ -1,12 +1,13 @@
 import { ComponentStory } from '@storybook/react';
-import { LineChart } from '../../../index';
+import { AreaChart } from '../../../index';
 import { dataWithDash, dataWithOneLine } from '../line/data';
 import Card from '../../components/card';
 import Docs from './Area.mdx';
+import { percentData } from '../column/data';
 
 export default {
   title: 'Charts/面积图 Area Chart',
-  component: LineChart,
+  component: AreaChart,
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -17,9 +18,9 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof LineChart> = (args) => (
+const Template: ComponentStory<typeof AreaChart> = (args) => (
   <Card>
-    <LineChart {...args} />
+    <AreaChart {...args} />
   </Card>
 );
 
@@ -53,18 +54,15 @@ const config = {
       },
     },
   ],
-  line: {
-    position: 'month*temperature',
-    color: 'city',
-  },
 };
-const LineWithArea = Template.bind({});
+export const LineWithArea = Template.bind({});
+LineWithArea.storyName = '面积图';
 const LineWithAreaArgs = {
   legends: ['北京'],
   data: dataWithOneLine,
   config: {
     ...config,
-    line: {
+    area: {
       position: 'month*temperature',
       color: 'city',
       area: 'month*temperature',
@@ -73,24 +71,58 @@ const LineWithAreaArgs = {
 };
 
 LineWithArea.args = { ...LineWithAreaArgs };
-export const LineWithAreaExample = () => <LineWithArea {...LineWithAreaArgs} />;
-LineWithAreaExample.storyName = '面积图';
 
-const LineWithMultiArea = Template.bind({});
+export const LineWithMultiArea = Template.bind({});
+LineWithMultiArea.storyName = '堆积面积图';
 const LineWithMultiAreaArgs = {
   legends: ['长春', '哈尔滨', '石家庄'],
   data: dataWithDash,
   config: {
     ...config,
-    line: {
+    area: {
       position: 'month*temperature',
       color: 'city',
       area: 'month*temperature',
+      adjust: ['stack'],
     },
   },
 };
 
 LineWithMultiArea.args = { ...LineWithMultiAreaArgs };
 
-export const LineWithMultiAreaExample = () => <LineWithMultiArea {...LineWithMultiAreaArgs} />;
-LineWithMultiAreaExample.storyName = '复杂面积图';
+export const PercentArea = Template.bind({});
+const PercentAreaArgs = {
+  legends: ['Facebook', 'Apple', 'Google'],
+  data: percentData,
+  config: {
+    ...config,
+    axis: [
+      'value',
+      {
+        label: {
+          formatter: (val: string) => {
+            return val + '%';
+          },
+        },
+      },
+    ],
+    scale: [
+      {
+        type: {
+          range: [0, 1],
+        },
+        value: {
+          nice: true,
+        },
+      },
+    ],
+    area: {
+      position: 'type*value',
+      color: 'company',
+      adjust: ['stack'],
+    },
+  },
+};
+
+PercentArea.args = { ...PercentAreaArgs };
+PercentArea.storyName = '百分比面积图';

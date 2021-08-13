@@ -26,26 +26,20 @@ export const dataWithGroup = [
   { company: 'Google', type: '业务岗', value: 25 },
 ];
 
-const getPercentData = (data: any[], type: string) => {
-  const totalMapping = {} as any;
-  data.map((item: any) => {
-    totalMapping[item[type]] = (totalMapping[item[type]] || 0) + item.value;
-    return item;
-  });
-  const newData = [] as any[];
-
-  data.map((item: any) => {
-    const value = Number((item.value / totalMapping[item[type]]).toFixed(2)) * 100 - 1;
-    newData.push({
-      ...item,
-      value: value > 0 ? value : 0,
-    });
-    return item;
-  });
-  return newData as any[];
-};
-
-export const percentData = getPercentData(dataWithGroup, 'type');
+export const percentData = [
+  { company: 'Facebook', type: '整体', value: 96 },
+  { company: 'Apple', type: '整体', value: 0 },
+  { company: 'Google', type: '整体', value: 4 },
+  { company: 'Apple', type: '非技术岗', value: 25 },
+  { company: 'Facebook', type: '非技术岗', value: 42 },
+  { company: 'Google', type: '非技术岗', value: 33 },
+  { company: 'Apple', type: '技术岗', value: 37 },
+  { company: 'Facebook', type: '技术岗', value: 29 },
+  { company: 'Google', type: '技术岗', value: 34 },
+  { company: 'Apple', type: '业务岗', value: 38 },
+  { company: 'Facebook', type: '业务岗', value: 35 },
+  { company: 'Google', type: '业务岗', value: 27 },
+];
 
 export const dataWithGroupStack = [
   {
