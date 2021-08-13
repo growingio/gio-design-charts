@@ -1,6 +1,6 @@
 import React, { LegacyRef, useEffect, useState, useCallback } from 'react';
 import { RefObject } from 'react';
-import InfoCard from '../../common/InfoCard';
+import { InfoCardBox } from '../../common/InfoCard';
 import { IChartConfig, IChartOptions, ILegend, IReportThing } from '../../interface';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
@@ -88,14 +88,16 @@ const core = (HighConponent: any) => {
     return (
       <HighConponent options={{ ...chartOptions, getCharts }} onClickLegend={onClickLegend}>
         <div ref={root} />
-        <div ref={tooltipRef} className="g2-tooltip">
-          <InfoCard
-            legends={legends || {}}
-            triggerItems={hoverItem}
-            options={{ ...chartOptions, ...defaultOptions }}
-            trigger={getTriggerAction()}
-            config={config}
-          />
+        <div className="gio-d-chart_tooltip-content">
+          <div ref={tooltipRef} className="g2-tooltip">
+            <InfoCardBox
+              legends={legends || {}}
+              triggerItems={hoverItem}
+              options={{ ...chartOptions, ...defaultOptions }}
+              trigger={getTriggerAction()}
+              config={config}
+            />
+          </div>
         </div>
       </HighConponent>
     );

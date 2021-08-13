@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import Legends from '../../common/Legends';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import { ChartType, IChartProps, IReportThing } from '../../interface';
-import InfoCard from '../../common/InfoCard/InfoCard';
+import { InfoCardBox } from '../../common/InfoCard';
 
 export interface IBasicProps extends IChartProps {
   callChart: any;
@@ -116,8 +116,10 @@ const Basic = (props: IBasicProps) => {
         )}
         <div className="gio-d-chart_right">
           <div ref={root} onReset={onResize} />
-          <div ref={tooltipRef} className="g2-tooltip">
-            <InfoCard legends={legends} triggerItems={hoverItem} config={config} />
+          <div className="gio-d-chart_tooltip-content">
+            <div ref={tooltipRef} className="g2-tooltip">
+              <InfoCardBox legends={legends} triggerItems={hoverItem} config={config} />
+            </div>
           </div>
         </div>
       </div>
