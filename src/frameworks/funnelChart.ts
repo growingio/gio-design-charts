@@ -75,14 +75,14 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
     }
   });
   // should add view.render() for linkView, it can trigger afterrender event.
-  linkView.interaction('element-highlight-by-color');
-  linkView.interaction('element-link');
+  if (isGroup) {
+    linkView.interaction('element-highlight-by-color');
+    linkView.interaction('element-link');
+  }
   fetchChartConfig(linkView, linkOptions, config);
   fetchInterval(linkView, linkOptions, config);
-  linkView.interaction('element-active');
   linkView.render();
 
-  chart.interaction('element-active');
   fetchTooltip(chart, config);
   interceptors.bindElementEvents(chart);
   chart.legend(false);
