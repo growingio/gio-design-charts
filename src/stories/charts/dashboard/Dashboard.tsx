@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { IChartConfig, IChartProps } from '../../../interface';
 import Frame from '../../components/frame';
+import { AreaStack, AreaWithSample, PercentArea } from '../area/Area.stories';
 import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../bar/Bar.stories';
 import {
   ColumnWithGroup,
@@ -9,6 +10,13 @@ import {
   PercentColumn,
   StackingDiagramColumn,
 } from '../column/Column.stories';
+import {
+  FunnelWith3Columns,
+  FunnelWith6Columns,
+  FunnelWith7Columns,
+  FunnelWithBasic,
+  FunnelWithGroup,
+} from '../funnel/Funnel.stories';
 // import { FunnelWithLinkExample } from '../funnel/Funnel.stories';
 
 import { LineWithOneLine, LineWithDash, LineWithMenu } from '../line/Line.stories';
@@ -41,6 +49,28 @@ const Dashboard = () => {
         <div>
           <Frame type="left" title={LineWithMenu.storyName} path="/?path=/story/charts-折线图-面积图--line-with-menu">
             <LineWithMenu {...(LineWithMenu.args as IChartProps)} />
+          </Frame>
+          <Frame type="right" />
+        </div>
+      </div>
+
+      <div style={{ display: 'flow-root' }}>
+        <div style={titleStyle}>面积图</div>
+        <div>
+          <Frame
+            type="left"
+            title={AreaWithSample.storyName}
+            path="/?path=/story/charts-面积图-area-chart--area-with-sample"
+          >
+            <AreaWithSample {...(AreaWithSample.args as IChartProps)} />
+          </Frame>
+          <Frame type="right" title={AreaStack.storyName} path="/?path=/story/charts-面积图-area-chart--area-stack">
+            <AreaStack {...(AreaStack.args as IChartProps)} />
+          </Frame>
+        </div>
+        <div>
+          <Frame type="left" title={PercentArea.storyName} path="/?path=/story/charts-面积图-area-chart--percent-area">
+            <PercentArea {...(PercentArea.args as IChartProps)} />
           </Frame>
           <Frame type="right" />
         </div>
@@ -119,6 +149,53 @@ const Dashboard = () => {
           </Frame>
         </div>
         {/* <FunnelWithLinkExample /> */}
+      </div>
+
+      <div style={{ display: 'flow-root' }}>
+        <div style={titleStyle}>漏斗图</div>
+        <div>
+          <Frame
+            type="left"
+            title={FunnelWithBasic.storyName}
+            path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-basic"
+          >
+            <FunnelWithBasic {...(FunnelWithBasic.args as IChartProps)} />
+          </Frame>
+          <Frame
+            type="right"
+            title={FunnelWith3Columns.storyName}
+            path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-3-columns"
+          >
+            <FunnelWith3Columns {...(FunnelWith3Columns.args as IChartProps)} />
+          </Frame>
+        </div>
+        <div>
+          <Frame
+            type="left"
+            title={FunnelWith6Columns.storyName}
+            path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-6-columns"
+          >
+            <FunnelWith6Columns {...(FunnelWith6Columns.args as IChartProps)} />
+          </Frame>
+          <Frame
+            type="right"
+            title={FunnelWith7Columns.storyName}
+            path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-7-columns"
+          >
+            <FunnelWith7Columns {...(FunnelWith7Columns.args as IChartProps)} />
+          </Frame>
+        </div>
+        <div>
+          <Frame
+            type="left"
+            title={FunnelWithGroup.storyName}
+            path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-group"
+            styles={{ width: 1100 }}
+          >
+            <FunnelWithGroup {...(FunnelWithGroup.args as IChartProps)} />
+          </Frame>
+          <Frame type="right" />
+        </div>
       </div>
     </>
   );

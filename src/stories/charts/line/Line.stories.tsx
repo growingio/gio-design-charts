@@ -1,8 +1,7 @@
 import { ComponentStory } from '@storybook/react';
-import { LineChart } from '../../../index';
-import { dataWithDash, dataWithOneLine, dataWithMenu, dataWithOnelineDate } from './data';
+import { LineChart, colors } from '../../../index';
+import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } from './data';
 import Card from '../../components/card';
-import { DEFAULT_LINEDASH } from '../../../theme';
 import Docs from './Line.mdx';
 
 export default {
@@ -34,7 +33,7 @@ const config = {
       month: {
         range: [0, 1],
       },
-      temperature: {
+      value: {
         nice: true,
       },
     },
@@ -45,7 +44,7 @@ const config = {
     enterable: true,
   },
   axis: [
-    'temperature',
+    'value',
     {
       label: {
         formatter: (val: string) => {
@@ -55,7 +54,7 @@ const config = {
     },
   ],
   line: {
-    position: 'month*temperature',
+    position: 'month*value',
     color: 'city',
   },
 };
@@ -72,17 +71,17 @@ LineWithOneLine.args = { ...LineWithOneLineArgs };
 export const LineWithDash = Template.bind({});
 const LineWithDashArgs = {
   legends: [
-    '长春',
     {
-      name: '哈尔滨',
-      lineDash: true,
+      name: '北京',
+      color: colors[0],
     },
     {
-      name: '石家庄',
-      lineDash: DEFAULT_LINEDASH,
+      name: '北京(去年)',
+      lineDash: true,
+      color: colors[0],
     },
   ],
-  data: dataWithDash,
+  data: dataWithTwoLine,
   config,
 };
 

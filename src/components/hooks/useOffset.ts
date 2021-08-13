@@ -20,6 +20,8 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: () => void) 
       const targetNode = rootRef?.current as HTMLElement;
       const targetConfig = { attributes: true, childList: true, subtree: true };
       observer.observe(targetNode, targetConfig);
+      // first init
+      onResize();
       return () => {
         observer.disconnect();
       };

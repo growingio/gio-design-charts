@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { isEmpty } from 'lodash';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { columnChart, handleLegend } from '../../frameworks/columnChart';
 
 import { ChartType, IChartProps } from '../../interface';
+import { colors } from '../../theme';
 import LegendDirector from '../base/LegendDirector';
 import { defaultGroupInterval, defaultInterval } from './settings';
 import { hasDodge } from './utils';
@@ -25,12 +27,25 @@ const ColumnChart: React.FC<IChartProps> = (props: IChartProps) => {
 
     setAssignConfig(Object.assign({}, config));
   }, [config]);
+
+  const defaultOptions = useMemo(() => {
+    if (isEmpty(legendProps)) {
+      return {
+        defaultStyles: {
+          color: colors[0],
+        },
+      };
+    }
+    return {};
+  }, [legendProps]);
+
   config.type = ChartType.COLUMN;
   return (
     <LegendDirector
       data={data}
       legendList={legendProps}
       config={assginConfig}
+      defaultOptions={defaultOptions}
       callChart={columnChart}
       handleLegend={handleLegend}
     />

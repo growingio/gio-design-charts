@@ -34,7 +34,7 @@ const config = {
       month: {
         range: [0, 1],
       },
-      temperature: {
+      value: {
         nice: true,
       },
     },
@@ -45,7 +45,7 @@ const config = {
     enterable: true,
   },
   axis: [
-    'temperature',
+    'value',
     {
       label: {
         formatter: (val: string) => {
@@ -55,40 +55,40 @@ const config = {
     },
   ],
 };
-export const LineWithArea = Template.bind({});
-LineWithArea.storyName = '面积图';
-const LineWithAreaArgs = {
+export const AreaWithSample = Template.bind({});
+AreaWithSample.storyName = '面积图';
+const AreaWithSampleArgs = {
   legends: ['北京'],
   data: dataWithOneLine,
   config: {
     ...config,
     area: {
-      position: 'month*temperature',
+      position: 'month*value',
       color: 'city',
-      area: 'month*temperature',
+      area: 'month*value',
     },
   },
 };
 
-LineWithArea.args = { ...LineWithAreaArgs };
+AreaWithSample.args = { ...AreaWithSampleArgs };
 
-export const LineWithMultiArea = Template.bind({});
-LineWithMultiArea.storyName = '堆积面积图';
-const LineWithMultiAreaArgs = {
+export const AreaStack = Template.bind({});
+AreaStack.storyName = '堆积面积图';
+const AreaStackArgs = {
   legends: ['长春', '哈尔滨', '石家庄'],
   data: dataWithDash,
   config: {
     ...config,
     area: {
-      position: 'month*temperature',
+      position: 'month*value',
       color: 'city',
-      area: 'month*temperature',
+      area: 'month*value',
       adjust: ['stack'],
     },
   },
 };
 
-LineWithMultiArea.args = { ...LineWithMultiAreaArgs };
+AreaStack.args = { ...AreaStackArgs };
 
 export const PercentArea = Template.bind({});
 const PercentAreaArgs = {

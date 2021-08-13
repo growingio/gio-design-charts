@@ -60,7 +60,15 @@ const core = (HighConponent: any) => {
       if (root.current && data) {
         const [genLegends, hasDashed] = getLegends(config.type, legendList);
         const { chart, views = [] } = callChart(
-          { id: root.current, data, reporter: defineReporter, legends: genLegends, hasDashed, interceptors },
+          {
+            id: root.current,
+            data,
+            reporter: defineReporter,
+            legends: genLegends,
+            hasDashed,
+            interceptors,
+            ...defaultOptions,
+          },
           {
             ...config,
             tooltip,

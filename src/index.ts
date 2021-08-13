@@ -5,3 +5,5 @@ export { default as ColumnChart } from './components/column';
 export * from './components/funnel';
 
 export { InfoCard } from './common/InfoCard';
+
+export { colors } from './theme';

@@ -72,7 +72,7 @@ export const handleInterval = (
   config: IChartConfig,
   type: string = 'column'
 ) => {
-  const { legends, hasDashed } = options;
+  const { legends, hasDashed, defaultStyles = {} } = options;
   // const chart = renderChart(options, config);
   const dashedBars: string[] = [];
 
@@ -87,7 +87,7 @@ export const handleInterval = (
     return {
       // stroke: '#fff',
       // strokeWidth: 1,
-      fill: legend.color,
+      fill: legend.color || defaultStyles.color,
       radius,
     };
   });
@@ -122,8 +122,7 @@ export const handleInterval = (
 export const columnChart = (options: IChartOptions, config: IChartConfig) => {
   const chart = renderChart(options, config);
   handleInterval(chart, options, config);
-  chart.interaction('element-highlight-by-color');
-  chart.interaction('element-link');
+  chart.interaction('element-active');
   chart.render();
   return { chart };
 };

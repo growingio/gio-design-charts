@@ -53,7 +53,7 @@ ColumnWithOne.storyName = '基础柱状图';
 
 export const ColumnWithMulti = Template.bind({});
 const ColumnWithMultiArgs = {
-  legends: ['Apple', 'Google', '阿里巴巴', '腾讯', '百度', '网易', 'Microsoft', '字节跳动'],
+  // legends: ['Apple', 'Google', '阿里巴巴', '腾讯', '百度', '网易', 'Microsoft', '字节跳动'],
   data: dataWithMultiBar,
   config: {
     ...config,
