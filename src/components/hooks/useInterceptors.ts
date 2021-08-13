@@ -1,5 +1,5 @@
-import { Chart, View } from '@antv/g2';
 import React, { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
+import { Chart, View } from '@antv/g2';
 
 const useInterceptors = () => {
   const chartRef: MutableRefObject<(Chart | View)[] | undefined> = useRef();

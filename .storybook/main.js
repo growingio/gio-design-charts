@@ -37,22 +37,27 @@ module.exports = {
     postcss: false,
   },
   webpackFinal: async (config) => {
+    // config.module.rules.push({
+    //   test: /\.module\.less$/,
+    //   use: [
+    //     'style-loader',
+    //     {
+    //       loader: 'typings-for-css-modules-loader',
+    //       options: {
+    //         modules: true,
+    //         namedExport: true,
+    //         camelCase: true,
+    //         // minimize: true,
+    //         localIdentName: '[local]_[hash:base64:5]',
+    //       },
+    //     },
+    //     'less-loader',
+    //   ],
+    // });
+
     config.module.rules.push({
-      test: /\.module\.less$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'typings-for-css-modules-loader',
-          options: {
-            modules: true,
-            namedExport: true,
-            camelCase: true,
-            // minimize: true,
-            localIdentName: '[local]_[hash:base64:5]',
-          },
-        },
-        'less-loader',
-      ],
+      test: /\.less$/,
+      use: ['style-loader', 'css-loader', 'less-loader'],
     });
     return config;
   },

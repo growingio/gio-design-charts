@@ -32,7 +32,7 @@ export const interval = (
   }
   if (barConfig.color) {
     interval = interval.color(barConfig.color);
-    interval.shape(barConfig.color, [`${intervalConfig.chartType || 'column'}-element`]);
+    interval.shape(barConfig.color, [`${customInfo.chartType || 'column'}-element`]);
   }
   if (barConfig.adjust) {
     interval.adjust(barConfig.adjust);

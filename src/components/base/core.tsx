@@ -1,7 +1,7 @@
 import React, { LegacyRef, useEffect, useState, useCallback } from 'react';
 import { RefObject } from 'react';
 import InfoCard from '../../common/InfoCard';
-import { ChartType, IChartConfig, IChartOptions, ILegend, IReportThing } from '../../interface';
+import { IChartConfig, IChartOptions, ILegend, IReportThing } from '../../interface';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 

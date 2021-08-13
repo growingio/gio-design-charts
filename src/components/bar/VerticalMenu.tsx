@@ -1,8 +1,6 @@
 import { Element } from '@antv/g2';
 import React from 'react';
 
-import * as styles from './styles/bar.module.less';
-
 const getRanges = (max: number, range: number[] = [0, 0]) => {
   try {
     const duration = (range[1] - range[0]) / max;
@@ -35,7 +33,7 @@ const VerticalMenu = React.memo((props: any) => {
       })} */}
       {ticks.map((tick: string, index: number) => {
         return (
-          <div className={styles.item} key={tick} style={{ top: ranges[index] * height - 9 }}>
+          <div className="gio-d-chart-verticalmenu_item" key={tick} style={{ top: ranges[index] * height - 9 }}>
             {tick}
           </div>
         );

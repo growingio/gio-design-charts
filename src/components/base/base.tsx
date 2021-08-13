@@ -8,8 +8,6 @@ import useLegends, { getLegends } from '../hooks/useLegends';
 import { ChartType, IChartProps, IReportThing } from '../../interface';
 import InfoCard from '../../common/InfoCard/InfoCard';
 
-import * as styles from './styles/base.module.less';
-
 export interface IBasicProps extends IChartProps {
   callChart: any;
   handleLegend: any;
@@ -108,15 +106,15 @@ const Basic = (props: IBasicProps) => {
   const width = 100;
 
   return (
-    <div className={styles.chart}>
+    <div className="gio-d-chart">
       <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
-      <div className={styles.main}>
+      <div className="gio-d-chart_main">
         {LeftComponent && (
-          <div className={styles.left} style={{ height: offset.height, width }}>
+          <div className="gio-d-chart_left" style={{ height: offset.height, width }}>
             <LeftComponent height={offset.height} width={width} {...reportThing} />
           </div>
         )}
-        <div className={styles.right}>
+        <div className="gio-d-chart_right">
           <div ref={root} onReset={onResize} />
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCard legends={legends} triggerItems={hoverItem} config={config} />

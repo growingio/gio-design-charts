@@ -3,8 +3,6 @@ import { useCallback } from 'react';
 import { DISABLE_COLOR } from '../../theme';
 import { getBackgroundImage } from '../utils/styles';
 
-import * as styles from './styles/index.module.less';
-
 export interface ILegendProps {
   label: string;
   data: any;
@@ -30,9 +28,14 @@ const Legend = (props: ILegendProps) => {
     : { backgroundColor: active ? color : DISABLE_COLOR, ...backgroundImage };
 
   return (
-    <span className={styles.legend} onClick={onClickLabel} style={{ color: active ? '' : DISABLE_COLOR }} title={label}>
-      <div className={`${styles.block} ${styles[type as 'bar' | 'line']}`} style={stylesLine} />
-      <div className={styles.text}>{label}</div>
+    <span
+      className="gio-d-chart-legends_legend"
+      onClick={onClickLabel}
+      style={{ color: active ? '' : DISABLE_COLOR }}
+      title={label}
+    >
+      <div className={`gio-d-chart-legends_block gio-d-chart-legends_${type as 'bar' | 'line'}`} style={stylesLine} />
+      <div className="gio-d-chart-legends_text">{label}</div>
     </span>
   );
 };

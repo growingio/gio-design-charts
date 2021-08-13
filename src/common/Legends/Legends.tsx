@@ -4,7 +4,7 @@ import Legend from './Legend';
 import LegendMenu from './Menu';
 
 import { ILegend } from '../../interface';
-import * as styles from './styles/index.module.less';
+import './styles/legends.less';
 
 const Legends = (props: any) => {
   const { legends = {}, onClick, offsetWidth } = props;
@@ -36,7 +36,7 @@ const Legends = (props: any) => {
     }
   }, [legends, offsetWidth]);
   return (
-    <div className={styles.legends}>
+    <div className="gio-d-chart-legends">
       {tiled?.map((legend: ILegend) => {
         const { name } = legend;
         return <Legend key={name} label={name} data={legend} onClick={onClickLegend} />;

@@ -1,0 +1,97 @@
+.gio-d-chart-legends {
+  text-align: center;
+
+  &_legend {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  &_text {
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &_block {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+    background-color: #ffffff;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border-radius: 2px;
+    vertical-align: middle;
+  }
+
+  &_bar {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+  }
+
+  &_line {
+    width: 14px;
+    height: 2px;
+    vertical-align: middle;
+  }
+
+  &_dashed {
+    width: 12px;
+    height: 0px;
+    vertical-align: middle;
+  }
+
+  &_line-dashed {
+    width: 14px;
+    height: 0px;
+    background-color: #ffffff;
+    vertical-align: middle;
+  }
+
+  &_dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 12px;
+    color: #1248e9;
+    vertical-align: bottom;
+
+    &:hover {
+      :global {
+        .dropdown-controller {
+          display: block;
+        }
+      }
+    }
+
+    &-item {
+      text-align: left;
+      margin-bottom: 8px;
+    }
+
+    &-item:last-child {
+      text-align: left;
+      margin-bottom: 0px;
+    }
+
+    &-content {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      min-width: 160px;
+      box-shadow: 0px 8px 24px rgba(36, 46, 89, 0.1);
+      padding: 16px;
+      border-radius: 4px;
+      z-index: 1;
+      color: #242e59;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+  }
+}

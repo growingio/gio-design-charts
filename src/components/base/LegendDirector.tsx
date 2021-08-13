@@ -3,7 +3,8 @@ import React, { LegacyRef } from 'react';
 import Legends from '../../common/Legends';
 import useOffset from '../hooks/useOffset';
 import core, { IDirectorProps } from './core';
-import * as styles from './styles/base.module.less';
+
+import './styles/base.less';
 
 export interface ILegendDirectorProps extends IDirectorProps {
   onClickLegend: any;
@@ -19,7 +20,7 @@ const LegendDirector = (props: ILegendDirectorProps) => {
   };
   const offset = useOffset(directorRef, watchReset);
   return (
-    <div className={styles.chart} ref={directorRef}>
+    <div className="gio-d-chart" ref={directorRef}>
       <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
       {props.children}
     </div>

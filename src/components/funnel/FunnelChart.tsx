@@ -8,7 +8,7 @@ import { colors } from '../../theme';
 import LegendDirector from '../base/LegendDirector';
 import { getSingleData } from './utils';
 
-const ComparativeFunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
+const FunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
@@ -38,4 +38,4 @@ const ComparativeFunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
   );
 };
 
-export default ComparativeFunnelChart;
+export default FunnelChart;

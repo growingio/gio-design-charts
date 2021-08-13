@@ -1,9 +1,9 @@
 import React from 'react';
-import { IChartConfig, IChartOptions, ILegend, ILegends } from '../../interface';
+import { IChartConfig, IChartOptions, ILegends } from '../../interface';
 import { getLegendStyles } from '../utils/styles';
 import Item from './Item';
 
-import * as styles from './styles/index.module.less';
+import './styles/infocard.less';
 
 export interface IInfoCardProps {
   legends: ILegends;
@@ -37,12 +37,12 @@ const InfoCard = (props: IInfoCardProps) => {
       return { ...legend, data: { ...itemData }, type: config?.type, styles: legendStyles };
     }) || [];
   return (
-    <div className={styles.infocard}>
+    <div className="gio-d-chart-infocard">
       {renderTooltip ? (
         renderTooltip?.({ data: items, trigger, forwardKey })
       ) : (
         <>
-          <div className={styles.title}>{title}</div>
+          <div className="gio-d-chart-infocard_title">{title}</div>
           {items.map((item: any) => {
             // item.color = defaultStyles?.color || item.color;
             return (
@@ -57,5 +57,7 @@ const InfoCard = (props: IInfoCardProps) => {
     </div>
   );
 };
+
+InfoCard.Item = Item;
 
 export default InfoCard;
