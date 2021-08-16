@@ -1,8 +1,10 @@
 import { ComponentStory } from '@storybook/react';
 import { ColumnChart } from '../../../index';
 import Card from '../../components/card';
-import { dataWithGroup, dataWithMultiBar, dataWithOneBar, percentData } from './data';
+import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
+import moment from 'moment';
+import { colors } from '../../../theme';
 
 export default {
   title: 'Charts/柱状图 Column Chart',
@@ -49,7 +51,32 @@ const ColumnWithOneArgs = {
   },
 };
 ColumnWithOne.args = { ...ColumnWithOneArgs };
-ColumnWithOne.storyName = '基础柱状图';
+ColumnWithOne.storyName = '基础图';
+
+export const ColumnWithTs = Template.bind({});
+const ColumnWithTsArgs = {
+  legends: ['步步盈增'],
+  data: dataWithTs,
+  config: {
+    ...config,
+    column: {
+      position: 'ts*value',
+      color: 'color',
+    },
+    axis: [
+      'ts',
+      {
+        label: {
+          formatter: (text: string, item: any, index: number) => {
+            return moment(text).format('MM/DD ddd');
+          },
+        },
+      },
+    ],
+  },
+};
+ColumnWithTs.args = { ...ColumnWithTsArgs };
+ColumnWithTs.storyName = '单色多维度';
 
 export const ColumnWithMulti = Template.bind({});
 const ColumnWithMultiArgs = {
@@ -64,7 +91,31 @@ const ColumnWithMultiArgs = {
   },
 };
 ColumnWithMulti.args = ColumnWithMultiArgs;
-ColumnWithMulti.storyName = '多维度柱状图';
+ColumnWithMulti.storyName = '无图例多维度';
+
+export const ColumnWithComponsive = Template.bind({});
+const ColumnWithComponsiveArgs = {
+  legends: [
+    { name: '步步盈增', color: colors[0] },
+    { name: '步步盈增(对比)', dashed: true, color: colors[0] },
+  ],
+  data: dataWithComponsive,
+  config: {
+    ...config,
+    column: {
+      position: 'ts*value',
+      color: 'color',
+      adjust: [
+        {
+          type: 'dodge',
+          marginRatio: 0,
+        },
+      ],
+    },
+  },
+};
+ColumnWithComponsive.args = ColumnWithComponsiveArgs;
+ColumnWithComponsive.storyName = '分组多维度';
 
 export const ColumnWithGroup = Template.bind({});
 const ColumnWithGroupArgs = {

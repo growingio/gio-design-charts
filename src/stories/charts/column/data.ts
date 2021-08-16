@@ -11,9 +11,41 @@ export const dataWithMultiBar = [
   { company: '字节跳动', value: 5 },
 ];
 
+export const dataWithTs = [
+  { ts: '2021-08-07', value: 79, color: '步步盈增' },
+  { ts: '2021-08-08', value: 26, color: '步步盈增' },
+  { ts: '2021-08-09', value: 7, color: '步步盈增' },
+  { ts: '2021-08-10', value: 51, color: '步步盈增' },
+  { ts: '2021-08-11', value: 86, color: '步步盈增' },
+  { ts: '2021-08-12', value: 38, color: '步步盈增' },
+  { ts: '2021-08-13', value: 24, color: '步步盈增' },
+  { ts: '2021-08-14', value: 20, color: '步步盈增' },
+  { ts: '2021-08-15', value: 98, color: '步步盈增' },
+  { ts: '2021-08-16', value: 63, color: '步步盈增' },
+];
+
+export const dataWithComponsive = [
+  { ts: '2021-08-07', value: 79, color: '步步盈增' },
+  { ts: '2021-08-07', value: 89, color: '步步盈增(对比)' },
+  { ts: '2021-08-08', value: 29, color: '步步盈增' },
+  { ts: '2021-08-08', value: 46, color: '步步盈增(对比)' },
+  { ts: '2021-08-09', value: 7, color: '步步盈增' },
+  { ts: '2021-08-09', value: 72, color: '步步盈增(对比)' },
+  { ts: '2021-08-10', value: 51, color: '步步盈增' },
+  { ts: '2021-08-10', value: 61, color: '步步盈增(对比)' },
+  { ts: '2021-08-11', value: 86, color: '步步盈增' },
+  { ts: '2021-08-11', value: 26, color: '步步盈增(对比)' },
+  { ts: '2021-08-12', value: 38, color: '步步盈增' },
+  { ts: '2021-08-12', value: 98, color: '步步盈增(对比)' },
+  { ts: '2021-08-13', value: 24, color: '步步盈增' },
+  { ts: '2021-08-13', value: 54, color: '步步盈增(对比)' },
+  { ts: '2021-08-14', value: 20, color: '步步盈增' },
+  { ts: '2021-08-14', value: 25, color: '步步盈增(对比)' },
+];
+
 export const dataWithGroup = [
+  { company: 'Apple', type: '整体', value: 30 },
   { company: 'Facebook', type: '整体', value: 35 },
-  { company: 'Apple', type: '整体', value: 0 },
   { company: 'Google', type: '整体', value: 1 },
   { company: 'Apple', type: '非技术岗', value: 40 },
   { company: 'Facebook', type: '非技术岗', value: 65 },
