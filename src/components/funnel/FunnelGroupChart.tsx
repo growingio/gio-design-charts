@@ -22,7 +22,7 @@ const FunnelGroupChart: React.FC<IChartProps> = (props: IChartProps) => {
 
   useEffect(() => {
     setComparativeData(getGroupData(data, config));
-  }, [data]);
+  }, [data, config]);
   config.type = ChartType.FUNNEL;
 
   return (

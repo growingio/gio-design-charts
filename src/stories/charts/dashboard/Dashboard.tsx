@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { IChartConfig, IChartProps } from '../../../interface';
+import { IChartProps } from '../../../interface';
 import Frame from '../../components/frame';
 import { AreaStack, AreaWithSample, PercentArea } from '../area/Area.stories';
 import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../bar/Bar.stories';

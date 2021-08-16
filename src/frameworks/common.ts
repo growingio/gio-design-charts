@@ -59,9 +59,7 @@ export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, con
   chart.axis.apply(chart, axis);
   // Support multi axis config
   const axises = config.axises || [];
-  axises.map((a: any) => {
-    chart.axis.apply(chart, a);
-  });
+  axises.map((a: any) => chart.axis.apply(chart, a));
 
   // We don't use default legend
   chart.legend(false);

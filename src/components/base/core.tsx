@@ -90,7 +90,7 @@ const core = (HighConponent: any) => {
         handleLegend(getCharts(), newLegends, config);
         setChartOptions({ ...chartOptions, legends: newLegends });
       },
-      [getCharts, legends, chartOptions, config, handleLegend, updateLegends]
+      [getCharts, chartOptions, config, handleLegend, updateLegends]
     );
 
     return (

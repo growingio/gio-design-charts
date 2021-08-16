@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, RefObject, useState } from 'react';
+import { useCallback, useEffect, RefObject, useState } from 'react';
 
 const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: () => void) => {
   const [offset, setOffset] = useState({} as { width: number; height: number });
@@ -11,7 +11,7 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: () => void) 
         watchReset?.();
       }
     }
-  }, [rootRef]);
+  }, [rootRef, watchReset, offset]);
 
   // Listener resize
   useEffect(() => {

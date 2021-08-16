@@ -2,7 +2,6 @@ import React from 'react';
 import { IChartConfig, IChartOptions, ILegends } from '../../interface';
 import { getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
-import Item from './Item';
 
 import './styles/infocard.less';
 

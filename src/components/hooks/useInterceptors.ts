@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
+import { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
 import { Chart, View } from '@antv/g2';
 
 const useInterceptors = () => {

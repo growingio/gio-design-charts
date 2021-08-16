@@ -55,7 +55,7 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
     });
     return group;
   } catch (err) {
-    console.error(err);
+    console.warn(err);
   }
 };
 

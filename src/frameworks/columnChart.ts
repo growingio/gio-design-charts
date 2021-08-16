@@ -130,8 +130,6 @@ export const columnChart = (options: IChartOptions, config: IChartConfig) => {
 export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
   const barConfig = getShapeConfig(config, 'column');
   if (barConfig.color) {
-    charts.map((chart: Chart | View) => {
-      handleLegendBehavior(chart, legends, barConfig.color);
-    });
+    charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
   }
 };

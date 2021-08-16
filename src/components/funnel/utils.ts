@@ -15,6 +15,7 @@ export const getSingleData = (data: any[]) => {
       covertData.push({ ...item, value: prev?.value || 0, prev: { ...prev } });
       prev = item;
     }
+    return item;
   });
   return {
     source: data,
@@ -29,7 +30,7 @@ export const getGroupData = (data: any[], config: IChartConfig) => {
   const forwardKey = config?.funnel?.color;
   if (forwardKey) {
     const prevs = {} as any;
-    data.map((item: any, index: number) => {
+    data.map((item: any) => {
       const prevItem = prevs[item[forwardKey]];
       if (prevItem) {
         if (!item?.isPlaceholder) {
@@ -44,6 +45,7 @@ export const getGroupData = (data: any[], config: IChartConfig) => {
         }
         covertData.push({ ...item });
       }
+      return item;
     });
   }
   return {

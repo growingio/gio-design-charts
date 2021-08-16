@@ -47,8 +47,6 @@ export const lineChart = (options: IChartOptions, config: IChartConfig = {}) => 
 export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
   const lineConfig = getShapeConfig(config, 'line');
   if (lineConfig.color) {
-    charts.map((chart: Chart | View) => {
-      handleLegendBehavior(chart, legends, lineConfig.color);
-    });
+    charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
   }
 };

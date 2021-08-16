@@ -71,7 +71,6 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
     radiusObj = {};
   } else {
     fetchStyles = { stroke };
-    radiusObj = radiusObj;
   }
   group.addShape('rect', {
     attrs: { ...otherAttrs, ...radiusObj, ...fetchStyles },
