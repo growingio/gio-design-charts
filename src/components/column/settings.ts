@@ -45,3 +45,33 @@ export const hasDodge = (config: IShape) => {
   }
   return false;
 };
+
+/**
+ *
+ * @param config {IShape}
+ * @returns
+ */
+export const getDodgeBy = (config: IShape) => {
+  const color = config?.color;
+  const adjust = config?.adjust;
+  const dodge = 'dodge';
+  if (Array.isArray(adjust)) {
+    for (let a of adjust) {
+      if (typeof a === 'object' && a?.type === dodge && a?.dodgeBy) {
+        return a?.dodgeBy;
+      }
+    }
+  }
+  return color;
+};
+
+/**
+ *
+ * @param config {IShape}
+ * @returns
+ */
+export const hasContrastDodge = (config: IShape) => {
+  const color = config?.color;
+  const dodgeBy = getDodgeBy(config);
+  return color !== dodgeBy;
+};

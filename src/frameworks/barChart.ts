@@ -21,7 +21,7 @@ export const barChart = (options: IChartOptions, config: IChartConfig) => {
   linkView.render();
 
   fetchTooltip(chart, config);
-  chart.coordinate().transpose();
+  chart.coordinate({ type: 'cartesian' }).transpose().reflect('y');
   chart.legend(false);
   chart.render();
   return { chart, views: [linkView] };

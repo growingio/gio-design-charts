@@ -30,6 +30,9 @@ export interface ILegend {
   // 折线图的线是否为虚线，当是true，则显示默认虚线样子，若不是，请定义虚线
   // 详细设置请查看 https://g2.antv.vision/zh/docs/api/shape/shape-attrs#%E7%BA%BF%E6%9D%A1%E5%B1%9E%E6%80%A7
   lineDash?: boolean | Array<number>;
+
+  // 声明以哪个数据字段为分组依据
+  dodgeBy?: string;
 }
 
 export interface ILegends {
@@ -93,6 +96,10 @@ export interface IShape {
    * @param {AdjustOption}
    */
   adjust?: string | string[] | AdjustOption | AdjustOption[];
+  /**
+   * 颜色通道
+   */
+  color?: string;
 }
 
 export interface IReportThing {

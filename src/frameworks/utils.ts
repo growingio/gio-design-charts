@@ -1,3 +1,4 @@
+import { getDodgeBy, hasContrastDodge } from '../components/column/settings';
 import { IChartConfig, IChartOptions } from '../interface';
 
 export const getShapeConfig = (config: IChartConfig, type?: string) => {
@@ -17,8 +18,12 @@ export const setCustomInfo = (options: IChartOptions, config: IChartConfig = {},
   if (info.isStack) {
     customInfo['topData'] = data?.[0];
   }
+  const dodgeBy = getDodgeBy(shapeConfig);
+  const contrastDodge = hasContrastDodge(shapeConfig);
   return {
     type: shapeConfig.color,
+    dodgeBy,
+    contrastDodge,
     legends,
     defaultStyles,
     ...customInfo,
@@ -27,8 +32,14 @@ export const setCustomInfo = (options: IChartOptions, config: IChartConfig = {},
 
 export const getRelateLegend = (shapeInfo: any) => {
   const { customInfo, data = {} } = shapeInfo;
-  const { type = '', legends = {} } = customInfo || {};
+  const { type = '', dodgeBy, contrastDodge, legends = {} } = customInfo || {};
   const name = data[type];
+  const legendByDodge = legends?.[data?.[dodgeBy]];
+  if (contrastDodge && dodgeBy && legendByDodge) {
+    // for dodgeBy, we needn't color
+    const { color, ...others } = legendByDodge || {};
+    return others;
+  }
   return legends?.[name] || {};
 };
 

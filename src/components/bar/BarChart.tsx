@@ -13,11 +13,25 @@ const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
   //   if (axisOption) {
   //     axisOption.line = null;
   //   }
-  //   // setFetchConfig({ ...config, axis: ['type', { line: null, subTickLine: null }] });
+  //   setFetchConfig({ ...config, axis: ] });
   //   // const chartConfig = config?.chart || {};
   //   // setFetchConfig({ ...config, chart: { ...chartConfig, height: legendProps.length * 80 }, axis: [false] });
   // }, [config, legendProps]);
   config.type = ChartType.BAR;
+  // console.log(fetchConfig);
+  config.chart = {
+    ...(config.chart || {}),
+    appendPadding: [0, 50, 0, 0], // 上，右，下，左
+  };
+  config.bar = {
+    ...(config.bar || {}),
+    interval: {
+      // intervalPadding: 20,
+      dodgePadding: 4,
+      maxColumnWidth: 16,
+      minColumnWidth: 16,
+    },
+  };
   return (
     <LegendDirector
       // leftComponent={VerticalMenu}

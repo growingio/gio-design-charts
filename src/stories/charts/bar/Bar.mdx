@@ -23,4 +23,28 @@ import { BarChart } from '../../../index';
 - [堆积条形图](/story/charts-条形图-bar-chart--stacking-diagram-bar)
 - [百分比堆积条形图](/story/charts-条形图-bar-chart--percent-bar)
 
-### 默认
+## 特殊配置
+
+### 分组对比图的配置
+
+Config Props 的配置
+
+- `config.bar.color` 是为了让不同的分组保持一致的颜色
+- `config.bar.adjust[0].type === 'dodge'` 采用分组模式
+- `config.bar.adjust[0].dodgeBy` 根据此选项进行分组
+
+```Json
+{
+    ...
+    bar: {
+        position: 'name*value',
+        color: 'type',
+        adjust: [
+            {
+                type: 'dodge',
+                dodgeBy: 'type',
+            },
+       ]
+    }
+}
+```

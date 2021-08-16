@@ -10,3 +10,18 @@ export const data = [
   { type: '医疗卫生', value: 868 },
   { type: '金融保险', value: 1234 },
 ];
+
+export const dataWithMulti = [
+  { name: '页面浏览的总数量', value: 120124 },
+  { name: '访问推出的总数量', value: 241234 },
+  { name: '步步盈增的用户量', value: 343455 },
+];
+
+export const dataWithMultiContrast = [
+  { name: '页面浏览的总数量', type: '上月', value: 110124 },
+  { name: '页面浏览的总数量', type: '本月', value: 120124 },
+  { name: '访问推出的总数量', type: '上月', value: 281234 },
+  { name: '访问推出的总数量', type: '本月', value: 241234 },
+  { name: '步步盈增的用户量', type: '上月', value: 343455 },
+  { name: '步步盈增的用户量', type: '本月', value: 393455 },
+];
