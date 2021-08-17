@@ -6,27 +6,17 @@ import LegendDirector from '../base/LegendDirector';
 
 const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
-  // const [fetchConfig, setFetchConfig] = useState(config);
-  // useEffect(() => {
-  //   // setFetchConfig({ ...config, axis: [false] });
-  //   const [color, axisOption] = config.axis || [];
-  //   if (axisOption) {
-  //     axisOption.line = null;
-  //   }
-  //   setFetchConfig({ ...config, axis: ] });
-  //   // const chartConfig = config?.chart || {};
-  //   // setFetchConfig({ ...config, chart: { ...chartConfig, height: legendProps.length * 80 }, axis: [false] });
-  // }, [config, legendProps]);
+
   config.type = ChartType.BAR;
-  // console.log(fetchConfig);
   config.chart = {
     ...(config.chart || {}),
-    appendPadding: [0, 50, 0, 0], // 上，右，下，左
+    appendPadding: [0, 50, 0, 0], // 为了显示右侧文字数据
   };
   config.bar = {
-    ...(config.bar || {}),
+    ...(config?.bar || {}),
     interval: {
-      // intervalPadding: 20,
+      ...(config?.bar?.interval || {}),
+      // intervalPadding: 20, // 防止高度不适应，导致的错乱的问题
       dodgePadding: 4,
       maxColumnWidth: 16,
       minColumnWidth: 16,

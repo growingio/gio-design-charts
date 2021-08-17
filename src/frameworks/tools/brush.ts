@@ -3,7 +3,8 @@ export const drawLinkPath = (path: (string | number)[][]) => {
     type: 'path',
     attrs: {
       opacity: 0.1,
-      fill: '#5F87FF',
+      // fill: '#5F87FF',
+      fill: 'l(270) 0:#ffffff 1:#5F87FF',
       path,
     },
   };

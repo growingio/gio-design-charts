@@ -51,7 +51,7 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
     },
     defaultStyles: {
       opacity: 0.2,
-      color: emptyLegends ? colors[0] : '',
+      color: emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
     },
   };
   fetchChartConfig(backgroundView, backgroundOptions, config);

@@ -13,7 +13,10 @@ registerInteraction('element-link', {
       arg: {
         style: (style: any, element: Element) => {
           const color = element.getModel()?.color;
-          return { fill: color, opacity: 0.2 };
+          // 设置放射性/环形渐变色
+          // return { fill: `r(0.5,1.1,2) 0:#ffffff 1:${color}`, opacity: 0.7 };
+          // 设置线性渐变色
+          return { fill: `l(270) 0:#ffffff 1:${color}`, opacity: 0.1 };
         },
       },
     },
