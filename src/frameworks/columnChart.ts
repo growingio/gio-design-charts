@@ -1,4 +1,4 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, Element, View } from '@antv/g2';
 import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from './common';
@@ -6,6 +6,15 @@ import { handleLegendBehavior, renderChart } from './common';
 import './tools/intervalShape';
 import { getShapeConfig, setCustomInfo } from './utils';
 
+/**
+ *
+ * @param chart
+ * @param options
+ * @param config
+ * @param intervalConfig
+ * @param styleCallback
+ * @returns
+ */
 export const intervalShape = (
   chart: Chart | View,
   options: IChartOptions,
@@ -47,18 +56,30 @@ export const intervalShape = (
   if (barConfig?.label && !hideLabel) {
     interval.label.apply(interval, barConfig.label);
   }
-  interval.animate({
-    enter: {
-      animation: 'fade-in', // 动画名称
-      easing: 'easeQuadIn', // 动画缓动效果
-      delay: 0, // 动画延迟执行时间
-      duration: 100, // 动画执行时间
-    },
-  });
   interval.state({
-    selected: {
-      style: {
-        fill: '#E8684A',
+    active: {
+      style: (element: Element) => {
+        // 因为Element.model中的颜色为G2根据theme自动设置的颜色，和根据业务需求设定的颜色会不同
+        // 在element.stateStyle.default中设置的颜色为最真实的颜色，但stateStyle是私有方法，无法直接获取
+        // 在这里采取Element中设置stateStyle的方法，获取stateStyle，并获取其中的fill颜色
+        /**
+         * 类似 private element.getShapeType(model)
+         * @param {Element}
+         */
+        const shape = element.getModel()?.shape;
+        const shapeType = Array.isArray(shape) ? shape[0] : shape;
+        /**
+         * 类似 private element.getStatesStyle(model)
+         * @param {Element}
+         */
+        const { shapeFactory } = element;
+        const defaultShapeType = shapeFactory.defaultShapeType;
+        const stateTheme = shapeFactory.theme[shapeType as any] || shapeFactory.theme[defaultShapeType];
+        return {
+          lineWidth: 2,
+          stroke: stateTheme?.default?.style?.fill || '#000',
+          strokeOpacity: 0.5,
+        };
       },
     },
   });
