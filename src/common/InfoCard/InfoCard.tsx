@@ -1,19 +1,19 @@
 import React from 'react';
-import { IChartConfig } from '../../interface';
+import { ChartConfig } from '../../interface';
 import Item from './Item';
 
 import './styles/infocard.less';
 
-export interface IInfoCardProps {
+export interface InfoCardProps {
   title: string;
   data: any[];
   forwardKey: string;
   trigger?: string | undefined;
-  config?: IChartConfig;
+  config?: ChartConfig;
   injectComponent?: any;
 }
 
-const InfoCard = (props: IInfoCardProps) => {
+const InfoCard = (props: InfoCardProps) => {
   const { title, data = [], trigger, forwardKey, config, injectComponent } = props;
   const renderTooltip = config?.tooltip?.render;
   return (

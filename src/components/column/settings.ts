@@ -1,5 +1,5 @@
 import { AdjustOption } from '@antv/g2/lib/interface';
-import { IShape } from '../../interface';
+import { Shape } from '../../interface';
 
 export const defaultGroupInterval = {
   interval: {
@@ -21,10 +21,10 @@ export const defaultInterval = {
 
 /**
  *
- * @param config {IShape}
+ * @param config {Shape}
  * @returns
  */
-export const hasDodge = (config: IShape) => {
+export const hasDodge = (config: Shape) => {
   const adjust = config?.adjust;
   const dodge = 'dodge';
   if (adjust === dodge) {
@@ -48,10 +48,10 @@ export const hasDodge = (config: IShape) => {
 
 /**
  *
- * @param config {IShape}
+ * @param config {Shape}
  * @returns
  */
-export const getDodgeBy = (config: IShape) => {
+export const getDodgeBy = (config: Shape) => {
   const color = config?.color;
   const adjust = config?.adjust;
   const dodge = 'dodge';
@@ -67,10 +67,10 @@ export const getDodgeBy = (config: IShape) => {
 
 /**
  *
- * @param config {IShape}
+ * @param config {Shape}
  * @returns
  */
-export const hasContrastDodge = (config: IShape) => {
+export const hasContrastDodge = (config: Shape) => {
   const color = config?.color;
   const dodgeBy = getDodgeBy(config);
   return color !== dodgeBy;

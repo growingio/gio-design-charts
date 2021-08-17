@@ -1,10 +1,10 @@
 import React from 'react';
 import { barChart, handleLegend } from '../../frameworks/barChart';
 
-import { ChartType, IChartProps } from '../../interface';
+import { ChartType, ChartProps } from '../../interface';
 import LegendDirector from '../base/LegendDirector';
 
-const BarChart: React.FC<IChartProps> = (props: IChartProps) => {
+const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   config.type = ChartType.BAR;

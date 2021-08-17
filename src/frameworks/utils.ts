@@ -1,7 +1,7 @@
 import { getDodgeBy, hasContrastDodge } from '../components/column/settings';
-import { IChartConfig, IChartOptions } from '../interface';
+import { ChartConfig, ChartOptions } from '../interface';
 
-export const getShapeConfig = (config: IChartConfig, type?: string) => {
+export const getShapeConfig = (config: ChartConfig, type?: string) => {
   if (type) {
     return config[type] || {};
   }
@@ -11,7 +11,7 @@ export const getShapeConfig = (config: IChartConfig, type?: string) => {
   return config.bar || config.column || config.line || config.funnel || {};
 };
 
-export const setCustomInfo = (options: IChartOptions, config: IChartConfig = {}, info: any = {}) => {
+export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, info: any = {}) => {
   const { legends, data, defaultStyles } = options;
   const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };

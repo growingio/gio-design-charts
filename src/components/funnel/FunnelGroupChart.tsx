@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelChart';
 
-import { ChartType, IChartProps } from '../../interface';
+import { ChartType, ChartProps } from '../../interface';
 import LegendDirector from '../base/LegendDirector';
 import { getGroupData } from './utils';
 
-const FunnelGroupChart: React.FC<IChartProps> = (props: IChartProps) => {
+const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   //   const defaultOptions = useMemo(() => {
   //     if (isEmpty(legendProps)) {

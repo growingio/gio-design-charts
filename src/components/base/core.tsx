@@ -1,48 +1,49 @@
 import React, { LegacyRef, useEffect, useState, useCallback } from 'react';
 import { RefObject } from 'react';
 import { InfoCardBox } from '../../common/InfoCard';
-import { IChartConfig, IChartOptions, ILegend, IReportThing } from '../../interface';
+import { ChartConfig, ChartOptions, Legend, ReportThing } from '../../interface';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 
-export interface IDirectorProps {
-  options: IChartOptions;
+export interface DirectorProps {
+  options: ChartOptions;
+  config: ChartConfig;
   children: JSX.Element;
 }
 
-export interface IChartCanvasProps {
+export interface ChartCanvasProps {
   // type: ChartType;
   callChart: any;
-  legendList: (string | ILegend)[];
+  legendList: (string | Legend)[];
   handleLegend: any;
-  config: IChartConfig;
-  defaultOptions?: IChartOptions;
+  config: ChartConfig;
+  defaultOptions?: ChartOptions;
   data: any;
   // interceptors: any;
 }
 
 // In core, we only force on render chart and provide basic chart options
 const core = (HighConponent: any) => {
-  return (props: IChartCanvasProps) => {
+  return (props: ChartCanvasProps) => {
     const { config, callChart, data, legendList, handleLegend, defaultOptions = {} } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
     const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
     const [hoverItem, setHoverItem] = useState([]);
 
     const { legends, setLegends, updateLegends } = useLegends();
-    const [chartOptions, setChartOptions] = useState(defaultOptions as IChartOptions);
+    const [chartOptions, setChartOptions] = useState(defaultOptions as ChartOptions);
 
     const { getCharts, getTriggerAction, interceptors } = useInterceptors();
 
-    const defineReporter = useCallback((thing: IReportThing) => {
+    const defineReporter = useCallback((thing: ReportThing) => {
       // setReportThing(thing);
     }, []);
 
     // Init Chart
     // 1. In init Chart, it should be no updated in here when legends are updated by click
     //    whether we need legends to render chart
-    // 2. the config: IChartConfig will be not updated in working.
-    //    but the options: IChartOptions is always updated
+    // 2. the config: ChartConfig will be not updated in working.
+    //    but the options: ChartOptions is always updated
     // 3. in this useEffect, we needn't to make it changes many times.
     useEffect(() => {
       let tooltip = config.tooltip || {};

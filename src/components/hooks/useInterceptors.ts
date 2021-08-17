@@ -18,9 +18,12 @@ const useInterceptors = () => {
         chart.on('element:click', () => {
           triggerActionRef.current = 'click';
           updated(new Date().getTime());
+          // chart.unlockTooltip();
         });
         chart.on('element:mouseover', () => {
           triggerActionRef.current = 'mouseover';
+          // chart.hideTooltip();
+          // chart.lockTooltip();
         });
       },
     };

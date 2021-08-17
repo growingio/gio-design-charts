@@ -1,4 +1,4 @@
-import { ILegend } from '../../interface';
+import { Legend } from '../../interface';
 import { BAR_TEXTURE } from '../../theme';
 
 export const getBackgroundImage = () => ({
@@ -7,7 +7,7 @@ export const getBackgroundImage = () => ({
   backgroundSize: '6px 6px',
 });
 
-export const getLegendStyles = (legend: ILegend, color: string) => {
+export const getLegendStyles = (legend: Legend, color: string) => {
   const { lineDash, dashed } = legend;
   const backgroundImage = dashed ? getBackgroundImage() : {};
   const styles = lineDash

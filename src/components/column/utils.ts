@@ -1,7 +1,7 @@
 import { AdjustOption } from '@antv/g2/lib/interface';
-import { IShape } from '../../interface';
+import { Shape } from '../../interface';
 
-export const hasDodge = (config: IShape) => {
+export const hasDodge = (config: Shape) => {
   const adjust = config?.adjust;
   const dodge = 'dodge';
   if (adjust === dodge) {

@@ -3,13 +3,13 @@ import { useCallback } from 'react';
 import { DISABLE_COLOR } from '../../theme';
 import { getBackgroundImage } from '../utils/styles';
 
-export interface ILegendProps {
+export interface LegendProps {
   label: string;
   data: any;
   onClick?: any;
 }
 
-const Legend = (props: ILegendProps) => {
+const Legend = (props: LegendProps) => {
   const { label, data, onClick } = props;
   const onClickLabel = useCallback(() => {
     onClick && onClick(label);

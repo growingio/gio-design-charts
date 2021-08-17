@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { columnChart, handleLegend } from '../../frameworks/columnChart';
 
-import { ChartType, IChartProps } from '../../interface';
+import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
 import LegendDirector from '../base/LegendDirector';
 import { defaultGroupInterval, defaultInterval } from './settings';
 import { hasDodge } from './utils';
 
-const ColumnChart: React.FC<IChartProps> = (props: IChartProps) => {
+const ColumnChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   const [assginConfig, setAssignConfig] = useState(config);
 

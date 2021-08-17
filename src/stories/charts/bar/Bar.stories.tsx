@@ -140,6 +140,7 @@ const GroupContrastArgs = {
         },
       ],
     ],
+    legend: false,
     bar: {
       position: 'name*value',
       color: 'name',

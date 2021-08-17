@@ -1,4 +1,4 @@
-import { IChartConfig } from '../../interface';
+import { ChartConfig } from '../../interface';
 
 export const getSingleData = (data: any[]) => {
   const covertData = [] as any[];
@@ -25,7 +25,7 @@ export const getSingleData = (data: any[]) => {
   };
 };
 
-export const getGroupData = (data: any[], config: IChartConfig) => {
+export const getGroupData = (data: any[], config: ChartConfig) => {
   const covertData = [] as any[];
   const forwardKey = config?.funnel?.color;
   if (forwardKey) {

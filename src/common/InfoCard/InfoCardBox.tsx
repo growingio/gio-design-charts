@@ -1,20 +1,20 @@
 import React from 'react';
-import { IChartConfig, IChartOptions, ILegends } from '../../interface';
+import { ChartConfig, ChartOptions, Legends } from '../../interface';
 import { getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
 
 import './styles/infocard.less';
 
-export interface IInfoCardProps {
-  legends: ILegends;
+export interface InfoCardProps {
+  legends: Legends;
   trigger?: string | undefined;
   triggerItems: any[];
-  options?: IChartOptions;
-  config?: IChartConfig;
+  options?: ChartOptions;
+  config?: ChartConfig;
   injectComponent?: any;
 }
 
-const InfoCardBox = (props: IInfoCardProps) => {
+const InfoCardBox = (props: InfoCardProps) => {
   const { triggerItems, legends = {}, trigger, options, config } = props;
   const defaultStyles = options?.defaultStyles;
   const forwardKey = config?.[config?.type]?.color;

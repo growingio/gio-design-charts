@@ -1,10 +1,10 @@
 import { Chart, View } from '@antv/g2';
-import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { ChartConfig, ChartOptions, Legends } from '../interface';
 import { handleInterval } from './columnChart';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
 import { getShapeConfig } from './utils';
 
-export const barChart = (options: IChartOptions, config: IChartConfig) => {
+export const barChart = (options: ChartOptions, config: ChartConfig) => {
   const { reporter } = options;
   const chart = generateChart(options, config);
   const linkView = chart.createView();
@@ -27,7 +27,7 @@ export const barChart = (options: IChartOptions, config: IChartConfig) => {
   return { chart, views: [linkView] };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
+export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const barConfig = getShapeConfig(config, 'bar');
   if (barConfig.color) {
     charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));

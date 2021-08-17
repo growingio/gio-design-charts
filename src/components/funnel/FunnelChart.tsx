@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useMemo } from 'react';
 import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelChart';
 
-import { ChartType, IChartProps } from '../../interface';
+import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
 import LegendDirector from '../base/LegendDirector';
 import { getSingleData } from './utils';
 
-const FunnelChart: React.FC<IChartProps> = (props: IChartProps) => {
+const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {

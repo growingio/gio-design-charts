@@ -1,5 +1,5 @@
 import { Chart, Element, View } from '@antv/g2';
-import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
+import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from './common';
 
@@ -17,8 +17,8 @@ import { getShapeConfig, setCustomInfo } from './utils';
  */
 export const intervalShape = (
   chart: Chart | View,
-  options: IChartOptions,
-  config: IChartConfig,
+  options: ChartOptions,
+  config: ChartConfig,
   intervalConfig: any,
   styleCallback?: any
 ) => {
@@ -89,8 +89,8 @@ export const intervalShape = (
 
 export const handleInterval = (
   chart: Chart | View,
-  options: IChartOptions,
-  config: IChartConfig,
+  options: ChartOptions,
+  config: ChartConfig,
   type: string = 'column'
 ) => {
   const { legends, hasDashed, defaultStyles = {} } = options;
@@ -101,7 +101,7 @@ export const handleInterval = (
 
   // 渲染出基本柱状图
   intervalShape(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
-    const legend = legends?.[label] || ({} as ILegend);
+    const legend = legends?.[label] || ({} as Legend);
     if (legend?.dashed) {
       dashedBars.push(label);
     }
@@ -126,7 +126,7 @@ export const handleInterval = (
         },
       },
       (label: string) => {
-        const legend = legends?.[label] || ({} as ILegend);
+        const legend = legends?.[label] || ({} as Legend);
         if (legend.dashed) {
           return {
             fill: `p(a)${BAR_TEXTURE}`,
@@ -140,7 +140,7 @@ export const handleInterval = (
   return chart;
 };
 
-export const columnChart = (options: IChartOptions, config: IChartConfig) => {
+export const columnChart = (options: ChartOptions, config: ChartConfig) => {
   const chart = renderChart(options, config);
   handleInterval(chart, options, config);
   chart.interaction('element-active');
@@ -148,7 +148,7 @@ export const columnChart = (options: IChartOptions, config: IChartConfig) => {
   return { chart };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
+export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const barConfig = getShapeConfig(config, 'column');
   if (barConfig.color) {
     charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));

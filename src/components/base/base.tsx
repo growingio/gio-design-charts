@@ -5,10 +5,10 @@ import { useCallback } from 'react';
 
 import Legends from '../../common/Legends';
 import useLegends, { getLegends } from '../hooks/useLegends';
-import { ChartType, IChartProps, IReportThing } from '../../interface';
+import { ChartType, ChartProps, ReportThing } from '../../interface';
 import { InfoCardBox } from '../../common/InfoCard';
 
-export interface IBasicProps extends IChartProps {
+export interface IBasicProps extends ChartProps {
   callChart: any;
   handleLegend: any;
   type?: ChartType;
@@ -38,7 +38,7 @@ const Basic = (props: IBasicProps) => {
   // const [scale, setScale] = useState({} as Scale);
   const [reportThing, setReportThing] = useState({});
 
-  const defineReporter = useCallback((thing: IReportThing) => {
+  const defineReporter = useCallback((thing: ReportThing) => {
     setReportThing(thing);
   }, []);
 

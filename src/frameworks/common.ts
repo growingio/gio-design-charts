@@ -1,5 +1,5 @@
 import { Chart, View } from '@antv/g2';
-import { IChartConfig, IChartOptions, ILegends } from '../interface';
+import { ChartConfig, ChartOptions, Legends } from '../interface';
 import { colors } from '../theme';
 
 import './tools';
@@ -7,7 +7,7 @@ import './tools';
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
 
-export const generateChart = (options: IChartOptions, config: IChartConfig) => {
+export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   const basicConfig = config.chart || {};
   // Set defualt chart config
@@ -27,9 +27,10 @@ export const generateChart = (options: IChartOptions, config: IChartConfig) => {
  * @param config
  * @returns
  */
-export const fetchTooltip = (chart: Chart | View, config: IChartConfig) => {
+export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   try {
     const tooltip = config.tooltip ?? {};
+    console.log('tooltip', config.tooltip);
     chart.tooltip.call(chart, { ...tooltip });
   } catch (err) {
     console.log(err);
@@ -37,7 +38,7 @@ export const fetchTooltip = (chart: Chart | View, config: IChartConfig) => {
   return chart;
 };
 
-export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, config: IChartConfig) => {
+export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, config: ChartConfig) => {
   const { data = [] } = options;
 
   // Set Data
@@ -48,7 +49,7 @@ export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, con
   // 2. chart.scale('sale', { min: 0, max: 100});
   // 3. chart.scale({ sale: { min: 0, max: 100} }, { nice: true });
   // See detail https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
-  const scale = config.scale || [];
+  const scale = config.scale || ([] as any);
   chart.scale.apply(chart, scale);
 
   // tooltip config can be false to disable tooltip
@@ -80,12 +81,12 @@ export const fetchChartConfig = (chart: Chart | View, options: IChartConfig, con
   return chart;
 };
 
-export const renderChart = (options: IChartOptions, config: IChartConfig) => {
+export const renderChart = (options: ChartOptions, config: ChartConfig) => {
   const chart = generateChart(options, config);
   return fetchChartConfig(chart, options, config);
 };
 
-export const handleLegendBehavior = (chart: Chart | View, legends: ILegends, color: string) => {
+export const handleLegendBehavior = (chart: Chart | View, legends: Legends, color: string) => {
   if (color) {
     chart.filter(color, (value: string) => {
       return !!(legends?.[value] || {}).active;

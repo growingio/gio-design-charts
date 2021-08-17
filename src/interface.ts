@@ -1,5 +1,5 @@
 import { Element, Scale } from '@antv/g2';
-import { AdjustOption } from '@antv/g2/lib/interface';
+import { AdjustOption, ScaleOption } from '@antv/g2/lib/interface';
 
 export enum ChartType {
   LINE = 'line',
@@ -9,7 +9,7 @@ export enum ChartType {
   AREA = 'area',
 }
 
-export interface ILegend {
+export interface Legend {
   /**
    图表Chart的类型，可为BAR、LINE等
    */
@@ -35,10 +35,10 @@ export interface ILegend {
   dodgeBy?: string;
 }
 
-export interface ILegends {
-  [name: string]: ILegend;
+export interface Legends {
+  [name: string]: Legend;
 }
-export interface IChartProps {
+export interface ChartProps {
   /**
    Chart的基础配置，设定theme, scale, tooltip
    */
@@ -51,13 +51,13 @@ export interface IChartProps {
    图例数组，是字符串或者图例对象
    * 
    */
-  legends: (ILegend | string)[];
+  legends: (Legend | string)[];
 }
 
-export interface IChartOptions {
+export interface ChartOptions {
   id?: HTMLElement;
   data?: any;
-  legends?: ILegends;
+  legends?: Legends;
   hasDashed?: boolean;
   /**
    * set default styles for line or interval
@@ -66,30 +66,46 @@ export interface IChartOptions {
   [key: string]: any;
 }
 
-export interface IChartConfig {
-  [key: string]: any;
+export interface ChartConfig {
   /**
    * 用来创建柱状图的配置
    */
-  column?: IShape;
+  column?: Shape;
 
   /**
    * 用来创建折线图的配置
    */
-  line?: IShape;
+  line?: Shape;
 
   /**
    * 用来创建条形图的配置
    */
-  bar?: IShape;
+  bar?: Shape;
 
   /**
    * 用来创建面积图的配置
    */
-  area?: IShape;
+  area?: Shape;
+  /**
+   * 用来显示或隐藏Legend图例
+   * 在gio-design-charts中，legend被重新定义，G2默认的legend配置将无效，在这里配置legend: false可用来隐藏Legend
+   */
+  legend?: boolean;
+
+  /**
+   * 1. chart.scale({ sale: { min: 0, max: 100} });
+   * 2. chart.scale('sale', { min: 0, max: 100});
+   * 3. chart.scale({ sale: { min: 0, max: 100} }, { nice: true });
+   * 更多内容请参考： https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
+   */
+  scale?: [field: string, scaleOption: ScaleOption];
+  /**
+   * 更多的扩展配置
+   */
+  [key: string]: any;
 }
 
-export interface IShape {
+export interface Shape {
   /**
    * 设置数据调整方式
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
@@ -100,9 +116,10 @@ export interface IShape {
    * 颜色通道
    */
   color?: string;
+  [key: string]: any;
 }
 
-export interface IReportThing {
+export interface ReportThing {
   elements?: Element[];
   scale?: Scale;
 }

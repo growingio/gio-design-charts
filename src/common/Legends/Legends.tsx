@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import { useEffect } from 'react';
-import Legend from './Legend';
+import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 
-import { ILegend } from '../../interface';
+import { Legend } from '../../interface';
 import './styles/legends.less';
 
 const Legends = (props: any) => {
   const { legends = {}, onClick, offsetWidth } = props;
 
-  const [tiled, setTiled] = useState([] as ILegend[]);
-  const [grouped, setGrouped] = useState([] as ILegend[]);
+  const [tiled, setTiled] = useState([] as Legend[]);
+  const [grouped, setGrouped] = useState([] as Legend[]);
   const [enableClick, setEnableClick] = useState(true);
 
   const onClickLegend = useCallback(
@@ -21,7 +21,7 @@ const Legends = (props: any) => {
   );
 
   useEffect(() => {
-    const legendValues: ILegend[] = Object.values(legends) || [];
+    const legendValues: Legend[] = Object.values(legends) || [];
     if (legendValues.length <= 1) {
       setEnableClick(false);
     } else {
@@ -37,9 +37,9 @@ const Legends = (props: any) => {
   }, [legends, offsetWidth]);
   return (
     <div className="gio-d-chart-legends">
-      {tiled?.map((legend: ILegend) => {
+      {tiled?.map((legend: Legend) => {
         const { name } = legend;
-        return <Legend key={name} label={name} data={legend} onClick={onClickLegend} />;
+        return <LegendComponent key={name} label={name} data={legend} onClick={onClickLegend} />;
       })}
       {grouped && grouped.length > 0 && <LegendMenu legends={grouped} onClick={onClickLegend} />}
     </div>

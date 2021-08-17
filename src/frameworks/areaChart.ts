@@ -1,10 +1,10 @@
 import { Chart, View } from '@antv/g2';
-import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
+import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
 import { handleLegendBehavior, renderChart } from './common';
 import { lineShape } from './lineChart';
 import { getShapeConfig } from './utils';
 
-export const areaShape = (chart: Chart | View, options: IChartOptions, shapeConfig: any) => {
+export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: any) => {
   const { legends } = options;
   const area = chart.area({
     theme: {
@@ -17,7 +17,7 @@ export const areaShape = (chart: Chart | View, options: IChartOptions, shapeConf
     area.adjust.apply(area, shapeConfig.adjust);
   }
   area.style(shapeConfig.color, (label: string) => {
-    const legend = legends?.[label] || ({} as ILegend);
+    const legend = legends?.[label] || ({} as Legend);
     const style = {} as any;
     if (legend.color) {
       style.stroke = legend.color;
@@ -32,7 +32,7 @@ export const areaShape = (chart: Chart | View, options: IChartOptions, shapeConf
   return area;
 };
 
-export const areaChart = (options: IChartOptions, config: IChartConfig = {}) => {
+export const areaChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
   if (!id) {
     return;
@@ -47,7 +47,7 @@ export const areaChart = (options: IChartOptions, config: IChartConfig = {}) => 
   return { chart };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
+export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const lineConfig = getShapeConfig(config, 'area');
   if (lineConfig.color) {
     charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));

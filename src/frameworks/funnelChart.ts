@@ -1,13 +1,13 @@
 import { Chart, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
-import { IChartConfig, IChartOptions, ILegend, ILegends } from '../interface';
+import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from './columnChart';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
 import { addLinkByElementHigh } from './tools/elementLink';
 import { getShapeConfig } from './utils';
 
-const fetchInterval = (chart: Chart | View, options: IChartOptions, config: IChartConfig) => {
+const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { legends, defaultStyles = {} } = options;
   return intervalShape(
     chart,
@@ -20,7 +20,7 @@ const fetchInterval = (chart: Chart | View, options: IChartOptions, config: ICha
       },
     },
     (label: string) => {
-      const legend = legends?.[label] || ({} as ILegend);
+      const legend = legends?.[label] || ({} as Legend);
       return {
         stroke: '#fff',
         strokeWidth: 1,
@@ -32,7 +32,7 @@ const fetchInterval = (chart: Chart | View, options: IChartOptions, config: ICha
   );
 };
 
-export const comparativeFunnelChart = (options: IChartOptions, config: IChartConfig) => {
+export const comparativeFunnelChart = (options: ChartOptions, config: ChartConfig) => {
   const { interceptors, legends } = options;
   const chart = generateChart(options, config);
   const sourceData = options?.data?.source || [];
@@ -90,7 +90,7 @@ export const comparativeFunnelChart = (options: IChartOptions, config: IChartCon
   return { chart, views: [linkView, backgroundView] };
 };
 
-export const funnelChart = (options: IChartOptions, config: IChartConfig) => {
+export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
   const chart = generateChart(options, config);
   const linkView = chart.createView();
 
@@ -116,7 +116,7 @@ export const funnelChart = (options: IChartOptions, config: IChartConfig) => {
   return { chart, views: [linkView, normalView] };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: ILegends, config: any) => {
+export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const barConfig = getShapeConfig(config, 'funnel');
   if (barConfig.color) {
     charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));

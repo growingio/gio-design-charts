@@ -1,6 +1,6 @@
 import React from 'react';
-import { ILegend } from '../../interface';
-import Legend from './Legend';
+import { Legend } from '../../interface';
+import { default as LegendComponent } from './Legend';
 
 const Menu = (props: any) => {
   const { legends, onClick } = props;
@@ -8,11 +8,11 @@ const Menu = (props: any) => {
     <div className="gio-d-chart-legends_dropdown">
       <span>其余{legends?.length || 0}项</span>
       <div className={`gio-d-chart-legends_dropdown-content dropdown-controller`}>
-        {legends.map((legend: ILegend) => {
+        {legends.map((legend: Legend) => {
           const { name } = legend;
           return (
             <div key={name} className="gio-d-chart-legends_dropdown-item">
-              <Legend label={name} data={legend} onClick={onClick} />
+              <LegendComponent label={name} data={legend} onClick={onClick} />
             </div>
           );
         })}
