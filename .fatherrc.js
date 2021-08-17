@@ -2,7 +2,10 @@ export default {
   cjs: 'babel',
   entry: 'src/index.ts',
   esm: 'babel',
-  file: 'utils',
+  extractCSS: true,
+  file: 'charts',
+  lessInBabelMode: true,
+  runtimeHelpers: true,
   umd: {
     globals: {
       react: 'React',
@@ -10,5 +13,4 @@ export default {
     minFile: true,
     sourcemap: true,
   },
-  runtimeHelpers: true,
 };
