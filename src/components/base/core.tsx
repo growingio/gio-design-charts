@@ -47,7 +47,7 @@ const core = (HighConponent: any) => {
     // 3. in this useEffect, we needn't to make it changes many times.
     useEffect(() => {
       let tooltip = config.tooltip || {};
-      if (tooltipRef.current) {
+      if (tooltipRef?.current) {
         tooltip = {
           ...tooltip,
           container: tooltipRef.current,
@@ -58,27 +58,32 @@ const core = (HighConponent: any) => {
         };
       }
       let existChart: any;
-      if (root.current && data) {
-        const [genLegends, hasDashed] = getLegends(config.type, legendList);
-        const { chart, views = [] } = callChart(
-          {
-            id: root.current,
-            data,
-            reporter: defineReporter,
-            legends: genLegends,
-            hasDashed,
-            interceptors,
-            ...defaultOptions,
-          },
-          {
-            ...config,
-            tooltip,
-          }
-        );
-        interceptors?.onRender(chart, views);
-        existChart = chart;
-        setLegends(genLegends);
-        setChartOptions({ data, hasDashed, legends: genLegends });
+      // The type should be set when the chart component is called.
+      if (root?.current && data && config.type) {
+        try {
+          const [genLegends, hasDashed] = getLegends(config.type, legendList);
+          const { chart, views = [] } = callChart(
+            {
+              id: root.current,
+              data,
+              reporter: defineReporter,
+              legends: genLegends,
+              hasDashed,
+              interceptors,
+              ...defaultOptions,
+            },
+            {
+              ...config,
+              tooltip,
+            }
+          );
+          interceptors?.onRender(chart, views);
+          existChart = chart;
+          setLegends(genLegends);
+          setChartOptions({ data, hasDashed, legends: genLegends });
+        } catch (err) {
+          console.warn(err);
+        }
       }
       return () => {
         existChart?.destroy();

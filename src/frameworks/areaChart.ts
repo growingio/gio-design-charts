@@ -38,12 +38,14 @@ export const areaChart = (options: ChartOptions, config: ChartConfig = {}) => {
     return;
   }
   const chart = renderChart(options, config);
-  const areaConfig = getShapeConfig(config, 'area');
+  try {
+    const areaConfig = getShapeConfig(config, 'area');
 
-  lineShape(chart, options, areaConfig);
-  areaShape(chart, options, areaConfig);
+    lineShape(chart, options, areaConfig);
+    areaShape(chart, options, areaConfig);
 
-  chart.render();
+    chart.render();
+  } catch (err) {}
   return { chart };
 };
 

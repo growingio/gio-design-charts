@@ -1,4 +1,5 @@
 import { ComponentStory } from '@storybook/react';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { AreaChart } from '../../../src';
 import { dataWithDash, dataWithOneLine } from '../line/data';
 import Card from '../../components/card';

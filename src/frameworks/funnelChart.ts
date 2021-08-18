@@ -33,61 +33,69 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
 };
 
 export const comparativeFunnelChart = (options: ChartOptions, config: ChartConfig) => {
+  const { id } = options;
+  if (!id) {
+    return;
+  }
   const { interceptors, legends } = options;
   const chart = generateChart(options, config);
-  const sourceData = options?.data?.source || [];
-  const covertData = options?.data?.covert || [];
-  const texts = options?.data?.texts || [];
-  const isGroup = options?.data?.isGroup;
+  try {
+    const sourceData = options?.data?.source || [];
+    const covertData = options?.data?.covert || [];
+    const texts = options?.data?.texts || [];
+    const isGroup = options?.data?.isGroup;
 
-  const emptyLegends = isEmpty(legends);
+    const emptyLegends = isEmpty(legends);
 
-  const backgroundView = chart.createView();
-  const backgroundOptions = {
-    ...options,
-    data: covertData,
-    control: {
-      hideLabel: true,
-    },
-    defaultStyles: {
-      opacity: 0.2,
-      color: emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
-    },
-  };
-  fetchChartConfig(backgroundView, backgroundOptions, config);
-  fetchInterval(backgroundView, backgroundOptions, config);
-  backgroundView.interaction('element-active');
-  backgroundView.render();
+    const backgroundView = chart.createView();
+    const backgroundOptions = {
+      ...options,
+      data: covertData,
+      control: {
+        hideLabel: true,
+      },
+      defaultStyles: {
+        opacity: 0.2,
+        color: emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
+      },
+    };
+    fetchChartConfig(backgroundView, backgroundOptions, config);
+    fetchInterval(backgroundView, backgroundOptions, config);
+    backgroundView.interaction('element-active');
+    backgroundView.render();
 
-  const addLinkByElement = addLinkByElementHigh();
+    const addLinkByElement = addLinkByElementHigh();
 
-  const linkView = chart.createView();
-  const linkOptions = {
-    ...options,
-    data: sourceData,
-    defaultStyles: {
-      color: emptyLegends ? colors[0] : '',
-    },
-  };
-  linkView.on('afterrender', function (event: any) {
-    if (!isGroup && sourceData.length !== 0) {
-      addLinkByElement(event?.view, { texts });
+    const linkView = chart.createView();
+    const linkOptions = {
+      ...options,
+      data: sourceData,
+      defaultStyles: {
+        color: emptyLegends ? colors[0] : '',
+      },
+    };
+    linkView.on('afterrender', function (event: any) {
+      if (!isGroup && sourceData.length !== 0) {
+        addLinkByElement(event?.view, { texts });
+      }
+    });
+    // should add view.render() for linkView, it can trigger afterrender event.
+    if (isGroup) {
+      linkView.interaction('element-highlight-by-color');
+      linkView.interaction('element-link');
     }
-  });
-  // should add view.render() for linkView, it can trigger afterrender event.
-  if (isGroup) {
-    linkView.interaction('element-highlight-by-color');
-    linkView.interaction('element-link');
-  }
-  fetchChartConfig(linkView, linkOptions, config);
-  fetchInterval(linkView, linkOptions, config);
-  linkView.render();
+    fetchChartConfig(linkView, linkOptions, config);
+    fetchInterval(linkView, linkOptions, config);
+    linkView.render();
 
-  fetchTooltip(chart, config);
-  interceptors.bindElementEvents(chart);
-  chart.legend(false);
-  chart.render();
-  return { chart, views: [linkView, backgroundView] };
+    fetchTooltip(chart, config);
+    interceptors.bindElementEvents(chart);
+    chart.legend(false);
+    chart.render();
+    return { chart, views: [linkView, backgroundView] };
+  } catch (err) {
+    return { chart };
+  }
 };
 
 export const funnelChart = (options: ChartOptions, config: ChartConfig) => {

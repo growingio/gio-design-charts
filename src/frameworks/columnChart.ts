@@ -141,10 +141,16 @@ export const handleInterval = (
 };
 
 export const columnChart = (options: ChartOptions, config: ChartConfig) => {
+  const { id } = options;
+  if (!id) {
+    return;
+  }
   const chart = renderChart(options, config);
-  handleInterval(chart, options, config);
-  chart.interaction('element-active');
-  chart.render();
+  try {
+    handleInterval(chart, options, config);
+    chart.interaction('element-active');
+    chart.render();
+  } catch (err) {}
   return { chart };
 };
 

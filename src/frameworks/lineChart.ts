@@ -38,9 +38,11 @@ export const lineChart = (options: ChartOptions, config: ChartConfig = {}) => {
     return;
   }
   const chart = renderChart(options, config);
-  const lineConfig = getShapeConfig(config, 'line');
-  lineShape(chart, options, lineConfig);
-  chart.render();
+  try {
+    const lineConfig = getShapeConfig(config, 'line');
+    lineShape(chart, options, lineConfig);
+    chart.render();
+  } catch (err) {}
   return { chart };
 };
 
