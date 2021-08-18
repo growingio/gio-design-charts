@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react"
   },
-  "include": ["src", "./src/typings/index.d.ts"]
+  "include": ["src", "stories", "./stories/mdx.d.ts", "./src/typings/index.d.ts"]
 }

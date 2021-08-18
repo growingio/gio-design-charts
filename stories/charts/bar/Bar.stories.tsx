@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { BarChart } from '../../../index';
+import { BarChart } from '../../../src';
 import Card from '../../components/card';
 import { dataWithGroup, percentData } from '../column/data';
 import { data, dataWithMulti, dataWithMultiContrast } from './data';

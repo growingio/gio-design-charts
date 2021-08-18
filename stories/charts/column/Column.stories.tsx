@@ -1,10 +1,10 @@
 import { ComponentStory } from '@storybook/react';
-import { ColumnChart } from '../../../index';
+import { ColumnChart } from '../../../src';
 import Card from '../../components/card';
 import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
 import moment from 'moment';
-import { colors } from '../../../theme';
+import { colors } from '../../../src';
 
 export default {
   title: 'Charts/柱状图 Column Chart',

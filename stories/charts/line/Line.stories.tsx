@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { LineChart, colors } from '../../../index';
+import { LineChart, colors } from '../../../src';
 import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } from './data';
 import Card from '../../components/card';
 import Docs from './Line.mdx';
