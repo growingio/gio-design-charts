@@ -75,9 +75,15 @@ export const intervalShape = (
         const { shapeFactory } = element;
         const defaultShapeType = shapeFactory.defaultShapeType;
         const stateTheme = shapeFactory.theme[shapeType as any] || shapeFactory.theme[defaultShapeType];
+        console.log(element, stateTheme);
+        console.log(options, config);
+
+        const defaultColor = options?.defaultStyles?.color;
+
+        const modelColor = element?.getModel()?.color;
         return {
           lineWidth: 2,
-          stroke: stateTheme?.default?.style?.fill || '#000',
+          stroke: defaultColor || modelColor || stateTheme?.default?.style?.fill || '#000',
           strokeOpacity: 0.5,
         };
       },

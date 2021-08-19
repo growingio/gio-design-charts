@@ -100,7 +100,7 @@ const core = (HighConponent: any) => {
     );
 
     return (
-      <HighConponent options={{ ...chartOptions, getCharts }} onClickLegend={onClickLegend}>
+      <HighConponent options={{ ...chartOptions, getCharts }} config={config} onClickLegend={onClickLegend}>
         <div ref={root} />
         <div className="gio-d-chart_tooltip-content">
           <div ref={tooltipRef} className="g2-tooltip">

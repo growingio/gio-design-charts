@@ -4,7 +4,7 @@ import { lineChart, handleLegend } from '../../frameworks/lineChart';
 import { ChartType, ChartProps } from '../../interface';
 // import { BaseChart } from '../base';
 
-import LegendDirector from '../base/LegendDirector';
+import { LegendDirector } from '../directors';
 
 const LineChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;

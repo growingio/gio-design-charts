@@ -6,7 +6,7 @@ import { columnChart, handleLegend } from '../../frameworks/columnChart';
 
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
-import LegendDirector from '../base/LegendDirector';
+import { LegendDirector } from '../directors';
 import { defaultGroupInterval, defaultInterval } from './settings';
 import { hasDodge } from './utils';
 

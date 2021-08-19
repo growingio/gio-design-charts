@@ -5,7 +5,7 @@ import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelCha
 
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
-import LegendDirector from '../base/LegendDirector';
+import { LegendDirector } from '../directors';
 import { getSingleData } from './utils';
 
 const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {

@@ -1,10 +1,10 @@
 import { Chart, View } from '@antv/g2';
 import React, { LegacyRef } from 'react';
-import Legends from '../../common/Legends';
-import useOffset from '../hooks/useOffset';
-import core, { DirectorProps } from './core';
+import Legends from '../../../common/Legends';
+import useOffset from '../../hooks/useOffset';
+import core, { DirectorProps } from '../../base/core';
 
-import './styles/base.less';
+// import './styles/base.less';
 
 export interface LegendDirectorProps extends DirectorProps {
   onClickLegend: any;
