@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { BarChart } from '../../../src';
+import { BarChart, ScrollBarChart } from '../../../src';
 import Card from '../../components/card';
 import { dataWithGroup, percentData } from '../column/data';
 import { data, dataWithMulti, dataWithMultiContrast } from './data';
@@ -24,11 +24,13 @@ const Template: ComponentStory<typeof BarChart> = (args) => (
   </Card>
 );
 
+const ScrollTemplate: ComponentStory<typeof BarChart> = (args) => (
+  <Card>
+    <ScrollBarChart {...args} />
+  </Card>
+);
+
 const config = {
-  chart: {
-    autoFit: true,
-    height: 300,
-  },
   tooltip: {
     enterable: true,
     showContent: true,
@@ -42,18 +44,26 @@ const BarDefaultArgs = {
   data: dataWithMulti,
   config: {
     ...config,
+
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
     axises: [
       [
         'value',
         {
           grid: null,
           label: null,
+          line: null,
         },
       ],
       [
-        'tyep',
+        'name',
         {
           grid: null,
+          tickLine: null,
+          line: null,
         },
       ],
     ],
@@ -93,12 +103,26 @@ const BarMultiArgs = {
   data,
   config: {
     ...config,
-    axis: [
-      'value',
-      {
-        grid: null,
-        label: null,
-      },
+
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
+    axises: [
+      [
+        'value',
+        {
+          grid: null,
+          label: null,
+        },
+      ],
+      [
+        'type',
+        {
+          line: null,
+          tickLine: null,
+        },
+      ],
     ],
     bar: {
       position: 'type*value',
@@ -119,12 +143,73 @@ BarMulti.args = { ...BarMultiArgs };
 // export const BarMultiExample = () => <BarMulti {...BarMultiArgs} />;
 BarMulti.storyName = '多条条形图';
 
+export const ScrollBarMulti = ScrollTemplate.bind({});
+const ScrollBarMultiArgs = {
+  legends: [
+    '金融保险',
+    '医疗卫生',
+    '社会公共管理',
+    'IT 通讯电子',
+    '教育',
+    '建筑房地产',
+    '交通运输与仓储邮政',
+    '住宿旅游',
+    '建材家居',
+    '汽车',
+  ],
+  data,
+  config: {
+    ...config,
+
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
+    axises: [
+      [
+        'value',
+        {
+          grid: null,
+          label: null,
+        },
+      ],
+      [
+        'type',
+        {
+          line: null,
+          tickLine: null,
+        },
+      ],
+    ],
+    bar: {
+      position: 'type*value',
+      color: 'type',
+      label: [
+        'value',
+        {
+          style: {
+            fill: '#8d8d8d',
+          },
+          offset: 10,
+        },
+      ],
+    },
+  },
+};
+ScrollBarMulti.args = { ...ScrollBarMultiArgs };
+// export const ScrollBarMultiExample = () => <ScrollBarMulti {...ScrollBarMultiArgs} />;
+ScrollBarMulti.storyName = '滚动条形图';
+
 export const GroupContrast = Template.bind({});
 const GroupContrastArgs = {
   legends: [{ name: '本月' }, { name: '上月', dashed: true }],
   data: dataWithMultiContrast,
   config: {
     ...config,
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
     axises: [
       [
         'value',
@@ -136,7 +221,8 @@ const GroupContrastArgs = {
       [
         'name',
         {
-          grid: null,
+          line: null,
+          tickLine: null,
         },
       ],
     ],
@@ -172,13 +258,26 @@ const barWithGroupArgs = {
   data: dataWithGroup,
   config: {
     ...config,
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
     scale: ['value', { max: 70, min: 0 }],
-    axis: [
-      'value',
-      {
-        grid: null,
-        label: null,
-      },
+    axises: [
+      [
+        'value',
+        {
+          grid: null,
+          label: null,
+        },
+      ],
+      [
+        'type',
+        {
+          line: null,
+          tickLine: null,
+        },
+      ],
     ],
     bar: {
       position: 'type*value',
@@ -201,12 +300,25 @@ const StackingDiagramBarArgs = {
   data: dataWithGroup,
   config: {
     ...config,
-    axis: [
-      'value',
-      {
-        grid: null,
-        label: null,
-      },
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
+    axises: [
+      [
+        'value',
+        {
+          grid: null,
+          label: null,
+        },
+      ],
+      [
+        'type',
+        {
+          line: null,
+          tickLine: null,
+        },
+      ],
     ],
     scale: ['value', { max: 200, min: 0 }],
     bar: {
@@ -225,16 +337,31 @@ const PercentBarArgs = {
   data: percentData,
   config: {
     ...config,
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
     scale: ['value', { max: 100, min: 0 }],
-    axis: [
-      'value',
-      {
-        label: {
-          formatter: (val: string) => {
-            return `${val}%`;
-          },
+    axises: [
+      [
+        'value',
+        {
+          grid: null,
+          label: null,
+          // label: {
+          //   formatter: (val: string) => {
+          //     return `${val}%`;
+          //   },
+          // },
         },
-      },
+      ],
+      [
+        'type',
+        {
+          line: null,
+          tickLine: null,
+        },
+      ],
     ],
     bar: {
       position: 'type*value',

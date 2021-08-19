@@ -4,8 +4,6 @@ import Legends from '../../../common/Legends';
 import useOffset from '../../hooks/useOffset';
 import core, { DirectorProps } from '../../base/core';
 
-// import './styles/base.less';
-
 export interface LegendDirectorProps extends DirectorProps {
   onClickLegend: any;
 }

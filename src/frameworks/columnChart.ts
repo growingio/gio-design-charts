@@ -75,8 +75,6 @@ export const intervalShape = (
         const { shapeFactory } = element;
         const defaultShapeType = shapeFactory.defaultShapeType;
         const stateTheme = shapeFactory.theme[shapeType as any] || shapeFactory.theme[defaultShapeType];
-        console.log(element, stateTheme);
-        console.log(options, config);
 
         const defaultColor = options?.defaultStyles?.color;
 

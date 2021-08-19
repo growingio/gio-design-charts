@@ -13,6 +13,8 @@ export const colors = [
   '#FF7955',
 ];
 
+// 图表Chart的默认高度
+export const DEAULT_CHART_HEIGHT = 300;
 export const DEFAULT_OTERH_COLOR = '#CACEDB';
 export const DISABLE_COLOR = '#ADB2C2';
 export const DEFAULT_LINEDASH = [2, 5];

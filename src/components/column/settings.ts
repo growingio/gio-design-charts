@@ -24,26 +24,43 @@ export const defaultInterval = {
  * @param config {Shape}
  * @returns
  */
-export const hasDodge = (config: Shape) => {
+export const hasAdjust = (config: Shape, adjustType: 'stack' | 'dodge') => {
   const adjust = config?.adjust;
-  const dodge = 'dodge';
-  if (adjust === dodge) {
+  if (adjust === adjustType) {
     return true;
   }
   if (Array.isArray(adjust)) {
     for (let a of adjust) {
-      if (typeof a === 'string' && a === dodge) {
+      if (typeof a === 'string' && a === adjustType) {
         return true;
       }
-      if (typeof a === 'object' && a?.type === dodge) {
+      if (typeof a === 'object' && a?.type === adjustType) {
         return true;
       }
     }
   }
-  if (typeof adjust === 'object' && (adjust as AdjustOption)?.type === dodge) {
+  if (typeof adjust === 'object' && (adjust as AdjustOption)?.type === adjustType) {
     return true;
   }
   return false;
+};
+
+/**
+ *
+ * @param config {Shape}
+ * @returns
+ */
+export const hasDodge = (config: Shape) => {
+  return hasAdjust(config, 'dodge');
+};
+
+/**
+ *
+ * @param config {Shape}
+ * @returns
+ */
+export const hasStack = (config: Shape) => {
+  return hasAdjust(config, 'stack');
 };
 
 /**

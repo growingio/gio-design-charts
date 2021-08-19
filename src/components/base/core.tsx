@@ -5,6 +5,8 @@ import { ChartConfig, ChartOptions, Legend, ReportThing } from '../../interface'
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 
+import './styles/base.less';
+
 export interface DirectorProps {
   options: ChartOptions;
   config: ChartConfig;

@@ -30,7 +30,6 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
 export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   try {
     const tooltip = config.tooltip ?? {};
-    console.log('tooltip', config.tooltip);
     chart.tooltip.call(chart, { ...tooltip });
   } catch (err) {
     console.log(err);
