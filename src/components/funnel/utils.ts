@@ -12,7 +12,8 @@ export const getSingleData = (data: any[]) => {
       covertData.push({ ...item });
     } else {
       texts.push(`${((item?.value / prev?.value || 0) * 100).toFixed(2)}%`);
-      covertData.push({ ...item, value: prev?.value || 0, prev: { ...prev } });
+      covertData.push({ ...item, value: prev?.value || 0, prev: { ...prev }, column: {...item} });
+      // covertData.push({ ...item, value: prev?.value || 0, prev: { ...prev } });
       prev = item;
     }
     return item;

@@ -23,7 +23,6 @@ const config = {
     // shared: true,
     showMarkers: false,
     render: (options: any) => {
-      console.log(options);
       return <span>test</span>;
     },
   },

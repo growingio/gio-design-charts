@@ -31,7 +31,8 @@ const InfoCardBox = (props: InfoCardProps) => {
       const itemData = item?.data;
       const legendStyles = getLegendStyles(legend, color);
       if (itemData.prev) {
-        return { ...legend, data: { ...itemData.prev }, type: config?.type, styles: { ...legendStyles, opacity: 0.2 } };
+        // return { ...legend, data: { ...itemData.prev }, type: config?.type, styles: { ...legendStyles, opacity: 0.2 } };
+        return { ...legend, data: { ...itemData.prev }, type: config?.type, styles: { ...legendStyles, opacity: 0.2 }, column: {...itemData.column }, };
       }
       return { ...legend, data: { ...itemData }, type: config?.type, styles: legendStyles };
     }) || [];

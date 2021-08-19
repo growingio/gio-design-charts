@@ -2,7 +2,7 @@ import { ComponentStory } from '@storybook/react';
 import { FunnelChart, FunnelGroupChart } from '../../../src';
 import Card from '../../components/card';
 import { dataWithMultiBar } from '../column/data';
-
+import DrillDownCard from './drilldown-card';
 import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';
 
 export default {
@@ -86,6 +86,15 @@ const FunnelWith3ColumnsArgs = {
         },
       ],
     },
+    tooltip: {
+      enterable: true,
+      showContent: true,
+      // shared: true,
+      showMarkers: false,
+      render: (options: any) => {
+        return (<DrillDownCard options={options} />);
+      }
+    }
   },
 };
 FunnelWith3Columns.storyName = '基础漏斗';

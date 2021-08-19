@@ -32,7 +32,7 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
     const tooltip = config.tooltip ?? {};
     chart.tooltip.call(chart, { ...tooltip });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   return chart;
 };
