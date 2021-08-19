@@ -66,22 +66,22 @@ export const intervalShape = (
          * 类似 private element.getShapeType(model)
          * @param {Element}
          */
-        const shape = element.getModel()?.shape;
-        const shapeType = Array.isArray(shape) ? shape[0] : shape;
+        // const shape = element.getModel()?.shape;
+        // const shapeType = Array.isArray(shape) ? shape[0] : shape;
         /**
          * 类似 private element.getStatesStyle(model)
          * @param {Element}
          */
-        const { shapeFactory } = element;
-        const defaultShapeType = shapeFactory.defaultShapeType;
-        const stateTheme = shapeFactory.theme[shapeType as any] || shapeFactory.theme[defaultShapeType];
+        // const { shapeFactory } = element;
+        // const defaultShapeType = shapeFactory.defaultShapeType;
+        // const stateTheme = shapeFactory.theme[shapeType as any] || shapeFactory.theme[defaultShapeType];
 
         const defaultColor = options?.defaultStyles?.color;
-
+        const modelFill = element?.getModel()?.style?.fill;
         const modelColor = element?.getModel()?.color;
         return {
           lineWidth: 2,
-          stroke: defaultColor || modelColor || stateTheme?.default?.style?.fill || '#000',
+          stroke: defaultColor || modelFill || modelColor || '#000',
           strokeOpacity: 0.5,
         };
       },
