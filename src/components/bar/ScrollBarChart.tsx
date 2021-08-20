@@ -3,15 +3,15 @@ import { barChart, handleLegend } from '../../frameworks/barChart';
 
 import { ChartType, ChartProps } from '../../interface';
 import { DEAULT_CHART_HEIGHT } from '../../theme';
-import { ScrollDirector } from '../directors';
-import { calculate } from './barUtils';
+import { calculateBarHeight } from '../../utils/calculate';
+import { ScrollYDirector } from '../directors';
 
 const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
   config.type = ChartType.BAR;
-  const chartHeight = calculate(config, data);
+  const chartHeight = calculateBarHeight(config, data);
   config.chart = {
     ...(config.chart || {}),
     // 为了显示右侧文字数据
@@ -31,7 +31,7 @@ const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
   };
 
   return (
-    <ScrollDirector
+    <ScrollYDirector
       data={data}
       legendList={legendProps}
       config={config}

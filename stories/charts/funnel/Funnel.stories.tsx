@@ -92,9 +92,9 @@ const FunnelWith3ColumnsArgs = {
       // shared: true,
       showMarkers: false,
       render: (options: any) => {
-        return (<DrillDownCard options={options} />);
-      }
-    }
+        return <DrillDownCard options={options} />;
+      },
+    },
   },
 };
 FunnelWith3Columns.storyName = '基础漏斗';
@@ -158,7 +158,6 @@ export const FunnelWithGroup = GroupTemplate.bind({});
 const FunnelWithGroupArgs = {
   legends: ['北京', '上海', '南京', '深圳', '广东'],
   data: dataWithGroup,
-  isGroup: true,
   config: {
     ...config,
     tooltip: {

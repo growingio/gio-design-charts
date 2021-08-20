@@ -1,4 +1,4 @@
-import { getDodgeBy, hasContrastDodge } from '../components/column/settings';
+import { getDodgeBy, hasContrastDodge } from '../utils/interval';
 import { ChartConfig, ChartOptions } from '../interface';
 
 export const getShapeConfig = (config: ChartConfig, type?: string) => {

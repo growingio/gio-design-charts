@@ -1,5 +1,5 @@
 import { AdjustOption } from '@antv/g2/lib/interface';
-import { Shape } from '../../interface';
+import { Shape } from '../interface';
 
 export const defaultGroupInterval = {
   interval: {

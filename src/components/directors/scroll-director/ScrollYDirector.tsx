@@ -4,7 +4,7 @@ import { ChartCanvasProps } from '../../base/core';
 import './styles/index.less';
 import LegendDirector from '../legend-director';
 
-export interface ScrollDirectorProps extends ChartCanvasProps {
+export interface ScrollYDirectorProps extends ChartCanvasProps {
   height: number;
 }
 
@@ -13,13 +13,13 @@ export interface ScrollDirectorProps extends ChartCanvasProps {
  * 需要做的事情：
  * - 重新计算chart的真实高度
  * - 使用外边框，来创造滚动效果
- * @param props {ScrollDirectorProps}
+ * @param props {ScrollYDirectorProps}
  * @returns
  */
-const ScrollDirector = (props: ScrollDirectorProps) => {
+const ScrollDirector = (props: ScrollYDirectorProps) => {
   const { height } = props;
   return (
-    <div className="gio-d-chart gio-scroll-director" style={{ height }}>
+    <div className="gio-d-chart gio-scroll-y-director" style={{ height }}>
       <LegendDirector {...props} />
     </div>
   );

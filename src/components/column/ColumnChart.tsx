@@ -7,7 +7,7 @@ import { columnChart, handleLegend } from '../../frameworks/columnChart';
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
 import { LegendDirector } from '../directors';
-import { defaultGroupInterval, defaultInterval } from './settings';
+import { defaultGroupInterval, defaultInterval } from '../../utils/interval';
 import { hasDodge } from './utils';
 
 const ColumnChart: React.FC<ChartProps> = (props: ChartProps) => {
