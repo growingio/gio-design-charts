@@ -1,8 +1,9 @@
-const analysisRow = (data: any, column: any) => {
-  return column.id === 'tm' ? String(data) : data;
+const analysisRow = (chartType: string, data: any, column: any) => {
+  return chartType === 'column' && column.id === 'tm' ? String(data) : data;
 };
 
 export const analysisSourceData = (chartData: any, options?: any) => {
+  const chartType = options?.chart || 'line';
   const fetch = options?.fetch || {};
   const formatter = options?.formatter;
   const source = chartData?.data || [];
@@ -14,7 +15,7 @@ export const analysisSourceData = (chartData: any, options?: any) => {
       if (formatter) {
         value = formatter?.(value, column);
       } else {
-        value = analysisRow(item?.[index], column);
+        value = analysisRow(chartType, item?.[index], column);
       }
       row[column.id] = value;
     });

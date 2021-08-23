@@ -3,8 +3,9 @@ import { ColumnChart } from '../../../src';
 import Card from '../../components/card';
 import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
-import moment from 'moment';
 import { colors } from '../../../src';
+import { format } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
 export default {
   title: 'Charts/柱状图 Column Chart',
@@ -68,7 +69,7 @@ const ColumnWithTsArgs = {
       {
         label: {
           formatter: (text: string, item: any, index: number) => {
-            return moment(text).format('MM/DD ddd');
+            return format(new Date(Number(text)), 'MM/dd EEEE', { locale: zhCN });
           },
         },
       },

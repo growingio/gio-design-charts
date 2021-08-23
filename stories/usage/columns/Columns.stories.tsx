@@ -1,7 +1,8 @@
 import { ComponentStory } from '@storybook/react';
 import { ColumnChart, analysisSourceData } from '../../../src';
 import Card from '../../components/card';
-import moment from 'moment';
+import { format } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
 import activeMemberData from '../data/active-members.json';
 
@@ -40,7 +41,7 @@ const config = {
 export const ColumnWithTm = Template.bind({});
 const ColumnWithTmArgs = {
   legends: ['活跃人数'],
-  data: analysisSourceData(activeMemberData, { fetch: { type: '活跃人数' } }),
+  data: analysisSourceData(activeMemberData, { chart: 'column', fetch: { type: '活跃人数' } }),
   config: {
     ...config,
     column: {
@@ -58,7 +59,7 @@ const ColumnWithTmArgs = {
       {
         label: {
           formatter: (text: string, item: any, index: number) => {
-            return moment(Number(text)).format('MM/DD ddd');
+            return format(new Date(Number(text)), 'MM/dd EEE', { locale: zhCN });
           },
         },
       },
