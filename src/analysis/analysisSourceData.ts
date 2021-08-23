@@ -2,7 +2,16 @@ const analysisRow = (chartType: string, data: any, column: any) => {
   return chartType === 'column' && column.id === 'tm' ? String(data) : data;
 };
 
-export const analysisSourceData = (chartData: any, options?: any) => {
+export interface analysisOptions {
+  // chart的类型
+  chart: string;
+  // 在生成的data中，需要补充的结构，比如color
+  fetch: any;
+  // 格式化的方法，使用者根据formatter重新定义数据
+  formatter: any;
+}
+
+export const analysisSourceData = (chartData: any, options?: analysisOptions) => {
   const chartType = options?.chart || 'line';
   const fetch = options?.fetch || {};
   const formatter = options?.formatter;
