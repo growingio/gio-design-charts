@@ -24,6 +24,44 @@ export const dataWithTs = [
   { ts: '2021-08-16', value: 63, color: '步步盈增' },
 ];
 
+export const dataWithActive = [
+  {
+    tm: 1628870400000,
+    NxDLPLD7: 793,
+    type: '活跃人数',
+  },
+  {
+    tm: 1628956800000,
+    NxDLPLD7: 756,
+    type: '活跃人数',
+  },
+  {
+    tm: 1629043200000,
+    NxDLPLD7: 1866,
+    type: '活跃人数',
+  },
+  {
+    tm: 1629129600000,
+    NxDLPLD7: 483,
+    type: '活跃人数',
+  },
+  {
+    tm: 1629216000000,
+    NxDLPLD7: 1381,
+    type: '活跃人数',
+  },
+  {
+    tm: 1629302400000,
+    NxDLPLD7: 918,
+    type: '活跃人数',
+  },
+  {
+    tm: 1629388800000,
+    NxDLPLD7: 1618,
+    type: '活跃人数',
+  },
+];
+
 export const dataWithComponsive = [
   { ts: '2021-08-07', value: 79, color: '步步盈增' },
   { ts: '2021-08-07', value: 89, color: '步步盈增(对比)' },

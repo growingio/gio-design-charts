@@ -1,0 +1,30 @@
+{
+  "data": [
+    [1628870400000, 793],
+    [1628956800000, 756],
+    [1629043200000, 1866],
+    [1629129600000, 483],
+    [1629216000000, 1381],
+    [1629302400000, 918],
+    [1629388800000, 1618]
+  ],
+  "meta": {
+    "columns": [
+      {
+        "id": "tm",
+        "name": "时间",
+        "isDim": true,
+        "isRate": false,
+        "isDuration": false
+      },
+      {
+        "id": "NxDLPLD7",
+        "name": "访问的总人数",
+        "isDim": false,
+        "isRate": false,
+        "isDuration": false
+      }
+    ],
+    "fetchedTimestamp": 1629531205574
+  }
+}
