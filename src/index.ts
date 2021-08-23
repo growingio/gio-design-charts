@@ -10,3 +10,4 @@ export { InfoCard } from './common/InfoCard';
 
 export { colors } from './theme';
 export * from './interface';
+export * from './common/utils/formatNumber';

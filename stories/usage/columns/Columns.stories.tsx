@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { ColumnChart, analysisSourceData, analysisOptions } from '../../../src';
+import { ColumnChart, analysisSourceData, analysisOptions, formatNumber } from '../../../src';
 import Card from '../../components/card';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
@@ -50,19 +50,28 @@ const ColumnWithTmArgs = {
     },
     scale: {
       NxDLPLD7: { nice: true },
-      tm: {
-        type: 'identity',
-      },
     },
-    axis: [
-      'tm',
-      {
-        label: {
-          formatter: (text: string, item: any, index: number) => {
-            return format(new Date(Number(text)), 'MM/dd EEE', { locale: zhCN });
+    axises: [
+      [
+        'NxDLPLD7',
+        {
+          label: {
+            formatter: (text: string) => {
+              return formatNumber(text);
+            },
           },
         },
-      },
+      ],
+      [
+        'tm',
+        {
+          label: {
+            formatter: (text: string) => {
+              return format(new Date(Number(text)), 'MM/dd EEE', { locale: zhCN });
+            },
+          },
+        },
+      ],
     ],
   },
 };
