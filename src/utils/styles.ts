@@ -1,5 +1,5 @@
-import { Legend } from '../../interface';
-import { BAR_TEXTURE } from '../../theme';
+import { Legend } from '../interface';
+import { BAR_TEXTURE } from '../theme';
 
 export const getBackgroundImage = () => ({
   backgroundImage: `url("${BAR_TEXTURE}")`,

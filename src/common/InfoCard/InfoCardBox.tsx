@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChartConfig, ChartOptions, Legends } from '../../interface';
-import { getLegendStyles } from '../utils/styles';
+import { getLegendStyles } from '../../utils/styles';
 import InfoCard from './InfoCard';
 
 import './styles/infocard.less';
@@ -32,7 +32,13 @@ const InfoCardBox = (props: InfoCardProps) => {
       const legendStyles = getLegendStyles(legend, color);
       if (itemData.prev) {
         // return { ...legend, data: { ...itemData.prev }, type: config?.type, styles: { ...legendStyles, opacity: 0.2 } };
-        return { ...legend, data: { ...itemData.prev }, type: config?.type, styles: { ...legendStyles, opacity: 0.2 }, column: {...itemData.column }, };
+        return {
+          ...legend,
+          data: { ...itemData.prev },
+          type: config?.type,
+          styles: { ...legendStyles, opacity: 0.2 },
+          column: { ...itemData.column },
+        };
       }
       return { ...legend, data: { ...itemData }, type: config?.type, styles: legendStyles };
     }) || [];

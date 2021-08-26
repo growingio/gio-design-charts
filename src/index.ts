@@ -4,10 +4,10 @@ export { default as ColumnChart } from './components/column';
 export * from './components/bar';
 export * from './components/funnel';
 
-export * from './analysis';
+export * from './utils/analysis';
 
 export { InfoCard } from './common/InfoCard';
 
 export { colors } from './theme';
 export * from './interface';
-export * from './common/utils/formatNumber';
+export * from './utils';

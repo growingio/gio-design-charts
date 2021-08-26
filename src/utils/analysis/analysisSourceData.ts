@@ -17,6 +17,7 @@ export const analysisSourceData = (chartData: any, options?: analysisOptions) =>
   const formatter = options?.formatter;
   const source = chartData?.data || [];
   const columns = chartData?.meta?.columns;
+
   const convert = source?.map((item: any) => {
     const row = {} as any;
     columns.map((column: any, index: number) => {

@@ -4,6 +4,7 @@ import Card from '../../components/card';
 import { dataWithGroup, percentData } from '../column/data';
 import { data, dataWithMulti, dataWithMultiContrast } from './data';
 import Docs from './Bar.mdx';
+import { cloneDeep } from 'lodash';
 
 export default {
   title: 'Charts/条形图 Bar Chart',
@@ -86,6 +87,10 @@ BarDefault.args = { ...BarDefaultArgs };
 // export const BarDefaultExample = () => <BarDefault {...BarDefaultArgs} />;
 BarDefault.storyName = '条形图';
 
+export const ScrollBarDefault = ScrollTemplate.bind({});
+ScrollBarDefault.args = cloneDeep(BarDefaultArgs);
+ScrollBarDefault.storyName = '条形图(滚动模式)';
+
 export const BarMulti = Template.bind({});
 const BarMultiArgs = {
   legends: [
@@ -144,61 +149,65 @@ BarMulti.args = { ...BarMultiArgs };
 BarMulti.storyName = '多条条形图';
 
 export const ScrollBarMulti = ScrollTemplate.bind({});
-const ScrollBarMultiArgs = {
-  legends: [
-    '金融保险',
-    '医疗卫生',
-    '社会公共管理',
-    'IT 通讯电子',
-    '教育',
-    '建筑房地产',
-    '交通运输与仓储邮政',
-    '住宿旅游',
-    '建材家居',
-    '汽车',
-  ],
-  data,
-  config: {
-    ...config,
+ScrollBarMulti.args = cloneDeep(BarMultiArgs);
+ScrollBarMulti.storyName = '多条条形图(滚动模式)';
 
-    chart: {
-      autoFit: true,
-      height: 300,
-    },
-    axises: [
-      [
-        'value',
-        {
-          grid: null,
-          label: null,
-        },
-      ],
-      [
-        'type',
-        {
-          line: null,
-          tickLine: null,
-        },
-      ],
-    ],
-    bar: {
-      position: 'type*value',
-      color: 'type',
-      label: [
-        'value',
-        {
-          style: {
-            fill: '#8d8d8d',
-          },
-          offset: 10,
-        },
-      ],
-    },
-  },
-};
-ScrollBarMulti.args = { ...ScrollBarMultiArgs };
-// export const ScrollBarMultiExample = () => <ScrollBarMulti {...ScrollBarMultiArgs} />;
-ScrollBarMulti.storyName = '滚动条形图';
+// export const ScrollBarMulti = ScrollTemplate.bind({});
+// const ScrollBarMultiArgs = {
+//   legends: [
+//     '金融保险',
+//     '医疗卫生',
+//     '社会公共管理',
+//     'IT 通讯电子',
+//     '教育',
+//     '建筑房地产',
+//     '交通运输与仓储邮政',
+//     '住宿旅游',
+//     '建材家居',
+//     '汽车',
+//   ],
+//   data,
+//   config: {
+//     ...config,
+
+//     chart: {
+//       autoFit: true,
+//       height: 300,
+//     },
+//     axises: [
+//       [
+//         'value',
+//         {
+//           grid: null,
+//           label: null,
+//         },
+//       ],
+//       [
+//         'type',
+//         {
+//           line: null,
+//           tickLine: null,
+//         },
+//       ],
+//     ],
+//     bar: {
+//       position: 'type*value',
+//       color: 'type',
+//       label: [
+//         'value',
+//         {
+//           style: {
+//             fill: '#8d8d8d',
+//           },
+//           offset: 10,
+//         },
+//       ],
+//     },
+//   },
+// };
+// ScrollBarMulti.args = { ...ScrollBarMultiArgs };
+// // export const ScrollBarMultiExample = () => <ScrollBarMulti {...ScrollBarMultiArgs} />;
+// ScrollBarMulti.storyName = '滚动条形图';
 
 export const GroupContrast = Template.bind({});
 const GroupContrastArgs = {
@@ -252,6 +261,10 @@ const GroupContrastArgs = {
 GroupContrast.args = { ...GroupContrastArgs };
 GroupContrast.storyName = '分组对比图';
 
+export const ScrollGroupContrast = ScrollTemplate.bind({});
+ScrollGroupContrast.args = cloneDeep(GroupContrastArgs);
+ScrollGroupContrast.storyName = '分组对比图(滚动模式)';
+
 export const BarWithGroup = Template.bind({});
 const barWithGroupArgs = {
   legends: ['Apple', { name: 'Facebook', dashed: true }, 'Google'],
@@ -294,6 +307,10 @@ const barWithGroupArgs = {
 BarWithGroup.args = barWithGroupArgs;
 BarWithGroup.storyName = '分组条形图';
 
+export const ScrollBarWithGroup = ScrollTemplate.bind({});
+ScrollBarWithGroup.args = cloneDeep(barWithGroupArgs);
+ScrollBarWithGroup.storyName = '分组条形图(滚动模式)';
+
 export const StackingDiagramBar = Template.bind({});
 const StackingDiagramBarArgs = {
   legends: ['Apple', 'Facebook', 'Google'],
@@ -330,6 +347,10 @@ const StackingDiagramBarArgs = {
 };
 StackingDiagramBar.args = StackingDiagramBarArgs;
 StackingDiagramBar.storyName = '堆积条形图';
+
+export const ScrollStackingDiagramBar = ScrollTemplate.bind({});
+ScrollStackingDiagramBar.args = cloneDeep(StackingDiagramBarArgs);
+ScrollStackingDiagramBar.storyName = '堆积条形图(滚动模式)';
 
 export const PercentBar = Template.bind({});
 const PercentBarArgs = {
@@ -373,3 +394,7 @@ const PercentBarArgs = {
 PercentBar.args = PercentBarArgs;
 // export const PercentBarExample = () => <PercentBar {...PercentBarArgs} />;
 PercentBar.storyName = '百分比堆积条形图';
+
+export const ScrollPercentBar = ScrollTemplate.bind({});
+ScrollPercentBar.args = cloneDeep(PercentBarArgs);
+ScrollPercentBar.storyName = '百分比堆积条形图(滚动模式)';

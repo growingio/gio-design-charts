@@ -5,8 +5,8 @@ export const dataWithBasicFunnel = [
 ];
 
 export const dataWith3Columns = [
-  { type: '1.商品详情页｜浏览', value: 10884,  convertRate: 1 },
-  { type: '2.加入购物车', value: 137, convertRate: 0.01258728408673282  },
+  { type: '1.商品详情页｜浏览', value: 10884, convertRate: 1 },
+  { type: '2.加入购物车', value: 137, convertRate: 0.01258728408673282 },
   { type: '3.进入购物车', value: 28, convertRate: 0.20437956204379562 },
 ];
 
@@ -31,8 +31,8 @@ export const dataWith7Columns = [
 
 export const dataWithGroup = [
   { type: '1.商品详情页｜浏览', city: '北京', value: 21734 },
-  { type: '1.商品详情页｜浏览', city: '上海', value: 21734 },
-  { type: '1.商品详情页｜浏览', city: '南京', value: 21734 },
+  { type: '1.商品详情页｜浏览', city: '上海', value: 21000 },
+  { type: '1.商品详情页｜浏览', city: '南京', value: 19734 },
   { type: '1.商品详情页｜浏览', city: '深圳', value: 21734 },
   { type: '1.商品详情页｜浏览', city: '广东', value: 21734 },
   { type: '2.加入购物车', city: '北京', value: 18734 },

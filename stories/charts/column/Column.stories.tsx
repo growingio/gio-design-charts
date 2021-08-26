@@ -69,7 +69,9 @@ const ColumnWithTsArgs = {
       {
         label: {
           formatter: (text: string, item: any, index: number) => {
-            return format(new Date(Number(text)), 'MM/dd EEEE', { locale: zhCN });
+            console.log(text, item, index);
+            return text;
+            // return format(new Date(Number(text)), 'MM/dd EEEE', { locale: zhCN });
           },
         },
       },
