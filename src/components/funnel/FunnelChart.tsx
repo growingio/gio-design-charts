@@ -5,8 +5,7 @@ import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelCha
 
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
-import { calculateColumnWidth } from '../../utils/calculate';
-import { LegendDirector, ScrollXDirector } from '../directors';
+import { ScrollXDirector } from '../directors';
 import { getSingleData } from './utils';
 
 const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
@@ -23,18 +22,17 @@ const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
   }, [legendProps]);
   config.type = ChartType.FUNNEL;
 
-  const chartWidth = calculateColumnWidth(config, data);
   const [comparativeData, setComparativeData] = useState({});
   useEffect(() => {
     setComparativeData(getSingleData(data));
   }, [data]);
   return (
     <ScrollXDirector
-      width={chartWidth}
       data={comparativeData}
       legendList={legendProps}
       defaultOptions={defaultOptions}
       config={config}
+      sourceData={data}
       callChart={comparativeFunnelChart}
       handleLegend={handleLegend}
     />

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelChart';
 
 import { ChartType, ChartProps } from '../../interface';
-import { calculateColumnWidth } from '../../utils/calculate';
 import { ScrollXDirector } from '../directors';
 import { getGroupData } from './utils';
 
@@ -11,7 +10,6 @@ const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {
 
   const [comparativeData, setComparativeData] = useState({});
   config.type = ChartType.FUNNEL;
-  const chartWidth = calculateColumnWidth(config, data);
 
   useEffect(() => {
     setComparativeData(getGroupData(data, config));
@@ -19,10 +17,10 @@ const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {
 
   return (
     <ScrollXDirector
-      width={chartWidth}
       data={comparativeData}
       legendList={legendProps}
       config={config}
+      sourceData={data}
       callChart={comparativeFunnelChart}
       handleLegend={handleLegend}
     />

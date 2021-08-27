@@ -1,4 +1,5 @@
-import { useCallback, useEffect, RefObject, useState } from 'react';
+import { throttle } from 'lodash';
+import { useCallback, useEffect, RefObject, useState, useMemo } from 'react';
 
 const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj?: any) => void) => {
   const [offset, setOffset] = useState({} as { width: number; height: number });
@@ -14,20 +15,16 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj?: any) 
     }
   }, [rootRef, watchReset, offset]);
 
+  const reset = useMemo(() => {
+    return throttle(onResize, 200);
+  }, [onResize]);
+
   // Listener resize
   useEffect(() => {
-    if (rootRef?.current) {
-      const observer = new MutationObserver(onResize);
-      const targetNode = rootRef?.current as HTMLElement;
-      const targetConfig = { attributes: true, childList: true, subtree: true };
-      observer.observe(targetNode, targetConfig);
-      // first init
-      onResize();
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, [rootRef, onResize]);
+    window.onresize = () => {
+      reset();
+    };
+  }, [onResize]);
   return offset;
 };
 

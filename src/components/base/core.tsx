@@ -11,6 +11,7 @@ export interface DirectorProps {
   options: ChartOptions;
   config: ChartConfig;
   children: JSX.Element;
+  width?: number;
 }
 
 export interface ChartCanvasProps {
@@ -21,13 +22,14 @@ export interface ChartCanvasProps {
   config: ChartConfig;
   defaultOptions?: ChartOptions;
   data: any;
+  width?: number;
   // interceptors: any;
 }
 
 // In core, we only force on render chart and provide basic chart options
 const core = (HighConponent: any) => {
   return (props: ChartCanvasProps) => {
-    const { config, callChart, data, legendList, handleLegend, defaultOptions = {} } = props;
+    const { config, callChart, data, legendList, handleLegend, defaultOptions = {}, width } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
     const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
     const [hoverItem, setHoverItem] = useState([]);
@@ -82,7 +84,7 @@ const core = (HighConponent: any) => {
           interceptors?.onRender(chart, views);
           existChart = chart;
           setLegends(genLegends);
-          setChartOptions({ data, hasDashed, legends: genLegends });
+          setChartOptions({ data, hasDashed, getCharts, legends: genLegends });
         } catch (err) {
           console.warn(err);
         }
@@ -102,8 +104,8 @@ const core = (HighConponent: any) => {
     );
 
     return (
-      <HighConponent options={{ ...chartOptions, getCharts }} config={config} onClickLegend={onClickLegend}>
-        <div ref={root} />
+      <HighConponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
+        <div className="director-content" ref={root} />
         <div className="gio-d-chart_tooltip-content">
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCardBox

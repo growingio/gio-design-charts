@@ -190,7 +190,6 @@ const Dashboard = () => {
             type="left"
             title={FunnelWithGroup.storyName}
             path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-group"
-            styles={{ width: 1100 }}
           >
             <FunnelWithGroup {...(FunnelWithGroup.args as ChartProps)} />
           </Frame>

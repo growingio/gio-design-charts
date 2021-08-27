@@ -2,22 +2,12 @@ import React from 'react';
 import { barChart, handleLegend } from '../../frameworks/barChart';
 
 import { ChartType, ChartProps } from '../../interface';
-import { DEAULT_CHART_HEIGHT } from '../../theme';
-import { calculateBarHeight } from '../../utils/calculate';
 import { ScrollYDirector } from '../directors';
 
 const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
-  const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
   config.type = ChartType.BAR;
-  const chartHeight = calculateBarHeight(config, data);
-  config.chart = {
-    ...(config.chart || {}),
-    // 为了显示右侧文字数据
-    appendPadding: frameHeight < chartHeight ? [0, 60, 0, 0] : [0, 50, 0, 0],
-    height: chartHeight,
-  };
 
   config.bar = {
     ...(config?.bar || {}),
@@ -37,7 +27,6 @@ const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
       config={config}
       callChart={barChart}
       handleLegend={handleLegend}
-      height={frameHeight}
     />
   );
 };

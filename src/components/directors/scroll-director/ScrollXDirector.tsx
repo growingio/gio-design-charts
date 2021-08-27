@@ -3,10 +3,11 @@ import { ChartCanvasProps } from '../../base/core';
 
 import './styles/index.less';
 import LegendDirector from '../legend-director';
-import useOffset from '../../hooks/useOffset';
+import { calculateColumnWidth } from '../../../utils/calculate';
+import { ChartConfig } from '../../../interface';
 
 export interface ScrollXDirectorProps extends ChartCanvasProps {
-  width: number;
+  sourceData: any;
 }
 
 /**
@@ -18,16 +19,30 @@ export interface ScrollXDirectorProps extends ChartCanvasProps {
  * @returns
  */
 const ScrollDirector = (props: ScrollXDirectorProps) => {
-  const { width, config } = props;
+  const { config, sourceData } = props;
   const xDirectorRef: LegacyRef<HTMLDivElement> = React.createRef();
-  const offset = useOffset(xDirectorRef);
 
-  const widthObj = width > offset.width + 100 ? { autoFit: false, width } : { autoFit: true };
-  config.chart = { ...(config.chart || {}), ...widthObj };
-
+  const [resetConfig, setResetConfig] = useState<ChartConfig>(config);
+  const [width, setWidth] = useState<number>(0);
+  useEffect(() => {
+    if (xDirectorRef.current) {
+      const calculateWidth = calculateColumnWidth(config, sourceData);
+      const offsetWidth = xDirectorRef.current.offsetWidth;
+      const widthObj = width > offsetWidth + 100 ? { autoFit: false, width } : { autoFit: true };
+      const newConfig: ChartConfig = {
+        ...config,
+        chart: {
+          ...(config.chart || {}),
+          ...widthObj,
+        },
+      };
+      setWidth(calculateWidth);
+      setResetConfig(newConfig);
+    }
+  }, [config, width]);
   return (
     <div className="gio-d-chart gio-scroll-x-director" ref={xDirectorRef}>
-      <LegendDirector {...props} />
+      <LegendDirector {...props} config={resetConfig} width={width} />
     </div>
   );
 };

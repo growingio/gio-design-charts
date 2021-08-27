@@ -3,10 +3,10 @@ import { ChartCanvasProps } from '../../base/core';
 
 import './styles/index.less';
 import LegendDirector from '../legend-director';
+import { DEAULT_CHART_HEIGHT } from '../../../theme';
+import { calculateBarHeight } from '../../../utils/calculate';
 
-export interface ScrollYDirectorProps extends ChartCanvasProps {
-  height: number;
-}
+export interface ScrollYDirectorProps extends ChartCanvasProps {}
 
 /**
  * 主要为了实现条形图的滚动效果
@@ -17,10 +17,22 @@ export interface ScrollYDirectorProps extends ChartCanvasProps {
  * @returns
  */
 const ScrollDirector = (props: ScrollYDirectorProps) => {
-  const { height } = props;
+  const { config, data } = props;
+
+  const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
+  const chartHeight = calculateBarHeight(config, data);
+  const newConfig = {
+    ...config,
+    chart: {
+      ...(config.chart || {}),
+      // 为了显示右侧文字数据
+      appendPadding: frameHeight < chartHeight ? [0, 60, 0, 0] : [0, 50, 0, 0],
+      height: chartHeight,
+    },
+  };
   return (
-    <div className="gio-d-chart gio-scroll-y-director" style={{ height }}>
-      <LegendDirector {...props} />
+    <div className="gio-d-chart gio-scroll-y-director" style={{ height: frameHeight }}>
+      <LegendDirector {...props} config={newConfig} />
     </div>
   );
 };
