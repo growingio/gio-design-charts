@@ -6,12 +6,17 @@ import { columnChart, handleLegend } from '../../frameworks/columnChart';
 
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
-import { LegendDirector } from '../directors';
+import { LegendDirector, ScrollXDirector } from '../directors';
 import { defaultGroupInterval, defaultInterval } from '../../utils/interval';
 import { hasDodge } from './utils';
+import ScrollColumnChart from './ScrollColumnChart';
 
-const ColumnChart: React.FC<ChartProps> = (props: ChartProps) => {
-  const { data, legends: legendProps = [], config = {} } = props;
+export interface ColumnChartProps extends ChartProps {
+  useScroll?: boolean;
+}
+
+const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
+  const { data, legends: legendProps = [], config = {}, useScroll } = props;
   const [assginConfig, setAssignConfig] = useState(config);
 
   useEffect(() => {
@@ -40,7 +45,17 @@ const ColumnChart: React.FC<ChartProps> = (props: ChartProps) => {
   }, [legendProps]);
 
   config.type = ChartType.COLUMN;
-  return (
+  return useScroll ? (
+    <ScrollXDirector
+      data={data}
+      sourceData={data}
+      legendList={legendProps}
+      config={assginConfig}
+      defaultOptions={defaultOptions}
+      callChart={columnChart}
+      handleLegend={handleLegend}
+    />
+  ) : (
     <LegendDirector
       data={data}
       legendList={legendProps}
