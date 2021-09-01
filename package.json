@@ -11,7 +11,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "father-build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test2": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "NODE_ENV=production build-storybook -s public"
@@ -59,6 +60,8 @@
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/polyfill": "^7.12.1",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-essentials": "^6.3.7",
     "@storybook/addon-links": "^6.3.7",
@@ -84,7 +87,8 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "father-build": "^1.19.6",
-    "jest": "^27.0.6",
+    "jest": "^27.1.0",
+    "jest-junit": "^12.0.0",
     "less": "3.13.1",
     "less-loader": "6.0.0",
     "prettier": "^2.3.2",

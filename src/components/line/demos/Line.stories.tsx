@@ -1,8 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { LineChart, colors } from '../../../src';
+import LineChart from '../LineChart'
 import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } from './data';
-import Card from '../../components/card';
+import Card from '../../../demos/card';
 import Docs from './Line.mdx';
+import { colors } from '../../../theme';
 
 export default {
   title: 'Charts/折线图 Line Chart',

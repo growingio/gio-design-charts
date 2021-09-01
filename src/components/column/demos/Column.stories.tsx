@@ -1,11 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { ColumnChart } from '../../../src';
-import Card from '../../components/card';
+import ColumnChart from '../ColumnChart'
+import Card from '../../../demos/card';
 import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
-import { colors } from '../../../src';
-import { format } from 'date-fns';
-import { zhCN } from 'date-fns/locale';
+import { colors } from '../../..';
 
 export default {
   title: 'Charts/柱状图 Column Chart',

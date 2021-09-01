@@ -1,5 +1,4 @@
 module.exports = {
-  // if you're also using typescript
   preset: 'ts-jest',
   testEnvironment: 'node',
   verbose: true,

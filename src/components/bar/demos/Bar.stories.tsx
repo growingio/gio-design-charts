@@ -1,7 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { BarChart, ScrollBarChart } from '../../../src';
-import Card from '../../components/card';
-import { dataWithGroup, percentData } from '../column/data';
+import BarChart from '../BarChart'
+import ScrollBarChart from '../ScrollBarChart'
+
+import Card from '../../../demos/card';
+import { dataWithGroup, percentData } from '../../column/demos/data';
 import { data, dataWithMulti, dataWithMultiContrast } from './data';
 import Docs from './Bar.mdx';
 import { cloneDeep } from 'lodash';

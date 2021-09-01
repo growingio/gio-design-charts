@@ -1,10 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
-import { AreaChart } from '../../../src';
-import { dataWithDash, dataWithOneLine } from '../line/data';
-import Card from '../../components/card';
+import AreaChart from '../AreaChart'
+import { dataWithDash, dataWithOneLine } from '../../line/demos/data';
+import Card from '../../../demos/card';
 import Docs from './Area.mdx';
-import { percentData } from '../column/data';
+import { percentData } from '../../column/demos/data';
 
 export default {
   title: 'Charts/面积图 Area Chart',

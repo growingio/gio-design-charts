@@ -1,4 +1,4 @@
-import { default as DashboardComponent } from "./charts/dashboard/Dashboard";
+import { default as DashboardComponent } from "./Dashboard";
 
 export default {
   title: "Charts/Dashboard",

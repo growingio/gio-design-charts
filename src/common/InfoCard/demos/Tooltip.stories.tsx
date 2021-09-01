@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
-import { BarChart, FunnelChart, FunnelGroupChart, InfoCard } from '../../../src';
-import { dataWithGroup } from '../../charts/funnel/data';
-import Card from '../../components/card';
+import { BarChart, FunnelChart, FunnelGroupChart, InfoCard } from '../../..';
+import { dataWithGroup } from '../../../components/funnel/demos/data';
+import Card from '../../../demos/card';
 
 export default {
   title: 'Customs/自定义Tooltips',

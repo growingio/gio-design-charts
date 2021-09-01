@@ -1,25 +1,25 @@
 import React, { CSSProperties } from 'react';
-import { ChartProps } from '../../../src';
-import Frame from '../../components/frame';
-import { AreaStack, AreaWithSample, PercentArea } from '../area/Area.stories';
-import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../bar/Bar.stories';
+import Frame from '../frame';
+import { AreaStack, AreaWithSample, PercentArea } from '../../components/area/area/Area.stories';
+import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../../components/bar/demos/Bar.stories';
 import {
   ColumnWithGroup,
   ColumnWithMulti,
   ColumnWithOne,
   PercentColumn,
   StackingDiagramColumn,
-} from '../column/Column.stories';
+} from '../../components/column/demos/Column.stories';
 import {
   FunnelWith3Columns,
   FunnelWith6Columns,
   FunnelWith7Columns,
   FunnelWithBasic,
   FunnelWithGroup,
-} from '../funnel/Funnel.stories';
+} from '../../components/funnel/demos/Funnel.stories';
 // import { FunnelWithLinkExample } from '../funnel/Funnel.stories';
 
-import { LineWithOneLine, LineWithDash, LineWithMenu } from '../line/Line.stories';
+import { LineWithOneLine, LineWithDash, LineWithMenu } from '../../components/line/demos/Line.stories';
+import { ChartProps } from '../../interface';
 
 const titleStyle: CSSProperties = {
   fontSize: '24px',

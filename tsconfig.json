@@ -22,8 +22,6 @@
   },
   "include": [
     "src",
-    "stories",
-    "./stories/mdx.d.ts",
-    "./src/typings/index.d.ts"
+    "stories"
   ]
 }
