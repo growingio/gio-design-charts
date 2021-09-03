@@ -1,16 +1,8 @@
 module.exports = {
-    presets: ['@babel/preset-react', ['@babel/preset-env'], '@babel/preset-typescript'],
-    plugins: [
-    //   ['@babel/plugin-proposal-class-properties', { loose: true }],
+  presets: [['@babel/env', { targets: { esmodules: true } }], '@babel/react', '@babel/flow', '@babel/typescript'],
+  plugins: [
     '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-transform-modules-commonjs',
-      ['@babel/transform-runtime', {
-        "absoluteRuntime": false,
-        "corejs": false,
-        "helpers": false,
-        // "polyfill": false,
-        "regenerator": true,
-      }],
-    ],
-  };
-  
+    '@babel/plugin-transform-modules-commonjs',
+    '@babel/plugin-transform-runtime',
+  ],
+};

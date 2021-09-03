@@ -21,7 +21,7 @@ const InfoCard = (props: InfoCardProps) => {
       {renderTooltip ? (
         renderTooltip?.({ title, data, trigger, forwardKey })
       ) : (
-        <>
+        <div data-testid="infoCard">
           <div className="gio-d-chart-infocard_title">{title}</div>
           {data.map((item: any) => {
             // item.color = defaultStyles?.color || item.color;
@@ -32,7 +32,7 @@ const InfoCard = (props: InfoCardProps) => {
             );
           })}
           {injectComponent?.({ data, trigger, forwardKey })}
-        </>
+        </div>
       )}
     </>
   );

@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import ColumnChart from '../ColumnChart'
+import ColumnChart from '../ColumnChart';
 import Card from '../../../demos/card';
 import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
@@ -67,7 +67,7 @@ const ColumnWithTsArgs = {
       {
         label: {
           formatter: (text: string, item: any, index: number) => {
-            console.log(text, item, index);
+            // console.log(text, item, index);
             return text;
             // return format(new Date(Number(text)), 'MM/dd EEEE', { locale: zhCN });
           },

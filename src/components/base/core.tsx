@@ -90,7 +90,9 @@ const core = (HighConponent: any) => {
         }
       }
       return () => {
-        existChart?.destroy();
+        try {
+          existChart?.destroy();
+        } catch (err) {}
       };
     }, [data, legendList, config, callChart]);
 

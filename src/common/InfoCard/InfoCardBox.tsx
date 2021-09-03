@@ -43,7 +43,7 @@ const InfoCardBox = (props: InfoCardProps) => {
       return { ...legend, data: { ...itemData }, type: config?.type, styles: legendStyles };
     }) || [];
   return (
-    <div className="gio-d-chart-infocard">
+    <div className="gio-d-chart-infocard" data-testid="infoCardBox">
       <InfoCard title={title} data={items} trigger={trigger} forwardKey={forwardKey} config={config} />
     </div>
   );

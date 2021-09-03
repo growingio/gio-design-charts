@@ -31,7 +31,7 @@ const ScrollDirector = (props: ScrollYDirectorProps) => {
     },
   };
   return (
-    <div className="gio-d-chart gio-scroll-y-director" style={{ height: frameHeight }}>
+    <div className="gio-d-chart gio-scroll-y-director" data-testid="scroll-y-director" style={{ height: frameHeight }}>
       <LegendDirector {...props} config={newConfig} />
     </div>
   );

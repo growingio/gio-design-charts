@@ -9,7 +9,6 @@ import { colors } from '../../theme';
 import { LegendDirector, ScrollXDirector } from '../directors';
 import { defaultGroupInterval, defaultInterval } from '../../utils/interval';
 import { hasDodge } from './utils';
-import ScrollColumnChart from './ScrollColumnChart';
 
 export interface ColumnChartProps extends ChartProps {
   useScroll?: boolean;

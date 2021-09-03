@@ -30,7 +30,7 @@ const LegendDirector = React.memo((props: LegendDirectorProps) => {
 
   const offset = useOffset(directorRef, watchReset);
   return (
-    <div className="gio-d-chart" ref={directorRef}>
+    <div className="gio-d-chart" ref={directorRef} data-testid="legend-director">
       {config.legend !== false && <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />}
       {props.children}
     </div>

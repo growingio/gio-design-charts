@@ -6,7 +6,7 @@ const Menu = (props: any) => {
   const { legends, onClick } = props;
   return (
     <div className="gio-d-chart-legends_dropdown">
-      <span>其余{legends?.length || 0}项</span>
+      <span data-testid="legend-others">其余{legends?.length || 0}项</span>
       <div className={`gio-d-chart-legends_dropdown-content dropdown-controller`}>
         {legends.map((legend: Legend) => {
           const { name } = legend;

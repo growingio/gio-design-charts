@@ -41,7 +41,7 @@ const ScrollDirector = (props: ScrollXDirectorProps) => {
     }
   }, [config, width]);
   return (
-    <div className="gio-d-chart gio-scroll-x-director" ref={xDirectorRef}>
+    <div className="gio-d-chart gio-scroll-x-director" data-testid="scroll-x-director" ref={xDirectorRef}>
       <LegendDirector {...props} config={resetConfig} width={width} />
     </div>
   );

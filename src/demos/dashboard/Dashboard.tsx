@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import Frame from '../frame';
-import { AreaStack, AreaWithSample, PercentArea } from '../../components/area/area/Area.stories';
+import { AreaStack, AreaWithSample, PercentArea } from '../../components/area/demos/Area.stories';
 import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../../components/bar/demos/Bar.stories';
 import {
   ColumnWithGroup,

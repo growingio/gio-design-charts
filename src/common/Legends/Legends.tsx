@@ -15,7 +15,7 @@ const Legends = (props: any) => {
 
   const onClickLegend = useCallback(
     (label: string) => {
-      enableClick && onClick(label);
+      enableClick && onClick && onClick(label);
     },
     [onClick, enableClick]
   );
@@ -36,7 +36,7 @@ const Legends = (props: any) => {
     }
   }, [legends, offsetWidth]);
   return (
-    <div className="gio-d-chart-legends">
+    <div className="gio-d-chart-legends" data-testid="legends">
       {tiled?.map((legend: Legend) => {
         const { name } = legend;
         return <LegendComponent key={name} label={name} data={legend} onClick={onClickLegend} />;
