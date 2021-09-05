@@ -76,7 +76,8 @@ jobs:
           directory: ./coverage/
   sonar:
     name: Sonar scan
-    needs: [lint, unit_test]
+    needs:
+      - unit_test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
