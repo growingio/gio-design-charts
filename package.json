@@ -9,13 +9,15 @@
   "author": "Zhang Rui <zhangrui@growingio.com>",
   "license": "Apache-2.0",
   "scripts": {
+    "eslint": "eslint src --ext .ts,.tsx",
     "start": "react-scripts start",
     "build": "father-build",
     "test": "jest",
     "test2": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "storybook:build": "build-storybook -s public"
+    "storybook:build": "build-storybook -s public",
+    "stylelint": "stylelint 'src/**/*.{css,less}' --syntax less"
   },
   "files": [
     "dist",
@@ -84,8 +86,6 @@
     "conventional-changelog-cli": "^2.1.1",
     "css-loader": "1.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",

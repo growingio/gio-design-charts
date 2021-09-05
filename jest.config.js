@@ -21,7 +21,6 @@ module.exports = {
   // transformIgnorePatterns: ['node_modules/?!(@gio-design\/icon)', '!(@gio-design/icon)'],
   transformIgnorePatterns: ['node_modules/@storybook/(?!(addon-docs)/)'],
   setupFiles: ['./__mocks__/canvas.js'],
-  setupFilesAfterEnv: ['<rootDir>/enzyme-adapter.js'],
 
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
@@ -35,10 +34,10 @@ module.exports = {
     '!src/**/index.{ts,tsx}',
     '!src/**/interface?(s).ts?(x)',
     '!src/**/*.stories.{ts,tsx}',
+    '!src/**/__demos__/*',
     '!src/**/__test?(s)__/*',
   ],
   coverageDirectory: './coverage/',
-  coveragePathIgnorePatterns: ['list-pro/'],
   // testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
-  testPathIgnorePatterns: ['/node_modules/', '/es/', '/build/', '/dist/'],
+  testPathIgnorePatterns: ['/node_modules/', '/es/', '/lib/', '/dist/'],
 };

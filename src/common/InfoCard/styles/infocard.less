@@ -1,50 +1,53 @@
 .gio-d-chart-infocard {
-  border-radius: 4px;
-  /* box-shadow: 0px 8px 24px rgba(36, 46, 89, 0.1); */
-  background: #ffffff;
-  /* 在g2-tooltip样式中，padding: 0 12px */
-  padding: 16px 16px 16px 4px;
-  margin-right: -12px;
   width: 220px;
+
   /* display: flex; */
   max-height: 360px;
+  margin-right: -12px;
+
+  /* 在g2-tooltip样式中，padding: 0 12px */
+  padding: 16px 16px 16px 4px;
   overflow-y: auto;
+
+  /* box-shadow: 0px 8px 24px rgba(36, 46, 89, 0.1); */
+  background: #fff;
+  border-radius: 4px;
   opacity: 1;
 
   &_item {
     height: 24px;
-    text-align: left;
     line-height: 1;
+    text-align: left;
   }
 
   &_block {
     display: inline-block;
-    font-size: 14px;
-    line-height: 1;
-    background-color: #ffffff;
     width: 14px;
     height: 14px;
     margin-right: 8px;
-    border-radius: 2px;
+    font-size: 14px;
+    line-height: 1;
     vertical-align: sub;
+    background-color: #fff;
+    border-radius: 2px;
   }
 
   &_title {
-    font-size: 14px;
+    margin-bottom: 16px;
     color: #242e59;
     font-weight: 500;
+    font-size: 14px;
     line-height: 22px;
     text-align: left;
-    margin-bottom: 16px;
   }
 
   &_label {
     display: inline;
+    margin-right: 20px;
     font-size: 12px;
     line-height: 1;
-    margin-right: 20px;
-    cursor: pointer;
     text-align: left;
+    cursor: pointer;
   }
   &_value {
     float: right;
