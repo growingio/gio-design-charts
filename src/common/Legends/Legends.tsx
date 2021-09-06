@@ -7,7 +7,7 @@ import { Legend } from '../../interface';
 import './styles/legends.less';
 
 const Legends = (props: any) => {
-  const { legends = {}, onClick, offsetWidth } = props;
+  const { legends = {}, onClick, offsetWidth = 800 } = props;
 
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);

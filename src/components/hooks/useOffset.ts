@@ -21,6 +21,9 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj?: any) 
 
   // Listener resize
   useEffect(() => {
+    if (!offset.width) {
+      reset();
+    }
     window.onresize = () => {
       reset();
     };

@@ -1,8 +1,4 @@
 module.exports = {
-  presets: [['@babel/env', { targets: { esmodules: true } }], '@babel/react', '@babel/flow', '@babel/typescript'],
-  plugins: [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-transform-modules-commonjs',
-    '@babel/plugin-transform-runtime',
-  ],
+  presets: [['@babel/env', { targets: { esmodules: true } }], '@babel/react', '@babel/typescript'],
+  plugins: ['@babel/proposal-class-properties', '@babel/transform-runtime'],
 };
