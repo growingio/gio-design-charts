@@ -1,4 +1,4 @@
-var path = require('path');
+// var path = require('path');
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 
 const hasJsxRuntime = (() => {
