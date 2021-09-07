@@ -1,7 +1,7 @@
 import { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useMemo } from 'react';
-import { comparativeFunnelChart, handleLegend } from '../../frameworks/funnelChart';
+import { funnelChart, handleLegend } from '../../frameworks/funnelChart';
 
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
@@ -33,7 +33,7 @@ const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
       defaultOptions={defaultOptions}
       config={config}
       sourceData={data}
-      callChart={comparativeFunnelChart}
+      callChart={funnelChart}
       handleLegend={handleLegend}
     />
   );

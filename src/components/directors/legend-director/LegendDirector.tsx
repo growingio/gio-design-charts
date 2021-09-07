@@ -2,7 +2,7 @@ import { Chart, View } from '@antv/g2';
 import React, { LegacyRef, useCallback, useEffect, useMemo, useState } from 'react';
 import Legends from '../../../common/Legends';
 import useOffset from '../../hooks/useOffset';
-import core, { DirectorProps } from '../../base/core';
+import core, { DirectorProps } from '../../core/core';
 import { debounce, throttle } from 'lodash';
 
 export interface LegendDirectorProps extends DirectorProps {

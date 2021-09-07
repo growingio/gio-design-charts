@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ColumnChart from '../ColumnChart';
+import ScrollColumnChart from '../ScrollColumnChart';
 import {
   ColumnWithComponsive,
   ColumnWithGroup,
@@ -44,6 +45,16 @@ describe('Area Chart', () => {
 
   test('render Chart with percent column', async () => {
     render(<ColumnChart {...PercentColumn.args} />);
+    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+  });
+
+  test('render Scroll Chart with stacking diagram', async () => {
+    render(<ScrollColumnChart {...StackingDiagramColumn.args} />);
+    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+  });
+
+  test('render Scroll Chart', async () => {
+    render(<ScrollColumnChart {...ColumnWithMulti.args} />);
     expect(await screen.findByTestId('legend-director')).toBeTruthy();
   });
 });

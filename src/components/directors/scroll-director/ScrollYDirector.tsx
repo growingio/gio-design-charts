@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartCanvasProps } from '../../base/core';
+import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
 import LegendDirector from '../legend-director';

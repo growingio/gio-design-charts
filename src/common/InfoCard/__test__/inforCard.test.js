@@ -49,6 +49,57 @@ const triggerItems = [
   },
 ];
 
+const triggerItemsPrev = [
+  {
+    title: '2.加入购物车',
+    data: {
+      type: '2.加入购物车',
+      city: '南京',
+      value: 18334,
+      prev: {
+        type: '2.加入购物车',
+        city: '南京2',
+        value: 18333,
+      },
+    },
+    mappingData: {
+      _origin: {
+        type: '2.加入购物车',
+        city: '南京',
+        value: 18334,
+      },
+      points: [
+        {
+          x: 0.35567894225227825,
+          y: 0,
+        },
+        {
+          x: 0.35567894225227825,
+          y: 0.73336,
+        },
+        {
+          x: 0.39432105774772175,
+          y: 0.73336,
+        },
+        {
+          x: 0.39432105774772175,
+          y: 0,
+        },
+      ],
+      x: 429.53749084472656,
+      y: 79.05936,
+      color: '#62CE6C',
+      shape: 'column-element',
+    },
+    name: '南京',
+    value: '18334',
+    color: '#62CE6C',
+    marker: true,
+    x: 429.53749084472656,
+    y: 79.05936,
+  },
+];
+
 const legends = {
   北京: {
     name: '北京',
@@ -99,6 +150,19 @@ describe('InfoCard', () => {
   test('render InfoCard', async () => {
     render(
       <InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} options={options} config={config} />
+    );
+    expect(await screen.findByTestId('infoCardBox')).toBeTruthy();
+  });
+
+  test('render InfoCard with prev data', async () => {
+    render(
+      <InfoCardBox
+        triggerItems={triggerItemsPrev}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={config}
+      />
     );
     expect(await screen.findByTestId('infoCardBox')).toBeTruthy();
   });

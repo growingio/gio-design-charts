@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { ColumnChart, analysisSourceData, analysisOptions, formatNumber } from '../../..';
+import { ColumnChart, analysisSourceData, AnalysisOptions, formatNumber } from '../../../..';
 import Card from '../../card';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
@@ -41,7 +41,7 @@ const config = {
 export const ColumnWithTm = Template.bind({});
 const ColumnWithTmArgs = {
   legends: ['活跃人数'],
-  data: analysisSourceData(activeMemberData, { chart: 'column', fetch: { type: '活跃人数' } } as analysisOptions),
+  data: analysisSourceData(activeMemberData, { chart: 'column', fetch: { type: '活跃人数' } } as AnalysisOptions),
   config: {
     ...config,
     column: {

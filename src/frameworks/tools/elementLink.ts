@@ -38,6 +38,9 @@ const reduceElements = (elements: Element[], callback: any) => {
 
 const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => {
   try {
+    if (view.foregroundGroup.destroyed) {
+      return;
+    }
     const linkGroup = view.foregroundGroup.addGroup({
       id: 'link-by-color-group',
       capture: true,
@@ -45,8 +48,8 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
     const group = linkGroup.addGroup();
     const textGroup = linkGroup.addGroup();
     const elements = view.geometries?.[0]?.elements;
-    groups.push(group);
-    groups.push(textGroup);
+    groups?.push(group);
+    groups?.push(textGroup);
     reduceElements(elements, (prev: Element, next: Element, index: number) => {
       addLinkShape(group, prev, next);
       if (texts.length < FUNNEL_CRITICAL_COUNT) {

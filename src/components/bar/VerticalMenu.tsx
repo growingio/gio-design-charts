@@ -21,7 +21,7 @@ const VerticalMenu = React.memo((props: any) => {
   const ranges = getRanges(max, range);
   const ticks = scale?.ticks?.reverse() || [];
   return (
-    <div style={{ height, width, position: 'absolute' }}>
+    <div data-testid="vertical-menu" style={{ height, width, position: 'absolute' }}>
       {/* {elements.map((element: Element, index: number) => {
         const { type: name } = element.getData();
         const { y } = element.getModel();
