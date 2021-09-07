@@ -4,16 +4,24 @@ on:
     types:
       - opened
       - synchronize
+      - reopened
   push:
     branches:
       - master
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "head ${{ github.event.pull_request.head.sha }}"
+      - run: echo "sha ${{ github.sha }}"
   install:
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup Node.js
         uses: actions/setup-node@v2.4.0
         with:
@@ -64,16 +72,14 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Cache test report
+        id: cache-test-report
         uses: actions/cache@v2.1.6
         with:
           path: coverage/lcov.info
           key: test-report-${{ github.sha }}
       - name: Test
+        if: steps.cache-test-report.outputs.cache-hit != 'true'
         run: yarn test --coverage
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2.0.3
-        with:
-          directory: ./coverage/
   sonar:
     name: Sonar scan
     needs:
@@ -84,13 +90,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Restore lint reports
-        uses: actions/cache@v2.1.6
-        with:
-          path: |
-            stylelint-report.json
-            eslint-report.json
-          key: lint-reports-${{ github.sha }}
       - name: Restore test report
         uses: actions/cache@v2.1.6
         with:
@@ -118,6 +117,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Cache package
+        id: cache-package
         uses: actions/cache@v2.1.6
         with:
           path: |
@@ -126,4 +126,5 @@ jobs:
             lib
           key: package-${{ github.sha }}
       - name: Build
+        if: steps.cache-package.outputs.cache-hit != 'true'
         run: yarn build
