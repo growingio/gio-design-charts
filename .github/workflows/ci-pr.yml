@@ -1,19 +1,11 @@
-name: Continuous Integration
+name: CI on Pull Request
 on:
   pull_request_target:
     types:
       - opened
       - synchronize
       - reopened
-  push:
-    branches:
-      - master
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "head ${{ github.event.pull_request.head.sha }}"
-      - run: echo "sha ${{ github.sha }}"
   install:
     name: Install dependencies
     runs-on: ubuntu-latest
@@ -42,6 +34,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup Node.js
         uses: actions/setup-node@v2.4.0
         with:
@@ -62,6 +56,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup Node.js
         uses: actions/setup-node@v2.4.0
         with:
@@ -76,7 +72,7 @@ jobs:
         uses: actions/cache@v2.1.6
         with:
           path: coverage/lcov.info
-          key: test-report-${{ github.sha }}
+          key: test-report-${{ github.event.pull_request.head.sha }}
       - name: Test
         if: steps.cache-test-report.outputs.cache-hit != 'true'
         run: yarn test --coverage
@@ -89,12 +85,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Restore test report
         uses: actions/cache@v2.1.6
         with:
           path: coverage/lcov.info
-          key: test-report-${{ github.sha }}
+          key: test-report-${{ github.event.pull_request.head.sha }}
       - name: Upload reports to SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -107,6 +103,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup Node.js
         uses: actions/setup-node@v2.4.0
         with:
@@ -124,7 +122,7 @@ jobs:
             dist
             es
             lib
-          key: package-${{ github.sha }}
+          key: package-${{ github.event.pull_request.head.sha }}
       - name: Build
         if: steps.cache-package.outputs.cache-hit != 'true'
         run: yarn build
