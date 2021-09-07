@@ -4,11 +4,6 @@ on:
     branches:
       - master
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "head ${{ github.event.pull_request.head.sha }}"
-      - run: echo "sha ${{ github.sha }}"
   install:
     name: Install dependencies
     runs-on: ubuntu-latest
