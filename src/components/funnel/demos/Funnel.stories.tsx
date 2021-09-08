@@ -1,8 +1,8 @@
 import { ComponentStory } from '@storybook/react';
 // import { FunnelChart, FunnelGroupChart } from '../../../src';
-import FunnelChart from '../FunnelChart'
-import FunnelGroupChart from '../FunnelGroupChart'
-import Card from '../../../demos/card';
+import FunnelChart from '../FunnelChart';
+import FunnelGroupChart from '../FunnelGroupChart';
+import Card from '../../../common/demos/card';
 import { dataWithMultiBar } from '../../column/demos/data';
 import DrillDownCard from './drilldown-card';
 import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';

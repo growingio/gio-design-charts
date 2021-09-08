@@ -1,25 +1,25 @@
 import React, { CSSProperties } from 'react';
 import Frame from '../frame';
-import { AreaStack, AreaWithSample, PercentArea } from '../../components/area/demos/Area.stories';
-import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../../components/bar/demos/Bar.stories';
+import { AreaStack, AreaWithSample, PercentArea } from '../../../components/area/demos/Area.stories';
+import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../../../components/bar/demos/Bar.stories';
 import {
   ColumnWithGroup,
   ColumnWithMulti,
   ColumnWithOne,
   PercentColumn,
   StackingDiagramColumn,
-} from '../../components/column/demos/Column.stories';
+} from '../../../components/column/demos/Column.stories';
 import {
   FunnelWith3Columns,
   FunnelWith6Columns,
   FunnelWith7Columns,
   FunnelWithBasic,
   FunnelWithGroup,
-} from '../../components/funnel/demos/Funnel.stories';
+} from '../../../components/funnel/demos/Funnel.stories';
 // import { FunnelWithLinkExample } from '../funnel/Funnel.stories';
 
-import { LineWithOneLine, LineWithDash, LineWithMenu } from '../../components/line/demos/Line.stories';
-import { ChartProps } from '../../interface';
+import { LineWithOneLine, LineWithDash, LineWithMenu } from '../../../components/line/demos/Line.stories';
+import { ChartProps } from '../../../interface';
 
 const titleStyle: CSSProperties = {
   fontSize: '24px',

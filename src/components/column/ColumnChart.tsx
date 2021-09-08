@@ -7,8 +7,7 @@ import { columnChart, handleLegend } from '../../frameworks/columnChart';
 import { ChartType, ChartProps } from '../../interface';
 import { colors } from '../../theme';
 import { LegendDirector, ScrollXDirector } from '../directors';
-import { defaultGroupInterval, defaultInterval } from '../../utils/interval';
-import { hasDodge } from './utils';
+import { defaultGroupInterval, defaultInterval, hasDodge } from '../../utils/interval';
 
 export interface ColumnChartProps extends ChartProps {
   useScroll?: boolean;

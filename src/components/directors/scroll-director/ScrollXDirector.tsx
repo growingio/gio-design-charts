@@ -1,5 +1,5 @@
-import React, { LegacyRef, useEffect, useRef, useState } from 'react';
-import { ChartCanvasProps } from '../../base/core';
+import React, { LegacyRef, useEffect, useState } from 'react';
+import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
 import LegendDirector from '../legend-director';

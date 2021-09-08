@@ -1,6 +1,5 @@
 import { GeometryLabel } from '@antv/g2';
-import { LabelCfg, LabelPointCfg, Writeable } from '@antv/g2/lib/geometry/label/interface';
-import { MappingDatum } from '@antv/g2/lib/interface';
+import { LabelCfg } from '@antv/g2/lib/geometry/label/interface';
 
 class IntervalLabel extends GeometryLabel {
   protected getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
@@ -12,18 +11,6 @@ class IntervalLabel extends GeometryLabel {
     const style = labelCfg?.style || {};
     style.fill = showInTop ? style.fill : '#ffffff';
     return { x, y: showInTop ? y : -y };
-  }
-
-  protected getThemedLabelCfg(labelCfg: LabelCfg) {
-    return super.getThemedLabelCfg;
-  }
-  protected setLabelPosition(
-    labelPointCfg: Writeable<LabelPointCfg>,
-    mappingData: MappingDatum,
-    index: number,
-    position: string
-  ) {
-    super.setLabelPosition(labelPointCfg, mappingData, index, position);
   }
 }
 
