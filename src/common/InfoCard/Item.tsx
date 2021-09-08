@@ -1,8 +1,10 @@
 import React from 'react';
 
 const Item = (props: any) => {
-  const { data, forwardKey, valueKey } = props;
+  const { data, forwardKey, valueKey, formatter } = props;
   const item = data?.data;
+  const value = item?.[valueKey] || item.value;
+  const formatedValue = formatter ? formatter(value) : value;
   return (
     <div className="gio-d-chart-infocard_item">
       <span className="gio-d-chart-infocard_label">
@@ -12,7 +14,7 @@ const Item = (props: any) => {
         />
         {item?.[forwardKey]}
       </span>
-      <span className="gio-d-chart-infocard_value">{item?.[valueKey] || item.value}</span>
+      <span className="gio-d-chart-infocard_value">{formatedValue}</span>
     </div>
   );
 };
