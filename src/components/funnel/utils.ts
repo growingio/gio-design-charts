@@ -4,7 +4,7 @@ export const getSingleData = (data: any[]) => {
   const covertData = [] as any[];
   const texts = [] as string[];
   let prev = {} as any;
-  data.map((item: any, index: number) => {
+  data.forEach((item: any, index: number) => {
     if (index === 0) {
       covertData.push({ ...item });
       prev = item;
@@ -16,7 +16,6 @@ export const getSingleData = (data: any[]) => {
       // covertData.push({ ...item, value: prev?.value || 0, prev: { ...prev } });
       prev = item;
     }
-    return item;
   });
   return {
     source: data,
@@ -31,7 +30,7 @@ export const getGroupData = (data: any[], config: ChartConfig) => {
   const forwardKey = config?.funnel?.color;
   if (forwardKey) {
     const prevs = {} as any;
-    data.map((item: any) => {
+    data.forEach((item: any) => {
       const prevItem = prevs[item[forwardKey]];
       if (prevItem) {
         if (!item?.isPlaceholder) {
@@ -46,7 +45,6 @@ export const getGroupData = (data: any[], config: ChartConfig) => {
         }
         covertData.push({ ...item });
       }
-      return item;
     });
   }
   return {

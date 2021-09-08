@@ -52,6 +52,6 @@ export const areaChart = (options: ChartOptions, config: ChartConfig = {}) => {
 export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const lineConfig = getShapeConfig(config, 'area');
   if (lineConfig.color) {
-    charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
+    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
   }
 };
