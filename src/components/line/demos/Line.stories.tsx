@@ -141,6 +141,7 @@ const LineWithOneLineDateConfig = {
     showCrosshairs: true,
     shared: true,
     enterable: true,
+    formatter: (val: number) => val + '次',
   },
   axis: [
     'value',

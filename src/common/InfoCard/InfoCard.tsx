@@ -16,6 +16,7 @@ export interface InfoCardProps {
 const InfoCard = (props: InfoCardProps) => {
   const { title, data = [], trigger, forwardKey, config, injectComponent } = props;
   const renderTooltip = config?.tooltip?.render;
+  const formatter = config?.tooltip?.formatter;
   return (
     <>
       {renderTooltip ? (
@@ -27,7 +28,7 @@ const InfoCard = (props: InfoCardProps) => {
             // item.color = defaultStyles?.color || item.color;
             return (
               <div key={item?.data?.[forwardKey]}>
-                <Item data={item} forwardKey={forwardKey} />
+                <Item data={item} forwardKey={forwardKey} formatter={formatter} />
               </div>
             );
           })}
