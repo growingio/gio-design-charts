@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Item = (props: any) => {
-  const { data, forwardKey } = props;
+  const { data, forwardKey, valueKey } = props;
   const item = data?.data;
   return (
     <div className="gio-d-chart-infocard_item">
@@ -12,7 +12,7 @@ const Item = (props: any) => {
         />
         {item?.[forwardKey]}
       </span>
-      <span className="gio-d-chart-infocard_value">{item.value}</span>
+      <span className="gio-d-chart-infocard_value">{item?.[valueKey] || item.value}</span>
     </div>
   );
 };
