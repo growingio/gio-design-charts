@@ -2,6 +2,7 @@ import React from 'react';
 import { ChartConfig, ChartOptions, Legends } from '../../interface';
 import { getLegendStyles } from '../../utils/styles';
 import InfoCard from './InfoCard';
+import { last } from 'lodash';
 
 import './styles/infocard.less';
 
@@ -18,6 +19,7 @@ const InfoCardBox = (props: InfoCardProps) => {
   const { triggerItems, legends = {}, trigger, options, config } = props;
   const defaultStyles = options?.defaultStyles;
   const forwardKey = config?.[config?.type]?.color;
+  const valueKey = last(config?.[config?.type]?.position.split('*')) as string;
 
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
@@ -44,7 +46,14 @@ const InfoCardBox = (props: InfoCardProps) => {
     }) || [];
   return (
     <div className="gio-d-chart-infocard" data-testid="infoCardBox">
-      <InfoCard title={title} data={items} trigger={trigger} forwardKey={forwardKey} config={config} />
+      <InfoCard
+        title={title}
+        data={items}
+        trigger={trigger}
+        forwardKey={forwardKey}
+        valueKey={valueKey}
+        config={config}
+      />
     </div>
   );
 };
