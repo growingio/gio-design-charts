@@ -38,6 +38,6 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
 export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const barConfig = getShapeConfig(config, 'bar');
   if (barConfig.color) {
-    charts.map((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
   }
 };

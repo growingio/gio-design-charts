@@ -83,7 +83,7 @@ export const addLinkByElementHigh = () => {
   let groups = [] as any[];
   return function (view: View, options: any) {
     if (groups.length > 0) {
-      groups.map((group) => group?.remove());
+      groups.forEach((group) => group?.remove());
       groups = [];
     }
     addLinkByElement(view, groups, options);
