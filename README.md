@@ -3,7 +3,6 @@
 一套基于 [G2](https://g2.antv.vision/zh) 的 Chart 组件库
 
 ![G2](https://g2.antv.vision/zh)
-![moment](http://momentjs.cn/)
 ![License](https://img.shields.io/github/license/growingio/gio-design)
 
 ## Getting Started
