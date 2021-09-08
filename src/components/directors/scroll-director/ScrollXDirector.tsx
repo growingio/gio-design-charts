@@ -1,4 +1,4 @@
-import React, { LegacyRef, useEffect, useRef, useState } from 'react';
+import React, { LegacyRef, useEffect, useState } from 'react';
 import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';

@@ -1,6 +1,6 @@
-export { default as AreaChart } from './components/area';
-export { default as LineChart } from './components/line';
-export { default as ColumnChart } from './components/column';
+export * from './components/area';
+export * from './components/line';
+export * from './components/column';
 export * from './components/bar';
 export * from './components/funnel';
 

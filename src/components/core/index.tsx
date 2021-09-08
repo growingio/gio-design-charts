@@ -1,1 +1,1 @@
-export { default, default as BaseChart } from './base';
+export { default, default as core } from './core';
