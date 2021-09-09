@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 

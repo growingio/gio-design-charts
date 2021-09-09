@@ -3,6 +3,36 @@ import { render, screen } from '@testing-library/react';
 import InfoCardBox from '../InfoCardBox';
 import InfoCard from '../InfoCard';
 
+const mappingData = {
+  _origin: {
+    type: '2.加入购物车',
+    city: '南京',
+    value: 18334,
+  },
+  points: [
+    {
+      x: 0.35567894225227825,
+      y: 0,
+    },
+    {
+      x: 0.35567894225227825,
+      y: 0.73336,
+    },
+    {
+      x: 0.39432105774772175,
+      y: 0.73336,
+    },
+    {
+      x: 0.39432105774772175,
+      y: 0,
+    },
+  ],
+  x: 429.53749084472656,
+  y: 79.05936,
+  color: '#62CE6C',
+  shape: 'column-element',
+};
+
 const triggerItems = [
   {
     title: '2.加入购物车',
@@ -11,35 +41,7 @@ const triggerItems = [
       city: '南京',
       value: 18334,
     },
-    mappingData: {
-      _origin: {
-        type: '2.加入购物车',
-        city: '南京',
-        value: 18334,
-      },
-      points: [
-        {
-          x: 0.35567894225227825,
-          y: 0,
-        },
-        {
-          x: 0.35567894225227825,
-          y: 0.73336,
-        },
-        {
-          x: 0.39432105774772175,
-          y: 0.73336,
-        },
-        {
-          x: 0.39432105774772175,
-          y: 0,
-        },
-      ],
-      x: 429.53749084472656,
-      y: 79.05936,
-      color: '#62CE6C',
-      shape: 'column-element',
-    },
+    mappingData,
     name: '南京',
     value: '18334',
     color: '#62CE6C',
@@ -62,35 +64,7 @@ const triggerItemsPrev = [
         value: 18333,
       },
     },
-    mappingData: {
-      _origin: {
-        type: '2.加入购物车',
-        city: '南京',
-        value: 18334,
-      },
-      points: [
-        {
-          x: 0.35567894225227825,
-          y: 0,
-        },
-        {
-          x: 0.35567894225227825,
-          y: 0.73336,
-        },
-        {
-          x: 0.39432105774772175,
-          y: 0.73336,
-        },
-        {
-          x: 0.39432105774772175,
-          y: 0,
-        },
-      ],
-      x: 429.53749084472656,
-      y: 79.05936,
-      color: '#62CE6C',
-      shape: 'column-element',
-    },
+    mappingData,
     name: '南京',
     value: '18334',
     color: '#62CE6C',
@@ -101,12 +75,6 @@ const triggerItemsPrev = [
 ];
 
 const legends = {
-  北京: {
-    name: '北京',
-    color: '#5F87FF',
-    active: true,
-    type: 'funnel',
-  },
   上海: {
     name: '上海',
     color: '#FFDD63',
@@ -116,18 +84,6 @@ const legends = {
   南京: {
     name: '南京',
     color: '#62CE6C',
-    active: true,
-    type: 'funnel',
-  },
-  深圳: {
-    name: '深圳',
-    color: '#FFA455',
-    active: true,
-    type: 'funnel',
-  },
-  广东: {
-    name: '广东',
-    color: '#60BCFA',
     active: true,
     type: 'funnel',
   },
@@ -194,8 +150,8 @@ describe('InfoCard', () => {
   test('render custom tooltip with InfoCard', async () => {
     const tooltipConfig = {
       tooltip: {
-        render(...options) {
-          return <InfoCard {...options} />;
+        render(renderOptions) {
+          return <InfoCard {...renderOptions} />;
         },
       },
       type: 'bar',
@@ -218,9 +174,12 @@ describe('InfoCard', () => {
   test('render custom tooltip with injectComponent', async () => {
     const tooltipConfig = {
       tooltip: {
-        render(...options) {
+        render(renderOptions) {
           return (
-            <InfoCard {...options} injectComponent={() => <div data-testid="injectComponent">Inject Component</div>} />
+            <InfoCard
+              {...renderOptions}
+              injectComponent={() => <div data-testid="injectComponent">Inject Component</div>}
+            />
           );
         },
       },

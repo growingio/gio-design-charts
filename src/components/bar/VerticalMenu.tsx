@@ -1,4 +1,3 @@
-import { Element } from '@antv/g2';
 import React from 'react';
 
 const getRanges = (max: number, range: number[] = [0, 0]) => {
