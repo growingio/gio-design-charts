@@ -7,7 +7,7 @@ import { getShapeConfig } from './utils';
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   if (!id) {
-    return;
+    return {};
   }
   const { reporter } = options;
   const chart = generateChart(options, config);

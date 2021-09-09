@@ -11,13 +11,12 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   const basicConfig = config.chart || {};
   // Set defualt chart config
-  const renderChart = new Chart({
+  return new Chart({
     ...basicConfig,
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
   });
-  return renderChart;
 };
 
 /**

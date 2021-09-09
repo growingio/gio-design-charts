@@ -15,11 +15,11 @@ const LegendDirector = React.memo((props: LegendDirectorProps) => {
   const { legends, getCharts } = options;
   const watchReset = useMemo(
     () =>
-      debounce((offset: { width: number; height: number }) => {
+      debounce((resetOffset: { width: number; height: number }) => {
         const charts = getCharts?.();
         charts?.map((view: Chart | View) => {
           if (view instanceof Chart && width) {
-            const widthObj = Number(width) > offset.width + 200 ? width : 0;
+            const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
             if (widthObj) {
               view.changeSize(widthObj, config.chart.height);
             }
