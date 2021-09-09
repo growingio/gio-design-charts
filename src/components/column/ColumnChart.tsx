@@ -1,7 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { columnChart, handleLegend } from '../../frameworks/columnChart';
 
 import { ChartType, ChartProps } from '../../interface';

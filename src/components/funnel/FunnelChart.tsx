@@ -1,6 +1,5 @@
 import { isEmpty } from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { useMemo } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { funnelChart, handleLegend } from '../../frameworks/funnelChart';
 
 import { ChartType, ChartProps } from '../../interface';

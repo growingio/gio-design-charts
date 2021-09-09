@@ -30,7 +30,7 @@ export const hasAdjust = (config: Shape, adjustType: 'stack' | 'dodge') => {
     return true;
   }
   if (Array.isArray(adjust)) {
-    for (let a of adjust) {
+    for (const a of adjust) {
       if (typeof a === 'string' && a === adjustType) {
         return true;
       }
@@ -73,7 +73,7 @@ export const getDodgeBy = (config: Shape) => {
   const adjust = config?.adjust;
   const dodge = 'dodge';
   if (Array.isArray(adjust)) {
-    for (let a of adjust) {
+    for (const a of adjust) {
       if (typeof a === 'object' && a?.type === dodge && a?.dodgeBy) {
         return a?.dodgeBy;
       }

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { DISABLE_COLOR } from '../../theme';
 import { getBackgroundImage } from '../../utils/styles';
 
@@ -15,10 +14,9 @@ const Legend = (props: LegendProps) => {
     onClick && onClick(label);
   }, [label, onClick]);
   const { active, color, lineDash, type, dashed } = data || {};
-  let stylesLine = {} as React.CSSProperties;
 
   const backgroundImage = dashed ? getBackgroundImage() : {};
-  stylesLine = lineDash
+  const stylesLine = lineDash
     ? {
         border: `1px dashed ${active ? color : DISABLE_COLOR}`,
         height: 0,

@@ -1,5 +1,4 @@
-import React, { LegacyRef, useEffect, useState, useCallback } from 'react';
-import { RefObject } from 'react';
+import React, { LegacyRef, useEffect, useState, useCallback, RefObject } from 'react';
 import { InfoCardBox } from '../../common/InfoCard';
 import { ChartConfig, ChartOptions, Legend, ReportThing } from '../../interface';
 import useLegends, { getLegends } from '../hooks/useLegends';
