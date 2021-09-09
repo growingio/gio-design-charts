@@ -23,11 +23,3 @@ yarn storybook
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgrowingio%2Fgio-design.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fgrowingio%2Fgio-design?ref=badge_large)
-
----
-
-Powered by
-
-<p>
-  <a href="https://gio-design-charts.vercel.app/?path=/story/charts-dashboard--dashboard" target="_blank"><img src="./assets/vercel.svg" alt="Vercel Inc." height=32 /></a>
-</p>
