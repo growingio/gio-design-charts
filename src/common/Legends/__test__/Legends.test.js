@@ -69,7 +69,6 @@ describe('Legends', () => {
 
     expect(await screen.findByTestId('legends')).toBeTruthy();
 
-    // const legend = await screen.findByText('北京');
     const legend = await screen.findByTestId(`legend-item-${clickedLabel}`);
     expect(legend).toBeTruthy();
 
@@ -83,7 +82,6 @@ describe('Legends', () => {
 
     expect(await screen.findByTestId('legends')).toBeTruthy();
 
-    // const legend = await screen.findByText('北京');
     const legend = await screen.findByTestId(`legend-item-${clickedLabel}`);
     expect(legend).toBeTruthy();
 
@@ -96,7 +94,6 @@ describe('Legends', () => {
 
     expect(await screen.findByTestId('legends')).toBeTruthy();
 
-    // const legend = await screen.findByText('北京');
     expect(await screen.findByTestId('legend-others')).toBeTruthy();
   });
 });

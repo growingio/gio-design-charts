@@ -62,19 +62,6 @@ export const intervalShape = (
         // 因为Element.model中的颜色为G2根据theme自动设置的颜色，和根据业务需求设定的颜色会不同
         // 在element.stateStyle.default中设置的颜色为最真实的颜色，但stateStyle是私有方法，无法直接获取
         // 在这里采取Element中设置stateStyle的方法，获取stateStyle，并获取其中的fill颜色
-        /**
-         * 类似 private element.getShapeType(model)
-         * @param {Element}
-         */
-        // const shape = element.getModel()?.shape;
-        // const shapeType = Array.isArray(shape) ? shape[0] : shape;
-        /**
-         * 类似 private element.getStatesStyle(model)
-         * @param {Element}
-         */
-        // const { shapeFactory } = element;
-        // const defaultShapeType = shapeFactory.defaultShapeType;
-        // const stateTheme = shapeFactory.theme[shapeType as any] || shapeFactory.theme[defaultShapeType];
 
         const defaultColor = options?.defaultStyles?.color;
         const modelFill = element?.getModel()?.style?.fill;
@@ -98,7 +85,6 @@ export const handleInterval = (
   type: string = 'column'
 ) => {
   const { legends, hasDashed, defaultStyles = {} } = options;
-  // const chart = renderChart(options, config);
   const dashedBars: string[] = [];
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
