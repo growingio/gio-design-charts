@@ -24,6 +24,8 @@ const Template: ComponentStory<typeof ColumnChart> = (args) => (
   </Card>
 );
 
+const position = 'type*value';
+
 const config = {
   chart: {
     autoFit: true,
@@ -44,7 +46,7 @@ const ColumnWithOneArgs = {
   config: {
     ...config,
     column: {
-      position: 'type*value',
+      position,
       color: 'company',
     },
   },
@@ -123,7 +125,7 @@ const ColumnWithGroupArgs = {
   config: {
     ...config,
     column: {
-      position: 'type*value',
+      position,
       color: 'company',
       adjust: [
         {
@@ -144,7 +146,7 @@ const StackingDiagramColumnArgs = {
   config: {
     ...config,
     column: {
-      position: 'type*value',
+      position,
       color: 'company',
       adjust: 'stack',
     },
@@ -170,7 +172,7 @@ const PercentColumnArgs = {
       },
     ],
     column: {
-      position: 'type*value',
+      position,
       color: 'company',
       adjust: 'stack',
     },

@@ -18,6 +18,8 @@ export default {
   },
 };
 
+const position = 'month*value';
+
 const Template: ComponentStory<typeof AreaChart> = (args) => (
   <Card>
     <AreaChart {...args} />
@@ -63,9 +65,9 @@ const AreaWithSampleArgs = {
   config: {
     ...config,
     area: {
-      position: 'month*value',
+      position,
       color: 'city',
-      area: 'month*value',
+      area: position,
     },
   },
 };
@@ -80,9 +82,9 @@ const AreaStackArgs = {
   config: {
     ...config,
     area: {
-      position: 'month*value',
+      position,
       color: 'city',
-      area: 'month*value',
+      area: position,
       adjust: ['stack'],
     },
   },

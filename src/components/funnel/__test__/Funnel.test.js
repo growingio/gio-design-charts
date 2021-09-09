@@ -20,12 +20,14 @@ describe('Funnel Chart', () => {
     jest.useRealTimers();
   });
 
+  const legendTestId = 'legend-director';
+
   test('render Chart for starting', async () => {
     render(<FunnelChart {...FunnelWithLink.args} />);
     await act(async () => {
       await jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
   test('render Chart', async () => {
@@ -33,7 +35,7 @@ describe('Funnel Chart', () => {
     await act(async () => {
       await jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
   test('render Chart with 3 columns', async () => {
@@ -41,7 +43,7 @@ describe('Funnel Chart', () => {
     await act(async () => {
       await jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
   test('render Chart with 6 columns', async () => {
@@ -49,7 +51,7 @@ describe('Funnel Chart', () => {
     await act(async () => {
       await jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
   test('render Chart with 7 columns', async () => {
@@ -57,7 +59,7 @@ describe('Funnel Chart', () => {
     await act(async () => {
       await jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
   test('render Chart with group by scrolling', async () => {
@@ -66,6 +68,6 @@ describe('Funnel Chart', () => {
       await jest.runOnlyPendingTimers();
     });
     expect(await screen.findByTestId('scroll-x-director')).toBeTruthy();
-    expect(await screen.findByTestId('legend-director')).toBeTruthy();
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 });

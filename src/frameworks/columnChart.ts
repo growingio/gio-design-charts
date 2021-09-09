@@ -85,16 +85,12 @@ export const handleInterval = (
   type: string = 'column'
 ) => {
   const { legends, hasDashed, defaultStyles = {} } = options;
-  const dashedBars: string[] = [];
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
   intervalShape(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
     const legend = legends?.[label] || ({} as Legend);
-    if (legend?.dashed) {
-      dashedBars.push(label);
-    }
     return {
       // stroke: '#fff',
       // strokeWidth: 1,
