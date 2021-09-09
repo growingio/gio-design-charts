@@ -13,6 +13,9 @@ export default {
   },
 };
 
+const position = 'type*value';
+const intervalLabel = 'interval-label';
+
 const Template: ComponentStory<typeof FunnelChart> = (args) => (
   <Card>
     <FunnelChart {...args} />
@@ -47,20 +50,14 @@ const FunnelWithLinkArgs = {
 FunnelWithLink.storyName = '漏斗图探索';
 FunnelWithLink.args = FunnelWithLinkArgs;
 
-const ComparativeTemplate: ComponentStory<typeof FunnelChart> = (args) => (
-  <Card>
-    <FunnelChart {...args} />
-  </Card>
-);
-
-export const FunnelWithBasic = ComparativeTemplate.bind({});
+export const FunnelWithBasic = Template.bind({});
 const FunnelWithBasicArgs = {
   legends: [],
   data: dataWithBasicFunnel,
   config: {
     ...config,
     funnel: {
-      position: 'type*value',
+      position,
       color: 'type',
     },
   },
@@ -68,19 +65,19 @@ const FunnelWithBasicArgs = {
 FunnelWithBasic.storyName = '占位柱子';
 FunnelWithBasic.args = FunnelWithBasicArgs;
 
-export const FunnelWith3Columns = ComparativeTemplate.bind({});
+export const FunnelWith3Columns = Template.bind({});
 const FunnelWith3ColumnsArgs = {
   legends: [],
   data: dataWith3Columns,
   config: {
     ...config,
     funnel: {
-      position: 'type*value',
+      position,
       color: 'type',
       label: [
         'value',
         {
-          type: 'interval-label',
+          type: intervalLabel,
           style: {
             fill: '#343434',
           },
@@ -101,19 +98,19 @@ const FunnelWith3ColumnsArgs = {
 FunnelWith3Columns.storyName = '基础漏斗';
 FunnelWith3Columns.args = FunnelWith3ColumnsArgs;
 
-export const FunnelWith6Columns = ComparativeTemplate.bind({});
+export const FunnelWith6Columns = Template.bind({});
 const FunnelWith6ColumnsArgs = {
   legends: [],
   data: dataWith6Columns,
   config: {
     ...config,
     funnel: {
-      position: 'type*value',
+      position,
       color: 'type',
       label: [
         'value',
         {
-          type: 'interval-label',
+          type: intervalLabel,
           style: {
             fill: '#343434',
           },
@@ -125,19 +122,19 @@ const FunnelWith6ColumnsArgs = {
 FunnelWith6Columns.storyName = '6个事件漏斗';
 FunnelWith6Columns.args = FunnelWith6ColumnsArgs;
 
-export const FunnelWith7Columns = ComparativeTemplate.bind({});
+export const FunnelWith7Columns = Template.bind({});
 const FunnelWith7ColumnsArgs = {
   legends: [],
   data: dataWith7Columns,
   config: {
     ...config,
     funnel: {
-      position: 'type*value',
+      position,
       color: 'type',
       label: [
         'value',
         {
-          type: 'interval-label',
+          type: intervalLabel,
           style: {
             fill: '#343434',
           },
@@ -168,7 +165,7 @@ const FunnelWithGroupArgs = {
       showMarkers: false,
     },
     funnel: {
-      position: 'type*value',
+      position,
       color: 'city',
       adjust: [
         {
@@ -179,7 +176,7 @@ const FunnelWithGroupArgs = {
       label: [
         'value',
         {
-          type: 'interval-label',
+          type: intervalLabel,
           style: {
             fill: '#343434',
           },

@@ -20,7 +20,7 @@ export default {
     },
   },
 };
-
+const position = 'type*value';
 const Template: ComponentStory<typeof BarChart> = (args) => (
   <Card>
     <BarChart {...args} />
@@ -131,7 +131,7 @@ const BarMultiArgs = {
       ],
     ],
     bar: {
-      position: 'type*value',
+      position,
       color: 'type',
       label: [
         'value',
@@ -236,7 +236,7 @@ const barWithGroupArgs = {
       ],
     ],
     bar: {
-      position: 'type*value',
+      position,
       color: 'company',
       adjust: [
         {
@@ -282,7 +282,7 @@ const StackingDiagramBarArgs = {
     ],
     scale: ['value', { max: 200, min: 0 }],
     bar: {
-      position: 'type*value',
+      position,
       color: 'company',
       adjust: 'stack',
     },
@@ -328,7 +328,7 @@ const PercentBarArgs = {
       ],
     ],
     bar: {
-      position: 'type*value',
+      position,
       color: 'company',
       adjust: 'stack',
     },
