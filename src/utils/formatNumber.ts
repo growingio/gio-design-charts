@@ -20,31 +20,17 @@ export const formatNumber = (value: any, decimalCount: number = 2, intSuffixZero
   } else {
     decimalValueStr = decimalValue.toFixed(decimalCount);
   }
-  const valueStr = (intValue + parseFloat(decimalValueStr)).toFixed(decimalCount) + '';
-  let i = valueStr.length - 1;
-  if (valueStr.indexOf('.') >= 0) {
-    while (i >= 0 && (valueStr[i] === '.' || valueStr[i] === '0')) {
-      i--;
-      if (valueStr[i] === '.') {
-        i--;
-        break;
-      }
-    }
-  }
+  const result = String(Number((intValue + parseFloat(decimalValueStr)).toFixed(decimalCount)));
 
-  const result = valueStr.slice(0, i + 1);
-  const decimalPart =
-    result.indexOf('.') >= 0
-      ? result.slice(result.indexOf('.'))
-      : intSuffixZeroFill
-      ? '.' + '0'.repeat(decimalCount)
-      : '';
+  const fillStr = intSuffixZeroFill ? '.' + '0'.repeat(decimalCount) : '';
+  const decimalPart = result.indexOf('.') >= 0 ? result.slice(result.indexOf('.')) : fillStr;
+
   let intPart = result.slice(0, result.indexOf('.') >= 0 ? result.indexOf('.') : result.length);
   intPart = intPart
     .split('')
-    .map((i, index) => {
+    .map((char, index) => {
       const dotIndex = intPart.length - index - 1;
-      return dotIndex % 3 === 0 && dotIndex !== 0 ? i + ',' : i;
+      return dotIndex % 3 === 0 && dotIndex !== 0 ? char + ',' : char;
     })
     .join('');
   return sign + intPart + decimalPart;

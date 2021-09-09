@@ -39,7 +39,7 @@ const core = (HighConponent: any) => {
     const { getCharts, getTriggerAction, interceptors } = useInterceptors();
 
     const defineReporter = useCallback((thing: ReportThing) => {
-      console.log(thing);
+      // do stome report thing in here
     }, []);
 
     // Init Chart
