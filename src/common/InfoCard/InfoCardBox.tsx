@@ -8,7 +8,7 @@ import './styles/infocard.less';
 
 export interface InfoCardProps {
   legends: Legends;
-  trigger?: string | undefined;
+  trigger?: string;
   triggerItems: any[];
   options?: ChartOptions;
   config?: ChartConfig;
