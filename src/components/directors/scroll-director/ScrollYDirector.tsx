@@ -6,17 +6,15 @@ import LegendDirector from '../legend-director';
 import { DEAULT_CHART_HEIGHT } from '../../../theme';
 import { calculateBarHeight } from '../../../utils/calculate';
 
-export interface ScrollYDirectorProps extends ChartCanvasProps {}
-
 /**
  * 主要为了实现条形图的滚动效果
  * 需要做的事情：
  * - 重新计算chart的真实高度
  * - 使用外边框，来创造滚动效果
- * @param props {ScrollYDirectorProps}
+ * @param props {ChartCanvasProps}
  * @returns
  */
-const ScrollDirector = (props: ScrollYDirectorProps) => {
+const ScrollDirector = (props: ChartCanvasProps) => {
   const { config, data } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;

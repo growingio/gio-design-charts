@@ -34,7 +34,7 @@ const core = (HighConponent: any) => {
     const [hoverItem, setHoverItem] = useState([]);
 
     const { legends, setLegends, updateLegends } = useLegends();
-    const [chartOptions, setChartOptions] = useState(defaultOptions as ChartOptions);
+    const [chartOptions, setChartOptions] = useState(defaultOptions);
 
     const { getCharts, getTriggerAction, interceptors } = useInterceptors();
 

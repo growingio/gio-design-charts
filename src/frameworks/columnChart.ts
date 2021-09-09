@@ -78,12 +78,7 @@ export const intervalShape = (
   return interval;
 };
 
-export const handleInterval = (
-  chart: Chart | View,
-  options: ChartOptions,
-  config: ChartConfig,
-  type: string = 'column'
-) => {
+export const handleInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig, type = 'column') => {
   const { legends, hasDashed, defaultStyles = {} } = options;
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;

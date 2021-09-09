@@ -35,7 +35,7 @@ export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfi
 export const lineChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
   if (!id) {
-    return;
+    return {};
   }
   const chart = renderChart(options, config);
   try {

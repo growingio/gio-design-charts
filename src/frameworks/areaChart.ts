@@ -35,7 +35,7 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
 export const areaChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
   if (!id) {
-    return;
+    return {};
   }
   const chart = renderChart(options, config);
   try {

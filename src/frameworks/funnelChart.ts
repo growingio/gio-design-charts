@@ -35,7 +35,7 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
 export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   if (!id) {
-    return;
+    return {};
   }
   const { interceptors, legends } = options;
   const chart = generateChart(options, config);

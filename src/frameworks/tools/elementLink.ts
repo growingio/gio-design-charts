@@ -62,16 +62,17 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
   }
 };
 
-export const addLinkByElement = (view: View, group: any[] = [], options: any) => {
+export const addLinkByElement = (view: View, group: any[], options: any) => {
   const { delay = 600, texts = [] } = options;
   if (!view) {
-    return null;
+    return;
   }
   if (delay <= 0) {
-    return linkByElement(view, group, texts);
+    linkByElement(view, group, texts);
+    return;
   }
 
-  return setTimeout(() => {
+  setTimeout(() => {
     linkByElement(view, group, texts);
   }, delay);
 };

@@ -4,7 +4,7 @@ import { barChart, handleLegend } from '../../frameworks/barChart';
 import { ChartType, ChartProps } from '../../interface';
 import { ScrollYDirector } from '../directors';
 
-const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
+const ScrollBarChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   config.type = ChartType.BAR;
@@ -31,4 +31,4 @@ const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default BarChart;
+export default ScrollBarChart;
