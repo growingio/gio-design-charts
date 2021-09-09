@@ -9,7 +9,7 @@ export interface InfoCardProps {
   data: any[];
   forwardKey: string;
   valueKey: string;
-  trigger?: string | undefined;
+  trigger?: string;
   config?: ChartConfig;
   injectComponent?: any;
 }
