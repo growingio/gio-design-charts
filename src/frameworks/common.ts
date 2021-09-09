@@ -64,10 +64,7 @@ export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, conf
   // We don't use default legend
   chart.legend(false);
 
-  // chart.interaction('active-region');
   chart.interaction('element-active');
-
-  // chart.interaction("element-highlight-by-x");
 
   // set default colors, althought we have set default color for each legend.
   // but it's still necessary to add default colors for theme

@@ -16,7 +16,6 @@ import {
   FunnelWithBasic,
   FunnelWithGroup,
 } from '../../../components/funnel/demos/Funnel.stories';
-// import { FunnelWithLinkExample } from '../funnel/Funnel.stories';
 
 import { LineWithOneLine, LineWithDash, LineWithMenu } from '../../../components/line/demos/Line.stories';
 import { ChartProps } from '../../../interface';

@@ -98,32 +98,6 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
   }
 };
 
-// export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
-//   const chart = generateChart(options, config);
-//   const linkView = chart.createView();
-
-//   const addLinkByElement = addLinkByElementHigh();
-
-//   linkView.on('afterrender', function (event: any) {
-//     addLinkByElement(event?.view, {});
-//   });
-
-//   fetchChartConfig(linkView, options, config);
-//   fetchInterval(linkView, options, config);
-//   linkView.render();
-
-//   const normalView = fetchChartConfig(chart.createView(), options, config);
-//   fetchInterval(normalView, options, config);
-//   // linkView.annotation().text({
-//   //   content: 'test24444',
-//   //   position: [200, 100],
-//   // });
-//   normalView.render();
-//   chart.legend(false);
-//   chart.render();
-//   return { chart, views: [linkView, normalView] };
-// };
-
 export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
   const barConfig = getShapeConfig(config, 'funnel');
   if (barConfig.color) {

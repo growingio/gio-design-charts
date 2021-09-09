@@ -1,8 +1,6 @@
-// import Base from '@antv/g2/lib/base';
 import React from 'react';
 import { lineChart, handleLegend } from '../../frameworks/lineChart';
 import { ChartType, ChartProps } from '../../interface';
-// import { BaseChart } from '../base';
 
 import { LegendDirector } from '../directors';
 

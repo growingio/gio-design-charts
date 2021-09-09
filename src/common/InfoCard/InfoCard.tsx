@@ -25,14 +25,11 @@ const InfoCard = (props: InfoCardProps) => {
       ) : (
         <div data-testid="infoCard">
           <div className="gio-d-chart-infocard_title">{title}</div>
-          {data.map((item: any) => {
-            // item.color = defaultStyles?.color || item.color;
-            return (
-              <div key={item?.data?.[forwardKey]}>
-                <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
-              </div>
-            );
-          })}
+          {data.map((item: any) => (
+            <div key={item?.data?.[forwardKey]}>
+              <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
+            </div>
+          ))}
           {injectComponent?.({ data, trigger, forwardKey })}
         </div>
       )}

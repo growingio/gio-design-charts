@@ -189,7 +189,6 @@ describe('InfoCard', () => {
       />
     );
     expect(await screen.findByTestId('customTooltip')).toBeTruthy();
-    // expect(screen.findByTestId('infoCard')).tive();
   });
 
   test('render custom tooltip with InfoCard', async () => {

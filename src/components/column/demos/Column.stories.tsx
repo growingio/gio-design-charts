@@ -67,9 +67,7 @@ const ColumnWithTsArgs = {
       {
         label: {
           formatter: (text: string, item: any, index: number) => {
-            // console.log(text, item, index);
             return text;
-            // return format(new Date(Number(text)), 'MM/dd EEEE', { locale: zhCN });
           },
         },
       },
@@ -153,7 +151,6 @@ const StackingDiagramColumnArgs = {
   },
 };
 StackingDiagramColumn.args = StackingDiagramColumnArgs;
-// export const StackingDiagramColumnExample = () => <StackingDiagramColumn {...StackingDiagramColumnArgs} />;
 StackingDiagramColumn.storyName = '堆积多维度柱状图';
 
 export const PercentColumn = Template.bind({ title: '堆积图' });
@@ -180,24 +177,4 @@ const PercentColumnArgs = {
   },
 };
 PercentColumn.args = PercentColumnArgs;
-// export const PercentColumnExample = () => <PercentColumn {...PercentColumnArgs} />;
 PercentColumn.storyName = '百分比柱状图';
-
-// const GroupAndStackColumn = Template.bind({});
-// const GroupAndStackColumnArgs = {
-//   legends: [],
-//   data: dataWithGroupStack,
-//   config: {
-//     ...config,
-//     column: {
-//       position: "type*value",
-//       color: "company",
-//       adjust: "stack",
-//     },
-//   },
-// };
-// GroupAndStackColumn.args = GroupAndStackColumnArgs;
-// export const GroupAndStackColumnExample = () => (
-//   <GroupAndStackColumn {...GroupAndStackColumnArgs} />
-// );
-// GroupAndStackColumn.storyName = "分组堆积柱状图";
