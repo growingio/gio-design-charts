@@ -20,7 +20,7 @@ const Legends = (props: any) => {
   );
 
   useEffect(() => {
-    const legendValues: Legend[] = Object.values(legends) || [];
+    const legendValues: Legend[] = Object.values(legends);
     if (legendValues.length <= 1) {
       setEnableClick(false);
     } else {
@@ -36,7 +36,7 @@ const Legends = (props: any) => {
   }, [legends, offsetWidth]);
   return (
     <div className="gio-d-chart-legends" data-testid="legends">
-      {tiled?.map((legend: Legend) => {
+      {tiled.map((legend: Legend) => {
         const { name } = legend;
         return <LegendComponent key={name} label={name} data={legend} onClick={onClickLegend} />;
       })}

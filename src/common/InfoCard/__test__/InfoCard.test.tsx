@@ -2,8 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import InfoCardBox from '../InfoCardBox';
 import InfoCard from '../InfoCard';
+import Item from '../Item';
+import { Legends } from '../../../interface';
 
-const mappingData = {
+export const mappingData = {
   _origin: {
     type: '2.加入购物车',
     city: '南京',
@@ -33,7 +35,7 @@ const mappingData = {
   shape: 'column-element',
 };
 
-const triggerItems = [
+export const triggerItems = [
   {
     title: '2.加入购物车',
     data: {
@@ -51,7 +53,7 @@ const triggerItems = [
   },
 ];
 
-const triggerItemsPrev = [
+export const triggerItemsPrev = [
   {
     title: '2.加入购物车',
     data: {
@@ -74,7 +76,7 @@ const triggerItemsPrev = [
   },
 ];
 
-const legends = {
+export const legends: Legends = {
   上海: {
     name: '上海',
     color: '#FFDD63',
@@ -89,25 +91,65 @@ const legends = {
   },
 };
 
-const trigger = 'mouseover';
-
-const options = {
+export const options = {
   defaultStyles: {},
 };
 
-const config = {
+export const config = {
   type: 'bar',
   bar: {
     color: 'city',
   },
 };
 
+const trigger = 'mouseover';
+const infoCardBoxTestid = 'infoCardBox';
+
 describe('InfoCard', () => {
-  test('render InfoCard', async () => {
+  test('render InfoCardBox', async () => {
     render(
       <InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} options={options} config={config} />
     );
-    expect(await screen.findByTestId('infoCardBox')).toBeTruthy();
+    expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
+  });
+
+  test('render InfoCardBox without config and options', async () => {
+    render(<InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} />);
+    expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
+  });
+
+  test('render InfoCardBox without config.tooltip', async () => {
+    const newConfig = { ...config, tooltip: {} };
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={newConfig}
+      />
+    );
+    expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
+  });
+
+  test('render InfoCardBox with empty config', async () => {
+    render(
+      <InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} options={options} config={{}} />
+    );
+    expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
+  });
+
+  test('render InfoCardBox with type config', async () => {
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={{ type: 'bar' }}
+      />
+    );
+    expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCard with prev data', async () => {
@@ -120,7 +162,7 @@ describe('InfoCard', () => {
         config={config}
       />
     );
-    expect(await screen.findByTestId('infoCardBox')).toBeTruthy();
+    expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render custom tooltip', async () => {
@@ -150,8 +192,59 @@ describe('InfoCard', () => {
   test('render custom tooltip with InfoCard', async () => {
     const tooltipConfig = {
       tooltip: {
-        render(renderOptions) {
+        render(renderOptions: any) {
           return <InfoCard {...renderOptions} />;
+        },
+      },
+      type: 'bar',
+      bar: {
+        color: 'city',
+      },
+    };
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={tooltipConfig}
+      />
+    );
+    expect(await screen.findByTestId('infoCard')).toBeTruthy();
+  });
+
+  test('render custom tooltip with noData InfoCard', async () => {
+    const tooltipConfig = {
+      tooltip: {
+        render(renderOptions: any) {
+          const { data, ...otherOptions } = renderOptions;
+          return <InfoCard {...otherOptions} />;
+        },
+      },
+      type: 'bar',
+      bar: {
+        position: 'tm*value',
+        color: 'city',
+      },
+    };
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={tooltipConfig}
+      />
+    );
+    expect(await screen.findByTestId('infoCard')).toBeTruthy();
+  });
+
+  test('render custom tooltip with empty data InfoCard', async () => {
+    const tooltipConfig = {
+      tooltip: {
+        render(renderOptions: any) {
+          const { data, ...otherOptions } = renderOptions;
+          return <InfoCard {...otherOptions} data={[{}]} />;
         },
       },
       type: 'bar',
@@ -174,7 +267,7 @@ describe('InfoCard', () => {
   test('render custom tooltip with injectComponent', async () => {
     const tooltipConfig = {
       tooltip: {
-        render(renderOptions) {
+        render(renderOptions: any) {
           return (
             <InfoCard
               {...renderOptions}
@@ -198,7 +291,7 @@ describe('InfoCard', () => {
       />
     );
 
-    const infoCardBox = await box.findByTestId('infoCardBox');
+    const infoCardBox = await box.findByTestId(infoCardBoxTestid);
     expect(infoCardBox).toBeTruthy();
 
     const infoCard = await box.findByTestId('infoCard');

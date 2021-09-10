@@ -21,12 +21,12 @@ const InfoCard = (props: InfoCardProps) => {
   return (
     <>
       {renderTooltip ? (
-        renderTooltip?.({ title, data, trigger, forwardKey })
+        renderTooltip({ title, data, trigger, forwardKey })
       ) : (
         <div data-testid="infoCard">
           <div className="gio-d-chart-infocard_title">{title}</div>
           {data.map((item: any) => (
-            <div key={item?.data?.[forwardKey]}>
+            <div key={item.data?.[forwardKey] || 'empty-item'}>
               <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
             </div>
           ))}

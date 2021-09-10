@@ -13,7 +13,7 @@ export interface Legend {
   /**
    * 图表Chart的类型，可为BAR、LINE等
    */
-  type?: ChartType;
+  type?: ChartType | string;
 
   // 图例Legend的名称
   name: string;

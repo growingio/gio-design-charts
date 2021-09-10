@@ -60,7 +60,7 @@ describe('Legends', () => {
     render(
       <Legends
         legends={legends}
-        onClick={(label) => {
+        onClick={(label: string) => {
           expect(label).toBe(clickedLabel);
         }}
         offsetWidth={1000}
