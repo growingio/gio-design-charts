@@ -11,7 +11,7 @@ module.exports = {
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
     '^.+\\.mdx$': '@storybook/addon-docs/jest-transform-mdx',
-    '^.+\\.ts?$': 'ts-jest',
+    '^.+\\.ts(x)?$': 'ts-jest',
   },
   roots: ['./src'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
