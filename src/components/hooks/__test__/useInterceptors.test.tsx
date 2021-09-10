@@ -8,7 +8,7 @@ describe('test useInterceptors', () => {
     const { result } = renderHook(() => useInterceptors());
     const chartObj = {};
     act(() => {
-      result.current.interceptors.onRender(chartObj as Chart);
+      result.current.interceptors.onRender(chartObj as any);
     });
     expect(result.current.getCharts()).toEqual([chartObj]);
   });

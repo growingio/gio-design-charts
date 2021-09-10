@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import VerticalMenu from '../VerticalMenu';
 
+const verticalMenuTestid = 'vertical-menu';
 describe('Bar Chart', () => {
   test('render Chart', async () => {
     render(
@@ -15,7 +16,7 @@ describe('Bar Chart', () => {
         }}
       />
     );
-    expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
+    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
   });
 
   test('test VerticalMenu with error', async () => {
@@ -29,7 +30,7 @@ describe('Bar Chart', () => {
         }}
       />
     );
-    expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
+    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
   });
 
   test('test VerticalMenu without range', async () => {
@@ -42,11 +43,11 @@ describe('Bar Chart', () => {
         }}
       />
     );
-    expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
+    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
   });
 
   test('test VerticalMenu without scale', async () => {
     render(<VerticalMenu height={200} width={200} />);
-    expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
+    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
   });
 });

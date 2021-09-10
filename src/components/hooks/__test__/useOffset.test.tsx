@@ -14,5 +14,6 @@ describe('test useOffset', () => {
       global.innerWidth = 2000;
       global.dispatchEvent(new Event('resize'));
     });
+    expect(result.current).toEqual({});
   });
 });
