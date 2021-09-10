@@ -10,9 +10,9 @@ const ScrollBarChart: React.FC<ChartProps> = (props: ChartProps) => {
   config.type = ChartType.BAR;
 
   config.bar = {
-    ...(config?.bar || {}),
+    ...(config.bar || {}),
     interval: {
-      ...(config?.bar?.interval || {}),
+      ...(config.bar?.interval || {}),
       // intervalPadding: 20, // 防止高度不适应，导致的错乱的问题
       dodgePadding: 4,
       maxColumnWidth: 16,

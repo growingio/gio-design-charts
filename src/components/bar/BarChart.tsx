@@ -13,9 +13,9 @@ const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
     appendPadding: [0, 50, 0, 0], // 为了显示右侧文字数据
   };
   config.bar = {
-    ...(config?.bar || {}),
+    ...(config.bar || {}),
     interval: {
-      ...(config?.bar?.interval || {}),
+      ...(config.bar?.interval || {}),
       // intervalPadding: 20, // 防止高度不适应，导致的错乱的问题
       dodgePadding: 4,
       maxColumnWidth: 16,
