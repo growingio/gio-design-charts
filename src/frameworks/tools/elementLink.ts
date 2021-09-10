@@ -55,7 +55,6 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
         addTextShape(textGroup, prev, next, texts[index]);
       }
     });
-    return group;
   } catch (err) {
     console.warn(err);
   }

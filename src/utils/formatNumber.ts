@@ -1,6 +1,6 @@
 // 1233123  ==> 1,233,123
 // 12155123.12 ==> 12,155,123.12
-export const formatNumber = (value: any, decimalCount: number = 2, intSuffixZeroFill: boolean = false) => {
+export const formatNumber = (value: any, decimalCount = 2, intSuffixZeroFill = false) => {
   if (!isFinite(value)) {
     return value + '';
   }
@@ -41,12 +41,12 @@ export const parseFormatedNumber = (text: string) => parseFloat(text.replace(/\,
 
 // 12   ==> 12%
 // 12.3 ==> 12.3%
-export const formatPercent = (value: string | number, decimalCount?: number, intSuffixZeroFill: boolean = false) =>
+export const formatPercent = (value: string | number, decimalCount?: number, intSuffixZeroFill = false) =>
   typeof value === 'number' ? formatNumber((value || 0) * 100, decimalCount, intSuffixZeroFill) + '%' : value;
 
 // 12   ==> 12 °C
 // 12.3 ==> 12.3 °C
-export const formatTemperature = (value: string | number, decimalCount?: number, intSuffixZeroFill: boolean = false) =>
+export const formatTemperature = (value: string | number, decimalCount?: number, intSuffixZeroFill = false) =>
   typeof value === 'number' ? formatNumber(value, decimalCount, intSuffixZeroFill) + ' °C' : value;
 
 export default formatNumber;

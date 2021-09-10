@@ -18,7 +18,7 @@ export interface ScrollXDirectorProps extends ChartCanvasProps {
  * @param props {ScrollXDirectorProps}
  * @returns
  */
-const ScrollDirector = (props: ScrollXDirectorProps) => {
+const ScrollXDirector = (props: ScrollXDirectorProps) => {
   const { config, sourceData } = props;
   const xDirectorRef: LegacyRef<HTMLDivElement> = React.createRef();
 
@@ -47,4 +47,4 @@ const ScrollDirector = (props: ScrollXDirectorProps) => {
   );
 };
 
-export default ScrollDirector;
+export default ScrollXDirector;

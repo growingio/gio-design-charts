@@ -124,7 +124,7 @@ export const handleInterval = (chart: Chart | View, options: ChartOptions, confi
 export const columnChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   if (!id) {
-    return;
+    return {};
   }
   const chart = renderChart(options, config);
   try {
