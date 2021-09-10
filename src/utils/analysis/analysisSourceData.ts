@@ -18,12 +18,12 @@ export const analysisSourceData = (chartData: any, options?: AnalysisOptions) =>
   const source = chartData?.data || [];
   const columns = chartData?.meta?.columns;
 
-  return source?.map((item: any) => {
+  return source.map((item: any) => {
     const row = {} as any;
-    columns.map((column: any, index: number) => {
+    columns?.map((column: any, index: number) => {
       let value = item?.[index];
       if (formatter) {
-        value = formatter?.(value, column);
+        value = formatter(value, column);
       } else {
         value = analysisRow(chartType, item?.[index], column);
       }

@@ -74,8 +74,8 @@ export const getDodgeBy = (config: Shape) => {
   const dodge = 'dodge';
   if (Array.isArray(adjust)) {
     for (const a of adjust) {
-      if (typeof a === 'object' && a?.type === dodge && a?.dodgeBy) {
-        return a?.dodgeBy;
+      if (typeof a === 'object' && a?.type === dodge && a.dodgeBy) {
+        return a.dodgeBy;
       }
     }
   }
