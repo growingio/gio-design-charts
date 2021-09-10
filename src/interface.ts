@@ -11,7 +11,7 @@ export enum ChartType {
 
 export interface Legend {
   /**
-   图表Chart的类型，可为BAR、LINE等
+   * 图表Chart的类型，可为BAR、LINE等
    */
   type?: ChartType;
 
@@ -40,16 +40,16 @@ export interface Legends {
 }
 export interface ChartProps {
   /**
-   Chart的基础配置，设定theme, scale, tooltip
+   * Chart的基础配置，设定theme, scale, tooltip
    */
   config: any;
   /**
-   Chart数据
+   * Chart数据
    */
   data: any;
   /**
-   图例数组，是字符串或者图例对象
-   * 
+   * 图例数组，是字符串或者图例对象
+   *
    */
   legends: (Legend | string)[];
 }
@@ -105,13 +105,15 @@ export interface ChartConfig {
   [key: string]: any;
 }
 
+type AdjustOptionType = AdjustOption | AdjustOption[];
+
 export interface Shape {
   /**
    * 设置数据调整方式
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
    * @param {AdjustOption}
    */
-  adjust?: string | string[] | AdjustOption | AdjustOption[];
+  adjust?: string | string[] | AdjustOptionType;
   /**
    * 颜色通道
    */

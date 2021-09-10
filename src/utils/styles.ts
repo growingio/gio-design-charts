@@ -10,7 +10,7 @@ export const getBackgroundImage = () => ({
 export const getLegendStyles = (legend: Legend, color: string) => {
   const { lineDash, dashed } = legend;
   const backgroundImage = dashed ? getBackgroundImage() : {};
-  const styles = lineDash
+  return lineDash
     ? {
         border: `1px dashed ${color}`,
         height: 0,
@@ -18,5 +18,4 @@ export const getLegendStyles = (legend: Legend, color: string) => {
         ...backgroundImage,
       }
     : { backgroundColor: color, ...backgroundImage };
-  return styles;
 };

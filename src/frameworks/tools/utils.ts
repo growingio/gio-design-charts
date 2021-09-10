@@ -3,7 +3,7 @@ import { Element } from '@antv/g2';
 export const getLinkPath = (prev: Element, next: Element): (string | number)[][] => {
   const bbox = prev.shape.getCanvasBBox();
   const nextBBox = next.shape.getCanvasBBox();
-  const path = [
+  return [
     ['M', bbox.maxX, bbox.minY + 2],
     ['L', nextBBox.minX, nextBBox.minY + 2],
     ['L', nextBBox.minX, nextBBox.maxY],
@@ -11,7 +11,6 @@ export const getLinkPath = (prev: Element, next: Element): (string | number)[][]
     ['L', bbox.maxX, bbox.minY],
     ['Z'],
   ];
-  return path;
 };
 
 /**

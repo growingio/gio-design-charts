@@ -37,7 +37,7 @@ export const getRelateLegend = (shapeInfo: any) => {
   const legendByDodge = legends?.[data?.[dodgeBy]];
   if (contrastDodge && dodgeBy && legendByDodge) {
     // for dodgeBy, we needn't color
-    const { color, ...others } = legendByDodge || {};
+    const { color, ...others } = legendByDodge;
     return others;
   }
   return legends?.[name] || {};

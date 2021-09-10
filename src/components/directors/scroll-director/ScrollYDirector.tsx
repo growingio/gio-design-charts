@@ -14,7 +14,7 @@ import { calculateBarHeight } from '../../../utils/calculate';
  * @param props {ChartCanvasProps}
  * @returns
  */
-const ScrollDirector = (props: ChartCanvasProps) => {
+const ScrollYDirector = (props: ChartCanvasProps) => {
   const { config, data } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
@@ -35,4 +35,4 @@ const ScrollDirector = (props: ChartCanvasProps) => {
   );
 };
 
-export default ScrollDirector;
+export default ScrollYDirector;
