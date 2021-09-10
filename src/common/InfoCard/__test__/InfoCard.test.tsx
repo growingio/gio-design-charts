@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import InfoCardBox from '../InfoCardBox';
 import InfoCard from '../InfoCard';
-import Item from '../Item';
 import { Legends } from '../../../interface';
 
 export const mappingData = {
