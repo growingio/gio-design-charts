@@ -15,10 +15,10 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
 };
 
 const VerticalMenu = React.memo((props: any) => {
-  const { height, width, scale = {}, elements = [] } = props;
+  const { height, width, scale = {} } = props;
   const { max, range } = scale;
   const ranges = getRanges(max, range);
-  const ticks = scale?.ticks?.reverse() || [];
+  const ticks = scale.ticks?.reverse() || [];
   return (
     <div data-testid="vertical-menu" style={{ height, width, position: 'absolute' }}>
       {/* {elements.map((element: Element, index: number) => {

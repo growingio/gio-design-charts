@@ -31,4 +31,22 @@ describe('Bar Chart', () => {
     );
     expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
   });
+
+  test('test VerticalMenu without range', async () => {
+    render(
+      <VerticalMenu
+        height={200}
+        width={200}
+        scale={{
+          max: -10,
+        }}
+      />
+    );
+    expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
+  });
+
+  test('test VerticalMenu without scale', async () => {
+    render(<VerticalMenu height={200} width={200} />);
+    expect(await screen.findByTestId('vertical-menu')).toBeTruthy();
+  });
 });
