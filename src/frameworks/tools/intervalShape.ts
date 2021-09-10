@@ -13,7 +13,7 @@ export function getFillAttrs(shapeInfo: any) {
 }
 
 // 重新绘制rect，设置最小高度
-function getBarRectAttrs(points: any[], stack: boolean = false) {
+function getBarRectAttrs(points: any[], stack = false) {
   let width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const defualtWidth = stack ? 0 : DEFAULT_MIN_HEIGHT;
@@ -23,12 +23,12 @@ function getBarRectAttrs(points: any[], stack: boolean = false) {
 }
 
 // 重新绘制rect，设置最小高度
-function getRectAttrs(points: any[], stack: boolean = false) {
+function getRectAttrs(points: any[], stack = false) {
   const width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const defualtHeight = stack ? height : DEFAULT_MIN_HEIGHT;
   const hookHeight = height === 0 ? 0 : defualtHeight;
-  let fixedHeight = height < DEFAULT_MIN_HEIGHT ? hookHeight : height - 1;
+  const fixedHeight = height < DEFAULT_MIN_HEIGHT ? hookHeight : height - 1;
   return {
     x: (points[0].x + points[1].x) / 2,
     y: fixedHeight <= DEFAULT_MIN_HEIGHT && fixedHeight !== 0 ? points[1].y - (fixedHeight - height) - 1 : points[1].y,
@@ -88,12 +88,12 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
 // 参考 https://g2.antv.vision/zh/examples/column/stack#rounded-stacked
 registerShape('interval', 'column-element', {
   draw(shapeInfo: any, container: IGroup) {
-    return drawRect(this as any, shapeInfo, container, getRectAttrs);
+    return drawRect(this, shapeInfo, container, getRectAttrs);
   },
 });
 
 registerShape('interval', 'bar-element', {
   draw(shapeInfo: any, container: IGroup) {
-    return drawRect(this as any, shapeInfo, container, getBarRectAttrs);
+    return drawRect(this, shapeInfo, container, getBarRectAttrs);
   },
 });
