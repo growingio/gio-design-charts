@@ -5,7 +5,7 @@ import { colors, DEFAULT_LINEDASH } from '../../theme';
 export const getLegends = (type: ChartType, legendProps: Array<string | Legend>): [Legends, boolean] => {
   const legends = {} as Legends;
   let hasDashed = false;
-  legendProps?.map((legend: string | Legend, index: number) => {
+  legendProps?.forEach((legend: string | Legend, index: number) => {
     if (typeof legend === 'string') {
       legends[legend] = {
         name: legend,

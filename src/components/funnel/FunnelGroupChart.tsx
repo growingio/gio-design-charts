@@ -6,11 +6,12 @@ import { ScrollXDirector } from '../directors';
 import { getGroupData } from './utils';
 
 const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {
-  const { data, legends: legendProps = [], config = {} } = props;
+  const { data, legends: legendProps = [], config } = props;
 
   const [comparativeData, setComparativeData] = useState({});
-  config.type = ChartType.FUNNEL;
-
+  if (config) {
+    config.type = ChartType.FUNNEL;
+  }
   useEffect(() => {
     setComparativeData(getGroupData(data, config));
   }, [data, config]);

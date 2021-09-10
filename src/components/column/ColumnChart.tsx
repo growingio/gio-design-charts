@@ -12,23 +12,24 @@ export interface ColumnChartProps extends ChartProps {
 }
 
 const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
-  const { data, legends: legendProps = [], config = {}, useScroll } = props;
-  const [assginConfig, setAssignConfig] = useState(config);
+  const { data, legends: legendProps = [], config, useScroll } = props;
+  const [assginConfig, setAssignConfig] = useState({});
 
   useEffect(() => {
-    const column = config?.column || {};
+    const newConfig = config || {};
+    const column = newConfig.column || {};
 
     // 分组柱状图的组内bar间距，可由dodgePadding控制，组间距为自由浮动
     // 默认的柱状图的bar间距，可由intervalPadding控制，若
     // 当两者都设定后，以intervalPadding为准
-    const isGroup = hasDodge(config.column);
+    const isGroup = hasDodge(column);
     const defaultConfig = isGroup ? defaultGroupInterval : defaultInterval;
 
-    config.column = { ...column, ...defaultConfig };
+    newConfig.column = { ...column, ...defaultConfig };
+    newConfig.type = ChartType.COLUMN;
 
-    setAssignConfig(Object.assign({}, config));
+    setAssignConfig(Object.assign({}, newConfig));
   }, [config]);
-
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
       return {
@@ -40,7 +41,6 @@ const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
     return {};
   }, [legendProps]);
 
-  config.type = ChartType.COLUMN;
   return useScroll ? (
     <ScrollXDirector
       data={data}
