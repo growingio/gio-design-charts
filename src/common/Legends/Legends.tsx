@@ -10,30 +10,29 @@ const Legends = (props: any) => {
 
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);
-  const [enableClick, setEnableClick] = useState(true);
 
   const onClickLegend = useCallback(
     (label: string) => {
+      const legendValues: Legend[] = Object.values(legends);
+      const enableClick = legendValues.length > 1;
       enableClick && onClick && onClick(label);
     },
-    [onClick, enableClick]
+    [onClick, legends]
   );
 
   useEffect(() => {
     const legendValues: Legend[] = Object.values(legends);
-    if (legendValues.length <= 1) {
-      setEnableClick(false);
-    } else {
-      setEnableClick(true);
-    }
     const count = Number((offsetWidth / 125).toFixed(0)) - 1;
-    if (legendValues && legendValues.length > 5) {
-      setTiled(legendValues.slice(0, count));
-      setGrouped(legendValues.slice(count));
-    } else {
-      setTiled(legendValues);
+    if (legendValues && legendValues.length > 0) {
+      if (legendValues.length > 5) {
+        setTiled(legendValues.slice(0, count));
+        setGrouped(legendValues.slice(count));
+      } else {
+        setTiled(legendValues);
+      }
     }
   }, [legends, offsetWidth]);
+
   return (
     <div className="gio-d-chart-legends" data-testid="legends">
       {tiled.map((legend: Legend) => {

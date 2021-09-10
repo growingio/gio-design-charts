@@ -49,7 +49,7 @@ const core = (HighConponent: any) => {
     //    but the options: ChartOptions is always updated
     // 3. in this useEffect, we needn't to make it changes many times.
     useEffect(() => {
-      let tooltip = config.tooltip || {};
+      let tooltip = config?.tooltip || {};
       if (tooltipRef?.current) {
         tooltip = {
           ...tooltip,
@@ -62,31 +62,27 @@ const core = (HighConponent: any) => {
       }
       let existChart: any;
       // The type should be set when the chart component is called.
-      if (root?.current && data && config.type) {
-        try {
-          const [genLegends, hasDashed] = getLegends(config.type, legendList);
-          const { chart, views = [] } = callChart(
-            {
-              id: root.current,
-              data,
-              reporter: defineReporter,
-              legends: genLegends,
-              hasDashed,
-              interceptors,
-              ...defaultOptions,
-            },
-            {
-              ...config,
-              tooltip,
-            }
-          );
-          interceptors?.onRender(chart, views);
-          existChart = chart;
-          setLegends(genLegends);
-          setChartOptions({ data, hasDashed, getCharts, legends: genLegends });
-        } catch (err) {
-          console.warn(err);
-        }
+      if (root?.current && data && config?.type) {
+        const [genLegends, hasDashed] = getLegends(config.type, legendList);
+        const { chart, views = [] } = callChart(
+          {
+            id: root.current,
+            data,
+            reporter: defineReporter,
+            legends: genLegends,
+            hasDashed,
+            interceptors,
+            ...defaultOptions,
+          },
+          {
+            ...config,
+            tooltip,
+          }
+        );
+        interceptors?.onRender(chart, views);
+        existChart = chart;
+        setLegends(genLegends);
+        setChartOptions({ data, hasDashed, getCharts, legends: genLegends });
       }
       return () => {
         try {

@@ -57,22 +57,18 @@ describe('test format', () => {
   });
 
   test('test analysisSourceData with empty data', () => {
-    const covertData = analysisSourceData({});
-    console.log(covertData);
+    expect(analysisSourceData({})).toEqual([]);
   });
 
   test('test analysisSourceData with null data', () => {
-    const covertData = analysisSourceData(null as any);
-    console.log(covertData);
+    expect(analysisSourceData(null as any)).toEqual([]);
   });
 
   test('test analysisSourceData with falsy data', () => {
-    const covertData = analysisSourceData({ data: [undefined] });
-    console.log(covertData);
+    expect(analysisSourceData({ data: [undefined] })).toEqual([{}]);
   });
 
   test('test analysisSourceData with falsy column', () => {
-    const covertData = analysisSourceData({ data: [undefined], meta: { columns: [{}] } });
-    console.log(covertData);
+    expect(analysisSourceData({ data: [undefined], meta: { columns: [{}] } })).toEqual([{ undefined: undefined }]);
   });
 });

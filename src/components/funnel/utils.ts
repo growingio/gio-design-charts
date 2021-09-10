@@ -11,8 +11,8 @@ export const getSingleData = (data: any[]) => {
     } else if (item?.isPlaceholder) {
       covertData.push({ ...item });
     } else {
-      texts.push(`${((item?.value / prev?.value || 0) * 100).toFixed(2)}%`);
-      covertData.push({ ...item, value: prev?.value || 0, prev: { ...prev }, column: { ...item } });
+      texts.push(`${((item?.value / prev.value || 0) * 100).toFixed(2)}%`);
+      covertData.push({ ...item, value: prev.value || 0, prev: { ...prev }, column: { ...item } });
       prev = item;
     }
   });
@@ -30,17 +30,17 @@ export const getGroupData = (data: any[], config: ChartConfig) => {
   if (forwardKey) {
     const prevs = {} as any;
     data.forEach((item: any) => {
-      const prevItem = prevs[item[forwardKey]];
+      const prevItem = prevs[item?.[forwardKey]];
       if (prevItem) {
-        if (!item?.isPlaceholder) {
+        if (!item.isPlaceholder) {
           prevs[item[forwardKey]] = item;
-          covertData.push({ ...item, value: prevItem?.value || 0, prev: { ...prevItem } });
+          covertData.push({ ...item, value: prevItem.value || 0, prev: { ...prevItem } });
         } else {
           covertData.push({ ...item });
         }
       } else {
         if (!item?.isPlaceholder) {
-          prevs[item[forwardKey]] = item;
+          prevs[item?.[forwardKey]] = item;
         }
         covertData.push({ ...item });
       }

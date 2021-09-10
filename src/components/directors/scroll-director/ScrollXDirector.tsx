@@ -32,7 +32,7 @@ const ScrollXDirector = (props: ScrollXDirectorProps) => {
       const newConfig: ChartConfig = {
         ...config,
         chart: {
-          ...(config.chart || {}),
+          ...(config?.chart || {}),
           ...widthObj,
         },
       };
