@@ -5,8 +5,8 @@ import { hasDodge, hasStack } from './interval';
 export const calculateBarHeight = (config: ChartConfig, data: any[]) => {
   const ds = new DataSet();
   const dv = ds.createView().source(data);
-
-  const shapeConfig = config?.[config?.type] || {};
+  const configType = config?.type;
+  const shapeConfig = config?.[configType];
   const color = shapeConfig?.color;
 
   const positionFirst = shapeConfig?.position?.split('*')?.[0];
@@ -25,8 +25,8 @@ export const calculateBarHeight = (config: ChartConfig, data: any[]) => {
   const dodgePadding = 4;
   const columnWidth = 16;
   let height = 0;
-  dv.rows.map((row: any) => {
-    const { totalCount = 0 } = row;
+  dv.rows.forEach((row: any) => {
+    const { totalCount } = row;
     if (isStack) {
       height += columnWidth;
       height += intervalPadding;
@@ -46,8 +46,8 @@ export const calculateBarHeight = (config: ChartConfig, data: any[]) => {
 export const calculateColumnWidth = (config: ChartConfig, data: any[]) => {
   const ds = new DataSet();
   const dv = ds.createView().source(data);
-
-  const shapeConfig = config?.[config?.type] || {};
+  const configType = config?.type;
+  const shapeConfig = config?.[configType];
   const color = shapeConfig?.color;
 
   const positionFirst = shapeConfig?.position?.split('*')?.[0];
@@ -66,8 +66,8 @@ export const calculateColumnWidth = (config: ChartConfig, data: any[]) => {
     ...(isStack || isDodge ? { groupBy: [isStack ? positionFirst : color] } : {}),
   });
   let width = 0;
-  dv.rows.map((row: any) => {
-    const { totalCount = 0 } = row;
+  dv.rows.forEach((row: any) => {
+    const { totalCount } = row;
     if (isStack) {
       width += columnWidth;
       width += intervalPadding;
