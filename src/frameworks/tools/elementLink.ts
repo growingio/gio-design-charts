@@ -21,7 +21,7 @@ const addTextShape = (group: IGroup, prev: Element, next: Element, text: string)
 const reduceElements = (elements: Element[], callback: any) => {
   let prevEle = undefined;
   let count = 0;
-  for (let currentEle of elements) {
+  for (const currentEle of elements) {
     const isPlaceholder = currentEle?.getData()?.isPlaceholder;
     if (!isPlaceholder) {
       if (prevEle) {

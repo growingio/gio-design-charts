@@ -18,7 +18,7 @@ export const analysisSourceData = (chartData: any, options?: AnalysisOptions) =>
   const source = chartData?.data || [];
   const columns = chartData?.meta?.columns;
 
-  const convert = source?.map((item: any) => {
+  return source?.map((item: any) => {
     const row = {} as any;
     columns.map((column: any, index: number) => {
       let value = item?.[index];
@@ -31,5 +31,4 @@ export const analysisSourceData = (chartData: any, options?: AnalysisOptions) =>
     });
     return Object.assign(row, fetch);
   });
-  return convert;
 };
