@@ -1,4 +1,5 @@
 import { Chart, View } from '@antv/g2';
+import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interface';
 import { colors } from '../theme';
 
@@ -31,16 +32,18 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
     const tooltip = config.tooltip ?? {};
     chart.tooltip.call(chart, { ...tooltip });
   } catch (err) {
-    console.warn(err);
+    // console.warn(err);
   }
   return chart;
 };
 
 export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, config: ChartConfig) => {
-  const { data = [] } = options;
+  const { data } = options;
 
   // Set Data
-  chart.data(data);
+  if (!isEmpty(data)) {
+    chart.data(data);
+  }
 
   // Use array for scale config, in G2 API, we can use different way to call chart.scale()
   // 1. chart.scale({ sale: { min: 0, max: 100} });
@@ -83,9 +86,7 @@ export const renderChart = (options: ChartOptions, config: ChartConfig) => {
 
 export const handleLegendBehavior = (chart: Chart | View, legends: Legends, color: string) => {
   if (color) {
-    chart.filter(color, (value: string) => {
-      return !!(legends?.[value] || {}).active;
-    });
+    chart.filter(color, (value: string) => !!(legends?.[value] || {}).active);
     chart.render(true);
   }
 };

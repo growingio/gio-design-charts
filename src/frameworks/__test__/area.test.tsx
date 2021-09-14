@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { areaChart, handleLegend } from '../areaChart';
@@ -8,17 +8,17 @@ import { getLegends } from '../../components/hooks/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
 import { Chart } from '@antv/g2';
 
-const chartComponentTestid = 'chart-component';
-const AreaCom = () => {
-  const rootRef: RefObject<HTMLDivElement> = React.createRef();
-  return <div ref={rootRef} data-testid={chartComponentTestid} />;
-};
+import { chartComponentTestid, ChartCom } from './common.test';
 
 const { config, legends: legendList, data } = AreaWithSample.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
 describe('areaChart', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
   test('call areaChart', () => {
-    render(<AreaCom />);
+    render(<ChartCom />);
+    jest.runAllTimers();
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -29,7 +29,7 @@ describe('areaChart', () => {
   });
 
   test('call areaChart with lineDash', () => {
-    render(<AreaCom />);
+    render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -39,7 +39,7 @@ describe('areaChart', () => {
     areaChart(options, config);
   });
   test('call areaChart without legends', () => {
-    render(<AreaCom />);
+    render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -48,7 +48,7 @@ describe('areaChart', () => {
     areaChart(options, config);
   });
   test('call areaChart without config', () => {
-    render(<AreaCom />);
+    render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -66,7 +66,7 @@ describe('areaChart', () => {
 
 describe('handleLegend', () => {
   test('call it', () => {
-    render(<AreaCom />);
+    render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -77,7 +77,7 @@ describe('handleLegend', () => {
     handleLegend([chart as Chart], legends, config);
   });
   test('call it without config', () => {
-    render(<AreaCom />);
+    render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -86,5 +86,17 @@ describe('handleLegend', () => {
     };
     const { chart } = areaChart(options, config);
     handleLegend([chart as Chart], legends, {});
+  });
+
+  test('call it without legends', () => {
+    render(<ChartCom />);
+    const element = screen.getByTestId(chartComponentTestid);
+    const options = {
+      id: element,
+      data,
+      legends,
+    };
+    const { chart } = areaChart(options, config);
+    handleLegend([chart as Chart], undefined as any, config);
   });
 });

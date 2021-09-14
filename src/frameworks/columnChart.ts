@@ -23,10 +23,10 @@ export const intervalShape = (
   styleCallback?: any
 ) => {
   const barConfig = getShapeConfig(config);
-  const customInfo = intervalConfig?.customInfo || {};
-  const intervalStyles = intervalConfig?.intervalStyles || {};
+  const customInfo = intervalConfig.customInfo || {};
+  const intervalStyles = intervalConfig.intervalStyles || {};
   const shapeConfig = barConfig.interval || {};
-  const hideLabel = options?.control?.hideLabel;
+  const hideLabel = options.control?.hideLabel;
 
   let interval: any = chart.interval({
     ...shapeConfig,
@@ -53,7 +53,7 @@ export const intervalShape = (
     interval.style(barConfig.color, styleCallback);
   }
 
-  if (barConfig?.label && !hideLabel) {
+  if (barConfig.label && !hideLabel) {
     interval.label.apply(interval, barConfig.label);
   }
   interval.state({
@@ -79,13 +79,13 @@ export const intervalShape = (
 };
 
 export const handleInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig, type = 'column') => {
-  const { legends, hasDashed, defaultStyles = {} } = options;
+  const { legends = {}, hasDashed, defaultStyles = {} } = options;
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
   intervalShape(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
-    const legend = legends?.[label] || ({} as Legend);
+    const legend = legends[label] || ({} as Legend);
     return {
       // stroke: '#fff',
       // strokeWidth: 1,
@@ -107,7 +107,7 @@ export const handleInterval = (chart: Chart | View, options: ChartOptions, confi
         },
       },
       (label: string) => {
-        const legend = legends?.[label] || ({} as Legend);
+        const legend = legends[label] || ({} as Legend);
         if (legend.dashed) {
           return {
             fill: `p(a)${BAR_TEXTURE}`,
@@ -121,7 +121,7 @@ export const handleInterval = (chart: Chart | View, options: ChartOptions, confi
   return chart;
 };
 
-export const columnChart = (options: ChartOptions, config: ChartConfig) => {
+export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
   if (!id) {
     return {};
