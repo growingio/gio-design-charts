@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { areaChart, handleLegend } from '../areaChart';
-import { AreaWithSample } from '../../components/area/demos/Area.stories';
+import { AreaWithSample } from '../../area/demos/Area.stories';
 import { ChartProps, ChartType } from '../../interface';
-import { getLegends } from '../../components/hooks/useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
 import { Chart } from '@antv/g2';
 

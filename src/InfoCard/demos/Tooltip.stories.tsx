@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 import { BarChart, FunnelChart, FunnelGroupChart, InfoCard } from '../..';
-import { dataWithGroup } from '../../components/funnel/demos/data';
+import { dataWithGroup } from '../../funnel/demos/data';
 import Card from '../../demos/card';
 
 export default {

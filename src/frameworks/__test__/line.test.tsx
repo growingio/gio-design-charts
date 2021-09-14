@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { lineChart, handleLegend } from '../lineChart';
-import { LineWithOneLine } from '../../components/line/demos/Line.stories';
+import { LineWithOneLine } from '../../line/demos/Line.stories';
 import { ChartProps, ChartType } from '../../interface';
-import { getLegends } from '../../components/hooks/useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from './common.test';
 

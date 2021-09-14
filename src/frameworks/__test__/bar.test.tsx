@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { barChart, handleLegend } from '../barChart';
-import { BarDefault } from '../../components/bar/demos/Bar.stories';
+import { BarDefault } from '../../bar/demos/Bar.stories';
 import { ChartProps, ChartType } from '../../interface';
-import { getLegends } from '../../components/hooks/useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from './common.test';
 

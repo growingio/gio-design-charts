@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { columnChart, handleLegend } from '../columnChart';
-import { ColumnWithComponsive } from '../../components/column/demos/Column.stories';
+import { ColumnWithComponsive } from '../../column/demos/Column.stories';
 import { ChartProps, ChartType } from '../../interface';
-import { getLegends } from '../../components/hooks/useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from './common.test';
 

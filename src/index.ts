@@ -1,8 +1,8 @@
-export * from './components/area';
-export * from './components/line';
-export * from './components/column';
-export * from './components/bar';
-export * from './components/funnel';
+export * from './area';
+export * from './line';
+export * from './column';
+export * from './bar';
+export * from './funnel';
 
 export * from './utils/analysis';
 
