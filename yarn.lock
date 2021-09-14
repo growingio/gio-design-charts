@@ -27,7 +27,7 @@
     "@antv/util" "^2.0.9"
     tslib "^2.0.3"
 
-"@antv/component@^0.8.7":
+"@antv/component@^0.8.17", "@antv/component@^0.8.7":
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/@antv/component/-/component-0.8.17.tgz#d93e0ead9bbdccea0f558531eb4610ccfacbcbf7"
   integrity sha512-Dcz7u9TqamJzNRUDZclEjiXRxTLUY6DVGpyENKMvsp0dsu85W6R1t0O4rROj0hNspdFfDWUS7qqH39jVWWAu3Q==
@@ -79,7 +79,7 @@
   dependencies:
     tslib "^2.0.3"
 
-"@antv/event-emitter@^0.1.1", "@antv/event-emitter@~0.1.0":
+"@antv/event-emitter@^0.1.1", "@antv/event-emitter@^0.1.2", "@antv/event-emitter@~0.1.0":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@antv/event-emitter/-/event-emitter-0.1.2.tgz#a17b7cb86e6d071880dc6bfb232756f88624ecbc"
   integrity sha512-6C6NJOdoNVptCr5y9BVOhKkCgW7LFs/SpcRyAExUeSjAm0zJqcqNkSIRGsXYhj4PJI+CZICHzGwwiSnIsE68Ug==
