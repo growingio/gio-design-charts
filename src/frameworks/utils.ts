@@ -34,13 +34,14 @@ export const getRelateLegend = (shapeInfo: any) => {
   const { customInfo, data = {} } = shapeInfo;
   const { type = '', dodgeBy, contrastDodge, legends = {} } = customInfo || {};
   const name = data[type];
-  const legendByDodge = legends?.[data?.[dodgeBy]];
+  const dodgeByValue = data[dodgeBy];
+  const legendByDodge = legends[dodgeByValue];
   if (contrastDodge && dodgeBy && legendByDodge) {
     // for dodgeBy, we needn't color
     const { color, ...others } = legendByDodge;
     return others;
   }
-  return legends?.[name] || {};
+  return legends[name] || {};
 };
 
 export const getDefaultStyles = (shapeInfo: any) => {
