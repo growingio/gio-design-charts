@@ -2,12 +2,12 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { funnelChart, handleLegend } from '../funnelChart';
-import { FunnelWithLink } from '../../components/funnel/demos/Funnel.stories';
+import { FunnelWithLink } from '../../funnel/demos/Funnel.stories';
 import { ChartProps, ChartType } from '../../interface';
-import { getLegends } from '../../components/hooks/useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from './common.test';
-import { getSingleData } from '../../components/funnel/utils';
+import { getSingleData } from '../../funnel/utils';
 
 const { config, legends: legendList, data: sourceData } = FunnelWithLink.args as ChartProps;
 const data = getSingleData(sourceData);
