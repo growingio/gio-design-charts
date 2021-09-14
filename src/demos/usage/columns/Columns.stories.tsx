@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { ColumnChart, analysisSourceData, AnalysisOptions, formatNumber } from '../../../..';
+import { ColumnChart, analysisSourceData, AnalysisOptions, formatNumber } from '../../..';
 import Card from '../../card';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';

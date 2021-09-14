@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartConfig } from '../../interface';
+import { ChartConfig } from '../interface';
 import Item from './Item';
 
 import './styles/infocard.less';

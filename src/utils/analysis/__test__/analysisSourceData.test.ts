@@ -1,5 +1,5 @@
 import { analysisSourceData } from '../analysisSourceData';
-import activeMemberData from '../../../common/demos/usage/data/active-members.json';
+import activeMemberData from '../../../demos/usage/data/active-members.json';
 import { AnalysisOptions } from '..';
 
 describe('test format', () => {

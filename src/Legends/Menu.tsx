@@ -1,5 +1,5 @@
 import React from 'react';
-import { Legend } from '../../interface';
+import { Legend } from '../interface';
 import { default as LegendComponent } from './Legend';
 
 export interface MenuProps {

@@ -2,7 +2,7 @@ import { ComponentStory } from '@storybook/react';
 import BarChart from '../BarChart';
 import ScrollBarChart from '../ScrollBarChart';
 
-import Card from '../../../common/demos/card';
+import Card from '../../../demos/card';
 import { dataWithGroup, percentData } from '../../column/demos/data';
 import { data, dataWithMulti, dataWithMultiContrast } from './data';
 import Docs from './Bar.mdx';
