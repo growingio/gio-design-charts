@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 
-import { Legend } from '../../interface';
+import { Legend } from '../interface';
 import './styles/legends.less';
 
 const Legends = (props: any) => {

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { DISABLE_COLOR } from '../../theme';
-import { getBackgroundImage } from '../../utils/styles';
+import { DISABLE_COLOR } from '../theme';
+import { getBackgroundImage } from '../utils/styles';
 
 export interface LegendProps {
   label: string;

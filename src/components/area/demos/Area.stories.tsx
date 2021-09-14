@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
 import AreaChart from '../AreaChart';
 import { dataWithDash, dataWithOneLine } from '../../line/demos/data';
-import Card from '../../../common/demos/card';
+import Card from '../../../demos/card';
 import Docs from './Area.mdx';
 import { percentData } from '../../column/demos/data';
 
