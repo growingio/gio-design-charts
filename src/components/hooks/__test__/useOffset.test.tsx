@@ -54,13 +54,14 @@ describe('useOffset hook', () => {
     const UseOffsetCom = () => {
       const rootRef: LegacyRef<HTMLDivElement> = React.createRef();
 
-      const offset = useOffset(rootRef);
+      useOffset(rootRef);
       return <div ref={rootRef} data-testid={useOffsetComTestId} />;
     };
     render(<UseOffsetCom />);
     const element = screen.getByTestId(useOffsetComTestId);
     jest.runAllTimers();
     act(() => {
+      // offsetWidth是只读元素，通过Object.defineProperty进行修改元素的值
       Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 200 });
       global.innerWidth = 2000;
       global.dispatchEvent(new Event('resize'));
