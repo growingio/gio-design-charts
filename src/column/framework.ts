@@ -1,10 +1,10 @@
 import { Chart, Element, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
-import { handleLegendBehavior, renderChart } from './common';
+import { handleLegendBehavior, renderChart } from '../core/framework';
 
-import './tools/intervalShape';
-import { getShapeConfig, setCustomInfo } from './utils';
+import '../utils/tools/intervalShape';
+import { getShapeConfig, setCustomInfo } from '../utils/frameworks/utils';
 
 /**
  *

@@ -2,10 +2,10 @@ import { Chart, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
 import { colors, DEFAULT_REDIUS } from '../theme';
-import { intervalShape } from './columnChart';
-import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
-import { addLinkByElementHigh } from './tools/elementLink';
-import { getShapeConfig } from './utils';
+import { intervalShape } from '../column/framework';
+import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
+import { addLinkByElementHigh } from '../utils/tools/elementLink';
+import { getShapeConfig } from '../utils/frameworks/utils';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { legends, defaultStyles } = options;

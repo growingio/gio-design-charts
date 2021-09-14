@@ -1,5 +1,5 @@
 import React from 'react';
-import { areaChart, handleLegend } from '../frameworks/areaChart';
+import { areaChart, handleLegend } from './framework';
 import { ChartType, ChartProps } from '../interface';
 
 import { LegendDirector } from '../directors';

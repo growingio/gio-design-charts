@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import { columnChart, handleLegend } from '../frameworks/columnChart';
+import { columnChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interface';
 import { colors } from '../theme';

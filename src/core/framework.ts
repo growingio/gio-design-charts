@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interface';
 import { colors } from '../theme';
 
-import './tools';
+import '../utils/tools';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;

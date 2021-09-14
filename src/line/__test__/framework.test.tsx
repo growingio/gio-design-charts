@@ -1,19 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { funnelChart, handleLegend } from '../funnelChart';
-import { FunnelWithLink } from '../../funnel/demos/Funnel.stories';
+import { lineChart, handleLegend } from '../framework';
+import { LineWithOneLine } from '../demos/Line.stories';
 import { ChartProps, ChartType } from '../../interface';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
-import { chartComponentTestid, ChartCom } from './common.test';
-import { getSingleData } from '../../funnel/utils';
+import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
-const { config, legends: legendList, data: sourceData } = FunnelWithLink.args as ChartProps;
-const data = getSingleData(sourceData);
+const { config, legends: legendList, data } = LineWithOneLine.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
-describe('funnel fromework', () => {
-  test('call funnelChart', () => {
+describe('line fromework', () => {
+  test('call lineChart', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
@@ -21,7 +19,7 @@ describe('funnel fromework', () => {
       data,
       legends,
     };
-    funnelChart(options, config);
+    lineChart(options, config);
   });
 
   test('with id', () => {
@@ -29,7 +27,7 @@ describe('funnel fromework', () => {
       data,
       legends,
     };
-    funnelChart(options, config);
+    lineChart(options, config);
   });
 
   test('with empty config', () => {
@@ -37,27 +35,7 @@ describe('funnel fromework', () => {
       data,
       legends,
     };
-    funnelChart(options);
-  });
-
-  test('without legends', () => {
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-    };
-    funnelChart(options, config);
-  });
-
-  test('without data', () => {
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      legends,
-    };
-    funnelChart(options, config);
+    lineChart(options);
   });
 });
 
@@ -70,7 +48,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = funnelChart(options, config);
+    const { chart } = lineChart(options, config);
     handleLegend([chart as Chart], legends, config);
   });
   test('call it without config', () => {
@@ -81,7 +59,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = funnelChart(options, config);
+    const { chart } = lineChart(options, config);
     handleLegend([chart as Chart], legends, {});
   });
 });
