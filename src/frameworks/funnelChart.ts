@@ -8,7 +8,7 @@ import { addLinkByElementHigh } from './tools/elementLink';
 import { getShapeConfig } from './utils';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
-  const { legends, defaultStyles = {} } = options;
+  const { legends, defaultStyles } = options;
   return intervalShape(
     chart,
     options,
@@ -32,7 +32,7 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
   );
 };
 
-export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
+export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
   if (!id) {
     return {};
@@ -40,10 +40,10 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
   const { interceptors, legends } = options;
   const chart = generateChart(options, config);
   try {
-    const sourceData = options?.data?.source || [];
-    const covertData = options?.data?.covert || [];
-    const texts = options?.data?.texts || [];
-    const isGroup = options?.data?.isGroup;
+    const sourceData = options.data?.source || [];
+    const covertData = options.data?.covert || [];
+    const texts = options.data?.texts || [];
+    const isGroup = options.data?.isGroup;
 
     const emptyLegends = isEmpty(legends);
 
@@ -75,8 +75,8 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
       },
     };
     linkView.on('afterrender', function (event: any) {
-      if (!isGroup && sourceData.length !== 0) {
-        addLinkByElement(event?.view, { texts });
+      if (event && !isGroup && sourceData.length !== 0) {
+        addLinkByElement(event.view, { texts });
       }
     });
     // should add view.render() for linkView, it can trigger afterrender event.
@@ -89,7 +89,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig) => {
     linkView.render();
 
     fetchTooltip(chart, config);
-    interceptors.bindElementEvents(chart);
+    interceptors?.bindElementEvents(chart);
     chart.legend(false);
     chart.render();
     return { chart, views: [linkView, backgroundView] };
