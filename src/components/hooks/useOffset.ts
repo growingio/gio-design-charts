@@ -9,9 +9,7 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj?: any) 
     if (width && width !== offset.width) {
       const newOffset = { width, height };
       setOffset(newOffset);
-      if (offset.width) {
-        watchReset?.(newOffset);
-      }
+      watchReset?.(newOffset);
     }
   }, [rootRef, watchReset, offset]);
 

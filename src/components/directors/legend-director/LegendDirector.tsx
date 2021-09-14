@@ -13,22 +13,20 @@ const LegendDirector = React.memo((props: LegendDirectorProps) => {
   const directorRef: LegacyRef<HTMLDivElement> = React.createRef();
   const { options = {}, config = {}, onClickLegend, width } = props;
   const { legends, getCharts } = options;
-  const watchReset = useMemo(
-    () =>
-      debounce((resetOffset: { width: number; height: number }) => {
-        const charts = getCharts?.();
-        charts?.map((view: Chart | View) => {
-          if (view instanceof Chart && width) {
-            const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
-            if (widthObj) {
-              view.changeSize(widthObj, config.chart.height);
-            }
+  const watchReset = useMemo(() => {
+    return debounce((resetOffset: { width: number; height: number }) => {
+      const charts = getCharts?.();
+      charts?.map((view: Chart | View) => {
+        if (view instanceof Chart && width) {
+          const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
+          if (widthObj) {
+            view.changeSize(widthObj, config.chart.height);
           }
-          view?.render(true);
-        });
-      }, 600),
-    [getCharts, config, width]
-  );
+        }
+        view?.render(true);
+      });
+    }, 600);
+  }, [getCharts, config, width]);
 
   const offset = useOffset(directorRef, watchReset);
   return (
