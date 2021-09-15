@@ -1,10 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import { columnChart, handleLegend } from './framework';
-
 import { ChartType, ChartProps } from '../interfaces';
+import { columnChart, handleLegend } from './framework';
 import { colors } from '../theme';
-import { LegendDirector, ScrollXDirector } from '../layouts';
+import { LegendLayout, ScrollXLayout } from '../layouts';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';
 
 export interface ColumnChartProps extends ChartProps {
@@ -42,7 +41,7 @@ const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
   }, [legendProps]);
 
   return useScroll ? (
-    <ScrollXDirector
+    <ScrollXLayout
       data={data}
       sourceData={data}
       legendList={legendProps}
@@ -52,7 +51,7 @@ const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
       handleLegend={handleLegend}
     />
   ) : (
-    <LegendDirector
+    <LegendLayout
       data={data}
       legendList={legendProps}
       config={assginConfig}

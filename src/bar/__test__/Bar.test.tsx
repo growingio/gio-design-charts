@@ -18,8 +18,8 @@ import {
 import { ChartProps } from '../../interfaces';
 
 describe('Bar Chart', () => {
-  const legendTestid = 'legend-director';
-  const scrollyTestId = 'scroll-y-director';
+  const legendTestid = 'legend-layout';
+  const scrollyTestId = 'scroll-y-layout';
   test('render Chart', async () => {
     render(<BarChart {...(BarDefault.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();

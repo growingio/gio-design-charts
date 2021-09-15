@@ -5,7 +5,7 @@ import { LineWithDash, LineWithMenu, LineWithOneLine } from '../demos/Line.stori
 import { ChartProps } from '../..';
 
 describe('Line Chart', () => {
-  const legendTestId = 'legend-director';
+  const legendTestId = 'legend-layout';
   test('render Chart', async () => {
     render(<LineChart {...(LineWithOneLine.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();

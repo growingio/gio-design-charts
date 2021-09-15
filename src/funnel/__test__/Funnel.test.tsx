@@ -21,7 +21,7 @@ describe('Funnel Chart', () => {
     jest.useRealTimers();
   });
 
-  const legendTestId = 'legend-director';
+  const legendTestId = 'legend-layout';
 
   test('render Chart for starting', async () => {
     render(<FunnelChart {...(FunnelWithLink.args as ChartProps)} />);
@@ -68,7 +68,7 @@ describe('Funnel Chart', () => {
     act(() => {
       jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('scroll-x-director')).toBeTruthy();
+    expect(await screen.findByTestId('scroll-x-layout')).toBeTruthy();
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
@@ -93,7 +93,7 @@ describe('Funnel Chart', () => {
     act(() => {
       jest.runOnlyPendingTimers();
     });
-    expect(await screen.findByTestId('scroll-x-director')).toBeTruthy();
+    expect(await screen.findByTestId('scroll-x-layout')).toBeTruthy();
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 });

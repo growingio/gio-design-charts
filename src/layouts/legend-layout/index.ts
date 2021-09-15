@@ -1,1 +1,1 @@
-export { default, default as LegendDirector } from './LegendLayout';
+export { default, default as LegendLayout } from './LegendLayout';

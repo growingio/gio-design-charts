@@ -1,2 +1,2 @@
-export { default as ScrollYDirector } from './ScrollYLayout';
-export { default as ScrollXDirector } from './ScrollXLayout';
+export { default as ScrollYLayout } from './ScrollYLayout';
+export { default as ScrollXLayout } from './ScrollXLayout';

@@ -4,10 +4,10 @@ import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../interfaces';
 import { areaChart, handleLegend } from '../../area/framework';
 import { AreaWithSample } from '../../area/demos/Area.stories';
-import { LegendDirector } from '../../layouts';
+import { LegendLayout } from '../../layouts';
 import useOffset from '../useOffset';
 
-const legendDirectorTestid = 'legend-director';
+const legendLayoutTestid = 'legend-layout';
 
 describe('useOffset hook', () => {
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('useOffset hook', () => {
   test('use useOffset in component', () => {
     const { legends, config, data } = AreaWithSample.args as ChartProps;
     render(
-      <LegendDirector
+      <LegendLayout
         config={config}
         data={data}
         legendList={legends}
@@ -38,7 +38,7 @@ describe('useOffset hook', () => {
       />
     );
 
-    const element = screen.getByTestId(legendDirectorTestid);
+    const element = screen.getByTestId(legendLayoutTestid);
     jest.runAllTimers();
     act(() => {
       Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 200 });

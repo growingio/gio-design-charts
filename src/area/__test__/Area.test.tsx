@@ -5,7 +5,7 @@ import { AreaStack, AreaWithSample, PercentArea } from '../demos/Area.stories';
 import { ChartProps } from '../..';
 
 describe('Area Chart', () => {
-  const testid = 'legend-director';
+  const testid = 'legend-layout';
 
   test('render Chart', async () => {
     render(<AreaChart {...(AreaWithSample.args as ChartProps)} />);

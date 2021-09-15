@@ -6,7 +6,7 @@ import useInterceptors from '../hooks/useInterceptors';
 
 import './styles/base.less';
 
-export interface DirectorProps {
+export interface LayoutProps {
   options: ChartOptions;
   config: ChartConfig;
   children: JSX.Element;
@@ -111,7 +111,7 @@ const core = (HighComponent: any) => {
 
     return (
       <HighComponent options={chartOptions} width={width} charts={charts} config={config} onClickLegend={onClickLegend}>
-        <div className="director-content" ref={root} />
+        <div className="layout-content" ref={root} />
         <div className="gio-d-chart_tooltip-content">
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCardBox
