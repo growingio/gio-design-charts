@@ -1,2 +1,2 @@
-export * from './legend-layout';
-export * from './scroll-layout';
+export * from './legend';
+export * from './scroll';

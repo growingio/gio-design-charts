@@ -2,7 +2,7 @@ import React, { LegacyRef, useEffect, useState } from 'react';
 import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
-import LegendLayout from '../legend-layout';
+import LegendLayout from '../legend';
 import { calculateColumnWidth } from '../../utils/calculate';
 import { ChartConfig } from '../../interfaces';
 

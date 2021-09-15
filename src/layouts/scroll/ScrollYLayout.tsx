@@ -2,7 +2,7 @@ import React from 'react';
 import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
-import LegendLayout from '../legend-layout';
+import LegendLayout from '../legend';
 import { DEAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
 
