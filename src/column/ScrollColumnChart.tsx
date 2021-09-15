@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartProps } from '../interface';
+import { ChartProps } from '../interfaces';
 import ColumnChart from './ColumnChart';
 
 const ScrollColumnChart: React.FC<ChartProps> = (props: ChartProps) => {

@@ -1,5 +1,5 @@
 import DataSet from '@antv/data-set';
-import { ChartConfig } from '../interface';
+import { ChartConfig } from '../interfaces';
 import { hasDodge, hasStack } from './interval';
 
 export const calculateBarHeight = (config: ChartConfig, data: any[]) => {

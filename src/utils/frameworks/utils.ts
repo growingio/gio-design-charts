@@ -1,5 +1,5 @@
 import { getDodgeBy, hasContrastDodge } from '../interval';
-import { ChartConfig, ChartOptions } from '../../interface';
+import { ChartConfig, ChartOptions } from '../../interfaces';
 
 export const getShapeConfig = (config: ChartConfig, type?: string) => {
   if (type) {

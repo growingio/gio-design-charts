@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import React, { useMemo, useEffect, useState } from 'react';
 import { funnelChart, handleLegend } from './framework';
 
-import { ChartType, ChartProps } from '../interface';
+import { ChartType, ChartProps } from '../interfaces';
 import { colors } from '../theme';
 import { ScrollXDirector } from '../directors';
 import { getSingleData } from './utils';

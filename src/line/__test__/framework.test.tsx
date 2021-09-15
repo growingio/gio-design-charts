@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import { lineChart, handleLegend } from '../framework';
 import { LineWithOneLine } from '../demos/Line.stories';
-import { ChartProps, ChartType } from '../../interface';
+import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';

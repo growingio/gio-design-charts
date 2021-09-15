@@ -1,4 +1,4 @@
-import { ChartConfig } from '../interface';
+import { ChartConfig } from '../interfaces';
 
 export const getSingleData = (data: any[]) => {
   const covertData = [] as any[];

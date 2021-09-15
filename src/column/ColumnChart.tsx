@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import { columnChart, handleLegend } from './framework';
 
-import { ChartType, ChartProps } from '../interface';
+import { ChartType, ChartProps } from '../interfaces';
 import { colors } from '../theme';
 import { LegendDirector, ScrollXDirector } from '../directors';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';

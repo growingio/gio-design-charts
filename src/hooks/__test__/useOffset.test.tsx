@@ -1,7 +1,7 @@
 import React, { LegacyRef } from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { render, screen } from '@testing-library/react';
-import { ChartProps } from '../../interface';
+import { ChartProps } from '../../interfaces';
 import { areaChart, handleLegend } from '../../area/framework';
 import { AreaWithSample } from '../../area/demos/Area.stories';
 import { LegendDirector } from '../../directors';

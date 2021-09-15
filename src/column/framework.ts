@@ -1,5 +1,5 @@
 import { Chart, Element, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
+import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 

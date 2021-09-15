@@ -1,7 +1,7 @@
 import React from 'react';
 import { barChart, handleLegend } from './framework';
 
-import { ChartType, ChartProps } from '../interface';
+import { ChartType, ChartProps } from '../interfaces';
 import { LegendDirector } from '../directors';
 
 const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
