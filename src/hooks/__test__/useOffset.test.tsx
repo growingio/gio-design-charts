@@ -26,29 +26,6 @@ describe('useOffset hook', () => {
     expect(result.current).toEqual({});
   });
 
-  test('use useOffset in component', () => {
-    const { legends, config, data } = AreaWithSample.args as ChartProps;
-    render(
-      <LegendLayout
-        config={config}
-        data={data}
-        legendList={legends}
-        callChart={areaChart}
-        handleLegend={handleLegend}
-      />
-    );
-
-    const element = screen.getByTestId(legendLayoutTestid);
-    jest.runAllTimers();
-    act(() => {
-      Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 200 });
-      global.innerWidth = 2000;
-      global.dispatchEvent(new Event('resize'));
-      Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 300 });
-      global.dispatchEvent(new Event('resize'));
-    });
-  });
-
   test('use useOffset without watchReset', () => {
     const useOffsetComTestId = 'use-offset-com';
     const UseOffsetCom = () => {
