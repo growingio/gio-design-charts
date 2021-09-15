@@ -1,7 +1,7 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
-import { handleLegendBehavior, renderChart } from './common';
-import { getShapeConfig } from './utils';
+import { handleLegendBehavior, renderChart } from '../core/framework';
+import { getShapeConfig } from '../utils/frameworks/utils';
 
 export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: any) => {
   const { legends } = options;

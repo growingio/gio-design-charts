@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { columnChart, handleLegend } from '../columnChart';
-import { ColumnWithComponsive } from '../../column/demos/Column.stories';
+import { columnChart, handleLegend } from '../framework';
+import { ColumnWithComponsive } from '../demos/Column.stories';
 import { ChartProps, ChartType } from '../../interface';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
-import { chartComponentTestid, ChartCom } from './common.test';
+import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = ColumnWithComponsive.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);

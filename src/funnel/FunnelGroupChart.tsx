@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { funnelChart, handleLegend } from '../frameworks/funnelChart';
+import { funnelChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interface';
 import { ScrollXDirector } from '../directors';

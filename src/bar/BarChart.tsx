@@ -1,5 +1,5 @@
 import React from 'react';
-import { barChart, handleLegend } from '../frameworks/barChart';
+import { barChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interface';
 import { LegendDirector } from '../directors';

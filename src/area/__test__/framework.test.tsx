@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { areaChart, handleLegend } from '../areaChart';
-import { AreaWithSample } from '../../area/demos/Area.stories';
+import { areaChart, handleLegend } from '../framework';
+import { AreaWithSample } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interface';
 import { getLegends } from '../../hooks/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
 import { Chart } from '@antv/g2';
 
-import { chartComponentTestid, ChartCom } from './common.test';
+import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = AreaWithSample.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);

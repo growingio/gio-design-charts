@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ScrollYDirector from '../ScrollYDirector';
 import { StackingDiagramBar } from '../../../bar/demos/Bar.stories';
 import { ChartProps } from '../../../interface';
-import { barChart, handleLegend } from '../../../frameworks/barChart';
+import { barChart, handleLegend } from '../../../bar/framework';
 
 describe('ScrollYDirector', () => {
   const scrollyTestId = 'scroll-y-director';

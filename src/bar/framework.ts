@@ -1,8 +1,8 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legends } from '../interface';
-import { handleInterval } from './columnChart';
-import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from './common';
-import { getShapeConfig } from './utils';
+import { handleInterval } from '../column/framework';
+import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
+import { getShapeConfig } from '../utils/frameworks/utils';
 
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
