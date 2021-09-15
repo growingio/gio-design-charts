@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import BarChart from '../BarChart';
+import BarChart from '../Bar';
 import ScrollBarChart from '../ScrollBarChart';
 import {
   BarDefault,

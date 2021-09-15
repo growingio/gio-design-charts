@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import BarChart from '../BarChart';
+import BarChart from '../Bar';
 import ScrollBarChart from '../ScrollBarChart';
 
 import Card from '../../demos/card';

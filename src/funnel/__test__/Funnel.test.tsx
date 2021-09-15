@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
-import FunnelChart from '../FunnelChart';
+import FunnelChart from '../Funnel';
 import FunnelGroupChart from '../FunnelGroupChart';
 import {
   FunnelWith3Columns,
