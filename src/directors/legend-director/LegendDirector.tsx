@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import React, { LegacyRef, useMemo } from 'react';
-import Legends from '../../Legends';
+import Legends from '../../legend';
 import useOffset from '../../hooks/useOffset';
 import core, { DirectorProps } from '../../core/core';
 import debounce from 'lodash/debounce';
