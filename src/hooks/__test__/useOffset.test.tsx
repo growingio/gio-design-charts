@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../interfaces';
 import { areaChart, handleLegend } from '../../area/framework';
 import { AreaWithSample } from '../../area/demos/Area.stories';
-import { LegendDirector } from '../../directors';
+import { LegendDirector } from '../../layouts';
 import useOffset from '../useOffset';
 
 const legendDirectorTestid = 'legend-director';

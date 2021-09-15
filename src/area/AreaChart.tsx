@@ -2,7 +2,7 @@ import React from 'react';
 import { areaChart, handleLegend } from './framework';
 import { ChartType, ChartProps } from '../interfaces';
 
-import { LegendDirector } from '../directors';
+import { LegendDirector } from '../layouts';
 
 const AreaChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;

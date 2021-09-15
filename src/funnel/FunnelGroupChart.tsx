@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { funnelChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interfaces';
-import { ScrollXDirector } from '../directors';
+import { ScrollXDirector } from '../layouts';
 import { getGroupData } from './utils';
 
 const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {

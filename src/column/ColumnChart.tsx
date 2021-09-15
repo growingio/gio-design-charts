@@ -4,7 +4,7 @@ import { columnChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interfaces';
 import { colors } from '../theme';
-import { LegendDirector, ScrollXDirector } from '../directors';
+import { LegendDirector, ScrollXDirector } from '../layouts';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';
 
 export interface ColumnChartProps extends ChartProps {
