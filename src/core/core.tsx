@@ -1,5 +1,5 @@
 import React, { LegacyRef, useEffect, useState, useCallback, RefObject, useMemo } from 'react';
-import { InfoCardBox } from '../InfoCard';
+import { InfoCardBox } from '../info-card';
 import { ChartConfig, ChartOptions, Legend, ReportThing } from '../interfaces';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
@@ -26,7 +26,7 @@ export interface ChartCanvasProps {
 }
 
 // In core, we only force on render chart and provide basic chart options
-const core = (HighConponent: any) => {
+const core = (HighComponent: any) => {
   return (props: ChartCanvasProps) => {
     const { config, callChart, data, legendList, handleLegend, defaultOptions = {}, width } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
@@ -110,7 +110,7 @@ const core = (HighConponent: any) => {
     );
 
     return (
-      <HighConponent options={chartOptions} width={width} charts={charts} config={config} onClickLegend={onClickLegend}>
+      <HighComponent options={chartOptions} width={width} charts={charts} config={config} onClickLegend={onClickLegend}>
         <div className="director-content" ref={root} />
         <div className="gio-d-chart_tooltip-content">
           <div ref={tooltipRef} className="g2-tooltip">
@@ -123,7 +123,7 @@ const core = (HighConponent: any) => {
             />
           </div>
         </div>
-      </HighConponent>
+      </HighComponent>
     );
   };
 };

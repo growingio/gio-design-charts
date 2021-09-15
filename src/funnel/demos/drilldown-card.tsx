@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoCard } from '../../InfoCard';
+import { InfoCard } from '../../info-card';
 import './drilldown-card.less';
 
 const DrilldownCard = ({ options }: any) => {

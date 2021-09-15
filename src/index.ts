@@ -6,7 +6,7 @@ export * from './funnel';
 
 export * from './utils/analysis';
 
-export { InfoCard } from './InfoCard';
+export { InfoCard } from './info-card';
 
 export { colors } from './theme';
 export * from './interfaces';
