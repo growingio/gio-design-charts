@@ -10,7 +10,7 @@ describe('test useInterceptors', () => {
     act(() => {
       result.current.interceptors.onRender(chartObj as any);
     });
-    expect(result.current.getCharts()).toEqual([chartObj]);
+    expect(result.current.charts).toEqual([chartObj]);
   });
 
   test('test interceptors bindElementEvents', () => {

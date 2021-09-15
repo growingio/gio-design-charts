@@ -46,9 +46,9 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
     });
     const group = linkGroup.addGroup();
     const textGroup = linkGroup.addGroup();
-    const elements = view.geometries?.[0]?.elements;
-    groups?.push(group);
-    groups?.push(textGroup);
+    const elements = view.geometries[0].elements;
+    groups.push(group);
+    groups.push(textGroup);
     reduceElements(elements, (prev: Element, next: Element, index: number) => {
       addLinkShape(group, prev, next);
       if (texts.length < FUNNEL_CRITICAL_COUNT) {
@@ -56,7 +56,7 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
       }
     });
   } catch (err) {
-    console.warn(err);
+    // handle error message: console.warn(err);
   }
 };
 
@@ -82,7 +82,7 @@ export const addLinkByElementHigh = () => {
   let groups = [] as any[];
   return function (view: View, options: any) {
     if (groups.length > 0) {
-      groups.forEach((group) => group?.remove());
+      groups.forEach((group) => group.remove());
       groups = [];
     }
     addLinkByElement(view, groups, options);
