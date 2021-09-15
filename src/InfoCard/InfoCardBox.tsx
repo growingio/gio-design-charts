@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartConfig, ChartOptions, Legends } from '../interface';
+import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
 import { last } from 'lodash';

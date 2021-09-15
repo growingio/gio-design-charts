@@ -4,7 +4,7 @@ import { ChartCanvasProps } from '../../core/core';
 import './styles/index.less';
 import LegendDirector from '../legend-director';
 import { calculateColumnWidth } from '../../utils/calculate';
-import { ChartConfig } from '../../interface';
+import { ChartConfig } from '../../interfaces';
 
 export interface ScrollXDirectorProps extends ChartCanvasProps {
   sourceData: any;

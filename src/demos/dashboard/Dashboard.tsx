@@ -18,7 +18,7 @@ import {
 } from '../../funnel/demos/Funnel.stories';
 
 import { LineWithOneLine, LineWithDash, LineWithMenu } from '../../line/demos/Line.stories';
-import { ChartProps } from '../../interface';
+import { ChartProps } from '../../interfaces';
 
 const titleStyle: CSSProperties = {
   fontSize: '24px',

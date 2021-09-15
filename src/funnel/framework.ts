@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interface';
+import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';

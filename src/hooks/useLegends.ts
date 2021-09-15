@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ChartType, Legend, Legends } from '../interface';
+import { ChartType, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_LINEDASH } from '../theme';
 
 export const getLegends = (type: ChartType, legendProps: Array<string | Legend>): [Legends, boolean] => {

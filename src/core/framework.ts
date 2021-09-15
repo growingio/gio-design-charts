@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
-import { ChartConfig, ChartOptions, Legends } from '../interface';
+import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { colors } from '../theme';
 
 import '../utils/tools';

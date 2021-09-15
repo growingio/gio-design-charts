@@ -9,5 +9,5 @@ export * from './utils/analysis';
 export { InfoCard } from './InfoCard';
 
 export { colors } from './theme';
-export * from './interface';
+export * from './interfaces';
 export * from './utils';

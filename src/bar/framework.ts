@@ -1,5 +1,5 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legends } from '../interface';
+import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { handleInterval } from '../column/framework';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { getShapeConfig } from '../utils/frameworks/utils';

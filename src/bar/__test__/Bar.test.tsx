@@ -15,7 +15,7 @@ import {
   ScrollPercentBar,
   StackingDiagramBar,
 } from '../demos/Bar.stories';
-import { ChartProps } from '../../interface';
+import { ChartProps } from '../../interfaces';
 
 describe('Bar Chart', () => {
   const legendTestid = 'legend-director';

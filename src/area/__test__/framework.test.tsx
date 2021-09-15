@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import { areaChart, handleLegend } from '../framework';
 import { AreaWithSample } from '../demos/Area.stories';
-import { ChartProps, ChartType } from '../../interface';
+import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
 import { Chart } from '@antv/g2';

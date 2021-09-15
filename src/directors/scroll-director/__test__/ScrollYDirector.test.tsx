@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ScrollYDirector from '../ScrollYDirector';
 import { StackingDiagramBar } from '../../../bar/demos/Bar.stories';
-import { ChartProps } from '../../../interface';
+import { ChartProps } from '../../../interfaces';
 import { barChart, handleLegend } from '../../../bar/framework';
 
 describe('ScrollYDirector', () => {
