@@ -4,11 +4,11 @@ import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../../interfaces';
 import { areaChart, handleLegend } from '../../../area/framework';
 import { AreaWithSample } from '../../../area/demos/Area.stories';
-import LegendDirector from '../LegendLayout';
+import LegendLayout from '../LegendLayout';
 
-const legendDirectorTestid = 'legend-director';
+const legendLayoutTestid = 'legend-layout';
 
-describe('LegendDirector', () => {
+describe('LegendLayout', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -20,7 +20,7 @@ describe('LegendDirector', () => {
   test('use useOffset in component', () => {
     const { legends, config, data } = AreaWithSample.args as ChartProps;
     render(
-      <LegendDirector
+      <LegendLayout
         config={config}
         data={data}
         legendList={legends}
@@ -28,7 +28,7 @@ describe('LegendDirector', () => {
         handleLegend={handleLegend}
       />
     );
-    const element = screen.getByTestId(legendDirectorTestid);
+    const element = screen.getByTestId(legendLayoutTestid);
     jest.runAllTimers();
     act(() => {
       Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 200 });

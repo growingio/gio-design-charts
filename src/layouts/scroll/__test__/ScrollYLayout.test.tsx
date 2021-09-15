@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ScrollYDirector from '../ScrollYLayout';
+import ScrollYLayout from '../ScrollYLayout';
 import { StackingDiagramBar } from '../../../bar/demos/Bar.stories';
 import { ChartProps } from '../../../interfaces';
 import { barChart, handleLegend } from '../../../bar/framework';
 
-describe('ScrollYDirector', () => {
-  const scrollyTestId = 'scroll-y-director';
+describe('ScrollYLayout', () => {
+  const scrollyTestId = 'scroll-y-layout';
   const { legends: legendList, config, data } = StackingDiagramBar.args as ChartProps;
 
   test('render', async () => {
     render(
-      <ScrollYDirector
+      <ScrollYLayout
         config={config}
         data={data}
         legendList={legendList}
@@ -24,7 +24,7 @@ describe('ScrollYDirector', () => {
 
   test('render without config', async () => {
     render(
-      <ScrollYDirector
+      <ScrollYLayout
         config={undefined as any}
         data={data}
         legendList={legendList}

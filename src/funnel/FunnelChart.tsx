@@ -1,10 +1,9 @@
 import { isEmpty } from 'lodash';
 import React, { useMemo, useEffect, useState } from 'react';
-import { funnelChart, handleLegend } from './framework';
-
 import { ChartType, ChartProps } from '../interfaces';
+import { funnelChart, handleLegend } from './framework';
 import { colors } from '../theme';
-import { ScrollXDirector } from '../layouts';
+import { ScrollXLayout } from '../layouts';
 import { getSingleData } from './utils';
 
 const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
@@ -26,7 +25,7 @@ const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
     setComparativeData(getSingleData(data));
   }, [data]);
   return (
-    <ScrollXDirector
+    <ScrollXLayout
       data={comparativeData}
       legendList={legendProps}
       defaultOptions={defaultOptions}

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { funnelChart, handleLegend } from './framework';
-
 import { ChartType, ChartProps } from '../interfaces';
-import { ScrollXDirector } from '../layouts';
+import { funnelChart, handleLegend } from './framework';
+import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';
 
 const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {
@@ -17,7 +16,7 @@ const FunnelGroupChart: React.FC<ChartProps> = (props: ChartProps) => {
   }, [data, config]);
 
   return (
-    <ScrollXDirector
+    <ScrollXLayout
       data={comparativeData}
       legendList={legendProps}
       config={config}

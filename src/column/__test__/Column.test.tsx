@@ -13,7 +13,7 @@ import {
 } from '../demos/Column.stories';
 import { ChartProps } from '../..';
 
-const legendTestId = 'legend-director';
+const legendTestId = 'legend-layout';
 describe('Column Chart', () => {
   test('render Chart', async () => {
     render(<ColumnChart {...(ColumnWithOne.args as ChartProps)} />);

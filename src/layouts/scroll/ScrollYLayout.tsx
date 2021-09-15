@@ -2,7 +2,7 @@ import React from 'react';
 import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
-import LegendDirector from '../legend-layout';
+import LegendLayout from '../legend';
 import { DEAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
 
@@ -14,7 +14,7 @@ import { calculateBarHeight } from '../../utils/calculate';
  * @param props {ChartCanvasProps}
  * @returns
  */
-const ScrollYDirector = (props: ChartCanvasProps) => {
+const ScrollYLayout = (props: ChartCanvasProps) => {
   const { config, data } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
@@ -29,10 +29,10 @@ const ScrollYDirector = (props: ChartCanvasProps) => {
     },
   };
   return (
-    <div className="gio-d-chart gio-scroll-y-director" data-testid="scroll-y-director" style={{ height: frameHeight }}>
-      <LegendDirector {...props} config={newConfig} />
+    <div className="gio-d-chart gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
+      <LegendLayout {...props} config={newConfig} />
     </div>
   );
 };
 
-export default ScrollYDirector;
+export default ScrollYLayout;

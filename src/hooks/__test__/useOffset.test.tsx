@@ -4,10 +4,10 @@ import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../interfaces';
 import { areaChart, handleLegend } from '../../area/framework';
 import { AreaWithSample } from '../../area/demos/Area.stories';
-import { LegendDirector } from '../../layouts';
+import { LegendLayout } from '../../layouts';
 import useOffset from '../useOffset';
 
-const legendDirectorTestid = 'legend-director';
+const legendLayoutTestid = 'legend-layout';
 
 describe('useOffset hook', () => {
   beforeEach(() => {
@@ -24,29 +24,6 @@ describe('useOffset hook', () => {
       global.dispatchEvent(new Event('resize'));
     });
     expect(result.current).toEqual({});
-  });
-
-  test('use useOffset in component', () => {
-    const { legends, config, data } = AreaWithSample.args as ChartProps;
-    render(
-      <LegendDirector
-        config={config}
-        data={data}
-        legendList={legends}
-        callChart={areaChart}
-        handleLegend={handleLegend}
-      />
-    );
-
-    const element = screen.getByTestId(legendDirectorTestid);
-    jest.runAllTimers();
-    act(() => {
-      Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 200 });
-      global.innerWidth = 2000;
-      global.dispatchEvent(new Event('resize'));
-      Object.defineProperty(element, 'offsetWidth', { writable: true, configurable: true, value: 300 });
-      global.dispatchEvent(new Event('resize'));
-    });
   });
 
   test('use useOffset without watchReset', () => {
