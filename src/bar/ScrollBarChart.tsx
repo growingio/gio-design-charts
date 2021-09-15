@@ -2,7 +2,7 @@ import React from 'react';
 import { barChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interfaces';
-import { ScrollYDirector } from '../directors';
+import { ScrollYDirector } from '../layouts';
 
 const ScrollBarChart: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;

@@ -4,7 +4,7 @@ import { funnelChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interfaces';
 import { colors } from '../theme';
-import { ScrollXDirector } from '../directors';
+import { ScrollXDirector } from '../layouts';
 import { getSingleData } from './utils';
 
 const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
