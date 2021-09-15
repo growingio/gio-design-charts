@@ -4,7 +4,6 @@ import { Chart, View } from '@antv/g2';
 const useInterceptors = () => {
   const chartRef: MutableRefObject<(Chart | View)[] | undefined> = useRef();
   const triggerActionRef: MutableRefObject<string | undefined> = useRef();
-  const getCharts = useCallback(() => chartRef.current, [chartRef]);
   const getTriggerAction = useCallback(() => triggerActionRef.current, [triggerActionRef]);
 
   const [, updated] = useState(0);
@@ -13,6 +12,7 @@ const useInterceptors = () => {
     return {
       onRender(chart: Chart, views: View[] = []) {
         chartRef.current = [chart, ...views];
+        updated(new Date().getTime());
       },
       bindElementEvents(chart: Chart) {
         chart.on('element:click', () => {
@@ -34,7 +34,7 @@ const useInterceptors = () => {
       },
     };
   }, []);
-  return { getTriggerAction, getCharts, interceptors };
+  return { getTriggerAction, interceptors, charts: chartRef.current };
 };
 
 export default useInterceptors;

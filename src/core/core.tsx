@@ -1,4 +1,4 @@
-import React, { LegacyRef, useEffect, useState, useCallback, RefObject } from 'react';
+import React, { LegacyRef, useEffect, useState, useCallback, RefObject, useMemo } from 'react';
 import { InfoCardBox } from '../InfoCard';
 import { ChartConfig, ChartOptions, Legend, ReportThing } from '../interfaces';
 import useLegends, { getLegends } from '../hooks/useLegends';
@@ -34,13 +34,23 @@ const core = (HighConponent: any) => {
     const [hoverItem, setHoverItem] = useState([]);
 
     const { legends, setLegends, updateLegends } = useLegends();
-    const [chartOptions, setChartOptions] = useState(defaultOptions);
 
-    const { getCharts, getTriggerAction, interceptors } = useInterceptors();
+    const { charts, getTriggerAction, interceptors } = useInterceptors();
+    const [hasDashed, setDashed] = useState(false);
 
     const defineReporter = useCallback((thing: ReportThing) => {
       // do stome report thing in here
     }, []);
+
+    const chartOptions = useMemo(
+      () => ({
+        ...defaultOptions,
+        charts,
+        legends,
+        hasDashed,
+      }),
+      [defaultOptions, charts, legends, hasDashed]
+    );
 
     // Init Chart
     // 1. In init Chart, it should be no updated in here when legends are updated by click
@@ -63,14 +73,14 @@ const core = (HighConponent: any) => {
       let existChart: any;
       // The type should be set when the chart component is called.
       if (root?.current && data && config?.type) {
-        const [genLegends, hasDashed] = getLegends(config.type, legendList);
+        const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
         const { chart, views = [] } = callChart(
           {
             id: root.current,
             data,
             reporter: defineReporter,
             legends: genLegends,
-            hasDashed,
+            hasDashed: hasDashedLegend,
             interceptors,
             ...defaultOptions,
           },
@@ -82,7 +92,7 @@ const core = (HighConponent: any) => {
         interceptors?.onRender(chart, views);
         existChart = chart;
         setLegends(genLegends);
-        setChartOptions({ data, hasDashed, getCharts, legends: genLegends });
+        setDashed(hasDashedLegend);
       }
       return () => {
         try {
@@ -94,19 +104,18 @@ const core = (HighConponent: any) => {
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
-        handleLegend(getCharts(), newLegends, config);
-        setChartOptions({ ...chartOptions, legends: newLegends });
+        handleLegend(charts, newLegends, config);
       },
-      [getCharts, chartOptions, config, handleLegend, updateLegends]
+      [charts, chartOptions, config, handleLegend, updateLegends]
     );
 
     return (
-      <HighConponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
+      <HighConponent options={chartOptions} width={width} charts={charts} config={config} onClickLegend={onClickLegend}>
         <div className="director-content" ref={root} />
         <div className="gio-d-chart_tooltip-content">
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCardBox
-              legends={legends || {}}
+              legends={legends}
               triggerItems={hoverItem}
               options={{ ...chartOptions, ...defaultOptions }}
               trigger={getTriggerAction()}
