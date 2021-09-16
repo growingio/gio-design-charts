@@ -17,7 +17,7 @@ import {
   FunnelWithGroup,
 } from '../../funnel/demos/Funnel.stories';
 
-import { LineWithOneLine, LineWithDash, LineWithMenu } from '../../line/demos/Line.stories';
+import { MultiLine, BaiscLine, ContrastLine } from '../../line/demos/Line.stories';
 import { ChartProps } from '../../interfaces';
 
 const titleStyle: CSSProperties = {
@@ -34,20 +34,16 @@ const Dashboard = () => {
       <div style={{ display: 'flow-root' }}>
         <div style={titleStyle}>折线图</div>
         <div>
-          <Frame
-            type="left"
-            title={LineWithOneLine.storyName}
-            path="/?path=/story/charts-折线图-面积图--line-with-one-line"
-          >
-            <LineWithOneLine {...(LineWithOneLine.args as ChartProps)} />
+          <Frame type="left" title={BaiscLine.storyName} path="/?path=/story/charts-折线图-line--baisc-line">
+            <BaiscLine {...(BaiscLine.args as ChartProps)} />
           </Frame>
-          <Frame type="right" title={LineWithDash.storyName} path="/?path=/story/charts-折线图-面积图--line-with-dash">
-            <LineWithDash {...(LineWithDash.args as ChartProps)} />
+          <Frame type="right" title={ContrastLine.storyName} path="/?path=/story/charts-折线图-line--contrast-line">
+            <ContrastLine {...(ContrastLine.args as ChartProps)} />
           </Frame>
         </div>
         <div>
-          <Frame type="left" title={LineWithMenu.storyName} path="/?path=/story/charts-折线图-面积图--line-with-menu">
-            <LineWithMenu {...(LineWithMenu.args as ChartProps)} />
+          <Frame type="left" title={MultiLine.storyName} path="/?path=/story/charts-折线图-line--multi-line">
+            <MultiLine {...(MultiLine.args as ChartProps)} />
           </Frame>
           <Frame type="right" />
         </div>

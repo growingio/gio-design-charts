@@ -4,7 +4,7 @@ import { funnelChart, handleLegend } from './framework';
 import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';
 
-const GroupFunnel: React.FC<ChartProps> = (props: ChartProps) => {
+const GroupedFunnel: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   const [comparativeData, setComparativeData] = useState({});
@@ -27,4 +27,4 @@ const GroupFunnel: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default GroupFunnel;
+export default GroupedFunnel;

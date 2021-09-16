@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { Bar, Funnel, GroupFunnel, InfoCard } from '../..';
+import { Bar, Funnel, GroupedFunnel, InfoCard } from '../..';
 import { dataWithGroup } from '../../funnel/demos/data';
 import Card from '../../demos/card';
 
@@ -49,7 +49,7 @@ const config = {
 
 const Template: ComponentStory<typeof Funnel> = (args) => (
   <Card>
-    <GroupFunnel {...args} />
+    <GroupedFunnel {...args} />
   </Card>
 );
 
