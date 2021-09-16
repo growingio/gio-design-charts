@@ -3,7 +3,7 @@ import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 
 import { PercentArea } from '../../area/demos/Area.stories';
 import { ChartProps } from '../../interfaces';
-import { AreaChart } from '../..';
+import { Area } from '../..';
 
 export const chartComponentTestid = 'chart-component';
 export const ChartCom = () => {
@@ -13,7 +13,7 @@ export const ChartCom = () => {
 
 describe('common', () => {
   test('default', () => {
-    render(<AreaChart {...(PercentArea.args as ChartProps)} />);
+    render(<Area {...(PercentArea.args as ChartProps)} />);
 
     const testid = 'legend-item-Facebook';
     const legend = screen.getByTestId(testid);

@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import LineChart from '../Line';
+import Line from '../Line';
 import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } from './data';
 import Card from '../../demos/card';
 import Docs from './Line.mdx';
@@ -10,7 +10,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-  component: LineChart,
+  component: Line,
   parameters: {
     docs: {
       page: Docs,
@@ -18,9 +18,9 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof LineChart> = (args) => (
+const Template: ComponentStory<typeof Line> = (args) => (
   <Card>
-    <LineChart {...args} />
+    <Line {...args} />
   </Card>
 );
 

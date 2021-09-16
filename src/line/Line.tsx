@@ -4,7 +4,7 @@ import { ChartType, ChartProps } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
 
-const LineChart: React.FC<ChartProps> = (props: ChartProps) => {
+const Line: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   config.type = ChartType.LINE;
@@ -20,4 +20,4 @@ const LineChart: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default LineChart;
+export default Line;

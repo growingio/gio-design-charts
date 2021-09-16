@@ -1,2 +1,2 @@
-export { default as BarChart } from './Bar';
-export { default as ScrollBarChart } from './ScrollBarChart';
+export { default as Bar } from './Bar';
+export { default as ScrollBar } from './ScrollBar';

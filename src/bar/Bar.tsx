@@ -4,7 +4,7 @@ import { barChart, handleLegend } from './framework';
 import { ChartType, ChartProps } from '../interfaces';
 import { LegendLayout } from '../layouts';
 
-const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
+const Bar: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
 
   config.type = ChartType.BAR;
@@ -34,4 +34,4 @@ const BarChart: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default BarChart;
+export default Bar;

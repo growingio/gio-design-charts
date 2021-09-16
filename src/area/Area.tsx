@@ -4,7 +4,7 @@ import { ChartType, ChartProps } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
 
-const AreaChart: React.FC<ChartProps> = (props: ChartProps) => {
+const Area: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   config.type = ChartType.AREA;
@@ -19,4 +19,4 @@ const AreaChart: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default AreaChart;
+export default Area;

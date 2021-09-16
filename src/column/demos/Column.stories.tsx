@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import ColumnChart from '../Column';
+import Column from '../Column';
 import Card from '../../demos/card';
 import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
@@ -10,7 +10,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-  component: ColumnChart,
+  component: Column,
   parameters: {
     docs: {
       page: Docs,
@@ -18,9 +18,9 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof ColumnChart> = (args) => (
+const Template: ComponentStory<typeof Column> = (args) => (
   <Card>
-    <ColumnChart {...args} />
+    <Column {...args} />
   </Card>
 );
 

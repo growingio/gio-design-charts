@@ -1,2 +1,2 @@
-export { default, default as ColumnChart } from './Column';
-export { default as ScrollColumnChart } from './ScrollColumn';
+export { default, default as Column } from './Column';
+export { default as ScrollColumn } from './ScrollColumn';

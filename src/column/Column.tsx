@@ -6,11 +6,11 @@ import { colors } from '../theme';
 import { LegendLayout, ScrollXLayout } from '../layouts';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';
 
-export interface ColumnChartProps extends ChartProps {
+export interface ColumnProps extends ChartProps {
   useScroll?: boolean;
 }
 
-const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
+const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
   const { data, legends: legendProps = [], config, useScroll } = props;
   const [assginConfig, setAssignConfig] = useState({});
 
@@ -62,4 +62,4 @@ const ColumnChart: React.FC<ColumnChartProps> = (props: ColumnChartProps) => {
   );
 };
 
-export default ColumnChart;
+export default Column;

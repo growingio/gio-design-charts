@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import AreaChart from '../Area';
+import Area from '../Area';
 import { dataWithDash, dataWithOneLine } from '../../line/demos/data';
 import Card from '../../demos/card';
 import Docs from './Area.mdx';
@@ -7,7 +7,7 @@ import { percentData } from '../../column/demos/data';
 
 export default {
   title: 'Charts/面积图 Area Chart',
-  component: AreaChart,
+  component: Area,
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -20,9 +20,9 @@ export default {
 
 const position = 'month*value';
 
-const Template: ComponentStory<typeof AreaChart> = (args) => (
+const Template: ComponentStory<typeof Area> = (args) => (
   <Card>
-    <AreaChart {...args} />
+    <Area {...args} />
   </Card>
 );
 

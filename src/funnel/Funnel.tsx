@@ -6,7 +6,7 @@ import { colors } from '../theme';
 import { ScrollXLayout } from '../layouts';
 import { getSingleData } from './utils';
 
-const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
+const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
@@ -37,4 +37,4 @@ const FunnelChart: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default FunnelChart;
+export default Funnel;
