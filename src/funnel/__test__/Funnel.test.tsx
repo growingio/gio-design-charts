@@ -1,7 +1,7 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
-import FunnelChart from '../Funnel';
-import FunnelGroupChart from '../FunnelGroupChart';
+import Funnel from '../Funnel';
+import GroupFunnel from '../GroupFunnel';
 import {
   FunnelWith3Columns,
   FunnelWith6Columns,
@@ -24,7 +24,7 @@ describe('Funnel Chart', () => {
   const legendTestId = 'legend-layout';
 
   test('render Chart for starting', async () => {
-    render(<FunnelChart {...(FunnelWithLink.args as ChartProps)} />);
+    render(<Funnel {...(FunnelWithLink.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -32,7 +32,7 @@ describe('Funnel Chart', () => {
   });
 
   test('render Chart', async () => {
-    render(<FunnelChart {...(FunnelWithBasic.args as ChartProps)} />);
+    render(<Funnel {...(FunnelWithBasic.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -40,7 +40,7 @@ describe('Funnel Chart', () => {
   });
 
   test('render Chart with 3 columns', async () => {
-    render(<FunnelChart {...(FunnelWith3Columns.args as ChartProps)} />);
+    render(<Funnel {...(FunnelWith3Columns.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -48,7 +48,7 @@ describe('Funnel Chart', () => {
   });
 
   test('render Chart with 6 columns', async () => {
-    render(<FunnelChart {...(FunnelWith6Columns.args as ChartProps)} />);
+    render(<Funnel {...(FunnelWith6Columns.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -56,7 +56,7 @@ describe('Funnel Chart', () => {
   });
 
   test('render Chart with 7 columns', async () => {
-    render(<FunnelChart {...(FunnelWith7Columns.args as ChartProps)} />);
+    render(<Funnel {...(FunnelWith7Columns.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -64,7 +64,7 @@ describe('Funnel Chart', () => {
   });
 
   test('render Chart with group by scrolling', async () => {
-    render(<FunnelGroupChart {...(FunnelWithGroup.args as ChartProps)} />);
+    render(<GroupFunnel {...(FunnelWithGroup.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -74,7 +74,7 @@ describe('Funnel Chart', () => {
 
   test('render Chart with empty config and legends', async () => {
     render(
-      <FunnelChart {...(FunnelWith7Columns.args as ChartProps)} legends={undefined as any} config={undefined as any} />
+      <Funnel {...(FunnelWith7Columns.args as ChartProps)} legends={undefined as any} config={undefined as any} />
     );
     act(() => {
       jest.runOnlyPendingTimers();
@@ -84,11 +84,7 @@ describe('Funnel Chart', () => {
 
   test('render Chart with  empty config and legends by scrolling ', async () => {
     render(
-      <FunnelGroupChart
-        {...(FunnelWithGroup.args as ChartProps)}
-        legends={undefined as any}
-        config={undefined as any}
-      />
+      <GroupFunnel {...(FunnelWithGroup.args as ChartProps)} legends={undefined as any} config={undefined as any} />
     );
     act(() => {
       jest.runOnlyPendingTimers();

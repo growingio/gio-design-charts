@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
-import BarChart from '../Bar';
-import ScrollBarChart from '../ScrollBarChart';
+import Bar from '../Bar';
+import ScrollBar from '../ScrollBar';
 
 import Card from '../../demos/card';
 import { dataWithGroup, percentData } from '../../column/demos/data';
@@ -13,7 +13,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-  component: BarChart,
+  component: Bar,
   parameters: {
     docs: {
       page: Docs,
@@ -21,15 +21,15 @@ export default {
   },
 };
 const position = 'type*value';
-const Template: ComponentStory<typeof BarChart> = (args) => (
+const Template: ComponentStory<typeof Bar> = (args) => (
   <Card>
-    <BarChart {...args} />
+    <Bar {...args} />
   </Card>
 );
 
-const ScrollTemplate: ComponentStory<typeof BarChart> = (args) => (
+const ScrollTemplate: ComponentStory<typeof Bar> = (args) => (
   <Card>
-    <ScrollBarChart {...args} />
+    <ScrollBar {...args} />
   </Card>
 );
 

@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { BarChart, FunnelChart, FunnelGroupChart, InfoCard } from '../..';
+import { Bar, Funnel, GroupFunnel, InfoCard } from '../..';
 import { dataWithGroup } from '../../funnel/demos/data';
 import Card from '../../demos/card';
 
@@ -8,7 +8,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-  component: BarChart,
+  component: Bar,
 };
 
 const config = {
@@ -47,9 +47,9 @@ const config = {
   },
 };
 
-const Template: ComponentStory<typeof FunnelChart> = (args) => (
+const Template: ComponentStory<typeof Funnel> = (args) => (
   <Card>
-    <FunnelGroupChart {...args} />
+    <GroupFunnel {...args} />
   </Card>
 );
 

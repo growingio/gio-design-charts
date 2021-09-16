@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
-import FunnelChart from '../Funnel';
-import FunnelGroupChart from '../FunnelGroupChart';
+import Funnel from '../Funnel';
+import GroupFunnel from '../GroupFunnel';
 import Card from '../../demos/card';
 import { dataWithMultiBar } from '../../column/demos/data';
 import DrillDownCard from './drilldown-card';
@@ -16,9 +16,9 @@ export default {
 const position = 'type*value';
 const intervalLabel = 'interval-label';
 
-const Template: ComponentStory<typeof FunnelChart> = (args) => (
+const Template: ComponentStory<typeof Funnel> = (args) => (
   <Card>
-    <FunnelChart {...args} />
+    <Funnel {...args} />
   </Card>
 );
 
@@ -146,9 +146,9 @@ const FunnelWith7ColumnsArgs = {
 FunnelWith7Columns.storyName = '7个事件漏斗';
 FunnelWith7Columns.args = FunnelWith7ColumnsArgs;
 
-const GroupTemplate: ComponentStory<typeof FunnelChart> = (args) => (
+const GroupTemplate: ComponentStory<typeof Funnel> = (args) => (
   <Card>
-    <FunnelGroupChart {...args} />
+    <GroupFunnel {...args} />
   </Card>
 );
 

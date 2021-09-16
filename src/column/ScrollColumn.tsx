@@ -1,9 +1,9 @@
 import React from 'react';
 import { ChartProps } from '../interfaces';
-import ColumnChart from './Column';
+import Column from './Column';
 
-const ScrollColumnChart: React.FC<ChartProps> = (props: ChartProps) => {
-  return <ColumnChart {...props} useScroll={true} />;
+const ScrollColumn: React.FC<ChartProps> = (props: ChartProps) => {
+  return <Column {...props} useScroll={true} />;
 };
 
-export default ScrollColumnChart;
+export default ScrollColumn;

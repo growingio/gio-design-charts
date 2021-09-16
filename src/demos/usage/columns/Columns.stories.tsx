@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import { ColumnChart, analysisSourceData, AnalysisOptions, formatNumber } from '../../..';
+import { Column, analysisSourceData, AnalysisOptions, formatNumber } from '../../..';
 import Card from '../../card';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
@@ -11,7 +11,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-  component: ColumnChart,
+  component: Column,
   parameters: {
     docs: {
       page: null,
@@ -19,9 +19,9 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof ColumnChart> = (args) => (
+const Template: ComponentStory<typeof Column> = (args) => (
   <Card>
-    <ColumnChart {...args} />
+    <Column {...args} />
   </Card>
 );
 

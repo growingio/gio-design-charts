@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import BarChart from '../Bar';
-import ScrollBarChart from '../ScrollBarChart';
+import Bar from '../Bar';
+import ScrollBar from '../ScrollBar';
 import {
   BarDefault,
   BarMulti,
@@ -21,62 +21,62 @@ describe('Bar Chart', () => {
   const legendTestid = 'legend-layout';
   const scrollyTestId = 'scroll-y-layout';
   test('render Chart', async () => {
-    render(<BarChart {...(BarDefault.args as ChartProps)} />);
+    render(<Bar {...(BarDefault.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render scroll chart', async () => {
-    render(<ScrollBarChart {...(ScrollBarDefault.args as ChartProps)} />);
+    render(<ScrollBar {...(ScrollBarDefault.args as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Chart with multi column', async () => {
-    render(<BarChart {...(BarMulti.args as ChartProps)} />);
+    render(<Bar {...(BarMulti.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render scroll chart with multi column', async () => {
-    render(<ScrollBarChart {...(ScrollBarMulti.args as ChartProps)} />);
+    render(<ScrollBar {...(ScrollBarMulti.args as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Chart with group', async () => {
-    render(<BarChart {...(BarWithGroup.args as ChartProps)} />);
+    render(<Bar {...(BarWithGroup.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render scroll chart with group', async () => {
-    render(<ScrollBarChart {...(ScrollBarWithGroup.args as ChartProps)} />);
+    render(<ScrollBar {...(ScrollBarWithGroup.args as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Chart with group contrast', async () => {
-    render(<BarChart {...(GroupContrast.args as ChartProps)} />);
+    render(<Bar {...(GroupContrast.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render scroll chart with group contrast', async () => {
-    render(<ScrollBarChart {...(ScrollGroupContrast.args as ChartProps)} />);
+    render(<ScrollBar {...(ScrollGroupContrast.args as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Chart with stack', async () => {
-    render(<BarChart {...(StackingDiagramBar.args as ChartProps)} />);
+    render(<Bar {...(StackingDiagramBar.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render scroll chart with stack', async () => {
-    render(<ScrollBarChart {...(StackingDiagramBar.args as ChartProps)} />);
+    render(<ScrollBar {...(StackingDiagramBar.args as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Chart with percent', async () => {
-    render(<BarChart {...(PercentBar.args as ChartProps)} />);
+    render(<Bar {...(PercentBar.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render scroll chart with percent', async () => {
-    render(<ScrollBarChart {...(ScrollPercentBar.args as ChartProps)} />);
+    render(<ScrollBar {...(ScrollPercentBar.args as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
@@ -85,21 +85,21 @@ describe('Bar Chart', () => {
 
     const { bar, ...nobarConfig } = config;
 
-    render(<BarChart {...(props as ChartProps)} config={nobarConfig} />);
+    render(<Bar {...(props as ChartProps)} config={nobarConfig} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render Chart without config', async () => {
     const { config, ...props } = PercentBar.args as ChartProps;
 
-    render(<BarChart {...(props as ChartProps)} />);
+    render(<Bar {...(props as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
   test('render Chart without legends', async () => {
     const { legends, ...props } = PercentBar.args as ChartProps;
 
-    render(<BarChart {...(props as ChartProps)} />);
+    render(<Bar {...(props as ChartProps)} />);
     expect(await screen.findByTestId(legendTestid)).toBeTruthy();
   });
 
@@ -108,21 +108,21 @@ describe('Bar Chart', () => {
 
     const { bar, ...nobarConfig } = config;
 
-    render(<ScrollBarChart {...(props as ChartProps)} config={nobarConfig} />);
+    render(<ScrollBar {...(props as ChartProps)} config={nobarConfig} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Scroll Chart without config', async () => {
     const { config, ...props } = PercentBar.args as ChartProps;
 
-    render(<ScrollBarChart {...(props as ChartProps)} />);
+    render(<ScrollBar {...(props as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 
   test('render Scroll Chart without legends', async () => {
     const { legends, ...props } = PercentBar.args as ChartProps;
 
-    render(<ScrollBarChart {...(props as ChartProps)} />);
+    render(<ScrollBar {...(props as ChartProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 });

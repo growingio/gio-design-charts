@@ -1,2 +1,2 @@
-export { default as FunnelChart } from './Funnel';
-export { default as FunnelGroupChart } from './FunnelGroupChart';
+export { default as Funnel } from './Funnel';
+export { default as GroupFunnel } from './GroupFunnel';
