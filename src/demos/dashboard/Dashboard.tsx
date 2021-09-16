@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import Frame from '../frame';
-import { AreaStack, AreaWithSample, PercentArea } from '../../area/demos/Area.stories';
+import { AreaStack, PercentArea } from '../../area/demos/Area.stories';
 import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../../bar/demos/Bar.stories';
 import {
   ColumnWithGroup,
@@ -56,22 +56,12 @@ const Dashboard = () => {
       <div style={{ display: 'flow-root' }}>
         <div style={titleStyle}>面积图</div>
         <div>
-          <Frame
-            type="left"
-            title={AreaWithSample.storyName}
-            path="/?path=/story/charts-面积图-area-chart--area-with-sample"
-          >
-            <AreaWithSample {...(AreaWithSample.args as ChartProps)} />
-          </Frame>
-          <Frame type="right" title={AreaStack.storyName} path="/?path=/story/charts-面积图-area-chart--area-stack">
+          <Frame type="left" title={AreaStack.storyName} path="/?path=/story/charts-面积图-area--area-stack">
             <AreaStack {...(AreaStack.args as ChartProps)} />
           </Frame>
-        </div>
-        <div>
-          <Frame type="left" title={PercentArea.storyName} path="/?path=/story/charts-面积图-area-chart--percent-area">
+          <Frame type="right" title={PercentArea.storyName} path="/?path=/story/charts-面积图-area--percent-area">
             <PercentArea {...(PercentArea.args as ChartProps)} />
           </Frame>
-          <Frame type="right" />
         </div>
       </div>
 

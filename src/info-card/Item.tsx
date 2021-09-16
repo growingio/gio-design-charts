@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatNumber } from '..';
 
 export interface ItemProps {
   data: any;
@@ -11,7 +12,8 @@ const Item = (props: ItemProps) => {
   const { data, forwardKey, valueKey, formatter } = props;
   const item = data?.data;
   const value = item?.[valueKey] || item?.value;
-  const formatedValue = formatter ? formatter(value) : value;
+  const defaultConvertValue = isNaN(Number(value)) ? value : formatNumber(Number(value));
+  const formatedValue = formatter ? formatter(value) : defaultConvertValue;
   return (
     <div className="gio-d-chart-infocard_item" data-testid="legend-item">
       <span className="gio-d-chart-infocard_label">

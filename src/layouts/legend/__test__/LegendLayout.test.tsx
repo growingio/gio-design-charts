@@ -3,7 +3,7 @@ import { act } from '@testing-library/react-hooks';
 import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../../interfaces';
 import { areaChart, handleLegend } from '../../../area/framework';
-import { AreaWithSample } from '../../../area/demos/Area.stories';
+import { AreaStack } from '../../../area/demos/Area.stories';
 import LegendLayout from '../LegendLayout';
 
 const legendLayoutTestid = 'legend-layout';
@@ -18,7 +18,7 @@ describe('LegendLayout', () => {
     jest.useRealTimers();
   });
   test('use useOffset in component', () => {
-    const { legends, config, data } = AreaWithSample.args as ChartProps;
+    const { legends, config, data } = AreaStack.args as ChartProps;
     render(
       <LegendLayout
         config={config}

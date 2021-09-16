@@ -15,7 +15,7 @@ describe('common', () => {
   test('default', () => {
     render(<Area {...(PercentArea.args as ChartProps)} />);
 
-    const testid = 'legend-item-Facebook';
+    const testid = 'legend-item-步步盈增｜北京';
     const legend = screen.getByTestId(testid);
     expect(legend).toBeTruthy();
 
