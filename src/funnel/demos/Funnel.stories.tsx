@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import FunnelChart from '../FunnelChart';
+import FunnelChart from '../Funnel';
 import FunnelGroupChart from '../FunnelGroupChart';
 import Card from '../../demos/card';
 import { dataWithMultiBar } from '../../column/demos/data';

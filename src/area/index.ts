@@ -1,1 +1,1 @@
-export { default, default as AreaChart } from './AreaChart';
+export { default, default as AreaChart } from './Area';

@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import ColumnChart from '../ColumnChart';
+import ColumnChart from '../Column';
 import Card from '../../demos/card';
 import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';

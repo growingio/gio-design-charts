@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ColumnChart from '../ColumnChart';
-import ScrollColumnChart from '../ScrollColumnChart';
+import ColumnChart from '../Column';
+import ScrollColumnChart from '../ScrollColumn';
 import {
   ColumnWithComponsive,
   ColumnWithGroup,

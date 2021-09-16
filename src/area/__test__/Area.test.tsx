@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import AreaChart from '../AreaChart';
+import AreaChart from '../Area';
 import { AreaStack, AreaWithSample, PercentArea } from '../demos/Area.stories';
 import { ChartProps } from '../..';
 
