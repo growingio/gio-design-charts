@@ -2,7 +2,7 @@ import React from 'react';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
-import { last } from 'lodash';
+import { first, last } from 'lodash';
 
 import './styles/infocard.less';
 
@@ -20,11 +20,9 @@ const InfoCardBox = (props: InfoCardProps) => {
   const defaultStyles = options?.defaultStyles;
   const chartType = config?.type;
   const forwardKey = config?.[chartType]?.color;
-  const valueKey = last(config?.[chartType]?.position?.split('*')) as string;
-
-  // Though it will run many times when items are changed.
-  // That is expected to update items, it seams it's better to direct use without useEffect.
-  const title = triggerItems?.[0]?.name || '';
+  const splitPositions = config?.[chartType]?.position?.split('*');
+  const nameKey = first(splitPositions) as string;
+  const valueKey = last(splitPositions) as string;
   const items =
     triggerItems?.map((item: any) => {
       if (!item) {
@@ -47,6 +45,10 @@ const InfoCardBox = (props: InfoCardProps) => {
       }
       return { ...legend, data: { ...itemData }, type: chartType, styles: legendStyles };
     }) || [];
+
+  // Though it will run many times when items are changed.
+  // That is expected to update items, it seams it's better to direct use without useEffect.
+  const title = (items[0] as any)?.data?.[nameKey] || triggerItems?.[0]?.name || '';
   return (
     <div className="gio-d-chart-infocard" data-testid="infoCardBox">
       <InfoCard
