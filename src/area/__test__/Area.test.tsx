@@ -1,16 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Area from '../Area';
-import { AreaStack, AreaWithSample, PercentArea } from '../demos/Area.stories';
+import { AreaStack, PercentArea } from '../demos/Area.stories';
 import { ChartProps } from '../..';
 
 describe('Area Chart', () => {
   const testid = 'legend-layout';
-
-  test('render Chart', async () => {
-    render(<Area {...(AreaWithSample.args as ChartProps)} />);
-    expect(await screen.findByTestId(testid)).toBeTruthy();
-  });
 
   test('render Stack Chart', async () => {
     render(<Area {...(AreaStack.args as ChartProps)} />);
