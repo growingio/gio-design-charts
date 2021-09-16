@@ -4,7 +4,7 @@ import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } f
 import Card from '../../demos/card';
 import Docs from './Line.mdx';
 import { colors } from '../../theme';
-import { formatNumber, formatPercent, InfoCard } from '../..';
+import { formatNumber, InfoCard } from '../..';
 import { dateFormatterByTs } from '../../utils/dateFormatter';
 
 export default {
