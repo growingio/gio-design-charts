@@ -1,190 +1,33 @@
 export const dataWithOneLine = [
-  {
-    month: '一月',
-    city: '北京',
-    value: 28.55,
-  },
-  {
-    month: '二月',
-    city: '北京',
-    value: 24.99,
-  },
-  {
-    month: '三月',
-    city: '北京',
-    value: 19.47,
-  },
-  {
-    month: '四月',
-    city: '北京',
-    value: 29.91,
-  },
-  {
-    month: '五月',
-    city: '北京',
-    value: 18.47,
-  },
-  {
-    month: '六月',
-    city: '北京',
-    value: 15.12,
-  },
-  {
-    month: '7月',
-    city: '北京',
-    value: 29.33,
-  },
-  {
-    month: '8月',
-    city: '北京',
-    value: 27.1,
-  },
-  {
-    month: '9月',
-    city: '北京',
-    value: 26.66,
-  },
-  {
-    month: '10月',
-    city: '北京',
-    value: 25.69,
-  },
-  {
-    month: '11月',
-    city: '北京',
-    value: 27.14,
-  },
-  {
-    month: '12月',
-    city: '北京',
-    value: 22.86,
-  },
+  { type: '步步盈增', tm: '06/04 周五', value: 10900 },
+  { type: '步步盈增', tm: '06/05 周六', value: 7200 },
+  { type: '步步盈增', tm: '06/06 周日', value: 13900 },
+  { type: '步步盈增', tm: '06/07 周一', value: 11100 },
+  { type: '步步盈增', tm: '06/08 周二', value: 6500 },
+  { type: '步步盈增', tm: '06/09 周三', value: 4800 },
+  { type: '步步盈增', tm: '06/10 周四', value: 8123 },
+  { type: '步步盈增', tm: '06/11 周五', value: 9865 },
 ];
 
 export const dataWithTwoLine = [
-  {
-    month: '一月',
-    city: '北京',
-    value: 28.55,
-  },
-  {
-    month: '二月',
-    city: '北京',
-    value: 24.99,
-  },
-  {
-    month: '三月',
-    city: '北京',
-    value: 19.47,
-  },
-  {
-    month: '四月',
-    city: '北京',
-    value: 29.91,
-  },
-  {
-    month: '五月',
-    city: '北京',
-    value: 18.47,
-  },
-  {
-    month: '六月',
-    city: '北京',
-    value: 15.12,
-  },
-  {
-    month: '7月',
-    city: '北京',
-    value: 29.33,
-  },
-  {
-    month: '8月',
-    city: '北京',
-    value: 27.1,
-  },
-  {
-    month: '9月',
-    city: '北京',
-    value: 26.66,
-  },
-  {
-    month: '10月',
-    city: '北京',
-    value: 25.69,
-  },
-  {
-    month: '11月',
-    city: '北京',
-    value: 27.14,
-  },
-  {
-    month: '12月',
-    city: '北京',
-    value: 22.86,
-  },
-  {
-    month: '一月',
-    city: '北京(去年)',
-    value: 24.55,
-  },
-  {
-    month: '二月',
-    city: '北京(去年)',
-    value: 12.99,
-  },
-  {
-    month: '三月',
-    city: '北京(去年)',
-    value: 12.47,
-  },
-  {
-    month: '四月',
-    city: '北京(去年)',
-    value: 11.91,
-  },
-  {
-    month: '五月',
-    city: '北京(去年)',
-    value: 18.47,
-  },
-  {
-    month: '六月',
-    city: '北京(去年)',
-    value: 20.12,
-  },
-  {
-    month: '7月',
-    city: '北京(去年)',
-    value: 24.33,
-  },
-  {
-    month: '8月',
-    city: '北京(去年)',
-    value: 26.1,
-  },
-  {
-    month: '9月',
-    city: '北京(去年)',
-    value: 28.66,
-  },
-  {
-    month: '10月',
-    city: '北京(去年)',
-    value: 30.69,
-  },
-  {
-    month: '11月',
-    city: '北京(去年)',
-    value: 27.14,
-  },
-  {
-    month: '12月',
-    city: '北京(去年)',
-    value: 10.86,
-  },
+  { type: '步步盈增', tm: '06/04 周五', value: 10900 },
+  { type: '步步盈增（上个月）', tm: '06/04 周五', value: 6000 },
+  { type: '步步盈增', tm: '06/05 周六', value: 7200 },
+  { type: '步步盈增（上个月）', tm: '06/05 周六', value: 5840 },
+  { type: '步步盈增', tm: '06/06 周日', value: 13900 },
+  { type: '步步盈增（上个月）', tm: '06/06 周日', value: 11200 },
+  { type: '步步盈增', tm: '06/07 周一', value: 11100 },
+  { type: '步步盈增（上个月）', tm: '06/07 周一', value: 7802 },
+  { type: '步步盈增', tm: '06/08 周二', value: 6500 },
+  { type: '步步盈增（上个月）', tm: '06/08 周二', value: 4800 },
+  { type: '步步盈增', tm: '06/09 周三', value: 4800 },
+  { type: '步步盈增（上个月）', tm: '06/09 周三', value: 5890 },
+  { type: '步步盈增', tm: '06/10 周四', value: 8123 },
+  { type: '步步盈增（上个月）', tm: '06/10 周四', value: 7201 },
+  { type: '步步盈增', tm: '06/11 周五', value: 9865 },
+  { type: '步步盈增（上个月）', tm: '06/11 周五', value: 8028 },
 ];
 
-export const dataWithOneLineArea = dataWithOneLine.map((_) => ({ month: _.month, city: _.city }));
 export const dataWithDash = [
   {
     month: '一月',

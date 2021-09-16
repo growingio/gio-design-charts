@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { lineChart, handleLegend } from '../framework';
-import { LineWithOneLine } from '../demos/Line.stories';
+import { BaiscLine } from '../demos/Line.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
-const { config, legends: legendList, data } = LineWithOneLine.args as ChartProps;
+const { config, legends: legendList, data } = BaiscLine.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
 describe('line fromework', () => {
   test('call lineChart', () => {

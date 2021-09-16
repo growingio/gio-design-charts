@@ -4,9 +4,11 @@ import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } f
 import Card from '../../demos/card';
 import Docs from './Line.mdx';
 import { colors } from '../../theme';
+import { formatNumber, InfoCard } from '../..';
+import { dateFormatterByTs } from '../../utils/dateFormatter';
 
 export default {
-  title: 'Charts/折线图 Line Chart',
+  title: 'Charts/折线图 Line',
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -60,37 +62,91 @@ const config = {
   },
 };
 
-export const LineWithOneLine = Template.bind({});
-const LineWithOneLineArgs = {
-  legends: ['北京'],
+export const BaiscLine = Template.bind({});
+const BaiscLineArgs = {
+  legends: ['步步盈增'],
   data: dataWithOneLine,
-  config,
+  config: {
+    ...config,
+    scales: [
+      [
+        'value',
+        {
+          tickCount: 10,
+          min: 0,
+        },
+      ],
+      ['tm', { range: [0, 1] }],
+    ],
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatNumber(val),
+          },
+        },
+      ],
+      ['tm', { tickLine: null }],
+    ],
+    line: {
+      position: 'tm*value',
+      color: 'type',
+    },
+  },
 };
-LineWithOneLine.storyName = '基础折线图';
-LineWithOneLine.args = { ...LineWithOneLineArgs };
+BaiscLine.storyName = '基础折线图';
+BaiscLine.args = { ...BaiscLineArgs };
 
-export const LineWithDash = Template.bind({});
-const LineWithDashArgs = {
+export const ContrastLine = Template.bind({});
+const ContrastLineArgs = {
   legends: [
     {
-      name: '北京',
+      name: '步步盈增',
       color: colors[0],
     },
     {
-      name: '北京(去年)',
+      name: '步步盈增（上个月）',
       lineDash: true,
       color: colors[0],
     },
   ],
   data: dataWithTwoLine,
-  config,
+  config: {
+    ...config,
+    scales: [
+      [
+        'value',
+        {
+          tickCount: 10,
+          min: 0,
+        },
+      ],
+      ['tm', { range: [0, 1] }],
+    ],
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatNumber(val),
+          },
+        },
+      ],
+      ['tm', { tickLine: null }],
+    ],
+    line: {
+      position: 'tm*value',
+      color: 'type',
+    },
+  },
 };
 
-LineWithDash.args = { ...LineWithDashArgs };
-LineWithDash.storyName = '对比折线图';
+ContrastLine.args = { ...ContrastLineArgs };
+ContrastLine.storyName = '对比折线图';
 
-export const LineWithMenu = Template.bind({});
-const LineWithMenuArgs = {
+export const MultiLine = Template.bind({});
+const MultiLineArgs = {
   legends: [
     '北京的天气真热啊',
     '上海',
@@ -111,8 +167,8 @@ const LineWithMenuArgs = {
   data: dataWithMenu,
   config,
 };
-LineWithMenu.args = { ...LineWithMenuArgs };
-LineWithMenu.storyName = '多纬度折线图';
+MultiLine.args = { ...MultiLineArgs };
+MultiLine.storyName = '多纬度折线图';
 
 export const LineWithOneLineDate = Template.bind({});
 
@@ -124,7 +180,7 @@ const LineWithOneLineDateConfig = {
   scale: [
     {
       date: {
-        type: 'timeCat',
+        range: [0, 1],
       },
       value: {
         min: 0,
@@ -141,17 +197,32 @@ const LineWithOneLineDateConfig = {
     showCrosshairs: true,
     shared: true,
     enterable: true,
-    formatter: (val: number) => val + '次',
+    render: (options: any) => {
+      return <InfoCard {...options} title={dateFormatterByTs(options.title)} />;
+    },
   },
-  axis: [
-    'value',
-    {
-      label: {
-        formatter: (val: string) => {
-          return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  axises: [
+    [
+      'value',
+      {
+        label: {
+          formatter: (val: string) => {
+            return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          },
         },
       },
-    },
+    ],
+    [
+      'date',
+      {
+        label: {
+          formatter: (text: string) => {
+            console.log(text);
+            return dateFormatterByTs(text);
+          },
+        },
+      },
+    ],
   ],
   line: {
     position: 'date*value',

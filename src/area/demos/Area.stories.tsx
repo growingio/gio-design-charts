@@ -1,6 +1,5 @@
 import { ComponentStory } from '@storybook/react';
 import Area from '../Area';
-import { dataWithOneLine } from '../../line/demos/data';
 import Card from '../../demos/card';
 import Docs from './Area.mdx';
 import { stackAreaData, stackAreaPrecentData } from './data';
