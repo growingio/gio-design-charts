@@ -1,7 +1,7 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import Funnel from '../Funnel';
-import GroupFunnel from '../GroupFunnel';
+import GroupedFunnel from '../GroupedFunnel';
 import {
   FunnelWith3Columns,
   FunnelWith6Columns,
@@ -64,7 +64,7 @@ describe('Funnel Chart', () => {
   });
 
   test('render Chart with group by scrolling', async () => {
-    render(<GroupFunnel {...(FunnelWithGroup.args as ChartProps)} />);
+    render(<GroupedFunnel {...(FunnelWithGroup.args as ChartProps)} />);
     act(() => {
       jest.runOnlyPendingTimers();
     });
@@ -84,7 +84,7 @@ describe('Funnel Chart', () => {
 
   test('render Chart with  empty config and legends by scrolling ', async () => {
     render(
-      <GroupFunnel {...(FunnelWithGroup.args as ChartProps)} legends={undefined as any} config={undefined as any} />
+      <GroupedFunnel {...(FunnelWithGroup.args as ChartProps)} legends={undefined as any} config={undefined as any} />
     );
     act(() => {
       jest.runOnlyPendingTimers();

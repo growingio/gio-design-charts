@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 import Funnel from '../Funnel';
-import GroupFunnel from '../GroupFunnel';
+import GroupedFunnel from '../GroupedFunnel';
 import Card from '../../demos/card';
 import { dataWithMultiBar } from '../../column/demos/data';
 import DrillDownCard from './drilldown-card';
@@ -148,7 +148,7 @@ FunnelWith7Columns.args = FunnelWith7ColumnsArgs;
 
 const GroupTemplate: ComponentStory<typeof Funnel> = (args) => (
   <Card>
-    <GroupFunnel {...args} />
+    <GroupedFunnel {...args} />
   </Card>
 );
 
