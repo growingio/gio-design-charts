@@ -9,19 +9,22 @@ export interface InfoCardProps {
   data: any[];
   forwardKey: string;
   valueKey: string;
+  formatter?: any;
   trigger?: string;
   config?: ChartConfig;
   injectComponent?: any;
 }
 
 const InfoCard = (props: InfoCardProps) => {
-  const { title, data = [], trigger, forwardKey, valueKey, config, injectComponent } = props;
+  const { title, data = [], trigger, forwardKey, valueKey, config, injectComponent, formatter: propFormatter } = props;
   const renderTooltip = config?.tooltip?.render;
-  const formatter = config?.tooltip?.formatter;
+  const tooltipFormatter = config?.tooltip?.formatter;
+
+  const formatter = tooltipFormatter || propFormatter;
   return (
     <>
       {renderTooltip ? (
-        renderTooltip({ title, data, trigger, forwardKey })
+        renderTooltip({ title, data, trigger, forwardKey, formatter })
       ) : (
         <div data-testid="infoCard">
           <div className="gio-d-chart-infocard_title">{title}</div>

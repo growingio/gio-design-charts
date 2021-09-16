@@ -21,12 +21,15 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
     const style = {} as any;
     if (legend.color) {
       style.stroke = legend.color;
+      style.fill = legend.color;
     }
     if (legend.lineDash) {
       style.lineDash = legend.lineDash;
     }
+    style.fillOpacity = 0.8;
     // default width of line is 2px
-    style.lineWidth = 0;
+    style.lineWidth = 2;
+    style.strokeOpacity = 0.4;
     return style;
   });
   return area;

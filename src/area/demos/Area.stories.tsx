@@ -1,12 +1,13 @@
 import { ComponentStory } from '@storybook/react';
 import Area from '../Area';
-import { dataWithDash, dataWithOneLine } from '../../line/demos/data';
+import { dataWithOneLine } from '../../line/demos/data';
 import Card from '../../demos/card';
 import Docs from './Area.mdx';
-import { percentData } from '../../column/demos/data';
+import { stackAreaData, stackAreaPrecentData } from './data';
+import { formatNumber, formatPercent, InfoCard } from '../..';
 
 export default {
-  title: 'Charts/面积图 Area Chart',
+  title: 'Charts/面积图 Area',
   component: Area,
   argTypes: {
     backgroundColor: { control: 'color' },
@@ -51,39 +52,53 @@ const config = {
     {
       label: {
         formatter: (val: string) => {
-          return val + ' °C';
+          return formatNumber(Number(val));
         },
       },
     },
   ],
 };
-export const AreaWithSample = Template.bind({});
-AreaWithSample.storyName = '面积图';
-const AreaWithSampleArgs = {
-  legends: ['北京'],
-  data: dataWithOneLine,
-  config: {
-    ...config,
-    area: {
-      position,
-      color: 'city',
-      area: position,
-    },
-  },
-};
-
-AreaWithSample.args = { ...AreaWithSampleArgs };
 
 export const AreaStack = Template.bind({});
 AreaStack.storyName = '堆积面积图';
 const AreaStackArgs = {
-  legends: ['长春', '哈尔滨', '石家庄'],
-  data: dataWithDash,
+  legends: [
+    { name: '步步盈增', color: '#5F87FF' },
+    { name: '访问退出', color: '#FFDD63' },
+    { name: '页面浏览', color: '#DB7892' },
+  ],
+  data: stackAreaData,
   config: {
     ...config,
+    scale: ['tm', { range: [0, 1] }],
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => {
+              return formatNumber(Number(val));
+            },
+          },
+        },
+      ],
+      [
+        'tm',
+        {
+          tickLine: null,
+        },
+      ],
+    ],
+    tooltip: {
+      shared: true,
+      render: (options: any) => {
+        const title = options.data?.[0]?.data?.tm || options.title;
+        return <InfoCard {...options} title={title} />;
+      },
+    },
     area: {
-      position,
-      color: 'city',
+      position: 'tm*value',
+      color: 'type',
       area: position,
       adjust: ['stack'],
     },
@@ -94,23 +109,29 @@ AreaStack.args = { ...AreaStackArgs };
 
 export const PercentArea = Template.bind({});
 const PercentAreaArgs = {
-  legends: ['Facebook', 'Apple', 'Google'],
-  data: percentData,
+  legends: ['步步盈增｜北京', '步步盈增｜上海', '访问退出｜北京', { name: '访问退出｜上海', color: '#FFB7AE' }],
+  data: stackAreaPrecentData,
   config: {
     ...config,
-    axis: [
-      'value',
-      {
-        label: {
-          formatter: (val: string) => {
-            return val + '%';
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
           },
         },
-      },
+      ],
+      [
+        'tm',
+        {
+          tickLine: null,
+        },
+      ],
     ],
     scale: [
       {
-        type: {
+        tm: {
           range: [0, 1],
         },
         value: {
@@ -118,9 +139,17 @@ const PercentAreaArgs = {
         },
       },
     ],
+    tooltip: {
+      shared: true,
+      formatter: (val: string) => formatPercent(val, 2, true),
+      render: (options: any) => {
+        const title = options.data?.[0]?.data?.tm || options.title;
+        return <InfoCard {...options} title={title} />;
+      },
+    },
     area: {
-      position: 'type*value',
-      color: 'company',
+      position: 'tm*value',
+      color: 'type',
       adjust: ['stack'],
     },
   },

@@ -1,6 +1,7 @@
 import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
 import Area from '../Area';
 import { dataWithDash, dataWithOneLine } from '../../line/demos/data';
+import { AreaStack, PercentArea } from './Area.stories';
 import { Meta, Story, Canvas } from '@storybook/addon-docs';
 
 <Meta title="MDX/Area" component={Area} />
@@ -17,7 +18,21 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs';
 
 <ArgsTable of={Area} />
 
+export const Template = (args) => <Area {...args} />;
+
+<Canvas>
+  <Story id="charts-面积图-area--area-stack" name={AreaStack.storyName} args={AreaStack.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story id="charts-面积图-area--percent-area" name={PercentArea.storyName} args={PercentArea.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
 ## 使用案例
 
-- [基础面积图](/story/charts-面积图-area-chart--line-with-area-example)
-- [复杂面积图](/story/charts-面积图-area-chart--line-with-multi-area-example)
+- [堆积面积图](/story/charts-面积图-area--area-stack)
+- [百分比面积图](/story/charts-面积图-area--percent-area)

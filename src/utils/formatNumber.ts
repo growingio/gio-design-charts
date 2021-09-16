@@ -42,11 +42,13 @@ export const parseFormatedNumber = (text: string) => parseFloat(text.replace(/\,
 // 12   ==> 12%
 // 12.3 ==> 12.3%
 export const formatPercent = (value: string | number, decimalCount?: number, intSuffixZeroFill = false) =>
-  typeof value === 'number' ? formatNumber((value || 0) * 100, decimalCount, intSuffixZeroFill) + '%' : value;
+  typeof !isNaN(Number(value))
+    ? formatNumber((Number(value) || 0) * 100, decimalCount, intSuffixZeroFill) + '%'
+    : value;
 
 // 12   ==> 12 °C
 // 12.3 ==> 12.3 °C
 export const formatTemperature = (value: string | number, decimalCount?: number, intSuffixZeroFill = false) =>
-  typeof value === 'number' ? formatNumber(value, decimalCount, intSuffixZeroFill) + ' °C' : value;
+  typeof !isNaN(Number(value)) ? formatNumber(Number(value), decimalCount, intSuffixZeroFill) + ' °C' : value;
 
 export default formatNumber;
