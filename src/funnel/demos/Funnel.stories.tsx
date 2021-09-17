@@ -173,12 +173,32 @@ const FunnelWith7ColumnsArgs = {
   data: dataWith7Columns,
   config: {
     ...config,
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
+          },
+        },
+      ],
+      ['type', { tickLine: null }],
+    ],
+    tooltip: {
+      shared: true,
+      render: (options: any) => {
+        return <InfoCard {...options} valueKey="count" />;
+      },
+    },
     funnel: {
       position,
       color: 'type',
       label: [
         'value',
         {
+          content: (data: any) => {
+            return formatNumber(data.count);
+          },
           type: intervalLabel,
           style: {
             fill: '#343434',
@@ -203,11 +223,23 @@ const FunnelWithGroupArgs = {
   data: dataWithGroup,
   config: {
     ...config,
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
+          },
+        },
+      ],
+      ['type', { tickLine: null }],
+    ],
     tooltip: {
-      enterable: true,
-      showContent: true,
-      // shared: true,
+      shared: true,
       showMarkers: false,
+      render: (options: any) => {
+        return <InfoCard {...options} valueKey="count" />;
+      },
     },
     funnel: {
       position,
@@ -221,6 +253,9 @@ const FunnelWithGroupArgs = {
       label: [
         'value',
         {
+          content: (data: any) => {
+            return formatNumber(data.count);
+          },
           type: intervalLabel,
           style: {
             fill: '#343434',
