@@ -16,7 +16,7 @@ describe('test fromework utils', () => {
         },
       },
     };
-    expect(getLinkPath(mockElement1, mockElement2)).toEqual([
+    expect(getLinkPath(mockElement1 as any, mockElement2 as any)).toEqual([
       ['M', 100, 12],
       ['L', 150, 152],
       ['L', 150, 200],
@@ -41,7 +41,7 @@ describe('test fromework utils', () => {
         },
       },
     };
-    expect(getMiddleCoordinate(mockElement1, mockElement2)).toEqual({ x: 125, y: 80 });
+    expect(getMiddleCoordinate(mockElement1 as any, mockElement2 as any)).toEqual({ x: 125, y: 80 });
   });
 
   test('test getMiddleRect', () => {

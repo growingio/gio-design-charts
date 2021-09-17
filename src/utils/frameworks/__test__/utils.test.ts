@@ -50,28 +50,28 @@ describe('getRelateLegend', () => {
 
 describe('getDefaultStyles', () => {
   test('with empty', () => {
-    expect(getDefaultStyles()).toEqual({});
+    expect(getDefaultStyles(undefined as any)).toEqual({});
     expect(getDefaultStyles({})).toEqual({});
   });
 });
 
 describe('isUseDash', () => {
   test('with empty', () => {
-    expect(isUseDash()).toBeFalsy;
+    expect(isUseDash(undefined as any)).toBeFalsy;
     expect(isUseDash({})).toBeFalsy;
   });
 });
 
 describe('isStack', () => {
   test('with empty', () => {
-    expect(isStack()).toBeFalsy;
+    expect(isStack(undefined as any)).toBeFalsy;
     expect(isStack({})).toBeFalsy;
   });
 });
 
 describe('isTopBar', () => {
   test('with empty', () => {
-    expect(isTopBar()).toBeFalsy;
+    expect(isTopBar(undefined as any)).toBeFalsy;
     expect(isTopBar({})).toBeFalsy;
   });
 });
