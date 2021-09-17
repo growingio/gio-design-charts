@@ -1,0 +1,13 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Format Date" />
+
+Use formatDateByTs
+
+```javascript
+import formatDateByTs from '@gio-design/charts';
+
+formatDateByTs(1631878872411); // 09/17 周五
+formatDateByTs('1631878872411'); // 09/17 周五
+formatDateByTs('Test'); // Test
+```

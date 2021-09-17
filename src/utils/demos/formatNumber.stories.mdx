@@ -1,0 +1,66 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Format Number" />
+
+Use formatNumber
+
+```javascript
+import { formatNumber } from '@gio-design/charts';
+
+formatNumber(20); // 20
+formatNumber(123415454); // 123,415,454
+formatNumber(123415454.23); // 123,415,454.23
+formatNumber(123415454.23232332); // 123,415,454.23
+formatNumber(0.23232332); // 0.23
+```
+
+Use formatNumber with decimalCount
+
+```javascript
+import { formatNumber } from '@gio-design/charts';
+
+formatNumber(0.23, 0); // 0
+formatNumber(0.26123123, 1); // 0.3
+formatNumber(123415454.23, 0); // 123,415,454
+formatNumber(123415454.6, 0); // 123,415,455
+```
+
+Use formatNumber with decimalCount and intSuffixZeroFill
+
+```javascript
+import { formatNumber } from '@gio-design/charts';
+
+formatNumber(0.6, 3, true); // 0.6
+formatNumber(123415454.6, 3, true); // 123,415,454.6
+formatNumber(0, 3, true); // 0.000
+formatNumber(123415454, 3, true); // 123,415,454.000
+```
+
+Use formatTemperature
+
+```javascript
+import { formatTemperature } from '@gio-design/charts';
+
+formatTemperature(20); // 20 °C
+formatTemperature(0.2, 3, true); // 0.2 °C
+formatTemperature('20 °C'); // 20 °C
+```
+
+Use formatTemperature
+
+```javascript
+import { formatPercent } from '@gio-design/charts';
+
+formatPercent(0.2); // 20%
+formatPercent(0.2, 3, true); // 20.000%
+formatPercent('20%'); // 20%
+formatPercent(NaN); // 0%
+```
+
+Use parseFormatedNumber
+
+```javascript
+import { parseFormatedNumber } from '@gio-design/charts';
+
+parseFormatedNumber(123, 415, 454.23); // 123415454.23
+```
