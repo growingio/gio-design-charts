@@ -71,7 +71,7 @@ describe('isStack', () => {
 
 describe('isTopBar', () => {
   test('with empty', () => {
-    expect(isTopBar(undefined as any)).toBeFalsy();
-    expect(isTopBar({})).toBeFalsy();
+    expect(isTopBar(undefined as any)).toBeTruthy();
+    expect(isTopBar({})).toBeTruthy();
   });
 });
