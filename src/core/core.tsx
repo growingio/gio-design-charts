@@ -5,6 +5,7 @@ import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 
 import './styles/base.less';
+import { debounce } from 'lodash';
 
 export interface LayoutProps {
   options: ChartOptions;
@@ -38,6 +39,8 @@ const core = (HighComponent: any) => {
     const { charts, getTriggerAction, interceptors } = useInterceptors();
     const [hasDashed, setDashed] = useState(false);
 
+    const setHoverItemD = useMemo(() => debounce(setHoverItem, 20), [setHoverItem]);
+
     const defineReporter = useCallback((thing: ReportThing) => {
       // do stome report thing in here
     }, []);
@@ -65,7 +68,7 @@ const core = (HighComponent: any) => {
           ...tooltip,
           container: tooltipRef.current,
           customItems: (items: any) => {
-            setHoverItem(items);
+            setHoverItemD(items);
             return items;
           },
         };
@@ -100,13 +103,12 @@ const core = (HighComponent: any) => {
         } catch (err) {}
       };
     }, [data, legendList, config, callChart]);
-
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
         handleLegend(charts, newLegends, config);
       },
-      [charts, chartOptions, config, handleLegend, updateLegends]
+      [charts, chartOptions, config, setHoverItemD, handleLegend, updateLegends]
     );
 
     return (
