@@ -10,7 +10,7 @@ import Docs from './Funnel.mdx';
 import { formatNumber, formatPercent, InfoCard } from '../..';
 
 export default {
-  title: 'Charts/漏斗图 Funnel Chart',
+  title: 'Charts/漏斗图 Funnel',
   argTypes: {
     backgroundColor: { control: 'color' },
   },
