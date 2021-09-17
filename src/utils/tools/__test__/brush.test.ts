@@ -1,7 +1,7 @@
 import { drawLinkPath, drawPolygon, drawText } from '../brush';
 
 describe('test fromework brush', () => {
-  test('test drawLinkPath', () => {
+  test('call drawLinkPath', () => {
     expect(drawLinkPath([['M', 10, 10]])).toEqual({
       type: 'path',
       attrs: {
@@ -12,7 +12,7 @@ describe('test fromework brush', () => {
     });
   });
 
-  test('test drawPolygon', () => {
+  test('call drawPolygon', () => {
     expect(
       drawPolygon([
         [1, 1],
@@ -31,7 +31,7 @@ describe('test fromework brush', () => {
     });
   });
 
-  test('test drawPolygon', () => {
+  test('call drawText', () => {
     expect(drawText({ x: 10, y: 10 }, 'test')).toEqual({
       type: 'text',
       attrs: {

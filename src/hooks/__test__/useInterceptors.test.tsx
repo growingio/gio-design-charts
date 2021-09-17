@@ -4,7 +4,7 @@ import EventEmitter from '@antv/event-emitter';
 import useInterceptors from '../useInterceptors';
 
 describe('test useInterceptors', () => {
-  test('test interceptors onRender', () => {
+  test('call interceptors onRender', () => {
     const { result } = renderHook(() => useInterceptors());
     const chartObj = {};
     act(() => {
@@ -13,7 +13,7 @@ describe('test useInterceptors', () => {
     expect(result.current.charts).toEqual([chartObj]);
   });
 
-  test('test interceptors bindElementEvents', () => {
+  test('call interceptors bindElementEvents', () => {
     const { result } = renderHook(() => useInterceptors());
 
     const chartObj = new EventEmitter();

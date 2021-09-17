@@ -82,7 +82,7 @@ describe('Funnel Chart', () => {
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
-  test('render Chart with  empty config and legends by scrolling ', async () => {
+  test('render Chart with  empty config and legends by scrolling', async () => {
     render(
       <GroupedFunnel {...(FunnelWithGroup.args as ChartProps)} legends={undefined as any} config={undefined as any} />
     );

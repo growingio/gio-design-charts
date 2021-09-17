@@ -18,7 +18,7 @@ describe('test useLegends', () => {
     },
   };
   const fullLegends = { ...testLegends, ...lineDashLgends };
-  test('test getLegends', () => {
+  test('call getLegends', () => {
     const [legends, hasDashed] = getLegends(ChartType.BAR, [
       '北京',
       { name: '上海' },
@@ -31,7 +31,7 @@ describe('test useLegends', () => {
     expect(nullLegends).toEqual({});
   });
 
-  test('test useLegends hook', () => {
+  test('call useLegends hook', () => {
     const { result } = renderHook(() => useLegends());
 
     act(() => {

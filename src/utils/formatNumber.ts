@@ -37,7 +37,7 @@ export const formatNumber = (value: any, decimalCount = 2, intSuffixZeroFill = f
 };
 
 // 1,233,123  ==> 1233123
-export const parseFormatedNumber = (text: string) => parseFloat(text.replace(/\,/g, ''));
+export const parseFormatedNumber = (text: string) => parseFloat(text.replace(/,/g, ''));
 
 // 12   ==> 12%
 // 12.3 ==> 12.3%

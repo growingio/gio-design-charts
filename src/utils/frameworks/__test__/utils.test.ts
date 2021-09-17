@@ -57,21 +57,21 @@ describe('getDefaultStyles', () => {
 
 describe('isUseDash', () => {
   test('with empty', () => {
-    expect(isUseDash(undefined as any)).toBeFalsy;
-    expect(isUseDash({})).toBeFalsy;
+    expect(isUseDash(undefined as any)).toBeFalsy();
+    expect(isUseDash({})).toBeFalsy();
   });
 });
 
 describe('isStack', () => {
   test('with empty', () => {
-    expect(isStack(undefined as any)).toBeFalsy;
-    expect(isStack({})).toBeFalsy;
+    expect(isStack(undefined as any)).toBeFalsy();
+    expect(isStack({})).toBeFalsy();
   });
 });
 
 describe('isTopBar', () => {
   test('with empty', () => {
-    expect(isTopBar(undefined as any)).toBeFalsy;
-    expect(isTopBar({})).toBeFalsy;
+    expect(isTopBar(undefined as any)).toBeTruthy();
+    expect(isTopBar({})).toBeTruthy();
   });
 });
