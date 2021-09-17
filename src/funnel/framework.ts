@@ -89,9 +89,9 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
     linkView.render();
 
     fetchTooltip(chart, config);
-    interceptors?.bindElementEvents(chart);
     chart.legend(false);
     chart.render();
+    interceptors?.bindElementEvents(chart);
     return { chart, views: [linkView, backgroundView] };
   } catch (err) {
     return { chart };
