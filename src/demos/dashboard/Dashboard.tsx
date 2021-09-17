@@ -5,7 +5,6 @@ import { BarDefault, BarWithGroup, PercentBar, StackingDiagramBar } from '../../
 import {
   ColumnWithGroup,
   ColumnWithMulti,
-  ColumnWithOne,
   PercentColumn,
   StackingDiagramColumn,
 } from '../../column/demos/Column.stories';
@@ -64,13 +63,6 @@ const Dashboard = () => {
       <div style={{ display: 'flow-root' }}>
         <div style={titleStyle}>柱状图</div>
         <div>
-          <Frame
-            type="left"
-            title={ColumnWithOne.storyName}
-            path="/?path=/story/charts-柱状图-column-chart--column-with-one"
-          >
-            <ColumnWithOne {...(ColumnWithOne.args as ChartProps)} />
-          </Frame>
           <Frame
             type="right"
             title={ColumnWithMulti.storyName}
