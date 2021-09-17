@@ -1,7 +1,7 @@
 import { getMiddleCoordinate, getLinkPath, getMiddleRect, getArrowPolygon } from '../utils';
 
 describe('test fromework utils', () => {
-  test('test getLinkPath', () => {
+  test('call getLinkPath', () => {
     const mockElement1 = {
       shape: {
         getCanvasBBox: () => {
@@ -26,7 +26,7 @@ describe('test fromework utils', () => {
     ]);
   });
 
-  test('test getMiddleCoordinate', () => {
+  test('call getMiddleCoordinate', () => {
     const mockElement1 = {
       shape: {
         getCanvasBBox: () => {
@@ -44,11 +44,11 @@ describe('test fromework utils', () => {
     expect(getMiddleCoordinate(mockElement1 as any, mockElement2 as any)).toEqual({ x: 125, y: 80 });
   });
 
-  test('test getMiddleRect', () => {
+  test('call getMiddleRect', () => {
     expect(getMiddleRect({ x: 100, y: 100 }, 100, 100)).toEqual({ x: 50, y: 50, width: 100, height: 100 });
   });
 
-  test('test getArrowPolygon', () => {
+  test('call getArrowPolygon', () => {
     expect(getArrowPolygon({ x: 100, y: 100 }, 100, 100)).toEqual([
       [55, 50],
       [135, 50],

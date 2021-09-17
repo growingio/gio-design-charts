@@ -2,11 +2,11 @@ import { BAR_TEXTURE } from '../../theme';
 import { getLegendStyles } from '../styles';
 
 describe('test styles', () => {
-  test('test getLegendStyles', () => {
+  test('call getLegendStyles', () => {
     expect(getLegendStyles({ name: 'test' }, '#ccc')).toEqual({ backgroundColor: '#ccc' });
   });
 
-  test('test getLegendStyles with dashed', () => {
+  test('call getLegendStyles with dashed', () => {
     expect(getLegendStyles({ name: 'test', dashed: true }, '#ccc')).toEqual({
       backgroundImage: `url("${BAR_TEXTURE}")`,
       backgroundRepeat: 'repeat',
@@ -15,7 +15,7 @@ describe('test styles', () => {
     });
   });
 
-  test('test getLegendStyles with lineDash', () => {
+  test('call getLegendStyles with lineDash', () => {
     expect(getLegendStyles({ name: 'test', lineDash: true }, '#ccc')).toEqual({
       border: '1px dashed #ccc',
       height: 0,

@@ -1,7 +1,7 @@
 import { hasDodge, hasAdjust, getDodgeBy, hasContrastDodge } from '../interval';
 
 describe('test hasDodge in Interval', () => {
-  test('test adjust', () => {
+  test('call adjust', () => {
     const config1 = {
       adjust: ['dodge'],
     };
@@ -15,31 +15,31 @@ describe('test hasDodge in Interval', () => {
 });
 
 describe('test hasAdjust in Interval', () => {
-  test('test hasAdjust without config', () => {
+  test('call hasAdjust without config', () => {
     expect(hasAdjust(null as any, 'dodge')).toBeFalsy();
   });
 
-  test('test hasAdjust with null array', () => {
+  test('call hasAdjust with null array', () => {
     expect(hasAdjust({ adjust: [null] } as any, 'dodge')).toBeFalsy();
   });
 
-  test('test hasAdjust with adjust is null', () => {
+  test('call hasAdjust with adjust is null', () => {
     expect(hasAdjust({ adjust: null } as any, 'dodge')).toBeFalsy();
   });
 });
 
 describe('test getDodgeBy in Interval', () => {
-  test('test getDodgeBy without config', () => {
+  test('call getDodgeBy without config', () => {
     expect(getDodgeBy(null as any)).toBeFalsy();
   });
 
-  test('test getDodgeBy with null array', () => {
+  test('call getDodgeBy with null array', () => {
     expect(getDodgeBy({ adjust: [null] } as any)).toBeFalsy();
   });
 });
 
 describe('test hasContrastDodge in Interval', () => {
-  test('test hasContrastDodge without config', () => {
+  test('call hasContrastDodge without config', () => {
     expect(hasContrastDodge(null as any)).toBeFalsy();
   });
 });

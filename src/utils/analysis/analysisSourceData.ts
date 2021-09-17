@@ -20,7 +20,7 @@ export const analysisSourceData = (chartData: any, options?: AnalysisOptions) =>
 
   return source.map((item: any) => {
     const row = {} as any;
-    columns?.map((column: any, index: number) => {
+    columns?.forEach((column: any, index: number) => {
       let value = item?.[index];
       if (formatter) {
         value = formatter(value, column);

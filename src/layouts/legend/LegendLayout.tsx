@@ -15,7 +15,7 @@ const LegendLayout = React.memo((props: LegendLayoutProps) => {
   const { legends, charts } = options;
   const watchReset = useMemo(() => {
     return debounce((resetOffset: { width: number; height: number }) => {
-      charts?.map((view: Chart | View) => {
+      charts?.forEach((view: Chart | View) => {
         if (view instanceof Chart && width) {
           const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
           if (widthObj) {
