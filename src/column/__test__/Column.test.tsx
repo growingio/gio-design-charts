@@ -6,7 +6,6 @@ import {
   ColumnWithComponsive,
   ColumnWithGroup,
   ColumnWithMulti,
-  ColumnWithOne,
   ColumnWithTs,
   PercentColumn,
   StackingDiagramColumn,
@@ -15,11 +14,6 @@ import { ChartProps } from '../..';
 
 const legendTestId = 'legend-layout';
 describe('Column Chart', () => {
-  test('render Chart', async () => {
-    render(<Column {...(ColumnWithOne.args as ChartProps)} />);
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-  });
-
   test('render Chart with timestamp', async () => {
     render(<Column {...(ColumnWithTs.args as ChartProps)} />);
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
