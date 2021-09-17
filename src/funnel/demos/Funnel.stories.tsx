@@ -7,7 +7,6 @@ import DrillDownCard from './drilldown-card';
 import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';
 
 import Docs from './Funnel.mdx';
-import { MappingDatum } from '@antv/g2/lib/interface';
 import { formatNumber, formatPercent, InfoCard } from '../..';
 
 export default {
@@ -38,12 +37,40 @@ const config = {
     height: 300,
   },
   scale: ['value', { nice: true }],
+  axises: [
+    [
+      'value',
+      {
+        label: {
+          formatter: (val: string) => formatPercent(val),
+        },
+      },
+    ],
+    ['type', { tickLine: null }],
+  ],
   tooltip: {
     enterable: true,
     showContent: true,
     shared: true,
+    showMarkers: false,
+    render: (options: any) => {
+      return <InfoCard {...options} valueKey="count" />;
+    },
   },
 };
+
+const configLabel = [
+  'value',
+  {
+    content: (data: any) => {
+      return formatNumber(data.count);
+    },
+    type: intervalLabel,
+    style: {
+      fill: '#343434',
+    },
+  },
+];
 
 export const FunnelWithLink = Template.bind({});
 const FunnelWithLinkArgs = {
@@ -81,33 +108,11 @@ const FunnelWith3ColumnsArgs = {
   data: dataWith3Columns,
   config: {
     ...config,
-    axises: [
-      [
-        'value',
-        {
-          label: {
-            formatter: (val: string) => formatPercent(val),
-          },
-        },
-      ],
-      ['type', { tickLine: null }],
-    ],
     funnel: {
       position: 'type*value',
       // position,
       color: 'type',
-      label: [
-        'value',
-        {
-          content: (data: any) => {
-            return formatNumber(data.count);
-          },
-          type: intervalLabel,
-          style: {
-            fill: '#343434',
-          },
-        },
-      ],
+      label: configLabel,
     },
     tooltip: {
       enterable: true,
@@ -129,38 +134,10 @@ const FunnelWith6ColumnsArgs = {
   data: dataWith6Columns,
   config: {
     ...config,
-    axises: [
-      [
-        'value',
-        {
-          label: {
-            formatter: (val: string) => formatPercent(val),
-          },
-        },
-      ],
-      ['type', { tickLine: null }],
-    ],
-    tooltip: {
-      shared: true,
-      render: (options: any) => {
-        return <InfoCard {...options} valueKey="count" />;
-      },
-    },
     funnel: {
       position,
       color: 'type',
-      label: [
-        'value',
-        {
-          content: (data: any) => {
-            return formatNumber(data.count);
-          },
-          type: intervalLabel,
-          style: {
-            fill: '#343434',
-          },
-        },
-      ],
+      label: configLabel,
     },
   },
 };
@@ -173,38 +150,10 @@ const FunnelWith7ColumnsArgs = {
   data: dataWith7Columns,
   config: {
     ...config,
-    axises: [
-      [
-        'value',
-        {
-          label: {
-            formatter: (val: string) => formatPercent(val),
-          },
-        },
-      ],
-      ['type', { tickLine: null }],
-    ],
-    tooltip: {
-      shared: true,
-      render: (options: any) => {
-        return <InfoCard {...options} valueKey="count" />;
-      },
-    },
     funnel: {
       position,
       color: 'type',
-      label: [
-        'value',
-        {
-          content: (data: any) => {
-            return formatNumber(data.count);
-          },
-          type: intervalLabel,
-          style: {
-            fill: '#343434',
-          },
-        },
-      ],
+      label: configLabel,
     },
   },
 };
@@ -223,24 +172,6 @@ const FunnelWithGroupArgs = {
   data: dataWithGroup,
   config: {
     ...config,
-    axises: [
-      [
-        'value',
-        {
-          label: {
-            formatter: (val: string) => formatPercent(val),
-          },
-        },
-      ],
-      ['type', { tickLine: null }],
-    ],
-    tooltip: {
-      shared: true,
-      showMarkers: false,
-      render: (options: any) => {
-        return <InfoCard {...options} valueKey="count" />;
-      },
-    },
     funnel: {
       position,
       color: 'city',
@@ -250,18 +181,7 @@ const FunnelWithGroupArgs = {
           marginRatio: 0,
         },
       ],
-      label: [
-        'value',
-        {
-          content: (data: any) => {
-            return formatNumber(data.count);
-          },
-          type: intervalLabel,
-          style: {
-            fill: '#343434',
-          },
-        },
-      ],
+      label: configLabel,
     },
   },
 };
