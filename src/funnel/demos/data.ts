@@ -11,12 +11,12 @@ export const dataWith3Columns = [
 ];
 
 export const dataWith6Columns = [
-  { type: '1.商品详情页｜浏览', value: 21734 },
-  { type: '2.加入购物车', value: 18734 },
-  { type: '3.进入购物车', value: 12734 },
-  { type: '4.完成购买', value: 8839 },
-  { type: '5.完成购买', value: 4000 },
-  { type: '6.完成购买', value: 123 },
+  { type: '1.商品详情页｜浏览', count: 21734, value: 1 },
+  { type: '2.加入购物车', count: 18734, value: 0.8619674243121377 },
+  { type: '3.进入购物车', count: 12734, value: 0.585902272936413 },
+  { type: '4.完成购买', count: 8839, value: 0.4066899788350051 },
+  { type: '5.完成购买', count: 4000, value: 0.1840434342504831 },
+  { type: '6.完成购买', count: 123, value: 0.005659335603202356 },
 ];
 
 export const dataWith7Columns = [

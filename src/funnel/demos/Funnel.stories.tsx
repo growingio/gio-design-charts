@@ -8,7 +8,7 @@ import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunn
 
 import Docs from './Funnel.mdx';
 import { MappingDatum } from '@antv/g2/lib/interface';
-import { formatNumber, formatPercent } from '../..';
+import { formatNumber, formatPercent, InfoCard } from '../..';
 
 export default {
   title: 'Charts/漏斗图 Funnel Chart',
@@ -100,7 +100,6 @@ const FunnelWith3ColumnsArgs = {
         'value',
         {
           content: (data: any) => {
-            console.log(data);
             return formatNumber(data.count);
           },
           type: intervalLabel,
@@ -130,12 +129,32 @@ const FunnelWith6ColumnsArgs = {
   data: dataWith6Columns,
   config: {
     ...config,
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
+          },
+        },
+      ],
+      ['type', { tickLine: null }],
+    ],
+    tooltip: {
+      shared: true,
+      render: (options: any) => {
+        return <InfoCard {...options} valueKey="count" />;
+      },
+    },
     funnel: {
       position,
       color: 'type',
       label: [
         'value',
         {
+          content: (data: any) => {
+            return formatNumber(data.count);
+          },
           type: intervalLabel,
           style: {
             fill: '#343434',
