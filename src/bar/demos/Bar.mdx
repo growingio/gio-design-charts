@@ -1,7 +1,21 @@
 import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import Bar from '../Bar';
+import { ScrollBarDefault, ScrollGroupContrast } from './Bar.stories';
+
+<Meta title="MDX/Bar" component={Bar} />
 
 # Bar Chart 条形图
+
+## 定义
+
+1. 柱状图，使用垂直的柱子显示类别之间的数值比较。其中一个轴表示需要对比的分类维度，另一个轴代表相应的数值。
+2. 柱子的方向将柱图分为“横向柱图”，即【条形图】；和“纵向柱图”，即【柱状图】。
+3. 通常而言，在需要对比不同维度时，由于【条形图】对名称的展示更加友好，更倾向使用【条形图】；而【柱状图】更适合横坐标为【时间标记】的场景和存在负值的场景。
+
+## 条形图 基础样式
+
+<ArgsTable of={Bar} />
 
 ## 使用规范
 
@@ -12,9 +26,27 @@ import Bar from '../Bar';
 5. 若图表超出左侧图表栏的固定高度，图表区域需要支持滚动，且该滚动与右侧【维度多选器】独立分开。
 6. hover 时，被 hover 的 bar 带有填充色颜色 50%透明度、2px 的 border。【信息卡片】出现在 bar 下方 4px 位置，与 bar 右对齐。
 
-## 参数说明
+export const Template = (args) => <Area {...args} />;
 
-<ArgsTable of={Bar} />
+<Canvas>
+  <Story id="charts-条形图-bar--scroll-bar-default" name={ScrollBarDefault.storyName} args={ScrollBarDefault.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 条形图 对比样式
+
+- 同一维度，不同时间范围的对比，用 bar 的不同样式表示。
+
+<Canvas>
+  <Story
+    id="charts-条形图-bar--scroll-group-contrast"
+    name={ScrollGroupContrast.storyName}
+    args={ScrollGroupContrast.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
 ## 使用案例
 

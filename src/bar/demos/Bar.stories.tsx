@@ -7,9 +7,10 @@ import { dataWithGroup, percentData } from '../../column/demos/data';
 import { data, dataWithMulti, dataWithMultiContrast } from './data';
 import Docs from './Bar.mdx';
 import { cloneDeep } from 'lodash';
+import { formatNumber } from '../..';
 
 export default {
-  title: 'Charts/条形图 Bar Chart',
+  title: 'Charts/条形图 Bar',
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -40,6 +41,19 @@ const config = {
     // shared: true,
   },
 };
+
+const labelConfig = [
+  'value',
+  {
+    content: (labelData: any) => {
+      return formatNumber(labelData.value);
+    },
+    style: {
+      fill: '#8d8d8d',
+    },
+    offset: 6,
+  },
+];
 
 export const BarDefault = Template.bind({});
 const BarDefaultArgs = {
@@ -73,15 +87,7 @@ const BarDefaultArgs = {
     bar: {
       position: 'name*value',
       color: 'name',
-      label: [
-        'value',
-        {
-          style: {
-            fill: '#8d8d8d',
-          },
-          offset: 10,
-        },
-      ],
+      label: labelConfig,
     },
   },
 };
@@ -133,15 +139,7 @@ const BarMultiArgs = {
     bar: {
       position,
       color: 'type',
-      label: [
-        'value',
-        {
-          style: {
-            fill: '#8d8d8d',
-          },
-          offset: 10,
-        },
-      ],
+      label: labelConfig,
     },
   },
 };
@@ -189,15 +187,7 @@ const GroupContrastArgs = {
           dodgeBy: 'type',
         },
       ],
-      label: [
-        'value',
-        {
-          style: {
-            fill: '#8d8d8d',
-          },
-          offset: 10,
-        },
-      ],
+      label: labelConfig,
     },
   },
 };

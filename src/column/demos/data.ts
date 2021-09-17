@@ -12,16 +12,17 @@ export const dataWithMultiBar = [
 ];
 
 export const dataWithTs = [
-  { ts: '2021-08-07', value: 79, color: '步步盈增' },
-  { ts: '2021-08-08', value: 26, color: '步步盈增' },
-  { ts: '2021-08-09', value: 7, color: '步步盈增' },
-  { ts: '2021-08-10', value: 51, color: '步步盈增' },
-  { ts: '2021-08-11', value: 86, color: '步步盈增' },
-  { ts: '2021-08-12', value: 38, color: '步步盈增' },
-  { ts: '2021-08-13', value: 24, color: '步步盈增' },
-  { ts: '2021-08-14', value: 20, color: '步步盈增' },
-  { ts: '2021-08-15', value: 98, color: '步步盈增' },
-  { ts: '2021-08-16', value: 63, color: '步步盈增' },
+  { ts: '2021-08-07', value: 6500, color: '步步盈增' },
+  { ts: '2021-08-08', value: 8100, color: '步步盈增' },
+  { ts: '2021-08-09', value: 10876, color: '步步盈增' },
+  { ts: '2021-08-10', value: 13490, color: '步步盈增' },
+  { ts: '2021-08-11', value: 10902, color: '步步盈增' },
+  { ts: '2021-08-12', value: 6687, color: '步步盈增' },
+  { ts: '2021-08-13', value: 8920, color: '步步盈增' },
+  { ts: '2021-08-14', value: 2789, color: '步步盈增' },
+  { ts: '2021-08-15', value: 1789, color: '步步盈增' },
+  { ts: '2021-08-16', value: 1367, color: '步步盈增' },
+  { ts: '2021-08-17', value: 667, color: '步步盈增' },
 ];
 
 export const dataWithActive = [
@@ -63,22 +64,36 @@ export const dataWithActive = [
 ];
 
 export const dataWithComponsive = [
-  { ts: '2021-08-07', value: 79, color: '步步盈增' },
-  { ts: '2021-08-07', value: 89, color: '步步盈增(对比)' },
-  { ts: '2021-08-08', value: 29, color: '步步盈增' },
-  { ts: '2021-08-08', value: 46, color: '步步盈增(对比)' },
-  { ts: '2021-08-09', value: 7, color: '步步盈增' },
-  { ts: '2021-08-09', value: 72, color: '步步盈增(对比)' },
-  { ts: '2021-08-10', value: 51, color: '步步盈增' },
-  { ts: '2021-08-10', value: 61, color: '步步盈增(对比)' },
-  { ts: '2021-08-11', value: 86, color: '步步盈增' },
-  { ts: '2021-08-11', value: 26, color: '步步盈增(对比)' },
-  { ts: '2021-08-12', value: 38, color: '步步盈增' },
-  { ts: '2021-08-12', value: 98, color: '步步盈增(对比)' },
-  { ts: '2021-08-13', value: 24, color: '步步盈增' },
-  { ts: '2021-08-13', value: 54, color: '步步盈增(对比)' },
-  { ts: '2021-08-14', value: 20, color: '步步盈增' },
-  { ts: '2021-08-14', value: 25, color: '步步盈增(对比)' },
+  { ts: '2021-08-07', value: 7923, color: '步步盈增' },
+  { ts: '2021-08-07', value: 10102, color: '步步盈增(对比)' },
+  { ts: '2021-08-08', value: 7029, color: '步步盈增' },
+  { ts: '2021-08-08', value: 8410, color: '步步盈增(对比)' },
+  { ts: '2021-08-09', value: 7892, color: '步步盈增' },
+  { ts: '2021-08-09', value: 12300, color: '步步盈增(对比)' },
+  { ts: '2021-08-10', value: 3782, color: '步步盈增' },
+  { ts: '2021-08-10', value: 11023, color: '步步盈增(对比)' },
+  { ts: '2021-08-11', value: 7982, color: '步步盈增' },
+  { ts: '2021-08-11', value: 13589, color: '步步盈增(对比)' },
+  { ts: '2021-08-12', value: 5893, color: '步步盈增' },
+  { ts: '2021-08-12', value: 11234, color: '步步盈增(对比)' },
+];
+
+export const dataWithGroupByTs = [
+  { city: '北京', ts: '2021-08-07', value: 7920 },
+  { city: '上海', ts: '2021-08-07', value: 10230 },
+  { city: '天津', ts: '2021-08-07', value: 5782 },
+  { city: '北京', ts: '2021-08-08', value: 7523 },
+  { city: '上海', ts: '2021-08-08', value: 8923 },
+  { city: '天津', ts: '2021-08-08', value: 6532 },
+  { city: '北京', ts: '2021-08-09', value: 7823 },
+  { city: '上海', ts: '2021-08-09', value: 12146 },
+  { city: '天津', ts: '2021-08-09', value: 9403 },
+  { city: '北京', ts: '2021-08-10', value: 3812 },
+  { city: '上海', ts: '2021-08-10', value: 10432 },
+  { city: '天津', ts: '2021-08-10', value: 7120 },
+  { city: '北京', ts: '2021-08-11', value: 8102 },
+  { city: '上海', ts: '2021-08-11', value: 13432 },
+  { city: '天津', ts: '2021-08-11', value: 5720 },
 ];
 
 export const dataWithGroup = [

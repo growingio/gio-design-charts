@@ -1,12 +1,13 @@
 import { ComponentStory } from '@storybook/react';
 import Column from '../Column';
 import Card from '../../demos/card';
-import { dataWithComponsive, dataWithGroup, dataWithMultiBar, dataWithOneBar, dataWithTs, percentData } from './data';
+import { dataWithComponsive, dataWithGroupByTs, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
-import { colors } from '../..';
+import { colors, formatNumber, InfoCard } from '../..';
+import formatDateByTs from '../../utils/formatDate';
 
 export default {
-  title: 'Charts/柱状图 Column Chart',
+  title: 'Charts/柱状图 Column',
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -17,6 +18,26 @@ export default {
     },
   },
 };
+
+const tooltipConfig = {
+  render: (options: any) => {
+    const ts = options.data?.[0]?.data?.ts;
+    return <InfoCard {...options} title={formatDateByTs(new Date(ts).getTime())} />;
+  },
+};
+
+const tsLabelConfig = [
+  'ts',
+  {
+    label: {
+      formatter: (text: string, item: any, index: number) => {
+        return formatDateByTs(new Date(text).getTime());
+      },
+    },
+  },
+];
+
+const valueLabelConfig = ['value', { label: { formatter: (val: string) => formatNumber(val) } }];
 
 const Template: ComponentStory<typeof Column> = (args) => (
   <Card>
@@ -39,21 +60,6 @@ const config = {
   },
 };
 
-export const ColumnWithOne = Template.bind({});
-const ColumnWithOneArgs = {
-  legends: ['Apple'],
-  data: dataWithOneBar,
-  config: {
-    ...config,
-    column: {
-      position,
-      color: 'company',
-    },
-  },
-};
-ColumnWithOne.args = { ...ColumnWithOneArgs };
-ColumnWithOne.storyName = '基础图';
-
 export const ColumnWithTs = Template.bind({});
 const ColumnWithTsArgs = {
   legends: ['步步盈增'],
@@ -64,35 +70,19 @@ const ColumnWithTsArgs = {
       position: 'ts*value',
       color: 'color',
     },
-    axis: [
-      'ts',
-      {
-        label: {
-          formatter: (text: string, item: any, index: number) => {
-            return text;
-          },
-        },
-      },
-    ],
+    axises: [tsLabelConfig, valueLabelConfig],
+    tooltip: tooltipConfig,
   },
 };
 ColumnWithTs.args = { ...ColumnWithTsArgs };
 ColumnWithTs.storyName = '单色多维度';
 
 export const ColumnWithMulti = Template.bind({});
-const ColumnWithMultiArgs = {
-  // legends: ['Apple', 'Google', '阿里巴巴', '腾讯', '百度', '网易', 'Microsoft', '字节跳动'],
-  data: dataWithMultiBar,
-  config: {
-    ...config,
-    column: {
-      position: 'company*value',
-      color: 'company',
-    },
-  },
-};
+
+const { legends, ...otherArgs } = ColumnWithTsArgs;
+const ColumnWithMultiArgs = { ...otherArgs };
 ColumnWithMulti.args = ColumnWithMultiArgs;
-ColumnWithMulti.storyName = '无图例多维度';
+ColumnWithMulti.storyName = '单色多维度(无图例)';
 
 export const ColumnWithComponsive = Template.bind({});
 const ColumnWithComponsiveArgs = {
@@ -103,6 +93,8 @@ const ColumnWithComponsiveArgs = {
   data: dataWithComponsive,
   config: {
     ...config,
+    axises: [tsLabelConfig, valueLabelConfig],
+    tooltip: tooltipConfig,
     column: {
       position: 'ts*value',
       color: 'color',
@@ -120,13 +112,15 @@ ColumnWithComponsive.storyName = '分组多维度';
 
 export const ColumnWithGroup = Template.bind({});
 const ColumnWithGroupArgs = {
-  legends: ['Apple', { name: 'Facebook', dashed: true }, 'Google'],
-  data: dataWithGroup,
+  legends: ['北京', '上海', '天津'],
+  data: dataWithGroupByTs,
   config: {
     ...config,
+    axises: [tsLabelConfig, valueLabelConfig],
+    tooltip: tooltipConfig,
     column: {
-      position,
-      color: 'company',
+      position: 'ts*value',
+      color: 'city',
       adjust: [
         {
           type: 'dodge',
@@ -141,13 +135,15 @@ ColumnWithGroup.storyName = '分组多维度柱状图';
 
 export const StackingDiagramColumn = Template.bind({ title: '堆积图' });
 const StackingDiagramColumnArgs = {
-  legends: ['Apple', 'Facebook', 'Google'],
-  data: dataWithGroup,
+  legends: ['北京', '上海', '天津'],
+  data: dataWithGroupByTs,
   config: {
     ...config,
+    axises: [tsLabelConfig, valueLabelConfig],
+    tooltip: tooltipConfig,
     column: {
-      position,
-      color: 'company',
+      position: 'ts*value',
+      color: 'city',
       adjust: 'stack',
     },
   },

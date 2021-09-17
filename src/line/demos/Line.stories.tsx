@@ -5,7 +5,7 @@ import Card from '../../demos/card';
 import Docs from './Line.mdx';
 import { colors } from '../../theme';
 import { formatNumber, InfoCard } from '../..';
-import { dateFormatterByTs } from '../../utils/dateFormatter';
+import { formatDateByTs } from '../../utils/formatDate';
 
 export default {
   title: 'Charts/折线图 Line',
@@ -198,7 +198,7 @@ const LineWithOneLineDateConfig = {
     shared: true,
     enterable: true,
     render: (options: any) => {
-      return <InfoCard {...options} title={dateFormatterByTs(options.title)} />;
+      return <InfoCard {...options} title={formatDateByTs(options.title)} />;
     },
   },
   axises: [
@@ -217,8 +217,7 @@ const LineWithOneLineDateConfig = {
       {
         label: {
           formatter: (text: string) => {
-            console.log(text);
-            return dateFormatterByTs(text);
+            return formatDateByTs(text);
           },
         },
       },

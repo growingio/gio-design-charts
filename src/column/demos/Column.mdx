@@ -1,5 +1,9 @@
 import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import Column from '../Column';
+import { ColumnWithTs, ColumnWithComponsive, ColumnWithGroup } from './Column.stories';
+
+<Meta title="MDX/Column" component={Column} />
 
 # Column Chart 柱状图
 
@@ -9,15 +13,47 @@ import Column from '../Column';
 - 柱子的方向将柱图分为“横向柱图”，即【条形图】；和“纵向柱图”，即【柱状图】。
 - 通常而言，在需要对比不同维度时，由于【条形图】对名称的展示更加友好，更倾向使用【条形图】；而【柱状图】更适合横坐标为【时间标记】的场景和存在负值的场景。
 
+## 参数说明
+
+<ArgsTable of={Column} />
+
 ## 基础样式
 
 - 柱图与横坐标标记对齐
 - 保证【柱宽度】与【柱间距】比例为 1：1
 - 当图表区域缩小到【柱间距＜ 40px】时，柱宽度固定为 40px，向右排列，展示不全通过水平滚动条查看。
 
-## 参数说明
+export const Template = (args) => <Column {...args} />;
 
-<ArgsTable of={Column} />
+<Canvas>
+  <Story id="charts-柱状图-column--column-with-ts" name={ColumnWithTs.storyName} args={ColumnWithTs.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 柱状图 对比样式
+
+- 同一维度，不同时间范围的对比，用 bar 的不同样式表示。
+- 分组内的柱间距为 8px，保证【组与组的间距】与【柱组宽度】比例为 1：1。
+- 当图表区域缩小到【组间距＜ 40px】时，组宽度固定为 40px，向右排列，展示不全通过水平滚动条查看。
+
+<Canvas>
+  <Story
+    id="charts-柱状图-column--column-with-componsive"
+    name={ColumnWithComponsive.storyName}
+    args={ColumnWithComponsive.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 柱状图 多维度拆解样式
+
+<Canvas>
+  <Story id="charts-柱状图-column--column-with-group" name={ColumnWithGroup.storyName} args={ColumnWithGroup.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
 ## 使用案例
 
