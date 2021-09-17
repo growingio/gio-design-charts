@@ -6,10 +6,20 @@ import { dataWithMultiBar } from '../../column/demos/data';
 import DrillDownCard from './drilldown-card';
 import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';
 
+import Docs from './Funnel.mdx';
+import { MappingDatum } from '@antv/g2/lib/interface';
+import { formatNumber, formatPercent } from '../..';
+
 export default {
   title: 'Charts/漏斗图 Funnel Chart',
   argTypes: {
     backgroundColor: { control: 'color' },
+  },
+  component: Funnel,
+  parameters: {
+    docs: {
+      page: Docs,
+    },
   },
 };
 
@@ -71,12 +81,28 @@ const FunnelWith3ColumnsArgs = {
   data: dataWith3Columns,
   config: {
     ...config,
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
+          },
+        },
+      ],
+      ['type', { tickLine: null }],
+    ],
     funnel: {
-      position,
+      position: 'type*value',
+      // position,
       color: 'type',
       label: [
         'value',
         {
+          content: (data: any) => {
+            console.log(data);
+            return formatNumber(data.count);
+          },
           type: intervalLabel,
           style: {
             fill: '#343434',

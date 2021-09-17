@@ -5,9 +5,9 @@ export const dataWithBasicFunnel = [
 ];
 
 export const dataWith3Columns = [
-  { type: '1.商品详情页｜浏览', value: 10884, convertRate: 1 },
-  { type: '2.加入购物车', value: 137, convertRate: 0.01258728408673282 },
-  { type: '3.进入购物车', value: 28, convertRate: 0.20437956204379562 },
+  { type: '1.商品详情页｜浏览', count: 21734, value: 1 },
+  { type: '2.加入购物车', count: 12734, value: 0.585902272936413 },
+  { type: '3.进入购物车', count: 6230, value: 0.28664764884512745 },
 ];
 
 export const dataWith6Columns = [

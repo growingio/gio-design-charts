@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatNumber, formatPercent } from '../..';
 import { InfoCard } from '../../info-card';
 import './drilldown-card.less';
 
@@ -7,15 +8,23 @@ const DrilldownCard = ({ options }: any) => {
   const infoType = options.data[0]?.column ? 'outflow' : 'covert';
   const realTitle = title + (infoType === 'covert' ? ' - 转化' : ' - 流失');
 
+  const dataOptions = options.data[0] || {};
+
   const realData =
     infoType === 'covert'
       ? [
-          { data: { type: '转化率', value: options.data[0]?.data.convertRate } },
-          { data: { type: '转化人数', value: options.data[0]?.data.value } },
+          { ...dataOptions, data: { type: '转化率', value: formatPercent(options.data[0]?.data.value) } },
+          { ...dataOptions, data: { type: '转化人数', value: formatNumber(options.data[0]?.data.count) } },
         ]
       : [
-          { data: { type: '流失率', value: 1 - options.data[0]?.column.convertRate } },
-          { data: { type: '流失人数', value: options.data[0]?.data.value - options.data[0]?.column.value } },
+          { ...dataOptions, data: { type: '流失率', value: formatPercent(1 - options.data[0]?.column.value) } },
+          {
+            ...dataOptions,
+            data: {
+              type: '流失人数',
+              value: formatNumber(options.data[0]?.data.count - options.data[0]?.column.count),
+            },
+          },
         ];
   const clickContent = (
     <div style={{ textAlign: 'center', fontSize: 16, lineHeight: '20px' }}>

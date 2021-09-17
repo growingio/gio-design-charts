@@ -1,0 +1,84 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import imageFile from './design.png';
+import Funnel from '../Funnel';
+import { FunnelWith3Columns, FunnelWith6Columns, FunnelWith7Columns, FunnelWithGroup } from './Funnel.stories';
+
+# Funnel Chart 漏斗图
+
+## 柱图拆解
+
+export const image = {
+  src: imageFile,
+  alt: 'Funnel Chart Design',
+};
+
+<img src={image.src} alt={image.alt} />
+
+- 转化柱底色遵循颜色序列。
+- 流失柱颜色为维度颜色的 20%透明度。
+- element-link 颜色为 background: linear-gradient(180deg, rgba(「维度色」, 0.1) 0%, rgba(「维度色」, 0) 100%);
+
+<ArgsTable of={Funnel} />
+
+export const Template = (args) => <Funnel {...args} />;
+
+1.事件数不多于 6 个，且无维度拆解时：
+
+<Canvas>
+  <Story
+    id="charts-漏斗图-funnel-chart--funnel-with-3-columns"
+    name={FunnelWith3Columns.storyName}
+    args={FunnelWith3Columns.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    id="charts-漏斗图-funnel-chart--funnel-with-6-columns"
+    name={FunnelWith6Columns.storyName}
+    args={FunnelWith6Columns.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+2.设事件数大于 6 个，且无维度拆解时：
+
+<Canvas>
+  <Story
+    id="charts-漏斗图-funnel-chart--funnel-with-7-columns"
+    name={FunnelWith7Columns.storyName}
+    args={FunnelWith7Columns.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+3.有维度拆解，且柱宽大于 48px 时:
+
+4.有维度拆解，且自适应无法维持 48px 柱宽时：
+
+<Canvas>
+  <Story
+    id="charts-漏斗图-funnel-chart--funnel-with-group"
+    name={FunnelWithGroup.storyName}
+    args={FunnelWithGroup.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 参数说明
+
+## 使用案例
+
+- [基础柱状图](/story/charts-柱状图-column-chart--column-with-one)
+- [多维度柱状图](/story/charts-柱状图-column-chart--column-with-multi)
+- [分组多维度柱状图](/story/charts-柱状图-column-chart--column-with-group)
+- [堆积多维度柱状图](/story/charts-柱状图-column-chart--stacking-diagram-column)
+- [百分比柱状图](/story/charts-柱状图-column-chart--percent-column)
+
+### 默认
