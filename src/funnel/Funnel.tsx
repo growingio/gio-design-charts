@@ -7,7 +7,7 @@ import { ScrollXLayout } from '../layouts';
 import { getSingleData } from './utils';
 
 const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
-  const { data, legends: legendProps = [], config = {} } = props;
+  const { data, legends: legendProps = [], config } = props;
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
       return {
@@ -18,12 +18,15 @@ const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
     }
     return {};
   }, [legendProps]);
-  config.type = ChartType.FUNNEL;
+
+  if (config) {
+    config.type = ChartType.FUNNEL;
+  }
 
   const [comparativeData, setComparativeData] = useState({});
   useEffect(() => {
-    setComparativeData(getSingleData(data));
-  }, [data]);
+    setComparativeData(getSingleData(data, config));
+  }, [data, config]);
   return (
     <ScrollXLayout
       data={comparativeData}
