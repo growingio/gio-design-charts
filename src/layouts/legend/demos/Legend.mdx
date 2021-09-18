@@ -1,0 +1,20 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import LegendLayout from '../LegendLayout';
+
+<Meta title="MDX/LegendLayout" component={LegendLayout} />
+
+# Legend 布局
+
+## 基础样式
+
+整个分为上下布局
+
+- 上面显示图例
+- 下面显示 Chart 的 Canvas
+
+export const Template = (args) => <LegendLayout {...args} />;
+
+<Canvas>
+  <Story id="components-layouts-legend--example">{Template.bind({})}</Story>
+</Canvas>
