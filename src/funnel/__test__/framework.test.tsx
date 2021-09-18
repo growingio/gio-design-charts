@@ -2,14 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { funnelChart, handleLegend } from '../framework';
-import { FunnelWithLink } from '../demos/Funnel.stories';
+import { FunnelWith3Columns } from '../demos/Funnel.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { getSingleData } from '../utils';
 
-const { config, legends: legendList, data: sourceData } = FunnelWithLink.args as ChartProps;
+const { config, legends: legendList, data: sourceData } = FunnelWith3Columns.args as ChartProps;
 const data = getSingleData(sourceData);
 const [legends] = getLegends(ChartType.AREA, legendList);
 describe('funnel fromework', () => {

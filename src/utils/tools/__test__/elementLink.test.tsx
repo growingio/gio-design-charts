@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../../interfaces';
 import { ChartCom, chartComponentTestid } from '../../../core/__test__/framework.test';
 
-import { FunnelWithLink } from '../../../funnel/demos/Funnel.stories';
+import { FunnelWith6Columns } from '../../../funnel/demos/Funnel.stories';
 import { getSingleData } from '../../../funnel/utils';
 import { getLegends } from '../../../hooks/useLegends';
 import { ChartType } from '../../..';
@@ -11,7 +11,7 @@ import { funnelChart } from '../../../funnel/framework';
 import { addLinkByElement, addLinkByElementHigh } from '..';
 import { View } from '@antv/g2';
 
-const { config, legends: legendList, data: sourceData } = FunnelWithLink.args as ChartProps;
+const { config, legends: legendList, data: sourceData } = FunnelWith6Columns.args as ChartProps;
 const data = getSingleData(sourceData);
 const [legends] = getLegends(ChartType.FUNNEL, legendList);
 
