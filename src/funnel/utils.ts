@@ -2,8 +2,6 @@ import { ChartConfig } from '../interfaces';
 
 export const getSingleData = (data: any[], config?: ChartConfig) => {
   const contrastKey = config?.funnel?.contrast || 'value';
-
-  console.log('contrastKey', contrastKey);
   const covertData = [] as any[];
   const texts = [] as string[];
   let prev = {} as any;
@@ -30,8 +28,7 @@ export const getSingleData = (data: any[], config?: ChartConfig) => {
 export const getGroupData = (data: any[], config: ChartConfig) => {
   const covertData = [] as any[];
   const forwardKey = config?.funnel?.color;
-  const contrastKey = config?.funnel?.contrast || 'value';
-
+  const contrastKey: string = config?.funnel?.contrast || 'value';
   if (forwardKey) {
     const prevs = {} as any;
     data.forEach((item: any) => {
@@ -51,10 +48,5 @@ export const getGroupData = (data: any[], config: ChartConfig) => {
       }
     });
   }
-  return {
-    source: data,
-    covert: covertData,
-    texts: [],
-    isGroup: true,
-  };
+  return { source: data, covert: covertData, texts: [], isGroup: true };
 };
