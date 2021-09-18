@@ -1,9 +1,9 @@
 import { ComponentStory } from '@storybook/react';
 import { Bar, ChartProps, Funnel, GroupedFunnel, InfoCard } from '../..';
-import { dataWithGroup } from '../../funnel/demos/data';
 import Card from '../../demos/card';
 
 import { FunnelWithGroup } from '../../funnel/demos/Funnel.stories';
+import Docs from './InfoCard.mdx';
 
 export default {
   title: 'Customs/自定义Tooltips',
@@ -11,6 +11,11 @@ export default {
     backgroundColor: { control: 'color' },
   },
   component: Bar,
+  parameters: {
+    docs: {
+      page: Docs,
+    },
+  },
 };
 
 const Template: ComponentStory<typeof Funnel> = (args) => (
