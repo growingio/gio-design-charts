@@ -1,6 +1,7 @@
 import { ChartConfig } from '../interfaces';
 
-export const getSingleData = (data: any[]) => {
+export const getSingleData = (data: any[], config: ChartConfig) => {
+  const contrastKey = config?.funnel?.contrast || 'value';
   const covertData = [] as any[];
   const texts = [] as string[];
   let prev = {} as any;
@@ -11,8 +12,8 @@ export const getSingleData = (data: any[]) => {
     } else if (item?.isPlaceholder) {
       covertData.push({ ...item });
     } else {
-      texts.push(`${((item?.value / prev.value || 0) * 100).toFixed(2)}%`);
-      covertData.push({ ...item, value: prev.value || 0, prev: { ...prev }, column: { ...item } });
+      texts.push(`${((item?.[contrastKey] / prev[contrastKey] || 0) * 100).toFixed(2)}%`);
+      covertData.push({ ...item, [contrastKey]: prev[contrastKey] || 0, prev: { ...prev }, column: { ...item } });
       prev = item;
     }
   });
@@ -27,6 +28,8 @@ export const getSingleData = (data: any[]) => {
 export const getGroupData = (data: any[], config: ChartConfig) => {
   const covertData = [] as any[];
   const forwardKey = config?.funnel?.color;
+  const contrastKey = config?.funnel?.contrast || 'value';
+
   if (forwardKey) {
     const prevs = {} as any;
     data.forEach((item: any) => {
@@ -34,7 +37,7 @@ export const getGroupData = (data: any[], config: ChartConfig) => {
       if (prevItem) {
         if (!item.isPlaceholder) {
           prevs[item[forwardKey]] = item;
-          covertData.push({ ...item, value: prevItem.value || 0, prev: { ...prevItem } });
+          covertData.push({ ...item, [contrastKey]: prevItem[contrastKey] || 0, prev: { ...prevItem } });
         } else {
           covertData.push({ ...item });
         }

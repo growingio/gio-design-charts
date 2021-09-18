@@ -3,7 +3,15 @@ import Funnel from '../Funnel';
 import GroupedFunnel from '../GroupedFunnel';
 import Card from '../../demos/card';
 import DrillDownCard from './drilldown-card';
-import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';
+import {
+  contrastData,
+  contrastGroupedData,
+  dataWith3Columns,
+  dataWith6Columns,
+  dataWith7Columns,
+  dataWithBasicFunnel,
+  dataWithGroup,
+} from './data';
 
 import Docs from './Funnel.mdx';
 import { formatNumber, formatPercent, InfoCard } from '../..';
@@ -156,6 +164,84 @@ const FunnelWithGroupArgs = {
 };
 FunnelWithGroup.storyName = '分组漏斗';
 FunnelWithGroup.args = FunnelWithGroupArgs;
+
+export const CustomFunnel = GroupTemplate.bind({});
+const CustomFunnelArgs = {
+  ...FunnelWith6ColumnsArgs,
+  data: contrastData,
+  config: {
+    ...FunnelWith6ColumnsArgs.config,
+    axises: [
+      [
+        'contrastRate',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
+          },
+        },
+      ],
+      ['type', { tickLine: null }],
+    ],
+    funnel: {
+      ...FunnelWith6ColumnsArgs.config.funnel,
+      position: 'type*contrastRate',
+      contrast: 'contrastRate',
+      label: [
+        'contrastRate',
+        {
+          content: (data: any) => {
+            return formatNumber(data.value);
+          },
+          type: intervalLabel,
+          style: {
+            fill: '#343434',
+          },
+        },
+      ],
+    },
+  },
+};
+CustomFunnel.args = CustomFunnelArgs;
+CustomFunnel.storyName = '自定义contrast字段';
+
+export const CustomGroupedFunnel = GroupTemplate.bind({});
+const CustomGroupedFunnelArgs = {
+  ...FunnelWithGroupArgs,
+  data: contrastGroupedData,
+  config: {
+    ...FunnelWithGroupArgs.config,
+    axises: [
+      [
+        'contrastRate',
+        {
+          label: {
+            formatter: (val: string) => formatPercent(val),
+          },
+        },
+      ],
+      ['type', { tickLine: null }],
+    ],
+    funnel: {
+      ...FunnelWithGroupArgs.config.funnel,
+      position: 'type*contrastRate',
+      contrast: 'contrastRate',
+      label: [
+        'contrastRate',
+        {
+          content: (data: any) => {
+            return formatNumber(data.value);
+          },
+          type: intervalLabel,
+          style: {
+            fill: '#343434',
+          },
+        },
+      ],
+    },
+  },
+};
+CustomGroupedFunnel.args = CustomGroupedFunnelArgs;
+CustomGroupedFunnel.storyName = '自定义contrast字段(分组)';
 
 export const FunnelWithBasic = Template.bind({});
 const FunnelWithBasicArgs = {
