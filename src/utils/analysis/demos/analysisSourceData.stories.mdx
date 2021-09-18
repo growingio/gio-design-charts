@@ -1,0 +1,87 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/analysisSourceData" />
+
+将服务端得到的数据，转化成 Chart 可识别的数据格式
+
+## 原始数据
+
+```json
+{
+  "data": [
+    [1628870400000, 793],
+    [1628956800000, 756],
+    [1629043200000, 1866],
+    [1629129600000, 483],
+    [1629216000000, 1381],
+    [1629302400000, 918],
+    [1629388800000, 1618]
+  ],
+  "meta": {
+    "columns": [
+      {
+        "id": "tm",
+        "name": "时间",
+        "isDim": true,
+        "isRate": false,
+        "isDuration": false
+      },
+      {
+        "id": "count",
+        "name": "访问的总人数",
+        "isDim": false,
+        "isRate": false,
+        "isDuration": false
+      }
+    ],
+    "fetchedTimestamp": 1629531205574
+  }
+}
+```
+
+### 转化为折线图数据
+
+```javascript
+import { analysisSourceData } from '@gio-design/charts';
+
+const result = analysisSourceData(sourceData);
+```
+
+得到`result`数据格式为：
+
+```json
+[
+  { "tm": 1628870400000, "count": 793 },
+  { "tm": 1628956800000, "count": 756 },
+  { "tm": 1629043200000, "count": 1866 },
+  { "tm": 1629129600000, "count": 483 },
+  { "tm": 1629216000000, "count": 1381 },
+  { "tm": 1629302400000, "count": 918 },
+  { "tm": 1629388800000, "count": 1618 }
+]
+```
+
+### 转化为柱状图数据
+
+```javascript
+import { analysisSourceData } from '@gio-design/charts';
+
+const result = analysisSourceData(sourceData, {
+  chart: 'column',
+  fetch: { type: '人数' },
+});
+```
+
+得到`result`数据格式为：
+
+```json
+[
+  { "tm": "1628870400000", "count": 793, "type": "人数" },
+  { "tm": "1628956800000", "count": 756, "type": "人数" },
+  { "tm": "1629043200000", "count": 1866, "type": "人数" },
+  { "tm": "1629129600000", "count": 483, "type": "人数" },
+  { "tm": "1629216000000", "count": 1381, "type": "人数" },
+  { "tm": "1629302400000", "count": 918, "type": "人数" },
+  { "tm": "1629388800000", "count": 1618, "type": "人数" }
+]
+```
