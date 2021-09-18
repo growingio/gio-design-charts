@@ -1,7 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { Bar, Funnel, GroupedFunnel, InfoCard } from '../..';
+import { Bar, ChartProps, Funnel, GroupedFunnel, InfoCard } from '../..';
 import { dataWithGroup } from '../../funnel/demos/data';
 import Card from '../../demos/card';
+
+import { FunnelWithGroup } from '../../funnel/demos/Funnel.stories';
 
 export default {
   title: 'Customs/自定义Tooltips',
@@ -11,84 +13,27 @@ export default {
   component: Bar,
 };
 
-const config = {
-  chart: {
-    autoFit: true,
-    height: 300,
-  },
-  scale: ['value', { nice: true }],
-  tooltip: {
-    enterable: true,
-    showContent: true,
-    // shared: true,
-    showMarkers: false,
-    render: (options: any) => {
-      return <span>test</span>;
-    },
-  },
-  funnel: {
-    position: 'type*value',
-    color: 'city',
-    adjust: [
-      {
-        type: 'dodge',
-        marginRatio: 0,
-      },
-    ],
-    label: [
-      'value',
-      {
-        type: 'interval-label',
-        style: {
-          fill: '#343434',
-        },
-      },
-    ],
-  },
-};
-
 const Template: ComponentStory<typeof Funnel> = (args) => (
   <Card>
     <GroupedFunnel {...args} />
   </Card>
 );
 
-const basicConfig = {
-  legends: ['北京', '上海', '南京', '深圳', '广东'],
-  data: dataWithGroup,
-  isGroup: true,
-  config: {
-    ...config,
-    tooltip: {
-      enterable: true,
-      showContent: true,
-      // shared: true,
-      showMarkers: false,
-      render: (options: any) => {
-        return (
-          <div style={{ textAlign: 'center', fontSize: 16, lineHeight: '20px' }}>
-            <span>
-              你可以通过 <span style={{ fontWeight: 500, color: 'blue' }}>config.tooltip.render()</span> 自定义tooltip
-            </span>
-          </div>
-        );
-      },
-    },
-  },
-};
+const { config, legends, data } = FunnelWithGroup.args as ChartProps;
 
 export const CustomTooltip = Template.bind({});
 CustomTooltip.storyName = '自定义Tooltip';
-CustomTooltip.args = basicConfig;
+CustomTooltip.args = FunnelWithGroup.args;
 
 export const InfoCardTooltip = Template.bind({});
 InfoCardTooltip.storyName = 'InfoCard式的Tooltip';
 InfoCardTooltip.args = {
-  ...basicConfig,
+  legends,
+  data,
   config: {
-    ...basicConfig.config,
+    ...config,
     tooltip: {
-      ...basicConfig.config.tooltip,
+      ...config.tooltip,
       render: (options: any) => {
         return <InfoCard {...options} />;
       },
@@ -99,11 +44,12 @@ InfoCardTooltip.args = {
 export const InfoCardCustomTooltip = Template.bind({});
 InfoCardCustomTooltip.storyName = '扩展InfoCard的Tooltip';
 InfoCardCustomTooltip.args = {
-  ...basicConfig,
+  legends,
+  data,
   config: {
-    ...basicConfig.config,
+    ...config,
     tooltip: {
-      ...basicConfig.config.tooltip,
+      ...config.tooltip,
       render: (options: any) => {
         const { trigger } = options;
         return (
