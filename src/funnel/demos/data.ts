@@ -20,7 +20,7 @@ export const dataWith6Columns = [
 ];
 
 export const contrastData = [
-  { type: '1.商品详情页｜浏览', value: 21734, contrastRate: 1 },
+  { type: '1.商品详情页｜浏览', value: 21735, contrastRate: 1 },
   { type: '2.加入购物车', value: 18734, contrastRate: 0.8619674243121377 },
   { type: '3.进入购物车', value: 12734, contrastRate: 0.585902272936413 },
   { type: '4.完成购买', value: 8839, contrastRate: 0.4066899788350051 },

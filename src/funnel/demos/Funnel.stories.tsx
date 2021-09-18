@@ -165,7 +165,7 @@ const FunnelWithGroupArgs = {
 FunnelWithGroup.storyName = '分组漏斗';
 FunnelWithGroup.args = FunnelWithGroupArgs;
 
-export const CustomFunnel = GroupTemplate.bind({});
+export const CustomFunnel = Template.bind({});
 const CustomFunnelArgs = {
   ...FunnelWith6ColumnsArgs,
   data: contrastData,

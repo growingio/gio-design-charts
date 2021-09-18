@@ -1,7 +1,9 @@
 import { ChartConfig } from '../interfaces';
 
-export const getSingleData = (data: any[], config: ChartConfig) => {
+export const getSingleData = (data: any[], config?: ChartConfig) => {
   const contrastKey = config?.funnel?.contrast || 'value';
+
+  console.log('contrastKey', contrastKey);
   const covertData = [] as any[];
   const texts = [] as string[];
   let prev = {} as any;
