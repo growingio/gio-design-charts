@@ -1,0 +1,30 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import ScrollXLayout from '../ScrollXLayout';
+import ScrollYLayout from '../ScrollYLayout';
+
+<Meta title="MDX/ScrollLayout" component={ScrollXLayout} />
+
+export const ScrollXTemplate = (args) => <ScrollXLayout {...args} />;
+export const ScrollYTemplate = (args) => <ScrollYLayout {...args} />;
+
+# 滚动布局
+
+## X 轴滚动布局
+
+整个分为上下布局
+
+- 上面显示图例，在左右滚动过程中，图例固定不变。
+- 下面显示 Chart 的 Canvas，当 Chart 的宽度过宽时，显示滚动条。
+
+<Canvas>
+  <Story id="components-layouts-scroll-x--scroll-x">{ScrollYTemplate.bind({})}</Story>
+</Canvas>
+
+## Y 轴滚动布局
+
+- 当 chart 的高度过高时，显示上下滚动条
+
+<Canvas>
+  <Story id="components-layouts-scroll-y--scroll-y">{ScrollYTemplate.bind({})}</Story>
+</Canvas>

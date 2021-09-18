@@ -6,7 +6,7 @@ import { FunnelWithGroup } from '../../funnel/demos/Funnel.stories';
 import Docs from './InfoCard.mdx';
 
 export default {
-  title: 'Customs/自定义Tooltips',
+  title: 'Components/自定义Tooltips',
   argTypes: {
     backgroundColor: { control: 'color' },
   },

@@ -1,0 +1,54 @@
+import { ComponentStory } from '@storybook/react';
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { lineLegends } from './Legends.stories';
+
+export const Template = (args) => <Legends {...args} />;
+
+# Legend 图例
+
+## 定义
+
+图例解释了图表区域中包含的所有视觉元素的含义。Legend 的排放需要能紧凑且充分的利用空间。
+
+## Legend 图例样式
+
+- 图例与图表中对齐，且二者保持 4px 的间距。
+- 每个图例之间间隔为 20px。当图例宽度超过显示区域是。其余的通过“其余 X 项”表示，Hover 通过 tooltip 显示其余 X 项的图例。距离 4px
+- 线图可能需要支持虚线，所以线图和其他图的图例样式不同。
+
+### 线图图例
+
+<Canvas>
+  <Story id="components-legends--line-legends">{Template.bind({})}</Story>
+</Canvas>
+
+### 线图图例(同一维度不同时间对比）
+
+<Canvas>
+  <Story id="components-legends--line-contrast-legends">{Template.bind({})}</Story>
+</Canvas>
+
+### 线图图例(其他）
+
+<Canvas>
+  <Story id="components-legends--line-long-legends">{Template.bind({})}</Story>
+</Canvas>
+
+### 方块图例(其他）
+
+<Canvas>
+  <Story id="components-legends--bar-legends">{Template.bind({})}</Story>
+</Canvas>
+
+### 方块图例(其他）
+
+<Canvas>
+  <Story id="components-legends--bar-long-legends">{Template.bind({})}</Story>
+</Canvas>
+
+## 图标尺寸
+
+- 方块：基础图例，14 x 14px 矩形圆角 2px
+- 实线：线图图例，14 x 14px 2px 粗，圆角线段
+- 虚线：同一维度不同时间对比 14 x 14px 2px 粗，圆角虚线
