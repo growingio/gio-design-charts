@@ -6,7 +6,7 @@ import {
   isTopBar,
   isUseDash,
   setCustomInfo,
-} from '../utils';
+} from '../configUtils';
 
 describe('getShapeConfig', () => {
   test('call it', () => {

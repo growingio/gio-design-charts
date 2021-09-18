@@ -5,7 +5,7 @@ import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
-import { getShapeConfig } from '../utils/frameworks/utils';
+import { getShapeConfig } from '../utils/tools/configUtils';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { legends, defaultStyles } = options;

@@ -4,7 +4,7 @@ import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
-import { getShapeConfig, setCustomInfo } from '../utils/frameworks/utils';
+import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
 
 /**
  *

@@ -1,7 +1,7 @@
 import { IGroup, registerShape } from '@antv/g2';
 
 import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from '../../theme';
-import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from '../../utils/frameworks/utils';
+import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from './configUtils';
 
 export function getFillAttrs(shapeInfo: any) {
   return {
