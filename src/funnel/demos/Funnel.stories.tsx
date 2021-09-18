@@ -2,7 +2,6 @@ import { ComponentStory } from '@storybook/react';
 import Funnel from '../Funnel';
 import GroupedFunnel from '../GroupedFunnel';
 import Card from '../../demos/card';
-import { dataWithMultiBar } from '../../column/demos/data';
 import DrillDownCard from './drilldown-card';
 import { dataWith3Columns, dataWith6Columns, dataWith7Columns, dataWithBasicFunnel, dataWithGroup } from './data';
 

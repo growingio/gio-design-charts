@@ -1,0 +1,65 @@
+import { ComponentStory } from '@storybook/react';
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { GroupedFunnel } from '../../funnel';
+import { CustomTooltip, InfoCardTooltip, InfoCardCustomTooltip } from './Tooltip.stories';
+import imageFile from './design.png';
+
+export const image = {
+  src: imageFile,
+  alt: 'InfoCard Design',
+};
+
+export const Template = (args) => <GroupedFunnel {...args} />;
+
+# Info Card 信息卡片的通用规范
+
+## 定义
+
+- 【信息卡片】在可视化图表中通常是 hover 图表具体信息时出现，承载图表中某一部分的具体信息。
+- 每个分析场景可能需要的信息卡片不同，下面将会提及【信息卡片】的通用规范和一些应用场景。
+
+## 信息卡片 拆解
+
+信息卡片分为以下 3 部分。卡片的宽度固定为 232px，上下左右的 Padding 为 16px。只有【图例区域】为可滚动区域，【图例区域】最大高度为 240px。
+
+<img src={image.src} alt={image.alt} />
+
+## 信息卡片的各式样式
+
+“标题”、“按钮”可控制是否配置，“图例”的样式可调整。
+
+数值/百分比 信息卡片分为标题、图例标签、数值三部分。
+
+- 标题：展示事件名称、指标名称、时间范围或维度值名称，根据使用场景来定。
+- 图例标签：宽度根据内容自适应。左对齐。
+- 图例标签文案支持折行最多显示两行文案，多出则用...省略
+- 数值：宽度根据内容自适应。右对齐。与图例标签之间最小间距为 20px，否则与图例标签折行。
+
+当鼠标 mouseover 到图表中，显示默认的 tooltip 设计。（查看 code，未配置 `config.tooltip.render`）
+
+<Canvas>
+  <Story id="customs-自定义tooltips--custom-tooltip" name={CustomTooltip.storyName} args={CustomTooltip.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+使用 `InfoCard` 来自定义 `tooltip`，查看`config.tooltip.render`。（查看 code，配置 `config.tooltip.render`）
+
+<Canvas>
+  <Story id="customs-自定义tooltips--info-card-tooltip" name={InfoCardTooltip.storyName} args={InfoCardTooltip.args}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+在 `InfoCard` 上进行再次扩展 `tooltip`，查看`config.tooltip.render`。（查看 code，配置 `config.tooltip.render`）
+
+<Canvas>
+  <Story
+    id="customs-自定义tooltips--info-card-custom-tooltip"
+    name={InfoCardCustomTooltip.storyName}
+    args={InfoCardCustomTooltip.args}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
