@@ -158,21 +158,6 @@ const FunnelWithGroupArgs = {
 FunnelWithGroup.storyName = '分组漏斗';
 FunnelWithGroup.args = FunnelWithGroupArgs;
 
-export const FunnelWithLink = Template.bind({});
-const FunnelWithLinkArgs = {
-  legends: ['Apple', 'Google', '阿里巴巴', '腾讯', '百度', '网易', 'Microsoft', '字节跳动'],
-  data: dataWithMultiBar,
-  config: {
-    ...config,
-    funnel: {
-      position: 'company*value',
-      color: 'company',
-    },
-  },
-};
-FunnelWithLink.storyName = '漏斗图探索';
-FunnelWithLink.args = FunnelWithLinkArgs;
-
 export const FunnelWithBasic = Template.bind({});
 const FunnelWithBasicArgs = {
   legends: [],

@@ -8,7 +8,6 @@ import {
   FunnelWith7Columns,
   FunnelWithBasic,
   FunnelWithGroup,
-  FunnelWithLink,
 } from '../demos/Funnel.stories';
 import { ChartProps } from '../..';
 
@@ -22,14 +21,6 @@ describe('Funnel Chart', () => {
   });
 
   const legendTestId = 'legend-layout';
-
-  test('render Chart for starting', async () => {
-    render(<Funnel {...(FunnelWithLink.args as ChartProps)} />);
-    act(() => {
-      jest.runOnlyPendingTimers();
-    });
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-  });
 
   test('render Chart', async () => {
     render(<Funnel {...(FunnelWithBasic.args as ChartProps)} />);
