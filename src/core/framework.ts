@@ -1,12 +1,14 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, registerTheme, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
-import { colors } from '../theme';
+import { gioTheme } from '../theme/chart';
 
 import '../utils/tools';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
+
+registerTheme('gio-theme', gioTheme);
 
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
@@ -17,6 +19,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
+    theme: 'gio-theme',
   });
 };
 
@@ -69,16 +72,7 @@ export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, conf
 
   // We don't use default legend
   chart.legend(false);
-
   chart.interaction('element-active');
-
-  // set default colors, althought we have set default color for each legend.
-  // but it's still necessary to add default colors for theme
-  chart.theme({
-    styleSheet: {
-      paletteQualitative10: colors,
-    },
-  });
 
   return chart;
 };
