@@ -1,0 +1,65 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+
+import NotCreated from '../NotCreated';
+import NoResult from '../NoResult';
+
+<Meta title="MDX/No Data" component={NotCreated} />
+
+# Empty - 空态
+
+## 定义
+
+初始化状态或无数据情况下的占位图，可以起到提示或引导操作的功能
+
+## 应用场景
+
+- 页面
+- Picker
+- Table
+- Card
+- List
+- Table 内某一项（当 Table 内某一项无数据时，可直接在列表内展示“-”）
+
+export const Template = (args) => <NotCreated {...args} />;
+export const NoResultTemplate = (args) => <NoResult {...args} />;
+
+## 尺寸
+
+【大尺寸】
+1、组件总宽度为 300px，总高度为 280px，其中，图片宽度为 300px，高度为 200px，文本框宽度为 300px，Button Size：大
+2、支持的使用场景包括：页面
+【小尺寸】
+1、组件总宽度为 150px，总高度为 170px，其中，图片宽度为 150px，高度为 100px，文本框宽度为 150px，Button Size：小
+2、支持的使用场景包括：List，Picker，Table
+
+<Canvas>
+  <Story id="components-no-data--not-created-dashboard-page-usage">{Template.bind({})}</Story>
+</Canvas>
+
+<Canvas>
+  <Story id="components-no-data--not-created-page-usage">{Template.bind({})}</Story>
+</Canvas>
+
+## 样式 - 未创建
+
+1、用户在某一具体模块下，未创建任何内容时，可使用此类型空态
+2、支持的使用场景包括：页面、Table
+3、Type2 为【看板】页面的专用样式，当用户未创建且未订阅任何看板时，在页面内展示该空态
+
+<Canvas>
+  <Story id="components-no-data--not-created-dashboard-page-only">{Template.bind({})}</Story>
+</Canvas>
+
+<Canvas>
+  <Story id="components-no-data--not-created-page-only">{Template.bind({})}</Story>
+</Canvas>
+
+## 样式 - 无结果
+
+1、用户通过筛选、搜索等操作，未找到合适的结果时，可使用此类型空态
+2、支持的使用场景包括：页面、Table、Picker
+
+<Canvas>
+  <Story id="components-no-data--no-result-usage">{Template.bind({})}</Story>
+</Canvas>
