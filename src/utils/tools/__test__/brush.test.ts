@@ -40,7 +40,7 @@ describe('test fromework brush', () => {
         text: 'test',
         textBaseline: 'middle',
         textAlign: 'center',
-        fill: '#000',
+        fill: '#313E75',
       },
     });
   });
