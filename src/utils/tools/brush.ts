@@ -1,3 +1,5 @@
+import { DEFAULT_FONT_COLOR } from '../../theme';
+
 export const drawLinkPath = (path: (string | number)[][]) => {
   return {
     type: 'path',
@@ -29,7 +31,7 @@ export const drawText = (point: { x: number; y: number }, text: string) => {
       text,
       textBaseline: 'middle',
       textAlign: 'center',
-      fill: '#000',
+      fill: DEFAULT_FONT_COLOR,
     },
   };
 };

@@ -1,6 +1,7 @@
 import { Point } from '@antv/component';
 import { GeometryLabel } from '@antv/g2';
 import { LabelCfg } from '@antv/g2/lib/geometry/label/interface';
+import { DEFAULT_FONT_COLOR } from '../../theme';
 
 class IntervalLabel extends GeometryLabel {
   protected getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
@@ -10,7 +11,7 @@ class IntervalLabel extends GeometryLabel {
 
     // 如果字体在矩形里面，则使用白色字体
     const style = labelCfg?.style || {};
-    style.fill = showInTop ? style.fill : '#ffffff';
+    style.fill = showInTop ? DEFAULT_FONT_COLOR : '#ffffff';
     return { x, y: showInTop ? y : -y };
   }
 }

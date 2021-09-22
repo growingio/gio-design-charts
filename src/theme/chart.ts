@@ -1,4 +1,4 @@
-import { colors } from '.';
+import { colors, DEFAULT_FONT_COLOR } from '.';
 
 /**
  * Throught https://theme-set.antv.vision/ to update the theme for Chart.
@@ -16,7 +16,7 @@ export const gioTheme = {
       common: {
         label: {
           style: {
-            fill: '#313E75',
+            fill: DEFAULT_FONT_COLOR,
           },
         },
         line: {
