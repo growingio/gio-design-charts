@@ -4,7 +4,6 @@ import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
 import {
-  fetchChartConfig,
   fetchTooltip,
   fetchViewConfig,
   generateChart,

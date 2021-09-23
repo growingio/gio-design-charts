@@ -1,6 +1,6 @@
 import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Element, Scale } from '@antv/g2';
-import { AdjustOption, ScaleOption, StyleSheet } from '@antv/g2/lib/interface';
+import { AdjustOption } from '@antv/g2/lib/interface';
 
 export enum ChartType {
   LINE = 'line',

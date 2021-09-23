@@ -9,7 +9,6 @@ import { DEFAULT_LINEDASH } from '../../theme';
 import { Chart } from '@antv/g2';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
-import { ChartConfig } from '../..';
 
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
