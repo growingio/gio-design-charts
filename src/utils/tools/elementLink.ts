@@ -1,3 +1,4 @@
+import { GroupCfg } from '@antv/g-base';
 import { Element, IGroup, View } from '@antv/g2';
 import { FUNNEL_CRITICAL_COUNT } from '../../theme';
 import { drawLinkPath, drawPolygon, drawText } from './brush';
@@ -14,7 +15,7 @@ const addTextShape = (group: IGroup, prev: Element, next: Element, text: string)
     const centerPoint = getMiddleCoordinate(prev, next);
     const arrowPolygonPoints = getArrowPolygon(centerPoint, width, height);
     group.addShape(drawPolygon(arrowPolygonPoints));
-    group.addShape(drawText(centerPoint, text) as any);
+    group.addShape(drawText(centerPoint, text));
   }
 };
 
@@ -35,7 +36,7 @@ const reduceElements = (elements: Element[], callback: any) => {
   }
 };
 
-const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => {
+const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []) => {
   try {
     if (view.foregroundGroup.destroyed) {
       return;
@@ -60,7 +61,7 @@ const linkByElement = (view: View, groups: any[] = [], texts: string[] = []) => 
   }
 };
 
-export const addLinkByElement = (view: View, group: any[], options: any) => {
+export const addLinkByElement = (view: View, group: GroupCfg[], options: any) => {
   const { delay = 600, texts = [] } = options;
   if (!view) {
     return;
@@ -79,7 +80,7 @@ export const addLinkByElement = (view: View, group: any[], options: any) => {
 // 在重新render时候，会再次调用addLinkByElement事件
 // 那么在这里的高阶函数，可以先做删除的操作
 export const addLinkByElementHigh = () => {
-  let groups = [] as any[];
+  let groups = [] as GroupCfg[];
   return function (view: View, options: any) {
     if (groups.length > 0) {
       groups.forEach((group) => group.remove());

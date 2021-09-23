@@ -1,4 +1,4 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, Event, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
@@ -74,7 +74,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
         color: emptyLegends ? colors[0] : '',
       },
     };
-    linkView.on('afterrender', function (event: any) {
+    linkView.on('afterrender', function (event: Event) {
       if (event && !isGroup && sourceData.length !== 0) {
         addLinkByElement(event.view, { texts });
       }

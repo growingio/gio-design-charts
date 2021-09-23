@@ -48,9 +48,6 @@ const labelConfig = [
     content: (labelData: any) => {
       return formatNumber(labelData.value);
     },
-    style: {
-      fill: '#8d8d8d',
-    },
     offset: 6,
   },
 ];

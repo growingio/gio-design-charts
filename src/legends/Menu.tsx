@@ -4,10 +4,10 @@ import { default as LegendComponent } from './Legend';
 
 export interface MenuProps {
   legends: Legend[];
-  onClick?: any;
+  onClick?: (label: string) => void;
 }
 
-const Menu = (props: any) => {
+const Menu = (props: MenuProps) => {
   const { legends, onClick } = props;
   return (
     <div className="gio-d-chart-legends_dropdown">

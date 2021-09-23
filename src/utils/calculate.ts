@@ -1,8 +1,9 @@
+import { LooseObject } from '@antv/component';
 import DataSet from '@antv/data-set';
 import { ChartConfig } from '../interfaces';
 import { hasDodge, hasStack } from './interval';
 
-export const calculateBarHeight = (config: ChartConfig, data: any[]) => {
+export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => {
   const ds = new DataSet();
   const dv = ds.createView().source(data);
   const configType = config?.type;
@@ -25,7 +26,7 @@ export const calculateBarHeight = (config: ChartConfig, data: any[]) => {
   const dodgePadding = 4;
   const columnWidth = 16;
   let height = 0;
-  dv.rows.forEach((row: any) => {
+  dv.rows.forEach((row: LooseObject) => {
     const { totalCount } = row;
     if (isStack) {
       height += columnWidth;
@@ -43,7 +44,7 @@ export const calculateBarHeight = (config: ChartConfig, data: any[]) => {
   return height;
 };
 
-export const calculateColumnWidth = (config: ChartConfig, data: any[]) => {
+export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) => {
   const ds = new DataSet();
   const dv = ds.createView().source(data);
   const configType = config?.type;
@@ -66,7 +67,7 @@ export const calculateColumnWidth = (config: ChartConfig, data: any[]) => {
     ...(isStack || isDodge ? { groupBy: [isStack ? positionFirst : color] } : {}),
   });
   let width = 0;
-  dv.rows.forEach((row: any) => {
+  dv.rows.forEach((row: LooseObject) => {
     const { totalCount } = row;
     if (isStack) {
       width += columnWidth;

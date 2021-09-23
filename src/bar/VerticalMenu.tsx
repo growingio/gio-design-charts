@@ -1,4 +1,11 @@
+import { LooseObject } from '@antv/g-base';
 import React from 'react';
+
+export interface VerticalMenuProps {
+  height: number;
+  width: number;
+  scale: LooseObject;
+}
 
 const getRanges = (max: number, range: number[] = [0, 0]) => {
   try {
@@ -14,7 +21,7 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
   }
 };
 
-const VerticalMenu = React.memo((props: any) => {
+const VerticalMenu = React.memo((props: VerticalMenuProps) => {
   const { height, width, scale = {} } = props;
   const { max, range } = scale;
   const ranges = getRanges(max, range);

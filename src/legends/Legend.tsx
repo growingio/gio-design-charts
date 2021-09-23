@@ -1,11 +1,12 @@
+import { LooseObject } from '@antv/component';
 import React, { useCallback } from 'react';
 import { DISABLE_COLOR } from '../theme';
 import { getBackgroundImage } from '../utils/styles';
 
 export interface LegendProps {
   label: string;
-  data: any;
-  onClick?: any;
+  data: LooseObject;
+  onClick?: (label: string) => void;
 }
 
 const Legend = (props: LegendProps) => {

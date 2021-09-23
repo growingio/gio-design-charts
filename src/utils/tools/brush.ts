@@ -1,6 +1,7 @@
 import { DEFAULT_FONT_COLOR } from '../../theme';
+import { ShapeCfg } from '@antv/g-base/lib/types';
 
-export const drawLinkPath = (path: (string | number)[][]) => {
+export const drawLinkPath = (path: (string | number)[][]): ShapeCfg => {
   return {
     type: 'path',
     attrs: {
@@ -12,7 +13,7 @@ export const drawLinkPath = (path: (string | number)[][]) => {
   };
 };
 
-export const drawPolygon = (points: [number, number][]) => {
+export const drawPolygon = (points: [number, number][]): ShapeCfg => {
   return {
     type: 'polygon',
     attrs: {
@@ -23,7 +24,7 @@ export const drawPolygon = (points: [number, number][]) => {
   };
 };
 
-export const drawText = (point: { x: number; y: number }, text: string) => {
+export const drawText = (point: { x: number; y: number }, text: string): ShapeCfg => {
   return {
     type: 'text',
     attrs: {

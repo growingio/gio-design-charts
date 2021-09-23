@@ -41,6 +41,11 @@ export const gioTheme = {
       },
     },
   },
+  labels: {
+    style: {
+      fill: DEFAULT_FONT_COLOR,
+    },
+  },
 };
 
 export default gioTheme;

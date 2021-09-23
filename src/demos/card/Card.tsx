@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Card = (props: any) => {
+interface CardProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+const Card = (props: CardProps) => {
   const { children } = props;
   return (
     <div

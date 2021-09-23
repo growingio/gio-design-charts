@@ -1,38 +1,42 @@
 import React, { LegacyRef, useEffect, useState, useCallback, RefObject, useMemo } from 'react';
 import { InfoCardBox } from '../info-card';
-import { ChartConfig, ChartOptions, Legend, ReportThing } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, ReportThing, Legends } from '../interfaces';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 
 import './styles/base.less';
 import { debounce } from 'lodash';
+import { Chart, View } from '@antv/g2';
+import { TooltipItem } from '@antv/g2/lib/interface';
+import { LooseObject } from '@antv/component';
 
 export interface LayoutProps {
-  options: ChartOptions;
-  config: ChartConfig;
-  children: JSX.Element;
+  options?: ChartOptions;
+  config?: ChartConfig;
+  children: JSX.Element | JSX.Element[];
   width?: number;
+  charts?: (Chart | View)[];
+  onClickLegend?: (label: string) => void;
 }
 
 export interface ChartCanvasProps {
   // type: ChartType;
-  callChart: any;
+  callChart: (options: ChartOptions, config: ChartConfig) => { chart: Chart; views?: View[] };
   legendList: (string | Legend)[];
-  handleLegend: any;
+  handleLegend: (charts: (Chart | View)[], legends: Legends, config: ChartConfig) => void;
   config: ChartConfig;
   defaultOptions?: ChartOptions;
-  data: any;
+  data: LooseObject[];
   width?: number;
-  // interceptors: any;
 }
 
 // In core, we only force on render chart and provide basic chart options
-const core = (HighComponent: any) => {
+const core = (HighComponent: React.FC<LayoutProps>) => {
   return (props: ChartCanvasProps) => {
     const { config, callChart, data, legendList, handleLegend, defaultOptions = {}, width } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
     const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
-    const [hoverItem, setHoverItem] = useState([]);
+    const [hoverItem, setHoverItem] = useState<TooltipItem[]>([]);
 
     const { legends, setLegends, updateLegends } = useLegends();
 
@@ -67,13 +71,13 @@ const core = (HighComponent: any) => {
         tooltip = {
           ...tooltip,
           container: tooltipRef.current,
-          customItems: (items: any) => {
-            setHoverItemD(items);
-            return items;
+          customItems: (originalItems: TooltipItem[]) => {
+            setHoverItemD(originalItems);
+            return originalItems;
           },
         };
       }
-      let existChart: any;
+      let existChart: Chart;
       // The type should be set when the chart component is called.
       if (root?.current && data && config?.type) {
         const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
@@ -106,7 +110,9 @@ const core = (HighComponent: any) => {
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
-        handleLegend(charts, newLegends, config);
+        if (charts) {
+          handleLegend(charts, newLegends, config);
+        }
       },
       [charts, chartOptions, config, setHoverItemD, handleLegend, updateLegends]
     );

@@ -1,5 +1,6 @@
+import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Element, Scale } from '@antv/g2';
-import { AdjustOption, ScaleOption } from '@antv/g2/lib/interface';
+import { AdjustOption, ScaleOption, StyleSheet } from '@antv/g2/lib/interface';
 
 export enum ChartType {
   LINE = 'line',
@@ -7,6 +8,10 @@ export enum ChartType {
   COLUMN = 'column',
   FUNNEL = 'funnel',
   AREA = 'area',
+}
+
+export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
+  lineDash?: boolean | number[] | null;
 }
 
 export interface Legend {
@@ -29,44 +34,28 @@ export interface Legend {
 
   // 折线图的线是否为虚线，当是true，则显示默认虚线样子，若不是，请定义虚线
   // 详细设置请查看 https://g2.antv.vision/zh/docs/api/shape/shape-attrs#%E7%BA%BF%E6%9D%A1%E5%B1%9E%E6%80%A7
-  lineDash?: boolean | Array<number>;
+  lineDash?: boolean | number[];
 
   // 声明以哪个数据字段为分组依据
   dodgeBy?: string;
 }
 
 export interface Legends {
-  [name: string]: Legend;
-}
-export interface ChartProps {
-  /**
-   * Chart的基础配置，设定theme, scale, tooltip
-   */
-  config: any;
-  /**
-   * Chart数据
-   */
-  data: any;
-  /**
-   * 图例数组，是字符串或者图例对象
-   *
-   */
-  legends: (Legend | string)[];
+  [key: string]: Legend;
 }
 
-export interface ChartOptions {
+export interface ChartOptions extends LooseObject {
   id?: HTMLElement;
-  data?: any;
+  data?: LooseObject;
   legends?: Legends;
   hasDashed?: boolean;
   /**
    * set default styles for line or interval
    */
-  defaultStyles?: any;
-  [key: string]: any;
+  defaultStyles?: ShapeStyle;
 }
 
-export interface ChartConfig {
+export interface ChartConfig extends LooseObject {
   /**
    * 用来创建柱状图的配置
    */
@@ -99,15 +88,27 @@ export interface ChartConfig {
    * 更多内容请参考： https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
    */
   scale?: [field: string, scaleOption: ScaleOption];
+}
+
+export interface ChartProps {
   /**
-   * 更多的扩展配置
+   * Chart的基础配置，设定theme, scale, tooltip
    */
-  [key: string]: any;
+  config: ChartConfig;
+  /**
+   * Chart数据
+   */
+  data: LooseObject[];
+  /**
+   * 图例数组，是字符串或者图例对象
+   *
+   */
+  legends: (Legend | string)[];
 }
 
 type AdjustOptionType = AdjustOption | AdjustOption[];
 
-export interface Shape {
+export interface Shape extends LooseObject {
   /**
    * 设置数据调整方式
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
@@ -118,7 +119,6 @@ export interface Shape {
    * 颜色通道
    */
   color?: string;
-  [key: string]: any;
 }
 
 export interface ReportThing {

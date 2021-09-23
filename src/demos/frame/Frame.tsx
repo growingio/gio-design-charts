@@ -20,7 +20,15 @@ const titleStyles: CSSProperties = {
   color: 'rgb(30, 167, 253)',
 };
 
-const Frame = (props: any) => {
+interface FrameProps {
+  children: JSX.Element | JSX.Element[];
+  type?: string;
+  title?: string;
+  path?: string;
+  styles?: CSSProperties;
+}
+
+const Frame = (props: FrameProps) => {
   const { children, type, title, path, styles = {} } = props;
   return (
     <div style={type === 'right' ? rightStyles : leftStyles}>
