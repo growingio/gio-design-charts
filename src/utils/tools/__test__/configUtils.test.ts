@@ -1,3 +1,4 @@
+import { Point } from '@antv/component';
 import {
   getDefaultStyles,
   getRelateLegend,
@@ -44,28 +45,28 @@ describe('setCustomInfo', () => {
 
 describe('getRelateLegend', () => {
   test('with empty', () => {
-    expect(getRelateLegend({})).toEqual({});
+    expect(getRelateLegend({} as Point)).toEqual({});
   });
 });
 
 describe('getDefaultStyles', () => {
   test('with empty', () => {
     expect(getDefaultStyles(undefined as any)).toEqual({});
-    expect(getDefaultStyles({})).toEqual({});
+    expect(getDefaultStyles({} as Point)).toEqual({});
   });
 });
 
 describe('isUseDash', () => {
   test('with empty', () => {
     expect(isUseDash(undefined as any)).toBeFalsy();
-    expect(isUseDash({})).toBeFalsy();
+    expect(isUseDash({} as Point)).toBeFalsy();
   });
 });
 
 describe('isStack', () => {
   test('with empty', () => {
     expect(isStack(undefined as any)).toBeFalsy();
-    expect(isStack({})).toBeFalsy();
+    expect(isStack({} as Point)).toBeFalsy();
   });
 });
 

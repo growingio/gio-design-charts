@@ -21,7 +21,7 @@ const titleStyles: CSSProperties = {
 };
 
 interface FrameProps {
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
   type?: string;
   title?: string;
   path?: string;

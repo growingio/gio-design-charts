@@ -1,7 +1,7 @@
 // 1233123  ==> 1,233,123
 // 12155123.12 ==> 12,155,123.12
-export const formatNumber = (value: number, decimalCount = 2, intSuffixZeroFill = false) => {
-  if (!isFinite(value)) {
+export const formatNumber = (value: number | string, decimalCount = 2, intSuffixZeroFill = false) => {
+  if (!isFinite(value as number)) {
     return value + '';
   }
 
@@ -13,7 +13,7 @@ export const formatNumber = (value: number, decimalCount = 2, intSuffixZeroFill 
 
   value = value || 0;
   const intValue = parseInt(value + '', 10);
-  const decimalValue = value - intValue;
+  const decimalValue = (value as number) - intValue;
   let decimalValueStr;
   if (intValue === 0 && decimalCount > 0) {
     decimalValueStr = decimalValue.toPrecision(decimalCount);

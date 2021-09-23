@@ -1,6 +1,6 @@
 import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Element, Scale } from '@antv/g2';
-import { AdjustOption, ScaleOption, StyleSheet } from '@antv/g2/lib/interface';
+import { AdjustOption } from '@antv/g2/lib/interface';
 
 export enum ChartType {
   LINE = 'line',
@@ -59,22 +59,22 @@ export interface ChartConfig extends LooseObject {
   /**
    * 用来创建柱状图的配置
    */
-  column?: Shape;
+  column?: any;
 
   /**
    * 用来创建折线图的配置
    */
-  line?: Shape;
+  line?: any;
 
   /**
    * 用来创建条形图的配置
    */
-  bar?: Shape;
+  bar?: any;
 
   /**
    * 用来创建面积图的配置
    */
-  area?: Shape;
+  area?: any;
   /**
    * 用来显示或隐藏Legend图例
    * 在gio-design-charts中，legend被重新定义，G2默认的legend配置将无效，在这里配置legend: false可用来隐藏Legend
@@ -87,7 +87,7 @@ export interface ChartConfig extends LooseObject {
    * 3. chart.scale({ sale: { min: 0, max: 100} }, { nice: true });
    * 更多内容请参考： https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
    */
-  scale?: [field: string, scaleOption: ScaleOption];
+  scale?: any;
 }
 
 export interface ChartProps {

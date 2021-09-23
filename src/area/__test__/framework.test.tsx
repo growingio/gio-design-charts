@@ -47,15 +47,7 @@ describe('areaChart', () => {
     };
     areaChart(options, config);
   });
-  test('call areaChart without config', () => {
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-    };
-    areaChart(options);
-  });
+
   test('call areaChart without id', () => {
     const options = {
       data,

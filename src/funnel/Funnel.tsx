@@ -5,6 +5,7 @@ import { funnelChart, handleLegend } from './framework';
 import { colors } from '../theme';
 import { ScrollXLayout } from '../layouts';
 import { getSingleData } from './utils';
+import { LooseObject } from '@antv/component';
 
 const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
@@ -23,7 +24,7 @@ const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
     config.type = ChartType.FUNNEL;
   }
 
-  const [comparativeData, setComparativeData] = useState({});
+  const [comparativeData, setComparativeData] = useState<LooseObject>({});
   useEffect(() => {
     setComparativeData(getSingleData(data, config));
   }, [data, config]);

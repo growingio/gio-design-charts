@@ -36,7 +36,7 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
   return area;
 };
 
-export const areaChart = (options: ChartOptions, config: ChartConfig = {}) => {
+export const areaChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   if (!id) {
     return {};

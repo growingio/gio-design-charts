@@ -21,12 +21,12 @@ export interface LayoutProps {
 
 export interface ChartCanvasProps {
   // type: ChartType;
-  callChart: (options: ChartOptions, config: ChartConfig) => { chart: Chart; views?: View[] };
+  callChart: (options: ChartOptions, config: ChartConfig) => { chart?: Chart; views?: View[] };
   legendList: (string | Legend)[];
   handleLegend: (charts: (Chart | View)[], legends: Legends, config: ChartConfig) => void;
   config: ChartConfig;
   defaultOptions?: ChartOptions;
-  data: LooseObject[];
+  data: LooseObject | LooseObject[];
   width?: number;
 }
 
@@ -96,8 +96,10 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
             tooltip,
           }
         );
-        interceptors?.onRender(chart, views);
-        existChart = chart;
+        if (chart) {
+          interceptors?.onRender(chart, views);
+          existChart = chart;
+        }
         setLegends(genLegends);
         setDashed(hasDashedLegend);
       }
