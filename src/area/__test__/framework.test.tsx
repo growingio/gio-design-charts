@@ -9,6 +9,7 @@ import { DEFAULT_LINEDASH } from '../../theme';
 import { Chart } from '@antv/g2';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
+import { ChartConfig } from '../..';
 
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
@@ -47,15 +48,7 @@ describe('areaChart', () => {
     };
     areaChart(options, config);
   });
-  test('call areaChart without config', () => {
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-    };
-    areaChart(options);
-  });
+
   test('call areaChart without id', () => {
     const options = {
       data,

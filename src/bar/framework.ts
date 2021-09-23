@@ -1,7 +1,7 @@
 import { Chart, Event, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { handleInterval } from '../column/framework';
-import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
+import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
@@ -20,7 +20,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
         reporter({ scale: geometries.getXScale(), elements: geometries?.elements });
       }
     });
-    fetchChartConfig(linkView, options, config);
+    fetchViewConfig(linkView, options, config);
     handleInterval(linkView, options, config, 'bar');
     linkView.coordinate().transpose();
     linkView.render();

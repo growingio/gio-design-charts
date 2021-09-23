@@ -4,7 +4,7 @@ import React from 'react';
 export interface VerticalMenuProps {
   height: number;
   width: number;
-  scale: LooseObject;
+  scale?: LooseObject;
 }
 
 const getRanges = (max: number, range: number[] = [0, 0]) => {

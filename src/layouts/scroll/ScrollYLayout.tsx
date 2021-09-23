@@ -5,6 +5,7 @@ import './styles/index.less';
 import LegendLayout from '../legend';
 import { DEAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
+import { LooseObject } from '@antv/g-base';
 
 /**
  * 主要为了实现条形图的滚动效果
@@ -18,7 +19,7 @@ const ScrollYLayout = (props: ChartCanvasProps) => {
   const { config, data } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
-  const chartHeight = calculateBarHeight(config, data);
+  const chartHeight = calculateBarHeight(config, data as LooseObject[]);
   const newConfig = {
     ...config,
     chart: {

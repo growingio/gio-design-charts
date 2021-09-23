@@ -3,7 +3,13 @@ import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
-import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
+import {
+  fetchChartConfig,
+  fetchTooltip,
+  fetchViewConfig,
+  generateChart,
+  handleLegendBehavior,
+} from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import { getShapeConfig } from '../utils/tools/configUtils';
 
@@ -59,7 +65,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
         color: emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
       },
     };
-    fetchChartConfig(backgroundView, backgroundOptions, config);
+    fetchViewConfig(backgroundView, backgroundOptions, config);
     fetchInterval(backgroundView, backgroundOptions, config);
     backgroundView.interaction('element-active');
     backgroundView.render();
@@ -84,7 +90,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
       linkView.interaction('element-highlight-by-color');
       linkView.interaction('element-link');
     }
-    fetchChartConfig(linkView, linkOptions, config);
+    fetchViewConfig(linkView, linkOptions, config);
     fetchInterval(linkView, linkOptions, config);
     linkView.render();
 

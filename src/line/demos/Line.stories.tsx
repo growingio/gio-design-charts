@@ -83,7 +83,7 @@ const BaiscLineArgs = {
         'value',
         {
           label: {
-            formatter: (val: string) => formatNumber(val),
+            formatter: (val: string) => formatNumber(Number(val)),
           },
         },
       ],
@@ -129,7 +129,7 @@ const ContrastLineArgs = {
         'value',
         {
           label: {
-            formatter: (val: string) => formatNumber(val),
+            formatter: (val: string) => formatNumber(Number(val)),
           },
         },
       ],

@@ -1,3 +1,4 @@
+import { LooseObject } from '@antv/g-base';
 import { getGroupData, getSingleData } from '../utils';
 
 describe('funnel utils', () => {
@@ -99,10 +100,10 @@ describe('funnel utils', () => {
       texts: ['0.00%', '0.00%'],
       isGroup: false,
     };
-    expect(getSingleData(singleData)).toEqual(convertSingleData);
+    expect(getSingleData(singleData as LooseObject[])).toEqual(convertSingleData);
   });
 
   test('getGroupData', () => {
-    expect(getGroupData(data, { funnel: { color: 'city' } })).toEqual(covertData);
+    expect(getGroupData(data as LooseObject[], { funnel: { color: 'city' } })).toEqual(covertData);
   });
 });

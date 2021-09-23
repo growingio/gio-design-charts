@@ -40,8 +40,7 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   }
   return chart;
 };
-
-export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, config: ChartConfig) => {
+export const fetchConfig = (chart: Chart | View, options: ChartConfig, config: ChartConfig) => {
   const { data } = options;
 
   // Set Data
@@ -80,6 +79,14 @@ export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, conf
   chart.interaction('element-active');
 
   return chart;
+};
+
+export const fetchChartConfig = (chart: Chart, options: ChartConfig, config: ChartConfig) => {
+  return fetchConfig(chart, options, config) as Chart;
+};
+
+export const fetchViewConfig = (chart: View, options: ChartConfig, config: ChartConfig) => {
+  return fetchConfig(chart, options, config) as View;
 };
 
 export const renderChart = (options: ChartOptions, config: ChartConfig) => {

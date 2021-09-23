@@ -37,7 +37,7 @@ const tsLabelConfig = [
   },
 ];
 
-const valueLabelConfig = ['value', { label: { formatter: (val: string) => formatNumber(val) } }];
+const valueLabelConfig = ['value', { label: { formatter: (val: string) => formatNumber(Number(val)) } }];
 
 const Template: ComponentStory<typeof Column> = (args) => (
   <Card>
