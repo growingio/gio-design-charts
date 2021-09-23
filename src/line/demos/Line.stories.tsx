@@ -26,6 +26,29 @@ const Template: ComponentStory<typeof Line> = (args) => (
   </Card>
 );
 
+const scalaAxisConfig = {
+  scales: [
+    [
+      'value',
+      {
+        tickCount: 10,
+        min: 0,
+      },
+    ],
+    ['tm', { range: [0, 1] }],
+  ],
+  axises: [
+    [
+      'value',
+      {
+        label: {
+          formatter: (val: string) => formatNumber(Number(val)),
+        },
+      },
+    ],
+    ['tm', { tickLine: null }],
+  ],
+};
 const config = {
   chart: {
     autoFit: true,
@@ -68,27 +91,7 @@ const BaiscLineArgs = {
   data: dataWithOneLine,
   config: {
     ...config,
-    scales: [
-      [
-        'value',
-        {
-          tickCount: 10,
-          min: 0,
-        },
-      ],
-      ['tm', { range: [0, 1] }],
-    ],
-    axises: [
-      [
-        'value',
-        {
-          label: {
-            formatter: (val: string) => formatNumber(Number(val)),
-          },
-        },
-      ],
-      ['tm', { tickLine: null }],
-    ],
+    ...scalaAxisConfig,
     line: {
       position: 'tm*value',
       color: 'type',
@@ -114,27 +117,7 @@ const ContrastLineArgs = {
   data: dataWithTwoLine,
   config: {
     ...config,
-    scales: [
-      [
-        'value',
-        {
-          tickCount: 10,
-          min: 0,
-        },
-      ],
-      ['tm', { range: [0, 1] }],
-    ],
-    axises: [
-      [
-        'value',
-        {
-          label: {
-            formatter: (val: string) => formatNumber(Number(val)),
-          },
-        },
-      ],
-      ['tm', { tickLine: null }],
-    ],
+    ...scalaAxisConfig,
     line: {
       position: 'tm*value',
       color: 'type',
