@@ -1,6 +1,6 @@
 // 1233123  ==> 1,233,123
 // 12155123.12 ==> 12,155,123.12
-export const formatNumber = (value: any, decimalCount = 2, intSuffixZeroFill = false) => {
+export const formatNumber = (value: number, decimalCount = 2, intSuffixZeroFill = false) => {
   if (!isFinite(value)) {
     return value + '';
   }

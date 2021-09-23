@@ -1,10 +1,11 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { ShapeAttrs } from '@antv/g-base';
+import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle } from '../interfaces';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { lineShape } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 
-export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: any) => {
+export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: ShapeStyle) => {
   const { legends } = options;
   const area = chart.area({
     theme: {
@@ -18,13 +19,13 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
   }
   area.style(shapeConfig.color, (label: string) => {
     const legend = legends?.[label] || ({} as Legend);
-    const style = {} as any;
+    const style = {} as ShapeAttrs;
     if (legend.color) {
       style.stroke = legend.color;
       style.fill = legend.color;
     }
     if (legend.lineDash) {
-      style.lineDash = legend.lineDash;
+      style.lineDash = legend.lineDash as number[] | undefined;
     }
     style.fillOpacity = 0.8;
     // default width of line is 2px

@@ -1,9 +1,10 @@
+import { LooseObject } from '@antv/component';
 import React from 'react';
 import { formatNumber, formatPercent } from '../..';
 import { InfoCard } from '../../info-card';
 import './drilldown-card.less';
 
-const DrilldownCard = ({ options }: any) => {
+const DrilldownCard = ({ options }: LooseObject) => {
   const { trigger, title } = options;
   const infoType = options.data[0]?.column ? 'outflow' : 'covert';
   const realTitle = title + (infoType === 'covert' ? ' - 转化' : ' - 流失');

@@ -1,8 +1,13 @@
 import { throttle } from 'lodash';
 import { useCallback, useEffect, RefObject, useState, useMemo } from 'react';
 
-const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj?: any) => void) => {
-  const [offset, setOffset] = useState({} as { width: number; height: number });
+export interface Offset {
+  width: number;
+  height: number;
+}
+
+const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset) => void) => {
+  const [offset, setOffset] = useState({} as Offset);
   const onResize = useCallback(() => {
     const width = rootRef?.current?.offsetWidth as number;
     const height = rootRef?.current?.offsetHeight as number;

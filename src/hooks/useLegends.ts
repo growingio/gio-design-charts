@@ -1,3 +1,4 @@
+import { LooseObject } from '@antv/component';
 import { useCallback, useState } from 'react';
 import { ChartType, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_LINEDASH } from '../theme';
@@ -15,7 +16,7 @@ export const getLegends = (type: ChartType, legendProps: Array<string | Legend>)
       };
     } else {
       const { lineDash, dashed } = legend;
-      const lineDashCfg = {} as any;
+      const lineDashCfg = {} as LooseObject;
       if (lineDash === true) {
         lineDashCfg.lineDash = DEFAULT_LINEDASH;
       } else if (lineDash) {

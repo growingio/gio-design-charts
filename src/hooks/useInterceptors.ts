@@ -1,5 +1,5 @@
 import { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
-import { Chart, View } from '@antv/g2';
+import { Chart, Event, View } from '@antv/g2';
 
 const useInterceptors = () => {
   const chartRef: MutableRefObject<(Chart | View)[] | undefined> = useRef();
@@ -24,7 +24,7 @@ const useInterceptors = () => {
         chart.on('element:mouseover', () => {
           triggerActionRef.current = 'mouseover';
         });
-        chart.on('element:mouseout', (e: any) => {
+        chart.on('element:mouseout', (e: Event) => {
           if (!e.event.relatedTarget) {
             chart.unlockTooltip();
             updated(new Date().getTime());

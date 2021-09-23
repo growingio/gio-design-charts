@@ -1,5 +1,6 @@
 import { getDodgeBy, hasContrastDodge } from '../interval';
 import { ChartConfig, ChartOptions } from '../../interfaces';
+import { ShapeInfo } from '@antv/g2/lib/interface';
 
 export const getShapeConfig = (config: ChartConfig, type?: string) => {
   if (type) {
@@ -30,7 +31,7 @@ export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, i
   };
 };
 
-export const getRelateLegend = (shapeInfo: any) => {
+export const getRelateLegend = (shapeInfo: ShapeInfo) => {
   const { customInfo, data = {} } = shapeInfo;
   const { type = '', dodgeBy, contrastDodge, legends = {} } = customInfo || {};
   const name = data[type];
@@ -44,15 +45,15 @@ export const getRelateLegend = (shapeInfo: any) => {
   return legends[name] || {};
 };
 
-export const getDefaultStyles = (shapeInfo: any) => {
+export const getDefaultStyles = (shapeInfo: ShapeInfo) => {
   return shapeInfo?.customInfo?.defaultStyles || {};
 };
 
-export const isUseDash = (shapeInfo: any) => {
+export const isUseDash = (shapeInfo: ShapeInfo) => {
   return !!shapeInfo?.customInfo?.useDash;
 };
 
-export const isStack = (shapeInfo: any) => {
+export const isStack = (shapeInfo: ShapeInfo) => {
   return !!shapeInfo?.customInfo?.isStack;
 };
 
@@ -62,7 +63,7 @@ export const isTopBar = (shapeInfo: any) => {
   return name === shapeInfo?.data?.[type];
 };
 
-export const getTopName = (shapeInfo: any) => {
+export const getTopName = (shapeInfo: ShapeInfo) => {
   const type = shapeInfo?.customInfo?.type;
   const topData = shapeInfo?.customInfo?.topData;
   return topData?.[type];

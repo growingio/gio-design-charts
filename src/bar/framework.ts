@@ -1,4 +1,4 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, Event, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { handleInterval } from '../column/framework';
 import { fetchChartConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
@@ -14,7 +14,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
   try {
     const linkView = chart.createView();
 
-    linkView.on('afterrender', function (event: any) {
+    linkView.on('afterrender', function (event: Event) {
       const geometries = event?.view?.geometries?.[0];
       if (geometries && geometries?.elements) {
         reporter({ scale: geometries.getXScale(), elements: geometries?.elements });

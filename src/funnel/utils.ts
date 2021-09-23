@@ -1,11 +1,12 @@
+import { LooseObject } from '@antv/component';
 import { ChartConfig } from '../interfaces';
 
-export const getSingleData = (data: any[], config?: ChartConfig) => {
+export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
   const contrastKey = config?.funnel?.contrast || 'value';
-  const covertData = [] as any[];
+  const covertData = [] as LooseObject[];
   const texts = [] as string[];
-  let prev = {} as any;
-  data.forEach((item: any, index: number) => {
+  let prev = {} as LooseObject;
+  data.forEach((item: LooseObject, index: number) => {
     if (index === 0) {
       covertData.push({ ...item });
       prev = item;
@@ -25,13 +26,13 @@ export const getSingleData = (data: any[], config?: ChartConfig) => {
   };
 };
 
-export const getGroupData = (data: any[], config: ChartConfig) => {
-  const covertData = [] as any[];
+export const getGroupData = (data: LooseObject[], config: ChartConfig) => {
+  const covertData = [] as LooseObject[];
   const forwardKey = config?.funnel?.color;
   const contrastKey: string = config?.funnel?.contrast || 'value';
   if (forwardKey) {
-    const prevs = {} as any;
-    data.forEach((item: any) => {
+    const prevs = {} as LooseObject;
+    data.forEach((item: LooseObject) => {
       const prevItem = prevs[item?.[forwardKey]];
       if (prevItem) {
         if (!item.isPlaceholder) {

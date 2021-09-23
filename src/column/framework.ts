@@ -5,6 +5,7 @@ import { handleLegendBehavior, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
 import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
+import Interval from '@antv/g2/lib/geometry/interval';
 
 /**
  *
@@ -28,7 +29,7 @@ export const intervalShape = (
   const shapeConfig = barConfig.interval || {};
   const hideLabel = options.control?.hideLabel;
 
-  let interval: any = chart.interval({
+  let interval: Interval = chart.interval({
     ...shapeConfig,
     ...intervalStyles,
     // dodgePadding: 8,
@@ -37,10 +38,10 @@ export const intervalShape = (
     // minColumnWidth: 40,
   });
   if (barConfig.position) {
-    interval = interval.position(barConfig.position);
+    interval.position(barConfig.position);
   }
   if (barConfig.color) {
-    interval = interval.color(barConfig.color);
+    interval.color(barConfig.color);
     interval.shape(barConfig.color, [`${customInfo.chartType || 'column'}-element`]);
   }
   if (barConfig.adjust) {

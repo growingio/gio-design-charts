@@ -1,4 +1,5 @@
 import { Element, registerGeometryLabel, registerInteraction } from '@antv/g2';
+import { ShapeStyle } from '../../interfaces';
 import IntervalLabel from './intervalLabel';
 
 export * from './elementLink';
@@ -11,7 +12,7 @@ registerInteraction('element-link', {
       trigger: 'interval:mouseenter',
       action: 'element-link-by-color:link',
       arg: {
-        style: (style: any, element: Element) => {
+        style: (style: ShapeStyle, element: Element) => {
           const color = element.getModel()?.color;
           // 设置放射性/环形渐变色
           // { fill: `r(0.5,1.1,2) 0:#ffffff 1:${color}`, opacity: 0.7 };

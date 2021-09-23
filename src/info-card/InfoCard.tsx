@@ -1,3 +1,4 @@
+import { LooseObject } from '@antv/component';
 import React from 'react';
 import { ChartConfig } from '../interfaces';
 import Item from './Item';
@@ -6,13 +7,13 @@ import './styles/infocard.less';
 
 export interface InfoCardProps {
   title: string;
-  data: any[];
+  data: LooseObject[];
   forwardKey: string;
   valueKey: string;
   formatter?: any;
   trigger?: string;
   config?: ChartConfig;
-  injectComponent?: any;
+  injectComponent?: (options: { data: LooseObject; trigger?: string; forwardKey: string }) => JSX.Element;
 }
 
 const InfoCard = (props: InfoCardProps) => {

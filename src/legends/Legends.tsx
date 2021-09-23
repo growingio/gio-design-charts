@@ -2,10 +2,16 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 
-import { Legend } from '../interfaces';
+import { Legend, Legends as LegendsInterface } from '../interfaces';
 import './styles/legends.less';
 
-const Legends = (props: any) => {
+export interface LegendsProps {
+  legends?: LegendsInterface;
+  onClick?: (label: string) => void;
+  offsetWidth: number;
+}
+
+const Legends = (props: LegendsProps) => {
   const { legends = {}, onClick, offsetWidth = 800 } = props;
 
   const [tiled, setTiled] = useState([] as Legend[]);

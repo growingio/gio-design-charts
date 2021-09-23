@@ -1,19 +1,21 @@
+import { LooseObject, Point } from '@antv/component';
 import { IGroup, registerShape } from '@antv/g2';
+import { Shape, ShapeInfo } from '@antv/g2/lib/interface';
 
 import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from '../../theme';
 import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from './configUtils';
 
-export function getFillAttrs(shapeInfo: any) {
+export function getFillAttrs(shapeInfo: ShapeInfo) {
   return {
     ...shapeInfo.defaultStyle,
     ...shapeInfo.style,
     fill: shapeInfo.color,
-    fillOpacity: shapeInfo.opacity,
+    // fillOpacity: shapeInfo.opacity,
   };
 }
 
 // 重新绘制rect，设置最小高度
-function getBarRectAttrs(points: any[], stack = false) {
+function getBarRectAttrs(points: Point[], stack = false) {
   let width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const defualtWidth = stack ? 0 : DEFAULT_MIN_HEIGHT;
@@ -23,7 +25,7 @@ function getBarRectAttrs(points: any[], stack = false) {
 }
 
 // 重新绘制rect，设置最小高度
-function getRectAttrs(points: any[], stack = false) {
+function getRectAttrs(points: Point[], stack = false) {
   const width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const defualtHeight = stack ? height : DEFAULT_MIN_HEIGHT;
@@ -37,7 +39,7 @@ function getRectAttrs(points: any[], stack = false) {
   };
 }
 
-function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs: any) {
+function drawRect(main: Shape, shapeInfo: ShapeInfo, container: IGroup, handleRectAttrs: any) {
   const defaultStyles = getDefaultStyles(shapeInfo);
   const legend = getRelateLegend(shapeInfo);
   const stack = isStack(shapeInfo);
@@ -46,7 +48,7 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
 
   const attrs = getFillAttrs(shapeInfo);
   const group = container.addGroup();
-  const points = main.parsePoints(shapeInfo.points); // 转换为画布坐标
+  const points = main.parsePoints(shapeInfo.points as Point[]); // 转换为画布坐标
   const styles =
     useDash && legend.dashed
       ? { fill: `p(a)${BAR_TEXTURE}` }
@@ -63,8 +65,8 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
   // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
   // 最上面的rect，取决于传入data的第一条数据
   // 所以，当rect是堆积图，并且不是最高的bar，则需要隐藏radius
-  let radiusObj: any = { radius };
-  let fetchStyles: any = {};
+  let radiusObj: LooseObject = { radius };
+  let fetchStyles: LooseObject = {};
   radiusObj = stack && !topBar ? {} : radiusObj;
 
   // 当高度为0时，对应的value数值为0，则不需要显示默认的高度，这是需要取消radius的设定，防止多余的渲染
@@ -87,13 +89,13 @@ function drawRect(main: any, shapeInfo: any, container: IGroup, handleRectAttrs:
 // 3. 实现加载条纹图片
 // 参考 https://g2.antv.vision/zh/examples/column/stack#rounded-stacked
 registerShape('interval', 'column-element', {
-  draw(shapeInfo: any, container: IGroup) {
-    return drawRect(this, shapeInfo, container, getRectAttrs);
+  draw(shapeInfo: ShapeInfo, container: IGroup) {
+    return drawRect(this as Shape, shapeInfo, container, getRectAttrs);
   },
 });
 
 registerShape('interval', 'bar-element', {
-  draw(shapeInfo: any, container: IGroup) {
-    return drawRect(this, shapeInfo, container, getBarRectAttrs);
+  draw(shapeInfo: ShapeInfo, container: IGroup) {
+    return drawRect(this as Shape, shapeInfo, container, getBarRectAttrs);
   },
 });

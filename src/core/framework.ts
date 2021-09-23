@@ -1,4 +1,5 @@
 import { Chart, registerTheme, View } from '@antv/g2';
+import { AxisOption, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { gioTheme } from '../theme/chart';
@@ -53,10 +54,12 @@ export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, conf
   // 2. chart.scale('sale', { min: 0, max: 100});
   // 3. chart.scale({ sale: { min: 0, max: 100} }, { nice: true });
   // See detail https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
-  const scale = config.scale || ([] as any);
-  chart.scale.apply(chart, scale);
+  const scale = config.scale;
+  if (scale) {
+    chart.scale.apply(chart, scale);
+  }
   const scales = config.scales;
-  scales?.forEach((sc: any) => {
+  scales?.forEach((sc: [string, ScaleOption]) => {
     chart.scale.apply(chart, sc);
   });
 
@@ -64,11 +67,13 @@ export const fetchChartConfig = (chart: Chart | View, options: ChartConfig, conf
   fetchTooltip(chart, config);
   // Use array for axis config
   // See detail
-  const axis = config.axis || [];
-  chart.axis.apply(chart, axis);
+  const axis = config.axis;
+  if (axis) {
+    chart.axis.apply(chart, axis);
+  }
   // Support multi axis config
-  const axises = config.axises || [];
-  axises.map((a: any) => chart.axis.apply(chart, a));
+  const axises = config.axises;
+  axises?.map((a: [string, AxisOption]) => chart.axis.apply(chart, a));
 
   // We don't use default legend
   chart.legend(false);
