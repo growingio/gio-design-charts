@@ -15,9 +15,9 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
     const linkView = chart.createView();
 
     linkView.on('afterrender', function (event: Event) {
-      const geometries = event?.view?.geometries?.[0];
-      if (geometries && geometries?.elements) {
-        reporter({ scale: geometries.getXScale(), elements: geometries?.elements });
+      const geometries = event.view.geometries[0];
+      if (geometries && geometries.elements) {
+        reporter({ scale: geometries.getXScale(), elements: geometries.elements });
       }
     });
     fetchViewConfig(linkView, options, config);

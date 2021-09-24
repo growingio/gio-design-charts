@@ -54,6 +54,18 @@ describe('areaChart', () => {
     };
     areaChart(options, config);
   });
+
+  test('call areaChart without adjust', () => {
+    render(<ChartCom />);
+    const element = screen.getByTestId(chartComponentTestid);
+    const options = {
+      id: element,
+      data,
+      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
+    };
+    const { adjust, ...areaConfig } = config.area;
+    areaChart(options, { ...config, area: areaConfig });
+  });
 });
 
 describe('handleLegend', () => {

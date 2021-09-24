@@ -11,7 +11,7 @@ import { TooltipItem } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/component';
 
 export interface LayoutProps {
-  options?: ChartOptions;
+  options: ChartOptions;
   config?: ChartConfig;
   children: JSX.Element | JSX.Element[];
   width?: number;
@@ -67,7 +67,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     // 3. in this useEffect, we needn't to make it changes many times.
     useEffect(() => {
       let tooltip = config?.tooltip || {};
-      if (tooltipRef?.current) {
+      if (tooltipRef.current) {
         tooltip = {
           ...tooltip,
           container: tooltipRef.current,
@@ -79,7 +79,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
       }
       let existChart: Chart;
       // The type should be set when the chart component is called.
-      if (root?.current && data && config?.type) {
+      if (root.current && data && config?.type) {
         const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
         const { chart, views = [] } = callChart(
           {
@@ -96,10 +96,8 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
             tooltip,
           }
         );
-        if (chart) {
-          interceptors?.onRender(chart, views);
-          existChart = chart;
-        }
+        interceptors.onRender(chart as Chart, views);
+        existChart = chart as Chart;
         setLegends(genLegends);
         setDashed(hasDashedLegend);
       }

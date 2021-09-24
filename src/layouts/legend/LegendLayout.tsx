@@ -7,19 +7,20 @@ import debounce from 'lodash/debounce';
 
 const LegendLayout = React.memo((props: LayoutProps) => {
   const layoutRef: LegacyRef<HTMLDivElement> = React.createRef();
-  const { options = {}, config = {}, onClickLegend, width } = props;
-  const { legends, charts } = options;
+  const { options, config = {}, onClickLegend, width, charts } = props;
+  const { legends } = options;
   const watchReset = useMemo(() => {
     return debounce((resetOffset: Offset) => {
-      charts?.forEach((view: Chart | View) => {
-        if (view instanceof Chart && width) {
-          const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
-          if (widthObj) {
-            view.changeSize(widthObj, config.chart.height);
+      charts &&
+        charts.forEach((view: Chart | View) => {
+          if (view instanceof Chart && width) {
+            const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
+            if (widthObj) {
+              view.changeSize(widthObj, config.chart.height);
+              view.render(true);
+            }
           }
-        }
-        view?.render(true);
-      });
+        });
     }, 600);
   }, [charts, config, width]);
 
