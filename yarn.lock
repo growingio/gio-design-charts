@@ -101,7 +101,7 @@
     detect-browser "^5.1.0"
     tslib "^2.0.3"
 
-"@antv/g-base@^0.5.3", "@antv/g-base@~0.5.6":
+"@antv/g-base@^0.5.3", "@antv/g-base@^0.5.9", "@antv/g-base@~0.5.6":
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/@antv/g-base/-/g-base-0.5.9.tgz#58d0e11d85157ada1408fbdf24f4f468f40e59cd"
   integrity sha512-IAzuCLRmz9cKCWUKR3cKWgLZ/6OQYpTCIOgxAP8Bc+HRw0mu8iC3OTz+tWKGv9L8unpvCvpQd1H+OTTjdg/TpQ==
