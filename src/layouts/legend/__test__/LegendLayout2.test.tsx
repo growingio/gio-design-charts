@@ -3,7 +3,7 @@ import { act } from '@testing-library/react-hooks';
 import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../../interfaces';
 import { areaChart, handleLegend } from '../../../area/framework';
-import { AreaStack } from '../../../area/demos/Area.stories';
+import { PercentArea } from '../../../area/demos/Area.stories';
 import LegendLayout from '../LegendLayout';
 
 const legendLayoutTestid = 'legend-layout';
@@ -17,7 +17,7 @@ describe('LegendLayout2', () => {
     jest.useRealTimers();
   });
   test('render without scroll', () => {
-    const { legends, config, data } = AreaStack.args as ChartProps;
+    const { legends, config, data } = PercentArea.args as ChartProps;
     config.type = 'area';
     render(
       <LegendLayout
