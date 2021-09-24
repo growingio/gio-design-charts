@@ -29,7 +29,7 @@ export const intervalShape = (
   const shapeConfig = barConfig.interval || {};
   const hideLabel = options.control?.hideLabel;
 
-  let interval: Interval = chart.interval({
+  const interval: Interval = chart.interval({
     ...shapeConfig,
     ...intervalStyles,
     // dodgePadding: 8,

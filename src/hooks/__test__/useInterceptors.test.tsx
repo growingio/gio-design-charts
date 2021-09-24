@@ -1,4 +1,3 @@
-import { Chart } from '@antv/g2';
 import { renderHook, act } from '@testing-library/react-hooks';
 import EventEmitter from '@antv/event-emitter';
 import useInterceptors from '../useInterceptors';
@@ -20,7 +19,7 @@ describe('test useInterceptors', () => {
     (chartObj as any).lockTooltip = jest.fn;
     (chartObj as any).unlockTooltip = jest.fn;
     act(() => {
-      result.current.interceptors.bindElementEvents(chartObj as Chart);
+      result.current.interceptors.bindElementEvents(chartObj as any);
     });
 
     act(() => {

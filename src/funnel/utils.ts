@@ -26,10 +26,8 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
   };
 };
 
-export const getGroupData = (data: LooseObject[], config: ChartConfig) => {
+const getCovertData = (data: LooseObject[], forwardKey: string, contrastKey: string) => {
   const covertData = [] as LooseObject[];
-  const forwardKey = config?.funnel?.color;
-  const contrastKey: string = config?.funnel?.contrast || 'value';
   if (forwardKey) {
     const prevs = {} as LooseObject;
     data.forEach((item: LooseObject) => {
@@ -49,5 +47,12 @@ export const getGroupData = (data: LooseObject[], config: ChartConfig) => {
       }
     });
   }
+  return covertData;
+};
+
+export const getGroupData = (data: LooseObject[], config: ChartConfig) => {
+  const forwardKey = config?.funnel?.color;
+  const contrastKey: string = config?.funnel?.contrast || 'value';
+  const covertData = getCovertData(data, forwardKey, contrastKey);
   return { source: data, covert: covertData, texts: [], isGroup: true };
 };
