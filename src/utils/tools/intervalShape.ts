@@ -10,7 +10,8 @@ export function getFillAttrs(shapeInfo: ShapeInfo) {
     ...shapeInfo.defaultStyle,
     ...shapeInfo.style,
     fill: shapeInfo.color,
-    // fillOpacity: shapeInfo.opacity,
+    // rect will use default fillOpacity when it be set undefined.
+    fillOpacity: undefined,
   };
 }
 
