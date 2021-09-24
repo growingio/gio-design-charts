@@ -49,6 +49,10 @@ describe('test formatTemperature', () => {
     expect(formatTemperature(20)).toBe('20 °C');
   });
 
+  test('formatTemperature with empty', () => {
+    expect(formatTemperature('')).toBe('0 °C');
+  });
+
   test('formatTemperature with more settings', () => {
     expect(formatTemperature(0.2, 3, true)).toBe('0.2 °C');
   });

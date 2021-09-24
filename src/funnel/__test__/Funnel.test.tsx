@@ -38,6 +38,14 @@ describe('Funnel Chart', () => {
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
+  test('render Chart without legends', async () => {
+    render(<Funnel {...(FunnelWith3Columns.args as ChartProps)} legends={['Test']} />);
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  });
+
   test('render Chart with 6 columns', async () => {
     render(<Funnel {...(FunnelWith6Columns.args as ChartProps)} />);
     act(() => {

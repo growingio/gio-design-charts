@@ -1,5 +1,5 @@
 import { throttle } from 'lodash';
-import { useCallback, useEffect, RefObject, useState, useMemo } from 'react';
+import { useCallback, useEffect, RefObject, useState, useRef, MutableRefObject, useMemo } from 'react';
 
 export interface Offset {
   width: number;
@@ -7,16 +7,18 @@ export interface Offset {
 }
 
 const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset) => void) => {
-  const [offset, setOffset] = useState({} as Offset);
+  const offsetRef: MutableRefObject<Offset | undefined> = useRef();
   const onResize = useCallback(() => {
+    const offset = offsetRef.current;
     const width = rootRef?.current?.offsetWidth as number;
     const height = rootRef?.current?.offsetHeight as number;
-    if (width && width !== offset.width) {
+    if (width && width !== offset?.width) {
       const newOffset = { width, height };
-      setOffset(newOffset);
+      offsetRef.current = newOffset;
+      console.log('call watchReset');
       watchReset?.(newOffset);
     }
-  }, [rootRef, watchReset, offset]);
+  }, [rootRef, watchReset, offsetRef]);
 
   const reset = useMemo(() => {
     return throttle(onResize, 200);
@@ -24,14 +26,15 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
 
   // Listener resize
   useEffect(() => {
-    if (!offset.width) {
+    const offset = offsetRef.current;
+    if (!offset?.width) {
       reset();
     }
     window.onresize = () => {
       reset();
     };
   }, [onResize]);
-  return offset;
+  return offsetRef.current || ({} as Offset);
 };
 
 export default useOffset;

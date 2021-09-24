@@ -8,7 +8,7 @@ import './styles/legends.less';
 export interface LegendsProps {
   legends?: LegendsInterface;
   onClick?: (label: string) => void;
-  offsetWidth: number;
+  offsetWidth?: number;
 }
 
 const Legends = (props: LegendsProps) => {

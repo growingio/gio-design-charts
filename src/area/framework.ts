@@ -24,9 +24,6 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
       style.stroke = legend.color;
       style.fill = legend.color;
     }
-    if (legend.lineDash) {
-      style.lineDash = legend.lineDash as number[] | undefined;
-    }
     style.fillOpacity = 0.8;
     // default width of line is 2px
     style.lineWidth = 2;
