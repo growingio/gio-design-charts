@@ -3,6 +3,7 @@ import { barChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
+import { fetchChart } from '../boundary';
 
 const ScrollBar: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config = {} } = props;
@@ -31,4 +32,4 @@ const ScrollBar: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default ScrollBar;
+export default fetchChart(ScrollBar);

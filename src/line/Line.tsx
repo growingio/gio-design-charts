@@ -3,6 +3,7 @@ import { lineChart, handleLegend } from './framework';
 import { ChartType, ChartProps } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
+import { fetchChart } from '../boundary';
 
 const Line: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
@@ -20,4 +21,4 @@ const Line: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default Line;
+export default fetchChart(Line);
