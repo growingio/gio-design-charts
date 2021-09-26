@@ -57,7 +57,7 @@ describe('getDefaultStyles', () => {
 });
 
 describe('isUseDash', () => {
-  test('with empty', () => {
+  test('with undefined', () => {
     expect(isUseDash(undefined as any)).toBeFalsy();
     expect(isUseDash({} as Point)).toBeFalsy();
   });

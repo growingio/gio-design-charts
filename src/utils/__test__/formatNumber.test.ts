@@ -1,11 +1,12 @@
 import { formatNumber, parseFormatedNumber, formatPercent, formatTemperature } from '../formatNumber';
 
+const covertValue = '123,415,454.23';
 describe('test formatNumber', () => {
   test('formatNumber', () => {
     expect(formatNumber(20)).toBe('20');
     expect(formatNumber(123415454)).toBe('123,415,454');
-    expect(formatNumber(123415454.23)).toBe('123,415,454.23');
-    expect(formatNumber(123415454.23232332)).toBe('123,415,454.23');
+    expect(formatNumber(123415454.23)).toBe(covertValue);
+    expect(formatNumber(123415454.23232332)).toBe(covertValue);
     expect(formatNumber(0.23232332)).toBe('0.23');
   });
 
@@ -82,6 +83,6 @@ describe('test formatPercent', () => {
 
 describe('test parseFormatedNumber', () => {
   test('parseFormatedNumber', () => {
-    expect(parseFormatedNumber('123,415,454.23')).toBe(123415454.23);
+    expect(parseFormatedNumber(covertValue)).toBe(123415454.23);
   });
 });

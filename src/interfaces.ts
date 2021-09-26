@@ -99,6 +99,8 @@ export interface ChartProps {
    * Chart数据
    */
   data: LooseObject[];
+  errorTemplate?: (e?: Error) => JSX.Element;
+  noData?: () => JSX.Element;
   /**
    * 图例数组，是字符串或者图例对象
    *
