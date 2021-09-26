@@ -14,13 +14,13 @@ describe('getShapeConfig', () => {
     expect(getShapeConfig({ column: { test: 1 } })).toEqual({ test: 1 });
   });
 
-  test('with empty', () => {
+  test('with empty for getShapeConfig', () => {
     expect(getShapeConfig({})).toEqual({});
   });
 });
 
 describe('setCustomInfo', () => {
-  test('with empty', () => {
+  test('with empty for setCustomInfo', () => {
     expect(setCustomInfo({})).toEqual({
       contrastDodge: false,
       defaultStyles: undefined,
@@ -44,13 +44,13 @@ describe('setCustomInfo', () => {
 });
 
 describe('getRelateLegend', () => {
-  test('with empty', () => {
+  test('with empty for getRelateLegend', () => {
     expect(getRelateLegend({} as Point)).toEqual({});
   });
 });
 
 describe('getDefaultStyles', () => {
-  test('with empty', () => {
+  test('with empty for getDefaultStyles', () => {
     expect(getDefaultStyles(undefined as any)).toEqual({});
     expect(getDefaultStyles({} as Point)).toEqual({});
   });
@@ -64,14 +64,14 @@ describe('isUseDash', () => {
 });
 
 describe('isStack', () => {
-  test('with empty', () => {
+  test('with empty for isStack', () => {
     expect(isStack(undefined as any)).toBeFalsy();
     expect(isStack({} as Point)).toBeFalsy();
   });
 });
 
 describe('isTopBar', () => {
-  test('with empty', () => {
+  test('with empty for isTopBar', () => {
     expect(isTopBar(undefined as any)).toBeTruthy();
     expect(isTopBar({})).toBeTruthy();
   });

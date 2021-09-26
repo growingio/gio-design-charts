@@ -1,12 +1,12 @@
 import { ComponentStory } from '@storybook/react';
-import { Area } from '../../../area';
-import { AreaStack } from '../../../area/demos/Area.stories';
+import { Line } from '../../../line';
+import { BaiscLine } from '../../../line/demos/Line.stories';
 import Card from '../../../demos/card';
 import Docs from './Loading.mdx';
 
 export default {
   title: 'Components/Loading',
-  component: Area,
+  component: Line,
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -17,15 +17,15 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof Area> = (args) => (
+const Template: ComponentStory<typeof Line> = (args) => (
   <Card>
-    <Area {...args} />
+    <Line {...args} />
   </Card>
 );
 
 export const Loading = Template.bind({});
 Loading.args = {
-  ...AreaStack.args,
+  ...BaiscLine.args,
   loading: true,
 };
 Loading.storyName = 'Default';
