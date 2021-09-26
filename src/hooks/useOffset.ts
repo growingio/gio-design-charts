@@ -15,7 +15,6 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
     if (width && width !== offset?.width) {
       const newOffset = { width, height };
       offsetRef.current = newOffset;
-      console.log('call watchReset');
       watchReset?.(newOffset);
     }
   }, [rootRef, watchReset, offsetRef]);
