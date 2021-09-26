@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { areaChart, handleLegend } from './framework';
-import { ChartType, ChartProps } from '../interfaces';
+import { ChartType, ChartProps, AreaConfig } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
-const Area: React.FC<ChartProps> = (props: ChartProps) => {
+export interface AreaProps extends ChartProps {
+  config: AreaConfig;
+}
+
+const Area: React.FC<AreaProps> = (props: AreaProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   config.type = ChartType.AREA;
@@ -20,4 +24,4 @@ const Area: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default fetchChart(Area);
+export default fetchChart(Area as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<AreaProps>;

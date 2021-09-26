@@ -3,12 +3,13 @@ import { render, screen } from '@testing-library/react';
 
 import { lineChart, handleLegend } from '../framework';
 import { BaiscLine } from '../demos/Line.stories';
-import { ChartProps, ChartType } from '../../interfaces';
+import { ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
+import { LineProps } from '../Line';
 
-const { config, legends: legendList, data } = BaiscLine.args as ChartProps;
+const { config, legends: legendList, data } = BaiscLine.args as LineProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
 describe('line fromework', () => {
   test('call lineChart', () => {

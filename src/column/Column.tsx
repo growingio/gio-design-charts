@@ -1,6 +1,6 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, FunctionComponent, PropsWithChildren } from 'react';
 import { isEmpty } from 'lodash';
-import { ChartType, ChartProps } from '../interfaces';
+import { ChartType, ChartProps, ColumnConfig } from '../interfaces';
 import { columnChart, handleLegend } from './framework';
 import { colors } from '../theme';
 import { LegendLayout, ScrollXLayout } from '../layouts';
@@ -8,6 +8,7 @@ import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interv
 import { fetchChart } from '../boundary';
 
 export interface ColumnProps extends ChartProps {
+  config: ColumnConfig;
   useScroll?: boolean;
 }
 
@@ -63,4 +64,4 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
   );
 };
 
-export default fetchChart(Column);
+export default fetchChart(Column as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<ColumnProps>;

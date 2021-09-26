@@ -1,8 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { Bar, ChartProps, Funnel, GroupedFunnel, InfoCard } from '../..';
+import { Bar, Funnel, GroupedFunnel, InfoCard } from '../..';
 import Card from '../../demos/card';
 
 import { FunnelWithGroup } from '../../funnel/demos/Funnel.stories';
+import { FunnelProps } from '../../funnel/Funnel';
 import Docs from './InfoCard.mdx';
 
 export default {
@@ -24,7 +25,7 @@ const Template: ComponentStory<typeof Funnel> = (args) => (
   </Card>
 );
 
-const { config, legends, data } = FunnelWithGroup.args as ChartProps;
+const { config, legends, data } = FunnelWithGroup.args as FunnelProps;
 
 export const CustomTooltip = Template.bind({});
 CustomTooltip.storyName = '自定义Tooltip';

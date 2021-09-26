@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { barChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps } from '../interfaces';
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
+import { BarConfig } from '..';
 
-const Bar: React.FC<ChartProps> = (props: ChartProps) => {
-  const { data, legends: legendProps = [], config = {} } = props;
+export interface BarProps extends ChartProps {
+  config: BarConfig;
+}
+
+const Bar: React.FC<BarProps> = (props: BarProps) => {
+  const { data, legends: legendProps = [], config = {} as BarConfig } = props;
 
   config.type = ChartType.BAR;
   config.chart = {
@@ -35,4 +40,4 @@ const Bar: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default fetchChart(Bar);
+export default fetchChart(Bar as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<BarProps>;

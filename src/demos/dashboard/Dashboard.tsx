@@ -17,7 +17,11 @@ import {
 } from '../../funnel/demos/Funnel.stories';
 
 import { MultiLine, BaiscLine, ContrastLine } from '../../line/demos/Line.stories';
-import { ChartProps } from '../../interfaces';
+import { ColumnProps } from '../../column/Column';
+import { BarProps } from '../../bar/Bar';
+import { FunnelProps } from '../../funnel/Funnel';
+import { LineProps } from '../../line/Line';
+import { AreaProps } from '../../area/Area';
 
 const titleStyle: CSSProperties = {
   fontSize: '24px',
@@ -34,15 +38,15 @@ const Dashboard = () => {
         <div style={titleStyle}>折线图</div>
         <div>
           <Frame type="left" title={BaiscLine.storyName} path="/?path=/story/charts-折线图-line--baisc-line">
-            <BaiscLine {...(BaiscLine.args as ChartProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
           </Frame>
           <Frame type="right" title={ContrastLine.storyName} path="/?path=/story/charts-折线图-line--contrast-line">
-            <ContrastLine {...(ContrastLine.args as ChartProps)} />
+            <ContrastLine {...(ContrastLine.args as LineProps)} />
           </Frame>
         </div>
         <div>
           <Frame type="left" title={MultiLine.storyName} path="/?path=/story/charts-折线图-line--multi-line">
-            <MultiLine {...(MultiLine.args as ChartProps)} />
+            <MultiLine {...(MultiLine.args as LineProps)} />
           </Frame>
           <Frame type="right" />
         </div>
@@ -52,10 +56,10 @@ const Dashboard = () => {
         <div style={titleStyle}>面积图</div>
         <div>
           <Frame type="left" title={AreaStack.storyName} path="/?path=/story/charts-面积图-area--area-stack">
-            <AreaStack {...(AreaStack.args as ChartProps)} />
+            <AreaStack {...(AreaStack.args as AreaProps)} />
           </Frame>
           <Frame type="right" title={PercentArea.storyName} path="/?path=/story/charts-面积图-area--percent-area">
-            <PercentArea {...(PercentArea.args as ChartProps)} />
+            <PercentArea {...(PercentArea.args as AreaProps)} />
           </Frame>
         </div>
       </div>
@@ -68,7 +72,7 @@ const Dashboard = () => {
             title={ColumnWithMulti.storyName}
             path="/?path=/story/charts-柱状图-column-chart--column-with-multi"
           >
-            <ColumnWithMulti {...(ColumnWithMulti.args as ChartProps)} />
+            <ColumnWithMulti {...(ColumnWithMulti.args as ColumnProps)} />
           </Frame>
         </div>
         <div>
@@ -77,14 +81,14 @@ const Dashboard = () => {
             title={ColumnWithGroup.storyName}
             path="/?path=/story/charts-柱状图-column-chart--column-with-group"
           >
-            <ColumnWithGroup {...(ColumnWithGroup.args as ChartProps)} />
+            <ColumnWithGroup {...(ColumnWithGroup.args as ColumnProps)} />
           </Frame>
           <Frame
             type="right"
             title={StackingDiagramColumn.storyName}
             path="/?path=/story/charts-柱状图-column-chart--stacking-diagram-column"
           >
-            <StackingDiagramColumn {...(StackingDiagramColumn.args as ChartProps)} />
+            <StackingDiagramColumn {...(StackingDiagramColumn.args as ColumnProps)} />
           </Frame>
         </div>
         <div>
@@ -93,7 +97,7 @@ const Dashboard = () => {
             title={PercentColumn.storyName}
             path="/?path=/story/charts-柱状图-column-chart--percent-column"
           >
-            <PercentColumn {...(PercentColumn.args as ChartProps)} />
+            <PercentColumn {...(PercentColumn.args as ColumnProps)} />
           </Frame>
           <Frame type="right" />
         </div>
@@ -103,14 +107,14 @@ const Dashboard = () => {
         <div style={titleStyle}>条形图</div>
         <div>
           <Frame type="left" title={BarDefault.storyName} path="/?path=/story/charts-条形图-bar-chart--bar-default">
-            <BarDefault {...(BarDefault.args as ChartProps)} />
+            <BarDefault {...(BarDefault.args as BarProps)} />
           </Frame>
           <Frame
             type="right"
             title={BarWithGroup.storyName}
             path="/?path=/story/charts-条形图-bar-chart--bar-with-group"
           >
-            <BarWithGroup {...(BarWithGroup.args as ChartProps)} />
+            <BarWithGroup {...(BarWithGroup.args as BarProps)} />
           </Frame>
         </div>
         <div>
@@ -119,10 +123,10 @@ const Dashboard = () => {
             title={StackingDiagramBar.storyName}
             path="/?path=/story/charts-条形图-bar-chart--stacking-diagram-bar"
           >
-            <StackingDiagramBar {...(StackingDiagramBar.args as ChartProps)} />
+            <StackingDiagramBar {...(StackingDiagramBar.args as BarProps)} />
           </Frame>
           <Frame type="right" title={PercentBar.storyName} path="/?path=/story/charts-条形图-bar-chart--percent-bar">
-            <PercentBar {...(PercentBar.args as ChartProps)} />
+            <PercentBar {...(PercentBar.args as BarProps)} />
           </Frame>
         </div>
         {/* <FunnelWithLinkExample /> */}
@@ -136,14 +140,14 @@ const Dashboard = () => {
             title={FunnelWithBasic.storyName}
             path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-basic"
           >
-            <FunnelWithBasic {...(FunnelWithBasic.args as ChartProps)} />
+            <FunnelWithBasic {...(FunnelWithBasic.args as FunnelProps)} />
           </Frame>
           <Frame
             type="right"
             title={FunnelWith3Columns.storyName}
             path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-3-columns"
           >
-            <FunnelWith3Columns {...(FunnelWith3Columns.args as ChartProps)} />
+            <FunnelWith3Columns {...(FunnelWith3Columns.args as FunnelProps)} />
           </Frame>
         </div>
         <div>
@@ -152,14 +156,14 @@ const Dashboard = () => {
             title={FunnelWith6Columns.storyName}
             path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-6-columns"
           >
-            <FunnelWith6Columns {...(FunnelWith6Columns.args as ChartProps)} />
+            <FunnelWith6Columns {...(FunnelWith6Columns.args as FunnelProps)} />
           </Frame>
           <Frame
             type="right"
             title={FunnelWith7Columns.storyName}
             path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-7-columns"
           >
-            <FunnelWith7Columns {...(FunnelWith7Columns.args as ChartProps)} />
+            <FunnelWith7Columns {...(FunnelWith7Columns.args as FunnelProps)} />
           </Frame>
         </div>
         <div>
@@ -168,7 +172,7 @@ const Dashboard = () => {
             title={FunnelWithGroup.storyName}
             path="/?path=/story/charts-漏斗图-funnel-chart--funnel-with-group"
           >
-            <FunnelWithGroup {...(FunnelWithGroup.args as ChartProps)} />
+            <FunnelWithGroup {...(FunnelWithGroup.args as FunnelProps)} />
           </Frame>
           <Frame type="right" />
         </div>
