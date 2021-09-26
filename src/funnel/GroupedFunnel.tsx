@@ -3,6 +3,7 @@ import { ChartType, ChartProps } from '../interfaces';
 import { funnelChart, handleLegend } from './framework';
 import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';
+import { fetchChart } from '../boundary';
 
 const GroupedFunnel: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
@@ -27,4 +28,4 @@ const GroupedFunnel: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default GroupedFunnel;
+export default fetchChart(GroupedFunnel);

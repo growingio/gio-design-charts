@@ -6,6 +6,7 @@ import { colors } from '../theme';
 import { ScrollXLayout } from '../layouts';
 import { getSingleData } from './utils';
 import { LooseObject } from '@antv/component';
+import { fetchChart } from '../boundary';
 
 const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
   const { data, legends: legendProps = [], config } = props;
@@ -41,4 +42,4 @@ const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default Funnel;
+export default fetchChart(Funnel);

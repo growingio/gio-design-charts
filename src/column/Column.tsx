@@ -5,6 +5,7 @@ import { columnChart, handleLegend } from './framework';
 import { colors } from '../theme';
 import { LegendLayout, ScrollXLayout } from '../layouts';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';
+import { fetchChart } from '../boundary';
 
 export interface ColumnProps extends ChartProps {
   useScroll?: boolean;
@@ -62,4 +63,4 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
   );
 };
 
-export default Column;
+export default fetchChart(Column);
