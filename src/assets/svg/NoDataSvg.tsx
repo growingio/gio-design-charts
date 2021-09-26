@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const NoDataBigSvg = (props: any) => {
+const NoDataSvg = (props: any) => {
   return (
     <svg width="1em" height="1em" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path d="M100.542 57.57H49.126L37.58 82.417h73.607l-10.644-24.845z" fill="url(#2_svg__paint0_linear)" />
@@ -113,4 +113,4 @@ const NoDataBigSvg = (props: any) => {
   );
 };
 
-export default NoDataBigSvg;
+export default NoDataSvg;

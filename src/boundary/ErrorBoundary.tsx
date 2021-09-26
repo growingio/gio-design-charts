@@ -23,20 +23,23 @@ class ErrorBoundary extends React.Component<any> {
     hasError: false,
   };
 
-  renderError = (e: Error) => {
-    const { errorTemplate } = this.props;
-    return errorTemplate && typeof errorTemplate === 'function' ? (
-      errorTemplate(e)
-    ) : (
-      <div data-testid="default-error-boundary">
-        Component Error, Please check <code>{e.message}</code>
-      </div>
-    );
+  renderError = (e?: Error) => {
+    if (e) {
+      const { errorTemplate } = this.props;
+      return errorTemplate && typeof errorTemplate === 'function' ? (
+        errorTemplate(e)
+      ) : (
+        <div data-testid="default-error-boundary">
+          Component Error, Please check <code>{e.message}</code>
+        </div>
+      );
+    }
+    return null;
   };
 
   render() {
     if (this.state.hasError) {
-      return this.renderError(this.state.error!);
+      return this.renderError(this.state.error);
     }
     return <Fragment>{this.props.children}</Fragment>;
   }
