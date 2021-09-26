@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { lineChart, handleLegend } from './framework';
-import { ChartType, ChartProps } from '../interfaces';
+import { ChartType, ChartProps, LineConfig } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
-const Line: React.FC<ChartProps> = (props: ChartProps) => {
+export interface LineProps extends ChartProps {
+  config: LineConfig;
+}
+
+const Line: React.FC<LineProps> = (props: LineProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   config.type = ChartType.LINE;
@@ -21,4 +25,4 @@ const Line: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default fetchChart(Line);
+export default fetchChart(Line as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<LineProps>;

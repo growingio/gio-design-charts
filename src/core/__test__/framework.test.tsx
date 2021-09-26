@@ -2,8 +2,8 @@ import React, { RefObject } from 'react';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 
 import { PercentArea } from '../../area/demos/Area.stories';
-import { ChartProps } from '../../interfaces';
 import { Area } from '../..';
+import { AreaProps } from '../../area/Area';
 
 export const chartComponentTestid = 'chart-component';
 export const ChartCom = () => {
@@ -13,7 +13,7 @@ export const ChartCom = () => {
 
 describe('common', () => {
   test('default', () => {
-    render(<Area {...(PercentArea.args as ChartProps)} />);
+    render(<Area {...(PercentArea.args as AreaProps)} />);
 
     const testid = 'legend-item-步步盈增｜北京';
     const legend = screen.getByTestId(testid);

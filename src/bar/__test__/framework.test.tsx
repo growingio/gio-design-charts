@@ -3,12 +3,13 @@ import { render, screen } from '@testing-library/react';
 
 import { barChart, handleLegend } from '../framework';
 import { BarDefault } from '../demos/Bar.stories';
-import { ChartProps, ChartType } from '../../interfaces';
+import { ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
+import { BarProps } from '../Bar';
 
-const { config, legends: legendList, data } = BarDefault.args as ChartProps;
+const { config, legends: legendList, data } = BarDefault.args as BarProps;
 const [legends] = getLegends(ChartType.AREA, legendList);
 describe('bar fromework', () => {
   test('call barChart', () => {

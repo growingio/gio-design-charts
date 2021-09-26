@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FunctionComponent, PropsWithChildren } from 'react';
 import { ChartType, ChartProps } from '../interfaces';
 import { funnelChart, handleLegend } from './framework';
 import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';
 import { fetchChart } from '../boundary';
+import { FunnelProps } from './Funnel';
 
-const GroupedFunnel: React.FC<ChartProps> = (props: ChartProps) => {
+const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   const [comparativeData, setComparativeData] = useState({});
@@ -28,4 +29,6 @@ const GroupedFunnel: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default fetchChart(GroupedFunnel);
+export default fetchChart(
+  GroupedFunnel as FunctionComponent<PropsWithChildren<ChartProps>>
+) as FunctionComponent<FunnelProps>;

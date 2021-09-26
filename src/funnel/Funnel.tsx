@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
-import React, { useMemo, useEffect, useState } from 'react';
-import { ChartType, ChartProps } from '../interfaces';
+import React, { useMemo, useEffect, useState, FunctionComponent, PropsWithChildren } from 'react';
+import { ChartType, ChartProps, FunnelConfig } from '../interfaces';
 import { funnelChart, handleLegend } from './framework';
 import { colors } from '../theme';
 import { ScrollXLayout } from '../layouts';
@@ -8,7 +8,11 @@ import { getSingleData } from './utils';
 import { LooseObject } from '@antv/component';
 import { fetchChart } from '../boundary';
 
-const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
+export interface FunnelProps extends ChartProps {
+  config: FunnelConfig;
+}
+
+const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   const { data, legends: legendProps = [], config } = props;
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
@@ -42,4 +46,4 @@ const Funnel: React.FC<ChartProps> = (props: ChartProps) => {
   );
 };
 
-export default fetchChart(Funnel);
+export default fetchChart(Funnel as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<FunnelProps>;

@@ -1,9 +1,9 @@
 import { ComponentStory } from '@storybook/react';
-import { ChartProps } from '../../interfaces';
 import { Area } from '../../area';
 import { AreaStack } from '../../area/demos/Area.stories';
 import Card from '../../demos/card';
 import Docs from './ErrorBoundary.mdx';
+import { AreaProps } from '../../area/Area';
 
 export default {
   title: 'Components/ErrorBoundary',
@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof Area> = (args) => (
   </Card>
 );
 
-const { config } = AreaStack.args as ChartProps;
+const { config } = AreaStack.args as AreaProps;
 export const ErrorBoundary = Template.bind({});
 ErrorBoundary.args = {
   ...AreaStack.args,
