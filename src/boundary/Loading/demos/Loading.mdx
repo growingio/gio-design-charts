@@ -1,0 +1,13 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Area from '../../../area/Area';
+
+<Meta title="MDX/Loading" component={Area} />
+
+export const Template = (args) => <Area {...args} />;
+
+默认的`Loading`页面
+
+<Canvas>
+  <Story id="components-loading--loading">{Template.bind({})}</Story>
+</Canvas>
