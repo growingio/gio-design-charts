@@ -1,4 +1,4 @@
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React from 'react';
 import { lineChart, handleLegend } from './framework';
 import { ChartType, ChartProps, LineConfig } from '../interfaces';
 

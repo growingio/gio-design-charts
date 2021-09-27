@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, FunctionComponent, PropsWithChildren } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import { ChartType, ChartProps, ColumnConfig } from '../interfaces';
 import { columnChart, handleLegend } from './framework';

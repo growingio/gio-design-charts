@@ -20,7 +20,7 @@ export const DISABLE_COLOR = '#ADB2C2';
 export const DEFAULT_LINEDASH = [2, 5];
 export const DEFAULT_MIN_HEIGHT = 4;
 export const DEFAULT_REDIUS = [4, 4, 0, 0];
-export const DEFAULT_REDIUS_BAR = [0, 2, 2, 0];
+export const DEFAULT_REDIUS_BAR = [2, 2, 2, 2];
 
 export const DEFAULT_FONT_COLOR = '#313E75';
 

@@ -37,8 +37,10 @@ const ScrollTemplate: ComponentStory<typeof Bar> = (args) => (
 
 const config = {
   tooltip: {
-    enterable: true,
-    showContent: true,
+    enterable: false,
+    showMarkers: false,
+    position: 'right',
+    offset: 5,
     // shared: true,
   },
 };
