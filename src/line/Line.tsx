@@ -25,4 +25,4 @@ const Line: React.FC<LineProps> = (props: LineProps) => {
   );
 };
 
-export default fetchChart(Line as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<LineProps>;
+export default fetchChart<LineProps>(Line);

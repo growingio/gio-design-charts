@@ -1,10 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import InfoCardBox, { TriggerItem } from '../InfoCardBox';
+import InfoCardBox from '../InfoCardBox';
 import InfoCard from '../InfoCard';
 import { Legends } from '../../interfaces';
-import { LookupFunction } from 'net';
-import { LooseObject } from '@antv/g-base';
 
 export const mappingData = {
   _origin: {

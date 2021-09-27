@@ -29,6 +29,4 @@ const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   );
 };
 
-export default fetchChart(
-  GroupedFunnel as FunctionComponent<PropsWithChildren<ChartProps>>
-) as FunctionComponent<FunnelProps>;
+export default fetchChart<FunnelProps>(GroupedFunnel);

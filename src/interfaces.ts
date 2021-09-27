@@ -132,6 +132,8 @@ export interface AdjustOpt extends Omit<AdjustOption, 'type'> {
   dodgeBy?: string;
 }
 
+export type AdjustOtptionType = string | string[] | AdjustOption | AdjustOption[];
+
 export interface Shape extends LooseObject {
   position: string;
   /**
@@ -139,7 +141,7 @@ export interface Shape extends LooseObject {
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
    * @param {AdjustOption}
    */
-  adjust?: string | string[] | AdjustOpt | AdjustOpt[];
+  adjust?: AdjustOtptionType;
   /**
    * 颜色通道
    */

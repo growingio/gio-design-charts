@@ -1,7 +1,7 @@
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React from 'react';
 import { barChart, handleLegend } from './framework';
 
-import { ChartType, ChartProps, BarConfig } from '../interfaces';
+import { ChartType, BarConfig } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { BarProps } from './Bar';
@@ -33,4 +33,4 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
   );
 };
 
-export default fetchChart(ScrollBar as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<BarProps>;
+export default fetchChart<BarProps>(ScrollBar);
