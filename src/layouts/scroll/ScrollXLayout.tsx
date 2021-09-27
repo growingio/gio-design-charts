@@ -5,9 +5,10 @@ import './styles/index.less';
 import LegendLayout from '../legend';
 import { calculateColumnWidth } from '../../utils/calculate';
 import { ChartConfig } from '../../interfaces';
+import { LooseObject } from '@antv/g-base';
 
 export interface ScrollXLayoutProps extends ChartCanvasProps {
-  sourceData: any;
+  sourceData: LooseObject[];
 }
 
 /**

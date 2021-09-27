@@ -1,13 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Item from '../Item';
+import { InfoCardData } from '../InfoCardBox';
 
 describe('Item', () => {
   const itemData = {};
   const itemTestid = 'legend-item';
 
   test('render Item', async () => {
-    render(<Item data={itemData} forwardKey="color" valueKey="type" />);
+    render(<Item data={itemData as InfoCardData} forwardKey="color" valueKey="type" />);
     expect(await screen.findByTestId(itemTestid)).toBeTruthy();
   });
 
@@ -19,11 +20,12 @@ describe('Item', () => {
   test('render Item with formatter', async () => {
     render(
       <Item
-        data={{ ...itemData, data: { value: 100 } }}
+        data={{ ...itemData, data: { value: 100 } } as any}
         forwardKey="color"
         valueKey="type"
-        formatter={(value: any) => {
+        formatter={(value) => {
           expect(value).toBe(100);
+          return value;
         }}
       />
     );

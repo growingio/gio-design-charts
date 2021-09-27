@@ -117,7 +117,7 @@ export interface ChartProps {
    */
   data: LooseObject[];
   loading?: boolean;
-  errorTemplate?: (e?: Error) => JSX.Element;
+  errorTemplate?: (e: Error) => JSX.Element | JSX.Element[];
   noData?: () => JSX.Element;
   /**
    * 图例数组，是字符串或者图例对象

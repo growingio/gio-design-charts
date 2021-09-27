@@ -1,11 +1,12 @@
 import React from 'react';
-import { formatNumber } from '..';
+import { formatNumber } from '../utils/formatNumber';
+import { InfoCardData } from './InfoCardBox';
 
 export interface ItemProps {
-  data: any;
+  data: InfoCardData;
   forwardKey: string;
   valueKey: string;
-  formatter?: any;
+  formatter?: (value: string | number) => string | number;
 }
 
 const Item = (props: ItemProps) => {

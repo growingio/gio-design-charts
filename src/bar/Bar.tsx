@@ -1,10 +1,9 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { barChart, handleLegend } from './framework';
 
-import { ChartType, ChartProps } from '../interfaces';
+import { ChartType, ChartProps, BarConfig } from '../interfaces';
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
-import { BarConfig } from '..';
 
 export interface BarProps extends ChartProps {
   config: BarConfig;

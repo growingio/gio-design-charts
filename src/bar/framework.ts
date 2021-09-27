@@ -1,5 +1,5 @@
 import { Chart, Event, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legends, BarConfig } from '../interfaces';
 import { handleInterval } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
@@ -35,7 +35,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
   }
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
+export const handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
   const barConfig = getShapeConfig(config, 'bar');
   if (barConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));

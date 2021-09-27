@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { ShapeAttrs } from '@antv/g-base';
-import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, AreaConfig } from '../interfaces';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { lineShape } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
@@ -50,7 +50,7 @@ export const areaChart = (options: ChartOptions, config: ChartConfig) => {
   return { chart };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
+export const handleLegend = <AreaConfig>(charts: (Chart | View)[], legends: Legends, config: AreaConfig) => {
   const lineConfig = getShapeConfig(config, 'area');
   if (lineConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));

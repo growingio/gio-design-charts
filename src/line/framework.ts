@@ -1,7 +1,8 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, LineConfig } from '../interfaces';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
+import { LooseObject } from '@antv/g-base';
 
 export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: any) => {
   const { legends } = options;
@@ -18,7 +19,7 @@ export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfi
   line.color(shapeConfig.color);
   line.style(shapeConfig.color, (label: string) => {
     const legend = legends?.[label] || ({} as Legend);
-    const style = {} as any;
+    const style = {} as LooseObject;
     if (legend.color) {
       style.stroke = legend.color;
     }
@@ -46,7 +47,7 @@ export const lineChart = (options: ChartOptions, config: ChartConfig = {}) => {
   return { chart };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
+export const handleLegend = <LineConfig>(charts: (Chart | View)[], legends: Legends, config: LineConfig) => {
   const lineConfig = getShapeConfig(config, 'line');
   if (lineConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));

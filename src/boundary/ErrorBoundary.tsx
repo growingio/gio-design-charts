@@ -1,11 +1,22 @@
 import React, { Fragment } from 'react';
 
-class ErrorBoundary extends React.Component<any> {
+export interface ErrorBoundaryProps {
+  errorTemplate: (e: Error) => JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
+}
+
+export interface ErrorBoundaryState {
+  hasError?: boolean;
+  error?: Error | '';
+  children?: JSX.Element | JSX.Element[];
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   static getDerivedStateFromError(error: Error) {
     return { hasError: true, error };
   }
 
-  static getDerivedStateFromProps(nextProps: any, state: any) {
+  static getDerivedStateFromProps(nextProps: ErrorBoundaryProps, state: ErrorBoundaryState) {
     if (state.children !== nextProps.children) {
       return {
         children: nextProps.children,
@@ -16,10 +27,7 @@ class ErrorBoundary extends React.Component<any> {
     return null;
   }
 
-  state: {
-    hasError: boolean;
-    error?: Error;
-  } = {
+  state: ErrorBoundaryState = {
     hasError: false,
   };
 

@@ -15,7 +15,7 @@ const fetchChart = (ChartComponent: React.FC<PropsWithChildren<ChartProps>>) => 
       return noData ? noData() : <NoData />;
     }
     return (
-      <ErrorBoundary errorTemplate={errorTemplate}>
+      <ErrorBoundary errorTemplate={errorTemplate!}>
         <ChartComponent {...props} />
       </ErrorBoundary>
     );

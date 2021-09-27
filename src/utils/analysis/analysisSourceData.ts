@@ -6,11 +6,11 @@ const analysisRow = (chartType: string, data: LooseObject, column: LooseObject) 
 
 export interface AnalysisOptions {
   // chart的类型
-  chart: string;
+  chart?: string;
   // 在生成的data中，需要补充的结构，比如color
-  fetch: any;
+  fetch?: LooseObject;
   // 格式化的方法，使用者根据formatter重新定义数据
-  formatter: any;
+  formatter?: <T extends string | number>(value: T, column?: LooseObject) => T;
 }
 
 export const analysisSourceData = (chartData: LooseObject, options?: AnalysisOptions) => {
