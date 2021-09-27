@@ -8,6 +8,7 @@ import { data, dataWithMulti, dataWithMultiContrast } from './data';
 import Docs from './Bar.mdx';
 import { cloneDeep } from 'lodash';
 import { formatNumber } from '../..';
+import { AdjustType } from '@antv/g2/lib/interface';
 
 export default {
   title: 'Charts/条形图 Bar',
@@ -179,7 +180,7 @@ const GroupContrastArgs = {
       color: 'name',
       adjust: [
         {
-          type: 'dodge',
+          type: 'dodge' as AdjustType,
           marginRatio: 0,
           dodgeBy: 'type',
         },

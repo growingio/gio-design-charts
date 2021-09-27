@@ -1,6 +1,7 @@
 import { getDodgeBy, hasContrastDodge } from '../interval';
-import { ChartConfig, ChartOptions } from '../../interfaces';
+import { ChartConfig, ChartOptions, Shape, CustomInfo } from '../../interfaces';
 import { ShapeInfo } from '@antv/g2/lib/interface';
+import { LooseObject } from '@antv/g-base';
 
 export const getShapeConfig = (config: ChartConfig, type?: string) => {
   if (type) {
@@ -9,10 +10,10 @@ export const getShapeConfig = (config: ChartConfig, type?: string) => {
   if (config.type) {
     return config[config.type] || {};
   }
-  return config.bar || config.column || config.line || config.funnel || {};
+  return config.bar || config.column || config.line || config.funnel || ({} as Shape);
 };
 
-export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, info: any = {}) => {
+export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, info: CustomInfo = {}): CustomInfo => {
   const { legends, data, defaultStyles } = options;
   const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };
@@ -57,10 +58,11 @@ export const isStack = (shapeInfo: ShapeInfo) => {
   return !!shapeInfo?.customInfo?.isStack;
 };
 
-export const isTopBar = (shapeInfo: any) => {
+export const isTopBar = (shapeInfo: ShapeInfo) => {
   const type = shapeInfo?.customInfo?.type;
   const name = getTopName(shapeInfo);
-  return name === shapeInfo?.data?.[type];
+  const data = shapeInfo?.data as LooseObject;
+  return name === data?.[type];
 };
 
 export const getTopName = (shapeInfo: ShapeInfo) => {

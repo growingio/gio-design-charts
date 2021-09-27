@@ -32,7 +32,7 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
     window.onresize = () => {
       reset();
     };
-  }, [onResize]);
+  }, [reset]);
   return offsetRef.current || ({} as Offset);
 };
 

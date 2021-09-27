@@ -1,3 +1,4 @@
+import { Shape } from '../../interfaces';
 import { hasDodge, hasAdjust, getDodgeBy, hasContrastDodge } from '../interval';
 
 describe('test hasDodge in Interval', () => {
@@ -5,7 +6,7 @@ describe('test hasDodge in Interval', () => {
     const config1 = {
       adjust: ['dodge'],
     };
-    expect(hasDodge(config1)).toBeTruthy();
+    expect(hasDodge(config1 as Shape)).toBeTruthy();
 
     const config2 = {
       adjust: { type: 'dodge' },

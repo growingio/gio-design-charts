@@ -5,6 +5,13 @@ import { Shape, ShapeInfo } from '@antv/g2/lib/interface';
 import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from '../../theme';
 import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from './configUtils';
 
+export interface RectAttr {
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+}
+
 export function getFillAttrs(shapeInfo: ShapeInfo) {
   return {
     ...shapeInfo.defaultStyle,
@@ -40,7 +47,12 @@ function getRectAttrs(points: Point[], stack = false) {
   };
 }
 
-function drawRect(main: Shape, shapeInfo: ShapeInfo, container: IGroup, handleRectAttrs: any) {
+function drawRect(
+  main: Shape,
+  shapeInfo: ShapeInfo,
+  container: IGroup,
+  handleRectAttrs: (points: Point[], stack: boolean) => RectAttr
+) {
   const defaultStyles = getDefaultStyles(shapeInfo);
   const legend = getRelateLegend(shapeInfo);
   const stack = isStack(shapeInfo);
@@ -61,7 +73,7 @@ function drawRect(main: Shape, shapeInfo: ShapeInfo, container: IGroup, handleRe
     ...styles,
   };
 
-  const { radius, stroke, ...otherAttrs } = newAttrs;
+  const { radius, stroke, ...otherAttrs } = newAttrs as LooseObject;
 
   // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
   // 最上面的rect，取决于传入data的第一条数据
@@ -83,7 +95,6 @@ function drawRect(main: Shape, shapeInfo: ShapeInfo, container: IGroup, handleRe
   return group;
 }
 
-// interval.shape("company", ["default-element"]);
 // 在此registerShape中，定义如下：
 // 1. 默认的最低高度
 // 2. 矩形自带圆角
