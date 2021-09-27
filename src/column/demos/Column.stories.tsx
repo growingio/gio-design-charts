@@ -20,6 +20,7 @@ export default {
 };
 
 const tooltipConfig = {
+  showMarkers: false,
   render: (options: any) => {
     const ts = options.data?.[0]?.data?.ts;
     return <InfoCard {...options} title={formatDateByTs(new Date(ts).getTime())} />;
@@ -56,6 +57,7 @@ const config = {
   tooltip: {
     enterable: true,
     showContent: true,
+    showMarkers: false,
     // shared: true,
   },
 };

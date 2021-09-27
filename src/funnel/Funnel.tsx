@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import React, { useMemo, useEffect, useState, FunctionComponent, PropsWithChildren } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { ChartType, ChartProps, FunnelConfig } from '../interfaces';
 import { funnelChart, handleLegend } from './framework';
 import { colors } from '../theme';

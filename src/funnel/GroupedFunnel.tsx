@@ -1,5 +1,5 @@
-import React, { useEffect, useState, FunctionComponent, PropsWithChildren } from 'react';
-import { ChartType, ChartProps } from '../interfaces';
+import React, { useEffect, useState } from 'react';
+import { ChartType } from '../interfaces';
 import { funnelChart, handleLegend } from './framework';
 import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';

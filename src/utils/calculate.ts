@@ -41,7 +41,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
       height += totalCount * columnWidth;
     }
   });
-  return height;
+  return height + 16;
 };
 
 export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) => {
