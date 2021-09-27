@@ -1,6 +1,6 @@
 import { Chart, Event, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
-import { ChartConfig, ChartOptions, Legend, Legends, FunnelConfig } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
@@ -14,7 +14,7 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
     options,
     config,
     {
-      intervalStyles: {
+      styles: {
         dodgePadding: 4,
         minColumnWidth: 40,
       },

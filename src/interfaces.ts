@@ -1,6 +1,6 @@
 import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Element, Scale } from '@antv/g2';
-import { AdjustOption } from '@antv/g2/lib/interface';
+import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
 
 export enum ChartType {
@@ -69,42 +69,42 @@ export interface ChartConfig extends LooseObject {
    * 3. chart.scale({ sale: { min: 0, max: 100} }, { nice: true });
    * 更多内容请参考： https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
    */
-  scale?: any;
+  scale?: Record<string, ScaleOption> | (string | ScaleOption)[];
 }
 
 export interface AreaConfig extends ChartConfig {
   /**
    * 用来创建面积图的配置
    */
-  area: any;
+  area: Shape;
 }
 
 export interface LineConfig extends ChartConfig {
   /**
    * 用来创建折线图的配置
    */
-  line: any;
+  line: Shape;
 }
 
 export interface ColumnConfig extends ChartConfig {
   /**
    * 用来创建柱状图的配置
    */
-  column: any;
+  column: Shape;
 }
 
 export interface BarConfig extends ChartConfig {
   /**
    * 用来创建条形图的配置
    */
-  bar: any;
+  bar: Shape;
 }
 
 export interface FunnelConfig extends ChartConfig {
   /**
    * 用来创建漏斗图的配置
    */
-  funnel: any;
+  funnel: Shape & { contrast?: string };
 }
 
 export interface ChartProps {
@@ -126,22 +126,39 @@ export interface ChartProps {
   legends: (Legend | string)[];
 }
 
-type AdjustOptionType = AdjustOption | AdjustOption[];
+export interface AdjustOpt extends Omit<AdjustOption, 'type'> {
+  type: AdjustType | string;
+  marginRatio?: number;
+  dodgeBy?: string;
+}
 
 export interface Shape extends LooseObject {
+  position: string;
   /**
    * 设置数据调整方式
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
    * @param {AdjustOption}
    */
-  adjust?: string | string[] | AdjustOptionType;
+  adjust?: string | string[] | AdjustOpt | AdjustOpt[];
   /**
    * 颜色通道
    */
-  color?: string;
+  color: string;
 }
 
 export interface ReportThing {
   elements?: Element[];
   scale?: Scale;
+}
+
+export interface CustomInfo {
+  isStack?: boolean;
+  topData?: LooseObject;
+  chartType?: string;
+  useDash?: boolean;
+  type?: string;
+  dodgeBy?: string;
+  contrastDodge?: boolean;
+  legends?: Legends;
+  defaultStyles?: ShapeStyle;
 }

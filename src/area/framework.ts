@@ -1,11 +1,12 @@
 import { Chart, View } from '@antv/g2';
 import { ShapeAttrs } from '@antv/g-base';
-import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, AreaConfig } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, Shape } from '../interfaces';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { lineShape } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
+import { AdjustOption } from '@antv/g2/lib/interface';
 
-export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: ShapeStyle) => {
+export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
   const { legends } = options;
   const area = chart.area({
     theme: {
@@ -15,7 +16,7 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
   area.position(shapeConfig.position);
   area.color(shapeConfig.color);
   if (shapeConfig.adjust) {
-    area.adjust.apply(area, shapeConfig.adjust);
+    area.adjust.call(area, shapeConfig.adjust as string | string[] | AdjustOption | AdjustOption[]);
   }
   area.style(shapeConfig.color, (label: string) => {
     const legend = legends?.[label] || ({} as Legend);

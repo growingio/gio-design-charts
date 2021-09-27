@@ -15,6 +15,7 @@ export const gioTheme = {
     axis: {
       common: {
         label: {
+          offset: 16,
           style: {
             fill: DEFAULT_FONT_COLOR,
           },

@@ -152,12 +152,7 @@ const FunnelWithGroupArgs = {
     funnel: {
       position,
       color: 'city',
-      adjust: [
-        {
-          type: 'dodge',
-          marginRatio: 0,
-        },
-      ],
+      adjust: ['dodge'],
       label: configLabel,
     },
   },

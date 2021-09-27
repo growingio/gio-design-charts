@@ -98,12 +98,7 @@ const ColumnWithComponsiveArgs = {
     column: {
       position: 'ts*value',
       color: 'color',
-      adjust: [
-        {
-          type: 'dodge',
-          marginRatio: 0,
-        },
-      ],
+      adjust: ['dodge'],
     },
   },
 };
@@ -121,12 +116,7 @@ const ColumnWithGroupArgs = {
     column: {
       position: 'ts*value',
       color: 'city',
-      adjust: [
-        {
-          type: 'dodge',
-          marginRatio: 0,
-        },
-      ],
+      adjust: ['dodge'],
     },
   },
 };

@@ -27,16 +27,13 @@ const Template: ComponentStory<typeof Line> = (args) => (
 );
 
 const scalaAxisConfig = {
-  scales: [
-    [
-      'value',
-      {
-        tickCount: 10,
-        min: 0,
-      },
-    ],
-    ['tm', { range: [0, 1] }],
-  ],
+  scale: {
+    value: {
+      tickCount: 10,
+      min: 0,
+    },
+    tm: { range: [0, 1] },
+  },
   axises: [
     [
       'value',
@@ -54,16 +51,14 @@ const config = {
     autoFit: true,
     height: 300,
   },
-  scale: [
-    {
-      month: {
-        range: [0, 1],
-      },
-      value: {
-        nice: true,
-      },
+  scale: {
+    month: {
+      range: [0, 1],
     },
-  ],
+    value: {
+      nice: true,
+    },
+  },
   tooltip: {
     showCrosshairs: true,
     shared: true,
@@ -160,22 +155,20 @@ const LineWithOneLineDateConfig = {
     autoFit: true,
     height: 400,
   },
-  scale: [
-    {
-      date: {
-        range: [0, 1],
-      },
-      value: {
-        min: 0,
-        // type: 'quantize',
-        // type: 'quantile',
-        // ticks: [0, 2000, 4000, 8000, 10000],
-        tickCount: 5,
-        nice: true,
-        formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      },
+  scale: {
+    date: {
+      range: [0, 1],
     },
-  ],
+    value: {
+      min: 0,
+      // type: 'quantize',
+      // type: 'quantile',
+      // ticks: [0, 2000, 4000, 8000, 10000],
+      tickCount: 5,
+      nice: true,
+      formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+    },
+  },
   tooltip: {
     showCrosshairs: true,
     shared: true,

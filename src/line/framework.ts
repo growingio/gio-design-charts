@@ -1,10 +1,11 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends, LineConfig } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, Shape } from '../interfaces';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { LooseObject } from '@antv/g-base';
+import { AdjustOption } from '@antv/g2/lib/interface';
 
-export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: any) => {
+export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
   const { legends } = options;
   const line = chart.line({
     theme: {
@@ -13,7 +14,7 @@ export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfi
   });
 
   if (shapeConfig.adjust) {
-    line.adjust.apply(line, shapeConfig.adjust);
+    line.adjust.call(line, shapeConfig.adjust as string | string[] | AdjustOption | AdjustOption[]);
   }
   line.position(shapeConfig.position);
   line.color(shapeConfig.color);

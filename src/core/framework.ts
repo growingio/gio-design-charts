@@ -55,12 +55,12 @@ export const fetchConfig = (chart: Chart | View, options: ChartConfig, config: C
   // See detail https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
   const scale = config.scale;
   if (scale) {
-    chart.scale.apply(chart, scale);
+    if (Array.isArray(scale)) {
+      chart.scale.apply(chart, scale as [string, ScaleOption]);
+    } else {
+      chart.scale(scale);
+    }
   }
-  const scales = config.scales;
-  scales?.forEach((sc: [string, ScaleOption]) => {
-    chart.scale.apply(chart, sc);
-  });
 
   // tooltip config can be false to disable tooltip
   fetchTooltip(chart, config);

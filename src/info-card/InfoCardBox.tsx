@@ -5,7 +5,7 @@ import InfoCard from './InfoCard';
 import { first, last } from 'lodash';
 
 import './styles/infocard.less';
-import { LooseObject, Point } from '@antv/g-base';
+import { LooseObject } from '@antv/g-base';
 import { TooltipItem } from '@antv/g2/lib/interface';
 import { ChartType } from '..';
 

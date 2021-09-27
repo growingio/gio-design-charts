@@ -128,16 +128,14 @@ const PercentAreaArgs = {
         },
       ],
     ],
-    scale: [
-      {
-        tm: {
-          range: [0, 1],
-        },
-        value: {
-          nice: true,
-        },
+    scale: {
+      tm: {
+        range: [0, 1],
       },
-    ],
+      value: {
+        nice: true,
+      },
+    },
     tooltip: {
       shared: true,
       formatter: (val: string) => formatPercent(val, 2, true),

@@ -1,4 +1,5 @@
 import { Point } from '@antv/component';
+import { ShapeInfo } from '@antv/g2/lib/interface';
 import {
   getDefaultStyles,
   getRelateLegend,
@@ -73,6 +74,6 @@ describe('isStack', () => {
 describe('isTopBar', () => {
   test('with empty for isTopBar', () => {
     expect(isTopBar(undefined as any)).toBeTruthy();
-    expect(isTopBar({})).toBeTruthy();
+    expect(isTopBar({} as ShapeInfo)).toBeTruthy();
   });
 });

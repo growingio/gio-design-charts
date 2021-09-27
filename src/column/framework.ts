@@ -1,11 +1,17 @@
 import { Chart, Element, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends, ColumnConfig } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo } from '../interfaces';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
 import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
 import Interval from '@antv/g2/lib/geometry/interval';
+import { StyleCallback } from '@antv/g2/lib/interface';
+
+export interface InterValConfig {
+  styles?: ShapeStyle;
+  customInfo?: CustomInfo;
+}
 
 /**
  *
@@ -20,12 +26,12 @@ export const intervalShape = (
   chart: Chart | View,
   options: ChartOptions,
   config: ChartConfig,
-  intervalConfig: any,
-  styleCallback?: any
+  intervalConfig: InterValConfig,
+  styleCallback?: StyleCallback
 ) => {
   const barConfig = getShapeConfig(config);
   const customInfo = intervalConfig.customInfo || {};
-  const intervalStyles = intervalConfig.intervalStyles || {};
+  const intervalStyles = intervalConfig.styles || {};
   const shapeConfig = barConfig.interval || {};
   const hideLabel = options.control?.hideLabel;
 
