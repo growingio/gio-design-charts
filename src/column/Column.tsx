@@ -64,4 +64,4 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
   );
 };
 
-export default fetchChart(Column as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<ColumnProps>;
+export default fetchChart<ColumnProps>(Column);

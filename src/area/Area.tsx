@@ -1,4 +1,4 @@
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React from 'react';
 import { areaChart, handleLegend } from './framework';
 import { ChartType, ChartProps, AreaConfig } from '../interfaces';
 
@@ -24,4 +24,4 @@ const Area: React.FC<AreaProps> = (props: AreaProps) => {
   );
 };
 
-export default fetchChart(Area as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<AreaProps>;
+export default fetchChart<AreaProps>(Area);

@@ -46,4 +46,4 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   );
 };
 
-export default fetchChart(Funnel as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<FunnelProps>;
+export default fetchChart<FunnelProps>(Funnel);

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 export interface ErrorBoundaryProps {
-  errorTemplate: (e: Error) => JSX.Element | JSX.Element[];
+  errorTemplate?: (e: Error) => JSX.Element | JSX.Element[];
   children?: JSX.Element | JSX.Element[];
 }
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React from 'react';
 import { barChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps, BarConfig } from '../interfaces';
@@ -39,4 +39,4 @@ const Bar: React.FC<BarProps> = (props: BarProps) => {
   );
 };
 
-export default fetchChart(Bar as FunctionComponent<PropsWithChildren<ChartProps>>) as FunctionComponent<BarProps>;
+export default fetchChart<BarProps>(Bar);
