@@ -134,6 +134,9 @@ export interface AdjustOpt extends Omit<AdjustOption, 'type'> {
 
 export type AdjustOtptionType = string | string[] | AdjustOption | AdjustOption[];
 
+// this is used to resolve the {type: AdjustType | string} issue
+export type AdjustOptType = string | string[] | AdjustOpt | AdjustOpt[];
+
 export interface Shape extends LooseObject {
   position: string;
   /**
@@ -141,7 +144,7 @@ export interface Shape extends LooseObject {
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
    * @param {AdjustOption}
    */
-  adjust?: AdjustOtptionType;
+  adjust?: AdjustOptType;
   /**
    * 颜色通道
    */
