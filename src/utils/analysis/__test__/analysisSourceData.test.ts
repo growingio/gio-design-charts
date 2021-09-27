@@ -44,9 +44,7 @@ describe('call format', () => {
     const covertData = analysisSourceData(activeMemberData, {
       chart: 'column',
       fetch: { type: '活跃人数' },
-      formatter: (value: string) => {
-        return value;
-      },
+      formatter: (value) => value,
     });
     expect(covertData).toEqual(expectDataWithNumberTs);
   });

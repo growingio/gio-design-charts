@@ -1,11 +1,10 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { barChart, handleLegend } from './framework';
 
-import { ChartType, ChartProps } from '../interfaces';
+import { ChartType, ChartProps, BarConfig } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { BarProps } from './Bar';
-import { BarConfig } from '..';
 
 const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig } = props;

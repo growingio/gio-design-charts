@@ -2,6 +2,7 @@ import { GroupCfg } from '@antv/g-base';
 import { Element, IGroup, View } from '@antv/g2';
 import { FUNNEL_CRITICAL_COUNT } from '../../theme';
 import { drawLinkPath, drawPolygon, drawText } from './brush';
+import { LinkElementOptions } from './interfaces';
 import { getArrowPolygon, getLinkPath, getMiddleCoordinate } from './utils';
 
 function addLinkShape(group: IGroup, prev: Element, next: Element) {
@@ -19,7 +20,7 @@ const addTextShape = (group: IGroup, prev: Element, next: Element, text: string)
   }
 };
 
-const reduceElements = (elements: Element[], callback: any) => {
+const reduceElements = (elements: Element[], callback: (prev: Element, current: Element, count: number) => void) => {
   let prevEle = undefined;
   let count = 0;
   for (const currentEle of elements) {
@@ -61,7 +62,7 @@ const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []
   }
 };
 
-export const addLinkByElement = (view: View, group: GroupCfg[], options: any) => {
+export const addLinkByElement = (view: View, group: GroupCfg[], options: LinkElementOptions) => {
   const { delay = 600, texts = [] } = options;
   if (!view) {
     return;
@@ -81,7 +82,7 @@ export const addLinkByElement = (view: View, group: GroupCfg[], options: any) =>
 // 那么在这里的高阶函数，可以先做删除的操作
 export const addLinkByElementHigh = () => {
   let groups = [] as GroupCfg[];
-  return function (view: View, options: any) {
+  return function (view: View, options: LinkElementOptions) {
     if (groups.length > 0) {
       groups.forEach((group) => group.remove());
       groups = [];

@@ -1,16 +1,17 @@
 import { LooseObject } from '@antv/component';
 import React from 'react';
 import { ChartConfig } from '../interfaces';
+import { InfoCardData } from './InfoCardBox';
 import Item from './Item';
 
 import './styles/infocard.less';
 
 export interface InfoCardProps {
   title: string;
-  data: LooseObject[];
+  data: InfoCardData[];
   forwardKey: string;
   valueKey: string;
-  formatter?: any;
+  formatter?: (value: string | number) => string | number;
   trigger?: string;
   config?: ChartConfig;
   injectComponent?: (options: { data: LooseObject; trigger?: string; forwardKey: string }) => JSX.Element;
@@ -29,7 +30,7 @@ const InfoCard = (props: InfoCardProps) => {
       ) : (
         <div data-testid="infoCard">
           <div className="gio-d-chart-infocard_title">{title}</div>
-          {data.map((item: any) => (
+          {data.map((item: InfoCardData) => (
             <div key={item.data?.[forwardKey] || 'empty-item'}>
               <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
             </div>

@@ -23,7 +23,7 @@ export interface ChartCanvasProps {
   // type: ChartType;
   callChart: (options: ChartOptions, config: ChartConfig) => { chart?: Chart; views?: View[] };
   legendList: (string | Legend)[];
-  handleLegend: (charts: (Chart | View)[], legends: Legends, config: ChartConfig) => void;
+  handleLegend: <T extends ChartConfig>(charts: (Chart | View)[], legends: Legends, config: T) => void;
   config: ChartConfig;
   defaultOptions?: ChartOptions;
   data: LooseObject | LooseObject[];

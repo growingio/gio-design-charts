@@ -1,18 +1,33 @@
 import React from 'react';
-import { ChartConfig, ChartOptions, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legends, Legend } from '../interfaces';
 import { getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
 import { first, last } from 'lodash';
 
 import './styles/infocard.less';
+import { LooseObject, Point } from '@antv/g-base';
+import { TooltipItem } from '@antv/g2/lib/interface';
+import { ChartType } from '..';
+
+export interface TriggerItem extends Omit<TooltipItem, 'color'> {
+  title?: string;
+  color?: string;
+}
+
+export interface InfoCardData extends Legend {
+  data: LooseObject;
+  type: ChartType;
+  styles: LooseObject;
+  column?: LooseObject;
+}
 
 export interface InfoCardProps {
   legends: Legends;
   trigger?: string;
-  triggerItems: any[];
+  triggerItems: TriggerItem[];
   options?: ChartOptions;
   config?: ChartConfig;
-  injectComponent?: any;
+  injectComponent?: (options: { data: LooseObject; trigger?: string; forwardKey: string }) => JSX.Element;
 }
 
 const InfoCardBox = (props: InfoCardProps) => {
@@ -23,10 +38,10 @@ const InfoCardBox = (props: InfoCardProps) => {
   const splitPositions = config?.[chartType]?.position?.split('*');
   const nameKey = first(splitPositions) as string;
   const valueKey = last(splitPositions) as string;
-  const items =
-    triggerItems?.map((item: any) => {
+  const items: InfoCardData[] =
+    triggerItems?.map((item: TriggerItem): InfoCardData => {
       if (!item) {
-        return {};
+        return {} as InfoCardData;
       }
       const legend = legends?.[item.name] || {};
       const color = legend.color || defaultStyles?.color || item.color;
@@ -48,7 +63,7 @@ const InfoCardBox = (props: InfoCardProps) => {
 
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
-  const title = (items[0] as any)?.data?.[nameKey] || triggerItems?.[0]?.name || '';
+  const title = (items[0] as LooseObject)?.data?.[nameKey] || triggerItems?.[0]?.name || '';
   return (
     <div className="gio-d-chart-infocard" data-testid="infoCardBox">
       <InfoCard

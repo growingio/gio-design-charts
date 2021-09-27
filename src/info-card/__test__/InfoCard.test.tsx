@@ -1,8 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import InfoCardBox from '../InfoCardBox';
+import InfoCardBox, { TriggerItem } from '../InfoCardBox';
 import InfoCard from '../InfoCard';
 import { Legends } from '../../interfaces';
+import { LookupFunction } from 'net';
+import { LooseObject } from '@antv/g-base';
 
 export const mappingData = {
   _origin: {
@@ -73,7 +75,7 @@ export const triggerItemsPrev = [
     x: 429.53749084472656,
     y: 79.05936,
   },
-];
+] as any[];
 
 export const legends: Legends = {
   上海: {
@@ -107,13 +109,19 @@ const infoCardBoxTestid = 'infoCardBox';
 describe('InfoCard', () => {
   test('render InfoCardBox', async () => {
     render(
-      <InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} options={options} config={config} />
+      <InfoCardBox
+        triggerItems={triggerItems as any}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={config}
+      />
     );
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCardBox without config and options', async () => {
-    render(<InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} />);
+    render(<InfoCardBox triggerItems={triggerItems as any} legends={legends} trigger={trigger} />);
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
@@ -121,7 +129,7 @@ describe('InfoCard', () => {
     const newConfig = { ...config, tooltip: {} };
     render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}
@@ -133,7 +141,13 @@ describe('InfoCard', () => {
 
   test('render InfoCardBox with empty config', async () => {
     render(
-      <InfoCardBox triggerItems={triggerItems} legends={legends} trigger={trigger} options={options} config={{}} />
+      <InfoCardBox
+        triggerItems={triggerItems as any}
+        legends={legends}
+        trigger={trigger}
+        options={options}
+        config={{}}
+      />
     );
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
@@ -141,7 +155,7 @@ describe('InfoCard', () => {
   test('render InfoCardBox with type config', async () => {
     render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}
@@ -178,7 +192,7 @@ describe('InfoCard', () => {
     };
     render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}
@@ -202,7 +216,7 @@ describe('InfoCard', () => {
     };
     render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}
@@ -228,7 +242,7 @@ describe('InfoCard', () => {
     };
     render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}
@@ -253,7 +267,7 @@ describe('InfoCard', () => {
     };
     render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}
@@ -282,7 +296,7 @@ describe('InfoCard', () => {
     };
     const box = render(
       <InfoCardBox
-        triggerItems={triggerItems}
+        triggerItems={triggerItems as any}
         legends={legends}
         trigger={trigger}
         options={options}

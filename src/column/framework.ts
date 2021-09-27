@@ -1,5 +1,5 @@
 import { Chart, Element, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, ColumnConfig } from '../interfaces';
 import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 
@@ -136,7 +136,7 @@ export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => 
   return { chart };
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
+export const handleLegend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
   const barConfig = getShapeConfig(config, 'column');
   if (barConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));

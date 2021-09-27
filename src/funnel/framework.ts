@@ -1,14 +1,9 @@
 import { Chart, Event, View } from '@antv/g2';
 import { isEmpty } from 'lodash';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, FunnelConfig } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
-import {
-  fetchTooltip,
-  fetchViewConfig,
-  generateChart,
-  handleLegendBehavior,
-} from '../core/framework';
+import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import { getShapeConfig } from '../utils/tools/configUtils';
 
@@ -103,7 +98,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
   }
 };
 
-export const handleLegend = (charts: (Chart | View)[], legends: Legends, config: any) => {
+export const handleLegend = <FunnelConfig>(charts: (Chart | View)[], legends: Legends, config: FunnelConfig) => {
   const barConfig = getShapeConfig(config, 'funnel');
   if (barConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
