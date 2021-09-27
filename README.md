@@ -2,19 +2,29 @@
 
 一套基于 [G2](https://g2.antv.vision/zh) 的 Chart 组件库
 
-![G2](https://g2.antv.vision/zh)
-![moment](http://momentjs.cn/)
+![Build](https://img.shields.io/github/checks-status/growingio/gio-design-charts/master)
+![Sonar](https://img.shields.io/sonar/coverage/gio-design-charts?server=http%3A%2F%2Fsonarcloud.io)
+![Quality Gate](https://img.shields.io/sonar/quality_gate/gio-design-charts?server=https%3A%2F%2Fsonarcloud.io)
+![Npm Version](https://img.shields.io/npm/v/@gio-design/charts)
+![Release](https://img.shields.io/github/release-date/growingio/gio-design-charts)
+![Score](https://img.shields.io/npms-io/final-score/@gio-design/charts)
+
 ![License](https://img.shields.io/github/license/growingio/gio-design)
 
-## Getting Started
+## ✨ Features
 
-安装依赖：
+- Base on [G2](https://g2.antv.vision/zh)
+- React.js
+- Storybook
+- Typescript
 
+## 📦 Installation
+
+```bash | pure
+$ npm install @gio-design/charts
 ```
-yarn install
-```
 
-启动预览网站：
+## View in Website
 
 ```
 yarn storybook
@@ -29,5 +39,5 @@ yarn storybook
 Powered by
 
 <p>
-  <a href="https://gio-design-charts.vercel.app/?path=/story/charts-dashboard--dashboard" target="_blank"><img src="./assets/vercel.svg" alt="Vercel Inc." height=32 /></a>
+  <a href="https://gio-design-charts.vercel.app/?path=/story/charts-dashboard--dashboard" target="_blank"><img src="https://gio-design-charts.vercel.app/favicon-32x32.png" alt="Vercel Inc." height=32 /></a>
 </p>
