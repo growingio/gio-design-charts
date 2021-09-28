@@ -5,14 +5,14 @@ import { InfoCardData } from './InfoCardBox';
 export interface ItemProps {
   data: InfoCardData;
   forwardKey: string;
-  valueKey: string;
+  valueKey?: string;
   formatter?: (value: string | number) => string | number;
 }
 
 const Item = (props: ItemProps) => {
   const { data, forwardKey, valueKey, formatter } = props;
   const item = data?.data;
-  const value = item?.[valueKey] || item?.value;
+  const value = item?.[valueKey || 'value'];
   const defaultConvertValue = isNaN(Number(value)) ? value : formatNumber(Number(value));
   const formatedValue = formatter ? formatter(value) : defaultConvertValue;
   return (
