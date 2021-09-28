@@ -100,18 +100,7 @@ ScrollBarDefault.storyName = '条形图(滚动模式)';
 
 export const BarMulti = Template.bind({});
 const BarMultiArgs = {
-  legends: [
-    '金融保险',
-    '医疗卫生',
-    '社会公共管理',
-    'IT 通讯电子',
-    '教育',
-    '建筑房地产',
-    '交通运输与仓储邮政',
-    '住宿旅游',
-    '建材家居',
-    '汽车',
-  ],
+  legends: [],
   data,
   config: {
     ...config,
