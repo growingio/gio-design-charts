@@ -20,7 +20,7 @@ export const getInfoCardStyles = (
   // Get legend config
   const shapeConfig = getShapeConfig(config as ChartConfig);
   const dodgeBy = getDodgeBy(shapeConfig);
-  const legendName = item.data[dodgeBy] || item.name;
+  const legendName = item.data?.[dodgeBy] || item.name;
   const legend = legends?.[legendName] || {};
 
   // Get default color

@@ -119,7 +119,15 @@ describe('InfoCard', () => {
   });
 
   test('render InfoCardBox without config and options', async () => {
-    render(<InfoCardBox triggerItems={triggerItems as any} legends={legends} trigger={trigger} />);
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems as any}
+        legends={legends}
+        trigger={trigger}
+        config={undefined as any}
+        options={undefined as any}
+      />
+    );
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 

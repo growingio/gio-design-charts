@@ -2,7 +2,7 @@ import React from 'react';
 import { ChartConfig, ChartOptions, Legends, Legend } from '../interfaces';
 import { getInfoCardStyles, getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
-import { first, last } from 'lodash';
+import { first, last, set } from 'lodash';
 
 import './styles/infocard.less';
 import { LooseObject } from '@antv/g-base';
@@ -46,7 +46,7 @@ const InfoCardBox = (props: InfoCardProps) => {
       // Set color for trigger item, it will change the point color when mouseover the column bar
       item.color = color;
       const itemData = item.data;
-      item.mappingData.color = color;
+      set(item, 'mappingData.color', color);
       const legendStyles = getLegendStyles(legend, color);
       if (itemData?.prev) {
         return {

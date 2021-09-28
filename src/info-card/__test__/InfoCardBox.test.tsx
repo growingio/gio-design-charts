@@ -37,12 +37,28 @@ describe('props triggerItems in InforCardBox', () => {
 
 describe('props options.defaultStyles in InforCardBox', () => {
   test('render InfoCardBox with empty options', async () => {
-    render(<InfoCardBox triggerItems={triggerItems as any} legends={legends} trigger={trigger} config={config} />);
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems as any}
+        legends={legends}
+        trigger={trigger}
+        config={config}
+        options={undefined as any}
+      />
+    );
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCardBox with empty options.defaultStyles', async () => {
-    render(<InfoCardBox triggerItems={triggerItems as any} legends={null as any} trigger={trigger} config={config} />);
+    render(
+      <InfoCardBox
+        triggerItems={triggerItems as any}
+        legends={null as any}
+        trigger={trigger}
+        config={config}
+        options={undefined as any}
+      />
+    );
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 });
