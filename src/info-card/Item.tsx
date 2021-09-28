@@ -10,9 +10,9 @@ export interface ItemProps {
 }
 
 const Item = (props: ItemProps) => {
-  const { data, forwardKey, valueKey, formatter } = props;
+  const { data, forwardKey, valueKey = '', formatter } = props;
   const item = data?.data;
-  const value = item?.[valueKey || 'value'];
+  const value = item?.[valueKey] || item?.value;
   const defaultConvertValue = isNaN(Number(value)) ? value : formatNumber(Number(value));
   const formatedValue = formatter ? formatter(value) : defaultConvertValue;
   return (
