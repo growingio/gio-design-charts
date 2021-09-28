@@ -1,6 +1,6 @@
 {
   "name": "@gio-design/charts",
-  "version": "0.1.4-alpha",
+  "version": "1.0.0-beta",
   "main": "lib/index.js",
   "module": "es/index.js",
   "unpkg": "dist/charts.umd.min.js",
@@ -9,6 +9,10 @@
   "author": "Zhang Rui <zhangrui@growingio.com>",
   "license": "Apache-2.0",
   "scripts": {
+    "gen-changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "gen-version": "conventional-changelog -p angular > VERSION.md",
+    "postversion": "yarn gen-version && yarn gen-changelog",
+    "preversion": "git fetch --tags",
     "eslint": "eslint src --ext .ts,.tsx",
     "start": "react-scripts start",
     "build": "father-build",
