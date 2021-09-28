@@ -4,6 +4,7 @@ import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } 
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { lineShape } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeState } from '../utils/tools/shapeState';
 
 export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
   const { legends } = options;

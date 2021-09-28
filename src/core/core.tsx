@@ -9,6 +9,7 @@ import { debounce } from 'lodash';
 import { Chart, View } from '@antv/g2';
 import { TooltipItem } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/component';
+import { ChartType } from '..';
 
 export interface LayoutProps {
   options: ChartOptions;
@@ -72,7 +73,10 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
           ...tooltip,
           container: tooltipRef.current,
           customItems: (originalItems: TooltipItem[]) => {
-            setHoverItemD(originalItems);
+            // it will be get error when mouseover quickly on chart before funnl chart is rendered
+            // debounce will resolve it.
+            // use setHoverItem will make sure the tooltip marker style is right
+            config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
             return originalItems;
           },
         };

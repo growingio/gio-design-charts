@@ -1,4 +1,5 @@
 import { ComponentStory } from '@storybook/react';
+import { AreaConfig } from '../../interfaces';
 import { Area } from '../../area';
 import { AreaStack } from '../../area/demos/Area.stories';
 import Card from '../../demos/card';
@@ -23,8 +24,19 @@ const Template: ComponentStory<typeof Area> = (args) => (
   </Card>
 );
 
+const { config } = AreaStack.args as AreaConfig;
 export const NoData = Template.bind({});
-NoData.args = { ...AreaStack.args, data: [] };
+NoData.args = {
+  ...AreaStack.args,
+  config: {
+    ...config,
+    chart: {
+      ...config.chart,
+      height: 500,
+    },
+  },
+  data: [],
+};
 NoData.storyName = 'Default';
 
 export const NoDataCustom = Template.bind({});

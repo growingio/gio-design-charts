@@ -90,6 +90,7 @@ const AreaStackArgs = {
     ],
     tooltip: {
       shared: true,
+      showCrosshairs: true,
       render: (options: any) => {
         const title = options.data?.[0]?.data?.tm || options.title;
         return <InfoCard {...options} title={title} />;
@@ -138,6 +139,7 @@ const PercentAreaArgs = {
     },
     tooltip: {
       shared: true,
+      showCrosshairs: true,
       formatter: (val: string) => formatPercent(val, 2, true),
       render: (options: any) => {
         const title = options.data?.[0]?.data?.tm || options.title;

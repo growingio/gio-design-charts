@@ -19,7 +19,7 @@ export const drawPolygon = (points: [number, number][]): ShapeCfg => {
     attrs: {
       points,
       fill: '#fff',
-      stroke: '#C4C4C4',
+      stroke: '#F1F2F8',
     },
   };
 };

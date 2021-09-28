@@ -7,12 +7,13 @@ import NoData from './NoData';
 
 const fetchChart = <T extends ChartProps>(ChartComponent: React.FC<T>) => {
   return (props: T) => {
-    const { errorTemplate, noData, data, loading } = props;
+    const { errorTemplate, noData, data, loading, config } = props;
+    const height = config?.chart?.height;
     if (loading) {
-      return <Loading />;
+      return <Loading height={height} />;
     }
     if (!data || isEmpty(data)) {
-      return noData ? noData() : <NoData />;
+      return noData ? noData() : <NoData height={height} />;
     }
     return (
       <ErrorBoundary errorTemplate={errorTemplate}>

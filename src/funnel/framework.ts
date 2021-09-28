@@ -3,9 +3,17 @@ import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
-import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
+import {
+  fetchChartConfig,
+  fetchTooltip,
+  fetchViewConfig,
+  generateChart,
+  handleLegendBehavior,
+} from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import { getShapeConfig } from '../utils/tools/configUtils';
+import { fetchChart } from '../boundary';
+import { viewTheme } from '../theme/chart';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { legends, defaultStyles } = options;
@@ -34,7 +42,7 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
 
 export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
-  if (!id) {
+  if (!id || isEmpty(options.data)) {
     return {};
   }
   const { interceptors, legends } = options;
@@ -47,7 +55,10 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
 
     const emptyLegends = isEmpty(legends);
 
-    const backgroundView = chart.createView();
+    // Use viewTheme to set the label of axis is white
+    const backgroundView = chart.createView({
+      theme: viewTheme,
+    });
     const backgroundOptions = {
       ...options,
       data: covertData,
@@ -59,7 +70,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
         color: emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
       },
     };
-    fetchViewConfig(backgroundView, backgroundOptions, config);
+    fetchViewConfig(backgroundView, backgroundOptions, { ...config, axis: false });
     fetchInterval(backgroundView, backgroundOptions, config);
     backgroundView.interaction('element-active');
     backgroundView.render();
