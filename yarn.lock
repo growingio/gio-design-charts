@@ -150,10 +150,10 @@
     detect-browser "^5.0.0"
     tslib "^2.0.3"
 
-"@antv/g2@^4.1.20":
-  version "4.1.25"
-  resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-4.1.25.tgz#2e7523b5accb12264daee6dd494a67be3f3c7c7c"
-  integrity sha512-jDuj67KSOF7JqbjZvpoWqOKP1xcccedm3nChvItv7TCUO3rzbg8Pa3543cg/dHNvORFfaT1mspj3hGCZ0Ku4gA==
+"@antv/g2@^4.1.29":
+  version "4.1.29"
+  resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-4.1.29.tgz#a249c798003dbba6a367fa86e723744bbfd6bf0f"
+  integrity sha512-P7ai0gd1dwcZtW2bmGh9sQ/i1w6N4NVs82Lj0ZYwAqwjo0CxCRTrhEEmC279xyDEjYrytU1v4RWf06aqsbjbTQ==
   dependencies:
     "@antv/adjust" "^0.2.1"
     "@antv/attr" "^0.3.1"

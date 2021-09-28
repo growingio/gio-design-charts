@@ -1,9 +1,14 @@
 import React from 'react';
 import './style/Loading.less';
 
-const Loading = () => {
+export interface LoadingProps {
+  height: number;
+}
+
+const Loading = (props: LoadingProps) => {
+  const { height = 50 } = props;
   return (
-    <div className="gio-d-charts-loading-wrapper-loading" data-testid="loading">
+    <div className="gio-d-charts-loading-wrapper-loading" data-testid="loading" style={{ height }}>
       <div className="gio-d-charts-loading gio-d-charts-loading-large">
         <div className="gio-d-charts-loading-ring">
           {[1, 2, 3, 4].map((item) => (

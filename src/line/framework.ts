@@ -3,6 +3,7 @@ import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } 
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { LooseObject } from '@antv/g-base';
+import { getShapeState } from '../utils/tools/shapeState';
 
 export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
   const { legends } = options;
@@ -30,6 +31,7 @@ export const lineShape = (chart: Chart | View, options: ChartOptions, shapeConfi
     style.lineWidth = 2;
     return style;
   });
+  line.state(getShapeState(options));
   return line;
 };
 

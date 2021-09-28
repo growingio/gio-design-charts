@@ -1,8 +1,8 @@
 import React from 'react';
 import { ChartConfig, ChartOptions, Legends, Legend } from '../interfaces';
-import { getLegendStyles } from '../utils/styles';
+import { getInfoCardStyles, getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
-import { first, last } from 'lodash';
+import { first, last, set } from 'lodash';
 
 import './styles/infocard.less';
 import { LooseObject } from '@antv/g-base';
@@ -25,14 +25,13 @@ export interface InfoCardProps {
   legends: Legends;
   trigger?: string;
   triggerItems: TriggerItem[];
-  options?: ChartOptions;
-  config?: ChartConfig;
+  options: ChartOptions;
+  config: ChartConfig;
   injectComponent?: (options: { data: LooseObject; trigger?: string; forwardKey: string }) => JSX.Element;
 }
 
 const InfoCardBox = (props: InfoCardProps) => {
   const { triggerItems, legends = {}, trigger, options, config } = props;
-  const defaultStyles = options?.defaultStyles;
   const chartType = config?.type;
   const forwardKey = config?.[chartType]?.color;
   const splitPositions = config?.[chartType]?.position?.split('*');
@@ -43,11 +42,11 @@ const InfoCardBox = (props: InfoCardProps) => {
       if (!item) {
         return {} as InfoCardData;
       }
-      const legend = legends?.[item.name] || {};
-      const color = legend.color || defaultStyles?.color || item.color;
+      const [legend, color] = getInfoCardStyles(options, config, item, legends, nameKey);
       // Set color for trigger item, it will change the point color when mouseover the column bar
       item.color = color;
       const itemData = item.data;
+      set(item, 'mappingData.color', color);
       const legendStyles = getLegendStyles(legend, color);
       if (itemData?.prev) {
         return {

@@ -3,7 +3,7 @@ import { ChartConfig, ChartOptions, Shape, CustomInfo } from '../../interfaces';
 import { ShapeInfo } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/g-base';
 
-export const getShapeConfig = (config: ChartConfig, type?: string) => {
+export const getShapeConfig = (config: ChartConfig = {}, type?: string) => {
   if (type) {
     return config[type] || {};
   }
