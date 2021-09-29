@@ -39,7 +39,7 @@ describe('getAreaShapeState', () => {
     });
   });
 
-  test('call getShapeState 2', () => {
+  test('call getAreaShapeState 2', () => {
     const state = getAreaShapeState();
 
     const styles = state.active.style({
