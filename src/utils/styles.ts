@@ -1,11 +1,11 @@
 import { TriggerItem } from '../info-card/InfoCardBox';
-import { Legend, Legends, ChartOptions, ChartConfig } from '../interfaces';
-import { BAR_TEXTURE } from '../theme';
+import { Legend, Legends, ChartOptions, ChartConfig, ChartType } from '../interfaces';
+import { BAR_TEXTURE, COLUMN_TEXTURE } from '../theme';
 import { getDodgeBy } from './interval';
 import { getShapeConfig } from './tools/configUtils';
 
-export const getBackgroundImage = () => ({
-  backgroundImage: `url("${BAR_TEXTURE}")`,
+export const getBackgroundImage = (type: string | ChartType) => ({
+  backgroundImage: `url("${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}")`,
   backgroundRepeat: 'repeat',
   backgroundSize: '6px 6px',
 });
@@ -18,7 +18,7 @@ export const getInfoCardStyles = (
   firstPosition: string
 ) => {
   // Get legend config
-  const shapeConfig = getShapeConfig(config as ChartConfig);
+  const shapeConfig = getShapeConfig(config);
   const dodgeBy = getDodgeBy(shapeConfig);
   const legendName = item.data?.[dodgeBy] || item.name;
   const legend = legends?.[legendName] || {};
@@ -39,8 +39,8 @@ export const getInfoCardStyles = (
 };
 
 export const getLegendStyles = (legend: Legend, color: string) => {
-  const { lineDash, dashed } = legend;
-  const backgroundImage = dashed ? getBackgroundImage() : {};
+  const { lineDash, dashed, type } = legend;
+  const backgroundImage = dashed ? getBackgroundImage(type as string) : {};
   return lineDash
     ? {
         border: `1px dashed ${color}`,

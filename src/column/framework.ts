@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo } from '../interfaces';
-import { BAR_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
+import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
+import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
 import { handleLegendBehavior, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
@@ -101,7 +101,7 @@ export const handleInterval = (chart: Chart | View, options: ChartOptions, confi
         const legend = legends[label] || ({} as Legend);
         if (legend.dashed) {
           return {
-            fill: `p(a)${BAR_TEXTURE}`,
+            fill: `p(a)${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}`,
             radius,
           };
         }

@@ -1,5 +1,5 @@
 import { getDodgeBy, hasContrastDodge } from '../interval';
-import { ChartConfig, ChartOptions, Shape, CustomInfo } from '../../interfaces';
+import { ChartConfig, ChartOptions, Shape, CustomInfo, ChartType } from '../../interfaces';
 import { ShapeInfo } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/g-base';
 
@@ -48,6 +48,10 @@ export const getRelateLegend = (shapeInfo: ShapeInfo) => {
 
 export const getDefaultStyles = (shapeInfo: ShapeInfo) => {
   return shapeInfo?.customInfo?.defaultStyles || {};
+};
+
+export const getChartType = (shapeInfo: ShapeInfo) => {
+  return shapeInfo?.customInfo?.chartType || ChartType.COLUMN;
 };
 
 export const isUseDash = (shapeInfo: ShapeInfo) => {
