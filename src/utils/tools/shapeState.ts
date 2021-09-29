@@ -26,7 +26,7 @@ export const getAreaShapeState = () => {
   return {
     active: {
       style: (element: Element) => {
-        const modelFill = element?.getModel?.()?.style?.fill;
+        const modelFill = element?.getModel?.()?.style?.fill || '#fff';
         return {
           lineWidth: 2,
           fill: modelFill,
