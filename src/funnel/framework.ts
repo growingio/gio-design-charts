@@ -3,16 +3,9 @@ import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
-import {
-  fetchChartConfig,
-  fetchTooltip,
-  fetchViewConfig,
-  generateChart,
-  handleLegendBehavior,
-} from '../core/framework';
+import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import { getShapeConfig } from '../utils/tools/configUtils';
-import { fetchChart } from '../boundary';
 import { viewTheme } from '../theme/chart';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {

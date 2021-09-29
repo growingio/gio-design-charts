@@ -118,7 +118,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
           handleLegend(charts, newLegends, config);
         }
       },
-      [charts, chartOptions, config, setHoverItemD, handleLegend, updateLegends]
+      [charts, config, handleLegend, updateLegends]
     );
 
     return (
