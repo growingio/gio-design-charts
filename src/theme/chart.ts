@@ -3,7 +3,7 @@ import { colors, DEFAULT_FONT_COLOR } from '.';
 /**
  * Throught https://theme-set.antv.vision/ to update the theme for Chart.
  *
- * Reference: @antv/g2/src/theme/util/create-by-style-sheets.ts
+ * Reference: @antv/g2/src/theme/util/create-by-style-sheet.ts
  */
 export const gioTheme = {
   // set default colors, althought we have set default color for each legend.
@@ -39,6 +39,13 @@ export const gioTheme = {
         },
         tickLine: null,
         subTickLine: null,
+      },
+    },
+    tooltip: {
+      crosshairs: {
+        line: {
+          style: { stroke: '#ebedf5' },
+        },
       },
     },
   },
