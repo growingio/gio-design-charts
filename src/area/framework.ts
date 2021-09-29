@@ -4,7 +4,7 @@ import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } 
 import { handleLegendBehavior, renderChart } from '../core/framework';
 import { lineShape } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
-import { getShapeState } from '../utils/tools/shapeState';
+import { getAreaShapeState } from '../utils/tools/shapeState';
 
 export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
   const { legends } = options;
@@ -31,6 +31,7 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
     style.strokeOpacity = 0.4;
     return style;
   });
+  area.state(getAreaShapeState());
   return area;
 };
 
@@ -45,7 +46,7 @@ export const areaChart = (options: ChartOptions, config: ChartConfig) => {
 
     lineShape(chart, options, areaConfig);
     areaShape(chart, options, areaConfig);
-
+    chart.interaction('element-highlight-by-color');
     chart.render();
   } catch (err) {}
   return { chart };

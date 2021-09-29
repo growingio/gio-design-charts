@@ -1,4 +1,4 @@
-import { Chart, registerTheme, View } from '@antv/g2';
+import { Chart, registerInteraction, registerTheme, View } from '@antv/g2';
 import { AxisOption, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
@@ -8,6 +8,11 @@ import '../utils/tools';
 
 const DEFAULT_AUTO_FIT = true;
 const DEFAULT_HEIGHT = 200;
+
+registerInteraction('element-highlight-by-color', {
+  start: [{ trigger: 'element:mouseenter', action: 'element-highlight-by-color:highlight' }],
+  end: [{ trigger: 'element:mouseleave', action: 'element-highlight-by-color:reset' }],
+});
 
 registerTheme('gio-theme', gioTheme);
 
