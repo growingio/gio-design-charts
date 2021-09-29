@@ -1,9 +1,10 @@
 import { LooseObject, Point } from '@antv/component';
 import { IGroup, registerShape } from '@antv/g2';
 import { Shape, ShapeInfo } from '@antv/g2/lib/interface';
+import { ChartType } from '../../interfaces';
 
-import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE } from '../../theme';
-import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from './configUtils';
+import { DEFAULT_MIN_HEIGHT, BAR_TEXTURE, COLUMN_TEXTURE } from '../../theme';
+import { getChartType, getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash } from './configUtils';
 
 export interface RectAttr {
   height: number;
@@ -58,13 +59,14 @@ function drawRect(
   const stack = isStack(shapeInfo);
   const topBar = isTopBar(shapeInfo);
   const useDash = isUseDash(shapeInfo);
+  const chartType = getChartType(shapeInfo);
 
   const attrs = getFillAttrs(shapeInfo);
   const group = container.addGroup();
   const points = main.parsePoints(shapeInfo.points as Point[]); // 转换为画布坐标
   const styles =
     useDash && legend.dashed
-      ? { fill: `p(a)${BAR_TEXTURE}` }
+      ? { fill: `p(a)${chartType === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}` }
       : { fill: legend.color || defaultStyles.color || shapeInfo.color };
 
   const newAttrs = {

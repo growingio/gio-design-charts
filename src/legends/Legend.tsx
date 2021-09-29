@@ -1,5 +1,6 @@
-import { LooseObject } from '@antv/component';
 import React, { useCallback } from 'react';
+import { LooseObject } from '@antv/component';
+import { ChartType } from '../interfaces';
 import { DISABLE_COLOR } from '../theme';
 import { getBackgroundImage } from '../utils/styles';
 
@@ -16,7 +17,7 @@ const Legend = (props: LegendProps) => {
   }, [label, onClick]);
   const { active, color, lineDash, type, dashed } = data || {};
 
-  const backgroundImage = dashed ? getBackgroundImage() : {};
+  const backgroundImage = dashed ? getBackgroundImage(type) : {};
   const stylesLine = lineDash
     ? {
         border: `1px dashed ${active ? color : DISABLE_COLOR}`,
@@ -34,7 +35,7 @@ const Legend = (props: LegendProps) => {
       title={label}
       data-testid={`legend-item-${label}`}
     >
-      <div className={`gio-d-chart-legends_block gio-d-chart-legends_${type as 'bar' | 'line'}`} style={stylesLine} />
+      <div className={`gio-d-chart-legends_block gio-d-chart-legends_${type as ChartType}`} style={stylesLine} />
       <div className="gio-d-chart-legends_text">{label}</div>
     </span>
   );
