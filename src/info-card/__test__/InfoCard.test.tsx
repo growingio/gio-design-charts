@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import InfoCardBox from '../InfoCardBox';
 import InfoCard from '../InfoCard';
 import { Legends } from '../../interfaces';
+import { renderHook } from '@testing-library/react-hooks';
+import useTunnel from '../../hooks/useTunnel';
 
 export const mappingData = {
   _origin: {
@@ -106,81 +108,75 @@ const infoCardBoxTestid = 'infoCardBox';
 
 describe('InfoCard', () => {
   test('render InfoCardBox', async () => {
-    render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={config}
-      />
-    );
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
+    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCardBox without config and options', async () => {
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
       <InfoCardBox
-        triggerItems={triggerItems as any}
+        acceptor={acceptor}
         legends={legends}
         trigger={trigger}
         config={undefined as any}
         options={undefined as any}
       />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCardBox without config.tooltip', async () => {
     const newConfig = { ...config, tooltip: {} };
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={newConfig}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={newConfig} />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCardBox with empty config', async () => {
-    render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={{}}
-      />
-    );
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
+    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={{}} />);
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCardBox with type config', async () => {
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={{ type: 'bar' }}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={{ type: 'bar' }} />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
   test('render InfoCard with prev data', async () => {
-    render(
-      <InfoCardBox
-        triggerItems={triggerItemsPrev}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={config}
-      />
-    );
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
+    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    act(() => {
+      register(triggerItemsPrev);
+    });
     expect(await screen.findByTestId(infoCardBoxTestid)).toBeTruthy();
   });
 
@@ -196,15 +192,14 @@ describe('InfoCard', () => {
         color: 'city',
       },
     };
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={tooltipConfig}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId('customTooltip')).toBeTruthy();
   });
 
@@ -220,15 +215,14 @@ describe('InfoCard', () => {
         color: 'city',
       },
     };
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={tooltipConfig}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId('infoCard')).toBeTruthy();
   });
 
@@ -246,15 +240,14 @@ describe('InfoCard', () => {
         color: 'city',
       },
     };
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={tooltipConfig}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId('infoCard')).toBeTruthy();
   });
 
@@ -271,15 +264,14 @@ describe('InfoCard', () => {
         color: 'city',
       },
     };
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={tooltipConfig}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
     );
+    act(() => {
+      register(triggerItems);
+    });
     expect(await screen.findByTestId('infoCard')).toBeTruthy();
   });
 
@@ -300,16 +292,15 @@ describe('InfoCard', () => {
         color: 'city',
       },
     };
+    const { result } = renderHook(() => useTunnel());
+    const [register, acceptor] = result.current;
     const box = render(
-      <InfoCardBox
-        triggerItems={triggerItems as any}
-        legends={legends}
-        trigger={trigger}
-        options={options}
-        config={tooltipConfig}
-      />
+      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
     );
 
+    act(() => {
+      register(triggerItems);
+    });
     const infoCardBox = await box.findByTestId(infoCardBoxTestid);
     expect(infoCardBox).toBeTruthy();
 
