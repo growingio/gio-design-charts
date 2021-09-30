@@ -1,10 +1,10 @@
 import React, { LegacyRef, useEffect, useState, useCallback, RefObject, useMemo } from 'react';
 import { InfoCardBox } from '../info-card';
-import { ChartConfig, ChartOptions, Legend, ReportThing, Legends, ChartType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, ReportThing, Legends } from '../interfaces';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
+import useTunnel from '../hooks/useTunnel';
 
-import { debounce } from 'lodash';
 import { Chart, View } from '@antv/g2';
 import { TooltipItem } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/component';
@@ -36,14 +36,12 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const { config, callChart, data, legendList, handleLegend, defaultOptions = {}, width } = props;
     const root: RefObject<HTMLDivElement> = React.createRef();
     const tooltipRef: LegacyRef<HTMLDivElement> = React.createRef();
-    const [hoverItem, setHoverItem] = useState<TooltipItem[]>([]);
+    const [register, acceptor] = useTunnel();
 
     const { legends, setLegends, updateLegends } = useLegends();
 
     const { charts, getTriggerAction, interceptors } = useInterceptors();
     const [hasDashed, setDashed] = useState(false);
-
-    const setHoverItemD = useMemo(() => debounce(setHoverItem, 20), [setHoverItem]);
 
     const defineReporter = useCallback((thing: ReportThing) => {
       // do stome report thing in here
@@ -75,7 +73,8 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
             // it will be get error when mouseover quickly on chart before funnl chart is rendered
             // debounce will resolve it.
             // use setHoverItem will make sure the tooltip marker style is right
-            config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
+            // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
+            register(originalItems);
             return originalItems;
           },
         };
@@ -110,6 +109,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
         } catch (err) {}
       };
     }, [data, legendList, config, callChart]);
+
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
@@ -119,7 +119,6 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
       },
       [charts, config, handleLegend, updateLegends]
     );
-
     return (
       <HighComponent options={chartOptions} width={width} charts={charts} config={config} onClickLegend={onClickLegend}>
         <div className="layout-content" ref={root} />
@@ -127,7 +126,8 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCardBox
               legends={legends}
-              triggerItems={hoverItem}
+              // triggerItems={hoverItem}
+              acceptor={acceptor}
               options={{ ...chartOptions, ...defaultOptions }}
               trigger={getTriggerAction()}
               config={config}

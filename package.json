@@ -63,6 +63,7 @@
     "@antv/event-emitter": "^0.1.2",
     "@antv/g-base": "^0.5.9",
     "@antv/g2": "^4.1.29",
+    "@antv/util": "^2.0.17",
     "@babel/runtime": "^7.15.4",
     "date-fns": "^2.23.0",
     "lodash": "^4.17.21",
