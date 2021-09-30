@@ -18,8 +18,6 @@ export default {
   },
 };
 
-const position = 'month*value';
-
 const Template: ComponentStory<typeof Area> = (args) => (
   <Card>
     <Area {...args} />
@@ -99,7 +97,6 @@ const AreaStackArgs = {
     area: {
       position: 'tm*value',
       color: 'type',
-      area: position,
       adjust: ['stack'],
     },
   },

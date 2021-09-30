@@ -9,7 +9,7 @@ import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = ColumnWithComponsive.args as ChartProps;
-const [legends] = getLegends(ChartType.AREA, legendList);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('line fromework', () => {
   test('call columnChart', () => {
     render(<ChartCom />);

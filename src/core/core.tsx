@@ -1,15 +1,14 @@
 import React, { LegacyRef, useEffect, useState, useCallback, RefObject, useMemo } from 'react';
 import { InfoCardBox } from '../info-card';
-import { ChartConfig, ChartOptions, Legend, ReportThing, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, ReportThing, Legends, ChartType } from '../interfaces';
 import useLegends, { getLegends } from '../hooks/useLegends';
 import useInterceptors from '../hooks/useInterceptors';
 
-import './styles/base.less';
 import { debounce } from 'lodash';
 import { Chart, View } from '@antv/g2';
 import { TooltipItem } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/component';
-import { ChartType } from '..';
+import './styles/base.less';
 
 export interface LayoutProps {
   options: ChartOptions;
@@ -67,8 +66,8 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     //    but the options: ChartOptions is always updated
     // 3. in this useEffect, we needn't to make it changes many times.
     useEffect(() => {
-      let tooltip = config?.tooltip || {};
-      if (tooltipRef.current) {
+      let tooltip = config?.tooltip;
+      if (tooltip && tooltipRef.current) {
         tooltip = {
           ...tooltip,
           container: tooltipRef.current,

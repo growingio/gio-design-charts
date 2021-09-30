@@ -1,6 +1,6 @@
 import { LooseObject } from '@antv/component';
 import React from 'react';
-import { formatNumber, formatPercent } from '../..';
+import { formatNumber, formatPercent } from '../../utils/formatNumber';
 import { InfoCard } from '../../info-card';
 import './drilldown-card.less';
 

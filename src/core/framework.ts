@@ -38,8 +38,12 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
  */
 export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   try {
-    const tooltip = config.tooltip ?? {};
-    chart.tooltip.call(chart, { ...tooltip });
+    const tooltip = config.tooltip;
+    if (tooltip) {
+      chart.tooltip.call(chart, { ...tooltip });
+    } else {
+      chart.tooltip(false);
+    }
   } catch (err) {
     // handle hook tooltip error
   }

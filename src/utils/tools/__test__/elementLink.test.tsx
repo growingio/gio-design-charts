@@ -13,7 +13,7 @@ import { View } from '@antv/g2';
 
 const { config, legends: legendList, data: sourceData } = FunnelWith6Columns.args as ChartProps;
 const data = getSingleData(sourceData);
-const [legends] = getLegends(ChartType.FUNNEL, legendList);
+const [legends] = getLegends(ChartType.FUNNEL, legendList as any);
 
 describe('element-link', () => {
   beforeEach(() => {

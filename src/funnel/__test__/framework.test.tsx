@@ -11,7 +11,7 @@ import { getSingleData } from '../utils';
 
 const { config, legends: legendList, data: sourceData } = FunnelWith3Columns.args as ChartProps;
 const data = getSingleData(sourceData);
-const [legends] = getLegends(ChartType.AREA, legendList);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('funnel fromework', () => {
   test('call funnelChart', () => {
     render(<ChartCom />);
