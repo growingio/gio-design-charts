@@ -23,7 +23,7 @@ describe('LegendLayout2', () => {
       <LegendLayout
         config={config}
         data={data}
-        legendList={legends}
+        legendList={legends as any}
         callChart={areaChart}
         handleLegend={handleLegend}
         width={150}

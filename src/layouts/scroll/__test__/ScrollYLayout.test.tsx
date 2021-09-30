@@ -14,7 +14,7 @@ describe('ScrollYLayout', () => {
       <ScrollYLayout
         config={config}
         data={data}
-        legendList={legendList}
+        legendList={legendList as any}
         handleLegend={handleLegend}
         callChart={barChart}
       />
@@ -27,7 +27,7 @@ describe('ScrollYLayout', () => {
       <ScrollYLayout
         config={undefined as any}
         data={data}
-        legendList={legendList}
+        legendList={legendList as any}
         handleLegend={handleLegend}
         callChart={barChart}
       />

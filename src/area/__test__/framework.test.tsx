@@ -11,7 +11,7 @@ import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
-const [legends] = getLegends(ChartType.AREA, legendList);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('areaChart', () => {
   beforeEach(() => {
     jest.useFakeTimers();

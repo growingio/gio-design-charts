@@ -26,10 +26,11 @@ export const getAreaShapeState = () => {
   return {
     active: {
       style: (element: Element) => {
-        const modelFill = element?.getModel?.()?.style?.fill || '#fff';
+        const model = element?.getModel?.();
+        const fill = model?.style?.fill || model?.color || '#fff';
         return {
           lineWidth: 2,
-          fill: modelFill,
+          fill,
           strokeOpacity: 1,
         };
       },

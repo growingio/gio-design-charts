@@ -21,14 +21,17 @@ export const areaShape = (chart: Chart | View, options: ChartOptions, shapeConfi
   area.style(shapeConfig.color, (label: string) => {
     const legend = legends?.[label] || ({} as Legend);
     const style = {} as ShapeAttrs;
-    if (legend.color) {
-      style.stroke = legend.color;
-      style.fill = legend.color;
-    }
     style.fillOpacity = 0.8;
     // default width of line is 2px
-    style.lineWidth = 2;
+    // style.lineWidth = 2;
     style.strokeOpacity = 0.4;
+    if (legend.color) {
+      style.fill = legend.color;
+    }
+    if (legend.opacity) {
+      style.strokeOpacity = legend.opacity;
+      style.fillOpacity = legend.opacity;
+    }
     return style;
   });
   area.state(getAreaShapeState());

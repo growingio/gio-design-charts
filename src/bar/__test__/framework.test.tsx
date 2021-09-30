@@ -10,7 +10,7 @@ import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.te
 import { BarProps } from '../Bar';
 
 const { config, legends: legendList, data } = BarDefault.args as BarProps;
-const [legends] = getLegends(ChartType.AREA, legendList);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('bar fromework', () => {
   test('call barChart', () => {
     render(<ChartCom />);

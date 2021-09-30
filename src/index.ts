@@ -3,6 +3,7 @@ export * from './line';
 export * from './column';
 export * from './bar';
 export * from './funnel';
+export * from './tiny-area';
 
 export * from './utils/analysis';
 

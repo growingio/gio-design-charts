@@ -30,6 +30,9 @@ export interface Legend {
   // 设置图例的颜色，默认为12中显色定义
   color?: string;
 
+  // 设置图例的透明度
+  opacity?: number;
+
   // 柱状图的柱子是否为虚线
   dashed?: boolean;
 
@@ -123,7 +126,11 @@ export interface ChartProps {
    * 图例数组，是字符串或者图例对象
    *
    */
-  legends: (Legend | string)[];
+  legends?: (Legend | string)[];
+}
+
+export interface TinyChartProps extends Omit<ChartProps, 'data'> {
+  data: number[];
 }
 
 export interface AdjustOpt extends Omit<AdjustOption, 'type'> {

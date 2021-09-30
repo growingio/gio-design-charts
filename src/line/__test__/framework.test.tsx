@@ -10,7 +10,7 @@ import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.te
 import { LineProps } from '../Line';
 
 const { config, legends: legendList, data } = BaiscLine.args as LineProps;
-const [legends] = getLegends(ChartType.AREA, legendList);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('line fromework', () => {
   test('call lineChart', () => {
     render(<ChartCom />);

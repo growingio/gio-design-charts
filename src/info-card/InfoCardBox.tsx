@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChartConfig, ChartOptions, Legends, Legend } from '../interfaces';
+import { ChartConfig, ChartOptions, Legends, Legend, ChartType } from '../interfaces';
 import { getInfoCardStyles, getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
 import { first, last, set } from 'lodash';
@@ -7,7 +7,6 @@ import { first, last, set } from 'lodash';
 import './styles/infocard.less';
 import { LooseObject } from '@antv/g-base';
 import { TooltipItem } from '@antv/g2/lib/interface';
-import { ChartType } from '..';
 
 export interface TriggerItem extends Omit<TooltipItem, 'color'> {
   title?: string;
