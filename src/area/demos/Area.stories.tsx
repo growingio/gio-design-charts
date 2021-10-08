@@ -67,7 +67,12 @@ const AreaStackArgs = {
   data: stackAreaData,
   config: {
     ...config,
-    scale: ['tm', { range: [0, 1] }],
+    scale: {
+      tm: { range: [0, 1] },
+      value: {
+        nice: true,
+      },
+    },
     axises: [
       [
         'value',
