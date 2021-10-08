@@ -29,8 +29,7 @@ const Template: ComponentStory<typeof Line> = (args) => (
 const scalaAxisConfig = {
   scale: {
     value: {
-      tickCount: 10,
-      min: 0,
+      nice: true,
     },
     tm: { range: [0, 1] },
   },
