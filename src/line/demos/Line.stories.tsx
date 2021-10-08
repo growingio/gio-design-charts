@@ -29,8 +29,7 @@ const Template: ComponentStory<typeof Line> = (args) => (
 const scalaAxisConfig = {
   scale: {
     value: {
-      tickCount: 10,
-      min: 0,
+      nice: true,
     },
     tm: { range: [0, 1] },
   },
@@ -160,11 +159,11 @@ const LineWithOneLineDateConfig = {
       range: [0, 1],
     },
     value: {
-      min: 0,
+      // min: 0,
       // type: 'quantize',
       // type: 'quantile',
       // ticks: [0, 2000, 4000, 8000, 10000],
-      tickCount: 5,
+      // tickCount: 5,
       nice: true,
       formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
     },
