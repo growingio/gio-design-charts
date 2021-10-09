@@ -65,7 +65,7 @@ const InfoCardBox = (props: InfoCardProps) => {
           }
           return { ...legend, data: { ...itemData }, type: chartType, styles: legendStyles };
         }) || [];
-      const showTitle = (triggerItems[0] as LooseObject)?.data?.[nameKey] || triggerItems?.[0]?.name || '';
+      const showTitle = (triggerItems?.[0] as LooseObject)?.data?.[nameKey] || triggerItems?.[0]?.name || '';
       setTitle(showTitle);
       setItems(covertItems);
     });
