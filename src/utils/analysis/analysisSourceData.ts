@@ -1,8 +1,7 @@
 import { LooseObject } from '@antv/component';
 
-const analysisRow = (chartType: string, data: LooseObject, column: LooseObject) => {
-  return chartType === 'column' && column.id === 'tm' ? String(data) : data;
-};
+const analysisRow = (chartType: string, data: LooseObject, column: LooseObject) =>
+  chartType === 'column' && column.id === 'tm' ? String(data) : data;
 
 export interface AnalysisOptions {
   // chart的类型

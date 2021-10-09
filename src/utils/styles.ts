@@ -33,7 +33,7 @@ export const getInfoCardStyles = (
     color = color || item.color;
   } else {
     // if color isn't equal with first position, it's ok to use color in legend
-    color = color || legend.color;
+    color = color || legend.color || item.color;
   }
   return [legend, color];
 };
