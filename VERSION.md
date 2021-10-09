@@ -1,10 +1,12 @@
-## [1.0.1-beta](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta...v1.0.1-beta) (2021-10-08)
+# [1.0.0-beta.2](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta...v1.0.0-beta.2) (2021-10-09)
 
 
 ### Bug Fixes
 
 * **InfoCard:** fix the max-height of info-card to 300px ([#79](https://github.com/growingio/gio-design-charts/issues/79)) ([6197d7e](https://github.com/growingio/gio-design-charts/commit/6197d7e442eaa4e1ee86bee1c960994bf00e631f))
+* **InfoCard:** modify infoCard styles and default value issue ([#87](https://github.com/growingio/gio-design-charts/issues/87)) ([275285b](https://github.com/growingio/gio-design-charts/commit/275285babc26c0748c0fe85480be2752ef76ad1a))
 * **Line & Area:** update scale config in line/Area storybook ([#85](https://github.com/growingio/gio-design-charts/issues/85)) ([a7ff28d](https://github.com/growingio/gio-design-charts/commit/a7ff28d3ba22a6c0382afa3f1ca34380fe0a9b8d))
+* **react:** move react repos to peerDependencies ([#88](https://github.com/growingio/gio-design-charts/issues/88)) ([6a6f7c6](https://github.com/growingio/gio-design-charts/commit/6a6f7c63e9cc0c88c4dfda2c3288f980119a1e67)), closes [#87](https://github.com/growingio/gio-design-charts/issues/87)
 * **Tooltip:** change the color of tooltip crosshairs to gray-3 #ebedf5 ([#80](https://github.com/growingio/gio-design-charts/issues/80)) ([9393f78](https://github.com/growingio/gio-design-charts/commit/9393f78887fc219bd15a875d1b71eff7eac039b0)), closes [#ebedf5](https://github.com/growingio/gio-design-charts/issues/ebedf5)
 
 
