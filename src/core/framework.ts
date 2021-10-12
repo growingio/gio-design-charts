@@ -1,5 +1,5 @@
 import { Chart, registerInteraction, registerTheme, View } from '@antv/g2';
-import { AxisOption, ScaleOption } from '@antv/g2/lib/interface';
+import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { gioTheme } from '../theme/chart';
@@ -20,13 +20,17 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   const basicConfig = config.chart || {};
   // Set defualt chart config
-  return new Chart({
+  const chart = new Chart({
     ...basicConfig,
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
     theme: 'gio-theme',
   });
+  if (basicConfig.closeAnimate) {
+    chart.animate(false);
+  }
+  return chart;
 };
 
 /**
@@ -49,12 +53,13 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   }
   return chart;
 };
-export const fetchConfig = (chart: Chart | View, options: ChartConfig, config: ChartConfig) => {
+
+export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { data } = options;
 
   // Set Data
   if (!isEmpty(data)) {
-    chart.data(data);
+    chart.data(data as Datum[]);
   }
 
   // Use array for scale config, in G2 API, we can use different way to call chart.scale()
@@ -90,7 +95,7 @@ export const fetchConfig = (chart: Chart | View, options: ChartConfig, config: C
   return chart;
 };
 
-export const fetchChartConfig = (chart: Chart, options: ChartConfig, config: ChartConfig) => {
+export const fetchChartConfig = (chart: Chart, options: ChartOptions, config: ChartConfig) => {
   return fetchConfig(chart, options, config) as Chart;
 };
 

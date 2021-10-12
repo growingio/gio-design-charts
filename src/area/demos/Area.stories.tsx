@@ -28,6 +28,7 @@ const config = {
   chart: {
     autoFit: true,
     height: 300,
+    closeAnimate: true,
   },
   scale: [
     {

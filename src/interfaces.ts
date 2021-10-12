@@ -59,7 +59,26 @@ export interface ChartOptions extends LooseObject {
   defaultStyles?: ShapeStyle;
 }
 
+export interface BaseChartConfig extends LooseObject {
+  /**
+   * 自动适应宽高
+   */
+  autoFit?: boolean;
+  /**
+   * 设置Chart的高度
+   */
+  height?: number;
+  /**
+   * 当为true时；渲染图表不显示动画。
+   */
+  closeAnimate?: boolean;
+}
+
 export interface ChartConfig extends LooseObject {
+  /**
+   * 定义Chart的基础属性
+   */
+  chart?: BaseChartConfig;
   /**
    * 用来显示或隐藏Legend图例
    * 在gio-design-charts中，legend被重新定义，G2默认的legend配置将无效，在这里配置legend: false可用来隐藏Legend
