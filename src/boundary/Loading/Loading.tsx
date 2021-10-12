@@ -2,7 +2,7 @@ import React from 'react';
 import './style/Loading.less';
 
 export interface LoadingProps {
-  height: number;
+  height?: number;
 }
 
 const Loading = (props: LoadingProps) => {

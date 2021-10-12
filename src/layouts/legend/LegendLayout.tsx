@@ -15,7 +15,7 @@ const LegendLayout = React.memo((props: LayoutProps) => {
         charts.forEach((view: Chart | View) => {
           if (view instanceof Chart && width) {
             const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
-            if (widthObj) {
+            if (widthObj && config?.chart?.height) {
               view.changeSize(widthObj, config.chart.height);
               view.render(true);
             }
