@@ -53,11 +53,11 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
-        if (chartOptions.chart) {
-          handleLegend([chartOptions.chart, ...chartOptions.views], newLegends, config);
+        if (chartOptions?.chart) {
+          handleLegend([chartOptions?.chart, ...(chartOptions?.views || [])], newLegends, config);
         }
       },
-      [chartOptions.chart, config, handleLegend, updateLegends]
+      [chartOptions, config, handleLegend, updateLegends]
     );
     return (
       <HighComponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
