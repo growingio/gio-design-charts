@@ -25,12 +25,6 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
       region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
     });
 
-    linkView.on('afterrender', function (event: Event) {
-      const geometries = event.view.geometries[0];
-      if (geometries && geometries.elements) {
-        // reporter({ scale: geometries.getXScale(), elements: geometries.elements });
-      }
-    });
     fetchViewConfig(linkView, options, config);
     handleInterval(linkView, options, config, 'bar');
     linkView.coordinate().transpose();

@@ -1,6 +1,5 @@
-import { analysisSourceData } from '../analysisSourceData';
+import { analysisSourceData, AnalysisOptions } from '../analysisSourceData';
 import activeMemberData from '../../../demos/usage/data/active-members.json';
-import { AnalysisOptions } from '../analysisSourceData';
 
 describe('call format', () => {
   const expectDataWithStringTs = [

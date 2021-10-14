@@ -34,6 +34,17 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
   );
 };
 
+const bindLinkEvent = (linkView: View, addLinkByElement: any, data?: LooseObject) => {
+  const sourceData = data?.source || [];
+  const texts = data?.texts || [];
+  const isGroup = data?.isGroup;
+  linkView?.on('afterrender', function (event: Event) {
+    if (event && !isGroup && sourceData.length !== 0) {
+      addLinkByElement(event.view as any, { texts });
+    }
+  });
+};
+
 export const updateHoc = () => {
   const addLinkByElement = addLinkByElementHigh();
   return [
@@ -41,18 +52,12 @@ export const updateHoc = () => {
     ({ chart, views = [] }: { chart: Chart; views: View[] }, data: LooseObject) => {
       const sourceData = data?.source || [];
       const covertData = data?.covert || [];
-      const texts = data?.texts || [];
-      const isGroup = data?.isGroup;
       const [linkView, backgroundView] = views;
       backgroundView?.changeData(covertData);
       backgroundView?.render(true);
 
       linkView?.changeData(sourceData);
-      linkView?.on('afterrender', function (event: Event) {
-        if (event && !isGroup && sourceData.length !== 0) {
-          addLinkByElement(event.view as any, { texts });
-        }
-      });
+      bindLinkEvent(linkView, addLinkByElement, data);
 
       linkView?.render(true);
       chart.render(true);
@@ -104,11 +109,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
         color: emptyLegends ? colors[0] : '',
       },
     };
-    linkView.on('afterrender', function (event: Event) {
-      if (event && !isGroup && sourceData.length !== 0) {
-        addLinkByElement(event.view as any, { texts });
-      }
-    });
+    bindLinkEvent(linkView, addLinkByElement, options.data);
     // should add view.render() for linkView, it can trigger afterrender event.
     if (isGroup) {
       linkView.interaction('element-highlight-by-color');

@@ -82,7 +82,7 @@ const useChart = (options: UseChartProps) => {
   const updateChart = useCallback(() => {
     const chart = chartRef.current;
     const update = updateRef.current;
-    update && chart && update({ chart, views: viewRef.current }, data as any);
+    update && chart && update({ chart, views: viewRef.current }, data as Datum[]);
   }, [data]);
 
   useEffect(() => {
