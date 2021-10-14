@@ -46,12 +46,14 @@ export const updateHoc = () => {
       const [linkView, backgroundView] = views;
       backgroundView?.changeData(covertData);
       backgroundView?.render(true);
+
       linkView?.changeData(sourceData);
-      linkView.on('afterrender', function (event: Event) {
+      linkView?.on('afterrender', function (event: Event) {
         if (event && !isGroup && sourceData.length !== 0) {
           addLinkByElement(event.view as any, { texts });
         }
       });
+
       linkView?.render(true);
       chart.render(true);
     },

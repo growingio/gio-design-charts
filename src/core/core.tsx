@@ -124,7 +124,6 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
-        console.log(chartOptions);
         if (chartOptions.chart) {
           handleLegend([chartOptions.chart, ...chartOptions.views], newLegends, config);
         }

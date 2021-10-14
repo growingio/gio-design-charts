@@ -32,7 +32,6 @@ const useChart = (options: UseChartProps) => {
     interceptors,
     defaultOptions,
   } = options;
-  //   const { charts, getTriggerAction, interceptors } = useInterceptors();
 
   const chartRef = useRef<Chart>();
   const viewRef = useRef<View[]>();
@@ -41,7 +40,7 @@ const useChart = (options: UseChartProps) => {
 
   const createChart = useCallback(() => {
     // If the config is empty or there is no special config, return null;
-    if (isEmpty(config) || !config?.chart) {
+    if (isEmpty(config) || !config?.chart || !config?.[config?.type]) {
       return;
     }
     const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
@@ -87,15 +86,12 @@ const useChart = (options: UseChartProps) => {
   }, [data]);
 
   useEffect(() => {
-    console.log('------');
     if (chartRef.current) {
       updateChart();
     } else {
       createChart();
     }
   }, [createChart, updateChart]);
-
-  console.log(config);
 
   const chartOptions = useMemo(
     () => ({
