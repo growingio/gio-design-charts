@@ -1,7 +1,7 @@
 import { Chart, View } from '@antv/g2';
 import { ShapeAttrs } from '@antv/g-base';
 import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
-import { handleLegendBehavior, renderChart } from '../core/framework';
+import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
 import { lineShape } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { getAreaShapeState } from '../utils/tools/shapeState';
@@ -52,7 +52,7 @@ export const areaChart = (options: ChartOptions, config: ChartConfig) => {
     chart.interaction('element-highlight-by-color');
     chart.render();
   } catch (err) {}
-  return { chart };
+  return { chart, update: updateChart };
 };
 
 export const handleLegend = <AreaConfig>(charts: (Chart | View)[], legends: Legends, config: AreaConfig) => {

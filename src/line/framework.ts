@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
-import { handleLegendBehavior, renderChart } from '../core/framework';
+import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { LooseObject } from '@antv/g-base';
 
@@ -44,7 +44,7 @@ export const lineChart = (options: ChartOptions, config: ChartConfig = {}) => {
     lineShape(chart, options, lineConfig);
     chart.render();
   } catch (err) {}
-  return { chart };
+  return { chart, update: updateChart };
 };
 
 export const handleLegend = <LineConfig>(charts: (Chart | View)[], legends: Legends, config: LineConfig) => {

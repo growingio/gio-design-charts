@@ -43,6 +43,8 @@ const config = {
     offset: 5,
     // shared: true,
   },
+
+  scale: ['value', { nice: true }],
 };
 
 const labelConfig = [
@@ -197,7 +199,6 @@ const barWithGroupArgs = {
       autoFit: true,
       height: 300,
     },
-    scale: ['value', { max: 70, min: 0 }],
     axises: [
       [
         'value',
@@ -259,7 +260,6 @@ const StackingDiagramBarArgs = {
         },
       ],
     ],
-    scale: ['value', { max: 200, min: 0 }],
     bar: {
       position,
       color: 'company',
@@ -284,7 +284,6 @@ const PercentBarArgs = {
       autoFit: true,
       height: 300,
     },
-    scale: ['value', { max: 100, min: 0 }],
     axises: [
       [
         'value',

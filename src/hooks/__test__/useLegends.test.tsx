@@ -35,7 +35,7 @@ describe('test useLegends', () => {
     const { result } = renderHook(() => useLegends());
 
     act(() => {
-      result.current.setLegends(fullLegends as Legends);
+      result.current.setLegends(fullLegends as Legends, false);
     });
     expect(result.current.legends).toEqual(fullLegends);
 
@@ -46,7 +46,7 @@ describe('test useLegends', () => {
 
     // if the legends is empty object {}
     act(() => {
-      result.current.setLegends({});
+      result.current.setLegends({}, false);
     });
     act(() => {
       result.current.updateLegends('南京');
@@ -59,7 +59,7 @@ describe('test useLegends', () => {
 
     // if the legends is undefined
     act(() => {
-      result.current.setLegends(undefined as any);
+      result.current.setLegends(undefined as any, false);
     });
     act(() => {
       result.current.updateLegends('南京');

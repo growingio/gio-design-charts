@@ -1,8 +1,7 @@
 import { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
-import { Chart, Event, View } from '@antv/g2';
+import { Chart, Event } from '@antv/g2';
 
 const useInterceptors = () => {
-  const chartRef: MutableRefObject<(Chart | View)[] | undefined> = useRef();
   const triggerActionRef: MutableRefObject<string | undefined> = useRef();
   const getTriggerAction = useCallback(() => triggerActionRef.current, [triggerActionRef]);
 
@@ -10,10 +9,6 @@ const useInterceptors = () => {
 
   const interceptors = useMemo(() => {
     return {
-      onRender(chart: Chart, views: View[] = []) {
-        chartRef.current = [chart, ...views];
-        updated(new Date().getTime());
-      },
       bindElementEvents(chart: Chart) {
         chart.on('element:click', () => {
           triggerActionRef.current = 'click';
@@ -34,7 +29,7 @@ const useInterceptors = () => {
       },
     };
   }, []);
-  return { getTriggerAction, interceptors, charts: chartRef.current };
+  return { getTriggerAction, interceptors };
 };
 
 export default useInterceptors;

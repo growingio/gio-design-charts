@@ -2,7 +2,7 @@ import React, { RefObject } from 'react';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 
 import { PercentArea } from '../../area/demos/Area.stories';
-import { Area } from '../..';
+import { Area } from '../../area';
 import { AreaProps } from '../../area/Area';
 
 export const chartComponentTestid = 'chart-component';

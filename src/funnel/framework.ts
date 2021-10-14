@@ -7,6 +7,7 @@ import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } fr
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { viewTheme } from '../theme/chart';
+import { LooseObject } from '@antv/g-base';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { legends, defaultStyles } = options;
@@ -33,6 +34,37 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
   );
 };
 
+const bindLinkEvent = (linkView: View, addLinkByElement: any, data?: LooseObject) => {
+  const sourceData = data?.source || [];
+  const texts = data?.texts || [];
+  const isGroup = data?.isGroup;
+  linkView?.on('afterrender', function (event: Event) {
+    if (event && !isGroup && sourceData.length !== 0) {
+      addLinkByElement(event.view as any, { texts });
+    }
+  });
+};
+
+export const updateHoc = () => {
+  const addLinkByElement = addLinkByElementHigh();
+  return [
+    addLinkByElement,
+    ({ chart, views = [] }: { chart: Chart; views: View[] }, data: LooseObject) => {
+      const sourceData = data?.source || [];
+      const covertData = data?.covert || [];
+      const [linkView, backgroundView] = views;
+      backgroundView?.changeData(covertData);
+      backgroundView?.render(true);
+
+      linkView?.changeData(sourceData);
+      bindLinkEvent(linkView, addLinkByElement, data);
+
+      linkView?.render(true);
+      chart.render(true);
+    },
+  ];
+};
+
 export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => {
   const { id } = options;
   if (!id || isEmpty(options.data)) {
@@ -40,6 +72,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
   }
   const { interceptors, legends } = options;
   const chart = generateChart(options, config);
+  const [addLinkByElement, updateFunnel] = updateHoc();
   try {
     const sourceData = options.data?.source || [];
     const covertData = options.data?.covert || [];
@@ -68,8 +101,6 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
     backgroundView.interaction('element-active');
     backgroundView.render();
 
-    const addLinkByElement = addLinkByElementHigh();
-
     const linkView = chart.createView();
     const linkOptions = {
       ...options,
@@ -78,11 +109,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
         color: emptyLegends ? colors[0] : '',
       },
     };
-    linkView.on('afterrender', function (event: Event) {
-      if (event && !isGroup && sourceData.length !== 0) {
-        addLinkByElement(event.view, { texts });
-      }
-    });
+    bindLinkEvent(linkView, addLinkByElement, options.data);
     // should add view.render() for linkView, it can trigger afterrender event.
     if (isGroup) {
       linkView.interaction('element-highlight-by-color');
@@ -96,9 +123,9 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
     chart.legend(false);
     chart.render();
     interceptors?.bindElementEvents(chart);
-    return { chart, views: [linkView, backgroundView] };
+    return { chart, views: [linkView, backgroundView], update: updateFunnel };
   } catch (err) {
-    return { chart };
+    return { chart, update: updateFunnel };
   }
 };
 

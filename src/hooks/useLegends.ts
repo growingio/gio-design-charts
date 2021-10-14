@@ -40,6 +40,7 @@ export const getLegends = (type: ChartType, legendProps: Array<string | Legend>)
 
 const useLegends = () => {
   const [legends, setLegends] = useState({} as Legends);
+  const [hasDashed, sethasDashed] = useState(false);
   const updateLegends = useCallback(
     (label: string) => {
       const newLegends = {
@@ -51,7 +52,11 @@ const useLegends = () => {
     },
     [legends]
   );
-  return { legends, setLegends, updateLegends };
+  const setLegendAndDashed = useCallback((genLegends: Legends, has: boolean) => {
+    setLegends(genLegends);
+    sethasDashed(has);
+  }, []);
+  return { legends, hasDashed, setLegends: setLegendAndDashed, updateLegends };
 };
 
 export default useLegends;
