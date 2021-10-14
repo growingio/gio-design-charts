@@ -1,5 +1,5 @@
 import { LooseObject, ShapeAttrs } from '@antv/g-base';
-import { Element, Scale } from '@antv/g2';
+import { Chart, Element, Scale, View } from '@antv/g2';
 import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
 
@@ -53,6 +53,8 @@ export interface ChartOptions extends LooseObject {
   data?: LooseObject;
   legends?: Legends;
   hasDashed?: boolean;
+  chart?: Chart;
+  views?: View[];
   /**
    * set default styles for line or interval
    */

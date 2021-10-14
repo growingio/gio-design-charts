@@ -1,7 +1,7 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
-import { handleLegendBehavior, renderChart } from '../core/framework';
+import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
 import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
@@ -123,7 +123,7 @@ export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => 
     chart.interaction('element-active');
     chart.render();
   } catch (err) {}
-  return { chart };
+  return { chart, update: updateChart };
 };
 
 export const handleLegend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {

@@ -99,13 +99,20 @@ export const fetchChartConfig = (chart: Chart, options: ChartOptions, config: Ch
   return fetchConfig(chart, options, config) as Chart;
 };
 
-export const fetchViewConfig = (chart: View, options: ChartConfig, config: ChartConfig) => {
+export const fetchViewConfig = (chart: View, options: ChartOptions, config: ChartConfig) => {
   return fetchConfig(chart, options, config) as View;
 };
 
 export const renderChart = (options: ChartOptions, config: ChartConfig) => {
   const chart = generateChart(options, config);
   return fetchChartConfig(chart, options, config);
+};
+
+export const updateChart = ({ chart }: { chart: Chart }, data: Datum[]) => {
+  if (chart && data) {
+    chart.changeData(data);
+    chart.render(true);
+  }
 };
 
 export const handleLegendBehavior = (chart: Chart | View, legends: Legends, color: string) => {

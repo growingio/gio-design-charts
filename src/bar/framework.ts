@@ -3,35 +3,45 @@ import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { handleInterval } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
+import { Datum } from '@antv/g2/lib/interface';
+
+export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
+  const linkView = views?.[0];
+  linkView?.changeData(data);
+  linkView?.render(true);
+
+  chart.render(true);
+  chart.forceFit();
+};
 
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
   const { id } = options;
   if (!id) {
     return {};
   }
-  const { reporter } = options;
   const chart = generateChart(options, config);
   try {
-    const linkView = chart.createView();
+    const linkView = chart.createView({
+      region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+    });
 
     linkView.on('afterrender', function (event: Event) {
       const geometries = event.view.geometries[0];
       if (geometries && geometries.elements) {
-        reporter({ scale: geometries.getXScale(), elements: geometries.elements });
+        // reporter({ scale: geometries.getXScale(), elements: geometries.elements });
       }
     });
     fetchViewConfig(linkView, options, config);
     handleInterval(linkView, options, config, 'bar');
     linkView.coordinate().transpose();
-    linkView.render();
 
     fetchTooltip(chart, config);
-    chart.coordinate({ type: 'rect' }).transpose().reflect('x');
+    chart.coordinate().transpose();
     chart.legend(false);
     chart.render();
-    return { chart, views: [linkView] };
+    return { chart, views: [linkView], update: updateChart };
   } catch (err) {
-    return { chart };
+    return { chart, update: updateChart };
   }
 };
 

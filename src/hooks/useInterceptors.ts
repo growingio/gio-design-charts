@@ -10,10 +10,10 @@ const useInterceptors = () => {
 
   const interceptors = useMemo(() => {
     return {
-      onRender(chart: Chart, views: View[] = []) {
-        chartRef.current = [chart, ...views];
-        updated(new Date().getTime());
-      },
+      // onRender(chart: Chart, views: View[] = []) {
+      //   chartRef.current = [chart, ...views];
+      //   updated(new Date().getTime());
+      // },
       bindElementEvents(chart: Chart) {
         chart.on('element:click', () => {
           triggerActionRef.current = 'click';
@@ -34,7 +34,7 @@ const useInterceptors = () => {
       },
     };
   }, []);
-  return { getTriggerAction, interceptors, charts: chartRef.current };
+  return { getTriggerAction, interceptors };
 };
 
 export default useInterceptors;
