@@ -1,5 +1,4 @@
-import { throttle } from 'lodash';
-import { useCallback, useEffect, RefObject, useRef, MutableRefObject, useMemo } from 'react';
+import { useCallback, useEffect, RefObject, useRef, MutableRefObject } from 'react';
 
 export interface Offset {
   width: number;

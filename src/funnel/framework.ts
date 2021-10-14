@@ -76,7 +76,6 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
   try {
     const sourceData = options.data?.source || [];
     const covertData = options.data?.covert || [];
-    const texts = options.data?.texts || [];
     const isGroup = options.data?.isGroup;
 
     const emptyLegends = isEmpty(legends);
