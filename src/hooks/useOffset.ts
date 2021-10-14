@@ -1,5 +1,4 @@
-import { throttle } from 'lodash';
-import { useCallback, useEffect, RefObject, useRef, MutableRefObject, useMemo } from 'react';
+import { useCallback, useEffect, RefObject, useRef, MutableRefObject } from 'react';
 
 export interface Offset {
   width: number;
@@ -19,20 +18,16 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
     }
   }, [rootRef, watchReset, offsetRef]);
 
-  const reset = useMemo(() => {
-    return throttle(onResize, 200);
-  }, [onResize]);
-
   // Listener resize
   useEffect(() => {
     const offset = offsetRef.current;
     if (!offset?.width) {
-      reset();
+      onResize();
     }
     window.onresize = () => {
-      reset();
+      onResize();
     };
-  }, [reset]);
+  }, [onResize]);
   return offsetRef.current || ({} as Offset);
 };
 

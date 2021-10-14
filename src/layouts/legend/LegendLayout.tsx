@@ -1,28 +1,29 @@
 import { Chart, View } from '@antv/g2';
-import React, { LegacyRef, useMemo } from 'react';
+import React, { LegacyRef, useCallback } from 'react';
 import Legends from '../../legends';
 import useOffset, { Offset } from '../../hooks/useOffset';
 import core, { LayoutProps } from '../../core/core';
-import debounce from 'lodash/debounce';
 
 const LegendLayout = React.memo((props: LayoutProps) => {
   const layoutRef: LegacyRef<HTMLDivElement> = React.createRef();
-  const { options, config = {}, onClickLegend, width, charts } = props;
-  const { legends } = options;
-  const watchReset = useMemo(() => {
-    return debounce((resetOffset: Offset) => {
-      charts &&
-        charts.forEach((view: Chart | View) => {
-          if (view instanceof Chart && width) {
-            const widthObj = Number(width) > resetOffset.width + 200 ? width : 0;
-            if (widthObj && config?.chart?.height) {
-              view.changeSize(widthObj, config.chart.height);
-              view.render(true);
-            }
-          }
-        });
-    }, 600);
-  }, [charts, config, width]);
+  const { options, config = {}, onClickLegend, width } = props;
+  const { legends, chart } = options;
+  const watchReset = useCallback(
+    (resetOffset: Offset) => {
+      const autoFit = config?.chart?.autoFit;
+      // we needn't support scroll-x for autoFit chart.
+      if (autoFit) {
+        return;
+      }
+      const divWidth = resetOffset.width;
+      const useWidth = Number(width) > divWidth + 100 ? Number(width) : divWidth;
+      if (config?.chart?.height) {
+        chart?.changeSize(useWidth, config.chart.height);
+        chart?.render(true);
+      }
+    },
+    [chart, config, width]
+  );
 
   const offset = useOffset(layoutRef, watchReset);
   return (
