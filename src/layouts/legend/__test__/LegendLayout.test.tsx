@@ -19,9 +19,16 @@ describe('LegendLayout', () => {
   test('render', () => {
     const { legends, config, data } = AreaStack.args as ChartProps;
     config.type = 'area';
+    const newConfig = {
+      ...config,
+      chart: {
+        ...(config.chart || {}),
+        autoFit: false,
+      },
+    };
     render(
       <LegendLayout
-        config={config}
+        config={newConfig}
         data={data}
         legendList={legends as any}
         callChart={areaChart}

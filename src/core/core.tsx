@@ -14,7 +14,6 @@ export interface LayoutProps {
   config?: ChartConfig;
   children: JSX.Element | JSX.Element[];
   width?: number;
-  charts?: (Chart | View)[];
   onClickLegend?: (label: string) => void;
 }
 
