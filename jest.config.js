@@ -20,7 +20,7 @@ module.exports = {
   // "node_modules/?!(<ESM module here>|<another here>|<etc...>)"
   // transformIgnorePatterns: ['node_modules/?!(@gio-design\/icon)', '!(@gio-design/icon)'],
   transformIgnorePatterns: ['node_modules/@storybook/(?!(addon-docs)/)'],
-  setupFiles: ['./__mocks__/canvas.js'],
+  setupFiles: ['./__mocks__/canvas.js', './__mocks__/setupTests.js'],
 
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',

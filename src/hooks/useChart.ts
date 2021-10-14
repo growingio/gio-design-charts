@@ -37,30 +37,15 @@ const useChart = (options: UseChartProps) => {
   const viewRef = useRef<View[]>();
   const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[]) => void>();
   const { legends, hasDashed, setLegends, updateLegends } = useLegends();
-
   const createChart = useCallback(() => {
     // If the config is empty or there is no special config, return null;
     if (isEmpty(config) || !config?.chart || !config?.[config?.type]) {
       return;
     }
     const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
-    const {
-      chart,
-      views = [],
-      update,
-    } = callChart(
-      {
-        id: rootRef.current,
-        data,
-        // reporter: defineReporter,
-        legends: genLegends,
-        hasDashed: hasDashedLegend,
-        interceptors,
-        ...defaultOptions,
-      },
-      {
-        ...config,
-        tooltip: {
+    const tooltip = config.tooltip
+      ? {
+          ...config.tooltip,
           container: tooltipRef.current,
           customItems: (originalItems: TooltipItem[]) => {
             // it will be get error when mouseover quickly on chart before funnl chart is rendered
@@ -70,14 +55,32 @@ const useChart = (options: UseChartProps) => {
             tooltipItemRegister(originalItems);
             return originalItems;
           },
-        },
+        }
+      : false;
+
+    const {
+      chart,
+      views = [],
+      update,
+    } = callChart(
+      {
+        id: rootRef.current,
+        data,
+        legends: genLegends,
+        hasDashed: hasDashedLegend,
+        interceptors,
+        ...defaultOptions,
+      },
+      {
+        ...config,
+        ...tooltip,
       }
     );
     chartRef.current = chart;
     viewRef.current = views;
     updateRef.current = update;
     setLegends(genLegends, hasDashedLegend);
-  }, [data, legendList, config, callChart, tooltipItemRegister]);
+  }, [chartRef, viewRef, data, legendList, config, callChart, tooltipItemRegister]);
 
   const updateChart = useCallback(() => {
     const chart = chartRef.current;
@@ -91,7 +94,7 @@ const useChart = (options: UseChartProps) => {
     } else {
       createChart();
     }
-  }, [createChart, updateChart]);
+  }, [chartRef, createChart, updateChart]);
 
   const chartOptions = useMemo(
     () => ({
@@ -101,7 +104,7 @@ const useChart = (options: UseChartProps) => {
       legends,
       hasDashed,
     }),
-    [defaultOptions, chartRef.current, viewRef.current, legends, hasDashed]
+    [chartRef, viewRef, defaultOptions, legends, hasDashed]
   );
 
   return { updateLegends, chartOptions };

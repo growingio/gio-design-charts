@@ -1,11 +1,10 @@
-import { Chart, View } from '@antv/g2';
-import React, { LegacyRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import Legends from '../../legends';
 import useOffset, { Offset } from '../../hooks/useOffset';
 import core, { LayoutProps } from '../../core/core';
 
-const LegendLayout = React.memo((props: LayoutProps) => {
-  const layoutRef: LegacyRef<HTMLDivElement> = React.createRef();
+const LegendLayout = (props: LayoutProps) => {
+  const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
   const { legends, chart } = options;
   const watchReset = useCallback(
@@ -13,6 +12,7 @@ const LegendLayout = React.memo((props: LayoutProps) => {
       const autoFit = config?.chart?.autoFit;
       // we needn't support scroll-x for autoFit chart.
       if (autoFit) {
+        chart?.forceFit();
         return;
       }
       const divWidth = resetOffset.width;
@@ -32,6 +32,6 @@ const LegendLayout = React.memo((props: LayoutProps) => {
       {props.children}
     </div>
   );
-});
+};
 
 export default core(LegendLayout);
