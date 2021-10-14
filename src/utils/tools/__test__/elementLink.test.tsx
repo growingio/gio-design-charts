@@ -1,14 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ChartProps } from '../../../interfaces';
+import { ChartProps, ChartType } from '../../../interfaces';
 import { ChartCom, chartComponentTestid } from '../../../core/__test__/framework.test';
 
 import { FunnelWith6Columns } from '../../../funnel/demos/Funnel.stories';
 import { getSingleData } from '../../../funnel/utils';
 import { getLegends } from '../../../hooks/useLegends';
-import { ChartType } from '../../..';
 import { funnelChart } from '../../../funnel/framework';
-import { addLinkByElement, addLinkByElementHigh } from '..';
+import { addLinkByElement, addLinkByElementHigh } from '../elementLink';
 import { View } from '@antv/g2';
 
 const { config, legends: legendList, data: sourceData } = FunnelWith6Columns.args as ChartProps;
