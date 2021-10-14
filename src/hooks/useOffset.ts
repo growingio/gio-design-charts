@@ -19,10 +19,6 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
     }
   }, [rootRef, watchReset, offsetRef]);
 
-  // const reset = useMemo(() => {
-  //   return throttle(onResize, 200);
-  // }, [onResize]);
-
   // Listener resize
   useEffect(() => {
     const offset = offsetRef.current;
