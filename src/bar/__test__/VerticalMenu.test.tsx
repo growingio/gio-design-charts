@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import VerticalMenu from '../VerticalMenu';
+import VerticalMenu from '../../layouts/drag/VerticalMenu';
 
 const verticalMenuTestid = 'vertical-menu';
 describe('Bar Chart', () => {

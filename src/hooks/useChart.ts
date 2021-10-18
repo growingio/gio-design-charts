@@ -57,7 +57,6 @@ const useChart = (options: UseChartProps) => {
           },
         }
       : false;
-
     const {
       chart,
       views = [],
@@ -80,7 +79,20 @@ const useChart = (options: UseChartProps) => {
     viewRef.current = views;
     updateRef.current = update;
     setLegends(genLegends, hasDashedLegend);
-  }, [chartRef, viewRef, data, legendList, config, callChart, tooltipItemRegister]);
+  }, [
+    chartRef,
+    viewRef,
+    data,
+    legendList,
+    config,
+    callChart,
+    tooltipItemRegister,
+    defaultOptions,
+    interceptors,
+    rootRef,
+    tooltipRef,
+    setLegends,
+  ]);
 
   const updateChart = useCallback(() => {
     const chart = chartRef.current;

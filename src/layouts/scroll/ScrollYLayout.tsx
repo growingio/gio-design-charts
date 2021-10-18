@@ -1,11 +1,11 @@
 import React from 'react';
+import { LooseObject } from '@antv/g-base';
 import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
 import LegendLayout from '../legend';
 import { DEAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
-import { LooseObject } from '@antv/g-base';
 
 /**
  * 主要为了实现条形图的滚动效果
@@ -16,7 +16,7 @@ import { LooseObject } from '@antv/g-base';
  * @returns
  */
 const ScrollYLayout = (props: ChartCanvasProps) => {
-  const { config, data } = props;
+  const { config, data, isDrag, heightRegister } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
   const chartHeight = calculateBarHeight(config, data as LooseObject[]);
@@ -28,7 +28,9 @@ const ScrollYLayout = (props: ChartCanvasProps) => {
       appendPadding: frameHeight < chartHeight ? [0, 60, 0, 0] : [0, 50, 0, 0],
       height: chartHeight,
     },
+    ...(isDrag ? { axis: false, axises: null, legend: false } : {}),
   };
+  heightRegister && heightRegister(chartHeight);
   return (
     <div className="gio-d-chart gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
       <LegendLayout {...props} config={newConfig} />

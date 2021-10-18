@@ -1,4 +1,4 @@
-import React, { LegacyRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
@@ -21,7 +21,8 @@ export interface ScrollXLayoutProps extends ChartCanvasProps {
  */
 const ScrollXLayout = (props: ScrollXLayoutProps) => {
   const { config, sourceData } = props;
-  const xLayoutRef: LegacyRef<HTMLDivElement> = React.createRef();
+  // const xLayoutRef: LegacyRef<HTMLDivElement> = React.createRef();
+  const xLayoutRef = useRef<HTMLDivElement | null>(null);
 
   const [resetConfig, setResetConfig] = useState<ChartConfig>(config);
   const [width, setWidth] = useState<number>(0);
@@ -43,7 +44,7 @@ const ScrollXLayout = (props: ScrollXLayoutProps) => {
       setWidth(calculateWidth);
       setResetConfig(newConfig);
     }
-  }, [config, width]);
+  }, [config, width, sourceData]);
   return (
     <div className="gio-d-chart gio-scroll-x-layout" data-testid="scroll-x-layout" ref={xLayoutRef}>
       <LegendLayout {...props} config={resetConfig} width={width} />

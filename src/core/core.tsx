@@ -26,6 +26,8 @@ export interface ChartCanvasProps {
   defaultOptions?: ChartOptions;
   data: LooseObject | LooseObject[];
   width?: number;
+  isDrag?: boolean;
+  heightRegister?: any;
 }
 
 // In core, we only force on render chart and provide basic chart options

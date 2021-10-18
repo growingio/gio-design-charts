@@ -1,4 +1,4 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, Event, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { handleInterval } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
@@ -15,7 +15,7 @@ export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[
 };
 
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id } = options;
+  const { id, report } = options;
   if (!id) {
     return {};
   }
@@ -28,6 +28,13 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
     fetchViewConfig(linkView, options, config);
     handleInterval(linkView, options, config, 'bar');
     linkView.coordinate().transpose();
+    linkView.on('afterrender', function (event: Event) {
+      const geometries = event.view.geometries[0];
+      if (geometries && geometries.elements) {
+        report?.({ scale: geometries.getXScale(), elements: geometries.elements });
+      }
+    });
+    linkView.render();
 
     fetchTooltip(chart, config);
     chart.coordinate().transpose();

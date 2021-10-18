@@ -83,6 +83,8 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
   const axis = config.axis;
   if (axis) {
     chart.axis.apply(chart, axis);
+  } else if (axis === false) {
+    chart.axis(false);
   }
   // Support multi axis config
   const axises = config.axises;
