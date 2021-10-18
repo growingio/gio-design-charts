@@ -42,8 +42,9 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
     chart.render();
     return { chart, views: [linkView], update: updateChart };
   } catch (err) {
-    return { chart, update: updateChart };
+    // show error
   }
+  return { chart, update: updateChart };
 };
 
 export const handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {

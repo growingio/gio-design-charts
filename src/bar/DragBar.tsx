@@ -3,11 +3,11 @@ import { barChart, handleLegend } from './framework';
 
 import { ChartType, BarConfig } from '../interfaces';
 import { fetchChart } from '../boundary';
-import { BarProps } from './Bar';
+import { DragBarProps } from './Bar';
 import { DragLayout } from '../layouts';
 
-const DragBar: React.FC<BarProps> = (props: BarProps) => {
-  const { data, legends: legendProps = [], config = {} as BarConfig } = props;
+const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
+  const { data, legends: legendProps = [], config = {} as BarConfig, title, total } = props;
 
   config.type = ChartType.BAR;
 
@@ -22,8 +22,16 @@ const DragBar: React.FC<BarProps> = (props: BarProps) => {
   };
 
   return (
-    <DragLayout data={data} legendList={legendProps} config={config} callChart={barChart} handleLegend={handleLegend} />
+    <DragLayout
+      data={data}
+      legendList={legendProps}
+      config={config}
+      callChart={barChart}
+      handleLegend={handleLegend}
+      title={title}
+      total={total}
+    />
   );
 };
 
-export default fetchChart<BarProps>(DragBar);
+export default fetchChart<DragBarProps>(DragBar);

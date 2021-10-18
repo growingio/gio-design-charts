@@ -25,7 +25,7 @@ describe('test formatNumber', () => {
   });
 
   test('formatNumber with finite value', () => {
-    expect(formatNumber(Infinity)).toEqual('Infinity');
+    expect(formatNumber(Infinity)).toEqual(Infinity);
   });
 
   test('formatNumber with percent', () => {

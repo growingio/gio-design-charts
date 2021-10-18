@@ -2,7 +2,7 @@
 // 12155123.12 ==> 12,155,123.12
 export const formatNumber = (value: number | string, decimalCount = 2, intSuffixZeroFill = false) => {
   if (!isFinite(value as number)) {
-    return value + '';
+    return value || '';
   }
 
   let sign = '';

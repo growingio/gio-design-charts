@@ -9,6 +9,13 @@ export interface BarProps extends ChartProps {
   config: BarConfig;
 }
 
+export interface DragBarProps extends BarProps {
+  // 在多维度拆分的拖拽条形图，需要设置总的title
+  title?: string;
+  // 在多维度拆分的拖拽条形图，需要设置总的counter
+  total?: number;
+}
+
 const Bar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig } = props;
 
