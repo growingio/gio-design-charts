@@ -12,7 +12,6 @@ const VerticalContent = React.memo((props: VerticalContentProps) => {
   const { sizeAcceptor, title, total } = props;
   const [height, setHeight] = useState(100);
   const [width, setWidth] = useState(120);
-  console.log(title, total);
 
   useEffect(() => {
     sizeAcceptor(({ height: chartHeight, width: contentWidth }: { height: number; width: number }) => {
@@ -20,8 +19,9 @@ const VerticalContent = React.memo((props: VerticalContentProps) => {
       contentWidth && setWidth(contentWidth);
     });
   }, [sizeAcceptor]);
+  console.log(height);
   return (
-    <div data-testid="vertical-content" className="vertical-content" style={{ height, width: width - 30 }}>
+    <div data-testid="vertical-content" className="vertical-content" style={{ height: height - 42, width: width - 30 }}>
       <div className="vertical-content-title">{title}</div>
       <div className="vertical-content-total">{formatNumber(Number(total)) || ''}</div>
     </div>
