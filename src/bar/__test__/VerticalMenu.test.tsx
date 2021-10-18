@@ -8,7 +8,7 @@ const getTunnel = () => {
   const { result: scaleRes } = renderHook(() => useTunnel());
   const { result: heightRes } = renderHook(() => useTunnel());
   const [scaleReg, scaleApt] = scaleRes.current;
-  const [heightReg, heightApt] = scaleRes.current;
+  const [heightReg, heightApt] = heightRes.current;
   return [scaleReg, scaleApt, heightReg, heightApt];
 };
 
