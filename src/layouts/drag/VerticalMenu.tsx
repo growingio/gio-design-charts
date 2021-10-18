@@ -1,14 +1,14 @@
 import { LooseObject } from '@antv/g-base';
 import { Scale } from '@antv/scale';
 import React, { useEffect, useState } from 'react';
-import '../../bar/styles/bar.less';
+import './style/drag.less';
 
 export interface VerticalMenuProps {
   height?: number;
   width?: number;
   scale?: LooseObject;
   acceptor: any;
-  heightAcceptor: any;
+  sizeAcceptor: any;
 }
 
 const getRanges = (max: number, range: number[] = [0, 0]) => {
@@ -26,7 +26,7 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
 };
 
 const VerticalMenu = React.memo((props: VerticalMenuProps) => {
-  const { acceptor, heightAcceptor } = props;
+  const { acceptor, sizeAcceptor } = props;
   const [scale, setScale] = useState<Scale>();
   const [height, setHeight] = useState(100);
   const { max, range } = scale || ({} as any);
@@ -40,15 +40,15 @@ const VerticalMenu = React.memo((props: VerticalMenuProps) => {
   }, [acceptor]);
 
   useEffect(() => {
-    heightAcceptor((chartHeight: number) => {
+    sizeAcceptor(({ height: chartHeight }: { height: number }) => {
       chartHeight && setHeight(chartHeight);
     });
-  }, [heightAcceptor]);
+  }, [sizeAcceptor]);
   return (
     <div data-testid="vertical-menu" style={{ height, width: '100%', position: 'absolute' }}>
       {ticks?.map((tick: string, index: number) => {
         return (
-          <div className="gio-d-chart-verticalmenu_item" key={tick} style={{ top: ranges[index] * height - 9 }}>
+          <div className="vertical-menu-item" key={tick} style={{ top: ranges[index] * height - 9 }}>
             {tick}
           </div>
         );

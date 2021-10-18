@@ -16,11 +16,11 @@ const verticalMenuTestid = 'vertical-menu';
 describe('Bar Chart', () => {
   test('render Chart', async () => {
     const [scaleReg, scaleApt, heightReg, heightApt] = getTunnel();
-    render(<VerticalMenu acceptor={scaleApt} heightAcceptor={heightApt} />);
+    render(<VerticalMenu acceptor={scaleApt} sizeAcceptor={heightApt} />);
     expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
     act(() => {
       scaleReg({});
-      heightReg(200);
+      heightReg({ heihgt: 200, width: 200 });
     });
   });
 });
