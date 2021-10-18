@@ -1,53 +1,26 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import VerticalMenu from '../VerticalMenu';
+import VerticalMenu from '../../layouts/drag/VerticalMenu';
+import { act, renderHook } from '@testing-library/react-hooks';
+import useTunnel from '../../hooks/useTunnel';
+
+const getTunnel = () => {
+  const { result: scaleRes } = renderHook(() => useTunnel());
+  const { result: heightRes } = renderHook(() => useTunnel());
+  const [scaleReg, scaleApt] = scaleRes.current;
+  const [heightReg, heightApt] = heightRes.current;
+  return [scaleReg, scaleApt, heightReg, heightApt];
+};
 
 const verticalMenuTestid = 'vertical-menu';
 describe('Bar Chart', () => {
   test('render Chart', async () => {
-    render(
-      <VerticalMenu
-        height={200}
-        width={200}
-        scale={{
-          max: 100,
-          range: [0.1, 0.4, 0.7],
-          ticks: ['test1', 'test2', 'test3'],
-        }}
-      />
-    );
+    const [scaleReg, scaleApt, heightReg, heightApt] = getTunnel();
+    render(<VerticalMenu acceptor={scaleApt} heightAcceptor={heightApt} />);
     expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
-  });
-
-  test('test VerticalMenu with error', async () => {
-    render(
-      <VerticalMenu
-        height={200}
-        width={200}
-        scale={{
-          max: -10,
-          range: [0.1],
-        }}
-      />
-    );
-    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
-  });
-
-  test('test VerticalMenu without range', async () => {
-    render(
-      <VerticalMenu
-        height={200}
-        width={200}
-        scale={{
-          max: -10,
-        }}
-      />
-    );
-    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
-  });
-
-  test('test VerticalMenu without scale', async () => {
-    render(<VerticalMenu height={200} width={200} />);
-    expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
+    act(() => {
+      scaleReg({});
+      heightReg(200);
+    });
   });
 });
