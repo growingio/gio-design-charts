@@ -19,7 +19,13 @@ describe('VerticalMenu', () => {
     render(<VerticalMenu acceptor={scaleApt} sizeAcceptor={heightApt} />);
     expect(await screen.findByTestId(verticalMenuTestid)).toBeTruthy();
     act(() => {
-      scaleReg({});
+      scaleReg({
+        scale: {
+          max: 2,
+          range: [0.1, 0.9],
+          ticks: ['Test1', 'Test2'],
+        },
+      });
       heightReg({ heihgt: 200, width: 200 });
     });
   });

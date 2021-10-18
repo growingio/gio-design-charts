@@ -35,13 +35,7 @@ const DragLayout = (props: DragLayoutProps) => {
           defaultSize={{ width: 120, height: 'auto' }}
           maxWidth="100%"
           minWidth="80px"
-          onResize={(
-            event: MouseEvent | TouchEvent,
-            direction: Direction,
-            elementRef: HTMLElement,
-            delta: NumberSize
-          ) => {
-            console.log(event, direction, elementRef.offsetWidth, delta);
+          onResize={(event: MouseEvent | TouchEvent, direction: Direction, elementRef: HTMLElement) => {
             sizeRegister({ width: elementRef.offsetWidth });
           }}
         >
