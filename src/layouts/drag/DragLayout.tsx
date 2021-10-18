@@ -20,13 +20,7 @@ const DragLayout = (props: ChartCanvasProps) => {
   const [heightRegister, heightAcceptor] = useTunnel();
   return (
     <div className="gio-d-charts gio-scroll-y-layout" data-testid="scroll-y-layout">
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          overflow: 'hidden',
-        }}
-      >
+      <div className="drag-layout">
         <Resizable
           className="drag-layout-resize"
           defaultSize={{ width: 60, height: 'auto' }}
@@ -35,7 +29,7 @@ const DragLayout = (props: ChartCanvasProps) => {
         >
           <VerticalMenu acceptor={acceptor} heightAcceptor={heightAcceptor} />
         </Resizable>
-        <div style={{ width: '100%', minWidth: '1px' }}>
+        <div className="drag-layout-content">
           <ScrollYLayout
             {...props}
             isDrag={true}
