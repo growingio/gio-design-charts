@@ -6,6 +6,7 @@ import { isEmpty } from '@antv/util';
 
 import { ChartConfig, Legend } from '../interfaces';
 import useLegends, { getLegends } from './useLegends';
+import { inValidConfig } from '../utils/chart';
 
 export interface UseChartProps {
   rootRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -39,7 +40,7 @@ const useChart = (options: UseChartProps) => {
   const { legends, hasDashed, setLegends, updateLegends } = useLegends();
   const createChart = useCallback(() => {
     // If the config is empty or there is no special config, return null;
-    if (isEmpty(config) || !config?.chart || !config?.[config?.type]) {
+    if (inValidConfig(config)) {
       return;
     }
     const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
