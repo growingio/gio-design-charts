@@ -5,6 +5,8 @@ import DragBar from '../../../bar/DragBar';
 import Card from '../../../demos/card';
 import { ScrollGroupContrast, ScrollPercentBar } from '../../../bar/demos/Bar.stories';
 
+import Docs from './DragLayout.mdx';
+
 export default {
   title: 'Components/Layouts/Drag',
   argTypes: {
@@ -13,7 +15,7 @@ export default {
   component: DragLayout,
   parameters: {
     docs: {
-      page: null,
+      page: Docs,
     },
   },
 };
