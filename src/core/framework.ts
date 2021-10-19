@@ -1,6 +1,6 @@
-import { Chart, registerInteraction, registerTheme, View } from '@antv/g2';
+import { Chart, registerInteraction, View } from '@antv/g2';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
-import { isEmpty } from 'lodash';
+import { cloneDeep, isEmpty, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { gioTheme } from '../theme/chart';
 
@@ -14,10 +14,8 @@ registerInteraction('element-highlight-by-color', {
   end: [{ trigger: 'element:mouseleave', action: 'element-highlight-by-color:reset' }],
 });
 
-registerTheme('gio-theme', gioTheme);
-
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id } = options;
+  const { id, theme } = options;
   const basicConfig = config.chart || {};
   // Set defualt chart config
   const chart = new Chart({
@@ -25,7 +23,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
-    theme: 'gio-theme',
+    theme: merge(cloneDeep(gioTheme), theme),
   });
   if (basicConfig.closeAnimate) {
     chart.animate(false);

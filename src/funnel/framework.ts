@@ -1,12 +1,12 @@
 import { Chart, Event, View } from '@antv/g2';
-import { isEmpty } from 'lodash';
+import { cloneDeep, isEmpty, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import { getShapeConfig } from '../utils/tools/configUtils';
-import { viewTheme } from '../theme/chart';
+import gioTheme, { viewTheme } from '../theme/chart';
 import { LooseObject } from '@antv/g-base';
 
 const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
@@ -82,7 +82,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
 
     // Use viewTheme to set the label of axis is white
     const backgroundView = chart.createView({
-      theme: viewTheme,
+      theme: merge(cloneDeep(gioTheme), viewTheme),
     });
     const backgroundOptions = {
       ...options,

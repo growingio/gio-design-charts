@@ -55,6 +55,7 @@ export interface ChartOptions extends LooseObject {
   hasDashed?: boolean;
   chart?: Chart;
   views?: View[];
+  theme?: LooseObject;
   /**
    * set default styles for line or interval
    */
