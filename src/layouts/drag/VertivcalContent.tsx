@@ -19,7 +19,6 @@ const VerticalContent = React.memo((props: VerticalContentProps) => {
       contentWidth && setWidth(contentWidth);
     });
   }, [sizeAcceptor]);
-  console.log(height);
   return (
     <div data-testid="vertical-content" className="vertical-content" style={{ height: height - 42, width: width - 30 }}>
       <div className="vertical-content-title">{title}</div>

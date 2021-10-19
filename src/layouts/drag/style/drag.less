@@ -1,3 +1,4 @@
+@import url(../../../style/theme.less);
 .gio-d-charts {
   .drag-layout {
     display: flex;
@@ -24,8 +25,8 @@
       right: 9px;
       display: -webkit-box;
       overflow: hidden;
-      color: #3b467b;
-      font-size: 12px;
+      color: @default-font-color;
+      font-size: @default-font-size;
 
       text-overflow: ellipsis;
       -webkit-line-clamp: 2;
@@ -43,8 +44,8 @@
 
     &-title {
       overflow: hidden;
-      color: #313e75;
-      font-size: 14px;
+      color: @default-font-color;
+      font-size: @default-font-size;
       line-height: 22px;
       white-space: nowrap;
       text-align: right;

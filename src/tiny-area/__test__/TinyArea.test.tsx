@@ -1,10 +1,8 @@
 import React from 'react';
 import { act, render } from '@testing-library/react';
 import TinyArea from '../TinyArea';
-import { Usage } from '../demos/TinyArea.stories';
 
 describe('TinyArea Chart', () => {
-  const baldTestId = 'bald-layout';
   test('render Chart', () => {
     render(
       <TinyArea
