@@ -2,11 +2,12 @@ import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { LooseObject } from '@antv/g-base';
 import { Chart, View } from '@antv/g2';
 import { Datum, TooltipItem } from '@antv/g2/lib/interface';
-import { isEmpty } from '@antv/util';
+import { isEqual } from '@antv/util';
 
 import { ChartConfig, Legend } from '../interfaces';
 import useLegends, { getLegends } from './useLegends';
 import { inValidConfig } from '../utils/chart';
+import { cloneDeep } from 'lodash';
 
 export interface UseChartProps {
   rootRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -36,12 +37,18 @@ const useChart = (options: UseChartProps) => {
 
   const chartRef = useRef<Chart>();
   const viewRef = useRef<View[]>();
+  const configRef = useRef<Partial<ChartConfig>>();
+  const dataRef = useRef<LooseObject | LooseObject[]>();
   const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[]) => void>();
   const { legends, hasDashed, setLegends, updateLegends } = useLegends();
   const createChart = useCallback(() => {
     // If the config is empty or there is no special config, return null;
     if (inValidConfig(config)) {
       return;
+    }
+    // 如果已经有了chartRef.current，需要先销毁
+    if (chartRef.current) {
+      chartRef.current?.destroy();
     }
     const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
     const tooltip = config.tooltip
@@ -69,20 +76,22 @@ const useChart = (options: UseChartProps) => {
         legends: genLegends,
         hasDashed: hasDashedLegend,
         interceptors,
-        ...defaultOptions,
+        ...(defaultOptions || {}),
       },
       {
         ...config,
         ...tooltip,
       }
     );
+    configRef.current = cloneDeep(config);
+    dataRef.current = cloneDeep(data);
     chartRef.current = chart;
     viewRef.current = views;
     updateRef.current = update;
     setLegends(genLegends, hasDashedLegend);
   }, [
-    chartRef,
-    viewRef,
+    rootRef,
+    tooltipRef,
     data,
     legendList,
     config,
@@ -90,24 +99,29 @@ const useChart = (options: UseChartProps) => {
     tooltipItemRegister,
     defaultOptions,
     interceptors,
-    rootRef,
-    tooltipRef,
     setLegends,
   ]);
 
   const updateChart = useCallback(() => {
     const chart = chartRef.current;
     const update = updateRef.current;
-    update && chart && update({ chart, views: viewRef.current }, data as Datum[]);
-  }, [data]);
+    const changedData = !isEqual(dataRef.current, data);
+    if (update && chart && changedData) {
+      update({ chart, views: viewRef.current }, data as Datum[]);
+      dataRef.current = cloneDeep(data);
+    }
+  }, []);
 
   useEffect(() => {
-    if (chartRef.current) {
-      updateChart();
-    } else {
+    const equalConfig = isEqual(configRef.current, config);
+    if (!(chartRef.current && equalConfig)) {
       createChart();
     }
-  }, [chartRef, createChart, updateChart]);
+  }, [createChart]);
+
+  if (!isEqual(dataRef.current, data)) {
+    updateChart();
+  }
 
   const chartOptions = useMemo(
     () => ({
@@ -117,7 +131,7 @@ const useChart = (options: UseChartProps) => {
       legends,
       hasDashed,
     }),
-    [chartRef, viewRef, defaultOptions, legends, hasDashed]
+    [defaultOptions, legends, hasDashed]
   );
 
   return { updateLegends, chartOptions };

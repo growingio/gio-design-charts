@@ -33,7 +33,7 @@ export interface ChartCanvasProps {
 // In core, we only force on render chart and provide basic chart options
 const core = (HighComponent: React.FC<LayoutProps>) => {
   return (props: ChartCanvasProps) => {
-    const { config, callChart, data, legendList, handleLegend, defaultOptions = {}, width } = props;
+    const { config, callChart, data, legendList, handleLegend, defaultOptions, width } = props;
     const root = useRef<HTMLDivElement | null>(null);
     const tooltipRef = useRef<HTMLDivElement | null>(null);
     const [register, acceptor] = useTunnel();
