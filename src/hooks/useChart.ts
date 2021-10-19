@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useMemo } from 'react';
+import { useCallback, useEffect, useRef, useMemo, useContext } from 'react';
 import { LooseObject } from '@antv/g-base';
 import { Chart, View } from '@antv/g2';
 import { Datum, TooltipItem } from '@antv/g2/lib/interface';
@@ -8,6 +8,7 @@ import { ChartConfig, Legend } from '../interfaces';
 import useLegends, { getLegends } from './useLegends';
 import { inValidConfig } from '../utils/chart';
 import { cloneDeep } from 'lodash';
+import { DesignContext } from '@gio-design/utils';
 
 export interface UseChartProps {
   rootRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -35,12 +36,15 @@ const useChart = (options: UseChartProps) => {
     defaultOptions,
   } = options;
 
+  const context = useContext(DesignContext);
+
   const chartRef = useRef<Chart>();
   const viewRef = useRef<View[]>();
   const configRef = useRef<Partial<ChartConfig>>();
   const dataRef = useRef<LooseObject | LooseObject[]>();
   const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[]) => void>();
   const { legends, hasDashed, setLegends, updateLegends } = useLegends();
+
   const createChart = useCallback(() => {
     // If the config is empty or there is no special config, return null;
     if (inValidConfig(config)) {
@@ -76,6 +80,7 @@ const useChart = (options: UseChartProps) => {
         legends: genLegends,
         hasDashed: hasDashedLegend,
         interceptors,
+        theme: (context as any).theme || {},
         ...(defaultOptions || {}),
       },
       {
@@ -100,6 +105,7 @@ const useChart = (options: UseChartProps) => {
     defaultOptions,
     interceptors,
     setLegends,
+    context,
   ]);
 
   const updateChart = useCallback(() => {
