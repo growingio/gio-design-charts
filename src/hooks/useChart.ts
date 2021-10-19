@@ -80,7 +80,7 @@ const useChart = (options: UseChartProps) => {
         legends: genLegends,
         hasDashed: hasDashedLegend,
         interceptors,
-        theme: (context as any).theme || {},
+        theme: context.theme || {},
         ...(defaultOptions || {}),
       },
       {

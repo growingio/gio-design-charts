@@ -43,7 +43,7 @@ const customTheme = {
 
 const Template: ComponentStory<any> = (args: any) => {
   return (
-    <DesignContext.Provider value={{ theme: customTheme } as any}>
+    <DesignContext.Provider value={{ theme: customTheme }}>
       <Column {...args} />
     </DesignContext.Provider>
   );

@@ -1816,10 +1816,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
   integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
-"@gio-design/utils@^22.0.0":
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/@gio-design/utils/-/utils-22.0.0.tgz#a14e756036abfa6562d7c49d132dd6901ae9cc8b"
-  integrity sha512-dt+o0BN3Nj+5Vj6xe2ecaaLZqt57X5GGvXHsA4e0IuT1DUFJ8fp7hXvL02vXLqilkWs+p4iTclO2Md4R1cWYHg==
+"@gio-design/utils@^22.0.2":
+  version "22.0.2"
+  resolved "https://registry.yarnpkg.com/@gio-design/utils/-/utils-22.0.2.tgz#d9a352711ebffcf1f5a010eb6257723851d68750"
+  integrity sha512-rqTbRzbkfyPbGwyHsVnIHQ1AziC9WJvIdjn6aNN9GRwumzb4TS7Y5tV9PfMHZSU7tyh8PKvbhC9qhZFTQtwgkA==
   dependencies:
     "@babel/runtime" "^7.14.8"
     date-fns "^2.25.0"
