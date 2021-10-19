@@ -13,6 +13,9 @@ export const colors = [
   '#FF7955',
 ];
 
+export const DEFAULT_FONT_SIZE = 14;
+export const DEFAULT_FONT_COLOR = '#313E75';
+
 // 图表Chart的默认高度
 export const DEAULT_CHART_HEIGHT = 300;
 export const DEFAULT_OTERH_COLOR = '#CACEDB';
@@ -21,8 +24,6 @@ export const DEFAULT_LINEDASH = [2, 5];
 export const DEFAULT_MIN_HEIGHT = 4;
 export const DEFAULT_REDIUS = [4, 4, 0, 0];
 export const DEFAULT_REDIUS_BAR = [2, 2, 2, 2];
-
-export const DEFAULT_FONT_COLOR = '#313E75';
 
 export const BAR_TEXTURE =
   'data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEA' +

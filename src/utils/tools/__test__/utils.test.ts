@@ -51,9 +51,9 @@ describe('test fromework utils', () => {
   test('call getArrowPolygon', () => {
     expect(getArrowPolygon({ x: 100, y: 100 }, 100, 100)).toEqual([
       [55, 50],
-      [135, 50],
-      [155, 100],
-      [135, 150],
+      [130, 50],
+      [150, 100],
+      [130, 150],
       [55, 150],
       [55, 50],
     ]);

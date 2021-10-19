@@ -48,9 +48,9 @@ export const getArrowPolygon = (point: { x: number; y: number }, width: number, 
   const { x, y } = point;
   return [
     [x - width * 0.45, y - height * 0.5],
-    [x + width * 0.35, y - height * 0.5],
-    [x + width * 0.55, y],
-    [x + width * 0.35, y + height * 0.5],
+    [x + width * 0.3, y - height * 0.5],
+    [x + width * 0.5, y],
+    [x + width * 0.3, y + height * 0.5],
     [x - width * 0.45, y + height * 0.5],
     [x - width * 0.45, y - height * 0.5],
   ];

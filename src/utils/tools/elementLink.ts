@@ -11,7 +11,7 @@ function addLinkShape(group: IGroup, prev: Element, next: Element) {
 
 const addTextShape = (group: IGroup, prev: Element, next: Element, text: string) => {
   if (text) {
-    const width = 60;
+    const width = 70;
     const height = 22;
     const centerPoint = getMiddleCoordinate(prev, next);
     const arrowPolygonPoints = getArrowPolygon(centerPoint, width, height);
