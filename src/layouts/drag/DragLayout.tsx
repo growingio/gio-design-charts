@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { ChartCanvasProps } from '../../core/core';
-import { NumberSize, Resizable } from 're-resizable';
+import { Resizable } from 're-resizable';
 
 import ScrollYLayout from '../scroll/ScrollYLayout';
 import useTunnel from '../../hooks/useTunnel';
