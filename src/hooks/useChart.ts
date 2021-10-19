@@ -80,7 +80,7 @@ const useChart = (options: UseChartProps) => {
       },
       {
         ...config,
-        ...tooltip,
+        tooltip,
       }
     );
     configRef.current = cloneDeep(config);
