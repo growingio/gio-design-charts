@@ -110,14 +110,14 @@ const useChart = (options: UseChartProps) => {
       update({ chart, views: viewRef.current }, data as Datum[]);
       dataRef.current = cloneDeep(data);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     const equalConfig = isEqual(configRef.current, config);
     if (!(chartRef.current && equalConfig)) {
       createChart();
     }
-  }, [createChart]);
+  }, [createChart, config]);
 
   if (!isEqual(dataRef.current, data)) {
     updateChart();
