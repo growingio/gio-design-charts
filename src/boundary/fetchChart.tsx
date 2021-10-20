@@ -27,8 +27,7 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(ChartComponent: React
       return noData ? noData() : <NoData height={height} />;
     }
     const context = useContext(DesignContext);
-    // const localeCode = context?.locale?.code || 'zh-CN';
-    const localeCode = 'en';
+    const localeCode = context?.locale?.code || 'zh-CN';
     return (
       <IntlProvider defaultLocale="zh" locale={localeCode} messages={MESSAGES[localeCode] ?? {}}>
         <ErrorBoundary errorTemplate={errorTemplate}>
