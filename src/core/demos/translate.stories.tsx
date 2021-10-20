@@ -4,12 +4,14 @@ import { DesignContext } from '@gio-design/utils';
 import { ErrorBoundary } from '../../boundary/demos/ErrorBoundary.stories';
 import { useState } from 'react';
 
+import docs from './translate.mdx';
+
 export default {
   title: 'Usage/Translate',
   component: Area,
   parameters: {
     docs: {
-      page: null,
+      page: docs,
     },
   },
 };

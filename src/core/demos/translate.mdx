@@ -1,0 +1,13 @@
+## 国际化
+
+通过在 DesignContext 中设置 locale code，来实现 Chart 的国际化
+
+```typescript
+import { DesignContext } from '@gio-design/utils';
+
+const code = 'en';
+
+<DesignContext.Provider value={{ locale: { code } }}>
+  <Column {...args} />
+</DesignContext.Provider>;
+```

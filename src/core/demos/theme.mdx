@@ -1,18 +1,18 @@
-import { ComponentStory } from '@storybook/react';
-import { Column } from '../../column';
-import { ColumnWithGroup } from '../../column/demos/Column.stories';
+## 主题设置
+
+```typescript
 import { DesignContext } from '@gio-design/utils';
 
-export default {
-  title: 'Usage/Provider',
-  component: Column,
-  parameters: {
-    docs: {
-      page: null,
-    },
-  },
-};
+<DesignContext.Provider value={{ theme: customTheme }}>
+  <Column {...args} />
+</DesignContext.Provider>;
+```
 
+## 设置主题的参数
+
+设置 Chart 的主题，详细的方案请参考：[https://sourcegraph.com/github.com/antvis/G2/-/blob/src/theme/util/create-by-style-sheet.ts](https://sourcegraph.com/github.com/antvis/G2/-/blob/src/theme/util/create-by-style-sheet.ts)
+
+```
 const customTheme = {
   // set default colors, althought we have set default color for each legend.
   // but it's still necessary to add default colors for theme
@@ -41,13 +41,7 @@ const customTheme = {
   },
 };
 
-const Template: ComponentStory<any> = (args: any) => {
-  return (
-    <DesignContext.Provider value={{ theme: customTheme }}>
-      <Column {...args} />
-    </DesignContext.Provider>
-  );
-};
 
-export const ThemeProvider = Template.bind({});
-ThemeProvider.args = ColumnWithGroup.args;
+
+
+```
