@@ -1,4 +1,4 @@
-import { DEFAULT_FONT_COLOR } from '../../../theme';
+import { DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } from '../../../theme';
 import { drawLinkPath, drawPolygon, drawText } from '../brush';
 
 describe('test fromework brush', () => {
@@ -42,7 +42,8 @@ describe('test fromework brush', () => {
         textBaseline: 'middle',
         textAlign: 'center',
         fill: DEFAULT_FONT_COLOR,
-        fontSize: 14,
+        fontFamily: DEFAULT_FONT_FAMILY,
+        fontSize: DEFAULT_FONT_SIZE,
       },
     });
   });
