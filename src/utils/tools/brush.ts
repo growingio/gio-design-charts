@@ -1,4 +1,4 @@
-import { DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE } from '../../theme';
+import { DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } from '../../theme';
 import { ShapeCfg } from '@antv/g-base/lib/types';
 
 export const drawLinkPath = (path: (string | number)[][]): ShapeCfg => {
@@ -33,6 +33,7 @@ export const drawText = (point: { x: number; y: number }, text: string): ShapeCf
       textBaseline: 'middle',
       textAlign: 'center',
       fontSize: DEFAULT_FONT_SIZE,
+      fontFamily: DEFAULT_FONT_FAMILY,
       fill: DEFAULT_FONT_COLOR,
     },
   };

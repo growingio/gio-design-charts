@@ -1,4 +1,4 @@
-import { colors, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE } from '../theme/index';
+import { colors, DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } from '../theme/index';
 
 /**
  * Throught https://theme-set.antv.vision/ to update the theme for Chart.
@@ -17,6 +17,7 @@ export const gioTheme = {
         label: {
           offset: 16,
           style: {
+            fontFamily: DEFAULT_FONT_FAMILY,
             fontSize: DEFAULT_FONT_SIZE,
             fill: DEFAULT_FONT_COLOR,
           },
@@ -52,6 +53,7 @@ export const gioTheme = {
   },
   labels: {
     style: {
+      fontFamily: DEFAULT_FONT_FAMILY,
       fill: DEFAULT_FONT_COLOR,
       fontSize: DEFAULT_FONT_SIZE,
     },
@@ -67,14 +69,12 @@ export const viewTheme = {
         label: {
           offset: 16,
           style: {
-            fontSize: DEFAULT_FONT_SIZE,
             fill: '#ffffff',
           },
         },
         line: {
           style: {
             lineWidth: 1,
-            fontSize: DEFAULT_FONT_SIZE,
             stroke: '#ffffff',
           },
         },
