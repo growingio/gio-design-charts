@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 storybook-static
+/locales
+crowdin.yml
 
 # testing
 /coverage
