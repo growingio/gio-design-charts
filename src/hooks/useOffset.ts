@@ -1,4 +1,4 @@
-import { throttle } from 'lodash';
+import { debounce } from 'lodash';
 import { useCallback, useEffect, RefObject, useRef, MutableRefObject } from 'react';
 
 export interface Offset {
@@ -17,7 +17,7 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
   );
 
   useEffect(() => {
-    const resize = throttle(onResize, 200);
+    const resize = debounce(onResize, 200);
     const observe = new ResizeObserver((entries: ResizeObserverEntry[]) => {
       const contentRect = entries?.[0]?.contentRect;
       resize({ width: contentRect?.width || 0, height: contentRect?.height });

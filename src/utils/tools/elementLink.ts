@@ -69,10 +69,10 @@ export const addLinkByElement = (view: View, group: GroupCfg[], options: LinkEle
   }
   if (delay <= 0) {
     linkByElement(view, group, texts);
-    return;
+    return 0;
   }
 
-  setTimeout(() => {
+  return setTimeout(() => {
     linkByElement(view, group, texts);
   }, delay);
 };
@@ -82,11 +82,13 @@ export const addLinkByElement = (view: View, group: GroupCfg[], options: LinkEle
 // 那么在这里的高阶函数，可以先做删除的操作
 export const addLinkByElementHigh = () => {
   let groups = [] as GroupCfg[];
+  let currentState: NodeJS.Timeout | number | undefined = 0;
   return function (view: View, options: LinkElementOptions) {
-    if (groups.length > 0) {
-      groups.forEach((group) => group.remove());
-      groups = [];
-    }
-    addLinkByElement(view, groups, options);
+    groups = groups.filter((group) => {
+      group.remove(true);
+      return !group.destroyed;
+    });
+    clearTimeout(currentState as NodeJS.Timeout);
+    currentState = addLinkByElement(view, groups, options);
   };
 };
