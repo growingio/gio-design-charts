@@ -52,6 +52,7 @@ export const gioTheme = {
     },
   },
   labels: {
+    offset: 10,
     style: {
       fontFamily: DEFAULT_FONT_FAMILY,
       fill: DEFAULT_FONT_COLOR,

@@ -16,6 +16,9 @@ export const colors = [
 export const DEFAULT_FONT_SIZE = 14;
 export const DEFAULT_FONT_COLOR = '#313E75';
 export const DEFAULT_FONT_FAMILY = 'Lato';
+export const FONT_SIZE_12 = 12;
+export const FONT_SIZE_10 = 10;
+export const FONT_SIZE_8 = 8;
 
 // 图表Chart的默认高度
 export const DEAULT_CHART_HEIGHT = 300;
