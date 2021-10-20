@@ -13,6 +13,8 @@
     "gen-version": "conventional-changelog -p angular > VERSION.md",
     "postversion": "yarn gen-version && yarn gen-changelog",
     "preversion": "git fetch --tags",
+    "extract": "formatjs extract \"src/**/*.{ts,tsx}\" --ignore \"src/{react-app-env,typings}.d.ts\" --out-file locales/gio-design-charts.json --id-interpolation-pattern \"[sha512:contenthash:base64:6]\" --format crowdin",
+    "compile": "formatjs compile locales/translations/en/gio-design-charts.json --ast --out-file src/locales/en.json --format crowdin",
     "eslint": "eslint src --ext .ts,.tsx",
     "start": "react-scripts start",
     "build": "father-build",
@@ -68,12 +70,14 @@
     "@gio-design/utils": "^22.0.2",
     "date-fns": "^2.23.0",
     "lodash": "^4.17.21",
-    "re-resizable": "^6.9.1"
+    "re-resizable": "^6.9.1",
+    "react-intl": "^5.20.13"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-runtime": "^7.15.0",
+    "@formatjs/cli": "^4.2.32",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-essentials": "^6.3.7",
     "@storybook/addon-links": "^6.3.7",
@@ -91,6 +95,7 @@
     "@types/react-dom": "^16.9.8",
     "babel-jest": "^27.1.0",
     "babel-loader": "8.1.0",
+    "babel-plugin-formatjs": "^10.3.10",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "conventional-changelog-cli": "^2.1.1",
     "css-loader": "1.0.0",

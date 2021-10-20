@@ -1,0 +1,12 @@
+'project_id': 123456
+'api_token': '75a97eb070c8e36'
+# "preserve_hierarchy": true
+# "branch": "master" // optional
+# "base_url": "https://{organization-name}.crowdin.com" // optional (for Crowdin Enterprise only)
+'files':
+  [
+    {
+      'source': 'locales/gio-design-charts.json',
+      'translation': 'locales/translations/%two_letters_code%/%original_file_name%',
+    },
+  ]
