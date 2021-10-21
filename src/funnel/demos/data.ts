@@ -39,9 +39,9 @@ export const dataWith7Columns = [
 ];
 
 export const dataWithGroup = [
-  { type: '1.商品详情页｜浏览', city: '北京', count: 21734, value: 1 },
-  { type: '1.商品详情页｜浏览', city: '上海', count: 21000, value: 1 },
-  { type: '1.商品详情页｜浏览', city: '南京', count: 19734, value: 1 },
+  { type: '1.商品详情页｜浏览', city: '北京', count: 84213342, value: 1 },
+  { type: '1.商品详情页｜浏览', city: '上海', count: 1421734, value: 1 },
+  { type: '1.商品详情页｜浏览', city: '南京', count: 421000, value: 1 },
   { type: '1.商品详情页｜浏览', city: '深圳', count: 21634, value: 1 },
   { type: '1.商品详情页｜浏览', city: '广东', count: 21700, value: 1 },
   { type: '2.加入购物车', city: '北京', count: 18734, value: 0.8619674243121377 },
@@ -54,7 +54,7 @@ export const dataWithGroup = [
   { type: '3.进入购物车', city: '南京', count: 7839, value: 0.39723320158102765 },
   { type: '3.进入购物车', city: '深圳', count: 7939, value: 0.366968660441897 },
   { type: '3.进入购物车', city: '广东', count: 8139, value: 0.3750691244239631 },
-  { type: '4.完成购买', city: '北京', count: 1320, value: 0.06073433330265943 },
+  { type: '4.完成购买', city: '北京', count: 20, value: 0.0043433330265943 },
   { type: '4.完成购买', city: '上海', count: 2420, value: 0.11523809523809524 },
   { type: '4.完成购买', city: '南京', count: 4420, value: 0.22397891963109354 },
   { type: '4.完成购买', city: '深圳', count: 2420, value: 0.11186095960062864 },
