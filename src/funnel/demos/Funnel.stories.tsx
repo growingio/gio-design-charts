@@ -155,6 +155,15 @@ const FunnelWithGroupArgs = {
       adjust: ['dodge'],
       label: configLabel,
     },
+    tooltip: {
+      enterable: true,
+      showContent: true,
+      // shared: true,
+      showMarkers: false,
+      render: (options: any) => {
+        return <DrillDownCard options={options} />;
+      },
+    }
   },
 };
 FunnelWithGroup.storyName = '分组漏斗';

@@ -43,6 +43,7 @@ const DrilldownCard = ({ options }: LooseObject) => {
         {...options}
         title={realTitle}
         data={realData}
+        forwardKey='type'
         injectComponent={() => (trigger === 'click' ? clickContent : null)}
       />
     </div>
