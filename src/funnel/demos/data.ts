@@ -100,12 +100,24 @@ export const sourceData = [
 export const covertData1 = [
   { type: '1.商品详情页｜浏览', city: '北京', value: 21734 },
   { type: '1.商品详情页｜浏览', city: '上海', value: 21000 },
-  { type: '2.加入购物车', city: '北京', value: 18734, isPlaceholder: true },
-  { type: '2.加入购物车', city: '上海', value: 17734, isPlaceholder: true },
+  {
+    type: '2.加入购物车', city: '北京', value: 18734, isPlaceholder: true,
+    column: {
+      city: "北京",
+      isPlaceholder: true,
+      type: "2.加入购物车",
+      value: 18734,
+    },
+  },
+  { type: '2.加入购物车', city: '上海', value: 17734, isPlaceholder: true, column: { type: '2.加入购物车', city: '上海', value: 17734, isPlaceholder: true, } },
   {
     type: '3.进入购物车',
     city: '北京',
     value: 21734,
+    column: {
+      city: '北京',
+      type: '3.进入购物车',
+    },
     prev: {
       city: '北京',
       type: '1.商品详情页｜浏览',
@@ -118,6 +130,11 @@ export const covertData1 = [
     type: '3.进入购物车',
     city: '上海',
     value: 21000,
+    column: {
+      city: '上海',
+      type: '3.进入购物车',
+      value: 8539,
+    },
     prev: {
       city: '上海',
       type: '1.商品详情页｜浏览',
@@ -132,11 +149,21 @@ export const covertData1 = [
       city: '北京',
       type: '3.进入购物车',
     },
+    column: {
+      city: '北京',
+      type: '4.完成购买',
+      value: 1320,
+    },
   },
   {
     type: '4.完成购买',
     city: '上海',
     value: 8539,
+    column: {
+      city: '上海',
+      type: '4.完成购买',
+      value: 2420,
+    },
     prev: {
       city: '上海',
       type: '3.进入购物车',

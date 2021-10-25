@@ -35,9 +35,9 @@ const getCovertData = (data: LooseObject[], forwardKey: string, contrastKey: str
       if (prevItem) {
         if (!item.isPlaceholder) {
           prevs[item[forwardKey]] = item;
-          covertData.push({ ...item, [contrastKey]: prevItem[contrastKey] || 0, prev: { ...prevItem } });
+          covertData.push({ ...item, [contrastKey]: prevItem[contrastKey] || 0, prev: { ...prevItem }, column: { ...item } });
         } else {
-          covertData.push({ ...item });
+          covertData.push({ ...item, column: { ...item } },);
         }
       } else {
         if (!item?.isPlaceholder) {
