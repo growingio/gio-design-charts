@@ -41,7 +41,7 @@ const Template: ComponentStory<typeof Funnel> = (args) => (
 const config = {
   chart: {
     autoFit: true,
-    height: 300,
+    height: 400,
   },
   scale: ['value', { nice: true }],
   axises: [
