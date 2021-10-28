@@ -27,14 +27,14 @@
   }
 
   &_block {
-    display: inline-block;
+    position: absolute;
     width: 14px;
     height: 14px;
     margin-right: 8px;
+    margin-left: -20px;
     font-size: @default-font-size;
     font-family: @default-font-family;
     line-height: 1;
-    vertical-align: sub;
     background-color: #fff;
     border-radius: 2px;
   }
@@ -51,12 +51,14 @@
 
   &_label {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     margin: 0 20px;
     font-size: 12px;
     font-family: @default-font-family;
     line-height: 1;
     text-align: left;
+    word-break: break-all;
     cursor: pointer;
   }
   &_value {
