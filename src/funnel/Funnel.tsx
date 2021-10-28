@@ -17,12 +17,13 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
       return {
+        singleColor: colors[0],
         defaultStyles: {
           color: colors[0],
         },
       };
     }
-    return {};
+    return { singleColor: colors[0] };
   }, [legendProps]);
 
   if (config) {

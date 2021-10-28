@@ -38,7 +38,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const tooltipRef = useRef<HTMLDivElement | null>(null);
     const [register, acceptor] = useTunnel();
 
-    const { getTriggerAction, interceptors } = useInterceptors();
+    const { getTrigger, setTrigger, interceptors } = useInterceptors();
 
     const { chartOptions, updateLegends } = useChart({
       rootRef: root,
@@ -70,7 +70,8 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
               legends={chartOptions.legends}
               acceptor={acceptor}
               options={{ ...chartOptions }}
-              trigger={getTriggerAction()}
+              getTrigger={getTrigger}
+              setTrigger={setTrigger}
               config={config}
             />
           </div>

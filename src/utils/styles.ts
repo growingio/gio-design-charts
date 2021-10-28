@@ -23,6 +23,7 @@ export const getInfoCardStyles = (
   const legendName = item.data?.[dodgeBy] || item.name;
   const legend = legends?.[legendName] || {};
 
+  const singleColor = options?.singleColor;
   // Get default color
   const defaultStyles = options?.defaultStyles;
   let color = defaultStyles?.color;
@@ -35,7 +36,7 @@ export const getInfoCardStyles = (
     // if color isn't equal with first position, it's ok to use color in legend
     color = color || legend.color || item.color;
   }
-  return [legend, color];
+  return [legend, singleColor || color];
 };
 
 export const getLegendStyles = (legend: Legend, color: string) => {
