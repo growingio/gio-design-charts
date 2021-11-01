@@ -1,4 +1,4 @@
-# [1.0.0-beta.3](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta...v1.0.0-beta.3) (2021-10-25)
+# [1.0.0-beta.4](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta...v1.0.0-beta.4) (2021-11-01)
 
 
 ### Bug Fixes
@@ -25,6 +25,7 @@
 * **funnel:** group funnel 添加column ([#103](https://github.com/growingio/gio-design-charts/issues/103)) ([4185b77](https://github.com/growingio/gio-design-charts/commit/4185b7743d6d1df2adbd2ba60ec1ee7195f4609b))
 * **Highlight:** support highlight for Area ([#81](https://github.com/growingio/gio-design-charts/issues/81)) ([f1cf213](https://github.com/growingio/gio-design-charts/commit/f1cf213aee1fcebb23f8af3e26f4ca9eb636238b))
 * **infocard:** 样式修改 ([#104](https://github.com/growingio/gio-design-charts/issues/104)) ([5866aca](https://github.com/growingio/gio-design-charts/commit/5866acad25335b5d5338caa191bfcac7b446fccf))
+* **infocard:** style fix ([#106](https://github.com/growingio/gio-design-charts/issues/106)) ([f7ccc3b](https://github.com/growingio/gio-design-charts/commit/f7ccc3bd31a928b512a3037594a0289a75e50f75))
 * **internalization:** support internalization ([#100](https://github.com/growingio/gio-design-charts/issues/100)) ([8ab2e7e](https://github.com/growingio/gio-design-charts/commit/8ab2e7e487b8e861ba3c7bd9a11299c5dc9c7d8c))
 * **texture:** use new texture for Bar and Column ([#82](https://github.com/growingio/gio-design-charts/issues/82)) ([2ef85c9](https://github.com/growingio/gio-design-charts/commit/2ef85c991422a13d9c0580340ae7abf6a528c838))
 * **theme:** support update theme by DesignContext for chart ([#98](https://github.com/growingio/gio-design-charts/issues/98)) ([2c95841](https://github.com/growingio/gio-design-charts/commit/2c95841c344c7c5f0977d93ceb82e28d588d68e0))
