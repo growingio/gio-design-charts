@@ -92,7 +92,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
       },
       defaultStyles: {
         opacity: 0.2,
-        color: emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
+        color: !isGroup || emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
       },
     };
     fetchViewConfig(backgroundView, backgroundOptions, { ...config, axis: false });
@@ -105,7 +105,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
       ...options,
       data: sourceData,
       defaultStyles: {
-        color: emptyLegends ? colors[0] : '',
+        color: !isGroup || emptyLegends ? colors[0] : '',
       },
     };
     bindLinkEvent(linkView, addLinkByElement, options.data);

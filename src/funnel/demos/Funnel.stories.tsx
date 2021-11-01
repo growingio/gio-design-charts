@@ -107,7 +107,7 @@ FunnelWith3Columns.args = FunnelWith3ColumnsArgs;
 
 export const FunnelWith6Columns = Template.bind({});
 const FunnelWith6ColumnsArgs = {
-  legends: [],
+  legends: ['全部'],
   data: dataWith6Columns,
   config: {
     ...config,
@@ -145,7 +145,7 @@ const GroupTemplate: ComponentStory<typeof Funnel> = (args) => (
 
 export const FunnelWithGroup = GroupTemplate.bind({});
 const FunnelWithGroupArgs = {
-  legends: ['北京', '上海', '南京', '深圳', '广东'],
+  legends: [{ name: '北京', alias: '北京 Alias' }, '上海', '南京', '深圳', '广东'],
   data: dataWithGroup,
   config: {
     ...config,
@@ -163,7 +163,7 @@ const FunnelWithGroupArgs = {
       render: (options: any) => {
         return <DrillDownCard options={options} />;
       },
-    }
+    },
   },
 };
 FunnelWithGroup.storyName = '分组漏斗';

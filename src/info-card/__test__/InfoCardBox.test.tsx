@@ -5,14 +5,16 @@ import { legends, triggerItems, options, config } from './InfoCard.test';
 import { renderHook } from '@testing-library/react-hooks';
 import useTunnel from '../../hooks/useTunnel';
 
-const trigger = 'mouseover';
+const getTrigger = () => 'mouseover';
 const infoCardBoxTestid = 'infoCardBox';
 
 describe('props triggerItems in InforCardBox', () => {
   test('render InfoCardBox with empty triggerItems', async () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
-    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    render(
+      <InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={config} />
+    );
 
     act(() => {
       register(null as any);
@@ -23,7 +25,9 @@ describe('props triggerItems in InforCardBox', () => {
   test('render InfoCardBox with first data is undefined in triggerItems', async () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
-    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    render(
+      <InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={config} />
+    );
 
     act(() => {
       register([undefined] as any);
@@ -34,7 +38,9 @@ describe('props triggerItems in InforCardBox', () => {
   test('render InfoCardBox with first data is empty in triggerItems', async () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
-    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    render(
+      <InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={config} />
+    );
 
     act(() => {
       register([{}] as any);
@@ -48,7 +54,13 @@ describe('props options.defaultStyles in InforCardBox', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} config={config} options={undefined as any} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        config={config}
+        options={undefined as any}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -63,7 +75,7 @@ describe('props options.defaultStyles in InforCardBox', () => {
       <InfoCardBox
         acceptor={acceptor}
         legends={null as any}
-        trigger={trigger}
+        getTrigger={getTrigger}
         config={config}
         options={undefined as any}
       />
@@ -80,7 +92,13 @@ describe('props legends in InforCardBox', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={undefined as any} trigger={trigger} options={options} config={config} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={undefined as any}
+        getTrigger={getTrigger}
+        options={options}
+        config={config}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -93,7 +111,7 @@ describe('props legends in InforCardBox', () => {
     const [register, acceptor] = result.current;
     const newLegends = { 深圳: { name: '深圳' } };
     render(
-      <InfoCardBox acceptor={acceptor} legends={newLegends} trigger={trigger} options={options} config={config} />
+      <InfoCardBox acceptor={acceptor} legends={newLegends} getTrigger={getTrigger} options={options} config={config} />
     );
     act(() => {
       register(triggerItems);

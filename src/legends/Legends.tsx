@@ -42,8 +42,8 @@ const Legends = (props: LegendsProps) => {
   return (
     <div className="gio-d-chart-legends" data-testid="legends">
       {tiled.map((legend: Legend) => {
-        const { name } = legend;
-        return <LegendComponent key={name} label={name} data={legend} onClick={onClickLegend} />;
+        const { name, alias } = legend;
+        return <LegendComponent key={name} label={alias || name} data={legend} onClick={onClickLegend} />;
       })}
       {grouped && grouped.length > 0 && <LegendMenu legends={grouped} onClick={onClickLegend} />}
     </div>

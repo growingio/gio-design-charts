@@ -24,6 +24,9 @@ export interface Legend {
   // 图例Legend的名称
   name: string;
 
+  // 别名
+  alias?: string;
+
   // 是否已经激活显示图例，默认为true
   active?: boolean;
 

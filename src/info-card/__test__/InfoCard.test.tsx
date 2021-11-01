@@ -103,14 +103,16 @@ export const config = {
   },
 };
 
-const trigger = 'mouseover';
+const getTrigger = () => 'mouseover';
 const infoCardBoxTestid = 'infoCardBox';
 
 describe('InfoCard', () => {
   test('render InfoCardBox', async () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
-    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    render(
+      <InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={config} />
+    );
     act(() => {
       register(triggerItems);
     });
@@ -124,7 +126,7 @@ describe('InfoCard', () => {
       <InfoCardBox
         acceptor={acceptor}
         legends={legends}
-        trigger={trigger}
+        getTrigger={getTrigger}
         config={undefined as any}
         options={undefined as any}
       />
@@ -140,7 +142,7 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={newConfig} />
+      <InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={newConfig} />
     );
     act(() => {
       register(triggerItems);
@@ -151,7 +153,7 @@ describe('InfoCard', () => {
   test('render InfoCardBox with empty config', async () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
-    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={{}} />);
+    render(<InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={{}} />);
     act(() => {
       register(triggerItems);
     });
@@ -162,7 +164,13 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={{ type: 'bar' }} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        options={options}
+        config={{ type: 'bar' }}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -173,7 +181,9 @@ describe('InfoCard', () => {
   test('render InfoCard with prev data', async () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
-    render(<InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={config} />);
+    render(
+      <InfoCardBox acceptor={acceptor} legends={legends} getTrigger={getTrigger} options={options} config={config} />
+    );
     act(() => {
       register(triggerItemsPrev);
     });
@@ -195,7 +205,13 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        options={options}
+        config={tooltipConfig}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -218,7 +234,13 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        options={options}
+        config={tooltipConfig}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -243,7 +265,13 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        options={options}
+        config={tooltipConfig}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -267,7 +295,13 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        options={options}
+        config={tooltipConfig}
+      />
     );
     act(() => {
       register(triggerItems);
@@ -295,7 +329,13 @@ describe('InfoCard', () => {
     const { result } = renderHook(() => useTunnel());
     const [register, acceptor] = result.current;
     const box = render(
-      <InfoCardBox acceptor={acceptor} legends={legends} trigger={trigger} options={options} config={tooltipConfig} />
+      <InfoCardBox
+        acceptor={acceptor}
+        legends={legends}
+        getTrigger={getTrigger}
+        options={options}
+        config={tooltipConfig}
+      />
     );
 
     act(() => {

@@ -16,26 +16,26 @@ describe('test useInterceptors', () => {
     act(() => {
       chartObj.emit('element:click');
     });
-    expect(result.current.getTriggerAction()).toBe('click');
+    expect(result.current.getTrigger()).toBe('click');
 
     act(() => {
       chartObj.emit('element:mouseover');
     });
-    expect(result.current.getTriggerAction()).toBe('mouseover');
+    expect(result.current.getTrigger()).toBe('mouseover');
 
     act(() => {
       chartObj.emit('element:mouseout', { event: { relatedTarget: false } });
     });
-    expect(result.current.getTriggerAction()).toBe('mouseover');
+    expect(result.current.getTrigger()).toBe('mouseover');
 
     act(() => {
       chartObj.emit('element:click');
     });
-    expect(result.current.getTriggerAction()).toBe('click');
+    expect(result.current.getTrigger()).toBe('click');
 
     act(() => {
       chartObj.emit('element:mouseout', { event: { relatedTarget: true } });
     });
-    expect(result.current.getTriggerAction()).toBe('mouseover');
+    expect(result.current.getTrigger()).toBe('mouseover');
   });
 });

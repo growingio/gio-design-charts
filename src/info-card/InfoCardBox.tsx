@@ -22,16 +22,17 @@ export interface InfoCardData extends Legend {
 
 export interface InfoCardProps {
   legends: Legends;
-  trigger?: string;
+  getTrigger?: () => string;
   // triggerItems: TriggerItem[];
   acceptor: any;
   options: ChartOptions;
   config: ChartConfig;
+  setTrigger?: (trigger: string) => void;
   injectComponent?: (options: { data: LooseObject; trigger?: string; forwardKey: string }) => JSX.Element;
 }
 
 const InfoCardBox = (props: InfoCardProps) => {
-  const { acceptor, legends, trigger, options, config } = props;
+  const { acceptor, legends, getTrigger, options, config, setTrigger } = props;
   const chartType = config?.type;
   const forwardKey = config?.[chartType]?.color;
   const splitPositions = config?.[chartType]?.position?.split('*');
@@ -40,6 +41,15 @@ const InfoCardBox = (props: InfoCardProps) => {
   const [items, setItems] = useState<InfoCardData[]>([]);
   const [title, setTitle] = useState('');
   const setHoverItemD = useMemo(() => debounce(setItems, 20), [setItems]);
+
+  const [, update] = useState(0);
+
+  const trigger = getTrigger?.();
+
+  const onMouseLeave = () => {
+    setTrigger?.('mouseover');
+    update(new Date().getTime());
+  };
 
   useEffect(() => {
     acceptor((triggerItems: any) => {
@@ -74,7 +84,7 @@ const InfoCardBox = (props: InfoCardProps) => {
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
   return (
-    <div className="gio-d-chart-infocard" data-testid="infoCardBox">
+    <div className="gio-d-chart-infocard" data-testid="infoCardBox" onMouseLeave={onMouseLeave}>
       <InfoCard
         title={title}
         data={items}
