@@ -1,4 +1,4 @@
-# [1.0.0-beta.4](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta...v1.0.0-beta.4) (2021-11-01)
+# [1.0.0-beta.5](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta...v1.0.0-beta.5) (2021-11-02)
 
 
 ### Bug Fixes
@@ -10,11 +10,13 @@
 * **font:** update font-family to Lato ([#99](https://github.com/growingio/gio-design-charts/issues/99)) ([c8e9223](https://github.com/growingio/gio-design-charts/commit/c8e92233f03754c3ec198b4a179bf368a5409b56))
 * **InfoCard:** fix the max-height of info-card to 300px ([#79](https://github.com/growingio/gio-design-charts/issues/79)) ([6197d7e](https://github.com/growingio/gio-design-charts/commit/6197d7e442eaa4e1ee86bee1c960994bf00e631f))
 * **InfoCard:** modify infoCard styles and default value issue ([#87](https://github.com/growingio/gio-design-charts/issues/87)) ([275285b](https://github.com/growingio/gio-design-charts/commit/275285babc26c0748c0fe85480be2752ef76ad1a))
+* **Label:** set label offset ([#109](https://github.com/growingio/gio-design-charts/issues/109)) ([af0ffdb](https://github.com/growingio/gio-design-charts/commit/af0ffdb79cb10fd23647bb486e637c3054b6112f))
 * **label:** update the label color ([#102](https://github.com/growingio/gio-design-charts/issues/102)) ([27c80d0](https://github.com/growingio/gio-design-charts/commit/27c80d08f7898c7978136f3eebf2c5e53ac47180))
 * **Line & Area:** update scale config in line/Area storybook ([#85](https://github.com/growingio/gio-design-charts/issues/85)) ([a7ff28d](https://github.com/growingio/gio-design-charts/commit/a7ff28d3ba22a6c0382afa3f1ca34380fe0a9b8d))
 * **react:** move react repos to peerDependencies ([#88](https://github.com/growingio/gio-design-charts/issues/88)) ([6a6f7c6](https://github.com/growingio/gio-design-charts/commit/6a6f7c63e9cc0c88c4dfda2c3288f980119a1e67)), closes [#87](https://github.com/growingio/gio-design-charts/issues/87)
 * **resize:** re-render chart when div size is changed ([#93](https://github.com/growingio/gio-design-charts/issues/93)) ([be113f8](https://github.com/growingio/gio-design-charts/commit/be113f8a52cde4ebfba0f92c7bfc69e64836e001))
 * **Sroll-x:** make sure the chart support scroll when browser size is changed ([#92](https://github.com/growingio/gio-design-charts/issues/92)) ([ed64477](https://github.com/growingio/gio-design-charts/commit/ed64477ef2dde1b630fb82955119b5e298f54af6))
+* **tooltip/legend:** fix tooltip and legend alias name ([#107](https://github.com/growingio/gio-design-charts/issues/107)) ([01be189](https://github.com/growingio/gio-design-charts/commit/01be189ece40fcff1a704548ab3f6f50ae40e7ab))
 * **Tooltip:** change the color of tooltip crosshairs to gray-3 #ebedf5 ([#80](https://github.com/growingio/gio-design-charts/issues/80)) ([9393f78](https://github.com/growingio/gio-design-charts/commit/9393f78887fc219bd15a875d1b71eff7eac039b0)), closes [#ebedf5](https://github.com/growingio/gio-design-charts/issues/ebedf5)
 
 
