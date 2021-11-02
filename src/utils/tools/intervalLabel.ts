@@ -4,8 +4,8 @@ import { DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, FONT_SIZE_12 } from '../../the
 
 class IntervalLabel extends GeometryLabel {
   protected getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
-    const lebalPoint = super.getLabelOffsetPoint(labelCfg, index, total);
-    const { x, y } = lebalPoint;
+    const labelPoint = super.getLabelOffsetPoint(labelCfg, index, total);
+    const { x, y } = labelPoint;
 
     const element = this.geometry.elementsMap[labelCfg.elementId];
     const model = element?.getModel();
