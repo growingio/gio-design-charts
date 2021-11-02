@@ -1,18 +1,20 @@
-import { Point } from '@antv/component';
 import { GeometryLabel } from '@antv/g2';
 import { LabelCfg } from '@antv/g2/lib/geometry/label/interface';
 import { DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, FONT_SIZE_12 } from '../../theme';
 
 class IntervalLabel extends GeometryLabel {
   protected getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
-    const point = super.getLabelOffsetPoint(labelCfg, index, total);
-    const showInTop = (labelCfg?.mappingData?.points?.[1] as Point)?.y < 0.01;
-    const { x, y } = point;
+    const lebalPoint = super.getLabelOffsetPoint(labelCfg, index, total);
+    const { x, y } = lebalPoint;
 
     const element = this.geometry.elementsMap[labelCfg.elementId];
-    const model = element.getModel();
+    const model = element?.getModel();
     const color = model?.style?.color || model?.color || DEFAULT_FONT_COLOR;
     const style = labelCfg?.style || {};
+
+    const coordinate = element?.shapeFactory?.coordinate;
+    const columnHeight = (coordinate?.start?.y || 0) - Number(model.y);
+    const showInTop = columnHeight <= 18;
 
     style.fontSize = FONT_SIZE_12;
     style.fontFamily = DEFAULT_FONT_FAMILY;
