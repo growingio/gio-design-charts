@@ -48,7 +48,7 @@ const VerticalMenu = React.memo((props: VerticalMenuProps) => {
     <div data-testid="vertical-menu" style={{ height, width: '100%', position: 'absolute' }}>
       {ticks?.map((tick: string, index: number) => {
         return (
-          <div className="vertical-menu-item" key={tick} style={{ top: ranges[index] * height - 9 }}>
+          <div className="vertical-menu-item" key={tick} title={tick} style={{ top: ranges[index] * height - 9 }}>
             {tick}
           </div>
         );
