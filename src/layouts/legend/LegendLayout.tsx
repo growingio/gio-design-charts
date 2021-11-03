@@ -29,7 +29,9 @@ const LegendLayout = (props: LayoutProps) => {
   const offset = useOffset(layoutRef, watchReset);
   return (
     <div className="gio-d-chart" ref={layoutRef} data-testid="legend-layout">
-      {config.legend !== false && <Legends legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />}
+      {config.legend !== false && (
+        <Legends config={config} legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
+      )}
       {props.children}
     </div>
   );

@@ -3,6 +3,7 @@ import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { cloneDeep, isEmpty, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { gioTheme } from '../theme/chart';
+import { getTheme } from '../utils/chart';
 
 import '../utils/tools';
 
@@ -17,13 +18,14 @@ registerInteraction('element-highlight-by-color', {
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id, theme } = options;
   const basicConfig = config.chart || {};
+  const customTheme = getTheme(config.chart?.theme);
   // Set defualt chart config
   const chart = new Chart({
     ...basicConfig,
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
-    theme: merge(cloneDeep(gioTheme), theme),
+    theme: merge(cloneDeep(gioTheme), cloneDeep(theme), customTheme),
   });
   if (basicConfig.closeAnimate) {
     chart.animate(false);
