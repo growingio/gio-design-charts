@@ -17,7 +17,7 @@ const LegendLayout = (props: LayoutProps) => {
         return;
       }
       const divWidth = resetOffset.width;
-      const useWidth = Number(width) > divWidth + 100 ? Number(width) : divWidth;
+      const useWidth = Number(width) > divWidth + 40 ? Number(width) : divWidth;
       if (config?.chart?.height && chart?.canvas?.get('el')) {
         chart?.changeSize(useWidth, config.chart.height);
         views?.forEach((view: View) => view.render(true));
