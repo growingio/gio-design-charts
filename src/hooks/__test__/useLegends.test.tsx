@@ -19,7 +19,7 @@ describe('test useLegends', () => {
   };
   const fullLegends = { ...testLegends, ...lineDashLgends };
   test('call getLegends', () => {
-    const [legends, hasDashed] = getLegends(ChartType.BAR, [
+    const [legends, queue, hasDashed] = getLegends(ChartType.BAR, [
       '北京',
       { name: '上海' },
       { name: '南京', lineDash: [1, 2, 3] },
@@ -35,7 +35,7 @@ describe('test useLegends', () => {
     const { result } = renderHook(() => useLegends());
 
     act(() => {
-      result.current.setLegends(fullLegends as Legends, false);
+      result.current.setLegends(fullLegends as Legends, [], false);
     });
     expect(result.current.legends).toEqual(fullLegends);
 
@@ -46,7 +46,7 @@ describe('test useLegends', () => {
 
     // if the legends is empty object {}
     act(() => {
-      result.current.setLegends({}, false);
+      result.current.setLegends({}, [], false);
     });
     act(() => {
       result.current.updateLegends('南京');
@@ -59,7 +59,7 @@ describe('test useLegends', () => {
 
     // if the legends is undefined
     act(() => {
-      result.current.setLegends(undefined as any, false);
+      result.current.setLegends(undefined as any, [], false);
     });
     act(() => {
       result.current.updateLegends('南京');
