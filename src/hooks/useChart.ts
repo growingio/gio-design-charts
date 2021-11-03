@@ -6,7 +6,7 @@ import { isEqual } from '@antv/util';
 
 import { ChartConfig, Legend } from '../interfaces';
 import useLegends, { getLegends } from './useLegends';
-import { inValidConfig } from '../utils/chart';
+import { getTheme, inValidConfig } from '../utils/chart';
 import { cloneDeep } from 'lodash';
 import { DesignContext } from '@gio-design/utils';
 
@@ -60,6 +60,7 @@ const useChart = (options: UseChartProps) => {
     if (inValidConfig(config)) {
       return;
     }
+    const theme = getTheme(context?.theme);
     const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
     const tooltip = config.tooltip
       ? {
@@ -86,7 +87,7 @@ const useChart = (options: UseChartProps) => {
         legends: genLegends,
         hasDashed: hasDashedLegend,
         interceptors,
-        theme: context.theme || {},
+        theme: theme,
         ...(defaultOptions || {}),
       },
       {

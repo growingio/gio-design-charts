@@ -90,4 +90,40 @@ export const viewTheme = {
   },
 };
 
+export const darkTheme = {
+  legend: {
+    color: '#ffffff',
+  },
+  components: {
+    axis: {
+      common: {
+        label: {
+          offset: 16,
+          style: {
+            fill: '#ffffff',
+          },
+        },
+        line: {
+          style: {
+            stroke: '#434343',
+          },
+        },
+        grid: {
+          line: {
+            style: {
+              stroke: '#434343',
+            },
+          },
+        },
+      },
+    },
+  },
+  labels: {
+    style: {
+      fontSize: DEFAULT_FONT_SIZE,
+      fill: '#ffffff',
+    },
+  },
+};
+
 export default gioTheme;

@@ -78,6 +78,10 @@ export interface BaseChartConfig extends LooseObject {
    * 当为true时；渲染图表不显示动画。
    */
   closeAnimate?: boolean;
+  /**
+   * set the theme for chart
+   */
+  theme?: LooseObject | string;
 }
 
 export interface ChartConfig extends LooseObject {

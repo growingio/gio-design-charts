@@ -4,18 +4,34 @@ import LegendMenu from './Menu';
 
 import { Legend, Legends as LegendsInterface } from '../interfaces';
 import './styles/legends.less';
+import { ChartConfig } from '../interfaces';
+import { isString, lowerCase } from 'lodash';
 
 export interface LegendsProps {
   legends?: LegendsInterface;
   onClick?: (label: string) => void;
   offsetWidth?: number;
+  config?: ChartConfig;
 }
 
+const getLegendColor = (config?: ChartConfig) => {
+  const theme = config?.chart?.theme;
+  let color = '';
+  if (isString(theme)) {
+    color = lowerCase(theme) === 'dark' ? '#fff' : '';
+  } else {
+    color = theme?.legend?.color || '';
+  }
+  return color;
+};
+
 const Legends = (props: LegendsProps) => {
-  const { legends = {}, onClick, offsetWidth = 800 } = props;
+  const { legends = {}, onClick, config, offsetWidth = 800 } = props;
 
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);
+
+  isString(config?.chart?.theme);
 
   const onClickLegend = useCallback(
     (label: string) => {
@@ -39,11 +55,21 @@ const Legends = (props: LegendsProps) => {
     }
   }, [legends, offsetWidth]);
 
+  const textColor = getLegendColor(config);
+
   return (
     <div className="gio-d-chart-legends" data-testid="legends">
       {tiled.map((legend: Legend) => {
         const { name, alias } = legend;
-        return <LegendComponent key={name} label={alias || name} data={legend} onClick={onClickLegend} />;
+        return (
+          <LegendComponent
+            key={name}
+            label={alias || name}
+            data={legend}
+            textColor={textColor}
+            onClick={onClickLegend}
+          />
+        );
       })}
       {grouped && grouped.length > 0 && <LegendMenu legends={grouped} onClick={onClickLegend} />}
     </div>
