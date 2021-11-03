@@ -47,7 +47,7 @@ const useChart = (options: UseChartProps) => {
   const configRef = useRef<Partial<ChartConfig>>();
   const dataRef = useRef<LooseObject | LooseObject[]>();
   const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[]) => void>();
-  const { legends, hasDashed, setLegends, updateLegends } = useLegends();
+  const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
 
   const clear = useCallback(() => {
     chartRef.current?.destroy();
@@ -61,7 +61,7 @@ const useChart = (options: UseChartProps) => {
       return;
     }
     const theme = getTheme(context?.theme);
-    const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
+    const [genLegends, queue, hasDashedLegend] = getLegends(config.type, legendList);
     const tooltip = config.tooltip
       ? {
           ...config.tooltip,
@@ -101,7 +101,7 @@ const useChart = (options: UseChartProps) => {
       chartRef.current = chart;
       viewRef.current = views;
       updateRef.current = update;
-      setLegends(genLegends, hasDashedLegend);
+      setLegends(genLegends, queue, hasDashedLegend);
     }
   }, [
     rootRef,
@@ -153,8 +153,9 @@ const useChart = (options: UseChartProps) => {
       views: viewRef.current,
       legends,
       hasDashed,
+      legendQueue,
     }),
-    [defaultOptions, legends, hasDashed]
+    [defaultOptions, legends, legendQueue, hasDashed]
   );
 
   return { updateLegends, chartOptions };

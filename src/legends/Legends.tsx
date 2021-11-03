@@ -8,7 +8,7 @@ import { ChartConfig } from '../interfaces';
 import { isString, lowerCase } from 'lodash';
 
 export interface LegendsProps {
-  legends?: LegendsInterface;
+  legends?: Legend[];
   onClick?: (label: string) => void;
   offsetWidth?: number;
   config?: ChartConfig;
@@ -26,7 +26,7 @@ const getLegendColor = (config?: ChartConfig) => {
 };
 
 const Legends = (props: LegendsProps) => {
-  const { legends = {}, onClick, config, offsetWidth = 800 } = props;
+  const { legends = [], onClick, config, offsetWidth = 800 } = props;
 
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);
@@ -35,22 +35,20 @@ const Legends = (props: LegendsProps) => {
 
   const onClickLegend = useCallback(
     (label: string) => {
-      const legendValues: Legend[] = Object.values(legends);
-      const enableClick = legendValues.length > 1;
+      const enableClick = legends.length > 1;
       enableClick && onClick && onClick(label);
     },
     [onClick, legends]
   );
 
   useEffect(() => {
-    const legendValues: Legend[] = Object.values(legends);
     const count = Number((offsetWidth / 125).toFixed(0)) - 1;
-    if (legendValues && legendValues.length > 0) {
-      if (legendValues.length > 5) {
-        setTiled(legendValues.slice(0, count));
-        setGrouped(legendValues.slice(count));
+    if (legends && legends.length > 0) {
+      if (legends.length > 5) {
+        setTiled(legends.slice(0, count));
+        setGrouped(legends.slice(count));
       } else {
-        setTiled(legendValues);
+        setTiled(legends);
       }
     }
   }, [legends, offsetWidth]);

@@ -7,7 +7,7 @@ import { View } from '@antv/g2';
 const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
-  const { legends, chart, views } = options;
+  const { legendQueue, chart, views } = options;
   const watchReset = useCallback(
     (resetOffset: Offset) => {
       const autoFit = config?.chart?.autoFit;
@@ -30,7 +30,7 @@ const LegendLayout = (props: LayoutProps) => {
   return (
     <div className="gio-d-chart" ref={layoutRef} data-testid="legend-layout">
       {config.legend !== false && (
-        <Legends config={config} legends={legends} offsetWidth={offset.width} onClick={onClickLegend} />
+        <Legends config={config} legends={legendQueue} offsetWidth={offset.width} onClick={onClickLegend} />
       )}
       {props.children}
     </div>

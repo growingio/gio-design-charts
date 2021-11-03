@@ -3,10 +3,10 @@ import { useCallback, useState } from 'react';
 import { ChartType, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_LINEDASH } from '../theme';
 
-export const getLegends = (type: ChartType, legendProps: Array<string | Legend>): [Legends, boolean] => {
+export const getLegends = (type: ChartType, legendProps: Array<string | Legend>): [Legends, Legend[], boolean] => {
   const legends = {} as Legends;
   let hasDashed = false;
-  legendProps?.forEach((legend: string | Legend, index: number) => {
+  const legendList = legendProps?.map((legend: string | Legend, index: number) => {
     if (typeof legend === 'string') {
       legends[legend] = {
         name: legend,
@@ -14,6 +14,7 @@ export const getLegends = (type: ChartType, legendProps: Array<string | Legend>)
         active: true,
         type,
       };
+      return legends[legend];
     } else {
       const { lineDash, dashed } = legend;
       const lineDashCfg = {} as LooseObject;
@@ -32,15 +33,17 @@ export const getLegends = (type: ChartType, legendProps: Array<string | Legend>)
         type,
         ...lineDashCfg,
       };
+      return legends[legend.name];
     }
-    return legend;
   });
-  return [legends, hasDashed];
+  return [legends, legendList, hasDashed];
 };
 
 const useLegends = () => {
-  const [legends, setLegends] = useState({} as Legends);
-  const [hasDashed, sethasDashed] = useState(false);
+  const [legends, setLegends] = useState<Legends>({});
+  const [hasDashed, sethasDashed] = useState<boolean>(false);
+  const [legendQueue, setLegendQueue] = useState<Legend[]>([]);
+
   const updateLegends = useCallback(
     (label: string) => {
       const newLegends = {
@@ -52,11 +55,12 @@ const useLegends = () => {
     },
     [legends]
   );
-  const setLegendAndDashed = useCallback((genLegends: Legends, has: boolean) => {
+  const setLegendAndDashed = useCallback((genLegends: Legends, queue: Legend[], has: boolean) => {
     setLegends(genLegends);
+    setLegendQueue(queue);
     sethasDashed(has);
   }, []);
-  return { legends, hasDashed, setLegends: setLegendAndDashed, updateLegends };
+  return { legends, legendQueue, hasDashed, setLegends: setLegendAndDashed, updateLegends };
 };
 
 export default useLegends;
