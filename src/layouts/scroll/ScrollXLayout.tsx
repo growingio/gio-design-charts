@@ -31,7 +31,7 @@ const ScrollXLayout = (props: ScrollXLayoutProps) => {
       const calculateWidth = calculateColumnWidth(config, sourceData);
       const offsetWidth = xLayoutRef.current.offsetWidth;
       const widthObj =
-        calculateWidth > offsetWidth + 100
+        calculateWidth > offsetWidth + 40
           ? { autoFit: false, width: calculateWidth }
           : { autoFit: false, width: offsetWidth };
       const newConfig: ChartConfig = {
