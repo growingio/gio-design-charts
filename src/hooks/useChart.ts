@@ -20,6 +20,8 @@ export interface UseChartProps {
   legendList: (string | Legend)[];
   interceptors: any;
   defaultOptions: any;
+  tooltipKey: number;
+  setTooltipKey: any;
 }
 
 // This is a hook which is used to create Chart object and update the chart.
@@ -34,6 +36,8 @@ const useChart = (options: UseChartProps) => {
     legendList,
     interceptors,
     defaultOptions,
+    setTooltipKey,
+    tooltipKey,
   } = options;
 
   const context = useContext(DesignContext);
@@ -45,14 +49,16 @@ const useChart = (options: UseChartProps) => {
   const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[]) => void>();
   const { legends, hasDashed, setLegends, updateLegends } = useLegends();
 
-  const createChart = useCallback(() => {
+  const clear = useCallback(() => {
+    chartRef.current?.destroy();
+    chartRef.current = undefined;
+    setTooltipKey(new Date().getTime());
+  }, [setTooltipKey]);
+
+  const create = useCallback(() => {
     // If the config is empty or there is no special config, return null;
     if (inValidConfig(config)) {
       return;
-    }
-    // 如果已经有了chartRef.current，需要先销毁
-    if (chartRef.current) {
-      chartRef.current?.destroy();
     }
     const [genLegends, hasDashedLegend] = getLegends(config.type, legendList);
     const tooltip = config.tooltip
@@ -88,12 +94,14 @@ const useChart = (options: UseChartProps) => {
         tooltip,
       }
     );
-    configRef.current = cloneDeep(config);
-    dataRef.current = cloneDeep(data);
-    chartRef.current = chart;
-    viewRef.current = views;
-    updateRef.current = update;
-    setLegends(genLegends, hasDashedLegend);
+    if (chart) {
+      configRef.current = cloneDeep(config);
+      dataRef.current = cloneDeep(data);
+      chartRef.current = chart;
+      viewRef.current = views;
+      updateRef.current = update;
+      setLegends(genLegends, hasDashedLegend);
+    }
   }, [
     rootRef,
     tooltipRef,
@@ -118,14 +126,22 @@ const useChart = (options: UseChartProps) => {
     }
   }, [data]);
 
-  useEffect(() => {
-    const equalConfig = isEqual(configRef.current, config);
-    if (!(chartRef.current && equalConfig)) {
-      createChart();
-    }
-  }, [createChart, config]);
+  const hasChangedConfig = !isEqual(configRef.current, config);
+  const hasChangedData = !isEqual(dataRef.current, data);
 
-  if (!isEqual(dataRef.current, data)) {
+  useEffect(() => {
+    // 如果equalConfig有变化，则进入创建或者清楚通道
+    if (hasChangedConfig) {
+      // 如果已经有了chartRef.current，需要先销毁
+      if (chartRef.current) {
+        clear();
+      } else {
+        create();
+      }
+    }
+  }, [create, clear, hasChangedConfig, config, tooltipKey]);
+
+  if (!hasChangedConfig && hasChangedData) {
     updateChart();
   }
 

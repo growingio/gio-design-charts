@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { InfoCardBox } from '../info-card';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import useInterceptors from '../hooks/useInterceptors';
@@ -39,6 +39,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const [register, acceptor] = useTunnel();
 
     const { getTrigger, setTrigger, interceptors } = useInterceptors();
+    const [tooltipKey, setTooltipKey] = useState(1);
 
     const { chartOptions, updateLegends } = useChart({
       rootRef: root,
@@ -50,8 +51,9 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
       legendList,
       interceptors,
       defaultOptions,
+      tooltipKey,
+      setTooltipKey,
     });
-
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
@@ -61,10 +63,11 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
       },
       [chartOptions, config, handleLegend, updateLegends]
     );
+
     return (
       <HighComponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
         <div className="layout-content" ref={root} />
-        <div className="gio-d-chart_tooltip-content">
+        <div className="gio-d-chart_tooltip-content" key={tooltipKey}>
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCardBox
               legends={chartOptions.legends}

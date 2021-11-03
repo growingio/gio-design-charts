@@ -51,7 +51,9 @@ export const areaChart = (options: ChartOptions, config: ChartConfig) => {
     areaShape(chart, options, areaConfig);
     chart.interaction('element-highlight-by-color');
     chart.render();
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
   return { chart, update: updateChart };
 };
 

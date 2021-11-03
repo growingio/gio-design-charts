@@ -23,7 +23,7 @@ const LegendLayout = (props: LayoutProps) => {
         views?.forEach((view: View) => view.render(true));
       }
     },
-    [chart, config, width]
+    [chart, views, config, width]
   );
 
   const offset = useOffset(layoutRef, watchReset);
