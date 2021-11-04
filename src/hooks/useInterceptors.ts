@@ -30,11 +30,11 @@ const useInterceptors = () => {
           triggerActionRef.current = 'mouseover';
         });
         chart.on('element:mouseout', (e: Event) => {
+          triggerActionRef.current = 'mouseover';
           if (!e.event.relatedTarget) {
             chart.unlockTooltip();
             updated(new Date().getTime());
           }
-          triggerActionRef.current = 'mouseover';
         });
       },
     };
