@@ -25,6 +25,8 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: basicConfig.height || DEFAULT_HEIGHT,
+    padding: 'auto',
+    appendPadding: 8,
     theme: merge(cloneDeep(gioTheme), cloneDeep(theme), customTheme),
   });
   if (basicConfig.closeAnimate) {
