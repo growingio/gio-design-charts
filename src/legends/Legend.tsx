@@ -6,13 +6,14 @@ import { getBackgroundImage } from '../utils/styles';
 
 export interface LegendProps {
   label: string;
+  alias?: string;
   data: LooseObject;
   textColor?: string;
   onClick?: (label: string) => void;
 }
 
 const Legend = (props: LegendProps) => {
-  const { label, data, onClick, textColor } = props;
+  const { label, alias, data, onClick, textColor } = props;
   const onClickLabel = useCallback(() => {
     onClick && onClick(label);
   }, [label, onClick]);
@@ -40,7 +41,7 @@ const Legend = (props: LegendProps) => {
     >
       <div className={`gio-d-chart-legends_block gio-d-chart-legends_${type as ChartType}`} style={stylesLine} />
       <div className="gio-d-chart-legends_text" style={textStyles}>
-        {label}
+        {alias || label}
       </div>
     </span>
   );
