@@ -29,7 +29,9 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
       observe.disconnect();
     };
   }, [rootRef, onResize]);
-  return offsetRef.current || ({} as Offset);
+  return (
+    offsetRef.current || ({ width: rootRef.current?.offsetWidth, height: rootRef.current?.offsetHeight } as Offset)
+  );
 };
 
 export default useOffset;
