@@ -1,4 +1,5 @@
 import { LooseObject } from '@antv/component';
+import { values } from 'lodash';
 import { useCallback, useState } from 'react';
 import { ChartType, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_LINEDASH } from '../theme';
@@ -51,6 +52,7 @@ const useLegends = () => {
         [label]: { ...legends?.[label], active: !legends?.[label]?.active },
       };
       setLegends(newLegends);
+      setLegendQueue(values(newLegends));
       return newLegends;
     },
     [legends]

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 
-import { Legend, Legends as LegendsInterface } from '../interfaces';
+import { Legend } from '../interfaces';
 import './styles/legends.less';
 import { ChartConfig } from '../interfaces';
 import { isString, lowerCase } from 'lodash';
@@ -62,7 +62,8 @@ const Legends = (props: LegendsProps) => {
         return (
           <LegendComponent
             key={name}
-            label={alias || name}
+            label={name}
+            alias={alias}
             data={legend}
             textColor={textColor}
             onClick={onClickLegend}
