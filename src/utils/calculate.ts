@@ -1,6 +1,7 @@
 import { LooseObject } from '@antv/component';
 import DataSet from '@antv/data-set';
 import { ChartConfig } from '../interfaces';
+import { DEFAULT_APPEND_PADDING } from '../theme';
 import { hasDodge, hasStack } from './interval';
 
 export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => {
@@ -25,7 +26,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
   const intervalPadding = 20;
   const dodgePadding = 4;
   const columnWidth = 16;
-  const fixedHeight = 32;
+  const fixedHeight = 16 + DEFAULT_APPEND_PADDING * 2;
   let height = 0;
   dv.rows.forEach((row: LooseObject) => {
     const { totalCount } = row;
