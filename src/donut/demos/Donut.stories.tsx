@@ -3,6 +3,8 @@ import Donut from '../Donut';
 import Card from '../../demos/card';
 import { data } from './data';
 import { darkTheme } from '../../theme/chart';
+import { InfoCard } from '../..';
+import { cloneDeep } from 'lodash';
 
 export default {
   title: 'Charts/环形图 Donut',
@@ -30,7 +32,7 @@ Basic.args = {
   legends: ['北京', '上海', '杭州', '重庆', '天津', '武汉', '兰州', '太原'],
   data: {
     title: '总计',
-    count: 2500,
+    count: '14.23万',
     source: data,
   },
   config: {
@@ -41,6 +43,20 @@ Basic.args = {
     tooltip: {
       showMarkers: false,
       showCrosshairs: false,
+      render: (options: any) => {
+        const itemData = options.data?.[0] || {};
+        const newData = [
+          {
+            ...cloneDeep(itemData),
+            data: { ...itemData, showValue: itemData.data?.count, showTitle: itemData.data?.name },
+          },
+          {
+            ...cloneDeep(itemData),
+            data: { ...itemData, showValue: `${itemData.data?.percent * 100}%`, showTitle: '占比' },
+          },
+        ];
+        return <InfoCard {...options} title="用户量" data={newData} forwardKey="showTitle" valueKey="showValue" />;
+      },
     },
     donut: {
       position: 'percent',
