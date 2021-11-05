@@ -1,10 +1,9 @@
 import { LooseObject } from '@antv/g-base';
 import { Chart, View } from '@antv/g2';
 import { Datum } from '@antv/g2/lib/interface';
-import { ChartType } from '../interfaces';
 import { intervalShape } from '../column/framework';
 import { fetchConfig, fetchIntervalLabel, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, ChartType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import gioTheme from '../theme/chart';
 import { cloneDeep, isObject, merge } from 'lodash';
