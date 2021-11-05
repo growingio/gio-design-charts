@@ -6,6 +6,8 @@ import { intervalShape } from '../column/framework';
 import { fetchConfig, fetchIntervalLabel, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
+import gioTheme from '../theme/chart';
+import { cloneDeep, isObject, merge } from 'lodash';
 
 export class Donut {
   chart: Chart | undefined;
@@ -13,36 +15,34 @@ export class Donut {
     this.chart = undefined;
   }
 
-  addText = (chart: Chart | View, data: LooseObject) => {
+  addText = (chart: Chart | View, data: LooseObject, config: ChartConfig) => {
+    const theme = config?.chart?.theme;
+    console.log(config);
     const { title, count } = data;
+    let titleText = gioTheme.gio.annotation.text.title;
+    let countText = gioTheme.gio.annotation.text.count;
+    if (typeof theme === 'string' && theme === 'dark') {
+      titleText = merge(cloneDeep(titleText), { style: { fill: '#ffffff' } });
+      countText = merge(cloneDeep(countText), { style: { fill: '#ffffff' } });
+    } else if (isObject(theme)) {
+      titleText = merge(cloneDeep(titleText), theme?.gio?.annotation?.text?.title || {});
+      countText = merge(cloneDeep(countText), theme?.gio?.annotation?.text?.count || {});
+    }
     if (title) {
       chart?.annotation()?.text({
-        position: ['50%', '50%'],
+        ...titleText,
         content: title,
-        style: {
-          fontSize: 14,
-          fill: '#313E75',
-          lineWidth: 2,
-          textAlign: 'center',
-        },
-        offsetY: -12,
       });
     }
     if (count || count === 0) {
       chart?.annotation()?.text({
-        position: ['50%', '50%'],
+        ...countText,
         content: count,
-        style: {
-          fontSize: 20,
-          fill: '#313E75',
-          textAlign: 'center',
-        },
-        offsetY: 12,
       });
     }
   };
 
-  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum | Datum[]) => {
+  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum | Datum[], config: ChartConfig) => {
     const [donutView, textView] = views;
     if (Array.isArray(data)) {
       donutView?.changeData(data);
@@ -52,7 +52,7 @@ export class Donut {
     donutView?.render(true);
 
     textView.clear();
-    this.addText(textView, data);
+    this.addText(textView, data, config);
     textView?.render(true);
 
     chart.render(true);
@@ -105,7 +105,7 @@ export class Donut {
       innerRadius: 0.7,
     });
     fetchConfig(textView, options, config);
-    this.addText(textView, data as LooseObject);
+    this.addText(textView, data as LooseObject, config);
     textView.render();
     fetchTooltip(chart, config);
     chart.render();

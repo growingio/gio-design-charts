@@ -2,6 +2,7 @@ import { ComponentStory } from '@storybook/react';
 import Donut from '../Donut';
 import Card from '../../demos/card';
 import { data } from './data';
+import { darkTheme } from '../../theme/chart';
 
 export default {
   title: 'Charts/环形图 Donut',
@@ -16,10 +17,12 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof Donut> = (args) => (
-  <Card>
-    <Donut {...args} />
-  </Card>
+const Template: ComponentStory<any> = (args) => (
+  <div style={args.style}>
+    <Card>
+      <Donut {...args} />
+    </Card>
+  </div>
 );
 
 export const Basic = Template.bind({});
@@ -53,6 +56,19 @@ Basic.args = {
           };
         },
       },
+    },
+  },
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+  style: { backgroundColor: '#000', padding: 10 },
+  ...Basic.args,
+  config: {
+    ...Basic.args.config,
+    chart: {
+      ...Basic.args.config.chart,
+      theme: darkTheme,
     },
   },
 };

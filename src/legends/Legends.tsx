@@ -20,7 +20,7 @@ const getLegendColor = (config?: ChartConfig) => {
   if (isString(theme)) {
     color = lowerCase(theme) === 'dark' ? '#fff' : '';
   } else {
-    color = theme?.legend?.color || '';
+    color = theme?.gio?.legend?.color || '';
   }
   return color;
 };

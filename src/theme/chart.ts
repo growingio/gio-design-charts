@@ -1,3 +1,4 @@
+import { TextOption } from '@antv/g2/lib/interface';
 import { colors, DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } from '../theme/index';
 
 /**
@@ -59,6 +60,31 @@ export const gioTheme = {
       fontSize: DEFAULT_FONT_SIZE,
     },
   },
+  gio: {
+    annotation: {
+      text: {
+        title: {
+          position: ['50%', '50%'],
+          style: {
+            fontSize: 14,
+            fill: '#313E75',
+            lineWidth: 2,
+            textAlign: 'center',
+          },
+          offsetY: -12,
+        } as TextOption,
+        count: {
+          position: ['50%', '50%'],
+          style: {
+            fontSize: 20,
+            fill: '#313E75',
+            textAlign: 'center',
+          },
+          offsetY: 12,
+        } as TextOption,
+      },
+    },
+  },
 };
 
 export const viewTheme = {
@@ -91,8 +117,24 @@ export const viewTheme = {
 };
 
 export const darkTheme = {
-  legend: {
-    color: '#ffffff',
+  gio: {
+    legend: {
+      color: '#ffffff',
+    },
+    annotation: {
+      text: {
+        title: {
+          style: {
+            fill: '#ffffff',
+          },
+        } as TextOption,
+        count: {
+          style: {
+            fill: '#ffffff',
+          },
+        } as TextOption,
+      },
+    },
   },
   components: {
     axis: {
