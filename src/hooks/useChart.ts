@@ -46,7 +46,7 @@ const useChart = (options: UseChartProps) => {
   const viewRef = useRef<View[]>();
   const configRef = useRef<Partial<ChartConfig>>();
   const dataRef = useRef<LooseObject | LooseObject[]>();
-  const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[]) => void>();
+  const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[], config?: ChartConfig) => void>();
   const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
 
   const clear = useCallback(() => {
@@ -124,10 +124,10 @@ const useChart = (options: UseChartProps) => {
     const update = updateRef.current;
     const changedData = !isEqual(dataRef.current, data);
     if (update && chart && changedData) {
-      update({ chart, views: viewRef.current }, data as Datum[]);
+      update({ chart, views: viewRef.current }, data as Datum[], config);
       dataRef.current = cloneDeep(data);
     }
-  }, [data]);
+  }, [data, config]);
 
   const hasChangedConfig = !isEqual(configRef.current, config);
   const hasChangedData = !isEqual(dataRef.current, data);

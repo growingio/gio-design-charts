@@ -1,6 +1,8 @@
+import { LooseObject } from '@antv/g-base';
 import { Chart, registerInteraction, View } from '@antv/g2';
+import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
-import { cloneDeep, isEmpty, merge } from 'lodash';
+import { cloneDeep, isEmpty, isObject, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING } from '../theme';
 import { gioTheme } from '../theme/chart';
@@ -34,6 +36,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   if (basicConfig.closeAnimate) {
     chart.animate(false);
   }
+  chart.legend(false);
   return chart;
 };
 
@@ -58,12 +61,27 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   return chart;
 };
 
+export const fetchIntervalLabel = (interval: Interval, config: ChartConfig, labelCallback?: any, labelConfig?: any) => {
+  const shapeConfig = config[config.type] || {};
+  const label = shapeConfig.label || {};
+  if (typeof label === 'string') {
+    label && interval.label(label, labelCallback, labelConfig);
+  } else if (typeof label === 'object') {
+    label.field && interval.label(label.field, label.callback || labelCallback, label.config || labelConfig);
+  }
+};
+
 export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { data } = options;
 
   // Set Data
   if (!isEmpty(data)) {
-    chart.data(data as Datum[]);
+    if (Array.isArray(data)) {
+      chart.data(data as Datum[]);
+    } else if (isObject(data) && Array.isArray((data as LooseObject)?.source)) {
+      const sourceData = (data as LooseObject)?.source;
+      chart.data(sourceData);
+    }
   }
 
   // Use array for scale config, in G2 API, we can use different way to call chart.scale()

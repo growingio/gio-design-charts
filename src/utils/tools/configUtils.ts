@@ -17,7 +17,7 @@ export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, i
   const { legends, data, defaultStyles } = options;
   const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };
-  if (info.isStack) {
+  if (info.isStack && Array.isArray(data)) {
     customInfo['topData'] = data?.[0];
   }
   const dodgeBy = getDodgeBy(shapeConfig);

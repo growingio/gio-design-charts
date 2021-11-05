@@ -9,6 +9,7 @@ export enum ChartType {
   COLUMN = 'column',
   FUNNEL = 'funnel',
   AREA = 'area',
+  DONUT = 'donut',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -53,7 +54,7 @@ export interface Legends {
 
 export interface ChartOptions extends LooseObject {
   id?: HTMLElement;
-  data?: LooseObject;
+  data?: LooseObject | LooseObject[];
   legends?: Legends;
   hasDashed?: boolean;
   /**
@@ -127,6 +128,18 @@ export interface ColumnConfig extends ChartConfig {
    * 用来创建柱状图的配置
    */
   column: Shape;
+}
+
+export interface DonutConfig extends Omit<ChartConfig, 'data'> {
+  /**
+   * 用来创建环形图的配置
+   */
+  donut: Shape;
+
+  /**
+   * 在环形图中，需要title和count
+   */
+  data?: LooseObject[] | { title?: string; count?: string; source: LooseObject[] };
 }
 
 export interface BarConfig extends ChartConfig {

@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import Legends from '../../legends';
 import useOffset, { Offset } from '../../hooks/useOffset';
 import core, { LayoutProps } from '../../core/core';
@@ -8,20 +8,23 @@ const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
   const { legendQueue, chart, views } = options;
+  const [offsetWidth, setOffsetWidth] = useState(0);
   const watchReset = useCallback(
     (resetOffset: Offset) => {
       const autoFit = config?.chart?.autoFit;
       // we needn't support scroll-x for autoFit chart.
+      const divWidth = resetOffset.width;
       if (autoFit) {
         chart?.forceFit();
+        setOffsetWidth(divWidth);
         return;
       }
-      const divWidth = resetOffset.width;
       const useWidth = Number(width) > divWidth + 40 ? Number(width) : divWidth;
       if (config?.chart?.height && chart?.canvas?.get('el')) {
         chart?.changeSize(useWidth, config.chart.height);
         views?.forEach((view: View) => view.render(true));
       }
+      setOffsetWidth(divWidth);
     },
     [chart, views, config, width]
   );
@@ -30,7 +33,12 @@ const LegendLayout = (props: LayoutProps) => {
   return (
     <div className="gio-d-chart" ref={layoutRef} data-testid="legend-layout">
       {config.legend !== false && (
-        <Legends config={config} legends={legendQueue} offsetWidth={offset.width} onClick={onClickLegend} />
+        <Legends
+          config={config}
+          legends={legendQueue}
+          offsetWidth={offsetWidth || offset.width}
+          onClick={onClickLegend}
+        />
       )}
       {props.children}
     </div>
