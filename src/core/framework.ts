@@ -1,7 +1,8 @@
+import { LooseObject } from '@antv/g-base';
 import { Chart, registerInteraction, View } from '@antv/g2';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
-import { cloneDeep, isEmpty, merge } from 'lodash';
+import { cloneDeep, isEmpty, isObject, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING } from '../theme';
 import { gioTheme } from '../theme/chart';
@@ -77,8 +78,9 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
   if (!isEmpty(data)) {
     if (Array.isArray(data)) {
       chart.data(data as Datum[]);
-    } else if (Array.isArray(data?.source)) {
-      chart.data(data?.source as Datum[]);
+    } else if (isObject(data) && Array.isArray((data as LooseObject)?.source)) {
+      const sourceData = (data as LooseObject)?.source;
+      chart.data(sourceData);
     }
   }
 

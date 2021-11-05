@@ -130,11 +130,16 @@ export interface ColumnConfig extends ChartConfig {
   column: Shape;
 }
 
-export interface DonutConfig extends ChartConfig {
+export interface DonutConfig extends Omit<ChartConfig, 'data'> {
   /**
    * 用来创建环形图的配置
    */
   donut: Shape;
+
+  /**
+   * 在环形图中，需要title和count
+   */
+  data?: LooseObject[] | { title?: string; count?: string; source: LooseObject[] };
 }
 
 export interface BarConfig extends ChartConfig {
@@ -159,7 +164,7 @@ export interface ChartProps {
   /**
    * Chart数据
    */
-  data: LooseObject | LooseObject[];
+  data: LooseObject[];
   loading?: boolean;
   errorTemplate?: (e: Error) => JSX.Element | JSX.Element[];
   noData?: () => JSX.Element;

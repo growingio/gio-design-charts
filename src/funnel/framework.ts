@@ -74,9 +74,9 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
   const chart = generateChart(options, config);
   const [addLinkByElement, updateFunnel] = updateHoc();
   try {
-    const sourceData = options.data?.source || [];
-    const covertData = options.data?.covert || [];
-    const isGroup = options.data?.isGroup;
+    const sourceData = (options.data as LooseObject)?.source || [];
+    const covertData = (options.data as LooseObject)?.covert || [];
+    const isGroup = (options.data as LooseObject)?.isGroup;
 
     const emptyLegends = isEmpty(legends);
 
