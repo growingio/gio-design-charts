@@ -62,20 +62,21 @@ const useChart = (options: UseChartProps) => {
     }
     const theme = getTheme(context?.theme);
     const [genLegends, queue, hasDashedLegend] = getLegends(config.type, legendList);
-    const tooltip = config.tooltip
-      ? {
-          ...config.tooltip,
-          container: tooltipRef.current,
-          customItems: (originalItems: TooltipItem[]) => {
-            // it will be get error when mouseover quickly on chart before funnl chart is rendered
-            // debounce will resolve it.
-            // use setHoverItem will make sure the tooltip marker style is right
-            // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
-            tooltipItemRegister(originalItems);
-            return originalItems;
-          },
-        }
-      : false;
+    const tooltip =
+      config.tooltip !== false
+        ? {
+            ...config.tooltip,
+            container: tooltipRef.current,
+            customItems: (originalItems: TooltipItem[]) => {
+              // it will be get error when mouseover quickly on chart before funnl chart is rendered
+              // debounce will resolve it.
+              // use setHoverItem will make sure the tooltip marker style is right
+              // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
+              tooltipItemRegister(originalItems);
+              return originalItems;
+            },
+          }
+        : false;
     const {
       chart,
       views = [],
@@ -88,6 +89,7 @@ const useChart = (options: UseChartProps) => {
         hasDashed: hasDashedLegend,
         interceptors,
         theme: theme,
+        hasLegend: config.legend !== false && queue.length > 0,
         ...(defaultOptions || {}),
       },
       {

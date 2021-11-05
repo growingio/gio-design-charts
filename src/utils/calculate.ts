@@ -25,6 +25,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
   const intervalPadding = 20;
   const dodgePadding = 4;
   const columnWidth = 16;
+  const fixedHeight = 32;
   let height = 0;
   dv.rows.forEach((row: LooseObject) => {
     const { totalCount } = row;
@@ -41,7 +42,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
       height += totalCount * columnWidth;
     }
   });
-  return height + 16;
+  return height + fixedHeight;
 };
 
 export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) => {
@@ -58,6 +59,7 @@ export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) =
   const intervalPadding = 40;
   const dodgePadding = 4;
   const columnWidth = 40;
+  const fixedWidth = 8;
 
   dv.transform({
     type: 'aggregate',
@@ -82,5 +84,5 @@ export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) =
       width += columnWidth * totalCount;
     }
   });
-  return width;
+  return width + fixedWidth;
 };

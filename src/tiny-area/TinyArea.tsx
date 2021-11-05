@@ -40,6 +40,7 @@ const TinyArea: React.FC<TinyAreaProps> = (props: TinyAreaProps) => {
     setAreaConfig(covertAreaConfig);
   }, [data, config]);
   areaConfig.type = ChartType.AREA;
+  areaConfig.size = 'tiny';
 
   return (
     <BaldLayout

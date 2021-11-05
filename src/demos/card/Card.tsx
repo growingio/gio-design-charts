@@ -10,8 +10,9 @@ const Card = (props: CardProps) => {
     <div
       style={{
         border: '1px solid #EBEDF5',
+        boxSizing: 'border-box',
         borderRadius: '4px',
-        padding: 20,
+        padding: 19,
         margin: 8,
         // height: 350,
         display: 'block',

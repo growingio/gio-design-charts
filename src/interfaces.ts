@@ -56,6 +56,10 @@ export interface ChartOptions extends LooseObject {
   data?: LooseObject;
   legends?: Legends;
   hasDashed?: boolean;
+  /**
+   * this is used to render the chart whether to subtract the legend height or not.
+   */
+  hasLegend?: boolean;
   chart?: Chart;
   views?: View[];
   theme?: LooseObject;
