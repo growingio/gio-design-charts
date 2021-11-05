@@ -17,7 +17,6 @@ export class Donut {
 
   addText = (chart: Chart | View, data: LooseObject, config: ChartConfig) => {
     const theme = config?.chart?.theme;
-    console.log(config);
     const { title, count } = data;
     let titleText = gioTheme.gio.annotation.text.title;
     let countText = gioTheme.gio.annotation.text.count;
