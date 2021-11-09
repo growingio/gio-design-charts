@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChartProps, DonutConfig, ChartType } from '../interfaces';
-import { Donut } from './framework';
+import { Donut as DonutCls } from './framework';
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
@@ -8,9 +8,9 @@ export interface DonutProps extends ChartProps {
   config: DonutConfig;
 }
 
-const Column: React.FC<DonutProps> = (props: DonutProps) => {
+const Donut: React.FC<DonutProps> = (props: DonutProps) => {
   const { data, legends: legendProps = [], config } = props;
-  const donut = new Donut();
+  const donut = new DonutCls();
   config.type = ChartType.DONUT;
 
   return (
@@ -24,4 +24,4 @@ const Column: React.FC<DonutProps> = (props: DonutProps) => {
   );
 };
 
-export default fetchChart<DonutProps>(Column);
+export default fetchChart<DonutProps>(Donut);

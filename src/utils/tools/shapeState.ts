@@ -37,3 +37,15 @@ export const getAreaShapeState = () => {
     },
   };
 };
+
+export const getPointShapeState = () => ({
+  active: {
+    style: (element: Element) => {
+      const model = element?.getModel?.();
+      const fill = model?.style?.fill || model?.color || '#fff';
+      return {
+        stroke: fill,
+      };
+    },
+  },
+});

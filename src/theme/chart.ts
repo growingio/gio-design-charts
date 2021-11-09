@@ -5,6 +5,7 @@ import { colors, DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } fr
  * Throught https://theme-set.antv.vision/ to update the theme for Chart.
  *
  * Reference: @antv/g2/src/theme/util/create-by-style-sheet.ts
+ * See: https://sourcegraph.com/github.com/antvis/G2/-/blob/src/theme/util/create-by-style-sheet.ts
  */
 export const gioTheme = {
   // set default colors, althought we have set default color for each legend.
@@ -15,6 +16,13 @@ export const gioTheme = {
   components: {
     axis: {
       common: {
+        title: {
+          style: {
+            fontFamily: DEFAULT_FONT_FAMILY,
+            fontSize: DEFAULT_FONT_SIZE,
+            fill: DEFAULT_FONT_COLOR,
+          },
+        },
         label: {
           offset: 16,
           style: {
@@ -139,6 +147,11 @@ export const darkTheme = {
   components: {
     axis: {
       common: {
+        title: {
+          style: {
+            fill: '#ffffff',
+          },
+        },
         label: {
           offset: 16,
           style: {

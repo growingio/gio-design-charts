@@ -10,6 +10,7 @@ export enum ChartType {
   FUNNEL = 'funnel',
   AREA = 'area',
   DONUT = 'donut',
+  BUBBLE = 'bubble',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -114,6 +115,13 @@ export interface AreaConfig extends ChartConfig {
    * 用来创建面积图的配置
    */
   area: Shape;
+}
+
+export interface BubbleConfig extends ChartConfig {
+  /**
+   * 用来创建气泡图
+   */
+  bubble: Shape;
 }
 
 export interface LineConfig extends ChartConfig {

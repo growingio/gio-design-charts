@@ -1,7 +1,9 @@
 export * from './area';
+export * from './bar';
+export * from './bubble';
+export * from './donut';
 export * from './line';
 export * from './column';
-export * from './bar';
 export * from './funnel';
 export * from './tiny-area';
 
