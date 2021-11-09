@@ -29,7 +29,7 @@ const InfoCard = (props: InfoCardProps) => {
         renderTooltip({ title, data, trigger, forwardKey, formatter })
       ) : (
         <div data-testid="infoCard" key="default-infocard">
-          <div className="gio-d-chart-infocard_title">{title || ''}</div>
+          {title && <div className="gio-d-chart-infocard_title">{title}</div>}
           {data.map((item: InfoCardData, index: number) => (
             <div key={`${item.data?.[forwardKey]}-${index}` || `empty-item-${index}`}>
               <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />

@@ -32,6 +32,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     padding: 'auto',
     appendPadding: config.size === 'tiny' ? 0 : DEFAULT_APPEND_PADDING,
     theme: merge(cloneDeep(gioTheme), cloneDeep(theme), customTheme),
+    limitInPlot: true,
   });
   if (basicConfig.closeAnimate) {
     chart.animate(false);
