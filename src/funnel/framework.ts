@@ -95,7 +95,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
         color: !isGroup || emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
       },
     };
-    fetchViewConfig(backgroundView, backgroundOptions, { ...config, axis: false });
+    fetchViewConfig(backgroundView, backgroundOptions, { ...config });
     fetchInterval(backgroundView, backgroundOptions, config);
     backgroundView.interaction('element-active');
     backgroundView.render();

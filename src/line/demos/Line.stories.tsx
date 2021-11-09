@@ -1,11 +1,17 @@
 import { ComponentStory } from '@storybook/react';
 import Line from '../Line';
-import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, dataWithTwoLine } from './data';
+import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, contrastData } from './data';
 import Card from '../../demos/card';
 import Docs from './Line.mdx';
 import { colors } from '../../theme';
-import { formatNumber, InfoCard } from '../..';
+import { LineConfig } from '../../interfaces';
 import { formatDateByTs } from '../../utils/formatDate';
+import ContrastLine from '../ContrastLine';
+import { LooseObject } from '@antv/g-base';
+import { format } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
+import { formatNumber } from '../../utils/formatNumber';
+import { InfoCard } from '../../info-card';
 
 export default {
   title: 'Charts/折线图 Line',
@@ -95,33 +101,6 @@ const BaiscLineArgs = {
 BaiscLine.storyName = '基础折线图';
 BaiscLine.args = { ...BaiscLineArgs };
 
-export const ContrastLine = Template.bind({});
-const ContrastLineArgs = {
-  legends: [
-    {
-      name: '步步盈增',
-      color: colors[0],
-    },
-    {
-      name: '步步盈增（上个月）',
-      lineDash: true,
-      color: colors[0],
-    },
-  ],
-  data: dataWithTwoLine,
-  config: {
-    ...config,
-    ...scalaAxisConfig,
-    line: {
-      position: 'tm*value',
-      color: 'type',
-    },
-  },
-};
-
-ContrastLine.args = { ...ContrastLineArgs };
-ContrastLine.storyName = '对比折线图';
-
 export const MultiLine = Template.bind({});
 const MultiLineArgs = {
   legends: [
@@ -210,3 +189,93 @@ const LineWithOneLineDateArgs = {
 };
 LineWithOneLineDate.storyName = '时间*数字';
 LineWithOneLineDate.args = { ...LineWithOneLineDateArgs };
+
+const ContrastTemplate: ComponentStory<any> = (args) => (
+  <div style={{ ...args.style }}>
+    <Card>
+      <ContrastLine {...args} />
+    </Card>
+  </div>
+);
+
+export const ContrastLineExample = ContrastTemplate.bind({});
+const ContrastLineExampleArgs = {
+  legends: [
+    {
+      name: '活跃人数(上周)',
+      color: colors[0],
+      lineDash: true,
+    },
+    {
+      name: '活跃人数',
+      color: colors[0],
+      role: 'lead',
+    },
+  ],
+  data: contrastData,
+  config: {
+    ...config,
+    scale: {
+      value: {
+        nice: true,
+        max: 2000,
+      },
+      tm: { range: [0, 1] },
+    },
+    axises: [
+      [
+        'value',
+        {
+          label: {
+            formatter: (val: string) => formatNumber(Number(val)),
+          },
+        },
+      ],
+      [
+        'tm',
+        {
+          tickLine: null,
+          label: {
+            formatter: (text: string) => {
+              return formatDateByTs(text);
+            },
+          },
+        },
+      ],
+    ],
+    tooltip: {
+      showCrosshairs: true,
+      shared: true,
+      enterable: true,
+      render(options: any) {
+        const dataItems = options.data;
+        dataItems.forEach((item: LooseObject) => {
+          item.data.name = format(new Date(Number(item.data.tm)), 'yyyy/MM/dd', { locale: zhCN });
+        });
+        return <InfoCard {...options} title="环比" forwardKey="name" valueKey="value" />;
+      },
+    },
+    line: {
+      position: 'tm*value',
+      color: 'type',
+    },
+  },
+};
+
+ContrastLineExample.args = { ...ContrastLineExampleArgs };
+ContrastLineExample.storyName = '对比折线图';
+
+export const ContrastLineDarkExample = ContrastTemplate.bind({});
+
+ContrastLineDarkExample.args = {
+  style: { backgroundColor: '#000', padding: 8 },
+  ...ContrastLineExample.args,
+  config: {
+    ...(ContrastLineExample.args.config as LineConfig),
+    chart: {
+      ...ContrastLineExample.args.config?.chart,
+      theme: 'dark',
+    },
+  },
+};
+ContrastLineDarkExample.storyName = '对比折线图(Dark)';

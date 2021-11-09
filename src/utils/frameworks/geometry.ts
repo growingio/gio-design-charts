@@ -3,6 +3,13 @@ import { Geometry } from '@antv/g2';
 import { SizeAttrCallback } from '@antv/g2/lib/interface';
 import { Legends } from '../../interfaces';
 
+export const getAxisFields = (position: string) => {
+  if (position.indexOf('*') === -1) {
+    return [position];
+  }
+  return position.split('*');
+};
+
 export const bindPosition = (geo: Geometry, position: string) => {
   return geo.position(position);
 };
