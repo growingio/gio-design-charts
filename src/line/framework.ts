@@ -15,8 +15,14 @@ import { forEach } from 'lodash';
 import { getAxisFields } from '../utils/frameworks/geometry';
 import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
+import { Datum } from '@antv/g2/lib/interface';
 
 export class Line {
+  options: ChartOptions | undefined = undefined;
+  chart: Chart | undefined = undefined;
+  views: View[] = [];
+  finnalView: View | undefined = undefined;
+
   getDataByColor = (color: string, xField: string, yField: string, data: LooseObject[]): [number, LooseObject] => {
     const dataMapping: LooseObject = {};
     let maxValue = 0;
@@ -95,12 +101,36 @@ export class Line {
     return line;
   };
 
+  updateContrast = (charts: { chart: Chart }, data: Datum[], config: ChartConfig) => {
+    const lineCfg = getShapeConfig(config, ChartType.LINE);
+    const [xField, yField] = getAxisFields(lineCfg.position);
+    const [maxValue, dataMapping] = this.getDataByColor(lineCfg.color, xField, yField, data as LooseObject[]);
+    this.setMax(yField, maxValue, config);
+
+    const legends = this.options?.legends || {};
+    let viewCount = 0;
+    this.contrastViewQueue(dataMapping, legends)(
+      (data) => {
+        const view = this.views?.[viewCount];
+        view?.changeData(data);
+        view?.render(true);
+      },
+      (data: LooseObject[]) => {
+        this.finnalView?.changeData(data);
+        this.finnalView?.render(true);
+      }
+    );
+
+    this.chart?.render(true);
+  };
+
   contrast = (options: ChartOptions, config: ChartConfig = {}) => {
     const { id, data, legends = {} } = options;
     if (!id) {
       return {};
     }
     const chart = generateChart(options, config);
+    this.options = options;
     try {
       const lineCfg = getShapeConfig(config, ChartType.LINE);
       const [xField, yField] = getAxisFields(lineCfg.position);
@@ -119,15 +149,17 @@ export class Line {
       const currentView = (data: LooseObject[]) => {
         const view = this.contrastView(chart, { ...options, data }, config);
         views.push(view);
+        this.finnalView = view;
       };
       this.contrastViewQueue(dataMapping, legends)(historyView, currentView);
 
       fetchTooltip(chart, config);
       chart.legend(false);
       chart.render();
-      return { chart, views, update: updateChart };
+      this.chart = chart;
+      return { chart, views, update: this.updateContrast };
     } catch (err) {}
-    return { chart, update: updateChart };
+    return { chart, update: this.updateContrast };
   };
 
   render = (options: ChartOptions, config: ChartConfig = {}) => {
