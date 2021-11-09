@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Line as LineCls } from './framework';
 
 import { ChartType, LineConfig } from '../interfaces';
@@ -11,7 +11,7 @@ const ContrastLine: React.FC<LineProps> = (props: LineProps) => {
 
   config.type = ChartType.LINE;
 
-  const line = new LineCls();
+  const [line] = useState(new LineCls());
 
   return (
     <LegendLayout

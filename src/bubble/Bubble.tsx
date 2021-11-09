@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Bubble as BubbleCls } from './framework';
 import { ChartType, ChartProps, BubbleConfig } from '../interfaces';
 
@@ -12,7 +12,7 @@ export interface BubbleProps extends ChartProps {
 const Bubble: React.FC<BubbleProps> = (props: BubbleProps) => {
   const { data, legends: legendProps = [], config } = props;
 
-  const bubble = new BubbleCls();
+  const [bubble] = useState(new BubbleCls());
 
   config.type = ChartType.BUBBLE;
 

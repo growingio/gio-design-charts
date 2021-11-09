@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Line as LineCls } from './framework';
 import { ChartType, ChartProps, LineConfig } from '../interfaces';
 
@@ -13,7 +13,7 @@ const Line: React.FC<LineProps> = (props: LineProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   config.type = ChartType.LINE;
-  const line = new LineCls();
+  const [line] = useState(new LineCls());
 
   return (
     <LegendLayout
