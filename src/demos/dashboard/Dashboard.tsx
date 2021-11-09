@@ -16,7 +16,7 @@ import {
   FunnelWithGroup,
 } from '../../funnel/demos/Funnel.stories';
 
-import { MultiLine, BaiscLine, ContrastLine } from '../../line/demos/Line.stories';
+import { MultiLine, BaiscLine, ContrastLineExample } from '../../line/demos/Line.stories';
 import { ColumnProps } from '../../column/Column';
 import { BarProps } from '../../bar/Bar';
 import { FunnelProps } from '../../funnel/Funnel';
@@ -40,8 +40,12 @@ const Dashboard = () => {
           <Frame type="left" title={BaiscLine.storyName} path="/?path=/story/charts-折线图-line--baisc-line">
             <BaiscLine {...(BaiscLine.args as LineProps)} />
           </Frame>
-          <Frame type="right" title={ContrastLine.storyName} path="/?path=/story/charts-折线图-line--contrast-line">
-            <ContrastLine {...(ContrastLine.args as LineProps)} />
+          <Frame
+            type="right"
+            title={ContrastLineExample.storyName}
+            path="/?path=/story/charts-折线图-line--contrast-line"
+          >
+            <ContrastLineExample {...(ContrastLineExample.args as LineProps)} />
           </Frame>
         </div>
         <div>
