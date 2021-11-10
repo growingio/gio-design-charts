@@ -31,8 +31,6 @@ const Legends = (props: LegendsProps) => {
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);
 
-  isString(config?.chart?.theme);
-
   const onClickLegend = useCallback(
     (label: string) => {
       const enableClick = legends.length > 1;

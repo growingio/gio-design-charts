@@ -102,14 +102,14 @@ export const viewTheme = {
     axis: {
       common: {
         label: {
-          offset: 16,
           style: {
+            fontFamily: DEFAULT_FONT_FAMILY,
             fill: '#ffffff',
           },
         },
         line: {
           style: {
-            lineWidth: 1,
+            fontFamily: DEFAULT_FONT_FAMILY,
             stroke: '#ffffff',
           },
         },
@@ -118,7 +118,33 @@ export const viewTheme = {
   },
   labels: {
     style: {
+      fontFamily: DEFAULT_FONT_FAMILY,
       fontSize: DEFAULT_FONT_SIZE,
+      fill: '#ffffff',
+    },
+  },
+};
+export const darkViewTheme = {
+  // set default colors, althought we have set default color for each legend.
+  // but it's still necessary to add default colors for theme
+  components: {
+    axis: {
+      common: {
+        label: {
+          style: {
+            fill: '#000',
+          },
+        },
+        line: {
+          style: {
+            stroke: '#ffffff',
+          },
+        },
+      },
+    },
+  },
+  labels: {
+    style: {
       fill: '#ffffff',
     },
   },

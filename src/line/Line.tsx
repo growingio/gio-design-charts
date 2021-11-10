@@ -1,5 +1,5 @@
-import React from 'react';
-import { lineChart, handleLegend } from './framework';
+import React, { useState } from 'react';
+import { Line as LineCls } from './framework';
 import { ChartType, ChartProps, LineConfig } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
@@ -13,14 +13,15 @@ const Line: React.FC<LineProps> = (props: LineProps) => {
   const { data, legends: legendProps = [], config } = props;
 
   config.type = ChartType.LINE;
+  const [line] = useState(new LineCls());
 
   return (
     <LegendLayout
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={lineChart}
-      handleLegend={handleLegend}
+      callChart={line.render}
+      handleLegend={line.legend}
     />
   );
 };

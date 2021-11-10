@@ -2,11 +2,10 @@ import { LooseObject } from '@antv/g-base';
 import { Chart, registerInteraction, View } from '@antv/g2';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
-import { cloneDeep, isEmpty, isObject, merge } from 'lodash';
+import { isEmpty, isObject } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING } from '../theme';
-import { gioTheme } from '../theme/chart';
-import { getTheme } from '../utils/chart';
+import { getDefaultTheme } from '../utils/chart';
 
 import '../utils/tools';
 
@@ -22,7 +21,6 @@ registerInteraction('element-highlight-by-color', {
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id, theme, hasLegend } = options;
   const basicConfig = config.chart || {};
-  const customTheme = getTheme(config.chart?.theme);
   // Set defualt chart config
   const chart = new Chart({
     ...basicConfig,
@@ -31,7 +29,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     height: (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0),
     padding: 'auto',
     appendPadding: config.size === 'tiny' ? 0 : DEFAULT_APPEND_PADDING,
-    theme: merge(cloneDeep(gioTheme), cloneDeep(theme), customTheme),
+    theme: getDefaultTheme(theme, config),
     limitInPlot: true,
   });
   if (basicConfig.closeAnimate) {
@@ -104,14 +102,15 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
   // Use array for axis config
   // See detail
   const axis = config.axis;
-  if (axis) {
-    chart.axis.apply(chart, axis);
-  } else if (axis === false) {
+  if (axis === false) {
     chart.axis(false);
+  } else {
+    if (axis) {
+      chart.axis.apply(chart, axis);
+    }
+    const axises = config.axises;
+    axises?.map((a: [string, AxisOption]) => chart.axis.apply(chart, a));
   }
-  // Support multi axis config
-  const axises = config.axises;
-  axises?.map((a: [string, AxisOption]) => chart.axis.apply(chart, a));
 
   // We don't use default legend
   chart.legend(false);

@@ -25,6 +25,7 @@ const Legend = (props: LegendProps) => {
         border: `1px dashed ${active ? color : DISABLE_COLOR}`,
         height: 0,
         width: 12,
+        ...(textColor ? { backgroundColor: '#000' } : {}),
         ...backgroundImage,
       }
     : { backgroundColor: active ? color : DISABLE_COLOR, ...backgroundImage };

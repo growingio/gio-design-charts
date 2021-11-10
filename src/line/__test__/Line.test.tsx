@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Line, { LineProps } from '../Line';
-import { BaiscLine, ContrastLine, MultiLine, LineWithOneLineDate } from '../demos/Line.stories';
+import { BaiscLine, MultiLine, LineWithOneLineDate, ContrastLineExample } from '../demos/Line.stories';
+import ContrastLine from '../ContrastLine';
 
 describe('Line Chart', () => {
   const legendTestId = 'legend-layout';
@@ -11,7 +12,7 @@ describe('Line Chart', () => {
   });
 
   test('render Chart with dash', async () => {
-    render(<Line {...(ContrastLine.args as LineProps)} />);
+    render(<ContrastLine {...(ContrastLineExample.args as LineProps)} />);
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
