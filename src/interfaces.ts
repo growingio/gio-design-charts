@@ -11,6 +11,7 @@ export enum ChartType {
   AREA = 'area',
   DONUT = 'donut',
   BUBBLE = 'bubble',
+  GAUGE = 'gauge',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -65,6 +66,7 @@ export interface ChartOptions extends LooseObject {
   chart?: Chart;
   views?: View[];
   theme?: LooseObject;
+  dict?: LooseObject;
   /**
    * set default styles for line or interval
    */
@@ -129,6 +131,13 @@ export interface LineConfig extends ChartConfig {
    * 用来创建折线图的配置
    */
   line: Shape;
+}
+
+export interface GaugeConfig extends ChartConfig {
+  /**
+   * 用来创建仪表图的配置
+   */
+  gauge: Shape;
 }
 
 export interface ColumnConfig extends ChartConfig {

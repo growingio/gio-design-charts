@@ -5,6 +5,8 @@ import { ChartProps } from '../../../interfaces';
 import { areaChart, handleLegend } from '../../../area/framework';
 import { AreaStack } from '../../../area/demos/Area.stories';
 import LegendLayout from '../LegendLayout';
+import { IntlProvider } from 'react-intl';
+import en from '../../../locales/en.json';
 
 const legendLayoutTestid = 'legend-layout';
 
@@ -27,14 +29,16 @@ describe('LegendLayout', () => {
       },
     };
     render(
-      <LegendLayout
-        config={newConfig}
-        data={data}
-        legendList={legends as any}
-        callChart={areaChart}
-        handleLegend={handleLegend}
-        width={1050}
-      />
+      <IntlProvider defaultLocale="zh-CN" locale="zh-CN" messages={en}>
+        <LegendLayout
+          config={newConfig}
+          data={data}
+          legendList={legends as any}
+          callChart={areaChart}
+          handleLegend={handleLegend}
+          width={1050}
+        />
+      </IntlProvider>
     );
 
     const element = screen.getByTestId(legendLayoutTestid);

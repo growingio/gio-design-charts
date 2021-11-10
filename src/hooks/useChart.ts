@@ -9,6 +9,7 @@ import useLegends, { getLegends } from './useLegends';
 import { getTheme, inValidConfig } from '../utils/chart';
 import { cloneDeep } from 'lodash';
 import { DesignContext } from '@gio-design/utils';
+import { useIntlDict } from './useIntlDict';
 
 export interface UseChartProps {
   rootRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -41,6 +42,7 @@ const useChart = (options: UseChartProps) => {
   } = options;
 
   const context = useContext(DesignContext);
+  const dict = useIntlDict();
 
   const chartRef = useRef<Chart>();
   const viewRef = useRef<View[]>();
@@ -85,6 +87,7 @@ const useChart = (options: UseChartProps) => {
       {
         id: rootRef.current,
         data,
+        dict,
         legends: genLegends,
         hasDashed: hasDashedLegend,
         interceptors,
@@ -117,6 +120,7 @@ const useChart = (options: UseChartProps) => {
     interceptors,
     setLegends,
     context,
+    dict,
   ]);
 
   const updateChart = useCallback(() => {
