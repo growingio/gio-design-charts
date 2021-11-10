@@ -1,6 +1,6 @@
 import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
 import { Meta, Story, Canvas } from '@storybook/addon-docs';
-import { BaiscLine, ContrastLine, MultiLine } from './Line.stories';
+import { BaiscLine, ContrastLineExample, MultiLine } from './Line.stories';
 import Line from '../Line';
 
 <Meta title="MDX/Line" component={Line} />
@@ -34,7 +34,11 @@ export const Template = (args) => <Area {...args} />;
 - 同一维度，不同时间范围的对比，用线的不同样式表示。
 
 <Canvas>
-  <Story id="charts-折线图-line--contrast-line" name={ContrastLine.storyName} args={ContrastLine.args}>
+  <Story
+    id="charts-折线图-line--contrast-line-example"
+    name={ContrastLineExample.storyName}
+    args={ContrastLineExample.args}
+  >
     {Template.bind({})}
   </Story>
 </Canvas>

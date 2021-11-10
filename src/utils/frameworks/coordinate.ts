@@ -1,4 +1,4 @@
-import { Chart } from '@antv/g2';
+import { Chart, View } from '@antv/g2';
 
 /**
  * 在生成仪表图的极值坐标轴
@@ -7,7 +7,7 @@ import { Chart } from '@antv/g2';
  * @param chart {Chart}
  * @returns
  */
-export const bindGuageCoordination = (chart: Chart) => {
+export const bindGuageCoordination = (chart: Chart | View) => {
   chart.coordinate('polar', {
     startAngle: (-1 / 2) * Math.PI,
     endAngle: 1.4999999 * Math.PI,

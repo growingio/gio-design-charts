@@ -1,4 +1,4 @@
-import { Chart, registerInteraction, View } from '@antv/g2';
+import { Chart, View } from '@antv/g2';
 import { Datum } from '@antv/g2/lib/interface';
 import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
