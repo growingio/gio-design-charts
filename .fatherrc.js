@@ -11,6 +11,6 @@ export default {
       react: 'React',
     },
     minFile: true,
-    sourcemap: true,
+    sourcemap: false,
   },
 };
