@@ -1,14 +1,10 @@
-# [1.0.0-beta.8](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2021-11-08)
-
-
-### Bug Fixes
-
-* **improve:** improve some style info ([#122](https://github.com/growingio/gio-design-charts/issues/122)) ([0a8e8ba](https://github.com/growingio/gio-design-charts/commit/0a8e8bab2aab2a3596b66907a3ff094581f2fe41))
+# [1.0.0-beta.9](https://github.com/growingio/gio-design-charts/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2021-11-10)
 
 
 ### Features
 
-* **Donut:** add donut chart ([#123](https://github.com/growingio/gio-design-charts/issues/123)) ([36acc27](https://github.com/growingio/gio-design-charts/commit/36acc27b428b619faa104755cc5fc5a0c220608d))
+* **Bubble:** add Bubble Chart ([#125](https://github.com/growingio/gio-design-charts/issues/125)) ([4ecde16](https://github.com/growingio/gio-design-charts/commit/4ecde169ad9bc7299c02fd809595bf4a5f268277))
+* **ContrastLine:** add ContrastLine without changing data ([#126](https://github.com/growingio/gio-design-charts/issues/126)) ([1245a82](https://github.com/growingio/gio-design-charts/commit/1245a820dcd3055196ddfe4f43921d75a6e7587d))
 
 
 

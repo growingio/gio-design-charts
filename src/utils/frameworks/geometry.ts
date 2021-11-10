@@ -19,7 +19,7 @@ export const bindSize = (geo: Geometry, sizeCfg: number | string | LooseObject |
     return geo.size(10);
   }
   if (typeof sizeCfg === 'string') {
-    return geo.size(sizeCfg, [10, 50]);
+    return geo.size(sizeCfg, [4, 50]);
   }
   if (typeof sizeCfg === 'number') {
     return geo.size(sizeCfg);
