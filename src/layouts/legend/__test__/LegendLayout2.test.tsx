@@ -5,6 +5,8 @@ import { ChartProps } from '../../../interfaces';
 import { areaChart, handleLegend } from '../../../area/framework';
 import { PercentArea } from '../../../area/demos/Area.stories';
 import LegendLayout from '../LegendLayout';
+import { IntlProvider } from 'react-intl';
+import en from '../../../locales/en.json';
 
 const legendLayoutTestid = 'legend-layout';
 
@@ -20,14 +22,16 @@ describe('LegendLayout2', () => {
     const { legends, config, data } = PercentArea.args as ChartProps;
     config.type = 'area';
     render(
-      <LegendLayout
-        config={config}
-        data={data}
-        legendList={legends as any}
-        callChart={areaChart}
-        handleLegend={handleLegend}
-        width={150}
-      />
+      <IntlProvider defaultLocale="zh" locale="zh-CN" messages={en}>
+        <LegendLayout
+          config={config}
+          data={data}
+          legendList={legends as any}
+          callChart={areaChart}
+          handleLegend={handleLegend}
+          width={150}
+        />
+      </IntlProvider>
     );
     const element = screen.getByTestId(legendLayoutTestid);
     act(() => {

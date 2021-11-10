@@ -29,7 +29,7 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(ChartComponent: React
     const context = useContext(DesignContext);
     const localeCode = context?.locale?.code || 'zh-CN';
     return (
-      <IntlProvider defaultLocale="zh" locale={localeCode} messages={MESSAGES[localeCode] ?? {}}>
+      <IntlProvider defaultLocale="zh-CN" locale={localeCode} messages={MESSAGES[localeCode] ?? {}}>
         <ErrorBoundary errorTemplate={errorTemplate}>
           <ChartComponent {...props} />
         </ErrorBoundary>

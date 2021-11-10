@@ -5,8 +5,7 @@ import { intervalShape } from '../column/framework';
 import { fetchConfig, fetchIntervalLabel, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { ChartConfig, ChartOptions, Legend, Legends, ChartType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
-import gioTheme from '../theme/chart';
-import { cloneDeep, isObject, merge } from 'lodash';
+import { donutText } from '../utils/frameworks/text';
 
 export class Donut {
   chart: Chart | undefined;
@@ -15,29 +14,8 @@ export class Donut {
   }
 
   addText = (chart: Chart | View, data: LooseObject, config: ChartConfig) => {
-    const theme = config?.chart?.theme;
     const { title, count } = data;
-    let titleText = gioTheme.gio.annotation.text.title;
-    let countText = gioTheme.gio.annotation.text.count;
-    if (typeof theme === 'string' && theme === 'dark') {
-      titleText = merge(cloneDeep(titleText), { style: { fill: '#ffffff' } });
-      countText = merge(cloneDeep(countText), { style: { fill: '#ffffff' } });
-    } else if (isObject(theme)) {
-      titleText = merge(cloneDeep(titleText), theme?.gio?.annotation?.text?.title || {});
-      countText = merge(cloneDeep(countText), theme?.gio?.annotation?.text?.count || {});
-    }
-    if (title) {
-      chart?.annotation()?.text({
-        ...titleText,
-        content: title,
-      });
-    }
-    if (count || count === 0) {
-      chart?.annotation()?.text({
-        ...countText,
-        content: count,
-      });
-    }
+    donutText(title, count, chart, config);
   };
 
   update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum | Datum[], config: ChartConfig) => {

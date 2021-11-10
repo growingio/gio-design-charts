@@ -38,7 +38,7 @@ Basic.args = {
   config: {
     chart: {
       autoFit: true,
-      height: 250,
+      height: 400,
     },
     tooltip: {
       showMarkers: false,

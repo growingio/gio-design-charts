@@ -4,5 +4,11 @@
       "type": 0,
       "value": "Chart Component Error, please check："
     }
+  ],
+  "rate": [
+    {
+      "type": 0,
+      "value": "Ratio："
+    }
   ]
 }
