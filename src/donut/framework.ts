@@ -2,35 +2,40 @@ import { LooseObject } from '@antv/g-base';
 import { Chart, View } from '@antv/g2';
 import { Datum } from '@antv/g2/lib/interface';
 import { intervalShape } from '../column/framework';
-import { fetchConfig, fetchIntervalLabel, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
-import { ChartConfig, ChartOptions, Legend, Legends, ChartType } from '../interfaces';
+import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
+import { ChartConfig, ChartOptions, Legend, Legends, ChartType, Shape } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { donutText } from '../utils/frameworks/text';
+import { formatNumber, formatPercent } from '../utils/formatNumber';
+import { bindDonutCoordination } from '../utils/frameworks/coordinate';
 
 export class Donut {
-  chart: Chart | undefined;
-  constructor() {
-    this.chart = undefined;
-  }
+  chart: Chart | undefined = undefined;
+  donutView: View | undefined = undefined;
+  textView: View | undefined = undefined;
+  options: ChartOptions | undefined = undefined;
+  config: ChartConfig | undefined = undefined;
+  totalCount: number = 0;
 
-  addText = (chart: Chart | View, data: LooseObject, config: ChartConfig) => {
-    const { title, count } = data;
-    donutText(title, count, chart, config);
+  addText = (chart: Chart | View, data: LooseObject[], config: ChartConfig) => {
+    const donutCfg = getShapeConfig(config, ChartType.DONUT);
+    const { title, subTitle } = donutCfg;
+    donutText(title, subTitle ? subTitle : formatNumber(this.totalCount), chart, config);
   };
 
-  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum | Datum[], config: ChartConfig) => {
-    const [donutView, textView] = views;
-    if (Array.isArray(data)) {
-      donutView?.changeData(data);
-    } else if (Array.isArray(data?.source)) {
-      donutView?.changeData(data.source);
-    }
-    donutView?.render(true);
-
+  updateText = (textView: View, data: LooseObject[], config: ChartConfig) => {
     textView.clear();
     this.addText(textView, data, config);
     textView?.render(true);
+  };
 
+  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[], config: ChartConfig) => {
+    const [donutView, textView] = views;
+    if (Array.isArray(data)) {
+      donutView?.changeData(data);
+    }
+    donutView?.render(true);
+    this.updateText(textView, data, config);
     chart.render(true);
     chart.forceFit();
   };
@@ -41,9 +46,14 @@ export class Donut {
       return {};
     }
 
+    const donutCfg = getShapeConfig(config, ChartType.DONUT);
+    this.setTotal(data as LooseObject[], donutCfg);
+
     const chart = generateChart(options, config);
     const donutView = chart.createView();
     fetchConfig(donutView, options, config);
+    bindDonutCoordination(donutView);
+
     const interval = intervalShape(donutView, options, config, {}, (label: string) => {
       const legend = legends[label] || ({} as Legend);
       return {
@@ -59,39 +69,53 @@ export class Donut {
       style: { fontSize: 12 },
       layout: { type: 'pie-outer' },
     };
-    const donutConfig = config[ChartType.DONUT] || {};
-    fetchIntervalLabel(
-      interval,
-      config,
-      (percent: number) => {
+    interval.label(
+      donutCfg.position,
+      () => {
         return {
-          content: (dataItem: LooseObject) => `${dataItem[donutConfig.color || 'name']}: ${percent * 100}%`,
+          content: (dataItem: LooseObject) => {
+            const formatter = donutCfg.label?.formatter;
+            return (
+              formatter?.(dataItem, this.totalCount) ||
+              `${dataItem[donutCfg.color || 'name']}: ${formatPercent(dataItem['count'] / this.totalCount)}`
+            );
+          },
         };
       },
       labelStyles
     );
-    donutView.coordinate('theta', {
-      radius: 0.85,
-      innerRadius: 0.55,
-    });
 
     const textView = chart.createView();
-    textView.coordinate('theta', {
-      radius: 0.9,
-      innerRadius: 0.7,
-    });
+    bindDonutCoordination(textView);
     fetchConfig(textView, options, config);
-    this.addText(textView, data as LooseObject, config);
+    this.addText(textView, data as LooseObject[], config);
     textView.render();
+
     fetchTooltip(chart, config);
     chart.render();
+
+    this.chart = chart;
+    this.donutView = donutView;
+    this.textView = textView;
+    this.options = options;
+    this.config = config;
     return { chart, views: [donutView, textView], update: this.update };
+  };
+  setTotal = (data: LooseObject[], donutCfg: Shape) => {
+    this.totalCount = data.reduce((total: number, item: LooseObject) => {
+      return total + item[donutCfg?.position];
+    }, 0);
   };
 
   legend = <DonutConfig>(charts: (Chart | View)[], legends: Legends, config: DonutConfig) => {
     const donut = getShapeConfig(config, 'donut');
     if (donut.color) {
+      const filteredData = this.options?.data?.filter((item: LooseObject) => {
+        return legends[item[donut.color]].active;
+      });
+      this.setTotal(filteredData, donut);
       charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, donut.color));
+      this.updateText(this.textView as View, filteredData, config);
     }
   };
 }

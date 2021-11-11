@@ -15,3 +15,11 @@ export const bindGuageCoordination = (chart: Chart | View) => {
   });
   return chart;
 };
+
+export const bindDonutCoordination = (chart: Chart | View) => {
+  chart.coordinate('theta', {
+    radius: 0.9,
+    innerRadius: 0.7,
+  });
+  return chart;
+};

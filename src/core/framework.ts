@@ -74,13 +74,8 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
   const { data } = options;
 
   // Set Data
-  if (!isEmpty(data)) {
-    if (Array.isArray(data)) {
-      chart.data(data as Datum[]);
-    } else if (isObject(data) && Array.isArray((data as LooseObject)?.source)) {
-      const sourceData = (data as LooseObject)?.source;
-      chart.data(sourceData);
-    }
+  if (!isEmpty(data) && Array.isArray(data)) {
+    chart.data(data as Datum[]);
   }
 
   // Use array for scale config, in G2 API, we can use different way to call chart.scale()
