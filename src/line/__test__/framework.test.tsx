@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { Line, Line as LineCls } from '../framework';
+import { Line as LineCls } from '../framework';
 import { BaiscLine } from '../demos/Line.stories';
 import { ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';

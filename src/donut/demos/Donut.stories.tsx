@@ -3,7 +3,7 @@ import Donut from '../Donut';
 import Card from '../../demos/card';
 import { data } from './data';
 import { darkTheme } from '../../theme/chart';
-import { InfoCard } from '../..';
+import { InfoCard } from '../../info-card';
 import { cloneDeep } from 'lodash';
 
 export default {
@@ -30,11 +30,7 @@ const Template: ComponentStory<any> = (args) => (
 export const Basic = Template.bind({});
 Basic.args = {
   legends: ['北京', '上海', '杭州', '重庆', '天津', '武汉', '兰州', '太原'],
-  data: {
-    title: '总计',
-    count: '14.23万',
-    source: data,
-  },
+  data,
   config: {
     chart: {
       autoFit: true,
@@ -59,19 +55,15 @@ Basic.args = {
       },
     },
     donut: {
-      position: 'percent',
+      position: 'count',
       color: 'name',
-      adjust: 'stack',
-      label: {
-        field: 'percent',
-        callback: (percent: any) => {
-          return {
-            content: (dataItem: any) => {
-              return `${dataItem.name}: ${percent * 100}%`;
-            },
-          };
-        },
-      },
+      title: '总计2',
+      // subTitle: '14.42万',
+      // label: {
+      //   formatter: (item: LooseObject, total: number) => {
+      //     return `${item.name}: ${formatPercent(item.count / total)}`;
+      //   },
+      // },
     },
   },
 };

@@ -152,11 +152,6 @@ export interface DonutConfig extends Omit<ChartConfig, 'data'> {
    * 用来创建环形图的配置
    */
   donut: Shape;
-
-  /**
-   * 在环形图中，需要title和count
-   */
-  data?: LooseObject[] | { title?: string; count?: string; source: LooseObject[] };
 }
 
 export interface BarConfig extends ChartConfig {

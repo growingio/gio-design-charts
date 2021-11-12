@@ -1,8 +1,7 @@
-import { LooseObject } from '@antv/g-base';
 import { Chart, registerInteraction, View } from '@antv/g2';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
-import { isEmpty, isObject } from 'lodash';
+import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING } from '../theme';
 import { getDefaultTheme } from '../utils/chart';
@@ -74,13 +73,8 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
   const { data } = options;
 
   // Set Data
-  if (!isEmpty(data)) {
-    if (Array.isArray(data)) {
-      chart.data(data as Datum[]);
-    } else if (isObject(data) && Array.isArray((data as LooseObject)?.source)) {
-      const sourceData = (data as LooseObject)?.source;
-      chart.data(sourceData);
-    }
+  if (!isEmpty(data) && Array.isArray(data)) {
+    chart.data(data as Datum[]);
   }
 
   // Use array for scale config, in G2 API, we can use different way to call chart.scale()
