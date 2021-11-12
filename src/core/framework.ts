@@ -1,8 +1,7 @@
-import { LooseObject } from '@antv/g-base';
 import { Chart, registerInteraction, View } from '@antv/g2';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
-import { isEmpty, isObject } from 'lodash';
+import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING } from '../theme';
 import { getDefaultTheme } from '../utils/chart';

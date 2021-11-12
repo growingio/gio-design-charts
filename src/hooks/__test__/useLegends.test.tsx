@@ -19,7 +19,7 @@ describe('test useLegends', () => {
   };
   const fullLegends = { ...testLegends, ...lineDashLgends };
   test('call getLegends', () => {
-    const [legends, queue, hasDashed] = getLegends(ChartType.BAR, [
+    const [legends, , hasDashed] = getLegends(ChartType.BAR, [
       '北京',
       { name: '上海' },
       { name: '南京', lineDash: [1, 2, 3] },

@@ -4,9 +4,7 @@ import Card from '../../demos/card';
 import { data } from './data';
 import { darkTheme } from '../../theme/chart';
 import { InfoCard } from '../../info-card';
-import { formatPercent } from '../../utils/formatNumber';
 import { cloneDeep } from 'lodash';
-import { LooseObject } from '@antv/g-base';
 
 export default {
   title: 'Charts/环形图 Donut',
