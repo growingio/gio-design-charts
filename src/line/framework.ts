@@ -108,7 +108,7 @@ export class Line {
     this.setMax(yField, maxValue, config);
 
     const legends = this.options?.legends || {};
-    let viewCount = 0;
+    const viewCount = 0;
     this.contrastViewQueue(dataMapping, legends)(
       (data) => {
         const view = this.views?.[viewCount];

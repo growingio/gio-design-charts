@@ -89,5 +89,7 @@ export class Gauge {
     this.chart = chart;
     return { chart, update: this.update };
   };
-  legend = () => {};
+  legend = () => {
+    //
+  };
 }
