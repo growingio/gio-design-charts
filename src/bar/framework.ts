@@ -71,8 +71,8 @@ export class Bar {
   backView: View | undefined = undefined;
   textView: View | undefined = undefined;
 
-  xField: string = '';
-  yField: string = '';
+  xField = '';
+  yField = '';
 
   readonly fetchBackData = (yField: string, data: LooseObject[]) => {
     const backData = cloneDeep(data);
