@@ -70,18 +70,10 @@ export class Bar {
   backView: View | undefined = undefined;
   textView: View | undefined = undefined;
 
-  xField: string = '';
-  yField: string = '';
+  xField = '';
+  yField = '';
 
-  private getMax = (field: string, data: LooseObject[]) => {
-    let max = 0;
-    data?.forEach((item: LooseObject) => {
-      max = item[field] > max ? item[field] : max;
-    });
-    return max;
-  };
-
-  private fetchBackData = (yField: string, data: LooseObject[]) => {
+  readonly fetchBackData = (yField: string, data: LooseObject[]) => {
     const backData = cloneDeep(data);
     backData?.forEach((item: LooseObject) => {
       item[yField] = 1;
@@ -89,7 +81,7 @@ export class Bar {
     return backData;
   };
 
-  private renderBackground = (view: View, yField: string, data: LooseObject[]) => {
+  readonly renderBackground = (view: View, yField: string, data: LooseObject[]) => {
     const backData = this.fetchBackData(yField, data);
     bindBarCoordination(view);
     fetchViewConfig(view, { ...this.options, data: backData }, this.config as ChartConfig);
@@ -101,7 +93,7 @@ export class Bar {
     view.render(true);
   };
 
-  private renderSuffixText = (elements: Element[]) => {
+  readonly renderSuffixText = (elements: Element[]) => {
     this.textView?.clear();
     setTimeout(() => {
       elements.forEach((element: Element) => {
@@ -117,7 +109,9 @@ export class Bar {
             offsetY: 0,
             html: () => {
               return `<div style="margin-left: -100%; padding-right: 100%; position: absolute; top: ${top}px; right: 0;">
-                <div style="border: 1px solid #EBEDF5; font-family: Lato, 'PingFang SC'; color: ${DEFAULT_FONT_COLOR}; border-radius: 2px; white-space:nowrap;background-color: #fff;box-sizing: border-box; height: 20px; font-size: 12px; display: flex; align-items: center; padding: 0 4px;">
+                <div style="border: 1px solid #EBEDF5; font-family: Lato, 'PingFang SC'; color: ${DEFAULT_FONT_COLOR}; border-radius: 2px;
+                  white-space:nowrap;background-color: #fff;box-sizing: border-box; height: 20px; font-size: 12px;
+                  display: flex; align-items: center; padding: 0 4px;">
                 <div style="width: 4px; height: 16px; display: inline-block; background-color: ${color};  margin-right: 2px; border-radius: 2px;"></div>
                 <span>${dataItem.suffix?.text}</span>
                 </div>
