@@ -15,7 +15,7 @@ export class Donut {
   textView: View | undefined = undefined;
   options: ChartOptions | undefined = undefined;
   config: ChartConfig | undefined = undefined;
-  totalCount: number = 0;
+  totalCount = 0;
 
   addText = (chart: Chart | View, data: LooseObject[], config: ChartConfig) => {
     const donutCfg = getShapeConfig(config, ChartType.DONUT);
