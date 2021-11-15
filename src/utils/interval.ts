@@ -13,10 +13,10 @@ export const defaultGroupInterval = {
 export const defaultInterval = {
   interval: {
     // see @antv/g2/lib/geometry/interval.d.ts/IntervalCfg
-    dodgePadding: 8,
-    intervalPadding: 40,
-    maxColumnWidth: 40,
-    minColumnWidth: 20,
+    // dodgePadding: 8,
+    // intervalPadding: 40,
+    // maxColumnWidth: 40,
+    minColumnWidth: 40,
   },
 };
 

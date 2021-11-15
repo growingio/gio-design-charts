@@ -10,6 +10,10 @@ const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title, total } = props;
 
   config.type = ChartType.BAR;
+  config.chart = {
+    ...(config.chart || {}),
+    appendPadding: [0, 60, 0, 0], // 为了显示右侧文字数据
+  };
 
   config.bar = {
     ...(config.bar || {}),
