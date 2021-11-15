@@ -20,6 +20,7 @@ registerInteraction('element-highlight-by-color', {
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id, theme, hasLegend } = options;
   const basicConfig = config.chart || {};
+  const appendPaddingCfg = config.chart?.appendPadding || DEFAULT_APPEND_PADDING;
   // Set defualt chart config
   const chart = new Chart({
     ...basicConfig,
@@ -27,7 +28,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0),
     padding: 'auto',
-    appendPadding: config.size === 'tiny' ? 0 : DEFAULT_APPEND_PADDING,
+    appendPadding: config.size === 'tiny' ? 0 : appendPaddingCfg,
     theme: getDefaultTheme(theme, config),
     limitInPlot: true,
   });

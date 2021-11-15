@@ -5,6 +5,12 @@
       "value": "Chart Component Error, please check："
     }
   ],
+  "no-data": [
+    {
+      "type": 0,
+      "value": "No Data"
+    }
+  ],
   "rate": [
     {
       "type": 0,

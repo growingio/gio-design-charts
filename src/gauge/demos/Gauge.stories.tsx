@@ -40,6 +40,22 @@ Basic.args = {
   },
 };
 
+export const NoData = Template.bind({});
+NoData.args = {
+  data: [{ value: 0, max: 0 }],
+  config: {
+    chart: {
+      autoFit: true,
+      height: 400,
+    },
+    gauge: {
+      position: 'value',
+      // title: '占比: 79.6%',
+      // subTitle: 52496,
+    },
+  },
+};
+
 export const Dark = Template.bind({});
 Dark.args = {
   style: { backgroundColor: '#000', padding: 10 },

@@ -186,6 +186,7 @@ export class Bar {
     this.leadView = leadView;
     this.backView = backView;
     this.chart = chart;
+    leadView.interaction('element-highlight-by-color');
     leadView.render();
     textView.render();
     fetchTooltip(chart, config);
