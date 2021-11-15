@@ -1,6 +1,7 @@
 import { GeometryLabel } from '@antv/g2';
 import { LabelCfg } from '@antv/g2/lib/geometry/label/interface';
-import { DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, FONT_SIZE_12 } from '../../theme';
+import { DEFAULT_FONT_FAMILY, FONT_SIZE_12 } from '../../theme';
+import { getColorByModel } from './utils';
 
 class IntervalLabel extends GeometryLabel {
   protected getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
@@ -9,7 +10,7 @@ class IntervalLabel extends GeometryLabel {
 
     const element = this.geometry.elementsMap[labelCfg.elementId];
     const model = element?.getModel();
-    const color = model?.style?.color || model?.color || DEFAULT_FONT_COLOR;
+    const color = getColorByModel(model);
     const style = labelCfg?.style || {};
 
     const coordinate = element?.shapeFactory?.coordinate;

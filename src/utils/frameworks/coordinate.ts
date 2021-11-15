@@ -23,3 +23,8 @@ export const bindDonutCoordination = (chart: Chart | View) => {
   });
   return chart;
 };
+
+export const bindBarCoordination = (chart: Chart | View) => {
+  chart.coordinate().transpose();
+  return chart;
+};

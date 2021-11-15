@@ -32,7 +32,7 @@ const LegendLayout = (props: LayoutProps) => {
   const offset = useOffset(layoutRef, watchReset);
   return (
     <div className="gio-d-chart" ref={layoutRef} data-testid="legend-layout">
-      {config.legend !== false && (
+      {config.legend !== false && legendQueue?.length > 0 && (
         <Legends
           config={config}
           legends={legendQueue}

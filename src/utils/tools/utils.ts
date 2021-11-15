@@ -1,4 +1,6 @@
 import { Element } from '@antv/g2';
+import { ShapeInfo } from '@antv/g2/lib/interface';
+import { DEFAULT_FONT_COLOR } from '../../theme';
 
 export const getLinkPath = (prev: Element, next: Element): (string | number)[][] => {
   const bbox = prev.shape.getCanvasBBox();
@@ -54,4 +56,8 @@ export const getArrowPolygon = (point: { x: number; y: number }, width: number, 
     [x - width * 0.45, y + height * 0.5],
     [x - width * 0.45, y - height * 0.5],
   ];
+};
+
+export const getColorByModel = (model: ShapeInfo) => {
+  return model?.style?.color || model?.color || DEFAULT_FONT_COLOR;
 };

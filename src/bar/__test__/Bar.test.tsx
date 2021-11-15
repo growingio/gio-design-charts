@@ -16,6 +16,8 @@ import {
   StackingDiagramBar,
 } from '../demos/Bar.stories';
 import { BarConfig } from '../../interfaces';
+import TimeIntervalBar from '../TimeIntervalBar';
+import { Basic } from '../demos/TimeIntervalBar.stories';
 
 describe('Bar Chart', () => {
   const legendTestid = 'legend-layout';
@@ -123,6 +125,11 @@ describe('Bar Chart', () => {
     const { legends, ...props } = PercentBar.args as BarProps;
 
     render(<ScrollBar {...(props as BarProps)} />);
+    expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
+  });
+
+  test('render Time Interval Chart', async () => {
+    render(<TimeIntervalBar {...(Basic.args as BarProps)} />);
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
   });
 });

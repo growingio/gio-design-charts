@@ -25,7 +25,7 @@ const ScrollYLayout = (props: ChartCanvasProps) => {
     chart: {
       ...(config?.chart || {}),
       // 为了显示右侧文字数据
-      appendPadding: frameHeight < chartHeight ? [0, 60, 0, 0] : [0, 50, 0, 0],
+      // appendPadding: frameHeight < chartHeight ? [0, 60, 0, 0] : [0, 50, 0, 0],
       height: chartHeight,
     },
     ...(isDrag ? { axis: false, axises: null, legend: false } : {}),

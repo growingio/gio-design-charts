@@ -24,7 +24,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
   });
 
   const intervalPadding = 20;
-  const dodgePadding = 4;
+  const dodgePadding = 8;
   const columnWidth = 16;
   const fixedHeight = 16 + DEFAULT_APPEND_PADDING * 2;
   let height = 0;

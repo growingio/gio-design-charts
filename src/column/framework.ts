@@ -9,9 +9,10 @@ import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';
 
-export interface InterValConfig {
+export interface IntervalConfig {
   styles?: ShapeStyle;
   customInfo?: CustomInfo;
+  isBack?: boolean;
 }
 
 /**
@@ -27,7 +28,7 @@ export const intervalShape = (
   chart: Chart | View,
   options: ChartOptions,
   config: ChartConfig,
-  intervalConfig: InterValConfig,
+  intervalConfig: IntervalConfig,
   styleCallback?: StyleCallback
 ) => {
   const barConfig = getShapeConfig(config);
@@ -60,8 +61,7 @@ export const intervalShape = (
   if (barConfig.color && styleCallback) {
     interval.style(barConfig.color, styleCallback);
   }
-
-  if (barConfig.label && !hideLabel) {
+  if (barConfig.label && !hideLabel && !intervalConfig.isBack) {
     interval.label.apply(interval, barConfig.label);
   }
   interval.state(getShapeState(options));
@@ -69,21 +69,33 @@ export const intervalShape = (
   return interval;
 };
 
-export const handleInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig, type = 'column') => {
+export const handleInterval = (
+  chart: Chart | View,
+  options: ChartOptions,
+  config: ChartConfig,
+  intervalConfig: IntervalConfig = {},
+  type = 'column'
+) => {
   const { legends = {}, hasDashed, defaultStyles = {} } = options;
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
   // 渲染出基本柱状图
-  intervalShape(chart, options, config, { customInfo: { chartType: type, useDash: false } }, (label: string) => {
-    const legend = legends[label] || ({} as Legend);
-    return {
-      // stroke: '#fff',
-      // strokeWidth: 1,
-      fill: legend.color || defaultStyles.color,
-      radius,
-    };
-  });
+  intervalShape(
+    chart,
+    options,
+    config,
+    { ...intervalConfig, customInfo: { chartType: type, useDash: false } },
+    (label: string) => {
+      const legend = legends[label] || ({} as Legend);
+      return {
+        // stroke: '#fff',
+        // strokeWidth: 1,
+        fill: legend.color || defaultStyles.color,
+        radius,
+      };
+    }
+  );
 
   // 若有条纹柱子，需要再次绘制
   if (hasDashed) {
