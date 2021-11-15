@@ -23,6 +23,7 @@ const LegendLayout = (props: LayoutProps) => {
       if (config?.chart?.height && chart?.canvas?.get('el')) {
         chart?.changeSize(useWidth, config.chart.height);
         views?.forEach((view: View) => view.render(true));
+        chart?.render(true);
       }
       setOffsetWidth(divWidth);
     },
