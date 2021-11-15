@@ -1,5 +1,4 @@
 import { Chart, Element, Event, View } from '@antv/g2';
-import { Scale } from '@antv/scale';
 import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
 import { handleInterval, intervalShape } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
