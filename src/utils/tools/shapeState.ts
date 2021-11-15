@@ -1,5 +1,6 @@
 import { Element } from '@antv/g2';
 import { ChartOptions } from '../../interfaces';
+import { COLOR_GRAY_1 } from '../../theme';
 
 export const getShapeState = (options: ChartOptions) => {
   return {
@@ -17,6 +18,16 @@ export const getShapeState = (options: ChartOptions) => {
           stroke: defaultColor || modelFill || modelColor || '#000',
           strokeOpacity: 0.5,
         };
+      },
+    },
+  };
+};
+
+export const getbackgroundState = () => {
+  return {
+    active: {
+      style: () => {
+        return { stroke: COLOR_GRAY_1 };
       },
     },
   };

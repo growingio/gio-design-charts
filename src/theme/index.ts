@@ -13,6 +13,8 @@ export const colors = [
   '#FF7955',
 ];
 
+export const COLOR_GRAY_1 = '#F7F8FC';
+
 export const DEFAULT_FONT_SIZE = 14;
 export const DEFAULT_FONT_COLOR = '#313E75';
 export const DEFAULT_FONT_FAMILY = 'Lato';

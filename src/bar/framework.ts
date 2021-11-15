@@ -1,9 +1,18 @@
-import { Chart, Event, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legends } from '../interfaces';
-import { handleInterval } from '../column/framework';
+import { Chart, Element, Event, View } from '@antv/g2';
+import { Scale } from '@antv/scale';
+import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
+import { handleInterval, intervalShape } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { Datum } from '@antv/g2/lib/interface';
+import { getAxisFields } from '../utils/frameworks/geometry';
+import { LooseObject } from '@antv/g-base';
+import { cloneDeep } from 'lodash';
+import { bindBarCoordination } from '../utils/frameworks/coordinate';
+import { getbackgroundState } from '../utils/tools/shapeState';
+import { COLOR_GRAY_1, DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR } from '../theme';
+import { getDefaultViewTheme } from '../utils/chart';
+import { getColorByModel } from '../utils/tools/utils';
 
 export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
   const linkView = views?.[0];
@@ -26,7 +35,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
     });
 
     fetchViewConfig(linkView, options, config);
-    handleInterval(linkView, options, config, 'bar');
+    handleInterval(linkView, options, config, {}, ChartType.BAR);
     linkView.coordinate().transpose();
     linkView.on('afterrender', function (event: Event) {
       const geometries = event.view.geometries[0];
@@ -48,8 +57,139 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
 };
 
 export const handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
-  const barConfig = getShapeConfig(config, 'bar');
+  const barConfig = getShapeConfig(config, ChartType.BAR);
   if (barConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
   }
 };
+
+export class Bar {
+  options: ChartOptions | undefined = undefined;
+  config: ChartConfig | undefined = undefined;
+  chart: Chart | undefined = undefined;
+  leadView: View | undefined = undefined;
+  backView: View | undefined = undefined;
+  textView: View | undefined = undefined;
+
+  xField: string = '';
+  yField: string = '';
+
+  private getMax = (field: string, data: LooseObject[]) => {
+    let max = 0;
+    data?.forEach((item: LooseObject) => {
+      max = item[field] > max ? item[field] : max;
+    });
+    return max;
+  };
+
+  private fetchBackData = (yField: string, data: LooseObject[]) => {
+    const backData = cloneDeep(data);
+    backData?.forEach((item: LooseObject) => {
+      item[yField] = 1;
+    });
+    return backData;
+  };
+
+  private renderBackground = (view: View, yField: string, data: LooseObject[]) => {
+    const backData = this.fetchBackData(yField, data);
+    bindBarCoordination(view);
+    fetchViewConfig(view, { ...this.options, data: backData }, this.config as ChartConfig);
+    const interval = intervalShape(view, this.options as ChartOptions, this.config as ChartConfig, {
+      customInfo: { chartType: ChartType.BAR, defaultStyles: { color: COLOR_GRAY_1 } },
+    });
+    interval.state(getbackgroundState());
+    view.tooltip(false);
+    view.render(true);
+  };
+
+  private renderSuffixText = (elements: Element[]) => {
+    this.textView?.clear();
+    setTimeout(() => {
+      elements.forEach((element: Element) => {
+        const dataItem = element.getData();
+        if (dataItem.suffix) {
+          const box = element.shape.getCanvasBBox();
+          const model = element.getModel();
+          const color = getColorByModel(model);
+          const top = box.minY - DEFAULT_APPEND_PADDING - 1;
+          this.textView?.annotation?.()?.html({
+            position: ['100%', '0%'],
+            offsetX: 0,
+            offsetY: 0,
+            html: () => {
+              return `<div style="margin-left: -100%; padding-right: 100%; position: absolute; top: ${top}px; right: 0;">
+                <div style="border: 1px solid #EBEDF5; font-family: Lato, 'PingFang SC'; color: ${DEFAULT_FONT_COLOR}; border-radius: 2px; white-space:nowrap;background-color: #fff;box-sizing: border-box; height: 20px; font-size: 12px; display: flex; align-items: center; padding: 0 4px;">
+                <div style="width: 4px; height: 16px; display: inline-block; background-color: ${color};  margin-right: 2px; border-radius: 2px;"></div>
+                <span>${dataItem.suffix?.text}</span>
+                </div>
+            </div>`;
+            },
+          });
+          this.textView?.render(true);
+        }
+      });
+    }, 600);
+  };
+
+  updateTimeInterval = (charts: { chart: Chart }, data: LooseObject[]) => {
+    if (data) {
+      this.leadView?.changeData(data);
+      this.leadView?.render(true);
+
+      const backData = this.fetchBackData(this.yField, data);
+      this.renderBackground(this.backView as View, this.yField, backData);
+    }
+    this.chart?.render(true);
+  };
+
+  render = (options: ChartOptions, config: ChartConfig) => {
+    const { id, data } = options;
+    if (!id) {
+      return {};
+    }
+    this.options = options;
+    this.config = config;
+    const chart = generateChart(options, config);
+
+    const lineCfg = getShapeConfig(config, ChartType.BAR);
+
+    const [xField, yField] = getAxisFields(lineCfg.position);
+    const backView = chart.createView({
+      theme: getDefaultViewTheme(config),
+    });
+    this.renderBackground(backView, yField, data as LooseObject[]);
+
+    // 添加padding-right：180，防止条形图的label被后面的text覆盖住
+    const leadView = chart.createView({
+      appendPadding: [0, 180, 0, 0],
+    });
+    bindBarCoordination(leadView);
+    fetchViewConfig(leadView, options, config);
+    handleInterval(leadView, options, config, {}, ChartType.BAR);
+
+    const textView = chart.createView();
+    bindBarCoordination(textView);
+    this.textView = textView;
+
+    leadView.on('afterrender', (e: Event) => {
+      setTimeout(() => {
+        if (e.view?.geometries?.[0]) {
+          const elements = e.view.geometries[0]?.elements;
+          this.renderSuffixText(elements);
+        }
+      }, 600);
+    });
+
+    this.xField = xField;
+    this.yField = yField;
+
+    this.leadView = leadView;
+    this.backView = backView;
+    this.chart = chart;
+    leadView.render();
+    textView.render();
+    fetchTooltip(chart, config);
+    chart.render();
+    return { chart, views: [leadView, backView, textView], update: this.updateTimeInterval };
+  };
+}

@@ -16,7 +16,6 @@ export class Gauge {
 
   update = (charts: { chart: Chart }, data: LooseObject[], config: ChartConfig) => {
     this.view?.clear();
-    console.log(data, config);
     if (this.view) {
       this.rednerView(this.view, data, config);
     }
