@@ -104,19 +104,19 @@ export class Line {
   updateContrast = (charts: { chart: Chart }, data: Datum[], config: ChartConfig) => {
     const lineCfg = getShapeConfig(config, ChartType.LINE);
     const [xField, yField] = getAxisFields(lineCfg.position);
-    const [maxValue, dataMapping] = this.getDataByColor(lineCfg.color, xField, yField, data as LooseObject[]);
+    const [maxValue, dataMapping] = this.getDataByColor(lineCfg.color, xField, yField, data);
     this.setMax(yField, maxValue, config);
 
     const legends = this.options?.legends || {};
     const viewCount = 0;
     this.contrastViewQueue(dataMapping, legends)(
-      (data) => {
+      (updatedData) => {
         const view = this.views?.[viewCount];
-        view?.changeData(data);
+        view?.changeData(updatedData);
         view?.render(true);
       },
-      (data: LooseObject[]) => {
-        this.finnalView?.changeData(data);
+      (updatedData: LooseObject[]) => {
+        this.finnalView?.changeData(updatedData);
         this.finnalView?.render(true);
       }
     );
@@ -141,13 +141,13 @@ export class Line {
       const viewOptions = { theme: getDefaultViewTheme(config) };
 
       // render history view, the label should hide;
-      const historyView = (data: LooseObject[]) => {
-        const view = this.contrastView(chart, { ...options, data }, config, viewOptions);
+      const historyView = (updatedData: LooseObject[]) => {
+        const view = this.contrastView(chart, { ...options, data: updatedData }, config, viewOptions);
         views.push(view);
       };
       // render current view, the label should show;
-      const currentView = (data: LooseObject[]) => {
-        const view = this.contrastView(chart, { ...options, data }, config);
+      const currentView = (updatedData: LooseObject[]) => {
+        const view = this.contrastView(chart, { ...options, data: updatedData }, config);
         views.push(view);
         this.finnalView = view;
       };

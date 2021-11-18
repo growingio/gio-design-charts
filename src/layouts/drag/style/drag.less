@@ -23,12 +23,13 @@
     &-item {
       position: absolute;
       right: 9px;
-      display: -webkit-box;
+      display: inline-block;
+      width: calc(100% - 12px);
       overflow: hidden;
       color: @default-font-color;
       font-size: @default-font-size;
       font-family: @default-font-family;
-
+      white-space: nowrap;
       text-overflow: ellipsis;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;

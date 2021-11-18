@@ -21,7 +21,6 @@ export interface ScrollXLayoutProps extends ChartCanvasProps {
  */
 const ScrollXLayout = (props: ScrollXLayoutProps) => {
   const { config, sourceData } = props;
-  // const xLayoutRef: LegacyRef<HTMLDivElement> = React.createRef();
   const xLayoutRef = useRef<HTMLDivElement | null>(null);
 
   const [resetConfig, setResetConfig] = useState<ChartConfig>(config);

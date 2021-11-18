@@ -2,9 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 
-import { Legend } from '../interfaces';
+import { Legend, ChartConfig } from '../interfaces';
 import './styles/legends.less';
-import { ChartConfig } from '../interfaces';
 import { isString, lowerCase } from 'lodash';
 
 export interface LegendsProps {

@@ -2,7 +2,6 @@ import { LooseObject } from '@antv/g-base';
 import { Scale } from '@antv/scale';
 import { cloneDeep } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { DEFAULT_APPEND_PADDING } from '../../theme';
 import './style/drag.less';
 
 export interface VerticalMenuProps {
@@ -45,14 +44,14 @@ const VerticalMenu = React.memo((props: VerticalMenuProps) => {
   useEffect(() => {
     sizeAcceptor(({ height: chartHeight }: { height: number }) => {
       // the 16px is the padding size
-      chartHeight && setHeight(chartHeight - 2 * DEFAULT_APPEND_PADDING);
+      chartHeight && setHeight(chartHeight);
     });
   }, [sizeAcceptor]);
   return (
     <div data-testid="vertical-menu" style={{ height, width: '100%', position: 'absolute' }}>
       {ticks?.map((tick: string, index: number) => {
         return (
-          <div className="vertical-menu-item" key={tick} title={tick} style={{ top: ranges[index] * height - 2 }}>
+          <div className="vertical-menu-item" key={tick} title={tick} style={{ top: ranges[index] * height - 10 }}>
             {tick}
           </div>
         );
