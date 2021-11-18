@@ -2,7 +2,6 @@ import { LooseObject } from '@antv/g-base';
 import { Scale } from '@antv/scale';
 import { cloneDeep } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { DEFAULT_APPEND_PADDING } from '../../theme';
 import './style/drag.less';
 
 export interface VerticalMenuProps {
