@@ -7,9 +7,7 @@ import { ChartType, TinyChartProps, AreaConfig, Legend } from '../interfaces';
 import { fetchChart } from '../boundary';
 import { LooseObject } from '@antv/g-base';
 
-export interface TinyAreaProps extends TinyChartProps {}
-
-const TinyArea: React.FC<TinyAreaProps> = (props: TinyAreaProps) => {
+const TinyArea: React.FC<TinyChartProps> = (props: TinyChartProps) => {
   const { data, config } = props;
   const [areaData, setAreaData] = useState<LooseObject[]>([]);
   const [areaConfig, setAreaConfig] = useState<AreaConfig>({} as AreaConfig);
@@ -53,4 +51,4 @@ const TinyArea: React.FC<TinyAreaProps> = (props: TinyAreaProps) => {
   );
 };
 
-export default fetchChart<TinyAreaProps>(TinyArea);
+export default fetchChart<TinyChartProps>(TinyArea);

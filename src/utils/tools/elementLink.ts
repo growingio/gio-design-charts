@@ -65,7 +65,7 @@ const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []
 export const addLinkByElement = (view: View, group: GroupCfg[], options: LinkElementOptions) => {
   const { delay = 600, texts = [] } = options;
   if (!view) {
-    return;
+    return 0;
   }
   if (delay <= 0) {
     linkByElement(view, group, texts);
