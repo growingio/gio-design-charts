@@ -1,6 +1,6 @@
 import { LooseObject } from '@antv/g-base';
 import { Chart, View } from '@antv/g2';
-import { Datum } from '@antv/g2/lib/interface';
+import { Datum, MappingDatum } from '@antv/g2/lib/interface';
 import { intervalShape } from '../column/framework';
 import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { ChartConfig, ChartOptions, Legend, Legends, ChartType, Shape } from '../interfaces';
@@ -73,12 +73,14 @@ export class Donut {
       donutCfg.position,
       () => {
         return {
-          content: (dataItem: LooseObject) => {
+          labelEmit: false,
+          content: (dataItem: LooseObject, mappingData: MappingDatum, index: number) => {
             const formatter = donutCfg.label?.formatter;
-            return (
-              formatter?.(dataItem, this.totalCount) ||
-              `${dataItem[donutCfg.color || 'name']}: ${formatPercent(dataItem['count'] / this.totalCount)}`
-            );
+            if (formatter) {
+              // the undefined which get from formatter return, that means not display label
+              return formatter(dataItem, this.totalCount, index);
+            }
+            return `${dataItem[donutCfg.color || 'name']}: ${formatPercent(dataItem['count'] / this.totalCount)}`;
           },
         };
       },

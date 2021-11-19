@@ -12,6 +12,7 @@ export const gioTheme = {
   // but it's still necessary to add default colors for theme
   styleSheet: {
     paletteQualitative10: colors,
+    paletteQualitative20: [...colors, ...colors],
   },
   components: {
     axis: {
