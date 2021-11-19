@@ -13,7 +13,7 @@ export interface ColumnProps extends ChartProps {
 }
 
 const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
-  const { data, legends: legendProps = [], config, useScroll } = props;
+  const { data, legends: legendProps = [], config, useScroll, title } = props;
   const [assginConfig, setAssignConfig] = useState({});
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
 
   return useScroll ? (
     <ScrollXLayout
+      title={title}
       data={data}
       sourceData={data}
       legendList={legendProps}
@@ -54,6 +55,7 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
     />
   ) : (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={assginConfig}

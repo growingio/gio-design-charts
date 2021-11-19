@@ -1,5 +1,5 @@
 @import url('../../style/theme.less');
-.gio-d-chart-infocard {
+.gio-d-charts-infocard {
   min-width: 220px;
   max-width: 300px;
 
@@ -12,9 +12,16 @@
   overflow-y: auto;
 
   /* box-shadow: 0px 8px 24px rgba(36, 46, 89, 0.1); */
-  background: #fff;
   border-radius: 4px;
   opacity: 1;
+
+  &__dark {
+    background-color: #323232;
+  }
+
+  &__normal {
+    background-color: #fff;
+  }
 
   &_item {
     display: flex;

@@ -8,10 +8,13 @@ import VerticalMenu from './VerticalMenu';
 import './style/drag.less';
 import VerticalContent from './VertivcalContent';
 import { Direction } from 're-resizable/lib/resizer';
+import { ContentMenu } from '../../bar/Bar';
+import { getThemeColor } from '../../utils/styles';
 
 export interface DragLayoutProps extends ChartCanvasProps {
   title?: string;
   total?: number;
+  content?: ContentMenu;
 }
 
 /**
@@ -23,12 +26,18 @@ export interface DragLayoutProps extends ChartCanvasProps {
  * @returns
  */
 const DragLayout = (props: DragLayoutProps) => {
-  const { title, total } = props;
+  const { title, content: { title: subTitle, total } = {}, config } = props;
   const [register, acceptor] = useTunnel();
   const [sizeRegister, sizeAcceptor] = useTunnel();
+  const color = getThemeColor(config);
 
   return (
     <div className="gio-d-charts" data-testid="drag-layout">
+      {title && (
+        <div className="gio-d-charts__title" style={{ color }}>
+          {title}
+        </div>
+      )}
       <div className="drag-layout">
         <Resizable
           className="drag-layout-resize"
@@ -39,8 +48,8 @@ const DragLayout = (props: DragLayoutProps) => {
             sizeRegister({ width: elementRef.offsetWidth });
           }}
         >
-          {title ? (
-            <VerticalContent sizeAcceptor={sizeAcceptor} title={title} total={total} />
+          {subTitle ? (
+            <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} />
           ) : (
             <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} />
           )}

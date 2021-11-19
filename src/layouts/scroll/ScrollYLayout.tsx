@@ -16,7 +16,7 @@ import { calculateBarHeight } from '../../utils/calculate';
  * @returns
  */
 const ScrollYLayout = (props: ChartCanvasProps) => {
-  const { config, data, isDrag, sizeRegister } = props;
+  const { config, data, isDrag, sizeRegister, title } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
   const chartHeight = calculateBarHeight(config, data as LooseObject[]);
@@ -32,8 +32,8 @@ const ScrollYLayout = (props: ChartCanvasProps) => {
   };
   sizeRegister && sizeRegister({ height: chartHeight });
   return (
-    <div className="gio-d-chart gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
-      <LegendLayout {...props} config={newConfig} />
+    <div className="gio-d-charts gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
+      <LegendLayout {...props} config={newConfig} title={title} />
     </div>
   );
 };

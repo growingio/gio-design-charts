@@ -28,12 +28,13 @@ export interface ChartCanvasProps {
   width?: number;
   isDrag?: boolean;
   sizeRegister?: any;
+  title?: string;
 }
 
 // In core, we only force on render chart and provide basic chart options
 const core = (HighComponent: React.FC<LayoutProps>) => {
   return (props: ChartCanvasProps) => {
-    const { config, callChart, data, legendList, handleLegend, defaultOptions, width } = props;
+    const { config, callChart, data, legendList, handleLegend, defaultOptions, width, title } = props;
     const root = useRef<HTMLDivElement | null>(null);
     const tooltipRef = useRef<HTMLDivElement | null>(null);
     const [register, acceptor] = useTunnel();
@@ -53,6 +54,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
       defaultOptions,
       tooltipKey,
       setTooltipKey,
+      title,
     });
     const onClickLegend = useCallback(
       (label: string) => {
@@ -67,7 +69,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     return (
       <HighComponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
         <div className="layout-content" ref={root} />
-        <div className="gio-d-chart_tooltip-content" key={tooltipKey}>
+        <div className="gio-d-charts_tooltip-content" key={tooltipKey}>
           <div ref={tooltipRef} className="g2-tooltip">
             <InfoCardBox
               legends={chartOptions.legends}

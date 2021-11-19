@@ -17,7 +17,7 @@ export interface DragBarProps extends BarProps {
 }
 
 const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
-  const { data, legends: legendProps = [], config = {} as BarConfig } = props;
+  const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   const [bar] = useState(new BarCls());
 
@@ -38,7 +38,7 @@ const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
   };
   return (
     <ScrollYLayout
-      // leftComponent={VerticalMenu}
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

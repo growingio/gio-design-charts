@@ -9,12 +9,13 @@ export interface DonutProps extends ChartProps {
 }
 
 const Donut: React.FC<DonutProps> = (props: DonutProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], config, title } = props;
   const [donut] = useState(new DonutCls());
   config.type = ChartType.DONUT;
 
   return (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

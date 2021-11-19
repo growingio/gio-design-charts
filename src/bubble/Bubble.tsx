@@ -10,7 +10,7 @@ export interface BubbleProps extends ChartProps {
 }
 
 const Bubble: React.FC<BubbleProps> = (props: BubbleProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], config, title } = props;
 
   const [bubble] = useState(new BubbleCls());
 
@@ -18,6 +18,7 @@ const Bubble: React.FC<BubbleProps> = (props: BubbleProps) => {
 
   return (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

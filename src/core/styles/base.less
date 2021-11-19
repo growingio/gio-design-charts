@@ -1,8 +1,19 @@
-.gio-d-chart {
+.gio-d-charts {
   position: relative;
   display: block;
   width: 100%;
   overflow: hidden;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, Lato, sans-serif;
+
+  &__title {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #313e75;
+  }
 
   &_main {
     display: flex;
@@ -14,8 +25,10 @@
   &_right {
     width: 100%;
   }
-  &_tooltip-content {
-    height: 0;
-    visibility: hidden;
+  &_tooltip {
+    &-content {
+      height: 0;
+      visibility: hidden;
+    }
   }
 }

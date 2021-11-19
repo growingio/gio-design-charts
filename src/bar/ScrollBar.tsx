@@ -7,7 +7,7 @@ import { fetchChart } from '../boundary';
 import { BarProps } from './Bar';
 
 const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
-  const { data, legends: legendProps = [], config = {} as BarConfig } = props;
+  const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   config.type = ChartType.BAR;
 
@@ -29,6 +29,7 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
 
   return (
     <ScrollYLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

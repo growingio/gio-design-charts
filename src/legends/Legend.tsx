@@ -34,14 +34,14 @@ const Legend = (props: LegendProps) => {
 
   return (
     <span
-      className="gio-d-chart-legends_legend"
+      className="gio-d-charts-legends_legend"
       onClick={onClickLabel}
       style={{ color: active ? '' : DISABLE_COLOR }}
       title={label}
       data-testid={`legend-item-${label}`}
     >
-      <div className={`gio-d-chart-legends_block gio-d-chart-legends_${type as ChartType}`} style={stylesLine} />
-      <div className="gio-d-chart-legends_text" style={textStyles}>
+      <div className={`gio-d-charts-legends_block gio-d-charts-legends_${type as ChartType}`} style={stylesLine} />
+      <div className="gio-d-charts-legends_text" style={textStyles}>
         {alias || label}
       </div>
     </span>

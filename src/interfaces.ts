@@ -68,6 +68,10 @@ export interface ChartOptions extends LooseObject {
   theme?: LooseObject;
   dict?: LooseObject;
   /**
+   * chart title
+   */
+  title?: string;
+  /**
    * set default styles for line or interval
    */
   defaultStyles?: ShapeStyle;
@@ -169,6 +173,10 @@ export interface FunnelConfig extends ChartConfig {
 }
 
 export interface ChartProps {
+  /**
+   * 显示图表的title
+   */
+  title?: string;
   /**
    * Chart的基础配置，设定theme, scale, tooltip
    */

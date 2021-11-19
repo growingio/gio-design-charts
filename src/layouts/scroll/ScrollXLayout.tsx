@@ -20,7 +20,7 @@ export interface ScrollXLayoutProps extends ChartCanvasProps {
  * @returns
  */
 const ScrollXLayout = (props: ScrollXLayoutProps) => {
-  const { config, sourceData } = props;
+  const { config, sourceData, title } = props;
   const xLayoutRef = useRef<HTMLDivElement | null>(null);
 
   const [resetConfig, setResetConfig] = useState<ChartConfig>(config);
@@ -45,8 +45,8 @@ const ScrollXLayout = (props: ScrollXLayoutProps) => {
     }
   }, [config, width, sourceData]);
   return (
-    <div className="gio-d-chart gio-scroll-x-layout" data-testid="scroll-x-layout" ref={xLayoutRef}>
-      <LegendLayout {...props} config={resetConfig} width={width} />
+    <div className="gio-d-charts gio-scroll-x-layout" data-testid="scroll-x-layout" ref={xLayoutRef}>
+      <LegendLayout {...props} config={resetConfig} title={title} width={width} />
     </div>
   );
 };

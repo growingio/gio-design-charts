@@ -200,6 +200,7 @@ const ContrastTemplate: ComponentStory<any> = (args) => (
 
 export const ContrastLineExample = ContrastTemplate.bind({});
 const ContrastLineExampleArgs = {
+  title: '对比折线图',
   legends: [
     {
       name: '活跃人数(上周)',
