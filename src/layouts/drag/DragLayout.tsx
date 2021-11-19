@@ -55,7 +55,13 @@ const DragLayout = (props: DragLayoutProps) => {
           )}
         </Resizable>
         <div className="drag-layout-content">
-          <ScrollYLayout {...props} isDrag={true} sizeRegister={sizeRegister} defaultOptions={{ report: register }} />
+          <ScrollYLayout
+            {...props}
+            isDrag={true}
+            title={''} // title will set in outside
+            sizeRegister={sizeRegister}
+            defaultOptions={{ report: register }}
+          />
         </div>
       </div>
     </div>
