@@ -5,6 +5,7 @@ import { data } from './data';
 import { darkTheme } from '../../theme/chart';
 import { InfoCard } from '../../info-card';
 import { cloneDeep } from 'lodash';
+import { formatPercent } from '../../utils/formatNumber';
 
 export default {
   title: 'Charts/环形图 Donut',
@@ -58,12 +59,16 @@ Basic.args = {
       position: 'count',
       color: 'name',
       title: '总计2',
-      // subTitle: '14.42万',
-      // label: {
-      //   formatter: (item: LooseObject, total: number) => {
-      //     return `${item.name}: ${formatPercent(item.count / total)}`;
-      //   },
-      // },
+      subTitle: '14.42万',
+      label: {
+        formatter: (item: any, total: number, index: number) => {
+          console.log('index of the label', index);
+          if (item.count / total > 0.05) {
+            return `${item.name}: ${formatPercent(item.count / total)}`;
+          }
+          return undefined;
+        },
+      },
     },
   },
 };
