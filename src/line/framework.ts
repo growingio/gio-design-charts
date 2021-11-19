@@ -172,6 +172,8 @@ export class Line {
       const lineConfig = getShapeConfig(config, 'line');
       this.lineShape(chart, options, lineConfig);
       chart.render();
+      // Sometimes, chart will render wrong axis labels, render again will be fine.
+      chart.render(true);
     } catch (err) {}
     return { chart, update: updateChart };
   };
