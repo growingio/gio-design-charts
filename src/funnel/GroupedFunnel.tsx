@@ -7,7 +7,7 @@ import { fetchChart } from '../boundary';
 import { FunnelProps } from './Funnel';
 
 const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], config, title } = props;
 
   const [comparativeData, setComparativeData] = useState({});
   if (config) {
@@ -19,6 +19,7 @@ const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
 
   return (
     <ScrollXLayout
+      title={title}
       data={comparativeData}
       legendList={legendProps}
       config={config}

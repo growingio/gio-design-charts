@@ -60,6 +60,7 @@ const config = {
 export const AreaStack = Template.bind({});
 AreaStack.storyName = '堆积面积图';
 const AreaStackArgs = {
+  title: '堆积面积图',
   legends: [
     { name: '步步盈增', color: '#5F87FF' },
     { name: '访问退出', color: '#FFDD63' },

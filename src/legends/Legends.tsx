@@ -3,8 +3,8 @@ import { default as LegendComponent } from './Legend';
 import LegendMenu from './Menu';
 
 import { Legend, ChartConfig } from '../interfaces';
+import { getThemeColor } from '../utils/styles';
 import './styles/legends.less';
-import { isString, lowerCase } from 'lodash';
 
 export interface LegendsProps {
   legends?: Legend[];
@@ -12,17 +12,6 @@ export interface LegendsProps {
   offsetWidth?: number;
   config?: ChartConfig;
 }
-
-const getLegendColor = (config?: ChartConfig) => {
-  const theme = config?.chart?.theme;
-  let color = '';
-  if (isString(theme)) {
-    color = lowerCase(theme) === 'dark' ? '#fff' : '';
-  } else {
-    color = theme?.gio?.legend?.color || '';
-  }
-  return color;
-};
 
 const Legends = (props: LegendsProps) => {
   const { legends = [], onClick, config, offsetWidth = 800 } = props;
@@ -50,10 +39,10 @@ const Legends = (props: LegendsProps) => {
     }
   }, [legends, offsetWidth]);
 
-  const textColor = getLegendColor(config);
+  const textColor = getThemeColor(config);
 
   return (
-    <div className="gio-d-chart-legends" data-testid="legends">
+    <div className="gio-d-charts-legends" data-testid="legends">
       {tiled.map((legend: Legend) => {
         const { name, alias } = legend;
         return (

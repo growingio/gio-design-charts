@@ -13,7 +13,7 @@ export interface FunnelProps extends ChartProps {
 }
 
 const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], config, title } = props;
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
       return {
@@ -36,6 +36,7 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   }, [data, config]);
   return (
     <ScrollXLayout
+      title={title}
       data={comparativeData}
       legendList={legendProps}
       defaultOptions={defaultOptions}

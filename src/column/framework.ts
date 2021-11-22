@@ -89,8 +89,6 @@ export const handleInterval = (
     (label: string) => {
       const legend = legends[label] || ({} as Legend);
       return {
-        // stroke: '#fff',
-        // strokeWidth: 1,
         fill: legend.color || defaultStyles.color,
         radius,
       };
@@ -104,6 +102,7 @@ export const handleInterval = (
       options,
       config,
       {
+        ...intervalConfig,
         customInfo: {
           chartType: type,
           useDash: true,
@@ -131,7 +130,12 @@ export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => 
   }
   const chart = renderChart(options, config);
   try {
-    handleInterval(chart, options, config);
+    handleInterval(chart, options, config, {
+      styles: {
+        maxColumnWidth: 200,
+        minColumnWidth: 40,
+      },
+    });
     chart.interaction('element-active');
     chart.render();
   } catch (err) {}

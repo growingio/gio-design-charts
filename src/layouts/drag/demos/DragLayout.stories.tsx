@@ -27,7 +27,7 @@ const ScrollTemplate: ComponentStory<typeof DragBar> = (args) => (
 );
 
 export const Example = ScrollTemplate.bind({});
-Example.args = { ...ScrollPercentBar.args };
+Example.args = { ...ScrollPercentBar.args, title: '拖拽条形图' };
 Example.storyName = '拖拽条形图';
 
 export const GroupedExample = ScrollTemplate.bind({});
@@ -35,5 +35,5 @@ GroupedExample.args = { ...ScrollGroupContrast.args };
 GroupedExample.storyName = '拖拽分组条形图';
 
 export const TitleGroupedExample = ScrollTemplate.bind({});
-TitleGroupedExample.args = { ...ScrollGroupContrast.args, title: '步步盈增的用户总量', total: 213678 };
+TitleGroupedExample.args = { ...ScrollGroupContrast.args, content: { title: '步步盈增的用户总量', total: 213678 } };
 TitleGroupedExample.storyName = '多维度拖拽条形图';

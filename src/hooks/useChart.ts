@@ -23,6 +23,7 @@ export interface UseChartProps {
   defaultOptions: any;
   tooltipKey: number;
   setTooltipKey: any;
+  title?: string;
 }
 
 // This is a hook which is used to create Chart object and update the chart.
@@ -39,6 +40,7 @@ const useChart = (options: UseChartProps) => {
     defaultOptions,
     setTooltipKey,
     tooltipKey,
+    title,
   } = options;
 
   const context = useContext(DesignContext);
@@ -93,6 +95,7 @@ const useChart = (options: UseChartProps) => {
         interceptors,
         theme: theme,
         hasLegend: config.legend !== false && queue.length > 0,
+        hasTitle: !!title,
         ...(defaultOptions || {}),
       },
       {
@@ -121,6 +124,7 @@ const useChart = (options: UseChartProps) => {
     setLegends,
     context,
     dict,
+    title,
   ]);
 
   const updateChart = useCallback(() => {
@@ -160,8 +164,9 @@ const useChart = (options: UseChartProps) => {
       legends,
       hasDashed,
       legendQueue,
+      title,
     }),
-    [defaultOptions, legends, legendQueue, hasDashed]
+    [defaultOptions, legends, legendQueue, hasDashed, title]
   );
 
   return { updateLegends, chartOptions };

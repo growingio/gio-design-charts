@@ -10,11 +10,12 @@ export interface AreaProps extends ChartProps {
 }
 
 const Area: React.FC<AreaProps> = (props: AreaProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], title, config } = props;
 
   config.type = ChartType.AREA;
   return (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

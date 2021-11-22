@@ -9,12 +9,13 @@ export interface GaugeProps extends ChartProps {
 }
 
 const Gauge: React.FC<GaugeProps> = (props: GaugeProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], config, title } = props;
   const [gauge] = useState(new GaugeCls());
   config.type = ChartType.GAUGE;
 
   return (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

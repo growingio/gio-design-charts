@@ -3,11 +3,12 @@ import Legends from '../../legends';
 import useOffset, { Offset } from '../../hooks/useOffset';
 import core, { LayoutProps } from '../../core/core';
 import { View } from '@antv/g2';
+import { getThemeColor } from '../../utils/styles';
 
 const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
-  const { legendQueue, chart, views } = options;
+  const { legendQueue, chart, views, title } = options;
   const [offsetWidth, setOffsetWidth] = useState(0);
   const watchReset = useCallback(
     (resetOffset: Offset) => {
@@ -31,8 +32,14 @@ const LegendLayout = (props: LayoutProps) => {
   );
 
   const offset = useOffset(layoutRef, watchReset);
+  const color = getThemeColor(config);
   return (
-    <div className="gio-d-chart" ref={layoutRef} data-testid="legend-layout">
+    <div className="gio-d-charts" ref={layoutRef} data-testid="legend-layout">
+      {title && (
+        <div className="gio-d-charts__title" style={{ color }}>
+          {title}
+        </div>
+      )}
       {config.legend !== false && legendQueue?.length > 0 && (
         <Legends
           config={config}

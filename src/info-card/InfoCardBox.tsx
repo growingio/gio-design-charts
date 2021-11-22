@@ -84,7 +84,7 @@ const InfoCardBox = (props: InfoCardProps) => {
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
   return (
-    <div className="gio-d-chart-infocard" data-testid="infoCardBox" onMouseLeave={onMouseLeave}>
+    <div className={`gio-d-charts-infocard `} data-testid="infoCardBox" onMouseLeave={onMouseLeave}>
       <InfoCard
         title={title}
         data={items}

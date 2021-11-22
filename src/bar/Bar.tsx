@@ -9,15 +9,19 @@ export interface BarProps extends ChartProps {
   config: BarConfig;
 }
 
-export interface DragBarProps extends BarProps {
+export interface ContentMenu {
   // 在多维度拆分的拖拽条形图，需要设置总的title
   title?: string;
   // 在多维度拆分的拖拽条形图，需要设置总的counter
   total?: number;
 }
 
+export interface DragBarProps extends BarProps {
+  content?: ContentMenu;
+}
+
 const Bar: React.FC<BarProps> = (props: BarProps) => {
-  const { data, legends: legendProps = [], config = {} as BarConfig } = props;
+  const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   config.type = ChartType.BAR;
   config.chart = {
@@ -36,7 +40,7 @@ const Bar: React.FC<BarProps> = (props: BarProps) => {
   };
   return (
     <LegendLayout
-      // leftComponent={VerticalMenu}
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

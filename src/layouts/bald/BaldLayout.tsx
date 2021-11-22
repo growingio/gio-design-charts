@@ -12,7 +12,7 @@ const BaldLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
   }, [chart]);
   useOffset(baldRef, watchReset);
   return (
-    <div className="gio-d-chart" ref={baldRef} data-testid="bald-layout">
+    <div className="gio-d-charts" ref={baldRef} data-testid="bald-layout">
       {props.children}
     </div>
   );

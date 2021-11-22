@@ -10,13 +10,14 @@ export interface LineProps extends ChartProps {
 }
 
 const Line: React.FC<LineProps> = (props: LineProps) => {
-  const { data, legends: legendProps = [], config } = props;
+  const { data, legends: legendProps = [], config, title } = props;
 
   config.type = ChartType.LINE;
   const [line] = useState(new LineCls());
 
   return (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

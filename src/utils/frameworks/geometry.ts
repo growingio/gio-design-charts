@@ -16,7 +16,7 @@ export const bindPosition = (geo: Geometry, position: string) => {
 
 export const bindSize = (geo: Geometry, sizeCfg: number | string | LooseObject | LooseObject[]) => {
   if (!sizeCfg) {
-    return geo.size(10);
+    return geo.size(4);
   }
   if (typeof sizeCfg === 'string') {
     return geo.size(sizeCfg, [4, 50]);

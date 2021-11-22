@@ -1,3 +1,4 @@
+import { isString, lowerCase } from 'lodash';
 import { TriggerItem } from '../info-card/InfoCardBox';
 import { Legend, Legends, ChartOptions, ChartConfig, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE } from '../theme';
@@ -50,4 +51,24 @@ export const getLegendStyles = (legend: Legend, color: string) => {
         ...backgroundImage,
       }
     : { backgroundColor: color, ...backgroundImage };
+};
+
+export const getThemeColor = (config?: ChartConfig) => {
+  const theme = config?.chart?.theme;
+  let color = '';
+  if (isString(theme)) {
+    color = lowerCase(theme) === 'dark' ? '#fff' : '';
+  } else {
+    color = theme?.gio?.legend?.color || '';
+  }
+  return color;
+};
+
+export const isDarkTheme = (config?: ChartConfig) => {
+  const theme = config?.chart?.theme;
+  if (isString(theme)) {
+    return lowerCase(theme) === 'dark';
+  } else {
+    return !!theme?.gio?.legend?.color;
+  }
 };

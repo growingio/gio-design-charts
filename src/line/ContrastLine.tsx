@@ -7,7 +7,7 @@ import { LegendLayout } from '../layouts';
 import { LineProps } from './Line';
 
 const ContrastLine: React.FC<LineProps> = (props: LineProps) => {
-  const { data, legends: legendProps = [], config = {} as LineConfig } = props;
+  const { data, legends: legendProps = [], config = {} as LineConfig, title } = props;
 
   config.type = ChartType.LINE;
 
@@ -15,6 +15,7 @@ const ContrastLine: React.FC<LineProps> = (props: LineProps) => {
 
   return (
     <LegendLayout
+      title={title}
       data={data}
       legendList={legendProps}
       config={config}

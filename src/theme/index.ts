@@ -15,9 +15,10 @@ export const colors = [
 
 export const COLOR_GRAY_1 = '#F7F8FC';
 
-export const DEFAULT_FONT_SIZE = 14;
+export const DEFAULT_FONT_SIZE = 12;
 export const DEFAULT_FONT_COLOR = '#313E75';
 export const DEFAULT_FONT_FAMILY = 'Lato';
+export const FONT_SIZE_14 = 14;
 export const FONT_SIZE_12 = 12;
 export const FONT_SIZE_10 = 10;
 export const FONT_SIZE_8 = 8;

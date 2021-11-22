@@ -18,7 +18,7 @@ registerInteraction('element-highlight-by-color', {
 });
 
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id, theme, hasLegend } = options;
+  const { id, theme, hasLegend, hasTitle } = options;
   const basicConfig = config.chart || {};
   const appendPaddingCfg = config.chart?.appendPadding || DEFAULT_APPEND_PADDING;
   // Set defualt chart config
@@ -26,7 +26,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     ...basicConfig,
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
-    height: (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0),
+    height: (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0),
     padding: 'auto',
     appendPadding: config.size === 'tiny' ? 0 : appendPaddingCfg,
     theme: getDefaultTheme(theme, config),
