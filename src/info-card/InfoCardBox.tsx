@@ -89,7 +89,7 @@ const InfoCardBox = (props: InfoCardProps) => {
       className={`gio-d-charts-infocard `}
       data-testid="infoCardBox"
       onMouseLeave={onMouseLeave}
-      style={{ maxHeight: height }}
+      style={{ maxHeight: height - 30 }}
     >
       <InfoCard
         title={title}

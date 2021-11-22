@@ -54,7 +54,7 @@ const scalaAxisConfig = {
 const config = {
   chart: {
     autoFit: true,
-    height: 400,
+    height: 250,
   },
   scale: {
     month: {

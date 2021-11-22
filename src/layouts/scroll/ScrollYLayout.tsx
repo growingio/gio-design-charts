@@ -6,6 +6,7 @@ import './styles/index.less';
 import LegendLayout from '../legend';
 import { DEAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
+import { ChartConfig } from '../../interfaces';
 
 /**
  * 主要为了实现条形图的滚动效果
@@ -29,7 +30,7 @@ const ScrollYLayout = (props: ChartCanvasProps) => {
       height: chartHeight,
     },
     ...(isDrag ? { axis: false, axises: null, legend: false } : {}),
-  };
+  } as ChartConfig;
   sizeRegister && sizeRegister({ height: chartHeight });
   return (
     <div className="gio-d-charts gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
