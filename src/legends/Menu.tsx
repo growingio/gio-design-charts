@@ -13,7 +13,7 @@ const Menu = (props: MenuProps) => {
   return (
     <div className="gio-d-charts-legends_dropdown">
       <span data-testid="legend-others">其余{legends?.length || 0}项</span>
-      <div className={`gio-d-charts-legends_dropdown-content dropdown-controller`} style={{ maxHeight: height - 30 }}>
+      <div className={`gio-d-charts-legends_dropdown-content dropdown-controller`} style={{ maxHeight: height - 50 }}>
         {legends?.map((legend: Legend) => {
           const { name } = legend;
           return (
