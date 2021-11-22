@@ -10,6 +10,7 @@ import VerticalContent from './VertivcalContent';
 import { Direction } from 're-resizable/lib/resizer';
 import { ContentMenu } from '../../bar/Bar';
 import { getThemeColor } from '../../utils/styles';
+import { LegendLayout } from '../legend';
 
 export interface DragLayoutProps extends ChartCanvasProps {
   title?: string;
@@ -38,32 +39,34 @@ const DragLayout = (props: DragLayoutProps) => {
           {title}
         </div>
       )}
-      <div className="drag-layout">
-        <Resizable
-          className="drag-layout-resize"
-          defaultSize={{ width: 120, height: 'auto' }}
-          maxWidth="100%"
-          minWidth="80px"
-          onResize={(event: MouseEvent | TouchEvent, direction: Direction, elementRef: HTMLElement) => {
-            sizeRegister({ width: elementRef.offsetWidth });
-          }}
-        >
-          {subTitle ? (
-            <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} />
-          ) : (
-            <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} />
-          )}
-        </Resizable>
-        <div className="drag-layout-content">
-          <ScrollYLayout
-            {...props}
-            isDrag={true}
-            title={''} // title will set in outside
-            sizeRegister={sizeRegister}
-            defaultOptions={{ report: register }}
-          />
-        </div>
-      </div>
+      <ScrollYLayout
+        {...props}
+        isDrag={true}
+        title={''} // title will set in outside
+        sizeRegister={sizeRegister}
+        renderChildren={(childPorps: ChartCanvasProps) => (
+          <div className="drag-layout">
+            <Resizable
+              className="drag-layout-resize"
+              defaultSize={{ width: 120, height: 'auto' }}
+              maxWidth="100%"
+              minWidth="80px"
+              onResize={(event: MouseEvent | TouchEvent, direction: Direction, elementRef: HTMLElement) => {
+                sizeRegister({ width: elementRef.offsetWidth });
+              }}
+            >
+              {subTitle ? (
+                <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} />
+              ) : (
+                <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} />
+              )}
+            </Resizable>
+            <div className="drag-layout-content">
+              <LegendLayout {...childPorps} defaultOptions={{ report: register }} />
+            </div>
+          </div>
+        )}
+      />
     </div>
   );
 };

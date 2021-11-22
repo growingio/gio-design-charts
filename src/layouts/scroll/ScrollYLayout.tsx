@@ -8,6 +8,10 @@ import { DEAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
 import { ChartConfig } from '../../interfaces';
 
+export interface ScrolYLayoutProps extends ChartCanvasProps {
+  renderChildren?: (props: ChartCanvasProps) => React.ReactNode;
+}
+
 /**
  * 主要为了实现条形图的滚动效果
  * 需要做的事情：
@@ -16,8 +20,8 @@ import { ChartConfig } from '../../interfaces';
  * @param props {ChartCanvasProps}
  * @returns
  */
-const ScrollYLayout = (props: ChartCanvasProps) => {
-  const { config, data, isDrag, sizeRegister, title } = props;
+const ScrollYLayout = (props: ScrolYLayoutProps) => {
+  const { config, data, isDrag, sizeRegister, renderChildren } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
   const chartHeight = calculateBarHeight(config, data as LooseObject[]);
@@ -34,7 +38,11 @@ const ScrollYLayout = (props: ChartCanvasProps) => {
   sizeRegister && sizeRegister({ height: chartHeight });
   return (
     <div className="gio-d-charts gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
-      <LegendLayout {...props} config={newConfig} title={title} />
+      {renderChildren ? (
+        renderChildren({ ...props, config: newConfig })
+      ) : (
+        <LegendLayout {...props} config={newConfig} />
+      )}
     </div>
   );
 };
