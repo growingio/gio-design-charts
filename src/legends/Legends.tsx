@@ -15,6 +15,7 @@ export interface LegendsProps {
 
 const Legends = (props: LegendsProps) => {
   const { legends = [], onClick, config, offsetWidth = 800 } = props;
+  const height = config?.chart?.height || 300;
 
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);
@@ -30,12 +31,8 @@ const Legends = (props: LegendsProps) => {
   useEffect(() => {
     const count = Number((offsetWidth / 125).toFixed(0)) - 1;
     if (legends && legends.length > 0) {
-      if (legends.length > 5) {
-        setTiled(legends.slice(0, count));
-        setGrouped(legends.slice(count));
-      } else {
-        setTiled(legends);
-      }
+      setTiled(legends.slice(0, count));
+      setGrouped(legends.slice(count));
     }
   }, [legends, offsetWidth]);
 
@@ -56,7 +53,7 @@ const Legends = (props: LegendsProps) => {
           />
         );
       })}
-      {grouped && grouped.length > 0 && <LegendMenu legends={grouped} onClick={onClickLegend} />}
+      {grouped && grouped.length > 0 && <LegendMenu legends={grouped} onClick={onClickLegend} height={height} />}
     </div>
   );
 };

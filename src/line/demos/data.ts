@@ -1153,33 +1153,74 @@ export const dataWithOnelineDate = [
 ];
 
 export const contrastData = [
-  { tm: 1635177600000, type: '活跃人数', value: 0 },
-  { tm: 1635264000000, type: '活跃人数', value: 0 },
-  { tm: 1635350400000, type: '活跃人数', value: 0 },
-  { tm: 1635436800000, type: '活跃人数', value: 455 },
-  { tm: 1635523200000, type: '活跃人数', value: 969 },
-  { tm: 1635609600000, type: '活跃人数', value: 389 },
-  { tm: 1635696000000, type: '活跃人数', value: 0 },
-  { tm: 1635782400000, type: '活跃人数', value: 0 },
-  { tm: 1635868800000, type: '活跃人数', value: 0 },
-  { tm: 1635955200000, type: '活跃人数', value: 0 },
-  { tm: 1636041600000, type: '活跃人数', value: 0 },
-  { tm: 1636128000000, type: '活跃人数', value: 0 },
-  { tm: 1636214400000, type: '活跃人数', value: 0 },
-  { tm: 1636300800000, type: '活跃人数', value: 0 },
-
-  { tm: 1633968000000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634054400000, type: '活跃人数(上周)', value: 2 },
-  { tm: 1634140800000, type: '活跃人数(上周)', value: 13 },
-  { tm: 1634227200000, type: '活跃人数(上周)', value: 140 },
-  { tm: 1634313600000, type: '活跃人数(上周)', value: 22 },
-  { tm: 1634400000000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634486400000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634572800000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634659200000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634745600000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634832000000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1634918400000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1635004800000, type: '活跃人数(上周)', value: 0 },
-  { tm: 1635091200000, type: '活跃人数(上周)', value: 0 },
+  {
+    tm: '1636905600000',
+    NxDLPLD7_value: 113,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1636992000000',
+    NxDLPLD7_value: 225,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1637078400000',
+    NxDLPLD7_value: 191,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1637164800000',
+    NxDLPLD7_value: 124,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1637251200000',
+    NxDLPLD7_value: 136,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1637337600000',
+    NxDLPLD7_value: 35,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1637424000000',
+    NxDLPLD7_value: 129,
+    NxDLPLD7_name: '访问的总次数',
+  },
+  {
+    tm: '1636300800000',
+    NxDLPLD7_value: 42,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
+  {
+    tm: '1636387200000',
+    NxDLPLD7_value: 22,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
+  {
+    tm: '1636473600000',
+    NxDLPLD7_value: 53,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
+  {
+    tm: '1636560000000',
+    NxDLPLD7_value: 38,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
+  {
+    tm: '1636646400000',
+    NxDLPLD7_value: 61,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
+  {
+    tm: '1636732800000',
+    NxDLPLD7_value: 50,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
+  {
+    tm: '1636819200000',
+    NxDLPLD7_value: 14,
+    NxDLPLD7_name: '访问的总次数(上周)',
+  },
 ];
