@@ -15,7 +15,7 @@ import { getColorByModel } from '../utils/tools/utils';
 
 export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
   const linkView = views?.[0];
-  linkView?.changeData(data.reverse());
+  linkView?.changeData(data.slice().reverse());
   linkView?.render(true);
 
   chart.render(true);
@@ -33,7 +33,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
       region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
     });
 
-    fetchViewConfig(linkView, { ...options, data: data?.reverse() }, config);
+    fetchViewConfig(linkView, { ...options, data: data?.slice()?.reverse() }, config);
     handleInterval(linkView, options, config, {}, ChartType.BAR);
     linkView.coordinate().transpose();
     linkView.on('afterrender', function (event: Event) {
@@ -126,7 +126,7 @@ export class Bar {
 
   updateTimeInterval = (charts: { chart: Chart }, data: LooseObject[]) => {
     if (data) {
-      const reverseData = data?.reverse();
+      const reverseData = data?.slice()?.reverse();
       this.leadView?.changeData(reverseData);
       this.leadView?.render(true);
 
@@ -141,7 +141,7 @@ export class Bar {
     if (!id) {
       return {};
     }
-    const reverseData = data?.reverse();
+    const reverseData = data?.slice()?.reverse();
     this.options = options;
     this.config = config;
     const chart = generateChart(options, config);
