@@ -35,6 +35,7 @@ const InfoCardBox = (props: InfoCardProps) => {
   const { acceptor, legends, getTrigger, options, config, setTrigger } = props;
   const chartType = config?.type;
   const forwardKey = config?.[chartType]?.color;
+  const height = config?.chart?.height || 360;
   const splitPositions = config?.[chartType]?.position?.split('*');
   const nameKey = first(splitPositions) as string;
   const valueKey = last(splitPositions) as string;
@@ -84,7 +85,12 @@ const InfoCardBox = (props: InfoCardProps) => {
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
   return (
-    <div className={`gio-d-charts-infocard `} data-testid="infoCardBox" onMouseLeave={onMouseLeave}>
+    <div
+      className={`gio-d-charts-infocard `}
+      data-testid="infoCardBox"
+      onMouseLeave={onMouseLeave}
+      style={{ maxHeight: height - 30 }}
+    >
       <InfoCard
         title={title}
         data={items}

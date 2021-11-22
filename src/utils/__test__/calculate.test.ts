@@ -1,9 +1,9 @@
-import { DEFAULT_APPEND_PADDING } from '../../theme';
+import { DEFAULT_APPEND_PADDING, DEFAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight, calculateColumnWidth } from '../calculate';
 
 describe('test calculateBarHeight', () => {
   test('call calculateBarHeight without config', () => {
-    expect(calculateBarHeight(null as any, [])).toBe(16 + DEFAULT_APPEND_PADDING * 2);
+    expect(calculateBarHeight(null as any, [])).toBe(DEFAULT_CHART_HEIGHT);
   });
 });
 

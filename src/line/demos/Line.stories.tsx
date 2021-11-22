@@ -54,7 +54,7 @@ const scalaAxisConfig = {
 const config = {
   chart: {
     autoFit: true,
-    height: 400,
+    height: 250,
   },
   scale: {
     month: {
@@ -203,12 +203,12 @@ const ContrastLineExampleArgs = {
   title: '对比折线图',
   legends: [
     {
-      name: '活跃人数(上周)',
+      name: '访问的总次数(上周)',
       color: colors[0],
       lineDash: true,
     },
     {
-      name: '活跃人数',
+      name: '访问的总次数',
       color: colors[0],
       role: 'lead',
     },
@@ -217,7 +217,7 @@ const ContrastLineExampleArgs = {
   config: {
     ...config,
     scale: {
-      value: {
+      NxDLPLD7_value: {
         nice: true,
         max: 2000,
       },
@@ -225,7 +225,7 @@ const ContrastLineExampleArgs = {
     },
     axises: [
       [
-        'value',
+        'NxDLPLD7_value',
         {
           label: {
             formatter: (val: string) => formatNumber(Number(val)),
@@ -257,8 +257,8 @@ const ContrastLineExampleArgs = {
       },
     },
     line: {
-      position: 'tm*value',
-      color: 'type',
+      position: 'tm*NxDLPLD7_value',
+      color: 'NxDLPLD7_name',
     },
   },
 };

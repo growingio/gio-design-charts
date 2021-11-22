@@ -62,7 +62,7 @@ export class Gauge {
 
     const rate = max ? formatPercent(value / max) : '--';
     let fixedSubTitle = typeof subTitle === 'number' ? formatNumber(subTitle) : subTitle;
-    fixedSubTitle = fixedSubTitle || value ? formatNumber(value) : dict.noData;
+    fixedSubTitle = fixedSubTitle || (value ? formatNumber(value) : dict.noData);
     gaugeText(title || `${dict.rate}${rate}`, fixedSubTitle || formatNumber(value), view, config);
   };
 

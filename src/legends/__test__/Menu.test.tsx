@@ -5,9 +5,9 @@ import Menu from '../Menu';
 
 describe('Menu', () => {
   test('render Menu', async () => {
-    render(<Menu legends={[]} />);
+    render(<Menu legends={[]} height={100} />);
   });
   test('render Menu with empty legends', async () => {
-    render(<Menu legends={null as any} />);
+    render(<Menu legends={null as any} height={100} />);
   });
 });

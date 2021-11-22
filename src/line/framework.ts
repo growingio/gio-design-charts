@@ -40,7 +40,7 @@ export class Line {
     const scale = {
       ...config.scale,
       [yField]: {
-        ...config.scale,
+        ...((config.scale as LooseObject)?.[yField] || {}),
         max: integerCeil(maxValue),
       },
     };
@@ -152,6 +152,7 @@ export class Line {
         this.finnalView = view;
       };
       this.contrastViewQueue(dataMapping, legends)(historyView, currentView);
+      console.log(config);
 
       fetchTooltip(chart, config);
       chart.legend(false);
