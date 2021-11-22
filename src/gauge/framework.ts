@@ -17,13 +17,13 @@ export class Gauge {
   update = (charts: { chart: Chart }, data: LooseObject[], config: ChartConfig) => {
     this.view?.clear();
     if (this.view) {
-      this.rednerView(this.view, data, config);
+      this.renderView(this.view, data, config);
     }
     this.view?.render(true);
     this.chart?.render(true);
   };
 
-  rednerView = (view: View, data: LooseObject[], config: ChartConfig) => {
+  renderView = (view: View, data: LooseObject[], config: ChartConfig) => {
     const { dict = {} } = this.options || {};
     const gaugeCfg = getShapeConfig(config, ChartType.GAUGE);
     const { position, title, subTitle } = gaugeCfg;
@@ -78,7 +78,7 @@ export class Gauge {
     fetchViewConfig(view, options, config);
     bindGuageCoordination(view);
 
-    this.rednerView(view, data as LooseObject[], config);
+    this.renderView(view, data as LooseObject[], config);
 
     view.render();
     this.view = view;

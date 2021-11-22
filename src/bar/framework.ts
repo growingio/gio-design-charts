@@ -9,13 +9,13 @@ import { LooseObject } from '@antv/g-base';
 import { cloneDeep } from 'lodash';
 import { bindBarCoordination } from '../utils/frameworks/coordinate';
 import { getbackgroundState } from '../utils/tools/shapeState';
-import { COLOR_GRAY_1, DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR } from '../theme';
+import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
 import { getColorByModel } from '../utils/tools/utils';
 
 export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
   const linkView = views?.[0];
-  linkView?.changeData(data);
+  linkView?.changeData(data.reverse());
   linkView?.render(true);
 
   chart.render(true);
@@ -23,7 +23,7 @@ export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[
 };
 
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id, report } = options;
+  const { id, report, data } = options;
   if (!id) {
     return {};
   }
@@ -33,7 +33,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
       region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
     });
 
-    fetchViewConfig(linkView, options, config);
+    fetchViewConfig(linkView, { ...options, data: data?.reverse() }, config);
     handleInterval(linkView, options, config, {}, ChartType.BAR);
     linkView.coordinate().transpose();
     linkView.on('afterrender', function (event: Event) {
@@ -86,7 +86,7 @@ export class Bar {
     bindBarCoordination(view);
     fetchViewConfig(view, { ...this.options, data: backData }, this.config as ChartConfig);
     const interval = intervalShape(view, this.options as ChartOptions, this.config as ChartConfig, {
-      customInfo: { chartType: ChartType.BAR, defaultStyles: { color: COLOR_GRAY_1 } },
+      customInfo: { chartType: ChartType.BAR, defaultStyles: { color: `${colors[0]}10` } },
     });
     interval.state(getbackgroundState());
     view.tooltip(false);
@@ -126,10 +126,11 @@ export class Bar {
 
   updateTimeInterval = (charts: { chart: Chart }, data: LooseObject[]) => {
     if (data) {
-      this.leadView?.changeData(data);
+      const reverseData = data?.reverse();
+      this.leadView?.changeData(reverseData);
       this.leadView?.render(true);
 
-      const backData = this.fetchBackData(this.yField, data);
+      const backData = this.fetchBackData(this.yField, reverseData);
       this.renderBackground(this.backView as View, this.yField, backData);
     }
     this.chart?.render(true);
@@ -140,6 +141,7 @@ export class Bar {
     if (!id) {
       return {};
     }
+    const reverseData = data?.reverse();
     this.options = options;
     this.config = config;
     const chart = generateChart(options, config);
@@ -150,14 +152,14 @@ export class Bar {
     const backView = chart.createView({
       theme: getDefaultViewTheme(config),
     });
-    this.renderBackground(backView, yField, data as LooseObject[]);
+    this.renderBackground(backView, yField, reverseData);
 
     // 添加padding-right：180，防止条形图的label被后面的text覆盖住
     const leadView = chart.createView({
       appendPadding: [0, 180, 0, 0],
     });
     bindBarCoordination(leadView);
-    fetchViewConfig(leadView, options, config);
+    fetchViewConfig(leadView, { ...options, data: reverseData }, config);
     handleInterval(leadView, options, config, {}, ChartType.BAR);
 
     const textView = chart.createView();

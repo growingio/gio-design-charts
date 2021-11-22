@@ -105,13 +105,13 @@ export const viewTheme = {
         label: {
           style: {
             fontFamily: DEFAULT_FONT_FAMILY,
-            fill: '#ffffff',
+            fill: '#ffffff00',
           },
         },
         line: {
           style: {
             fontFamily: DEFAULT_FONT_FAMILY,
-            stroke: '#ffffff',
+            stroke: '#ffffff00',
           },
         },
       },
@@ -121,7 +121,7 @@ export const viewTheme = {
     style: {
       fontFamily: DEFAULT_FONT_FAMILY,
       fontSize: DEFAULT_FONT_SIZE,
-      fill: '#ffffff',
+      fill: '#ffffff00',
     },
   },
 };
@@ -133,12 +133,12 @@ export const darkViewTheme = {
       common: {
         label: {
           style: {
-            fill: '#000',
+            fill: '#0000',
           },
         },
         line: {
           style: {
-            stroke: '#ffffff',
+            stroke: '#ffffff00',
           },
         },
       },
@@ -146,7 +146,7 @@ export const darkViewTheme = {
   },
   labels: {
     style: {
-      fill: '#ffffff',
+      fill: '#ffffff00',
     },
   },
 };
