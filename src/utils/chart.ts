@@ -1,7 +1,8 @@
 import { LooseObject } from '@antv/g-base';
 import { Datum } from '@antv/g2/lib/interface';
 import { cloneDeep, isEmpty, isString, lowerCase, merge } from 'lodash';
-import { ChartConfig } from '../interfaces';
+import { ChartConfig, ChartOptions } from '../interfaces';
+import { DEFAULT_HEIGHT, LEGEND_HEIGHT } from '../theme';
 import gioTheme, { darkTheme, darkViewTheme, viewTheme } from '../theme/chart';
 
 export const inValidConfig = (config: ChartConfig) => {
@@ -25,4 +26,10 @@ export const getDefaultTheme = (theme?: LooseObject, config?: ChartConfig) => {
 export const getDefaultViewTheme = (config?: ChartConfig) => {
   const isDark = config?.chart?.theme === 'dark';
   return merge(cloneDeep(gioTheme), isDark ? darkViewTheme : viewTheme);
+};
+
+export const fixedHeight = (options: ChartOptions, config: ChartConfig) => {
+  const { hasLegend, hasTitle } = options;
+  const basicConfig = config.chart || {};
+  return (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0);
 };

@@ -4,6 +4,7 @@ import useOffset, { Offset } from '../../hooks/useOffset';
 import core, { LayoutProps } from '../../core/core';
 import { View } from '@antv/g2';
 import { getThemeColor } from '../../utils/styles';
+import { fixedHeight } from '../../utils/chart';
 
 const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
@@ -22,13 +23,13 @@ const LegendLayout = (props: LayoutProps) => {
       }
       const useWidth = Number(width) > divWidth + 40 ? Number(width) : divWidth;
       if (config?.chart?.height && chart?.canvas?.get('el')) {
-        chart?.changeSize(useWidth, config.chart.height);
+        chart?.changeSize(useWidth, fixedHeight(options, config));
         views?.forEach((view: View) => view.render(true));
         chart?.render(true);
       }
       setOffsetWidth(divWidth);
     },
-    [chart, views, config, width]
+    [chart, views, options, config, width]
   );
 
   const offset = useOffset(layoutRef, watchReset);
