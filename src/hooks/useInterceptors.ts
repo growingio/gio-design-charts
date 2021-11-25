@@ -10,6 +10,7 @@ const useInterceptors = () => {
     (trigger) => {
       triggerActionRef.current = trigger;
       chartRef.current?.unlockTooltip();
+      chartRef.current?.hideTooltip();
     },
     [triggerActionRef]
   );

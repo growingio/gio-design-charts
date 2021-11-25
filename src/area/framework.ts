@@ -52,6 +52,8 @@ export const areaChart = (options: ChartOptions, config: ChartConfig) => {
     areaShape(chart, options, areaConfig);
     chart.interaction('element-highlight-by-color');
     chart.render();
+    // like Line framework, render twice to fix wrong label issue.
+    chart.render(true);
   } catch (err) {
     console.log(err);
   }
