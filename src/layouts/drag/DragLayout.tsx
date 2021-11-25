@@ -11,6 +11,7 @@ import { Direction } from 're-resizable/lib/resizer';
 import { ContentMenu } from '../../bar/Bar';
 import { getThemeColor } from '../../utils/styles';
 import { LegendLayout } from '../legend';
+import { getTextFormatter } from '../../utils/frameworks/axis';
 
 export interface DragLayoutProps extends ChartCanvasProps {
   title?: string;
@@ -31,6 +32,7 @@ const DragLayout = (props: DragLayoutProps) => {
   const [register, acceptor] = useTunnel();
   const [sizeRegister, sizeAcceptor] = useTunnel();
   const color = getThemeColor(config);
+  const textFormatter = getTextFormatter(config);
 
   return (
     <div className="gio-d-charts" data-testid="drag-layout">
@@ -58,7 +60,7 @@ const DragLayout = (props: DragLayoutProps) => {
               {subTitle ? (
                 <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} />
               ) : (
-                <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} />
+                <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} formatter={textFormatter} />
               )}
             </Resizable>
             <div className="drag-layout-content">

@@ -8,6 +8,7 @@ export interface VerticalMenuProps {
   height?: number;
   width?: number;
   scale?: LooseObject;
+  formatter?: (text: string) => string | void;
   acceptor: any;
   sizeAcceptor: any;
 }
@@ -27,14 +28,13 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
 };
 
 const VerticalMenu = React.memo((props: VerticalMenuProps) => {
-  const { acceptor, sizeAcceptor } = props;
+  const { acceptor, sizeAcceptor, formatter } = props;
   const [scale, setScale] = useState<Scale>();
   const [height, setHeight] = useState(100);
   const { max, range } = scale || ({} as any);
   const ranges = getRanges(max, range);
   // should clone the ticks to resolve the order will be reverted when update.
   const ticks = cloneDeep(scale?.ticks)?.reverse() || [];
-
   useEffect(() => {
     acceptor((d: any) => {
       setScale(d?.scale);
@@ -51,8 +51,8 @@ const VerticalMenu = React.memo((props: VerticalMenuProps) => {
     <div data-testid="vertical-menu" style={{ height, width: '100%', position: 'absolute' }}>
       {ticks?.map((tick: string, index: number) => {
         return (
-          <div className="vertical-menu-item" key={tick} title={tick} style={{ top: ranges[index] * height - 8 }}>
-            {tick}
+          <div className="vertical-menu-item" key={tick} title={tick} style={{ top: ranges[index] * height - 10 }}>
+            {formatter?.(tick) || tick}
           </div>
         );
       })}

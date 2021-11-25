@@ -12,7 +12,7 @@ import { getShapeConfig } from '../utils/tools/configUtils';
 import { LooseObject } from '@antv/g-base';
 import { ChartType } from '..';
 import { forEach } from 'lodash';
-import { getAxisFields } from '../utils/frameworks/geometry';
+import { getAxisFields } from '../utils/frameworks/axis';
 import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
 import { Datum } from '@antv/g2/lib/interface';
@@ -152,7 +152,6 @@ export class Line {
         this.finnalView = view;
       };
       this.contrastViewQueue(dataMapping, legends)(historyView, currentView);
-      console.log(config);
 
       fetchTooltip(chart, config);
       chart.legend(false);

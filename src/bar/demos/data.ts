@@ -62,3 +62,56 @@ export const dataWithGroup4Interval = [
   { company: 'Facebook', type: '业务岗', value: 30 },
   { company: 'Google', type: '业务岗', value: 25 },
 ];
+
+export const sortData = [
+  {
+    usr_$first_day: '2021-09-26',
+    users_count: 10988,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-10-30',
+    users_count: 9884,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-09-27',
+    users_count: 9633,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-09-28',
+    users_count: 9370,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-10-29',
+    users_count: 5684,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-10-31',
+    users_count: 3730,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-09-17',
+    users_count: 3653,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-09-25',
+    users_count: 2471,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-09-23',
+    users_count: 1263,
+    name: '用户量',
+  },
+  {
+    usr_$first_day: '2021-09-22',
+    users_count: 693,
+    name: '用户量',
+  },
+];
