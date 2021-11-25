@@ -15,10 +15,10 @@ const Menu = (props: MenuProps) => {
       <span data-testid="legend-others">其余{legends?.length || 0}项</span>
       <div className={`gio-d-charts-legends_dropdown-content dropdown-controller`} style={{ maxHeight: height - 80 }}>
         {legends?.map((legend: Legend) => {
-          const { name } = legend;
+          const { name, alias } = legend;
           return (
             <div key={name} className="gio-d-charts-legends_dropdown-item">
-              <LegendComponent label={name} data={legend} onClick={onClick} />
+              <LegendComponent label={alias || name} data={legend} onClick={onClick} />
             </div>
           );
         })}
