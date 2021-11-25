@@ -165,8 +165,10 @@ const useChart = (options: UseChartProps) => {
       hasDashed,
       legendQueue,
       title,
+      hasLegend: config?.legend !== false && legendQueue?.length > 0,
+      hasTitle: !!title,
     }),
-    [defaultOptions, legends, legendQueue, hasDashed, title]
+    [defaultOptions, config, legends, legendQueue, hasDashed, title]
   );
 
   return { updateLegends, chartOptions };

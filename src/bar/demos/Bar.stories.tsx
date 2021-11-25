@@ -4,11 +4,12 @@ import ScrollBar from '../ScrollBar';
 
 import Card from '../../demos/card';
 import { dataWithGroup, percentData } from '../../column/demos/data';
-import { data, dataWithMulti, dataWithMultiContrast } from './data';
+import { data, dataWithMulti, dataWithMultiContrast, sortData } from './data';
 import Docs from './Bar.mdx';
 import { cloneDeep } from 'lodash';
 import { formatNumber } from '../..';
 import { AdjustType } from '@antv/g2/lib/interface';
+import { DragBar } from '..';
 
 export default {
   title: 'Charts/条形图 Bar',
@@ -63,7 +64,6 @@ const BarDefaultArgs = {
   data: dataWithMulti,
   config: {
     ...config,
-
     chart: {
       autoFit: true,
       height: 300,
@@ -318,3 +318,55 @@ PercentBar.storyName = '百分比堆积条形图';
 export const ScrollPercentBar = ScrollTemplate.bind({});
 ScrollPercentBar.args = cloneDeep(PercentBarArgs);
 ScrollPercentBar.storyName = '百分比堆积条形图(滚动模式)';
+
+const SortTemplate: ComponentStory<typeof Bar> = (args) => (
+  <Card>
+    <DragBar {...args} />
+  </Card>
+);
+
+export const Sort = SortTemplate.bind({});
+Sort.storyName = 'DragBar 修改Label';
+Sort.args = {
+  legends: ['Apple', { name: 'Facebook', dashed: true }, 'Google'],
+  data: sortData,
+  config: {
+    ...config,
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
+    scale: ['usr_$first_day', { nice: true, type: 'cat' }],
+    axises: [
+      [
+        'users_count',
+        {
+          grid: null,
+          label: null,
+        },
+      ],
+      [
+        'usr_$first_day',
+        {
+          line: null,
+          tickLine: null,
+          label: {
+            formatter: (text: string) => {
+              return `${text}_U`;
+            },
+          },
+        },
+      ],
+    ],
+    bar: {
+      position: 'usr_$first_day*users_count',
+      color: 'name',
+      adjust: [
+        {
+          type: 'dodge',
+          marginRatio: 0,
+        },
+      ],
+    },
+  },
+};

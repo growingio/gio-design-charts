@@ -3,14 +3,10 @@ import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
-import { DEFAULT_APPEND_PADDING } from '../theme';
-import { getDefaultTheme } from '../utils/chart';
+import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT } from '../theme';
+import { fixedHeight, getDefaultTheme } from '../utils/chart';
 
 import '../utils/tools';
-
-const DEFAULT_AUTO_FIT = true;
-const DEFAULT_HEIGHT = 200;
-const LEGEND_HEIGHT = 30;
 
 registerInteraction('element-highlight-by-color', {
   start: [{ trigger: 'element:mouseenter', action: 'element-highlight-by-color:highlight' }],
@@ -18,7 +14,7 @@ registerInteraction('element-highlight-by-color', {
 });
 
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id, theme, hasLegend, hasTitle } = options;
+  const { id, theme } = options;
   const basicConfig = config.chart || {};
   const appendPaddingCfg = config.chart?.appendPadding || DEFAULT_APPEND_PADDING;
   // Set defualt chart config
@@ -26,7 +22,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     ...basicConfig,
     container: id as HTMLElement,
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
-    height: (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0),
+    height: fixedHeight(options, config),
     padding: 'auto',
     appendPadding: config.size === 'tiny' ? 0 : appendPaddingCfg,
     theme: getDefaultTheme(theme, config),

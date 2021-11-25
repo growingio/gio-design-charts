@@ -4,7 +4,7 @@ import { handleInterval, intervalShape } from '../column/framework';
 import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { Datum } from '@antv/g2/lib/interface';
-import { getAxisFields } from '../utils/frameworks/geometry';
+import { getAxisFields } from '../utils/frameworks/axis';
 import { LooseObject } from '@antv/g-base';
 import { cloneDeep } from 'lodash';
 import { bindBarCoordination } from '../utils/frameworks/coordinate';

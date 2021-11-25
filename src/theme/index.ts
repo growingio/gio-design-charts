@@ -34,6 +34,10 @@ export const DEFAULT_REDIUS_BAR = [2, 2, 2, 2];
 export const DEFAULT_APPEND_PADDING = 8;
 export const DEFAULT_CHART_HEIGHT = 120;
 
+export const DEFAULT_AUTO_FIT = true;
+export const DEFAULT_HEIGHT = 200;
+export const LEGEND_HEIGHT = 30;
+
 export const BAR_TEXTURE =
   'data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEA' +
   'mpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABDSURBVHgB7dQxDgAgDAJAfq4/xzR2cqqJmA4ww01NgSM' +

@@ -37,7 +37,7 @@ const Legend = (props: LegendProps) => {
       className="gio-d-charts-legends_legend"
       onClick={onClickLabel}
       style={{ color: active ? '' : DISABLE_COLOR }}
-      title={label}
+      title={alias || label}
       data-testid={`legend-item-${label}`}
     >
       <div className={`gio-d-charts-legends_block gio-d-charts-legends_${type as ChartType}`} style={stylesLine} />
