@@ -68,18 +68,20 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
 
     return (
       <HighComponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
-        <div className="layout-content" ref={root} />
-        <div className="gio-d-charts_tooltip-content" key={tooltipKey}>
-          <div ref={tooltipRef} className="g2-tooltip">
-            <InfoCardBox
-              legends={chartOptions.legends}
-              acceptor={acceptor}
-              options={{ ...chartOptions }}
-              getTrigger={getTrigger}
-              setTrigger={setTrigger}
-              config={config}
-            />
+        <div className="layout-content">
+          <div className="gio-d-charts_tooltip-content" key={tooltipKey} style={{ width, position: 'relative' }}>
+            <div ref={tooltipRef} className="g2-tooltip">
+              <InfoCardBox
+                legends={chartOptions.legends}
+                acceptor={acceptor}
+                options={{ ...chartOptions }}
+                getTrigger={getTrigger}
+                setTrigger={setTrigger}
+                config={config}
+              />
+            </div>
           </div>
+          <div ref={root} />
         </div>
       </HighComponent>
     );
