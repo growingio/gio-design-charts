@@ -102,7 +102,7 @@ export class Bar {
           const box = element.shape.getCanvasBBox();
           const model = element.getModel();
           const color = getColorByModel(model);
-          const top = box.minY - DEFAULT_APPEND_PADDING - 1;
+          const top = box.minY - DEFAULT_APPEND_PADDING - 2;
           this.textView?.annotation?.()?.html({
             position: ['100%', '0%'],
             offsetX: 0,
