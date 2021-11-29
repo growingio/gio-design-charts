@@ -7,6 +7,7 @@ import './styles/infocard.less';
 
 export interface InfoCardProps {
   title: string;
+  subTitle?: string;
   data: InfoCardData[];
   forwardKey: string;
   valueKey: string;
@@ -17,7 +18,17 @@ export interface InfoCardProps {
 }
 
 const InfoCard = (props: InfoCardProps) => {
-  const { title, data = [], trigger, forwardKey, valueKey, config, injectComponent, formatter: propFormatter } = props;
+  const {
+    title,
+    subTitle,
+    data = [],
+    trigger,
+    forwardKey,
+    valueKey,
+    config,
+    injectComponent,
+    formatter: propFormatter,
+  } = props;
   const renderTooltip = config?.tooltip?.render;
   const tooltipFormatter = config?.tooltip?.formatter;
 
@@ -29,6 +40,7 @@ const InfoCard = (props: InfoCardProps) => {
       ) : (
         <div data-testid="infoCard" key="default-infocard">
           {title && <div className="gio-d-charts-infocard_title">{title}</div>}
+          {subTitle && <div className="gio-d-charts-infocard_subtitle">{subTitle}</div>}
           {data.map((item: InfoCardData, index: number) => (
             <div key={`${item.data?.[forwardKey]}-${index}` || `empty-item-${index}`}>
               <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
