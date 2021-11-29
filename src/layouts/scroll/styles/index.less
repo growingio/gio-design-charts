@@ -1,6 +1,7 @@
+@import '../../../style/scrollBar.less';
+
 .gio-scroll-y-layout {
-  overflow-x: hidden;
-  overflow-y: auto;
+  .scrollbar(hidden, auto);
 }
 
 .gio-scroll-x-layout {
@@ -8,7 +9,6 @@
   width: 100%;
   .layout-content {
     display: block;
-    overflow-x: auto;
-    overflow-y: hidden;
+    .scrollbar(auto, hidden);
   }
 }
