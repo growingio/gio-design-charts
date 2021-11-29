@@ -41,11 +41,13 @@ const InfoCard = (props: InfoCardProps) => {
         <div data-testid="infoCard" key="default-infocard">
           {title && <div className="gio-d-charts-infocard_title">{title}</div>}
           {subTitle && <div className="gio-d-charts-infocard_subtitle">{subTitle}</div>}
-          {data.map((item: InfoCardData, index: number) => (
-            <div key={`${item.data?.[forwardKey]}-${index}` || `empty-item-${index}`}>
-              <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
-            </div>
-          ))}
+          <div className="gio-d-charts-infocard_label-content">
+            {data.map((item: InfoCardData, index: number) => (
+              <div key={`${item.data?.[forwardKey]}-${index}` || `empty-item-${index}`}>
+                <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
+              </div>
+            ))}
+          </div>
           {injectComponent?.({ data, trigger, forwardKey })}
         </div>
       )}
