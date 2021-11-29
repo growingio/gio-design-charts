@@ -50,9 +50,10 @@ const VerticalMenu = React.memo((props: VerticalMenuProps) => {
   return (
     <div data-testid="vertical-menu" style={{ height, width: '100%', position: 'absolute' }}>
       {ticks?.map((tick: string, index: number) => {
+        const label = formatter?.(tick) || tick;
         return (
-          <div className="vertical-menu-item" key={tick} title={tick} style={{ top: ranges[index] * height - 10 }}>
-            {formatter?.(tick) || tick}
+          <div className="vertical-menu-item" key={tick} title={label} style={{ top: ranges[index] * height - 10 }}>
+            {label}
           </div>
         );
       })}
