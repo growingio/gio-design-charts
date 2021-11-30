@@ -18,7 +18,7 @@ const Menu = (props: MenuProps) => {
           const { name, alias } = legend;
           return (
             <div key={name} className="gio-d-charts-legends_dropdown-item">
-              <LegendComponent label={name} data={legend} onClick={onClick} />
+              <LegendComponent label={name} alias={alias} data={legend} onClick={onClick} />
             </div>
           );
         })}
