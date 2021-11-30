@@ -1,5 +1,8 @@
+import { LooseObject } from '@antv/g-base';
 import { AdjustOption } from '@antv/g2/lib/interface';
+import { ChartOptions } from '..';
 import { Shape } from '../interfaces';
+import { getAxisFields } from './frameworks/axis';
 
 export const defaultGroupInterval = {
   interval: {
@@ -92,4 +95,22 @@ export const hasContrastDodge = (config: Shape) => {
   const color = config?.color;
   const dodgeBy = getDodgeBy(config);
   return color !== dodgeBy;
+};
+
+/**
+ * When render group bar/column chart，adjust type is dodge
+ * There is an problem to create interval with dodgePadding.
+ * But it's necessary to render chart which multi group
+ *
+ * Know: whether there is only one group and adjust type is dodge
+ * @return {boolean}
+ */
+export const isSingleDodge = (options: ChartOptions, config: Shape) => {
+  const data = options.data || [];
+  const [xField] = getAxisFields(config.position);
+  if (xField) {
+    const groups = Array.from(new Set(data.map((item: LooseObject) => item[xField + 1])));
+    return groups.length <= 1;
+  }
+  return false;
 };

@@ -8,6 +8,7 @@ import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';
+import { isSingleDodge } from '../utils/interval';
 
 export interface IntervalConfig {
   styles?: ShapeStyle;
@@ -37,14 +38,16 @@ export const intervalShape = (
   const shapeConfig = barConfig.interval || {};
   const hideLabel = options.control?.hideLabel;
 
+  const singleDodge = isSingleDodge(options, barConfig);
+
+  const renderIntervalConfig = { ...shapeConfig, ...intervalStyles };
+  const { dodgePadding, ...rest } = renderIntervalConfig;
+
   const interval: Interval = chart.interval({
-    ...shapeConfig,
-    ...intervalStyles,
-    // dodgePadding: 8,
-    // intervalPadding: 40,
-    // maxColumnWidth: 40,
-    // minColumnWidth: 40,
+    ...rest,
+    ...(singleDodge ? {} : { dodgePadding }),
   });
+
   if (barConfig.position) {
     interval.position(barConfig.position);
   }
