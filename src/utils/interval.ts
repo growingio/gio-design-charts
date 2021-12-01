@@ -109,7 +109,7 @@ export const isSingleDodge = (options: ChartOptions, config: Shape) => {
   const data = options.data || [];
   const [xField] = getAxisFields(config.position);
   if (xField) {
-    const groups = Array.from(new Set(data.map((item: LooseObject) => item[xField + 1])));
+    const groups = Array.from(new Set(data.map((item: LooseObject) => item[xField])));
     return groups.length <= 1;
   }
   return false;
