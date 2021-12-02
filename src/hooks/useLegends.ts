@@ -51,11 +51,12 @@ const useLegends = () => {
         ...legends,
         [label]: { ...legends?.[label], active: !legends?.[label]?.active },
       };
+      const newQueue = legendQueue.map((le) => (le.name === label ? newLegends[label] : le));
       setLegends(newLegends);
-      setLegendQueue(values(newLegends));
+      setLegendQueue(newQueue);
       return newLegends;
     },
-    [legends]
+    [legends, legendQueue]
   );
   const setLegendAndDashed = useCallback((genLegends: Legends, queue: Legend[], has: boolean) => {
     setLegends(genLegends);
