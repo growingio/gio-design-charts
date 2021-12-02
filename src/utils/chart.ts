@@ -31,5 +31,9 @@ export const getDefaultViewTheme = (config?: ChartConfig) => {
 export const fixedHeight = (options: ChartOptions, config: ChartConfig) => {
   const { hasLegend, hasTitle } = options;
   const basicConfig = config.chart || {};
-  return (basicConfig.height || DEFAULT_HEIGHT) - (hasLegend ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0);
+  const defaultHeight = basicConfig.height || DEFAULT_HEIGHT;
+  if (config.size === 'tiny') {
+    return defaultHeight;
+  }
+  return defaultHeight - (hasLegend ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0);
 };
