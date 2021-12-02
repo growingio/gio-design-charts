@@ -1,5 +1,4 @@
 import { LooseObject } from '@antv/component';
-import { values } from 'lodash';
 import { useCallback, useState } from 'react';
 import { ChartType, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_LINEDASH } from '../theme';
