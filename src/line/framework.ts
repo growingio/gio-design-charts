@@ -156,6 +156,8 @@ export class Line {
       fetchTooltip(chart, config);
       chart.legend(false);
       chart.render();
+      // Sometimes, chart will render wrong axis labels, render again will be fine.
+      chart.render(true);
       this.chart = chart;
       return { chart, views, update: this.updateContrast };
     } catch (err) {}
