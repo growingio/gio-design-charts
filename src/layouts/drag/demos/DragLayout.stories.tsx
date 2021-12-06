@@ -6,6 +6,7 @@ import Card from '../../../demos/card';
 import { ScrollGroupContrast, ScrollPercentBar } from '../../../bar/demos/Bar.stories';
 
 import Docs from './DragLayout.mdx';
+import { useState } from 'react';
 
 export default {
   title: 'Components/Layouts/Drag',
@@ -20,11 +21,19 @@ export default {
   },
 };
 
-const ScrollTemplate: ComponentStory<typeof DragBar> = (args) => (
-  <Card>
-    <DragBar {...args} />
-  </Card>
-);
+const ScrollTemplate: ComponentStory<typeof DragBar> = (args) => {
+  const { data, config } = args;
+  const [reData, setReData] = useState(data);
+  const onRes = () => {
+    setReData([...reData.reverse()]);
+  };
+  return (
+    <Card>
+      <button onClick={onRes}>Reverse</button>
+      <DragBar {...args} data={reData} config={{ ...config }} />
+    </Card>
+  );
+};
 
 export const Example = ScrollTemplate.bind({});
 Example.args = { ...ScrollPercentBar.args, title: '拖拽条形图' };

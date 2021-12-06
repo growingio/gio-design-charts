@@ -29,15 +29,15 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
 
 const VerticalMenu = React.memo((props: VerticalMenuProps) => {
   const { acceptor, sizeAcceptor, formatter } = props;
-  const [scale, setScale] = useState<Scale>();
   const [height, setHeight] = useState(100);
-  const { max, range } = scale || ({} as any);
-  const ranges = getRanges(max, range);
-  // should clone the ticks to resolve the order will be reverted when update.
-  const ticks = cloneDeep(scale?.ticks)?.reverse() || [];
+  const [ranges, setRanges] = useState<number[]>([]);
+  const [ticks, setTicks] = useState<string[]>([]);
   useEffect(() => {
     acceptor((d: any) => {
-      setScale(d?.scale);
+      const { max, range } = d?.scale || ({} as any);
+      setRanges(getRanges(max, range));
+      // should clone the ticks to resolve the order will be reverted when update.
+      setTicks(cloneDeep(d?.scale?.ticks)?.reverse() || []);
     });
   }, [acceptor]);
 
