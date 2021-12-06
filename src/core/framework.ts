@@ -26,7 +26,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     padding: 'auto',
     appendPadding: config.size === 'tiny' ? 0 : appendPaddingCfg,
     theme: getDefaultTheme(theme, config),
-    limitInPlot: true,
+    // limitInPlot: true,
   });
   if (basicConfig.closeAnimate) {
     chart.animate(false);
