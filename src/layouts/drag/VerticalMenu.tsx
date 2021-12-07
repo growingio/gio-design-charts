@@ -11,6 +11,7 @@ export interface VerticalMenuProps {
   formatter?: (text: string) => string | void;
   acceptor: any;
   sizeAcceptor: any;
+  color?: string;
 }
 
 const getRanges = (max: number, range: number[] = [0, 0]) => {
@@ -28,7 +29,7 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
 };
 
 const VerticalMenu = React.memo((props: VerticalMenuProps) => {
-  const { acceptor, sizeAcceptor, formatter } = props;
+  const { acceptor, sizeAcceptor, formatter, color } = props;
   const [height, setHeight] = useState(100);
   const [ranges, setRanges] = useState<number[]>([]);
   const [ticks, setTicks] = useState<string[]>([]);
@@ -52,7 +53,12 @@ const VerticalMenu = React.memo((props: VerticalMenuProps) => {
       {ticks?.map((tick: string, index: number) => {
         const label = formatter?.(tick) || tick;
         return (
-          <div className="vertical-menu-item" key={tick} title={label} style={{ top: ranges[index] * height - 10 }}>
+          <div
+            className="vertical-menu-item"
+            key={tick}
+            title={label}
+            style={{ top: ranges[index] * height - 10, color }}
+          >
             {label}
           </div>
         );
