@@ -15,6 +15,7 @@ const Bubble: React.FC<BubbleProps> = (props: BubbleProps) => {
   const [bubble] = useState(new BubbleCls());
 
   config.type = ChartType.BUBBLE;
+  config.chart = { ...config?.chart, limitInPlot: true };
 
   return (
     <LegendLayout
