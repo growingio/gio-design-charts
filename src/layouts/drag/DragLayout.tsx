@@ -58,9 +58,9 @@ const DragLayout = (props: DragLayoutProps) => {
               }}
             >
               {subTitle ? (
-                <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} />
+                <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} color={color} />
               ) : (
-                <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} formatter={textFormatter} />
+                <VerticalMenu acceptor={acceptor} sizeAcceptor={sizeAcceptor} formatter={textFormatter} color={color} />
               )}
             </Resizable>
             <div className="drag-layout-content">

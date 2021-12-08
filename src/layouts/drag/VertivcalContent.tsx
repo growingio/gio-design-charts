@@ -6,10 +6,11 @@ export interface VerticalContentProps {
   sizeAcceptor: any;
   title?: string;
   total?: number;
+  color?: string;
 }
 
 const VerticalContent = React.memo((props: VerticalContentProps) => {
-  const { sizeAcceptor, title, total } = props;
+  const { sizeAcceptor, title, total, color } = props;
   const [height, setHeight] = useState(100);
   const [width, setWidth] = useState(120);
 
@@ -21,8 +22,12 @@ const VerticalContent = React.memo((props: VerticalContentProps) => {
   }, [sizeAcceptor]);
   return (
     <div data-testid="vertical-content" className="vertical-content" style={{ height: height - 42, width: width - 30 }}>
-      <div className="vertical-content-title">{title}</div>
-      <div className="vertical-content-total">{formatNumber(Number(total)) || ''}</div>
+      <div className="vertical-content-title" style={{ color }}>
+        {title}
+      </div>
+      <div className="vertical-content-total" style={{ color }}>
+        {formatNumber(Number(total)) || ''}
+      </div>
     </div>
   );
 });
