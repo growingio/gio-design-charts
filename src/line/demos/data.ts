@@ -1,4 +1,6 @@
 export const dataWithOneLine = [
+  { type: '步步盈增', tm: '06/04 周五1', value: 0 },
+  { type: '步步盈增', tm: '06/04 周五2', value: 0 },
   { type: '步步盈增', tm: '06/04 周五', value: 10900 },
   { type: '步步盈增', tm: '06/05 周六', value: 7200 },
   { type: '步步盈增', tm: '06/06 周日', value: 13900 },
