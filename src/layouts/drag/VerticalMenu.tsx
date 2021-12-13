@@ -1,5 +1,4 @@
 import { LooseObject } from '@antv/g-base';
-import { Scale } from '@antv/scale';
 import { cloneDeep } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import './style/drag.less';
