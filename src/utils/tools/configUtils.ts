@@ -2,6 +2,7 @@ import { getDodgeBy, hasContrastDodge } from '../interval';
 import { ChartConfig, ChartOptions, Shape, CustomInfo, ChartType } from '../../interfaces';
 import { ShapeInfo } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/g-base';
+import { getAxisFields } from '../frameworks/axis';
 
 export const getShapeConfig = (config: ChartConfig = {}, type?: string) => {
   if (type) {
@@ -20,6 +21,7 @@ export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, i
   if (info.isStack && Array.isArray(data)) {
     customInfo['topData'] = data?.[0];
   }
+  const [xField, yField] = getAxisFields(shapeConfig.position);
   const dodgeBy = getDodgeBy(shapeConfig);
   const contrastDodge = hasContrastDodge(shapeConfig);
   return {
@@ -28,6 +30,9 @@ export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, i
     contrastDodge,
     legends,
     defaultStyles,
+    xField,
+    yField,
+    zField: shapeConfig.color,
     ...customInfo,
   };
 };
@@ -73,4 +78,9 @@ export const getTopName = (shapeInfo: ShapeInfo) => {
   const type = shapeInfo?.customInfo?.type;
   const topData = shapeInfo?.customInfo?.topData;
   return topData?.[type];
+};
+
+export const getReactValue = (shapeInfo: ShapeInfo): number => {
+  const yField = shapeInfo?.customInfo?.yField;
+  return (shapeInfo?.data as LooseObject)?.[yField] || 0;
 };

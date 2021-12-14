@@ -54,6 +54,7 @@ const labelConfig = [
     content: (labelData: any) => {
       return formatNumber(labelData.value);
     },
+    type: 'interval-bar-label',
     offset: 6,
   },
 ];

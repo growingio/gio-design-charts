@@ -1,5 +1,6 @@
 import { Element, registerGeometryLabel, registerInteraction } from '@antv/g2';
 import { ShapeStyle } from '../../interfaces';
+import IntervalBarLabel from './intervalBarLabel';
 import IntervalLabel from './intervalLabel';
 
 import './sliceShape';
@@ -8,6 +9,7 @@ export * from './elementLink';
 export * from './intervalShape';
 
 registerGeometryLabel('interval-label', IntervalLabel);
+registerGeometryLabel('interval-bar-label', IntervalBarLabel);
 registerInteraction('element-link', {
   start: [
     {

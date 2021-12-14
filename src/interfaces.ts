@@ -239,4 +239,7 @@ export interface CustomInfo {
   contrastDodge?: boolean;
   legends?: Legends;
   defaultStyles?: ShapeStyle;
+  xField?: string;
+  yField?: string;
+  zField?: string;
 }
