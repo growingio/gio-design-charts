@@ -4,6 +4,9 @@ import { ChartConfig } from '../../interfaces';
 import { getShapeConfig } from '../tools/configUtils';
 
 export const getAxisFields = (position: string) => {
+  if (!position) {
+    return [];
+  }
   if (position.indexOf('*') === -1) {
     return [position];
   }
