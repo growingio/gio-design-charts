@@ -7,7 +7,7 @@ import { DragBarProps } from './Bar';
 import { DragLayout } from '../layouts';
 
 const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
-  const { data, legends: legendProps = [], config = {} as BarConfig, title, content } = props;
+  const { data, legends: legendProps = [], config = {} as BarConfig, title, content, fullHeight } = props;
 
   config.type = ChartType.BAR;
   config.chart = {
@@ -34,6 +34,7 @@ const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
       handleLegend={handleLegend}
       title={title}
       content={content}
+      fullHeight={fullHeight}
     />
   );
 };

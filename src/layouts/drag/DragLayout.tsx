@@ -46,6 +46,7 @@ const DragLayout = (props: DragLayoutProps) => {
         isDrag={true}
         title={''} // title will set in outside
         sizeRegister={sizeRegister}
+        hasOutTitle={!!title}
         renderChildren={(childPorps: ChartCanvasProps) => (
           <div className="drag-layout">
             <Resizable

@@ -7,6 +7,7 @@ import { fetchChart } from '../boundary';
 
 export interface BarProps extends ChartProps {
   config: BarConfig;
+  fullHeight?: boolean;
 }
 
 export interface DragBarProps extends BarProps {
@@ -17,7 +18,7 @@ export interface DragBarProps extends BarProps {
 }
 
 const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
-  const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
+  const { data, legends: legendProps = [], config = {} as BarConfig, title, fullHeight } = props;
 
   const [bar] = useState(new BarCls());
 
@@ -44,6 +45,7 @@ const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
       config={config}
       callChart={bar.render}
       handleLegend={handleLegend}
+      fullHeight={fullHeight}
     />
   );
 };

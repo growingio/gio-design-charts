@@ -18,6 +18,7 @@ export interface ContentMenu {
 
 export interface DragBarProps extends BarProps {
   content?: ContentMenu;
+  fullHeight?: boolean;
 }
 
 const Bar: React.FC<BarProps> = (props: BarProps) => {
