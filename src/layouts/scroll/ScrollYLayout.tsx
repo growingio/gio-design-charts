@@ -10,6 +10,7 @@ import { ChartConfig } from '../../interfaces';
 
 export interface ScrolYLayoutProps extends ChartCanvasProps {
   renderChildren?: (props: ChartCanvasProps) => React.ReactNode;
+  hasOutTitle?: boolean;
 }
 
 /**
@@ -21,7 +22,7 @@ export interface ScrolYLayoutProps extends ChartCanvasProps {
  * @returns
  */
 const ScrollYLayout = (props: ScrolYLayoutProps) => {
-  const { config, data, isDrag, sizeRegister, renderChildren } = props;
+  const { config, data, isDrag, sizeRegister, renderChildren, hasOutTitle, fullHeight } = props;
 
   const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
   const chartHeight = calculateBarHeight(config, data as LooseObject[]);
@@ -36,8 +37,11 @@ const ScrollYLayout = (props: ScrolYLayoutProps) => {
     ...(isDrag ? { axis: false, axises: null, legend: false } : {}),
   } as ChartConfig;
   sizeRegister && sizeRegister({ height: chartHeight });
+
+  const titleHeight = hasOutTitle ? 30 : 0;
+  const showHeight = fullHeight ? chartHeight : frameHeight - titleHeight;
   return (
-    <div className="gio-d-charts gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: frameHeight }}>
+    <div className="gio-d-charts gio-scroll-y-layout" data-testid="scroll-y-layout" style={{ height: showHeight }}>
       {renderChildren ? (
         renderChildren({ ...props, config: newConfig })
       ) : (

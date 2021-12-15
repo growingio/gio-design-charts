@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof TimeIntervalBar> = (args) => (
 );
 
 export const Basic = Template.bind({});
-Basic.args = { ...BarMulti.args, data: data4Interval };
+Basic.args = { ...BarMulti.args, data: data4Interval, fullHeight: true };
 Basic.storyName = 'TimeIntervalBar';
 
 export const Contrast = Template.bind({});
@@ -36,5 +36,5 @@ Contrast.args = { ...GroupContrast.args, data: dataWithMultiContrast4Interval };
 Contrast.storyName = 'TimeIntervalBar 对比';
 
 export const Group = Template.bind({});
-Group.args = { ...BarWithGroup.args, data: dataWithGroup4Interval };
+Group.args = { ...BarWithGroup.args, data: dataWithGroup4Interval, fullHeight: true };
 Group.storyName = 'TimeIntervalBar 分组';

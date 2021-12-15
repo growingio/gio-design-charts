@@ -29,6 +29,7 @@ export interface ChartCanvasProps {
   isDrag?: boolean;
   sizeRegister?: any;
   title?: string;
+  fullHeight?: boolean;
 }
 
 // In core, we only force on render chart and provide basic chart options
