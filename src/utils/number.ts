@@ -12,6 +12,6 @@ export const integerCeil = (num: number) => {
   if (num < 100) {
     return Math.ceil(num / 10) * 10;
   }
-  const fixed = 10 ** (String(num).length - 1);
+  const fixed = 10 ** (String(num.toFixed(0)).length - 2);
   return Math.ceil(num / fixed) * fixed;
 };
