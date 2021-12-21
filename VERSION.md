@@ -1,12 +1,10 @@
-## [1.3.12](https://github.com/growingio/gio-design-charts/compare/v1.3.8...v1.3.12) (2021-12-21)
+## [1.3.13](https://github.com/growingio/gio-design-charts/compare/v1.3.12...v1.3.13) (2021-12-21)
 
 
 ### Bug Fixes
 
-* **Chart:** support negative ([#176](https://github.com/growingio/gio-design-charts/issues/176)) ([01f84e6](https://github.com/growingio/gio-design-charts/commit/01f84e6c655206b0644d967f3c712176c3daf136))
-* **ContrastLine:** update max value function ([#180](https://github.com/growingio/gio-design-charts/issues/180)) ([c89c757](https://github.com/growingio/gio-design-charts/commit/c89c75718acaf6013f9ec7e3e04b7d0dfefd79fd))
-* **Donut:** change render function to ignore wrong label ([#182](https://github.com/growingio/gio-design-charts/issues/182)) ([21c9d25](https://github.com/growingio/gio-design-charts/commit/21c9d25702a5136f4d4f9f02a160b90c74a062c9))
-* **fullHeight:** support fullheight for dragbar and timeintervalbar ([#178](https://github.com/growingio/gio-design-charts/issues/178)) ([7535e93](https://github.com/growingio/gio-design-charts/commit/7535e93733fa2541353f7fd56dc93b6ea199ebc5))
+* **Donut:** fix the wrong label issue ([#185](https://github.com/growingio/gio-design-charts/issues/185)) ([7121ce4](https://github.com/growingio/gio-design-charts/commit/7121ce461304552407ab7e3832ef1a17f6d37073))
+* **Loading:** add opacity for loading ([#184](https://github.com/growingio/gio-design-charts/issues/184)) ([5f738e8](https://github.com/growingio/gio-design-charts/commit/5f738e84e29ddcd4ea0315b7cff4d3bee768ffb1))
 
 
 
