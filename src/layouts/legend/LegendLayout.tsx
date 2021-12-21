@@ -26,6 +26,7 @@ const LegendLayout = (props: LayoutProps) => {
         chart?.changeSize(useWidth, fixedHeight(options, config));
         views?.forEach((view: View) => view.render(true));
         chart?.render(true);
+        chart?.render(true);
       }
       setOffsetWidth(divWidth);
     },
