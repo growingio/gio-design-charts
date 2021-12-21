@@ -27,6 +27,7 @@ export class Donut {
     textView.clear();
     this.addText(textView, data, config);
     textView?.render(true);
+    textView?.render(true);
   };
 
   update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[], config: ChartConfig) => {
@@ -36,8 +37,9 @@ export class Donut {
     }
     donutView?.render(true);
     this.updateText(textView, data, config);
-    chart.render(true);
     chart.forceFit();
+    chart.render(true);
+    chart.render(true);
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
