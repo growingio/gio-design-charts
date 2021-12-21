@@ -96,6 +96,8 @@ export class Donut {
     fetchTooltip(chart, config);
     chart.render();
 
+    chart.render(true);
+
     this.chart = chart;
     this.donutView = donutView;
     this.textView = textView;
