@@ -96,6 +96,8 @@ export class Donut {
     fetchTooltip(chart, config);
     chart.render();
 
+    chart.render(true);
+
     this.chart = chart;
     this.donutView = donutView;
     this.textView = textView;
@@ -116,8 +118,9 @@ export class Donut {
         return legends[item[donut.color]].active;
       });
       this.setTotal(filteredData, donut);
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, donut.color));
       this.updateText(this.textView as View, filteredData, config);
+      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, donut.color));
+      this.chart?.render(true);
     }
   };
 }
