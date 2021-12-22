@@ -110,6 +110,7 @@ const useChart = (options: UseChartProps) => {
       viewRef.current = views;
       updateRef.current = update;
       setLegends(genLegends, queue, hasDashedLegend);
+      interceptors?.bindElementEvents(chart);
     }
   }, [
     rootRef,

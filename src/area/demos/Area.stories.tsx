@@ -96,6 +96,7 @@ const AreaStackArgs = {
     tooltip: {
       shared: true,
       showCrosshairs: true,
+      enterable: true,
       render: (options: any) => {
         const title = options.data?.[0]?.data?.tm || options.title;
         return <InfoCard {...options} title={title} />;
