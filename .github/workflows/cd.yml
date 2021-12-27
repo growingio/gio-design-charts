@@ -1,46 +1,35 @@
 name: Continuous Delivery
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: '* 3 * * 3'
+  workflow_dispatch:
+
 jobs:
-  install:
-    if: ${{ github.actor != 'dependabot[bot]' }}
-    name: Install dependencies
+  publish-package:
+    name: Publish package
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@v2.5.0
         with:
-          node-version: 14
-      - name: Cache Node.js modules
+          node-version: 16
+      - name: Restore Node.js modules
         id: cache-node-modules
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v2.1.6
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install
         if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
         run: yarn install
-  publish-package:
-    needs: install
-    name: Publish package
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2.5.0
-        with:
-          node-version: 14
-          registry-url: 'https://registry.npmjs.org'
-      - name: Restore Node.js modules
-        uses: actions/cache@v2.1.7
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-      - name: Build package
-        run: yarn build
-      - name: Publish package
-        run: yarn publish --non-interactive --access public
+      - name: Release
+        run: yarn semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHP_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}

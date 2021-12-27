@@ -13,7 +13,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.5.0
         with:
-          node-version: 14
+          node-version: 16
       - name: Cache Node.js modules
         id: cache-node-modules
         uses: actions/cache@v2.1.7
@@ -33,7 +33,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.5.0
         with:
-          node-version: 14
+          node-version: 16
       - name: Restore Node.js modules
         uses: actions/cache@v2.1.7
         with:
@@ -78,7 +78,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.5.0
         with:
-          node-version: 14
+          node-version: 16
       - name: Restore Node.js modules
         uses: actions/cache@v2.1.7
         with:
