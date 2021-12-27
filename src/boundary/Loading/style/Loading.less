@@ -27,24 +27,31 @@
   12.5% {
     transform: rotate(135deg);
   }
+
   25% {
     transform: rotate(270deg);
   }
+
   37.5% {
     transform: rotate(405deg);
   }
+
   50% {
     transform: rotate(540deg);
   }
+
   62.5% {
     transform: rotate(675deg);
   }
+
   75% {
     transform: rotate(810deg);
   }
+
   87.5% {
     transform: rotate(945deg);
   }
+
   to {
     transform: rotate(1080deg);
   }
@@ -54,9 +61,11 @@
   0% {
     transform: rotate(130deg);
   }
+
   50% {
     transform: rotate(-5deg);
   }
+
   to {
     transform: rotate(130deg);
   }
@@ -65,9 +74,11 @@
   0% {
     transform: rotate(-130deg);
   }
+
   50% {
     transform: rotate(5deg);
   }
+
   to {
     transform: rotate(-130deg);
   }
@@ -77,18 +88,23 @@
   0% {
     opacity: 1;
   }
+
   25% {
     opacity: 1;
   }
+
   26% {
     opacity: 0;
   }
+
   89% {
     opacity: 0;
   }
+
   90% {
     opacity: 1;
   }
+
   to {
     opacity: 1;
   }
@@ -98,15 +114,19 @@
   0% {
     opacity: 0;
   }
+
   15% {
     opacity: 0;
   }
+
   25% {
     opacity: 1;
   }
+
   50% {
     opacity: 1;
   }
+
   51% {
     opacity: 0;
   }
@@ -116,15 +136,19 @@
   0% {
     opacity: 0;
   }
+
   40% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   75% {
     opacity: 1;
   }
+
   76% {
     opacity: 0;
   }
@@ -134,15 +158,19 @@
   0% {
     opacity: 0;
   }
+
   65% {
     opacity: 0;
   }
+
   75% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -172,10 +200,12 @@
   &-container {
     position: relative;
     height: 100%;
+
     &-loading {
       cursor: not-allowed;
       pointer-events: none;
     }
+
     &-loading::after {
       position: absolute;
       top: 0;
@@ -185,9 +215,11 @@
       z-index: @zindex-loading;
       content: '';
     }
+
     &-blur-white::after {
       background-color: @color-background-loading-blur-white;
     }
+
     &-blur-black::after {
       background-color: @color-background-loading-blur-black;
     }
@@ -196,6 +228,7 @@
   &-ring {
     display: inline-block;
     animation: container-rotate @container-rotate-timing linear infinite;
+
     &-line {
       position: absolute;
       width: 100%;
@@ -233,6 +266,7 @@
         height: 100%;
         overflow: hidden;
         border-color: inherit;
+
         &-inner {
           position: absolute;
           top: 0;
@@ -284,6 +318,7 @@
   &-large &-ring {
     width: 50px;
     height: 50px;
+
     &-line-cog-inner {
       border-width: 3.5px;
     }
@@ -292,6 +327,7 @@
   &-middle &-ring {
     width: 40px;
     height: 40px;
+
     &-line-cog-inner {
       border-width: 3px;
     }
@@ -300,6 +336,7 @@
   &-small &-ring {
     width: 30px;
     height: 30px;
+
     &-line-cog-inner {
       border-width: 2px;
     }
@@ -320,11 +357,13 @@
   &-title {
     color: @color-text-loading;
     font-size: @size-font-14;
+
     &-bottom {
       display: block;
       height: 14px;
       margin-top: 16px;
     }
+
     &-right {
       display: inline-block;
       height: 100%;
