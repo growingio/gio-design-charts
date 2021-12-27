@@ -73,7 +73,7 @@
   "devDependencies": {
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
-    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.16.5",
     "@formatjs/cli": "^4.2.32",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -104,7 +104,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "father-build": "^1.19.6",
-    "jest": "^27.1.0",
+    "jest": "^27.4.5",
     "jest-canvas-mock": "^2.3.1",
     "jest-junit": "^12.0.0",
     "less": "3.13.1",
