@@ -48,6 +48,8 @@ export interface Legend {
 
   // 声明以哪个数据字段为分组依据
   dodgeBy?: string;
+
+  width?: number;
 }
 
 export interface Legends {
