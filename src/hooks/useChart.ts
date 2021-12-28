@@ -129,6 +129,9 @@ const useChart = (options: UseChartProps) => {
   ]);
 
   const updateChart = useCallback(() => {
+    if (config && legendList) {
+      setLegends(...getLegends(config.chartType, legendList));
+    }
     const chart = chartRef.current;
     const update = updateRef.current;
     const changedData = !isEqual(dataRef.current, data);
@@ -151,7 +154,7 @@ const useChart = (options: UseChartProps) => {
         create();
       }
     }
-  }, [create, clear, hasChangedConfig, config, tooltipKey]);
+  }, [create, clear, hasChangedConfig, config, tooltipKey, legendList]);
 
   if (!hasChangedConfig && hasChangedData) {
     updateChart();
