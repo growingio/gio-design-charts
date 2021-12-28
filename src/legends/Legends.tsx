@@ -29,7 +29,14 @@ const Legends = (props: LegendsProps) => {
   );
 
   useEffect(() => {
-    const count = Number((offsetWidth / 125).toFixed(0)) - 1;
+    let count = 0;
+    let totalWidth = 0;
+    legends?.forEach((legend) => {
+      totalWidth += legend?.width || 125;
+      if (totalWidth <= offsetWidth - 125) {
+        count += 1;
+      }
+    });
     if (legends && legends.length > 0) {
       setTiled(legends.slice(0, count));
       setGrouped(legends.slice(count));

@@ -17,7 +17,7 @@ const Legend = (props: LegendProps) => {
   const onClickLabel = useCallback(() => {
     onClick && onClick(label);
   }, [label, onClick]);
-  const { active, color, lineDash, type, dashed } = data || {};
+  const { active, color, lineDash, type, dashed, width } = data || {};
 
   const backgroundImage = dashed ? getBackgroundImage(type) : {};
   const stylesLine = lineDash
@@ -36,12 +36,12 @@ const Legend = (props: LegendProps) => {
     <span
       className="gio-d-charts-legends_legend"
       onClick={onClickLabel}
-      style={{ color: active ? '' : DISABLE_COLOR }}
+      style={{ color: active ? '' : DISABLE_COLOR, width }}
       title={alias || label}
       data-testid={`legend-item-${label}`}
     >
       <div className={`gio-d-charts-legends_block gio-d-charts-legends_${type as ChartType}`} style={stylesLine} />
-      <div className="gio-d-charts-legends_text" style={textStyles}>
+      <div className="gio-d-charts-legends_text" style={{ ...textStyles, maxWidth: width || 125 - 40 }}>
         {alias || label}
       </div>
     </span>
