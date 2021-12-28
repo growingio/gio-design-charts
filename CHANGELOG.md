@@ -1,3 +1,11 @@
+## [1.3.15](https://github.com/growingio/gio-design-charts/compare/v1.3.14...v1.3.15) (2021-12-28)
+
+
+### Bug Fixes
+
+* **Legend:** add special width ([#201](https://github.com/growingio/gio-design-charts/issues/201)) ([2d9d595](https://github.com/growingio/gio-design-charts/commit/2d9d5957e899f70a96afe710c9e50391cfa89d41))
+* **Legend:** update legend when legend data is updated ([#202](https://github.com/growingio/gio-design-charts/issues/202)) ([1475ec9](https://github.com/growingio/gio-design-charts/commit/1475ec90ae77155fa99fb703a0fa0f2c16afd6e8))
+
 ## [1.3.14](https://github.com/growingio/gio-design-charts/compare/v1.3.12...v1.3.14) (2021-12-22)
 
 
