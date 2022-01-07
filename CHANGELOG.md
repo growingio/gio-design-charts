@@ -1,3 +1,10 @@
+## [1.3.16](https://github.com/growingio/gio-design-charts/compare/v1.3.15...v1.3.16) (2022-01-07)
+
+
+### Bug Fixes
+
+* **InfoCard:** the value will show in two lines ([#210](https://github.com/growingio/gio-design-charts/issues/210)) ([e9940d1](https://github.com/growingio/gio-design-charts/commit/e9940d1ee5d44b51932c38d625b67a59cd6660fe))
+
 ## [1.3.15](https://github.com/growingio/gio-design-charts/compare/v1.3.14...v1.3.15) (2021-12-28)
 
 
