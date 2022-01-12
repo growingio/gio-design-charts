@@ -110,7 +110,7 @@
     "less": "3.13.1",
     "less-loader": "6.0.0",
     "postcss-less": "^5.0.0",
-    "prettier": "^2.3.2",
+    "prettier": "^2.5.1",
     "react": "^16.13.0",
     "react-docgen-typescript-plugin": "^1.0.0",
     "react-dom": "^16.13.0",
