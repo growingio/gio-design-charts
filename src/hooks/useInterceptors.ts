@@ -30,7 +30,7 @@ const useInterceptors = () => {
             triggerActionRef.current = 'click';
             const {top = ''} = tooltipRef?.current?.style || {}
             const y = Number(top.replace('px', ''))
-            if (top) {
+            if (y && y > 70) {
               tooltipRef.current.style.top = `${y - 70}px`
             }
           }
