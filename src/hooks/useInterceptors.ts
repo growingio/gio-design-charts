@@ -4,6 +4,7 @@ import { Chart, Event } from '@antv/g2';
 const useInterceptors = () => {
   const triggerActionRef: MutableRefObject<string> = useRef('');
   const chartRef: MutableRefObject<Chart | null> = useRef(null);
+  const tooltipRef = useRef<HTMLDivElement | null>()
 
   const getTrigger = useCallback(() => triggerActionRef.current, [triggerActionRef]);
   const setTrigger = useCallback(
@@ -19,14 +20,23 @@ const useInterceptors = () => {
 
   const interceptors = useMemo(() => {
     return {
-      bindElementEvents(chart: Chart) {
+      bindTooltip(r: any) {
+        tooltipRef.current = r?.current
+      },
+      bindElementEvents(chart: Chart, options: {more?: boolean} = {}) {
         chartRef.current = chart;
         chart.on('element:click', () => {
+          if (triggerActionRef.current !== 'click' && tooltipRef.current && options.more){
+            const {top = ''} = tooltipRef?.current?.style || {}
+            const y = Number(top.replace('px', ''))
+            if (y && y > 70) {
+              tooltipRef.current.style.top = `${y - 70}px`
+            }
+          }
           triggerActionRef.current = 'click';
-          chart.lockTooltip();
+          chart.lockTooltip()
           updated(new Date().getTime());
         });
-
         chart.on('element:mouseover', () => {
           triggerActionRef.current = 'mouseover';
         });

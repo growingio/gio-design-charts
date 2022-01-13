@@ -41,6 +41,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const [register, acceptor] = useTunnel();
 
     const { getTrigger, setTrigger, interceptors } = useInterceptors();
+    interceptors.bindTooltip(tooltipRef)
     const [tooltipKey, setTooltipKey] = useState(1);
 
     const { chartOptions, updateLegends } = useChart({

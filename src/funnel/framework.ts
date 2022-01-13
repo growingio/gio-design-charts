@@ -121,7 +121,7 @@ export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => 
     fetchTooltip(chart, config);
     chart.legend(false);
     chart.render();
-    interceptors?.bindElementEvents(chart);
+    interceptors?.bindElementEvents(chart, {more: true});
     return { chart, views: [linkView, backgroundView], update: updateFunnel };
   } catch (err) {
     return { chart, update: updateFunnel };
