@@ -27,13 +27,13 @@ const useInterceptors = () => {
         chartRef.current = chart;
         chart.on('element:click', () => {
           if (triggerActionRef.current !== 'click' && tooltipRef.current && options.more){
-            triggerActionRef.current = 'click';
             const {top = ''} = tooltipRef?.current?.style || {}
             const y = Number(top.replace('px', ''))
             if (y && y > 70) {
               tooltipRef.current.style.top = `${y - 70}px`
             }
           }
+          triggerActionRef.current = 'click';
           chart.lockTooltip()
           updated(new Date().getTime());
         });
