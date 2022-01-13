@@ -1,3 +1,10 @@
+## [1.3.17](https://github.com/growingio/gio-design-charts/compare/v1.3.16...v1.3.17) (2022-01-13)
+
+
+### Bug Fixes
+
+* **tooltip:** update position ([#216](https://github.com/growingio/gio-design-charts/issues/216)) ([c8000e7](https://github.com/growingio/gio-design-charts/commit/c8000e7ed2de372828e296a55b6cc84cac64e1da))
+
 ## [1.3.16](https://github.com/growingio/gio-design-charts/compare/v1.3.15...v1.3.16) (2022-01-07)
 
 
