@@ -61,3 +61,7 @@ export const getArrowPolygon = (point: { x: number; y: number }, width: number, 
 export const getColorByModel = (model: ShapeInfo) => {
   return model?.style?.color || model?.color || DEFAULT_FONT_COLOR;
 };
+
+export const getColorByGroupModel = (model: ShapeInfo) => {
+  return model?.style?.fill || model?.color || DEFAULT_FONT_COLOR;
+};

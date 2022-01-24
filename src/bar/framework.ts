@@ -11,7 +11,7 @@ import { bindBarCoordination } from '../utils/frameworks/coordinate';
 import { getbackgroundState } from '../utils/tools/shapeState';
 import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
-import { getColorByModel } from '../utils/tools/utils';
+import { getColorByGroupModel, getColorByModel } from '../utils/tools/utils';
 
 export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
   const linkView = views?.[0];
@@ -101,7 +101,7 @@ export class Bar {
         if (dataItem.suffix) {
           const box = element.shape.getCanvasBBox();
           const model = element.getModel();
-          const color = getColorByModel(model);
+          const color = getColorByGroupModel(model);
           const top = box.minY - DEFAULT_APPEND_PADDING - 2;
           this.textView?.annotation?.()?.html({
             position: ['100%', '0%'],
