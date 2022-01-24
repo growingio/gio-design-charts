@@ -1,3 +1,10 @@
+## [1.3.18](https://github.com/growingio/gio-design-charts/compare/v1.3.17...v1.3.18) (2022-01-24)
+
+
+### Bug Fixes
+
+* **color:** get color from model ([#224](https://github.com/growingio/gio-design-charts/issues/224)) ([9885cb3](https://github.com/growingio/gio-design-charts/commit/9885cb3a9c03972fa74f4633fed03519541acce4))
+
 ## [1.3.17](https://github.com/growingio/gio-design-charts/compare/v1.3.16...v1.3.17) (2022-01-13)
 
 
