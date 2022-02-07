@@ -68,7 +68,7 @@
     "date-fns": "^2.23.0",
     "lodash": "^4.17.21",
     "re-resizable": "^6.9.1",
-    "react-intl": "^5.20.13"
+    "react-intl": "^5.24.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
