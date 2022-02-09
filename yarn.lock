@@ -8226,10 +8226,10 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-date-fns@^2.23.0, date-fns@^2.25.0:
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
-  integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
+date-fns@^2.25.0, date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 dateformat@^3.0.0:
   version "3.0.3"
@@ -9740,10 +9740,10 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-father-build@^1.19.6:
-  version "1.20.1"
-  resolved "https://registry.yarnpkg.com/father-build/-/father-build-1.20.1.tgz#895b92a1bcae35e31ed484779eb9762be16ce1fd"
-  integrity sha512-jZo8c4NLEo4Gyotdx21ejhM6051G5UmloBdilcPZqmffsrwhoaw8F+SHVAB0efCn6GKGjUL9dinAR6S5AdTdgA==
+father-build@^1.21.1:
+  version "1.21.1"
+  resolved "https://registry.yarnpkg.com/father-build/-/father-build-1.21.1.tgz#67ead16b54a9b004e2f638b24aa1e84411ef51ea"
+  integrity sha512-muAaVmqjmkz1ekZT3wyTGjq6veGigmPHz7MdX8eK2dl3tCSFqYXWa2H35eCM5Iy6D+MN3bKFciKYZZ7yiQmn7w==
   dependencies:
     "@babel/core" "7.12.3"
     "@babel/plugin-proposal-class-properties" "7.12.1"
