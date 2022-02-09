@@ -9844,10 +9844,10 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-father-build@^1.19.6:
-  version "1.20.1"
-  resolved "https://registry.yarnpkg.com/father-build/-/father-build-1.20.1.tgz#895b92a1bcae35e31ed484779eb9762be16ce1fd"
-  integrity sha512-jZo8c4NLEo4Gyotdx21ejhM6051G5UmloBdilcPZqmffsrwhoaw8F+SHVAB0efCn6GKGjUL9dinAR6S5AdTdgA==
+father-build@^1.21.1:
+  version "1.21.1"
+  resolved "https://registry.yarnpkg.com/father-build/-/father-build-1.21.1.tgz#67ead16b54a9b004e2f638b24aa1e84411ef51ea"
+  integrity sha512-muAaVmqjmkz1ekZT3wyTGjq6veGigmPHz7MdX8eK2dl3tCSFqYXWa2H35eCM5Iy6D+MN3bKFciKYZZ7yiQmn7w==
   dependencies:
     "@babel/core" "7.12.3"
     "@babel/plugin-proposal-class-properties" "7.12.1"
