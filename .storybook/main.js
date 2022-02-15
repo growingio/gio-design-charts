@@ -1,4 +1,5 @@
 var path = require('path');
+
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 
 const hasJsxRuntime = (() => {
@@ -8,6 +9,7 @@ const hasJsxRuntime = (() => {
 
   try {
     require.resolve('react/jsx-runtime');
+
     return true;
   } catch (e) {
     return false;
@@ -15,10 +17,8 @@ const hasJsxRuntime = (() => {
 })();
 
 module.exports = {
-  stories: [
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  staticDirs: ['../public'],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     {
       name: '@storybook/addon-docs',
@@ -31,16 +31,6 @@ module.exports = {
     },
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    {
-      name: '@storybook/preset-create-react-app',
-      options: {
-        // fixed can't parse less file issue
-        // https://github.com/storybookjs/storybook/issues/9796#issuecomment-638091704
-        craOverrides: {
-          fileLoaderExcludes: ['less'],
-        },
-      },
-    },
   ],
   // .storybook/main.js
   typescript: {
@@ -73,11 +63,13 @@ module.exports = {
     //     'less-loader',
     //   ],
     // });
-
     config.module.rules.push({
       test: /\.less$/,
       use: ['style-loader', 'css-loader', 'less-loader'],
     });
     return config;
+  },
+  core: {
+    builder: 'webpack5',
   },
 };
