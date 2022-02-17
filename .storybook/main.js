@@ -39,13 +39,13 @@ module.exports = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-    },
+      propFilter: prop => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
+    }
   },
   features: {
-    postcss: false,
+    postcss: false
   },
-  webpackFinal: async (config) => {
+  webpackFinal: async config => {
     // config.module.rules.push({
     //   test: /\.module\.less$/,
     //   use: [
@@ -65,7 +65,7 @@ module.exports = {
     // });
     config.module.rules.push({
       test: /\.less$/,
-      use: ['style-loader', 'css-loader', 'less-loader'],
+      use: ['style-loader', 'css-loader', 'less-loader']
     });
     return config;
   },

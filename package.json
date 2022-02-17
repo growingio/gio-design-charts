@@ -62,6 +62,7 @@
     "@antv/event-emitter": "^0.1.2",
     "@antv/g-base": "^0.5.9",
     "@antv/g2": "^4.1.29",
+    "@antv/s2": "^1.8.0",
     "@antv/util": "^2.0.17",
     "@babel/runtime": "^7.15.4",
     "@gio-design/utils": "^22.0.2",
