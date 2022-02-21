@@ -117,7 +117,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "semantic-release": "^19.0.2",
-    "style-loader": "2.0.0",
+    "style-loader": "3.3.1",
     "stylelint": "^14.2.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-rational-order": "^0.1.2",
