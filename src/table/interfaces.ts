@@ -12,6 +12,8 @@ import {
   ViewMeta,
   LayoutResult,
   SortParams,
+  Palette,
+  S2Theme
 } from '@antv/s2';
 /**
  * 表格类型: 透视表｜明细表
@@ -59,6 +61,7 @@ export interface BaseSheetEventsProps {
   onCornerCellHover?: CellEventCallback;
 
 }
+export type ThemeConfig = Omit<ThemeCfg, 'name'>
 export interface BaseSheetProps extends BaseSheetEventsProps {
   spreadsheet?: (...args: S2Constructor) => SpreadSheet;
   dataConfig: S2DataConfig;
@@ -70,11 +73,15 @@ export interface BaseSheetProps extends BaseSheetEventsProps {
    */
   adaptive?: Adaptive;
 
-  themeConfig?: ThemeCfg;
+  themeConfig?: ThemeConfig;
   prefixCls?: string;
   // header?: HeaderCfgProps;
-  empty?: () => JSX.Element;
+  // empty?: () => JSX.Element;
 }
 export interface SheetProps extends BaseSheetProps {
+  /**
+   * sheet 类型
+   * @default 'pivot'
+   */
   type?: SheetType;
 }

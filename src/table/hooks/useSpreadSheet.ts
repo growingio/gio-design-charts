@@ -6,38 +6,40 @@ import {
   SpreadSheet,
   TableSheet,
 } from '@antv/s2';
-import React, { useCallback, useEffect } from 'react';
+import React, { MutableRefObject, useCallback, useEffect, useRef } from 'react';
 import type { BaseSheetProps, SheetType } from '../interfaces';
+import { themeDefault } from '../theme';
 import { getSheetComponentOptions } from '../utils';
 import { useEvents } from './useEvents';
 import { useLoading } from './useLoading';
 import { usePagination } from './usePagination';
 import { usePrevious } from './usePrevious';
+import { useRefDepsEffect } from './useRefDepsEffect';
 import { useResize } from './useResize';
 
 export interface UseSpreadSheetConfig {
   s2Options?: S2Options;
   sheetType: SheetType;
-  container: HTMLDivElement
+  // container: HTMLDivElement
+  // containerRef: React.RefObject<HTMLDivElement>
 }
 
-export function useSpreadSheet(
+export const useSpreadSheet = (
   props: BaseSheetProps,
   config: UseSpreadSheetConfig,
-) {
-  const s2Ref = React.useRef<SpreadSheet>();
-
-  const { spreadsheet: customSpreadSheet, dataConfig, options, themeConfig = {}, loading: propsLoading, adaptive = true } = props;
+) => {
+  const s2Ref = useRef<SpreadSheet>();
+  const containerRef: MutableRefObject<HTMLElement | undefined> = useRef<HTMLElement>();
+  const { spreadsheet: customSpreadSheet, dataConfig, options, themeConfig = themeDefault, loading: propsLoading, adaptive } = props;
   const { loading, setLoading } = useLoading(s2Ref.current, propsLoading);
   const pagination = usePagination(s2Ref.current, props);
   const prevDataCfg = usePrevious(dataConfig);
   const prevOptions = usePrevious(options);
   const prevThemeCfg = usePrevious(themeConfig);
-
   useEvents(props, s2Ref.current);
-
   const renderSpreadSheet = useCallback(
     (container: HTMLDivElement) => {
+      console.log('renderSpreadSheet', container)
       const s2Options = config.s2Options || getSheetComponentOptions(options);
       const s2ConstructorArgs: S2Constructor = [container, dataConfig, s2Options];
       if (customSpreadSheet) {
@@ -51,12 +53,15 @@ export function useSpreadSheet(
     [config.s2Options, config.sheetType, options, dataConfig, customSpreadSheet],
   );
   const buildSpreadSheet = useCallback(() => {
+    const { current: container } = containerRef;
     setLoading(true);
-    s2Ref.current = renderSpreadSheet(config.container);
-    s2Ref.current.setThemeCfg(themeConfig);
-    s2Ref.current.render();
+    if (container) {
+      s2Ref.current = renderSpreadSheet(container as HTMLDivElement);
+      s2Ref.current.setThemeCfg(themeConfig);
+      s2Ref.current.render();
+    }
     setLoading(false);
-  }, [props, renderSpreadSheet, setLoading]);
+  }, [props, renderSpreadSheet, setLoading, config]);
 
   // init
   useEffect(() => {
@@ -64,7 +69,7 @@ export function useSpreadSheet(
     return () => {
       s2Ref.current?.destroy();
     };
-  }, []);
+  }, [containerRef]);
 
   //rerender when dataCfg, options or theme changed
   useEffect(() => {
@@ -92,12 +97,13 @@ export function useSpreadSheet(
 
   useResize({
     spreadSheet: s2Ref.current as SpreadSheet,
-    container: config.container,
+    container: containerRef.current as HTMLElement,
     adaptive: adaptive,
   });
 
   return {
     s2Ref,
+    containerRef,
     loading,
     setLoading,
     pagination,

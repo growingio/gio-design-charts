@@ -7,7 +7,7 @@ import { Adaptive } from '../interfaces';
 export interface UseResizeEffectProps {
   container: HTMLElement;
   spreadSheet: SpreadSheet;
-  adaptive: Adaptive;
+  adaptive?: Adaptive;
 }
 
 const RENDER_DELAY = 200; // ms
@@ -38,9 +38,10 @@ const parseAdaptive = (defaultContainer: HTMLElement, adaptive: Adaptive) => {
 }
 
 export const useResize = (props: UseResizeEffectProps) => {
-  const { spreadSheet: s2, adaptive } = props;
+  const { spreadSheet: s2, adaptive = false, container: inputContainer } = props;
+  console.log('useResize', props)
   const { container, adaptiveWidth, adaptiveHeight } = parseAdaptive(
-    props.container,
+    inputContainer,
     adaptive,
   );
 

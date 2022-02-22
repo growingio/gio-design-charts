@@ -6,22 +6,25 @@ import { PivotSheet } from './pivot-sheet';
 
 const Sheet = React.forwardRef(
   (props: SheetProps, ref: React.ForwardedRef<SpreadSheet>) => {
-    const { type: sheetType } = props;
+    const { type = 'pivot', adaptive = true, ...restProps } = props;
 
     const sheetProps: SheetProps = React.useMemo(() => {
       return {
-        ...props,
+        ...restProps,
+        type,
+        adaptive
+
       };
-    }, [props]);
+    }, [restProps, type, adaptive]);
 
     const CurrentSheet = React.useMemo(() => {
-      switch (sheetType) {
+      switch (type) {
         case 'table':
           return <TableSheet {...sheetProps} />;
         default:
           return <PivotSheet {...sheetProps} />;
       }
-    }, [sheetType, sheetProps]);
+    }, [type, sheetProps]);
 
     return <React.StrictMode>{CurrentSheet} </React.StrictMode>;
   },
@@ -29,6 +32,6 @@ const Sheet = React.forwardRef(
 
 Sheet.displayName = 'DataTable';
 
-export const SheetComponent: React.ForwardRefExoticComponent<
+export const DataTable: React.ForwardRefExoticComponent<
   SheetProps & React.RefAttributes<SpreadSheet>
 > = React.memo(Sheet);
