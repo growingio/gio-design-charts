@@ -22,7 +22,7 @@ export const BaseSheet = React.forwardRef(
       sheetType,
       // containerRef: containerRef
     });
-
+    console.log('base-sheet loading', loading)
     React.useImperativeHandle<SpreadSheet | undefined, SpreadSheet | undefined>(ref, () => s2Ref.current, [s2Ref]);
     if (loading) {
       return <Loading height={s2Options.height} />;
@@ -31,9 +31,9 @@ export const BaseSheet = React.forwardRef(
     //   return empty ? empty() : <NoData height={s2Options.height} />;
     // }
     return (
-      <React.StrictMode>
+      // <React.StrictMode>
         <div ref={containerRef as React.RefObject<HTMLDivElement>} className={`${prefixCls}-container`} />
-      </React.StrictMode>
+      // </React.StrictMode>
     );
   },
 );

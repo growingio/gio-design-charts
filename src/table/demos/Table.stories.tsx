@@ -3,7 +3,8 @@ import { SheetProps } from '..';
 import { DataTable } from '../sheet';
 import Docs from './Table.mdx';
 import { prod } from './simple-data'
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { useEffect } from '@storybook/addons';
 export default {
   title: 'DataTable/明细表 Table',
   argTypes: {
@@ -88,7 +89,20 @@ Empty.args = {
   type: 'table'
 }
 export const Sort: ComponentStory<typeof DataTable> = () => {
-  const dataCfg = {
+  const [data, setData] = useState<any[]>([]);
+  const getData = () => new Promise((resolve) => {
+    setTimeout(() => {
+      return resolve(prod as any[])
+    }, 1000)
+  });
+  useEffect(() => {
+
+    getData().then(res => {
+      setData(res as any[]);
+    })
+  }, [])
+
+  const dataCfg: SheetProps['dataConfig'] = {
     fields: { columns: ['province', 'city', 'type', 'price', 'cost'] },
     meta: [
       {
@@ -112,8 +126,15 @@ export const Sort: ComponentStory<typeof DataTable> = () => {
         name: '成本',
       },
     ],
-    data: prod as any,
+    data,
+    sortParams: [
+      {
+        sortFieldId: 'price',
+        sortMethod: 'ASC',
+      },
+    ],
   }
+  console.log(dataCfg.data)
   return <div
     className='table-demo-box'>
     <DataTable options={{

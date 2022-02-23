@@ -1,4 +1,5 @@
-export const paletteDefault = {
+import { Palette } from '@antv/s2'
+export const paletteDefault: Palette = {
   // --------- basic colors -----------
   basicColors: [
     '#242E59',// gray5
@@ -11,6 +12,7 @@ export const paletteDefault = {
     '#EDF2FC',// blue1 ,(hover)
     '#3867F4',// blue2
     '#1248E9',// blue3
+    '#5771A5',
     '#DEE7FF',// positive1
     '#BBCCFF',// positive2
     '#8CA9FF',// positive3

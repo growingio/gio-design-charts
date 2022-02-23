@@ -101,8 +101,8 @@ export const themeDefault: ThemeConfig = {
           },
           // -------------- selected -------------------
           selected: {
-            backgroundColor: basicColors[2],
-            backgroundOpacity: 0.6,
+            backgroundColor: basicColors[7],
+            backgroundOpacity: 1,
           },
           // -------------- unselected -------------------
           unselected: {
@@ -307,11 +307,11 @@ export const themeDefault: ThemeConfig = {
     },
     // ------------- split line -----------------
     splitLine: {
-      horizontalBorderColor: basicColors[2],
-      horizontalBorderColorOpacity: 1,
+      horizontalBorderColor: basicColors[10],
+      horizontalBorderColorOpacity: 0.2,
       horizontalBorderWidth: 3,
-      verticalBorderColor: basicColors[2],
-      verticalBorderColorOpacity: 1,
+      verticalBorderColor: basicColors[10],
+      verticalBorderColorOpacity: 0.2,
       verticalBorderWidth: 3,
       showShadow: true,
       shadowWidth: 8,

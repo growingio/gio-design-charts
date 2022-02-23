@@ -35,6 +35,7 @@ export const useSpreadSheet = (
   const pagination = usePagination(s2Ref.current, props);
   const prevDataCfg = usePrevious(dataConfig);
   const prevOptions = usePrevious(options);
+  console.log(themeConfig?.theme?.splitLine)
   const prevThemeCfg = usePrevious(themeConfig);
   useEvents(props, s2Ref.current);
   const renderSpreadSheet = useCallback(
