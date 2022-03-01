@@ -1,6 +1,6 @@
 import { ComponentStory, Story } from '@storybook/react';
 import { SheetProps } from '..';
-import { DataTable } from '../sheet';
+import { DataTable } from '../components/sheet';
 import Docs from './Table.mdx';
 import { prod } from './simple-data'
 import { useMemo, useState } from 'react';
@@ -134,7 +134,6 @@ export const Sort: ComponentStory<typeof DataTable> = () => {
       },
     ],
   }
-  console.log(dataCfg.data)
   return <div
     className='table-demo-box'>
     <DataTable options={{

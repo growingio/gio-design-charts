@@ -97,12 +97,12 @@ export const themeDefault: ThemeConfig = {
           // -------------- hover -------------------
           hover: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.3,
           },
           // -------------- selected -------------------
           selected: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.3,
           },
           // -------------- unselected -------------------
           unselected: {
@@ -165,12 +165,12 @@ export const themeDefault: ThemeConfig = {
           // -------------- hover -------------------
           hover: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.3,
           },
           // -------------- selected -------------------
           selected: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.3,
           },
           // -------------- unselected -------------------
           unselected: {
@@ -236,12 +236,12 @@ export const themeDefault: ThemeConfig = {
           // -------------- hover -------------------
           hover: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.3,
           },
           // -------------- keep hover -------------------
           hoverFocus: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.3,
             borderColor: basicColors[9],
             borderWidth: 1,
             borderOpacity: 1,
@@ -249,7 +249,7 @@ export const themeDefault: ThemeConfig = {
           // -------------- selected -------------------
           selected: {
             backgroundColor: basicColors[7],
-            backgroundOpacity: 1,
+            backgroundOpacity: 0.6,
           },
           // -------------- unselected -------------------
           unselected: {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { S2Event, SpreadSheet } from '@antv/s2';
+import { S2Event, SpreadSheet, customMerge, getSafetyOptions } from '@antv/s2';
 import { isEmpty } from 'lodash';
 import { BaseSheetProps } from '../interfaces';
 /**

@@ -1,12 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useLayoutEffect, useEffect } from 'react';
+import React, { useCallback, useLayoutEffect, useEffect, useRef, useMemo, useState } from 'react';
 import { debounce, round } from 'lodash';
 import type { SpreadSheet } from '@antv/s2';
 import { Adaptive } from '../interfaces';
+import { useRefDepsEffect } from './useRefDepsEffect';
 
 export interface UseResizeEffectProps {
-  container: HTMLElement;
-  spreadSheet: SpreadSheet;
+  containerRef: React.MutableRefObject<HTMLElement | undefined>;
+  s2: SpreadSheet;
+  container: HTMLElement,
+  wrapperRef: React.MutableRefObject<HTMLElement | undefined>; // 包含了 sheet + foot(page) + header
+  // s2Ref: React.MutableRefObject<SpreadSheet | undefined>
   adaptive?: Adaptive;
 }
 
@@ -25,7 +29,7 @@ const readResizeObserverEntry = (entry: ResizeObserverEntry) => {
     return { width, height };
   }
 };
-const parseAdaptive = (defaultContainer: HTMLElement, adaptive: Adaptive) => {
+const parseAdaptive = (defaultContainer?: HTMLElement, adaptive?: Adaptive) => {
   let container = defaultContainer;
   let adaptiveWidth = true;
   let adaptiveHeight = true;
@@ -38,12 +42,19 @@ const parseAdaptive = (defaultContainer: HTMLElement, adaptive: Adaptive) => {
 }
 
 export const useResize = (props: UseResizeEffectProps) => {
-  const { spreadSheet: s2, adaptive = false, container: inputContainer } = props;
-  console.log('useResize', props)
-  const { container, adaptiveWidth, adaptiveHeight } = parseAdaptive(
-    inputContainer,
-    adaptive,
-  );
+  const { s2, adaptive = false, containerRef, wrapperRef } = props;
+
+  const [adaptiveState, setAdaptiveState] = useState<{
+    container?: HTMLElement;
+    adaptiveWidth: boolean;
+    adaptiveHeight: boolean;
+  }>()
+  useEffect(() => {
+    setAdaptiveState(parseAdaptive(
+      wrapperRef.current,
+      adaptive,
+    ))
+  }, [adaptive])
 
   // 第一次自适应时不需要 debounce, 防止抖动
   const isFirstRender = React.useRef<boolean>(true);
@@ -56,31 +67,23 @@ export const useResize = (props: UseResizeEffectProps) => {
     },
     [s2],
   );
-
   const debounceRender = debounce(render, RENDER_DELAY);
 
-  // rerender by option.width and option.height
-  useEffect(() => {
-    if (!adaptive && s2) {
-      s2.changeSize(s2?.options.width, s2?.options.height);
-      s2.render(false);
-    }
-  }, [s2?.options.width, s2?.options.height, adaptive, s2]);
 
-  // rerender by container resize or window resize
   useLayoutEffect(() => {
-    if (!container || !adaptive) {
+    const { container: wrapper, adaptiveWidth, adaptiveHeight } = adaptiveState || {};
+    if (!containerRef.current || !adaptive || !wrapper) {
       return;
     }
-
     const resizeObserver = new ResizeObserver(([entry] = []) => {
       if (entry) {
-        const size = readResizeObserverEntry(entry)
+        const size = readResizeObserverEntry(entry);
+
         const width = adaptiveWidth
           ? round(size?.width)
           : s2?.options.width;
         const height = adaptiveHeight
-          ? round(size?.height)
+          ? round(containerRef.current?.getBoundingClientRect().height || 0)
           : s2?.options.height;
         if (!adaptiveWidth && !adaptiveHeight) {
           return;
@@ -93,20 +96,14 @@ export const useResize = (props: UseResizeEffectProps) => {
       }
     });
 
-    resizeObserver.observe(container, {
+    resizeObserver.observe(wrapper, {
       box: 'border-box',
     });
 
     return () => {
       //container可能为外层容器 这里仅unobserve
-      resizeObserver.unobserve(container);
+      resizeObserver.unobserve(wrapper);
     };
-  }, [
-    container,
-    adaptiveWidth,
-    adaptiveHeight,
-    s2?.options.width,
-    s2?.options.height,
-    render,
-  ]);
+  }, [adaptiveState, adaptive, render])
+
 };

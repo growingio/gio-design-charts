@@ -1,0 +1,70 @@
+@import (reference) '../../components/styles/index.less';
+
+@tableheader-prefix-cls: ~'@{component-prefix}-d-table-header';
+
+.@{tableheader-prefix-cls} {
+  .reset-component();
+  position: relative;
+  padding: 0;
+  width: 100%;
+ 
+  .text-overflow-ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &-heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      margin: @margin-xss 0;
+      padding: 8px 0;
+      &:empty{
+        padding: 0px;
+        margin: 0;
+      }
+    }
+
+    &-title {
+      margin-right: @margin-xs;
+      margin-bottom: 0;
+      color: @gray-5;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      .text-overflow-ellipsis();
+    }
+
+    &-extra {
+      white-space: nowrap;
+      padding: 8px 0;
+      &:empty{
+        padding: 0px;
+        margin: 0;
+      }
+      > * {
+        margin-left: 8px;
+        white-space: unset;
+      }
+
+      > *:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &-content {
+    padding-top: 4px;
+    &:empty{
+      padding: 0px;
+      margin: 0;
+    }
+  }
+
+}

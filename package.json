@@ -66,6 +66,7 @@
     "@antv/util": "^2.0.17",
     "@babel/runtime": "^7.15.4",
     "@gio-design/utils": "^22.0.2",
+    "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
     "lodash": "^4.17.21",
     "re-resizable": "^6.9.1",

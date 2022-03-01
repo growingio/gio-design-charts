@@ -15,6 +15,7 @@ import {
   Palette,
   S2Theme
 } from '@antv/s2';
+import { HeaderConfigProps } from './components/header';
 /**
  * 表格类型: 透视表｜明细表
  */
@@ -67,6 +68,7 @@ export interface BaseSheetProps extends BaseSheetEventsProps {
   dataConfig: S2DataConfig;
   options: S2Options;
   loading?: boolean;
+
   // partDrillDown?: PartDrillDown;
   /**
    * 是否开启自适应宽高，并指定容器,如果为true时，按照内部的container 自适应宽高。可以对宽高分别设置
@@ -75,7 +77,7 @@ export interface BaseSheetProps extends BaseSheetEventsProps {
 
   themeConfig?: ThemeConfig;
   prefixCls?: string;
-  // header?: HeaderCfgProps;
+  header?: HeaderConfigProps;
   // empty?: () => JSX.Element;
 }
 export interface SheetProps extends BaseSheetProps {
