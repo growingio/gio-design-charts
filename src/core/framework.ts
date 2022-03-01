@@ -3,7 +3,7 @@ import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, Legends } from '../interfaces';
-import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT } from '../theme';
+import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT, DEFAULT_TINY_APPEND_PADDING } from '../theme';
 import { fixedHeight, getDefaultTheme } from '../utils/chart';
 
 import '../utils/tools';
@@ -24,7 +24,7 @@ export const generateChart = (options: ChartOptions, config: ChartConfig) => {
     autoFit: basicConfig.autoFit === undefined ? DEFAULT_AUTO_FIT : basicConfig.autoFit,
     height: fixedHeight(options, config),
     padding: 'auto',
-    appendPadding: config.size === 'tiny' ? 0 : appendPaddingCfg,
+    appendPadding: config.size === 'tiny' ? DEFAULT_TINY_APPEND_PADDING : appendPaddingCfg,
     theme: getDefaultTheme(theme, config),
     // limitInPlot: true,
   });
