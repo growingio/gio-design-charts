@@ -1,3 +1,10 @@
+## [1.3.19](https://github.com/growingio/gio-design-charts/compare/v1.3.18...v1.3.19) (2022-03-01)
+
+
+### Bug Fixes
+
+* **TinyArea:** show full boundary line ([#244](https://github.com/growingio/gio-design-charts/issues/244)) ([3ecf57d](https://github.com/growingio/gio-design-charts/commit/3ecf57dd5c57dbb8c8a2556ebca3d07e6d32ab7b))
+
 ## [1.3.18](https://github.com/growingio/gio-design-charts/compare/v1.3.17...v1.3.18) (2022-01-24)
 
 
