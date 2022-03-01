@@ -33,6 +33,7 @@ export const DEFAULT_REDIUS = [4, 4, 0, 0];
 export const DEFAULT_REDIUS_BOTTOM = [0, 0, 4, 4];
 export const DEFAULT_REDIUS_BAR = [2, 2, 2, 2];
 export const DEFAULT_APPEND_PADDING = 8;
+export const DEFAULT_TINY_APPEND_PADDING = 2;
 export const DEFAULT_CHART_HEIGHT = 120;
 
 export const DEFAULT_AUTO_FIT = true;
