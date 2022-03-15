@@ -5,5 +5,6 @@ module.exports = {
     'plugin/declaration-block-no-ignored-properties': true,
     'declaration-empty-line-before': null,
     'no-descending-specificity': null,
+    'color-function-notation': null,
   },
 };
