@@ -2,7 +2,7 @@ import React from 'react';
 import { act } from '@testing-library/react-hooks';
 import { render, screen } from '@testing-library/react';
 import { ChartProps } from '../../../interfaces';
-import { areaChart, handleLegend } from '../../../area/framework';
+import { Area as AreaCls } from '../../../area/framework';
 import { PercentArea } from '../../../area/demos/Area.stories';
 import LegendLayout from '../LegendLayout';
 import { IntlProvider } from 'react-intl';
@@ -11,6 +11,7 @@ import en from '../../../locales/en.json';
 const legendLayoutTestid = 'legend-layout';
 
 describe('LegendLayout2', () => {
+  const area = new AreaCls();
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -27,8 +28,8 @@ describe('LegendLayout2', () => {
           config={config}
           data={data}
           legendList={legends as any}
-          callChart={areaChart}
-          handleLegend={handleLegend}
+          callChart={area.render}
+          handleLegend={area.legend}
           width={150}
         />
       </IntlProvider>

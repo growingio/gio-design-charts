@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { funnelChart, handleLegend } from '../framework';
+import { Funnel as FunnelCls } from '../framework';
 import { FunnelWith3Columns } from '../demos/Funnel.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
@@ -13,6 +13,7 @@ const { config, legends: legendList, data: sourceData, title } = FunnelWith3Colu
 const data = getSingleData(sourceData);
 const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('funnel fromework', () => {
+  const funnel = new FunnelCls();
   test('call funnelChart', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
@@ -21,7 +22,7 @@ describe('funnel fromework', () => {
       data,
       legends,
     };
-    funnelChart(options, config);
+    funnel.render(options, config);
   });
 
   test('with id', () => {
@@ -29,7 +30,7 @@ describe('funnel fromework', () => {
       data,
       legends,
     };
-    funnelChart(options, config);
+    funnel.render(options, config);
   });
 
   test('with empty config', () => {
@@ -37,7 +38,7 @@ describe('funnel fromework', () => {
       data,
       legends,
     };
-    funnelChart(options);
+    funnel.render(options);
   });
 
   test('without legends', () => {
@@ -47,7 +48,7 @@ describe('funnel fromework', () => {
       id: element,
       data,
     };
-    funnelChart(options, config);
+    funnel.render(options, config);
   });
 
   test('without data', () => {
@@ -57,11 +58,12 @@ describe('funnel fromework', () => {
       id: element,
       legends,
     };
-    funnelChart(options, config);
+    funnel.render(options, config);
   });
 });
 
 describe('handleLegend', () => {
+  const funnel = new FunnelCls();
   test('call it', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
@@ -70,8 +72,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = funnelChart(options, config);
-    handleLegend([chart as Chart], legends, config);
+    const { chart } = funnel.render(options, config);
+    funnel.legend([chart as Chart], legends, config);
   });
   test('call it without config', () => {
     render(<ChartCom />);
@@ -81,7 +83,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = funnelChart(options, config);
-    handleLegend([chart as Chart], legends, {});
+    const { chart } = funnel.render(options, config);
+    funnel.legend([chart as Chart], legends, {});
   });
 });

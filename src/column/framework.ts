@@ -126,28 +126,30 @@ export const handleInterval = (
   return chart;
 };
 
-export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => {
-  const { id } = options;
-  if (!id) {
-    return {};
-  }
-  const chart = renderChart(options, config);
-  try {
-    handleInterval(chart, options, config, {
-      styles: {
-        maxColumnWidth: 200,
-        minColumnWidth: 40,
-      },
-    });
-    chart.interaction('element-active');
-    chart.render();
-  } catch (err) {}
-  return { chart, update: updateChart };
-};
+export class Column {
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
+    const { id } = options;
+    if (!id) {
+      return {};
+    }
+    const chart = renderChart(options, config);
+    try {
+      handleInterval(chart, options, config, {
+        styles: {
+          maxColumnWidth: 200,
+          minColumnWidth: 40,
+        },
+      });
+      chart.interaction('element-active');
+      chart.render();
+    } catch (err) {}
+    return { chart, update: updateChart };
+  };
 
-export const handleLegend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
-  const barConfig = getShapeConfig(config as ChartConfig, 'column');
-  if (barConfig.color) {
-    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
-  }
-};
+  legend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
+    const barConfig = getShapeConfig(config as ChartConfig, 'column');
+    if (barConfig.color) {
+      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+    }
+  };
+}

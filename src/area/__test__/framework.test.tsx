@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { areaChart, handleLegend } from '../framework';
+import { Area as AreaCls } from '../framework';
 import { AreaStack } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
@@ -13,6 +13,7 @@ import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.te
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('areaChart', () => {
+  const area = new AreaCls();
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -25,7 +26,7 @@ describe('areaChart', () => {
       data,
       legends,
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
 
   test('call areaChart with lineDash', () => {
@@ -36,7 +37,7 @@ describe('areaChart', () => {
       data,
       legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
   test('call areaChart without legends', () => {
     render(<ChartCom />);
@@ -45,14 +46,14 @@ describe('areaChart', () => {
       id: element,
       data,
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
 
   test('call areaChart without id', () => {
     const options = {
       data,
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
 
   test('call areaChart without adjust', () => {
@@ -64,11 +65,12 @@ describe('areaChart', () => {
       legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
     };
     const { adjust, ...areaConfig } = config.area;
-    areaChart(options, { ...config, area: areaConfig });
+    area.render(options, { ...config, area: areaConfig });
   });
 });
 
 describe('handleLegend', () => {
+  const area = new AreaCls();
   test('call it', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
@@ -77,8 +79,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = areaChart(options, config);
-    handleLegend([chart as Chart], legends, config);
+    const { chart } = area.render(options, config);
+    area.legend([chart as Chart], legends, config);
   });
   test('call it without config', () => {
     render(<ChartCom />);
@@ -88,8 +90,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = areaChart(options, config);
-    handleLegend([chart as Chart], legends, {});
+    const { chart } = area.render(options, config);
+    area.legend([chart as Chart], legends, {});
   });
 
   test('call it without legends', () => {
@@ -100,7 +102,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = areaChart(options, config);
-    handleLegend([chart as Chart], undefined as any, config);
+    const { chart } = area.render(options, config);
+    area.legend([chart as Chart], undefined as any, config);
   });
 });

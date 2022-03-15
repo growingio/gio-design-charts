@@ -1,5 +1,5 @@
-import React from 'react';
-import { barChart, handleLegend } from './framework';
+import React, { useMemo } from 'react';
+import { Bar as BarCls } from './framework';
 
 import { ChartType, BarConfig } from '../interfaces';
 import { fetchChart } from '../boundary';
@@ -14,6 +14,8 @@ const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
     ...(config.chart || {}),
     appendPadding: [0, 60, 0, 0], // 为了显示右侧文字数据
   };
+
+  const bar = useMemo(() => new BarCls(), []);
 
   config.bar = {
     ...(config.bar || {}),
@@ -30,8 +32,8 @@ const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={barChart}
-      handleLegend={handleLegend}
+      callChart={bar.render}
+      handleLegend={bar.legend}
       title={title}
       content={content}
       fullHeight={fullHeight}
