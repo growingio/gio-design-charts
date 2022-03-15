@@ -43,15 +43,7 @@ const TinyArea: React.FC<TinyChartProps> = (props: TinyChartProps) => {
   areaConfig.type = ChartType.AREA;
   areaConfig.size = 'tiny';
 
-  return (
-    <BaldLayout
-      data={areaData}
-      legendList={legends}
-      config={areaConfig}
-      callChart={area.render}
-      handleLegend={area.legend}
-    />
-  );
+  return <BaldLayout data={areaData} legendList={legends} config={areaConfig} chart={area} />;
 };
 
 export default fetchChart<TinyChartProps>(TinyArea);

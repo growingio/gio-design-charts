@@ -3,6 +3,11 @@ import { Chart, Element, Scale, View } from '@antv/g2';
 import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
 
+export interface Actions {
+  render: any;
+  legend: any;
+}
+
 export enum ChartType {
   LINE = 'line',
   BAR = 'bar',

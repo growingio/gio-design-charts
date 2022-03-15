@@ -17,7 +17,7 @@ import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
 import { Datum } from '@antv/g2/lib/interface';
 
-export class Line {
+export class LineBase {
   options: ChartOptions | undefined = undefined;
   chart: Chart | undefined = undefined;
   views: View[] = [];
@@ -124,7 +124,34 @@ export class Line {
     this.chart?.render(true);
   };
 
-  contrast = (options: ChartOptions, config: ChartConfig = {}) => {
+  legend = <LineConfig>(charts: (Chart | View)[], legends: Legends, config: LineConfig) => {
+    const lineConfig = getShapeConfig(config, 'line');
+    if (lineConfig.color) {
+      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
+    }
+  };
+}
+
+export class Line extends LineBase {
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
+    const { id } = options;
+    if (!id) {
+      return {};
+    }
+    const chart = renderChart(options, config);
+    try {
+      const lineConfig = getShapeConfig(config, 'line');
+      this.lineShape(chart, options, lineConfig);
+      chart.render();
+      // Sometimes, chart will render wrong axis labels, render again will be fine.
+      chart.render(true);
+    } catch (err) {}
+    return { chart, update: updateChart };
+  };
+}
+
+export class ContrastLine extends LineBase {
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
     const { id, data, legends = {} } = options;
     if (!id) {
       return {};
@@ -162,28 +189,5 @@ export class Line {
       return { chart, views, update: this.updateContrast };
     } catch (err) {}
     return { chart, update: this.updateContrast };
-  };
-
-  render = (options: ChartOptions, config: ChartConfig = {}) => {
-    const { id } = options;
-    if (!id) {
-      return {};
-    }
-    const chart = renderChart(options, config);
-    try {
-      const lineConfig = getShapeConfig(config, 'line');
-      this.lineShape(chart, options, lineConfig);
-      chart.render();
-      // Sometimes, chart will render wrong axis labels, render again will be fine.
-      chart.render(true);
-    } catch (err) {}
-    return { chart, update: updateChart };
-  };
-
-  legend = <LineConfig>(charts: (Chart | View)[], legends: Legends, config: LineConfig) => {
-    const lineConfig = getShapeConfig(config, 'line');
-    if (lineConfig.color) {
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
-    }
   };
 }

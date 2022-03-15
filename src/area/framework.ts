@@ -1,12 +1,12 @@
 import { Chart, View } from '@antv/g2';
 import { ShapeAttrs } from '@antv/g-base';
-import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType, Actions } from '../interfaces';
 import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
 import { Line as LineCls } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { getAreaShapeState } from '../utils/tools/shapeState';
 
-export class Area {
+export class Area implements Actions {
   renderShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
     const { legends } = options;
     const area = chart.area({

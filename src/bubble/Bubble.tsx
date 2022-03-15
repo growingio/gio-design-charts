@@ -17,16 +17,7 @@ const Bubble: React.FC<BubbleProps> = (props: BubbleProps) => {
   config.type = ChartType.BUBBLE;
   config.chart = { ...config?.chart, limitInPlot: true };
 
-  return (
-    <LegendLayout
-      title={title}
-      data={data}
-      legendList={legendProps}
-      config={config}
-      callChart={bubble.render}
-      handleLegend={bubble.legend}
-    />
-  );
+  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={bubble} />;
 };
 
 export default fetchChart<BubbleProps>(Bubble);
