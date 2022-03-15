@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import { ChartType, ChartProps, ColumnConfig } from '../interfaces';
-import { columnChart, handleLegend } from './framework';
+import { Column as ColumnCls } from './framework';
 import { colors } from '../theme';
 import { LegendLayout, ScrollXLayout } from '../layouts';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';
@@ -15,6 +15,8 @@ export interface ColumnProps extends ChartProps {
 const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
   const { data, legends: legendProps = [], config, useScroll, title } = props;
   const [assginConfig, setAssignConfig] = useState({});
+
+  const column = useMemo(() => new ColumnCls(), []);
 
   useEffect(() => {
     const newConfig = config || {};
@@ -50,8 +52,8 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
       legendList={legendProps}
       config={assginConfig}
       defaultOptions={defaultOptions}
-      callChart={columnChart}
-      handleLegend={handleLegend}
+      callChart={column.render}
+      handleLegend={column.legend}
     />
   ) : (
     <LegendLayout
@@ -60,8 +62,8 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
       legendList={legendProps}
       config={assginConfig}
       defaultOptions={defaultOptions}
-      callChart={columnChart}
-      handleLegend={handleLegend}
+      callChart={column.render}
+      handleLegend={column.legend}
     />
   );
 };
