@@ -61,7 +61,7 @@ export class Area {
     return { chart, update: updateChart };
   };
 
-  handleLegend = <AreaConfig>(charts: (Chart | View)[], legends: Legends, config: AreaConfig) => {
+  legend = <AreaConfig>(charts: (Chart | View)[], legends: Legends, config: AreaConfig) => {
     const lineConfig = getShapeConfig(config, 'area');
     if (lineConfig.color) {
       charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));

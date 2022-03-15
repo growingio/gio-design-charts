@@ -33,7 +33,7 @@ const DragBar: React.FC<DragBarProps> = (props: DragBarProps) => {
       legendList={legendProps}
       config={config}
       callChart={bar.render}
-      handleLegend={bar.handleLegend}
+      handleLegend={bar.legend}
       title={title}
       content={content}
       fullHeight={fullHeight}

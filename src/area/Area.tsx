@@ -22,7 +22,7 @@ const Area: React.FC<AreaProps> = (props: AreaProps) => {
       legendList={legendProps}
       config={config}
       callChart={area.render}
-      handleLegend={area.handleLegend}
+      handleLegend={area.legend}
     />
   );
 };

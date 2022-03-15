@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { BaldLayout } from '../layouts';
 
-import { areaChart, handleLegend } from '../area/framework';
+import { Area as AreaCls } from '../area/framework';
 import { ChartType, TinyChartProps, AreaConfig, Legend } from '../interfaces';
 
 import { fetchChart } from '../boundary';
@@ -12,6 +12,9 @@ const TinyArea: React.FC<TinyChartProps> = (props: TinyChartProps) => {
   const [areaData, setAreaData] = useState<LooseObject[]>([]);
   const [areaConfig, setAreaConfig] = useState<AreaConfig>({} as AreaConfig);
   const [legends, setLegends] = useState<Legend[]>([]);
+
+  const area = useMemo(() => new AreaCls(), []);
+
   useEffect(() => {
     const covertData = data?.map((num: number, index: number) => {
       return { x: index, value: num, type: 'tiny' };
@@ -45,8 +48,8 @@ const TinyArea: React.FC<TinyChartProps> = (props: TinyChartProps) => {
       data={areaData}
       legendList={legends}
       config={areaConfig}
-      callChart={areaChart}
-      handleLegend={handleLegend}
+      callChart={area.render}
+      handleLegend={area.legend}
     />
   );
 };

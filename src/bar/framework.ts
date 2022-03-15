@@ -55,7 +55,7 @@ export class Bar {
     chart.forceFit();
   };
 
-  handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
+  legend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
     const barConfig = getShapeConfig(config, ChartType.BAR);
     if (barConfig.color) {
       charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
