@@ -1,7 +1,7 @@
 import { isEmpty } from 'lodash';
 import React, { useMemo, useEffect, useState } from 'react';
 import { ChartType, ChartProps, FunnelConfig } from '../interfaces';
-import { funnelChart, handleLegend } from './framework';
+import { Funnel as FunnelCls } from './framework';
 import { colors } from '../theme';
 import { ScrollXLayout } from '../layouts';
 import { getSingleData } from './utils';
@@ -14,6 +14,9 @@ export interface FunnelProps extends ChartProps {
 
 const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   const { data, legends: legendProps = [], config, title } = props;
+
+  const funnel = useMemo(() => new FunnelCls(), []);
+
   const defaultOptions = useMemo(() => {
     if (isEmpty(legendProps)) {
       return {
@@ -42,8 +45,8 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
       defaultOptions={defaultOptions}
       config={config}
       sourceData={data}
-      callChart={funnelChart}
-      handleLegend={handleLegend}
+      callChart={funnel.render}
+      handleLegend={funnel.legend}
     />
   );
 };

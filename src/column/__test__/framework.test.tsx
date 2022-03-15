@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { columnChart, handleLegend } from '../framework';
+import { Column as ColumnCls } from '../framework';
 import { ColumnWithComponsive } from '../demos/Column.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
@@ -11,6 +11,7 @@ import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.te
 const { config, legends: legendList, data } = ColumnWithComponsive.args as ChartProps;
 const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('line fromework', () => {
+  const column = new ColumnCls();
   test('call columnChart', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
@@ -19,7 +20,7 @@ describe('line fromework', () => {
       data,
       legends,
     };
-    columnChart(options, config);
+    column.render(options, config);
   });
 
   test('without legends', () => {
@@ -29,7 +30,7 @@ describe('line fromework', () => {
       id: element,
       data,
     };
-    columnChart(options, config);
+    column.render(options, config);
   });
 
   test('with id', () => {
@@ -37,7 +38,7 @@ describe('line fromework', () => {
       data,
       legends,
     };
-    columnChart(options, config);
+    column.render(options, config);
   });
 
   test('with empty config', () => {
@@ -45,11 +46,12 @@ describe('line fromework', () => {
       data,
       legends,
     };
-    columnChart(options);
+    column.render(options);
   });
 });
 
 describe('handleLegend', () => {
+  const column = new ColumnCls();
   test('call it', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
@@ -58,8 +60,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = columnChart(options, config);
-    handleLegend([chart as Chart], legends, config);
+    const { chart } = column.render(options, config);
+    column.legend([chart as Chart], legends, config);
   });
   test('call it without config', () => {
     render(<ChartCom />);
@@ -69,7 +71,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = columnChart(options, config);
-    handleLegend([chart as Chart], legends, {});
+    const { chart } = column.render(options, config);
+    column.legend([chart as Chart], legends, {});
   });
 });

@@ -6,7 +6,7 @@ import { ChartCom, chartComponentTestid } from '../../../core/__test__/framework
 import { FunnelWith6Columns } from '../../../funnel/demos/Funnel.stories';
 import { getSingleData } from '../../../funnel/utils';
 import { getLegends } from '../../../hooks/useLegends';
-import { funnelChart } from '../../../funnel/framework';
+import { Funnel as FunnelCls } from '../../../funnel/framework';
 import { addLinkByElement, addLinkByElementHigh } from '../elementLink';
 import { View } from '@antv/g2';
 
@@ -15,6 +15,7 @@ const data = getSingleData(sourceData);
 const [legends] = getLegends(ChartType.FUNNEL, legendList as any);
 
 describe('element-link', () => {
+  const funnel = new FunnelCls();
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -26,7 +27,7 @@ describe('element-link', () => {
       data,
       legends,
     };
-    const charts = funnelChart(options, config);
+    const charts = funnel.render(options, config);
     const view = charts.views?.[0];
     addLinkByElement(view as View, [], { delay: 0 });
   });
@@ -43,7 +44,7 @@ describe('element-link', () => {
       data,
       legends,
     };
-    const charts = funnelChart(options, config);
+    const charts = funnel.render(options, config);
     const view = charts.views?.[0];
     const linkElement = addLinkByElementHigh();
     linkElement(view as View, { delay: -1 });
