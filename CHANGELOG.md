@@ -1,3 +1,10 @@
+## [1.3.20](https://github.com/growingio/gio-design-charts/compare/v1.3.19...v1.3.20) (2022-03-15)
+
+
+### Bug Fixes
+
+* **Scrollbar:** show scrollbar styles ([#247](https://github.com/growingio/gio-design-charts/issues/247)) ([9a16f49](https://github.com/growingio/gio-design-charts/commit/9a16f49e5090de6ebccea0cc593941c3e3007cad))
+
 ## [1.3.19](https://github.com/growingio/gio-design-charts/compare/v1.3.18...v1.3.19) (2022-03-01)
 
 
