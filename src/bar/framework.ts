@@ -11,58 +11,59 @@ import { bindBarCoordination } from '../utils/frameworks/coordinate';
 import { getbackgroundState } from '../utils/tools/shapeState';
 import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
-import { getColorByGroupModel, getColorByModel } from '../utils/tools/utils';
-
-export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
-  const linkView = views?.[0];
-  linkView?.changeData(data.slice().reverse());
-  linkView?.render(true);
-
-  chart.render(true);
-  chart.forceFit();
-};
-
-export const barChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id, report, data } = options;
-  if (!id) {
-    return {};
-  }
-  const chart = generateChart(options, config);
-  try {
-    const linkView = chart.createView({
-      region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
-    });
-
-    fetchViewConfig(linkView, { ...options, data: data?.slice()?.reverse() }, config);
-    handleInterval(linkView, options, config, {}, ChartType.BAR);
-    linkView.coordinate().transpose();
-    linkView.on('afterrender', function (event: Event) {
-      const geometries = event.view.geometries[0];
-      if (geometries && geometries.elements) {
-        report?.({ scale: geometries.getXScale(), elements: geometries.elements });
-      }
-    });
-    linkView.render();
-
-    fetchTooltip(chart, config);
-    chart.coordinate().transpose();
-    chart.legend(false);
-    chart.render();
-    return { chart, views: [linkView], update: updateChart };
-  } catch (err) {
-    // show error
-  }
-  return { chart, update: updateChart };
-};
-
-export const handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
-  const barConfig = getShapeConfig(config, ChartType.BAR);
-  if (barConfig.color) {
-    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
-  }
-};
+import { getColorByGroupModel } from '../utils/tools/utils';
 
 export class Bar {
+  render = (options: ChartOptions, config: ChartConfig) => {
+    const { id, report, data } = options;
+    if (!id) {
+      return {};
+    }
+    const chart = generateChart(options, config);
+    try {
+      const linkView = chart.createView({
+        region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+      });
+
+      fetchViewConfig(linkView, { ...options, data: data?.slice()?.reverse() }, config);
+      handleInterval(linkView, options, config, {}, ChartType.BAR);
+      linkView.coordinate().transpose();
+      linkView.on('afterrender', (event: Event) => {
+        const geometries = event.view.geometries[0];
+        if (geometries && geometries.elements) {
+          report?.({ scale: geometries.getXScale(), elements: geometries.elements });
+        }
+      });
+      linkView.render();
+
+      fetchTooltip(chart, config);
+      chart.coordinate().transpose();
+      chart.legend(false);
+      chart.render();
+      return { chart, views: [linkView], update: this.update };
+    } catch (err) {
+      // show error
+    }
+    return { chart, update: this.update };
+  };
+
+  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
+    const linkView = views?.[0];
+    linkView?.changeData(data.slice().reverse());
+    linkView?.render(true);
+    chart.render(true);
+    chart.forceFit();
+  };
+
+  handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
+    const barConfig = getShapeConfig(config, ChartType.BAR);
+    if (barConfig.color) {
+      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+    }
+  };
+}
+
+export class TimeBar extends Bar {
   options: ChartOptions | undefined = undefined;
   config: ChartConfig | undefined = undefined;
   chart: Chart | undefined = undefined;
