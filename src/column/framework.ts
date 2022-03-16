@@ -1,7 +1,7 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
-import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
+import { BaseChart, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
 import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
@@ -126,30 +126,25 @@ export const handleInterval = (
   return chart;
 };
 
-export class Column {
+export class Column extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig = {}) => {
+    this.options = options;
+    this.config = config;
+
     const { id } = options;
     if (!id) {
       return {};
     }
-    const chart = renderChart(options, config);
+    this.instance = renderChart(options, config);
     try {
-      handleInterval(chart, options, config, {
+      handleInterval(this.instance, options, config, {
         styles: {
           maxColumnWidth: 200,
           minColumnWidth: 40,
         },
       });
-      chart.interaction('element-active');
-      chart.render();
+      this.instance.interaction('element-active');
+      this.instance.render();
     } catch (err) {}
-    return { chart, update: updateChart };
-  };
-
-  legend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
-    const barConfig = getShapeConfig(config, 'column');
-    if (barConfig.color) {
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
-    }
   };
 }

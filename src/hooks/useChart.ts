@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useMemo, useContext } from 'react';
 import { LooseObject } from '@antv/g-base';
-import { Chart, View } from '@antv/g2';
 import { Datum, TooltipItem } from '@antv/g2/lib/interface';
 import { isEqual } from '@antv/util';
 
@@ -46,18 +45,14 @@ const useChart = (options: UseChartProps) => {
   const context = useContext(DesignContext);
   const dict = useIntlDict();
 
-  const chartRef = useRef<Chart>();
-  const viewRef = useRef<View[]>();
   const configRef = useRef<Partial<ChartConfig>>();
   const dataRef = useRef<LooseObject | LooseObject[]>();
-  const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[], config?: ChartConfig) => void>();
   const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
 
   const clear = useCallback(() => {
-    chartRef.current?.destroy();
-    chartRef.current = undefined;
+    chart.clear();
     setTooltipKey(new Date().getTime());
-  }, [setTooltipKey]);
+  }, [chart, setTooltipKey]);
 
   const create = useCallback(() => {
     // If the config is empty or there is no special config, return null;
@@ -81,11 +76,7 @@ const useChart = (options: UseChartProps) => {
             },
           }
         : false;
-    const {
-      chart: chartObj,
-      views = [],
-      update,
-    } = chart.render(
+    chart.render(
       {
         id: rootRef.current,
         data,
@@ -103,14 +94,11 @@ const useChart = (options: UseChartProps) => {
         tooltip,
       }
     );
-    if (chartObj) {
+    if (chart.instance) {
       configRef.current = cloneDeep(config);
       dataRef.current = cloneDeep(data);
-      chartRef.current = chartObj;
-      viewRef.current = views;
-      updateRef.current = update;
       setLegends(genLegends, queue, hasDashedLegend);
-      interceptors?.bindElementEvents(chartObj);
+      interceptors?.bindElementEvents(chart.instance);
     }
   }, [
     rootRef,
@@ -132,14 +120,12 @@ const useChart = (options: UseChartProps) => {
     if (config && legendList) {
       setLegends(...getLegends(config.chartType, legendList));
     }
-    const chart = chartRef.current;
-    const update = updateRef.current;
     const changedData = !isEqual(dataRef.current, data);
-    if (update && chart && changedData) {
-      update({ chart, views: viewRef.current }, data as Datum[], config);
+    if (changedData) {
+      chart.update?.(data as Datum[]);
       dataRef.current = cloneDeep(data);
     }
-  }, [data, config]);
+  }, [data, config, chart]);
 
   const hasChangedConfig = !isEqual(configRef.current, config);
   const hasChangedData = !isEqual(dataRef.current, data);
@@ -148,13 +134,13 @@ const useChart = (options: UseChartProps) => {
     // 如果equalConfig有变化，则进入创建或者清楚通道
     if (hasChangedConfig) {
       // 如果已经有了chartRef.current，需要先销毁
-      if (chartRef.current) {
+      if (chart.instance) {
         clear();
       } else {
         create();
       }
     }
-  }, [create, clear, hasChangedConfig, config, tooltipKey, legendList]);
+  }, [chart, create, clear, hasChangedConfig, config, tooltipKey, legendList]);
 
   if (!hasChangedConfig && hasChangedData) {
     updateChart();
@@ -163,8 +149,8 @@ const useChart = (options: UseChartProps) => {
   const chartOptions = useMemo(
     () => ({
       ...defaultOptions,
-      chart: chartRef.current,
-      views: viewRef.current,
+      chart,
+      // views: viewRef.current,
       legends,
       hasDashed,
       legendQueue,

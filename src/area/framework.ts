@@ -1,12 +1,12 @@
 import { Chart, View } from '@antv/g2';
 import { ShapeAttrs } from '@antv/g-base';
-import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType, Actions } from '../interfaces';
-import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
+import { ChartConfig, ChartOptions, Legend, Shape, AdjustOtptionType } from '../interfaces';
+import { BaseChart, renderChart } from '../core/framework';
 import { Line as LineCls } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { getAreaShapeState } from '../utils/tools/shapeState';
 
-export class Area implements Actions {
+export class Area extends BaseChart {
   renderShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
     const { legends } = options;
     const area = chart.area({
@@ -40,31 +40,25 @@ export class Area implements Actions {
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
+    this.options = options;
+    this.config = config;
     const { id } = options;
     if (!id) {
       return {};
     }
-    const chart = renderChart(options, config);
+    this.instance = renderChart(options, config);
     try {
       const areaConfig = getShapeConfig(config, 'area');
       const line = new LineCls();
 
-      line.lineShape(chart, options, areaConfig);
-      this.renderShape(chart, options, areaConfig);
-      chart.interaction('element-highlight-by-color');
-      chart.render();
+      line.lineShape(this.instance, options, areaConfig);
+      this.renderShape(this.instance, options, areaConfig);
+      this.instance.interaction('element-highlight-by-color');
+      this.instance.render();
       // like Line framework, render twice to fix wrong label issue.
-      chart.render(true);
+      this.instance.render(true);
     } catch (err) {
       console.log(err);
-    }
-    return { chart, update: updateChart };
-  };
-
-  legend = <AreaConfig>(charts: (Chart | View)[], legends: Legends, config: AreaConfig) => {
-    const lineConfig = getShapeConfig(config, 'area');
-    if (lineConfig.color) {
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
     }
   };
 }

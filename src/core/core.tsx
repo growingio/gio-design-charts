@@ -44,7 +44,6 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const { getTrigger, setTrigger, interceptors } = useInterceptors();
     interceptors.bindTooltip(tooltipRef);
     const [tooltipKey, setTooltipKey] = useState(1);
-
     const { chartOptions, updateLegends } = useChart({
       rootRef: root,
       tooltipRef,
@@ -62,11 +61,9 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const onClickLegend = useCallback(
       (label: string) => {
         const newLegends = updateLegends(label);
-        if (chartOptions?.chart) {
-          chart?.legend([chartOptions?.chart, ...(chartOptions?.views || [])], newLegends, config);
-        }
+        chart?.legend(newLegends);
       },
-      [chartOptions, config, chart, updateLegends]
+      [config, chart, updateLegends]
     );
 
     return (

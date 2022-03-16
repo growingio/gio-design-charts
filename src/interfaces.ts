@@ -4,8 +4,14 @@ import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
 
 export interface Actions {
+  instance: Chart | undefined;
+  views: View[];
+  config: ChartConfig | undefined;
+  options: ChartOptions | undefined;
   render: any;
+  update: any;
   legend: any;
+  clear: any;
 }
 
 export enum ChartType {
@@ -70,8 +76,7 @@ export interface ChartOptions extends LooseObject {
    * this is used to render the chart whether to subtract the legend height or not.
    */
   hasLegend?: boolean;
-  chart?: Chart;
-  views?: View[];
+  chart?: Actions;
   theme?: LooseObject;
   dict?: LooseObject;
   /**
