@@ -4,7 +4,7 @@ import { Chart, View } from '@antv/g2';
 import { Datum, TooltipItem } from '@antv/g2/lib/interface';
 import { isEqual } from '@antv/util';
 
-import { ChartConfig, Legend } from '../interfaces';
+import { Actions, ChartConfig, Legend } from '../interfaces';
 import useLegends, { getLegends } from './useLegends';
 import { getTheme, inValidConfig } from '../utils/chart';
 import { cloneDeep } from 'lodash';
@@ -14,7 +14,7 @@ import { useIntlDict } from './useIntlDict';
 export interface UseChartProps {
   rootRef: React.MutableRefObject<HTMLDivElement | null>;
   tooltipRef: React.MutableRefObject<HTMLDivElement | null>;
-  callChart: any;
+  chart: Actions;
   tooltipItemRegister: any;
   config: ChartConfig;
   data: LooseObject | LooseObject[];
@@ -32,7 +32,7 @@ const useChart = (options: UseChartProps) => {
     rootRef,
     tooltipRef,
     tooltipItemRegister,
-    callChart,
+    chart,
     config,
     data,
     legendList,
@@ -82,10 +82,10 @@ const useChart = (options: UseChartProps) => {
           }
         : false;
     const {
-      chart,
+      chart: chartObj,
       views = [],
       update,
-    } = callChart(
+    } = chart.render(
       {
         id: rootRef.current,
         data,
@@ -103,14 +103,14 @@ const useChart = (options: UseChartProps) => {
         tooltip,
       }
     );
-    if (chart) {
+    if (chartObj) {
       configRef.current = cloneDeep(config);
       dataRef.current = cloneDeep(data);
-      chartRef.current = chart;
+      chartRef.current = chartObj;
       viewRef.current = views;
       updateRef.current = update;
       setLegends(genLegends, queue, hasDashedLegend);
-      interceptors?.bindElementEvents(chart);
+      interceptors?.bindElementEvents(chartObj);
     }
   }, [
     rootRef,
@@ -118,7 +118,7 @@ const useChart = (options: UseChartProps) => {
     data,
     legendList,
     config,
-    callChart,
+    chart,
     tooltipItemRegister,
     defaultOptions,
     interceptors,

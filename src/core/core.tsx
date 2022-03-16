@@ -30,7 +30,7 @@ export interface ChartCanvasProps {
   sizeRegister?: any;
   title?: string;
   fullHeight?: boolean;
-  chart?: Actions;
+  chart: Actions;
 }
 
 // In core, we only force on render chart and provide basic chart options
@@ -48,7 +48,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const { chartOptions, updateLegends } = useChart({
       rootRef: root,
       tooltipRef,
-      callChart: chart?.render,
+      chart,
       tooltipItemRegister: register,
       config,
       data,
