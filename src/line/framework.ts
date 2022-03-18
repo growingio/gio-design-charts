@@ -63,7 +63,7 @@ export class LineBase extends BaseChart {
   };
 
   lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
-    const { legends } = options;
+    const { legendObject } = options;
     const line = chart.line({
       theme: {
         strokeWidth: 2,
@@ -76,7 +76,7 @@ export class LineBase extends BaseChart {
     line.position(shapeConfig.position);
     line.color(shapeConfig.color);
     line.style(shapeConfig.color, (label: string) => {
-      const legend = legends?.[label] || ({} as Legend);
+      const legend = legendObject?.getLegend(label) || ({} as Legend);
       const style = {} as LooseObject;
       if (legend.color) {
         style.stroke = legend.color;
@@ -141,7 +141,7 @@ export class ContrastLine extends LineBase {
     this.options = options;
     this.config = config;
 
-    const { id, data, legends = {} } = options;
+    const { id, data, legendObject } = options;
     if (!id) {
       return {};
     }
@@ -167,7 +167,7 @@ export class ContrastLine extends LineBase {
         views.push(view);
         this.finnalView = view;
       };
-      this.contrastViewQueue(dataMapping, legends)(historyView, currentView);
+      this.contrastViewQueue(dataMapping, legendObject?.mapping || {})(historyView, currentView);
 
       this.views = views;
 

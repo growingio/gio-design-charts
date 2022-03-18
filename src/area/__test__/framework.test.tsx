@@ -6,7 +6,6 @@ import { AreaStack } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
-import { Chart } from '@antv/g2';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
@@ -79,19 +78,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = area.render(options, config);
-    area.legend([chart as Chart], legends, config);
-  });
-  test('call it without config', () => {
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-      legends,
-    };
-    const { chart } = area.render(options, config);
-    area.legend([chart as Chart], legends, {});
+    area.render(options, config);
+    area.legend(legends);
   });
 
   test('call it without legends', () => {
@@ -102,7 +90,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = area.render(options, config);
-    area.legend([chart as Chart], undefined as any, config);
+    area.render(options, config);
+    area.legend(undefined as any);
   });
 });

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Bubble as BubbleCls } from './framework';
 import { ChartType, ChartProps, BubbleConfig } from '../interfaces';
 

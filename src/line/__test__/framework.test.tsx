@@ -5,7 +5,6 @@ import { Line as LineCls } from '../framework';
 import { BaiscLine } from '../demos/Line.stories';
 import { ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
-import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { LineProps } from '../Line';
 
@@ -53,8 +52,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = line.render(options, config);
-    line.legend([chart as Chart], legends, config);
+    line.render(options, config);
+    line.legend(legends);
   });
   test('call it without config', () => {
     const line = new LineCls();
@@ -65,7 +64,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = line.render(options, config);
-    line.legend([chart as Chart], legends, {});
+    line.render(options, config);
+    line.legend(legends);
   });
 });

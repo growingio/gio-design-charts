@@ -72,8 +72,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = funnel.render(options, config);
-    funnel.legend([chart as Chart], legends, config);
+    funnel.render(options, config);
+    funnel.legend(legends);
   });
   test('call it without config', () => {
     render(<ChartCom />);
@@ -83,7 +83,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = funnel.render(options, config);
-    funnel.legend([chart as Chart], legends, {});
+    funnel.render(options, config);
+    funnel.legend(legends);
   });
 });

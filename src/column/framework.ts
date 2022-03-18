@@ -79,7 +79,7 @@ export const handleInterval = (
   intervalConfig: IntervalConfig = {},
   type = 'column'
 ) => {
-  const { legends = {}, hasDashed, defaultStyles = {} } = options;
+  const { legendObject, hasDashed, defaultStyles = {} } = options;
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
@@ -90,7 +90,8 @@ export const handleInterval = (
     config,
     { ...intervalConfig, customInfo: { chartType: type, useDash: false } },
     (label: string) => {
-      const legend = legends[label] || ({} as Legend);
+      const legend = legendObject?.getLegend(label) || ({} as Legend);
+      console.log(legend);
       return {
         fill: legend.color || defaultStyles.color,
         radius,
@@ -112,13 +113,14 @@ export const handleInterval = (
         },
       },
       (label: string) => {
-        const legend = legends[label] || ({} as Legend);
+        const legend = legendObject?.getLegend(label) || ({} as Legend);
         if (legend.dashed) {
           return {
             fill: `p(a)${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}`,
             radius,
           };
         }
+
         return { fill: legend.color, radius };
       }
     );

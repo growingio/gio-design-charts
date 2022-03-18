@@ -131,7 +131,10 @@ export class BaseChart implements Actions {
   options: ChartOptions | undefined = undefined;
   config: ChartConfig | undefined = undefined;
 
-  render = (options: ChartOptions, config: ChartConfig) => {};
+  render: (options: ChartOptions, config: ChartConfig) => void = () => {
+    // this is parent render function
+    // each child needs realize this function
+  };
 
   defaultLegendBehavior = (legends: Legends) => {
     const shapeConfig = getShapeConfig(this.config, this.config?.type);

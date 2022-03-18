@@ -42,7 +42,7 @@ export class Donut extends BaseChart {
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
-    const { id, legends = {}, defaultStyles = {}, data } = options;
+    const { id, legendObject, defaultStyles = {}, data } = options;
     if (!id) {
       return {};
     }
@@ -58,7 +58,7 @@ export class Donut extends BaseChart {
     bindDonutCoordination(donutView);
 
     const interval = intervalShape(donutView, options, config, {}, (label: string) => {
-      const legend = legends[label] || ({} as Legend);
+      const legend = legendObject?.getLegend(label) || ({} as Legend);
       return {
         stroke: '#fff',
         lineWidth: 2,
@@ -113,7 +113,7 @@ export class Donut extends BaseChart {
     }, 0);
   };
 
-  legend = <DonutConfig>(legends: Legends) => {
+  legend = (legends: Legends) => {
     const donut = getShapeConfig(this.config, 'donut');
     if (donut.color) {
       const filteredData = this.options?.data?.filter((item: LooseObject) => {

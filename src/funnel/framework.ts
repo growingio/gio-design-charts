@@ -10,7 +10,7 @@ import { LooseObject } from '@antv/g-base';
 
 export class Funnel extends BaseChart {
   fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
-    const { legends, defaultStyles } = options;
+    const { legendObject, defaultStyles } = options;
     return intervalShape(
       chart,
       options,
@@ -22,7 +22,7 @@ export class Funnel extends BaseChart {
         },
       },
       (label: string) => {
-        const legend = legends?.[label] || ({} as Legend);
+        const legend = legendObject?.getLegend(label) || ({} as Legend);
         return {
           stroke: '#fff',
           strokeWidth: 1,
@@ -73,7 +73,7 @@ export class Funnel extends BaseChart {
     if (!id || isEmpty(options.data)) {
       return {};
     }
-    const { interceptors, legends } = options;
+    const { interceptors, legendObject } = options;
     this.instance = generateChart(options, config);
     const [addLinkByElement, updateFunnel] = this.updateHoc();
     this.update = updateFunnel as any;
@@ -82,7 +82,7 @@ export class Funnel extends BaseChart {
       const covertData = (options.data as LooseObject)?.covert || [];
       const isGroup = (options.data as LooseObject)?.isGroup;
 
-      const emptyLegends = isEmpty(legends);
+      const emptyLegends = isEmpty(legendObject?.mapping);
 
       // Use viewTheme to set the label of axis is white
       const backgroundView = this.instance.createView({

@@ -5,7 +5,6 @@ import { Column as ColumnCls } from '../framework';
 import { ColumnWithComponsive } from '../demos/Column.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
-import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = ColumnWithComponsive.args as ChartProps;
@@ -60,8 +59,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = column.render(options, config);
-    column.legend([chart as Chart], legends, config);
+    column.render(options, config);
+    column.legend(legends);
   });
   test('call it without config', () => {
     render(<ChartCom />);
@@ -71,7 +70,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = column.render(options, config);
-    column.legend([chart as Chart], legends, {});
+    column.render(options, config);
+    column.legend(legends);
   });
 });

@@ -16,7 +16,7 @@ export class Bubble extends BaseChart {
     this.options = options;
     this.config = config;
 
-    const { id, legends = {} } = options;
+    const { id, legendObject } = options;
     if (!id) {
       return {};
     }
@@ -27,7 +27,7 @@ export class Bubble extends BaseChart {
     const point = this.instance.point();
     bindPosition(point, bubbleCfg.position);
     bindSize(point, bubbleCfg.size);
-    bindPointColor(point, bubbleCfg.color, legends);
+    bindPointColor(point, bubbleCfg.color, legendObject?.mapping || {});
     bindShape(point, 'circle');
     bindState(point, getPointShapeState());
 

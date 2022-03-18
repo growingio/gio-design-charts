@@ -8,7 +8,7 @@ import { getAreaShapeState } from '../utils/tools/shapeState';
 
 export class Area extends BaseChart {
   renderShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
-    const { legends } = options;
+    const { legendObject } = options;
     const area = chart.area({
       theme: {
         strokeWidth: 0,
@@ -20,7 +20,7 @@ export class Area extends BaseChart {
       area.adjust.call(area, shapeConfig.adjust as AdjustOtptionType);
     }
     area.style(shapeConfig.color, (label: string) => {
-      const legend = legends?.[label] || ({} as Legend);
+      const legend = legendObject?.getLegend(label) || ({} as Legend);
       const style = {} as ShapeAttrs;
       style.fillOpacity = 0.8;
       // default width of line is 2px

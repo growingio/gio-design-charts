@@ -9,7 +9,7 @@ import { fixedHeight } from '../../utils/chart';
 const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
-  const { legendQueue, chart, title } = options;
+  const { legendQueue, chart, title, legendObject } = options;
   const [offsetWidth, setOffsetWidth] = useState(0);
   const watchReset = useCallback(
     (resetOffset: Offset) => {
@@ -35,6 +35,8 @@ const LegendLayout = (props: LayoutProps) => {
 
   const offset = useOffset(layoutRef, watchReset);
   const color = getThemeColor(config);
+
+  console.log('====---=', legendQueue);
   return (
     <div className="gio-d-charts" ref={layoutRef} data-testid="legend-layout">
       {title && (
@@ -42,10 +44,10 @@ const LegendLayout = (props: LayoutProps) => {
           {title}
         </div>
       )}
-      {config.legend !== false && legendQueue?.length > 0 && (
+      {legendObject?.support && (
         <Legends
           config={config}
-          legends={legendQueue}
+          legends={legendObject.quene}
           offsetWidth={offsetWidth || offset.width}
           onClick={onClickLegend}
         />

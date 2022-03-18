@@ -1,13 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { InfoCardBox } from '../info-card';
-import { Actions, ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { Actions, ChartConfig, ChartOptions, Legend } from '../interfaces';
 import useInterceptors from '../hooks/useInterceptors';
 import useTunnel from '../hooks/useTunnel';
 
-import { Chart, View } from '@antv/g2';
 import { LooseObject } from '@antv/component';
 import './styles/base.less';
 import useChart from '../hooks/useChart';
+import { LegendObject } from '../hooks/useLegends';
 
 export interface LayoutProps {
   options: ChartOptions;
@@ -44,14 +44,18 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     const { getTrigger, setTrigger, interceptors } = useInterceptors();
     interceptors.bindTooltip(tooltipRef);
     const [tooltipKey, setTooltipKey] = useState(1);
-    const { chartOptions, updateLegends } = useChart({
+
+    const legendObject = useMemo(() => new LegendObject(config, legendList), [config, legendList]);
+    const [, refresh] = useState(0);
+
+    const { chartOptions } = useChart({
       rootRef: root,
       tooltipRef,
       chart,
       tooltipItemRegister: register,
       config,
       data,
-      legendList,
+      legendObject,
       interceptors,
       defaultOptions,
       tooltipKey,
@@ -60,11 +64,14 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     });
     const onClickLegend = useCallback(
       (label: string) => {
-        const newLegends = updateLegends(label);
+        const newLegends = legendObject.update(label);
         chart?.legend(newLegends);
+
+        refresh(new Date().getTime());
       },
-      [config, chart, updateLegends]
+      [config, chart, legendObject]
     );
+    console.log(legendObject);
 
     return (
       <HighComponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>
