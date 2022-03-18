@@ -36,7 +36,6 @@ const LegendLayout = (props: LayoutProps) => {
   const offset = useOffset(layoutRef, watchReset);
   const color = getThemeColor(config);
 
-  console.log('====---=', legendQueue);
   return (
     <div className="gio-d-charts" ref={layoutRef} data-testid="legend-layout">
       {title && (

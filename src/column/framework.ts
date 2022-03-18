@@ -91,7 +91,6 @@ export const handleInterval = (
     { ...intervalConfig, customInfo: { chartType: type, useDash: false } },
     (label: string) => {
       const legend = legendObject?.getLegend(label) || ({} as Legend);
-      console.log(legend);
       return {
         fill: legend.color || defaultStyles.color,
         radius,

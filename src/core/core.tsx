@@ -71,7 +71,6 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
       },
       [config, chart, legendObject]
     );
-    console.log(legendObject);
 
     return (
       <HighComponent options={chartOptions} width={width} config={config} onClickLegend={onClickLegend}>

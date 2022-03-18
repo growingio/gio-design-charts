@@ -14,7 +14,6 @@ export const getShapeState = (options: ChartOptions) => {
         const modelFill = element?.getModel?.()?.style?.fill;
         const modelColor = element?.getModel?.()?.color;
 
-        console.log(defaultColor, modelFill, modelColor);
         return {
           lineWidth: 2,
           stroke: defaultColor || modelColor || modelFill || '#000',
