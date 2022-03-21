@@ -9,7 +9,7 @@ import { fixedHeight } from '../../utils/chart';
 const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
-  const { legendQueue, chart, title, legendObject } = options;
+  const { chart, title, legendObject } = options;
   const [offsetWidth, setOffsetWidth] = useState(0);
   const watchReset = useCallback(
     (resetOffset: Offset) => {

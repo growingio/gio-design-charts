@@ -69,7 +69,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
 
         refresh(new Date().getTime());
       },
-      [config, chart, legendObject]
+      [chart, legendObject]
     );
 
     return (

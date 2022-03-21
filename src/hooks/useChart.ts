@@ -121,15 +121,12 @@ const useChart = (options: UseChartProps) => {
   ]);
 
   const updateChart = useCallback(() => {
-    // if (config && legendList) {
-    //   setLegends(...getLegends(config.chartType, legendList));
-    // }
     const changedData = !isEqual(dataRef.current, data);
     if (changedData) {
       chart.update?.(data as Datum[]);
       dataRef.current = cloneDeep(data);
     }
-  }, [data, config, chart]);
+  }, [data, chart]);
 
   const hasChangedConfig = !isEqual(configRef.current, config);
   const hasChangedData = !isEqual(dataRef.current, data);
@@ -158,7 +155,7 @@ const useChart = (options: UseChartProps) => {
       title,
       hasTitle: !!title,
     }),
-    [defaultOptions, config, title, legendObject]
+    [defaultOptions, chart, config, title, legendObject]
   );
 
   if (!hasChangedConfig && hasChangedData) {

@@ -1,6 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
-// import useLegends, { getLegends } from '../useLegends';
-import { ChartType, Legends } from '../../interfaces';
+import { ChartType } from '../../interfaces';
 import { LegendObject } from '../../legends/useLegends';
 
 describe('test useLegends', () => {

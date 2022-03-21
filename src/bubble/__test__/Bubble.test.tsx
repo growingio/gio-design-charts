@@ -4,7 +4,6 @@ import Bubble, { BubbleProps } from '../Bubble';
 import { Basic, Dark, SameSize } from '../demos/Bubble.stories';
 import { Bubble as BubbleCls } from '../framework';
 import { LegendLayout } from '../../layouts';
-import { fetchChart } from '../../boundary';
 import { IntlProvider } from 'react-intl';
 
 describe('Bubble Chart', () => {
