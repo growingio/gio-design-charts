@@ -3,8 +3,8 @@ import { LooseObject } from '@antv/g-base';
 import { Datum, TooltipItem } from '@antv/g2/lib/interface';
 import { isEqual } from '@antv/util';
 
-import { Actions, ChartConfig, Legend } from '../interfaces';
-import useLegends, { getLegends, LegendObject } from './useLegends';
+import { Actions, ChartConfig } from '../interfaces';
+import { LegendObject } from '../legends/useLegends';
 import { getTheme, inValidConfig } from '../utils/chart';
 import { cloneDeep } from 'lodash';
 import { DesignContext } from '@gio-design/utils';

@@ -7,7 +7,7 @@ import useTunnel from '../hooks/useTunnel';
 import { LooseObject } from '@antv/component';
 import './styles/base.less';
 import useChart from '../hooks/useChart';
-import { LegendObject } from '../hooks/useLegends';
+import { LegendObject } from '../legends/useLegends';
 
 export interface LayoutProps {
   options: ChartOptions;

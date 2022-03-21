@@ -7,7 +7,7 @@ import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT, DEFAULT_TINY_APPEND_PADDING }
 import { fixedHeight, getDefaultTheme } from '../utils/chart';
 
 import '../utils/tools';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 
 registerInteraction('element-highlight-by-color', {
   start: [{ trigger: 'element:mouseenter', action: 'element-highlight-by-color:highlight' }],

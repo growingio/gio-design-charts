@@ -1,7 +1,7 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
 import { BaseChart, fetchTooltip, fetchViewConfig, generateChart, renderChart } from '../core/framework';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { LooseObject } from '@antv/g-base';
 import { ChartType } from '..';
 import { forEach } from 'lodash';

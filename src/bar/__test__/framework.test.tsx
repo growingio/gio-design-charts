@@ -4,12 +4,12 @@ import { render, screen } from '@testing-library/react';
 import { Bar as BarCls } from '../framework';
 import { BarDefault } from '../demos/Bar.stories';
 import { ChartType } from '../../interfaces';
-import { getLegends } from '../../hooks/useLegends';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { BarProps } from '../Bar';
+import { LegendObject } from '../../legends/useLegends';
 
 const { config, legends: legendList, data } = BarDefault.args as BarProps;
-const [legends] = getLegends(ChartType.AREA, legendList as any);
+const legendObj = new LegendObject({ type: ChartType.AREA }, legendList as any);
 describe('bar fromework', () => {
   const bar = new BarCls();
   test('call barChart', () => {
@@ -18,7 +18,7 @@ describe('bar fromework', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legends: legendObj.mapping,
     };
     bar.render(options, config);
   });
@@ -26,7 +26,7 @@ describe('bar fromework', () => {
   test('with id', () => {
     const options = {
       data,
-      legends,
+      legends: legendObj.mapping,
     };
     bar.render(options, config);
   });
@@ -40,9 +40,9 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legends: legendObj.mapping,
     };
     bar.render(options, config);
-    bar.legend(legends);
+    bar.legend(legendObj.mapping);
   });
 });

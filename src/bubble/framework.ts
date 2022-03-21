@@ -1,7 +1,7 @@
 import { Datum } from '@antv/g2/lib/interface';
 import { BaseChart, fetchConfig, fetchTooltip, generateChart } from '../core/framework';
 import { ChartOptions, ChartType } from '../interfaces';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { getPointShapeState } from '../utils/tools/shapeState';
 import { bindPointColor, bindPosition, bindShape, bindSize, bindState } from '../utils/frameworks/geometry';
 

@@ -4,13 +4,14 @@ import { render, screen } from '@testing-library/react';
 import { Area as AreaCls } from '../framework';
 import { AreaStack } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interfaces';
-import { getLegends } from '../../hooks/useLegends';
+import { LegendObject } from '../../legends/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
-const [legends] = getLegends(ChartType.AREA, legendList as any);
+
+const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
 describe('areaChart', () => {
   const area = new AreaCls();
   beforeEach(() => {
@@ -23,7 +24,7 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
     area.render(options, config);
   });
@@ -76,10 +77,10 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
     area.render(options, config);
-    area.legend(legends);
+    area.legend(legendObject.mapping);
   });
 
   test('call it without legends', () => {
@@ -88,7 +89,7 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
     area.render(options, config);
     area.legend(undefined as any);

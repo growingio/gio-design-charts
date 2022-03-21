@@ -3,7 +3,7 @@ import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { colors } from '../theme';
 import { BaseChart, fetchViewConfig, generateChart } from '../core/framework';
 import { bindGuageCoordination } from '../utils/frameworks/coordinate';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { gaugeText } from '../utils/frameworks/text';
 import { formatNumber, formatPercent } from '../utils/formatNumber';
 import { View } from '@antv/g2';

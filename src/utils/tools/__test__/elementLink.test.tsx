@@ -5,14 +5,15 @@ import { ChartCom, chartComponentTestid } from '../../../core/__test__/framework
 
 import { FunnelWith6Columns } from '../../../funnel/demos/Funnel.stories';
 import { getSingleData } from '../../../funnel/utils';
-import { getLegends } from '../../../hooks/useLegends';
+import { LegendObject } from '../../../legends/useLegends';
 import { Funnel as FunnelCls } from '../../../funnel/framework';
 import { addLinkByElement, addLinkByElementHigh } from '../elementLink';
 
 const { config, legends: legendList, data: sourceData } = FunnelWith6Columns.args as ChartProps;
 const data = getSingleData(sourceData);
-const [legends] = getLegends(ChartType.FUNNEL, legendList as any);
 
+const legendObject = new LegendObject({ type: ChartType.FUNNEL }, legendList as any);
+const legends = legendObject.mapping;
 describe('element-link', () => {
   const funnel = new FunnelCls();
   beforeEach(() => {
@@ -24,7 +25,7 @@ describe('element-link', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
     funnel.render(options, config);
     const view = funnel.views?.[0];

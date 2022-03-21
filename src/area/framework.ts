@@ -3,7 +3,7 @@ import { ShapeAttrs } from '@antv/g-base';
 import { ChartConfig, ChartOptions, Legend, Shape, AdjustOtptionType } from '../interfaces';
 import { BaseChart, renderChart } from '../core/framework';
 import { Line as LineCls } from '../line/framework';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { getAreaShapeState } from '../utils/tools/shapeState';
 
 export class Area extends BaseChart {

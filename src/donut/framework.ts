@@ -4,7 +4,7 @@ import { Datum, MappingDatum } from '@antv/g2/lib/interface';
 import { intervalShape } from '../column/framework';
 import { BaseChart, fetchConfig, fetchTooltip, generateChart } from '../core/framework';
 import { ChartConfig, ChartOptions, Legend, Legends, ChartType, Shape } from '../interfaces';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { donutText } from '../utils/frameworks/text';
 import { formatNumber, formatPercent } from '../utils/formatNumber';
 import { bindDonutCoordination } from '../utils/frameworks/coordinate';

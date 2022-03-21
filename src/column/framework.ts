@@ -4,7 +4,8 @@ import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from 
 import { BaseChart, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
-import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
+import { setCustomInfo } from '../utils/tools/configUtils';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';

@@ -2,7 +2,7 @@ import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Chart, Element, Scale, View } from '@antv/g2';
 import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
-import { LegendObject } from './hooks/useLegends';
+import { LegendObject } from './legends/useLegends';
 
 export interface Actions {
   instance: Chart | undefined;

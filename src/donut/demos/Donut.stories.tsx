@@ -62,7 +62,7 @@ Basic.args = {
       subTitle: '14.42万',
       label: {
         formatter: (item: any, total: number, index: number) => {
-          console.log('index of the label', index);
+          // console.log('index of the label', index);
           if (item.count / total > 0.05) {
             return `${item.name}: ${formatPercent(item.count / total)}`;
           }

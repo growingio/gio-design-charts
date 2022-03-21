@@ -4,11 +4,12 @@ import { render, screen } from '@testing-library/react';
 import { Column as ColumnCls } from '../framework';
 import { ColumnWithComponsive } from '../demos/Column.stories';
 import { ChartProps, ChartType } from '../../interfaces';
-import { getLegends } from '../../hooks/useLegends';
+import { LegendObject } from '../../legends/useLegends';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = ColumnWithComponsive.args as ChartProps;
-const [legends] = getLegends(ChartType.AREA, legendList as any);
+const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
+const legends = legendObject.mapping;
 describe('line fromework', () => {
   const column = new ColumnCls();
   test('call columnChart', () => {

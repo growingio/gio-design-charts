@@ -2,7 +2,7 @@ import { Element, Event, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { handleInterval, intervalShape } from '../column/framework';
 import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { Datum } from '@antv/g2/lib/interface';
 import { getAxisFields } from '../utils/frameworks/axis';
 import { LooseObject } from '@antv/g-base';
