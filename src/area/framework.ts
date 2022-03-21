@@ -58,6 +58,7 @@ export class Area extends BaseChart {
       // like Line framework, render twice to fix wrong label issue.
       this.instance.render(true);
     } catch (err) {
+      /* istanbul ignore next */
       console.log(err);
     }
   };

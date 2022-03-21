@@ -18,6 +18,7 @@ export class Bubble extends BaseChart {
 
     const { id, legendObject } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     const bubbleCfg = getShapeConfig(config, ChartType.BUBBLE);
