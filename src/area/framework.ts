@@ -44,6 +44,7 @@ export class Area extends BaseChart {
     this.config = config;
     const { id } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     this.instance = renderChart(options, config);
