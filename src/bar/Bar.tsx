@@ -41,16 +41,7 @@ const Bar: React.FC<BarProps> = (props: BarProps) => {
       minColumnWidth: 16,
     },
   };
-  return (
-    <LegendLayout
-      title={title}
-      data={data}
-      legendList={legendProps}
-      config={config}
-      callChart={bar.render}
-      handleLegend={bar.legend}
-    />
-  );
+  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} />;
 };
 
 export default fetchChart<BarProps>(Bar);

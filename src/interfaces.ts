@@ -2,6 +2,18 @@ import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Chart, Element, Scale, View } from '@antv/g2';
 import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
+import { LegendObject } from './legends/useLegends';
+
+export interface Actions {
+  instance: Chart | undefined;
+  views: View[];
+  config: ChartConfig | undefined;
+  options: ChartOptions | undefined;
+  render: any;
+  update: any;
+  legend: any;
+  clear: any;
+}
 
 export enum ChartType {
   LINE = 'line',
@@ -59,14 +71,14 @@ export interface Legends {
 export interface ChartOptions extends LooseObject {
   id?: HTMLElement;
   data?: LooseObject | LooseObject[];
-  legends?: Legends;
-  hasDashed?: boolean;
+  // legends?: Legends;
+  // hasDashed?: boolean;
   /**
    * this is used to render the chart whether to subtract the legend height or not.
    */
-  hasLegend?: boolean;
-  chart?: Chart;
-  views?: View[];
+  // hasLegend?: boolean;
+  legendObject?: LegendObject;
+  chart?: Actions;
   theme?: LooseObject;
   dict?: LooseObject;
   /**

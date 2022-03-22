@@ -2,6 +2,9 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import Bubble, { BubbleProps } from '../Bubble';
 import { Basic, Dark, SameSize } from '../demos/Bubble.stories';
+import { Bubble as BubbleCls } from '../framework';
+import { LegendLayout } from '../../layouts';
+import { IntlProvider } from 'react-intl';
 
 describe('Bubble Chart', () => {
   beforeEach(() => {
@@ -36,5 +39,17 @@ describe('Bubble Chart', () => {
       jest.runOnlyPendingTimers();
     });
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  });
+
+  test('render Bubble framework', () => {
+    const bubble = new BubbleCls();
+    const { legends, config, data, title } = Basic.args as BubbleProps;
+    render(
+      <IntlProvider locale="zh-CH" messages={{}}>
+        <LegendLayout config={config} title={title} data={data} legendList={legends || []} chart={bubble} />
+      </IntlProvider>
+    );
+
+    bubble.update(data);
   });
 });

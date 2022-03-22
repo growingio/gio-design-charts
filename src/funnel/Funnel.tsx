@@ -45,8 +45,7 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
       defaultOptions={defaultOptions}
       config={config}
       sourceData={data}
-      callChart={funnel.render}
-      handleLegend={funnel.legend}
+      chart={funnel}
     />
   );
 };

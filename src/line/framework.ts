@@ -1,14 +1,7 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
-import {
-  fetchTooltip,
-  fetchViewConfig,
-  generateChart,
-  handleLegendBehavior,
-  renderChart,
-  updateChart,
-} from '../core/framework';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { BaseChart, fetchTooltip, fetchViewConfig, generateChart, renderChart } from '../core/framework';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { LooseObject } from '@antv/g-base';
 import { ChartType } from '..';
 import { forEach } from 'lodash';
@@ -17,10 +10,7 @@ import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
 import { Datum } from '@antv/g2/lib/interface';
 
-export class Line {
-  options: ChartOptions | undefined = undefined;
-  chart: Chart | undefined = undefined;
-  views: View[] = [];
+export class LineBase extends BaseChart {
   finnalView: View | undefined = undefined;
 
   getDataByColor = (color: string, xField: string, yField: string, data: LooseObject[]): [number, LooseObject] => {
@@ -73,7 +63,7 @@ export class Line {
   };
 
   lineShape = (chart: Chart | View, options: ChartOptions, shapeConfig: Shape) => {
-    const { legends } = options;
+    const { legendObject } = options;
     const line = chart.line({
       theme: {
         strokeWidth: 2,
@@ -86,7 +76,7 @@ export class Line {
     line.position(shapeConfig.position);
     line.color(shapeConfig.color);
     line.style(shapeConfig.color, (label: string) => {
-      const legend = legends?.[label] || ({} as Legend);
+      const legend = legendObject?.getLegend(label) || ({} as Legend);
       const style = {} as LooseObject;
       if (legend.color) {
         style.stroke = legend.color;
@@ -101,11 +91,11 @@ export class Line {
     return line;
   };
 
-  updateContrast = (charts: { chart: Chart }, data: Datum[], config: ChartConfig) => {
-    const lineCfg = getShapeConfig(config, ChartType.LINE);
+  update = (data: Datum[]) => {
+    const lineCfg = getShapeConfig(this.config, ChartType.LINE);
     const [xField, yField] = getAxisFields(lineCfg.position);
     const [maxValue, dataMapping] = this.getDataByColor(lineCfg.color, xField, yField, data);
-    this.setMax(yField, maxValue, config);
+    this.setMax(yField, maxValue, this.config as ChartConfig);
 
     const legends = this.options?.legends || {};
     const viewCount = 0;
@@ -120,16 +110,42 @@ export class Line {
         this.finnalView?.render(true);
       }
     );
-
-    this.chart?.render(true);
+    this.instance?.render(true);
   };
+}
 
-  contrast = (options: ChartOptions, config: ChartConfig = {}) => {
-    const { id, data, legends = {} } = options;
+export class Line extends LineBase {
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
+    this.options = options;
+    this.config = config;
+
+    const { id } = options;
+    if (!id) {
+      return;
+    }
+    this.instance = renderChart(options, config);
+    try {
+      const lineConfig = getShapeConfig(config, 'line');
+      this.lineShape(this.instance, options, lineConfig);
+      this.instance.render();
+      // Sometimes, chart will render wrong axis labels, render again will be fine.
+      this.instance.render(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+export class ContrastLine extends LineBase {
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
+    this.options = options;
+    this.config = config;
+
+    const { id, data, legendObject } = options;
     if (!id) {
       return {};
     }
-    const chart = generateChart(options, config);
+    this.instance = generateChart(options, config);
     this.options = options;
     try {
       const lineCfg = getShapeConfig(config, ChartType.LINE);
@@ -142,48 +158,26 @@ export class Line {
 
       // render history view, the label should hide;
       const historyView = (updatedData: LooseObject[]) => {
-        const view = this.contrastView(chart, { ...options, data: updatedData }, config, viewOptions);
+        const view = this.contrastView(this.instance as Chart, { ...options, data: updatedData }, config, viewOptions);
         views.push(view);
       };
       // render current view, the label should show;
       const currentView = (updatedData: LooseObject[]) => {
-        const view = this.contrastView(chart, { ...options, data: updatedData }, config);
+        const view = this.contrastView(this.instance as Chart, { ...options, data: updatedData }, config);
         views.push(view);
         this.finnalView = view;
       };
-      this.contrastViewQueue(dataMapping, legends)(historyView, currentView);
+      this.contrastViewQueue(dataMapping, legendObject?.mapping || {})(historyView, currentView);
 
-      fetchTooltip(chart, config);
-      chart.legend(false);
-      chart.render();
+      this.views = views;
+
+      fetchTooltip(this.instance, config);
+      this.instance.legend(false);
+      this.instance.render();
       // Sometimes, chart will render wrong axis labels, render again will be fine.
-      chart.render(true);
-      this.chart = chart;
-      return { chart, views, update: this.updateContrast };
+      this.instance.render(true);
+      return { chart: this.instance, views, update: this.update };
     } catch (err) {}
-    return { chart, update: this.updateContrast };
-  };
-
-  render = (options: ChartOptions, config: ChartConfig = {}) => {
-    const { id } = options;
-    if (!id) {
-      return {};
-    }
-    const chart = renderChart(options, config);
-    try {
-      const lineConfig = getShapeConfig(config, 'line');
-      this.lineShape(chart, options, lineConfig);
-      chart.render();
-      // Sometimes, chart will render wrong axis labels, render again will be fine.
-      chart.render(true);
-    } catch (err) {}
-    return { chart, update: updateChart };
-  };
-
-  legend = <LineConfig>(charts: (Chart | View)[], legends: Legends, config: LineConfig) => {
-    const lineConfig = getShapeConfig(config, 'line');
-    if (lineConfig.color) {
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
-    }
+    return { chart: this.instance, update: this.update };
   };
 }
