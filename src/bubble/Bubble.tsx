@@ -11,7 +11,6 @@ export interface BubbleProps extends ChartProps {
 
 const Bubble: React.FC<BubbleProps> = (props: BubbleProps) => {
   const { data, legends: legendProps = [], config, title } = props;
-
   const bubble = useMemo(() => new BubbleCls(), []);
 
   config.type = ChartType.BUBBLE;
