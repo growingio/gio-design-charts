@@ -1,14 +1,8 @@
 import { Point } from '@antv/component';
 import { ShapeInfo } from '@antv/g2/lib/interface';
-import {
-  getDefaultStyles,
-  getRelateLegend,
-  getShapeConfig,
-  isStack,
-  isTopBar,
-  isUseDash,
-  setCustomInfo,
-} from '../configUtils';
+import { getDefaultStyles, getRelateLegend, isStack, isTopBar, isUseDash, setCustomInfo } from '../configUtils';
+
+import { getShapeConfig } from '../shapeConfig';
 
 describe('getShapeConfig', () => {
   test('call it', () => {

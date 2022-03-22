@@ -5,15 +5,15 @@ import { ChartCom, chartComponentTestid } from '../../../core/__test__/framework
 
 import { FunnelWith6Columns } from '../../../funnel/demos/Funnel.stories';
 import { getSingleData } from '../../../funnel/utils';
-import { getLegends } from '../../../hooks/useLegends';
+import { LegendObject } from '../../../legends/useLegends';
 import { Funnel as FunnelCls } from '../../../funnel/framework';
 import { addLinkByElement, addLinkByElementHigh } from '../elementLink';
-import { View } from '@antv/g2';
 
 const { config, legends: legendList, data: sourceData } = FunnelWith6Columns.args as ChartProps;
 const data = getSingleData(sourceData);
-const [legends] = getLegends(ChartType.FUNNEL, legendList as any);
 
+const legendObject = new LegendObject({ type: ChartType.FUNNEL }, legendList as any);
+const legends = legendObject.mapping;
 describe('element-link', () => {
   const funnel = new FunnelCls();
   beforeEach(() => {
@@ -25,11 +25,11 @@ describe('element-link', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
-    const charts = funnel.render(options, config);
-    const view = charts.views?.[0];
-    addLinkByElement(view as View, [], { delay: 0 });
+    funnel.render(options, config);
+    const view = funnel.views?.[0];
+    addLinkByElement(view, [], { delay: 0 });
   });
 
   test('addLinkByElement with empty view', () => {
@@ -44,10 +44,10 @@ describe('element-link', () => {
       data,
       legends,
     };
-    const charts = funnel.render(options, config);
-    const view = charts.views?.[0];
+    funnel.render(options, config);
+    const view = funnel.views?.[0];
     const linkElement = addLinkByElementHigh();
-    linkElement(view as View, { delay: -1 });
-    linkElement(view as View, { delay: -1 });
+    linkElement(view, { delay: -1 });
+    linkElement(view, { delay: -1 });
   });
 });

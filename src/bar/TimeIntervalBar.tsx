@@ -43,8 +43,7 @@ const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={bar.render}
-      handleLegend={bar.legend}
+      chart={bar}
       fullHeight={fullHeight}
     />
   );

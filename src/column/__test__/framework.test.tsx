@@ -4,14 +4,14 @@ import { render, screen } from '@testing-library/react';
 import { Column as ColumnCls } from '../framework';
 import { ColumnWithComponsive } from '../demos/Column.stories';
 import { ChartProps, ChartType } from '../../interfaces';
-import { getLegends } from '../../hooks/useLegends';
-import { Chart } from '@antv/g2';
+import { LegendObject } from '../../legends/useLegends';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { IntlProvider } from 'react-intl';
 import { LegendLayout } from '../../layouts';
 
 const { config, legends: legendList, data } = ColumnWithComponsive.args as ChartProps;
-const [legends] = getLegends(ChartType.AREA, legendList as any);
+const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
+const legends = legendObject.mapping;
 describe('line fromework', () => {
   const column = new ColumnCls();
   test('call columnChart', () => {
@@ -62,8 +62,8 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = column.render(options, config);
-    column.legend([chart as Chart], legends, config);
+    column.render(options, config);
+    column.legend(legends);
   });
   test('call it without config', () => {
     render(<ChartCom />);
@@ -73,7 +73,7 @@ describe('handleLegend', () => {
       data,
       legends,
     };
-    const { chart } = column.render(options, config);
-    column.legend([chart as Chart], legends, {});
+    column.render(options, config);
+    column.legend(legends);
   });
 });

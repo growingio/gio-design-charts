@@ -9,7 +9,7 @@ import { fixedHeight } from '../../utils/chart';
 const LegendLayout = (props: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement | null>(null);
   const { options, config = {}, onClickLegend, width } = props;
-  const { legendQueue, chart, views, title } = options;
+  const { chart, title, legendObject } = options;
   const [offsetWidth, setOffsetWidth] = useState(0);
 
   /* istanbul ignore next */
@@ -22,24 +22,25 @@ const LegendLayout = (props: LayoutProps) => {
         return;
       }
       if (autoFit) {
-        chart?.forceFit();
+        chart?.instance?.forceFit();
         setOffsetWidth(divWidth);
         return;
       }
       const useWidth = Number(width) > divWidth + 40 ? Number(width) : divWidth;
-      if (config?.chart?.height && chart?.canvas?.get('el')) {
-        chart?.changeSize(useWidth, fixedHeight(options, config));
-        views?.forEach((view: View) => view.render(true));
-        chart?.render(true);
-        chart?.render(true);
+      if (config?.chart?.height && chart?.instance?.canvas?.get('el')) {
+        chart?.instance?.changeSize(useWidth, fixedHeight(options, config));
+        chart.views?.forEach((view: View) => view.render(true));
+        chart.instance?.render(true);
+        chart.instance?.render(true);
       }
       setOffsetWidth(divWidth);
     },
-    [chart, views, options, config, width]
+    [chart, options, config, width]
   );
 
   const offset = useOffset(layoutRef, watchReset);
   const color = getThemeColor(config);
+
   return (
     <div className="gio-d-charts" ref={layoutRef} data-testid="legend-layout">
       {title && (
@@ -47,10 +48,10 @@ const LegendLayout = (props: LayoutProps) => {
           {title}
         </div>
       )}
-      {config.legend !== false && legendQueue?.length > 0 && (
+      {legendObject?.support && (
         <Legends
           config={config}
-          legends={legendQueue}
+          legends={legendObject.quene}
           offsetWidth={offsetWidth || offset.width}
           onClick={onClickLegend}
         />

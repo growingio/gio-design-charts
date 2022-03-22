@@ -13,16 +13,7 @@ const Donut: React.FC<DonutProps> = (props: DonutProps) => {
   const donut = useMemo(() => new DonutCls(), []);
   config.type = ChartType.DONUT;
 
-  return (
-    <LegendLayout
-      title={title}
-      data={data}
-      legendList={legendProps}
-      config={config}
-      callChart={donut.render}
-      handleLegend={donut.legend}
-    />
-  );
+  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={donut} />;
 };
 
 export default fetchChart<DonutProps>(Donut);

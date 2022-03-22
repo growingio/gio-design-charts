@@ -1,17 +1,16 @@
 import { Chart, Event, View } from '@antv/g2';
 import { cloneDeep, isEmpty, merge } from 'lodash';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend } from '../interfaces';
 import { colors, DEFAULT_REDIUS } from '../theme';
 import { intervalShape } from '../column/framework';
-import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
+import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
-import { getShapeConfig } from '../utils/tools/configUtils';
 import gioTheme, { viewTheme } from '../theme/chart';
 import { LooseObject } from '@antv/g-base';
 
-export class Funnel {
+export class Funnel extends BaseChart {
   fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
-    const { legends, defaultStyles } = options;
+    const { legendObject, defaultStyles } = options;
     return intervalShape(
       chart,
       options,
@@ -23,7 +22,7 @@ export class Funnel {
         },
       },
       (label: string) => {
-        const legend = legends?.[label] || ({} as Legend);
+        const legend = legendObject?.getLegend(label) || ({} as Legend);
         return {
           stroke: '#fff',
           strokeWidth: 1,
@@ -52,10 +51,10 @@ export class Funnel {
     const addLinkByElement = addLinkByElementHigh();
     return [
       addLinkByElement,
-      ({ chart, views = [] }: { chart: Chart; views: View[] }, data: LooseObject) => {
+      (data: LooseObject) => {
         const sourceData = data?.source || [];
         const covertData = data?.covert || [];
-        const [linkView, backgroundView] = views;
+        const [linkView, backgroundView] = this.views;
         backgroundView?.changeData(covertData);
         backgroundView?.render(true);
 
@@ -63,28 +62,32 @@ export class Funnel {
         this.bindLinkEvent(linkView, addLinkByElement, data);
 
         linkView?.render(true);
-        chart.render(true);
+        this.instance?.render(true);
       },
     ];
   };
 
   render = (options: ChartOptions, config: ChartConfig = {}) => {
+    this.options = options;
+    this.config = config;
+
     const { id } = options;
     if (!id || isEmpty(options.data)) {
       return {};
     }
-    const { interceptors, legends } = options;
-    const chart = generateChart(options, config);
+    const { interceptors, legendObject } = options;
+    this.instance = generateChart(options, config);
     const [addLinkByElement, updateFunnel] = this.updateHoc();
+    this.update = updateFunnel as any;
     try {
       const sourceData = (options.data as LooseObject)?.source || [];
       const covertData = (options.data as LooseObject)?.covert || [];
       const isGroup = (options.data as LooseObject)?.isGroup;
 
-      const emptyLegends = isEmpty(legends);
+      const emptyLegends = isEmpty(legendObject?.mapping);
 
       // Use viewTheme to set the label of axis is white
-      const backgroundView = chart.createView({
+      const backgroundView = this.instance.createView({
         theme: merge(cloneDeep(gioTheme), viewTheme),
       });
       const backgroundOptions = {
@@ -102,8 +105,9 @@ export class Funnel {
       this.fetchInterval(backgroundView, backgroundOptions, config);
       backgroundView.interaction('element-active');
       backgroundView.render();
+      this.views.push(backgroundView);
 
-      const linkView = chart.createView();
+      const linkView = this.instance.createView();
       const linkOptions = {
         ...options,
         data: sourceData,
@@ -120,21 +124,14 @@ export class Funnel {
       fetchViewConfig(linkView, linkOptions, config);
       this.fetchInterval(linkView, linkOptions, config);
       linkView.render();
+      this.views.push(linkView);
 
-      fetchTooltip(chart, config);
-      chart.legend(false);
-      chart.render();
-      interceptors?.bindElementEvents(chart, { more: true });
-      return { chart, views: [linkView, backgroundView], update: updateFunnel };
+      fetchTooltip(this.instance, config);
+      this.instance.legend(false);
+      this.instance.render();
+      interceptors?.bindElementEvents(this.instance, { more: true });
     } catch (err) {
-      return { chart, update: updateFunnel };
-    }
-  };
-
-  legend = <FunnelConfig>(charts: (Chart | View)[], legends: Legends, config: FunnelConfig) => {
-    const barConfig = getShapeConfig(config as ChartConfig, 'funnel');
-    if (barConfig.color) {
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+      console.log(err);
     }
   };
 }

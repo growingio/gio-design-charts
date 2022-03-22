@@ -3,7 +3,7 @@ import { TriggerItem } from '../info-card/InfoCardBox';
 import { Legend, Legends, ChartOptions, ChartConfig, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE } from '../theme';
 import { getDodgeBy } from './interval';
-import { getShapeConfig } from './tools/configUtils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 
 export const getBackgroundImage = (type: string | ChartType) => ({
   backgroundImage: `url("${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}")`,
