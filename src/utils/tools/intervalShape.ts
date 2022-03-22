@@ -58,6 +58,7 @@ function getRectAttrs(points: Point[], stack = false, isNeg?: boolean) {
   const hookHeight = height === 0 ? 0 : defualtHeight;
   const fixedHeight = height < DEFAULT_MIN_HEIGHT ? hookHeight : height - 1;
   if (isNeg) {
+    /* istanbul ignore next */
     return {
       x: points[0].x,
       y: points[0].y,
