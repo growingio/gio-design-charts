@@ -38,7 +38,7 @@ const LegendLayout = (props: LayoutProps) => {
   return (
     <div className="gio-d-charts" ref={layoutRef} data-testid="legend-layout">
       {title && (
-        <div className="gio-d-charts__title" style={{ color }}>
+        <div className="gio-d-charts__title" title={title} style={{ color }}>
           {title}
         </div>
       )}

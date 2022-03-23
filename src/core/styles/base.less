@@ -5,13 +5,16 @@
   font-family: 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Lato, sans-serif;
 
   &__title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     height: 30px;
+    overflow: hidden;
     color: #313e75;
     font-weight: 500;
     font-size: 14px;
+    line-height: 30px;
+    white-space: nowrap;
+    text-align: center;
+    text-overflow: ellipsis;
   }
 
   &_main {
