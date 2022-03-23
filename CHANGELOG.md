@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/growingio/gio-design-charts/compare/v1.4.0...v1.5.0) (2022-03-23)
+
+
+### Features
+
+* **Class:** use class in core ([#250](https://github.com/growingio/gio-design-charts/issues/250)) ([1d298e0](https://github.com/growingio/gio-design-charts/commit/1d298e08a622fa9e8ec7454486bd6affcc66f7f8))
+
 # [1.4.0](https://github.com/growingio/gio-design-charts/compare/v1.3.20...v1.4.0) (2022-03-16)
 
 
