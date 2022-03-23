@@ -146,7 +146,7 @@ const useChart = (options: UseChartProps) => {
 
   useEffect(() => {
     // 如果equalConfig有变化，则进入创建或者清楚通道
-    if (hasChangedConfig) {
+    if (hasChangedConfig || hasChangedData) {
       // 如果已经有了chartRef.current，需要先销毁
       if (chartRef.current) {
         clear();
@@ -154,11 +154,12 @@ const useChart = (options: UseChartProps) => {
         create();
       }
     }
-  }, [create, clear, hasChangedConfig, config, tooltipKey, legendList]);
+  }, [create, clear, hasChangedConfig, hasChangedData, config, tooltipKey, legendList]);
 
-  if (!hasChangedConfig && hasChangedData) {
-    updateChart();
-  }
+  // if (!hasChangedConfig && hasChangedData) {
+  //   console.log('update ...');
+  //   updateChart();
+  // }
 
   const chartOptions = useMemo(
     () => ({
