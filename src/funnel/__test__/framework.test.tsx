@@ -7,8 +7,10 @@ import { ChartProps, ChartType } from '../../interfaces';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { getSingleData } from '../utils';
 import { LegendObject } from '../../legends/useLegends';
+import { IntlProvider } from 'react-intl';
+import { LegendLayout } from '../../layouts';
 
-const { config, legends: legendList, data: sourceData } = FunnelWith3Columns.args as ChartProps;
+const { config, legends: legendList, data: sourceData, title } = FunnelWith3Columns.args as ChartProps;
 const data = getSingleData(sourceData);
 const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
 describe('funnel fromework', () => {
@@ -83,6 +85,25 @@ describe('handleLegend', () => {
       legendObject,
     };
     funnel.render(options, config);
-    // funnel.legend(legends);
+  });
+});
+
+describe('Gauge framework', () => {
+  const funnelCls = new FunnelCls();
+  const legendTestId = 'legend-layout';
+  const funnelData = getSingleData(sourceData, config);
+
+  beforeAll(() => {
+    config.type = ChartType.FUNNEL;
+    render(
+      <IntlProvider locale="zh-CH" messages={{}}>
+        <LegendLayout config={config} title={title} data={funnelData} legendList={legendList || []} chart={funnelCls} />
+      </IntlProvider>
+    );
+  });
+
+  test('render', async () => {
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+    funnelCls.update(funnelData as any);
   });
 });

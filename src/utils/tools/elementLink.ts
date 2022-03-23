@@ -40,6 +40,7 @@ const reduceElements = (elements: Element[], callback: (prev: Element, current: 
 const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []) => {
   try {
     if (view.foregroundGroup.destroyed) {
+      /* istanbul ignore next */
       return;
     }
     const linkGroup = view.foregroundGroup.addGroup({

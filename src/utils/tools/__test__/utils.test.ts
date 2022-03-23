@@ -1,4 +1,5 @@
-import { getMiddleCoordinate, getLinkPath, getMiddleRect, getArrowPolygon } from '../utils';
+import { DEFAULT_FONT_COLOR } from '../../../theme';
+import { getMiddleCoordinate, getLinkPath, getMiddleRect, getArrowPolygon, getColorByGroupModel } from '../utils';
 
 describe('test fromework utils', () => {
   test('call getLinkPath', () => {
@@ -57,5 +58,23 @@ describe('test fromework utils', () => {
       [55, 150],
       [55, 50],
     ]);
+  });
+
+  test('call getColorByGroupModel with default', () => {
+    const model = {} as any;
+    const color = getColorByGroupModel(model);
+    expect(color).toBe(DEFAULT_FONT_COLOR);
+  });
+
+  test('call getColorByGroupModel with model.color', () => {
+    const model = { color: '#F1F1F1' } as any;
+    const color = getColorByGroupModel(model);
+    expect(color).toBe('#F1F1F1');
+  });
+
+  test('call getColorByGroupModel with model.style.fill', () => {
+    const model = { style: { fill: '#F1F1F1' } } as any;
+    const color = getColorByGroupModel(model);
+    expect(color).toBe('#F1F1F1');
   });
 });

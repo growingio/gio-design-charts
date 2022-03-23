@@ -71,3 +71,25 @@ describe('isTopBar', () => {
     expect(isTopBar({} as ShapeInfo)).toBeTruthy();
   });
 });
+
+describe('getRelateLegend', () => {
+  test('call getRelateLegend function', () => {
+    const shapeInfo = {
+      data: { type: 'test' } as any,
+      customInfo: {
+        contrastDodge: true,
+        dodgeBy: 'type',
+        legendObject: {
+          mapping: {
+            test: {
+              color: 'type',
+              value: 123,
+            },
+          },
+        },
+      },
+    } as ShapeInfo;
+    const cfg = getRelateLegend(shapeInfo);
+    expect(cfg).toEqual({ value: 123 });
+  });
+});

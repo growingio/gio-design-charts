@@ -69,6 +69,7 @@ export class Gauge extends BaseChart {
     this.options = options;
     const { id, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     this.instance = generateChart(options, config);

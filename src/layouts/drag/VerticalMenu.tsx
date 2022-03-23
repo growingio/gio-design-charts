@@ -23,6 +23,7 @@ const getRanges = (max: number, range: number[] = [0, 0]) => {
     }
     return ranges;
   } catch (err) {
+    /* istanbul ignore next */
     return [];
   }
 };

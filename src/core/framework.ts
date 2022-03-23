@@ -57,16 +57,6 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
   return chart;
 };
 
-export const fetchIntervalLabel = (interval: Interval, config: ChartConfig, labelCallback?: any, labelConfig?: any) => {
-  const shapeConfig = config[config.type] || {};
-  const label = shapeConfig.label || {};
-  if (typeof label === 'string') {
-    label && interval.label(label, labelCallback, labelConfig);
-  } else if (typeof label === 'object') {
-    label.field && interval.label(label.field, label.callback || labelCallback, label.config || labelConfig);
-  }
-};
-
 export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
   const { data } = options;
 

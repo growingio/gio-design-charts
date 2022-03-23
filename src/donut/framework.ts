@@ -23,7 +23,7 @@ export class Donut extends BaseChart {
   };
 
   updateText = (textView: View, data: LooseObject[], config: ChartConfig) => {
-    textView.clear();
+    textView?.clear();
     this.addText(textView, data, config);
     textView?.render(true);
     textView?.render(true);
@@ -44,6 +44,7 @@ export class Donut extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig) => {
     const { id, legendObject, defaultStyles = {}, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
 
@@ -83,6 +84,7 @@ export class Donut extends BaseChart {
               // the undefined which get from formatter return, that means not display label
               return formatter(dataItem, this.totalCount, index);
             }
+            /* istanbul ignore next */
             return `${dataItem[donutCfg.color || 'name']}: ${formatPercent(dataItem['count'] / this.totalCount)}`;
           },
         };
@@ -98,7 +100,6 @@ export class Donut extends BaseChart {
 
     fetchTooltip(this.instance, config);
     this.instance.render();
-
     this.instance.render(true);
 
     this.donutView = donutView;
@@ -116,9 +117,7 @@ export class Donut extends BaseChart {
   legend = (legends: Legends) => {
     const donut = getShapeConfig(this.config, 'donut');
     if (donut.color) {
-      const filteredData = this.options?.data?.filter((item: LooseObject) => {
-        return legends[item[donut.color]].active;
-      });
+      const filteredData = this.options?.data?.filter((item: LooseObject) => legends[item[donut.color]].active);
       this.setTotal(filteredData, donut);
       this.updateText(this.textView as View, filteredData, this.config as ChartConfig);
       this.defaultLegendBehavior(legends);

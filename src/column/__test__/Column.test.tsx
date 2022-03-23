@@ -42,6 +42,11 @@ describe('Column Chart', () => {
     render(<Column {...(PercentColumn.args as ColumnProps)} />);
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
+
+  test('render Chart with Dash column', async () => {
+    render(<Column {...(ColumnWithComponsive.args as ColumnProps)} />);
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  });
 });
 
 describe('Column Chart with special cases', () => {

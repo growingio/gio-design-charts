@@ -105,6 +105,7 @@ export class LineBase extends BaseChart {
         view?.changeData(updatedData);
         view?.render(true);
       },
+      /* istanbul ignore next */
       (updatedData: LooseObject[]) => {
         this.finnalView?.changeData(updatedData);
         this.finnalView?.render(true);
@@ -131,6 +132,7 @@ export class Line extends LineBase {
       // Sometimes, chart will render wrong axis labels, render again will be fine.
       this.instance.render(true);
     } catch (err) {
+      /* istanbul ignore next */
       console.log(err);
     }
   };
@@ -143,6 +145,7 @@ export class ContrastLine extends LineBase {
 
     const { id, data, legendObject } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     this.instance = generateChart(options, config);
@@ -176,8 +179,9 @@ export class ContrastLine extends LineBase {
       this.instance.render();
       // Sometimes, chart will render wrong axis labels, render again will be fine.
       this.instance.render(true);
-      return { chart: this.instance, views, update: this.update };
-    } catch (err) {}
-    return { chart: this.instance, update: this.update };
+    } catch (err) {
+      /* istanbul ignore next */
+      console.log(err);
+    }
   };
 }

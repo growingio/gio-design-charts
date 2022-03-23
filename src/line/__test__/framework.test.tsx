@@ -1,19 +1,36 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { Line as LineCls } from '../framework';
-import { BaiscLine } from '../demos/Line.stories';
+import { Line as LineCls, ContrastLine as ContrastLineCls } from '../framework';
+import { BaiscLine, ContrastLineExample } from '../demos/Line.stories';
 import { ChartType } from '../../interfaces';
 import { LegendObject } from '../../legends/useLegends';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { LineProps } from '../Line';
+import { IntlProvider } from 'react-intl';
+import { LegendLayout } from '../../layouts';
 
-const { config, legends: legendList, data } = BaiscLine.args as LineProps;
+const { config, title, legends: legendList, data } = BaiscLine.args as LineProps;
+const legendObject = new LegendObject({ type: ChartType.LINE }, legendList as any);
+const testid = 'legend-layout';
 
-const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
-describe('line fromework', () => {
+describe('Line fromework', () => {
+  const line = new LineCls();
+  beforeAll(() => {
+    config.type = ChartType.LINE;
+    render(
+      <IntlProvider locale="zh-CH" messages={{}}>
+        <LegendLayout config={config} title={title} data={data} legendList={legendList || []} chart={line} />
+      </IntlProvider>
+    );
+  });
+
+  test('render', async () => {
+    expect(await screen.findByTestId(testid)).toBeTruthy();
+    line.update(data);
+  });
+
   test('call lineChart', () => {
-    const line = new LineCls();
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
@@ -40,6 +57,24 @@ describe('line fromework', () => {
       legendObject,
     };
     line.render(options);
+  });
+});
+
+describe('ContrastLine framework', () => {
+  const { config, title, legends: legendList, data } = ContrastLineExample.args as LineProps;
+  const line = new ContrastLineCls();
+  beforeAll(() => {
+    config.type = ChartType.LINE;
+    render(
+      <IntlProvider locale="zh-CH" messages={{}}>
+        <LegendLayout config={config} title={title} data={data} legendList={legendList || []} chart={line} />
+      </IntlProvider>
+    );
+  });
+
+  test('render', async () => {
+    expect(await screen.findByTestId(testid)).toBeTruthy();
+    line.update(data);
   });
 });
 
