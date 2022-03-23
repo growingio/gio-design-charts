@@ -37,7 +37,7 @@ const DragLayout = (props: DragLayoutProps) => {
   return (
     <div className="gio-d-charts" data-testid="drag-layout">
       {title && (
-        <div className="gio-d-charts__title" style={{ color }}>
+        <div className="gio-d-charts__title" title={title} style={{ color }}>
           {title}
         </div>
       )}
