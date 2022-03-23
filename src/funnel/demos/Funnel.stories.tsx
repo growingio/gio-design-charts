@@ -15,7 +15,6 @@ import {
 
 import Docs from './Funnel.mdx';
 import { formatNumber, formatPercent, InfoCard } from '../..';
-import React, { useMemo, useState } from 'react';
 
 export default {
   title: 'Charts/漏斗图 Funnel',
@@ -138,58 +137,11 @@ const FunnelWith7ColumnsArgs = {
 FunnelWith7Columns.storyName = '7个事件漏斗';
 FunnelWith7Columns.args = FunnelWith7ColumnsArgs;
 
-const UpdateCom = React.memo(() => {
-  const cfg = useMemo(
-    () => ({
-      ...config,
-      funnel: {
-        position,
-        color: 'city',
-        adjust: ['dodge'],
-        label: configLabel,
-      },
-      tooltip: {
-        enterable: true,
-        showContent: true,
-        // shared: true,
-        showMarkers: false,
-        render: (options: any) => {
-          return <DrillDownCard options={options} />;
-        },
-      },
-    }),
-    []
-  );
-  const [newData, setData] = useState(dataWithGroup);
-  const [newLegends, setLegends] = useState([{ name: '北京', alias: '北京 Alias' }, '上海', '南京', '深圳', '广东']);
-  const update = () => {
-    setData(
-      [
-        { type: '1.商品详情页｜浏览', city: '乌鲁木齐', count: 84213342, value: 1 },
-        { type: '2.加入购物车', city: '乌鲁木齐', count: 18734, value: 0.8619674243121377 },
-        { type: '3.进入购物车', city: '乌鲁木齐', count: 6839, value: 0.31466826170976353 },
-        { type: '4.完成购买', city: '乌鲁木齐', count: 20, value: 0.0043433330265943 },
-      ].concat(newData)
-    );
-    (newLegends || []).unshift('乌鲁木齐');
-    setLegends(newLegends);
-  };
-  return (
-    <Card>
-      <button onClick={update}>Update222</button>
-      <GroupedFunnel data={newData} config={cfg} legends={newLegends} />
-    </Card>
-  );
-});
-
-const GroupTemplate: ComponentStory<typeof Funnel> = (args) => {
-  return (
-    <Card>
-      <GroupedFunnel {...args} />
-      {/* <UpdateCom /> */}
-    </Card>
-  );
-};
+const GroupTemplate: ComponentStory<typeof Funnel> = (args) => (
+  <Card>
+    <GroupedFunnel {...args} />
+  </Card>
+);
 
 export const FunnelWithGroup = GroupTemplate.bind({});
 const FunnelWithGroupArgs = {
