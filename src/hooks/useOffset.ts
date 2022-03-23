@@ -8,6 +8,7 @@ export interface Offset {
 
 const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset) => void) => {
   const offsetRef: MutableRefObject<Offset | undefined> = useRef();
+  /* istanbul ignore next */
   const onResize = useCallback(
     (offset: Offset) => {
       offsetRef.current = offset;
@@ -18,6 +19,7 @@ const useOffset = (rootRef: RefObject<HTMLDivElement>, watchReset?: (obj: Offset
 
   useEffect(() => {
     const resize = debounce(onResize, 200);
+    /* istanbul ignore next */
     const observe = new ResizeObserver((entries: ResizeObserverEntry[]) => {
       const contentRect = entries?.[0]?.contentRect;
       resize({ width: contentRect?.width || 0, height: contentRect?.height });

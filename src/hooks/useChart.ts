@@ -51,10 +51,21 @@ const useChart = (options: UseChartProps) => {
   const dataRef = useRef<LooseObject | LooseObject[]>();
   // const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
 
+  /* istanbul ignore next */
   const clear = useCallback(() => {
     chart.clear();
     setTooltipKey(new Date().getTime());
   }, [chart, setTooltipKey]);
+
+  /* istanbul ignore next */
+  const tooltipCustomItems = (originalItems: TooltipItem[]) => {
+    // it will be get error when mouseover quickly on chart before funnl chart is rendered
+    // debounce will resolve it.
+    // use setHoverItem will make sure the tooltip marker style is right
+    // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
+    tooltipItemRegister(originalItems);
+    return originalItems;
+  };
 
   const create = useCallback(() => {
     // If the config is empty or there is no special config, return null;
@@ -67,14 +78,7 @@ const useChart = (options: UseChartProps) => {
         ? {
             ...config.tooltip,
             container: tooltipRef.current,
-            customItems: (originalItems: TooltipItem[]) => {
-              // it will be get error when mouseover quickly on chart before funnl chart is rendered
-              // debounce will resolve it.
-              // use setHoverItem will make sure the tooltip marker style is right
-              // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
-              tooltipItemRegister(originalItems);
-              return originalItems;
-            },
+            customItems: tooltipCustomItems,
           }
         : false;
     const chartConfig = {
@@ -120,6 +124,7 @@ const useChart = (options: UseChartProps) => {
     title,
   ]);
 
+  /* istanbul ignore next */
   const updateChart = useCallback(() => {
     const changedData = !isEqual(dataRef.current, data);
     if (changedData) {
@@ -136,6 +141,7 @@ const useChart = (options: UseChartProps) => {
     if (hasChangedConfig) {
       // 如果已经有了chartRef.current，需要先销毁
       if (chart.instance) {
+        /* istanbul ignore next */
         clear();
       } else {
         create();
@@ -159,6 +165,7 @@ const useChart = (options: UseChartProps) => {
   );
 
   if (!hasChangedConfig && hasChangedData) {
+    /* istanbul ignore next */
     updateChart();
   }
 
