@@ -23,6 +23,7 @@ export const bindSize = (geo: Geometry, sizeCfg: number | string | LooseObject |
       sizeCfg as [field: string | number, cfg?: SizeAttrCallback | [number, number] | undefined]
     );
   }
+  /* istanbul ignore next */
   return geo;
 };
 

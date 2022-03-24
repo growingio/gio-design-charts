@@ -8,7 +8,7 @@ import { getAxisFields } from '../utils/frameworks/axis';
 import { LooseObject } from '@antv/g-base';
 import { cloneDeep } from 'lodash';
 import { bindBarCoordination } from '../utils/frameworks/coordinate';
-import { getbackgroundState } from '../utils/tools/shapeState';
+import { getBackgroundState } from '../utils/tools/shapeState';
 import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
 import { getColorByGroupModel } from '../utils/tools/utils';
@@ -56,7 +56,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
 };
 
 export const handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
-  const barConfig = getShapeConfig(config, ChartType.BAR);
+  const barConfig = getShapeConfig(config as ChartConfig, ChartType.BAR);
   if (barConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
   }
@@ -88,11 +88,12 @@ export class Bar {
     const interval = intervalShape(view, this.options as ChartOptions, this.config as ChartConfig, {
       customInfo: { chartType: ChartType.BAR, defaultStyles: { color: `${colors[0]}10` } },
     });
-    interval.state(getbackgroundState());
+    interval.state(getBackgroundState());
     view.tooltip(false);
     view.render(true);
   };
 
+  /* istanbul ignore next */
   readonly renderSuffixText = (elements: Element[]) => {
     this.textView?.clear();
     setTimeout(() => {
@@ -139,6 +140,7 @@ export class Bar {
   render = (options: ChartOptions, config: ChartConfig) => {
     const { id, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     const reverseData = data?.slice()?.reverse();
@@ -167,6 +169,7 @@ export class Bar {
     this.textView = textView;
 
     leadView.on('afterrender', (e: Event) => {
+      /* istanbul ignore next */
       setTimeout(() => {
         if (e.view?.geometries?.[0]) {
           const elements = e.view.geometries[0]?.elements;

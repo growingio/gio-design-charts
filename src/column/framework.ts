@@ -146,7 +146,7 @@ export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => 
 };
 
 export const handleLegend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
-  const barConfig = getShapeConfig(config, 'column');
+  const barConfig = getShapeConfig(config as ChartConfig, 'column');
   if (barConfig.color) {
     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
   }

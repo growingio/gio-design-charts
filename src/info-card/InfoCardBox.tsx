@@ -47,6 +47,7 @@ const InfoCardBox = (props: InfoCardProps) => {
 
   const trigger = getTrigger?.();
 
+  /* istanbul ignore next */
   const onMouseLeave = () => {
     setTrigger?.('mouseover');
     update(new Date().getTime());

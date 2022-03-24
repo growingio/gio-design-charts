@@ -34,6 +34,11 @@ const DragLayout = (props: DragLayoutProps) => {
   const color = getThemeColor(config);
   const textFormatter = getTextFormatter(config);
 
+  /* istanbul ignore next */
+  const onResize = (event: MouseEvent | TouchEvent, direction: Direction, elementRef: HTMLElement) => {
+    sizeRegister({ width: elementRef.offsetWidth });
+  };
+
   return (
     <div className="gio-d-charts" data-testid="drag-layout">
       {title && (
@@ -54,9 +59,7 @@ const DragLayout = (props: DragLayoutProps) => {
               defaultSize={{ width: 120, height: 'auto' }}
               maxWidth="100%"
               minWidth="80px"
-              onResize={(event: MouseEvent | TouchEvent, direction: Direction, elementRef: HTMLElement) => {
-                sizeRegister({ width: elementRef.offsetWidth });
-              }}
+              onResize={onResize}
             >
               {subTitle ? (
                 <VerticalContent sizeAcceptor={sizeAcceptor} title={subTitle} total={total} color={color} />

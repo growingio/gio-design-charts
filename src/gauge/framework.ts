@@ -70,6 +70,7 @@ export class Gauge {
     this.options = options;
     const { id, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     const chart = generateChart(options, config);

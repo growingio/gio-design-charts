@@ -11,6 +11,8 @@ const LegendLayout = (props: LayoutProps) => {
   const { options, config = {}, onClickLegend, width } = props;
   const { legendQueue, chart, views, title } = options;
   const [offsetWidth, setOffsetWidth] = useState(0);
+
+  /* istanbul ignore next */
   const watchReset = useCallback(
     (resetOffset: Offset) => {
       const autoFit = config?.chart?.autoFit;
