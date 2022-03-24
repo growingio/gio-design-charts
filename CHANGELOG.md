@@ -1,10 +1,3 @@
-# [1.4.0](https://github.com/growingio/gio-design-charts/compare/v1.3.20...v1.4.0) (2022-03-16)
-
-
-### Features
-
-* **Class:** use Class to instead function actions in each chart framework ([#246](https://github.com/growingio/gio-design-charts/issues/246)) ([744c3d2](https://github.com/growingio/gio-design-charts/commit/744c3d2b38a6b4ed28e7abc74ba600b5bf05da9e)), closes [#247](https://github.com/growingio/gio-design-charts/issues/247) [#247](https://github.com/growingio/gio-design-charts/issues/247)
-
 ## [1.3.20](https://github.com/growingio/gio-design-charts/compare/v1.3.19...v1.3.20) (2022-03-15)
 
 
