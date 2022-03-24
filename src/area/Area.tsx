@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Area as AreaCls } from './framework';
+import React from 'react';
+import { areaChart, handleLegend } from './framework';
 import { ChartType, ChartProps, AreaConfig } from '../interfaces';
 
 import { LegendLayout } from '../layouts';
@@ -12,8 +12,6 @@ export interface AreaProps extends ChartProps {
 const Area: React.FC<AreaProps> = (props: AreaProps) => {
   const { data, legends: legendProps = [], title, config } = props;
 
-  const area = useMemo(() => new AreaCls(), []);
-
   config.type = ChartType.AREA;
   return (
     <LegendLayout
@@ -21,8 +19,8 @@ const Area: React.FC<AreaProps> = (props: AreaProps) => {
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={area.render}
-      handleLegend={area.legend}
+      callChart={areaChart}
+      handleLegend={handleLegend}
     />
   );
 };

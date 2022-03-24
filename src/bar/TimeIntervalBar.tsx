@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { TimeBar } from './framework';
+import React, { useState } from 'react';
+import { Bar as BarCls, handleLegend } from './framework';
 
 import { ChartType, ChartProps, BarConfig } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
@@ -20,7 +20,7 @@ export interface DragBarProps extends BarProps {
 const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title, fullHeight } = props;
 
-  const bar = useMemo(() => new TimeBar(), []);
+  const [bar] = useState(new BarCls());
 
   config.type = ChartType.BAR;
   config.chart = {
@@ -44,7 +44,7 @@ const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
       legendList={legendProps}
       config={config}
       callChart={bar.render}
-      handleLegend={bar.legend}
+      handleLegend={handleLegend}
       fullHeight={fullHeight}
     />
   );

@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Bar as BarCls } from './framework';
+import React from 'react';
+import { barChart, handleLegend } from './framework';
 
 import { ChartType, BarConfig } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
@@ -10,8 +10,6 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   config.type = ChartType.BAR;
-
-  const bar = useMemo(() => new BarCls(), []);
 
   config.chart = {
     ...(config.chart || {}),
@@ -35,8 +33,8 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={bar.render}
-      handleLegend={bar.legend}
+      callChart={barChart}
+      handleLegend={handleLegend}
     />
   );
 };
