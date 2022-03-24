@@ -42,6 +42,26 @@ describe('getRelateLegend', () => {
   test('with empty for getRelateLegend', () => {
     expect(getRelateLegend({} as Point)).toEqual({});
   });
+
+  test('call getRelateLegend function', () => {
+    const shapeInfo = {
+      data: { type: 'test' } as any,
+      customInfo: {
+        contrastDodge: true,
+        dodgeBy: 'type',
+        legendObject: {
+          mapping: {
+            test: {
+              color: 'type',
+              value: 123,
+            },
+          },
+        },
+      },
+    } as ShapeInfo;
+    const cfg = getRelateLegend(shapeInfo);
+    expect(cfg).toEqual({ value: 123 });
+  });
 });
 
 describe('getDefaultStyles', () => {

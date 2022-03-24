@@ -1,5 +1,4 @@
 import { Chart, registerInteraction, View } from '@antv/g2';
-import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { Actions, ChartConfig, ChartOptions, Legends } from '../interfaces';
@@ -55,16 +54,6 @@ export const fetchTooltip = (chart: Chart | View, config: ChartConfig) => {
     // handle hook tooltip error
   }
   return chart;
-};
-
-export const fetchIntervalLabel = (interval: Interval, config: ChartConfig, labelCallback?: any, labelConfig?: any) => {
-  const shapeConfig = config[config.type] || {};
-  const label = shapeConfig.label || {};
-  if (typeof label === 'string') {
-    label && interval.label(label, labelCallback, labelConfig);
-  } else if (typeof label === 'object') {
-    label.field && interval.label(label.field, label.callback || labelCallback, label.config || labelConfig);
-  }
 };
 
 export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {

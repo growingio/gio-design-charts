@@ -24,7 +24,7 @@ export const getShapeState = (options: ChartOptions) => {
   };
 };
 
-export const getbackgroundState = () => {
+export const getBackgroundState = () => {
   return {
     active: {
       style: () => {

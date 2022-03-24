@@ -112,5 +112,6 @@ export const isSingleDodge = (options: ChartOptions, config: Shape) => {
     const groups = Array.from(new Set(data.map((item: LooseObject) => item[xField])));
     return groups.length <= 1;
   }
+  /* istanbul ignore next */
   return false;
 };

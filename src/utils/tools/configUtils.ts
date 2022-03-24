@@ -6,7 +6,7 @@ import { getAxisFields } from '../frameworks/axis';
 import { getShapeConfig } from './shapeConfig';
 
 export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, info: CustomInfo = {}): CustomInfo => {
-  const { legends, data, defaultStyles } = options;
+  const { legendObject, data, defaultStyles } = options;
   const shapeConfig = getShapeConfig(config);
   const customInfo = { ...info };
   if (info.isStack && Array.isArray(data)) {
@@ -19,7 +19,7 @@ export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, i
     type: shapeConfig.color,
     dodgeBy,
     contrastDodge,
-    legends,
+    legendObject,
     defaultStyles,
     xField,
     yField,
@@ -30,16 +30,16 @@ export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, i
 
 export const getRelateLegend = (shapeInfo: ShapeInfo) => {
   const { customInfo, data = {} } = shapeInfo;
-  const { type = '', dodgeBy, contrastDodge, legends = {} } = customInfo || {};
+  const { type = '', dodgeBy, contrastDodge, legendObject } = customInfo || {};
   const name = data[type];
   const dodgeByValue = data[dodgeBy];
-  const legendByDodge = legends[dodgeByValue];
+  const legendByDodge = legendObject?.mapping?.[dodgeByValue] || {};
   if (contrastDodge && dodgeBy && legendByDodge) {
     // for dodgeBy, we needn't color
     const { color, ...others } = legendByDodge;
     return others;
   }
-  return legends[name] || {};
+  return legendObject?.mapping?.[name] || {};
 };
 
 export const getDefaultStyles = (shapeInfo: ShapeInfo) => {

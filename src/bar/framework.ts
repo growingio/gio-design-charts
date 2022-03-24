@@ -8,7 +8,7 @@ import { getAxisFields } from '../utils/frameworks/axis';
 import { LooseObject } from '@antv/g-base';
 import { cloneDeep } from 'lodash';
 import { bindBarCoordination } from '../utils/frameworks/coordinate';
-import { getbackgroundState } from '../utils/tools/shapeState';
+import { getBackgroundState } from '../utils/tools/shapeState';
 import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
 import { getColorByGroupModel } from '../utils/tools/utils';
@@ -19,6 +19,7 @@ export class Bar extends BaseChart {
     this.config = config;
     const { id, report, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     this.instance = generateChart(options, config);
@@ -80,11 +81,12 @@ export class TimeBar extends Bar {
     const interval = intervalShape(view, this.options as ChartOptions, this.config as ChartConfig, {
       customInfo: { chartType: ChartType.BAR, defaultStyles: { color: `${colors[0]}10` } },
     });
-    interval.state(getbackgroundState());
+    interval.state(getBackgroundState());
     view.tooltip(false);
     view.render(true);
   };
 
+  /* istanbul ignore next */
   readonly renderSuffixText = (elements: Element[]) => {
     this.textView?.clear();
     setTimeout(() => {
@@ -134,6 +136,7 @@ export class TimeBar extends Bar {
 
     const { id, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     const reverseData = data?.slice()?.reverse();
@@ -161,6 +164,7 @@ export class TimeBar extends Bar {
     this.views.push(textView);
 
     leadView.on('afterrender', (e: Event) => {
+      /* istanbul ignore next */
       setTimeout(() => {
         if (e.view?.geometries?.[0]) {
           const elements = e.view.geometries[0]?.elements;

@@ -7,6 +7,8 @@ const BaldLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
     options: { chart },
   } = props;
   const baldRef = useRef<HTMLDivElement | null>(null);
+
+  /* istanbul ignore next */
   const watchReset = useCallback(() => {
     chart?.instance?.forceFit();
   }, [chart]);
