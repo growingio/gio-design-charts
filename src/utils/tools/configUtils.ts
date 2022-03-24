@@ -1,9 +1,18 @@
 import { getDodgeBy, hasContrastDodge } from '../interval';
-import { ChartConfig, ChartOptions, CustomInfo, ChartType } from '../../interfaces';
+import { ChartConfig, ChartOptions, Shape, CustomInfo, ChartType } from '../../interfaces';
 import { ShapeInfo } from '@antv/g2/lib/interface';
 import { LooseObject } from '@antv/g-base';
 import { getAxisFields } from '../frameworks/axis';
-import { getShapeConfig } from './shapeConfig';
+
+export const getShapeConfig = (config: ChartConfig = {}, type?: string) => {
+  if (type) {
+    return config[type] || {};
+  }
+  if (config.type) {
+    return config[config.type] || {};
+  }
+  return config.bar || config.column || config.line || config.funnel || ({} as Shape);
+};
 
 export const setCustomInfo = (options: ChartOptions, config: ChartConfig = {}, info: CustomInfo = {}): CustomInfo => {
   const { legends, data, defaultStyles } = options;

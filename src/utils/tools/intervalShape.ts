@@ -38,7 +38,7 @@ export function getFillAttrs(shapeInfo: ShapeInfo) {
 }
 
 // 重新绘制rect，设置最小高度
-function getBarRectAttrs(points: Point[], stack = false, isNeg?: boolean) {
+function getBarRectAttrs(points: Point[], stack = false, isNeg: boolean) {
   let width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const defualtWidth = stack ? 0 : DEFAULT_MIN_HEIGHT;
@@ -51,14 +51,13 @@ function getBarRectAttrs(points: Point[], stack = false, isNeg?: boolean) {
 }
 
 // 重新绘制rect，设置最小高度
-function getRectAttrs(points: Point[], stack = false, isNeg?: boolean) {
+function getRectAttrs(points: Point[], stack = false, isNeg: boolean) {
   const width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const defualtHeight = stack ? height : DEFAULT_MIN_HEIGHT;
   const hookHeight = height === 0 ? 0 : defualtHeight;
   const fixedHeight = height < DEFAULT_MIN_HEIGHT ? hookHeight : height - 1;
   if (isNeg) {
-    /* istanbul ignore next */
     return {
       x: points[0].x,
       y: points[0].y,

@@ -1,5 +1,6 @@
 import React from 'react';
 import NoDataBigSvg from '../assets/svg/NoDataSvg';
+import './style/NoData.less';
 
 export interface NoDataProps {
   height?: number;

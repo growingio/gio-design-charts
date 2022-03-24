@@ -15,7 +15,13 @@ describe('ScrollYLayout', () => {
   test('render', async () => {
     render(
       <IntlProvider defaultLocale="zh-CN" locale="zh-CN" messages={en}>
-        <ScrollYLayout config={config} data={data} legendList={legendList as any} chart={bar} />
+        <ScrollYLayout
+          config={config}
+          data={data}
+          legendList={legendList as any}
+          handleLegend={bar.legend}
+          callChart={bar.render}
+        />
       </IntlProvider>
     );
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
@@ -24,7 +30,13 @@ describe('ScrollYLayout', () => {
   test('render without config', async () => {
     render(
       <IntlProvider defaultLocale="zh-CN" locale="zh-CN" messages={en}>
-        <ScrollYLayout config={undefined as any} data={data} legendList={legendList as any} chart={bar} />
+        <ScrollYLayout
+          config={undefined as any}
+          data={data}
+          legendList={legendList as any}
+          handleLegend={bar.legend}
+          callChart={bar.render}
+        />
       </IntlProvider>
     );
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();

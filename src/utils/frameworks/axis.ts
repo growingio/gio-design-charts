@@ -1,7 +1,7 @@
 import { LooseObject } from '@antv/g-base';
 import { get } from 'lodash';
 import { ChartConfig } from '../../interfaces';
-import { getShapeConfig } from '../../utils/tools/shapeConfig';
+import { getShapeConfig } from '../tools/configUtils';
 
 export const getAxisFields = (position: string) => {
   if (!position) {

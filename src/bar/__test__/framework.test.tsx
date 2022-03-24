@@ -4,12 +4,13 @@ import { render, screen } from '@testing-library/react';
 import { Bar as BarCls } from '../framework';
 import { BarDefault } from '../demos/Bar.stories';
 import { ChartType } from '../../interfaces';
+import { getLegends } from '../../hooks/useLegends';
+import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { BarProps } from '../Bar';
-import { LegendObject } from '../../legends/useLegends';
 
 const { config, legends: legendList, data } = BarDefault.args as BarProps;
-const legendObj = new LegendObject({ type: ChartType.AREA }, legendList as any);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('bar fromework', () => {
   const bar = new BarCls();
   test('call barChart', () => {
@@ -18,7 +19,7 @@ describe('bar fromework', () => {
     const options = {
       id: element,
       data,
-      legends: legendObj.mapping,
+      legends,
     };
     bar.render(options, config);
   });
@@ -26,7 +27,7 @@ describe('bar fromework', () => {
   test('with id', () => {
     const options = {
       data,
-      legends: legendObj.mapping,
+      legends,
     };
     bar.render(options, config);
   });
@@ -40,9 +41,20 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legends: legendObj.mapping,
+      legends,
     };
-    bar.render(options, config);
-    bar.legend(legendObj.mapping);
+    const { chart } = bar.render(options, config);
+    bar.legend([chart as Chart], legends, config);
+  });
+  test('call it without config', () => {
+    render(<ChartCom />);
+    const element = screen.getByTestId(chartComponentTestid);
+    const options = {
+      id: element,
+      data,
+      legends,
+    };
+    const { chart } = bar.render(options, config);
+    bar.legend([chart as Chart], legends, {});
   });
 });

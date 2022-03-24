@@ -2,12 +2,11 @@ import { Chart, registerInteraction, View } from '@antv/g2';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
-import { Actions, ChartConfig, ChartOptions, Legends } from '../interfaces';
+import { ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT, DEFAULT_TINY_APPEND_PADDING } from '../theme';
 import { fixedHeight, getDefaultTheme } from '../utils/chart';
 
 import '../utils/tools';
-import { getShapeConfig } from '../utils/tools/shapeConfig';
 
 registerInteraction('element-highlight-by-color', {
   start: [{ trigger: 'element:mouseenter', action: 'element-highlight-by-color:highlight' }],
@@ -124,40 +123,16 @@ export const renderChart = (options: ChartOptions, config: ChartConfig) => {
   return fetchChartConfig(chart, options, config);
 };
 
-export class BaseChart implements Actions {
-  instance: Chart | undefined = undefined;
-  views: View[] = [];
+export const updateChart = ({ chart }: { chart: Chart }, data: Datum[]) => {
+  if (chart && data) {
+    chart.changeData(data);
+    chart.render(true);
+  }
+};
 
-  options: ChartOptions | undefined = undefined;
-  config: ChartConfig | undefined = undefined;
-
-  render: (options: ChartOptions, config: ChartConfig) => void = () => {
-    // this is parent render function
-    // each child needs realize this function
-  };
-
-  defaultLegendBehavior = (legends: Legends) => {
-    const shapeConfig = getShapeConfig(this.config, this.config?.type);
-    if (this.instance && shapeConfig.color) {
-      [this.instance, ...this.views]?.forEach((content: Chart | View) => {
-        content.filter(shapeConfig.color, (value: string) => !!(legends?.[value] || {}).active);
-        content.render(true);
-      });
-    }
-  };
-
-  legend = this.defaultLegendBehavior;
-
-  update = (data: Datum[]) => {
-    if (this.instance && data) {
-      this.instance.changeData(data);
-      this.instance.render(true);
-    }
-  };
-
-  clear = () => {
-    this.instance?.destroy();
-    this.instance = undefined;
-    this.views = [];
-  };
-}
+export const handleLegendBehavior = (chart: Chart | View, legends: Legends, color: string) => {
+  if (color) {
+    chart.filter(color, (value: string) => !!(legends?.[value] || {}).active);
+    chart.render(true);
+  }
+};

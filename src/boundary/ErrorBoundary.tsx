@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
-import './style/boundary.less';
 
 export interface ErrorBoundaryProps {
   errorTemplate?: (e: Error) => JSX.Element | JSX.Element[];
@@ -38,13 +37,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     return errorTemplate && typeof errorTemplate === 'function' ? (
       errorTemplate(e)
     ) : (
-      <div className="gio-d-charts-err" data-testid="default-error-boundary">
+      <div data-testid="default-error-boundary">
         <FormattedMessage
           id="Chart.ErrorBoundary"
           defaultMessage="Chart组件出现错误，请检查："
           description="Chart - Error Boundary"
         />
-        <code className="gio-d-charts-err-code">{e.toString()}</code>
+        <code>{e.toString()}</code>
       </div>
     );
   };

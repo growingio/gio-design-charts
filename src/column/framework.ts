@@ -1,11 +1,10 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
-import { BaseChart, renderChart } from '../core/framework';
+import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
-import { getShapeConfig } from '../utils/tools/shapeConfig';
-import { setCustomInfo } from '../utils/tools/configUtils';
+import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';
@@ -80,7 +79,7 @@ export const handleInterval = (
   intervalConfig: IntervalConfig = {},
   type = 'column'
 ) => {
-  const { legendObject, hasDashed, defaultStyles = {} } = options;
+  const { legends = {}, hasDashed, defaultStyles = {} } = options;
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
@@ -91,7 +90,7 @@ export const handleInterval = (
     config,
     { ...intervalConfig, customInfo: { chartType: type, useDash: false } },
     (label: string) => {
-      const legend = legendObject?.getLegend(label) || ({} as Legend);
+      const legend = legends[label] || ({} as Legend);
       return {
         fill: legend.color || defaultStyles.color,
         radius,
@@ -113,14 +112,13 @@ export const handleInterval = (
         },
       },
       (label: string) => {
-        const legend = legendObject?.getLegend(label) || ({} as Legend);
+        const legend = legends[label] || ({} as Legend);
         if (legend.dashed) {
           return {
             fill: `p(a)${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}`,
             radius,
           };
         }
-
         return { fill: legend.color, radius };
       }
     );
@@ -128,25 +126,30 @@ export const handleInterval = (
   return chart;
 };
 
-export class Column extends BaseChart {
+export class Column {
   render = (options: ChartOptions, config: ChartConfig = {}) => {
-    this.options = options;
-    this.config = config;
-
     const { id } = options;
     if (!id) {
       return {};
     }
-    this.instance = renderChart(options, config);
+    const chart = renderChart(options, config);
     try {
-      handleInterval(this.instance, options, config, {
+      handleInterval(chart, options, config, {
         styles: {
           maxColumnWidth: 200,
           minColumnWidth: 40,
         },
       });
-      this.instance.interaction('element-active');
-      this.instance.render();
+      chart.interaction('element-active');
+      chart.render();
     } catch (err) {}
+    return { chart, update: updateChart };
+  };
+
+  legend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
+    const barConfig = getShapeConfig(config, 'column');
+    if (barConfig.color) {
+      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+    }
   };
 }

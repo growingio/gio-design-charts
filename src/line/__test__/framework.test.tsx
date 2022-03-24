@@ -4,13 +4,13 @@ import { render, screen } from '@testing-library/react';
 import { Line as LineCls } from '../framework';
 import { BaiscLine } from '../demos/Line.stories';
 import { ChartType } from '../../interfaces';
-import { LegendObject } from '../../legends/useLegends';
+import { getLegends } from '../../hooks/useLegends';
+import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { LineProps } from '../Line';
 
 const { config, legends: legendList, data } = BaiscLine.args as LineProps;
-
-const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('line fromework', () => {
   test('call lineChart', () => {
     const line = new LineCls();
@@ -19,7 +19,7 @@ describe('line fromework', () => {
     const options = {
       id: element,
       data,
-      legendObject,
+      legends,
     };
     line.render(options, config);
   });
@@ -28,7 +28,7 @@ describe('line fromework', () => {
     const line = new LineCls();
     const options = {
       data,
-      legendObject,
+      legends,
     };
     line.render(options, config);
   });
@@ -37,7 +37,7 @@ describe('line fromework', () => {
     const line = new LineCls();
     const options = {
       data,
-      legendObject,
+      legends,
     };
     line.render(options);
   });
@@ -51,10 +51,10 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legendObject,
+      legends,
     };
-    line.render(options, config);
-    // line.legend(legends);
+    const { chart } = line.render(options, config);
+    line.legend([chart as Chart], legends, config);
   });
   test('call it without config', () => {
     const line = new LineCls();
@@ -63,9 +63,9 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legendObject,
+      legends,
     };
-    line.render(options, config);
-    // line.legend(legends);
+    const { chart } = line.render(options, config);
+    line.legend([chart as Chart], legends, {});
   });
 });

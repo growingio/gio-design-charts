@@ -1,8 +1,8 @@
-import { Element, Event, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
+import { Chart, Element, Event, View } from '@antv/g2';
+import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
 import { handleInterval, intervalShape } from '../column/framework';
-import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
-import { getShapeConfig } from '../utils/tools/shapeConfig';
+import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
+import { getShapeConfig } from '../utils/tools/configUtils';
 import { Datum } from '@antv/g2/lib/interface';
 import { getAxisFields } from '../utils/frameworks/axis';
 import { LooseObject } from '@antv/g-base';
@@ -13,17 +13,15 @@ import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
 import { getColorByGroupModel } from '../utils/tools/utils';
 
-export class Bar extends BaseChart {
+export class Bar {
   render = (options: ChartOptions, config: ChartConfig) => {
-    this.options = options;
-    this.config = config;
     const { id, report, data } = options;
     if (!id) {
       return {};
     }
-    this.instance = generateChart(options, config);
+    const chart = generateChart(options, config);
     try {
-      const linkView = this.instance.createView({
+      const linkView = chart.createView({
         region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
       });
 
@@ -37,27 +35,38 @@ export class Bar extends BaseChart {
         }
       });
       linkView.render();
-      this.views.push(linkView);
 
-      fetchTooltip(this.instance, config);
-      this.instance.coordinate().transpose();
-      this.instance.legend(false);
-      this.instance.render();
+      fetchTooltip(chart, config);
+      chart.coordinate().transpose();
+      chart.legend(false);
+      chart.render();
+      return { chart, views: [linkView], update: this.update };
     } catch (err) {
       // show error
     }
+    return { chart, update: this.update };
   };
 
-  update = (data: Datum[]) => {
-    const linkView = this.views?.[0];
+  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
+    const linkView = views?.[0];
     linkView?.changeData(data.slice().reverse());
     linkView?.render(true);
-    this.instance?.render(true);
-    this.instance?.forceFit();
+    chart.render(true);
+    chart.forceFit();
+  };
+
+  legend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
+    const barConfig = getShapeConfig(config, ChartType.BAR);
+    if (barConfig.color) {
+      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+    }
   };
 }
 
 export class TimeBar extends Bar {
+  options: ChartOptions | undefined = undefined;
+  config: ChartConfig | undefined = undefined;
+  chart: Chart | undefined = undefined;
   leadView: View | undefined = undefined;
   backView: View | undefined = undefined;
   textView: View | undefined = undefined;
@@ -116,7 +125,7 @@ export class TimeBar extends Bar {
     }, 600);
   };
 
-  update = (data: LooseObject[]) => {
+  updateTimeInterval = (charts: { chart: Chart }, data: LooseObject[]) => {
     if (data) {
       const reverseData = data?.slice()?.reverse();
       this.leadView?.changeData(reverseData);
@@ -125,40 +134,38 @@ export class TimeBar extends Bar {
       const backData = this.fetchBackData(this.yField, reverseData);
       this.renderBackground(this.backView as View, this.yField, backData);
     }
-    this.instance?.render(true);
+    this.chart?.render(true);
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
-    this.options = options;
-    this.config = config;
-
     const { id, data } = options;
     if (!id) {
       return {};
     }
     const reverseData = data?.slice()?.reverse();
-    this.instance = generateChart(options, config);
+    this.options = options;
+    this.config = config;
+    const chart = generateChart(options, config);
 
     const lineCfg = getShapeConfig(config, ChartType.BAR);
 
     const [xField, yField] = getAxisFields(lineCfg.position);
-    const backView = this.instance.createView({
+    const backView = chart.createView({
       theme: getDefaultViewTheme(config),
     });
     this.renderBackground(backView, yField, reverseData);
 
     // 添加padding-right：180，防止条形图的label被后面的text覆盖住
-    const leadView = this.instance.createView({
+    const leadView = chart.createView({
       appendPadding: [0, 180, 0, 0],
     });
     bindBarCoordination(leadView);
     fetchViewConfig(leadView, { ...options, data: reverseData }, config);
     handleInterval(leadView, options, config, {}, ChartType.BAR);
 
-    const textView = this.instance.createView();
+    const textView = chart.createView();
     bindBarCoordination(textView);
     this.textView = textView;
-    this.views.push(textView);
 
     leadView.on('afterrender', (e: Event) => {
       setTimeout(() => {
@@ -173,15 +180,13 @@ export class TimeBar extends Bar {
     this.yField = yField;
 
     this.leadView = leadView;
-    this.views.push(leadView);
-
     this.backView = backView;
-    this.views.push(backView);
-
+    this.chart = chart;
     leadView.interaction('element-highlight-by-color');
     leadView.render();
     textView.render();
-    fetchTooltip(this.instance, config);
-    this.instance.render();
+    fetchTooltip(chart, config);
+    chart.render();
+    return { chart, views: [leadView, backView, textView], update: this.updateTimeInterval };
   };
 }

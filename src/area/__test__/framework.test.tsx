@@ -4,14 +4,14 @@ import { render, screen } from '@testing-library/react';
 import { Area as AreaCls } from '../framework';
 import { AreaStack } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interfaces';
-import { LegendObject } from '../../legends/useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import { DEFAULT_LINEDASH } from '../../theme';
+import { Chart } from '@antv/g2';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
-
-const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
+const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('areaChart', () => {
   const area = new AreaCls();
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legendObject,
+      legends,
     };
     area.render(options, config);
   });
@@ -77,10 +77,21 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legendObject,
+      legends,
     };
-    area.render(options, config);
-    area.legend(legendObject.mapping);
+    const { chart } = area.render(options, config);
+    area.legend([chart as Chart], legends, config);
+  });
+  test('call it without config', () => {
+    render(<ChartCom />);
+    const element = screen.getByTestId(chartComponentTestid);
+    const options = {
+      id: element,
+      data,
+      legends,
+    };
+    const { chart } = area.render(options, config);
+    area.legend([chart as Chart], legends, {});
   });
 
   test('call it without legends', () => {
@@ -89,9 +100,9 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legendObject,
+      legends,
     };
-    area.render(options, config);
-    area.legend(undefined as any);
+    const { chart } = area.render(options, config);
+    area.legend([chart as Chart], undefined as any, config);
   });
 });

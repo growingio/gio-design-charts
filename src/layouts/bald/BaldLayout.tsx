@@ -8,7 +8,7 @@ const BaldLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
   } = props;
   const baldRef = useRef<HTMLDivElement | null>(null);
   const watchReset = useCallback(() => {
-    chart?.instance?.forceFit();
+    chart?.forceFit();
   }, [chart]);
   useOffset(baldRef, watchReset);
   return (

@@ -13,9 +13,18 @@ const Area: React.FC<AreaProps> = (props: AreaProps) => {
   const { data, legends: legendProps = [], title, config } = props;
 
   const area = useMemo(() => new AreaCls(), []);
-  config.type = ChartType.AREA;
 
-  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={area} />;
+  config.type = ChartType.AREA;
+  return (
+    <LegendLayout
+      title={title}
+      data={data}
+      legendList={legendProps}
+      config={config}
+      callChart={area.render}
+      handleLegend={area.legend}
+    />
+  );
 };
 
 export default fetchChart<AreaProps>(Area);

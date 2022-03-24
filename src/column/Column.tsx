@@ -52,7 +52,8 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
       legendList={legendProps}
       config={assginConfig}
       defaultOptions={defaultOptions}
-      chart={column}
+      callChart={column.render}
+      handleLegend={column.legend}
     />
   ) : (
     <LegendLayout
@@ -61,7 +62,8 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
       legendList={legendProps}
       config={assginConfig}
       defaultOptions={defaultOptions}
-      chart={column}
+      callChart={column.render}
+      handleLegend={column.legend}
     />
   );
 };

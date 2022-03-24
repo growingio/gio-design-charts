@@ -24,7 +24,14 @@ describe('LegendLayout2', () => {
     config.type = 'area';
     render(
       <IntlProvider defaultLocale="zh" locale="zh-CN" messages={en}>
-        <LegendLayout config={config} data={data} legendList={legends as any} chart={area} width={150} />
+        <LegendLayout
+          config={config}
+          data={data}
+          legendList={legends as any}
+          callChart={area.render}
+          handleLegend={area.legend}
+          width={150}
+        />
       </IntlProvider>
     );
     const element = screen.getByTestId(legendLayoutTestid);

@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { ContrastLine as LineCls } from './framework';
+import React, { useState } from 'react';
+import { Line as LineCls } from './framework';
 
 import { ChartType, LineConfig } from '../interfaces';
 import { fetchChart } from '../boundary';
@@ -11,9 +11,18 @@ const ContrastLine: React.FC<LineProps> = (props: LineProps) => {
 
   config.type = ChartType.LINE;
 
-  const line = useMemo(() => new LineCls(), []);
+  const [line] = useState(new LineCls());
 
-  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={line} />;
+  return (
+    <LegendLayout
+      title={title}
+      data={data}
+      legendList={legendProps}
+      config={config}
+      callChart={line.contrast}
+      handleLegend={line.legend}
+    />
+  );
 };
 
 export default fetchChart<LineProps>(ContrastLine);

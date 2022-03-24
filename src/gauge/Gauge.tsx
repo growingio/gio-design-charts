@@ -13,7 +13,16 @@ const Gauge: React.FC<GaugeProps> = (props: GaugeProps) => {
   const gauge = useMemo(() => new GaugeCls(), []);
   config.type = ChartType.GAUGE;
 
-  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={gauge} />;
+  return (
+    <LegendLayout
+      title={title}
+      data={data}
+      legendList={legendProps}
+      config={config}
+      callChart={gauge.render}
+      handleLegend={gauge.legend}
+    />
+  );
 };
 
 export default fetchChart<GaugeProps>(Gauge);

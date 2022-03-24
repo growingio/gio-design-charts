@@ -1,24 +1,26 @@
 import { get } from 'lodash';
 import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { colors } from '../theme';
-import { BaseChart, fetchViewConfig, generateChart } from '../core/framework';
+import { fetchViewConfig, generateChart } from '../core/framework';
 import { bindGuageCoordination } from '../utils/frameworks/coordinate';
-import { getShapeConfig } from '../utils/tools/shapeConfig';
+import { getShapeConfig } from '../utils/tools/configUtils';
 import { gaugeText } from '../utils/frameworks/text';
 import { formatNumber, formatPercent } from '../utils/formatNumber';
-import { View } from '@antv/g2';
+import { Chart, View } from '@antv/g2';
 import { LooseObject } from '@antv/g-base';
 
-export class Gauge extends BaseChart {
+export class Gauge {
+  chart: Chart | undefined = undefined;
   view: View | undefined = undefined;
+  options: ChartOptions | undefined = undefined;
 
-  update = (data: LooseObject[]) => {
+  update = (charts: { chart: Chart }, data: LooseObject[], config: ChartConfig) => {
     this.view?.clear();
     if (this.view) {
-      this.renderView(this.view, data, this.config as ChartConfig);
+      this.renderView(this.view, data, config);
     }
     this.view?.render(true);
-    this.instance?.render(true);
+    this.chart?.render(true);
   };
 
   renderView = (view: View, data: LooseObject[], config: ChartConfig) => {
@@ -65,26 +67,29 @@ export class Gauge extends BaseChart {
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
-    this.config = config;
     this.options = options;
     const { id, data } = options;
     if (!id) {
       return {};
     }
-    this.instance = generateChart(options, config);
+    const chart = generateChart(options, config);
 
-    const view = this.instance.createView();
+    const view = chart.createView();
     fetchViewConfig(view, options, config);
     bindGuageCoordination(view);
-    this.views.push(view);
 
     this.renderView(view, data as LooseObject[], config);
 
     view.render();
     this.view = view;
 
-    this.instance.tooltip(false);
-    this.instance.legend(false);
-    this.instance.render();
+    chart.tooltip(false);
+    chart.legend(false);
+    chart.render();
+    this.chart = chart;
+    return { chart, update: this.update };
+  };
+  legend = () => {
+    //
   };
 }

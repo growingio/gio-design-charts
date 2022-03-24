@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useMemo, useContext } from 'react';
 import { LooseObject } from '@antv/g-base';
+import { Chart, View } from '@antv/g2';
 import { Datum, TooltipItem } from '@antv/g2/lib/interface';
 import { isEqual } from '@antv/util';
 
-import { Actions, ChartConfig } from '../interfaces';
-import { LegendObject } from '../legends/useLegends';
+import { ChartConfig, Legend } from '../interfaces';
+import useLegends, { getLegends } from './useLegends';
 import { getTheme, inValidConfig } from '../utils/chart';
 import { cloneDeep } from 'lodash';
 import { DesignContext } from '@gio-design/utils';
@@ -13,17 +14,16 @@ import { useIntlDict } from './useIntlDict';
 export interface UseChartProps {
   rootRef: React.MutableRefObject<HTMLDivElement | null>;
   tooltipRef: React.MutableRefObject<HTMLDivElement | null>;
-  chart: Actions;
+  callChart: any;
   tooltipItemRegister: any;
   config: ChartConfig;
   data: LooseObject | LooseObject[];
-  // legendList: (string | Legend)[];
+  legendList: (string | Legend)[];
   interceptors: any;
   defaultOptions: any;
   tooltipKey: number;
   setTooltipKey: any;
   title?: string;
-  legendObject: LegendObject;
 }
 
 // This is a hook which is used to create Chart object and update the chart.
@@ -32,29 +32,32 @@ const useChart = (options: UseChartProps) => {
     rootRef,
     tooltipRef,
     tooltipItemRegister,
-    chart,
+    callChart,
     config,
     data,
-    // legendList,
+    legendList,
     interceptors,
     defaultOptions,
     setTooltipKey,
     tooltipKey,
     title,
-    legendObject,
   } = options;
 
   const context = useContext(DesignContext);
   const dict = useIntlDict();
 
+  const chartRef = useRef<Chart>();
+  const viewRef = useRef<View[]>();
   const configRef = useRef<Partial<ChartConfig>>();
   const dataRef = useRef<LooseObject | LooseObject[]>();
-  // const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
+  const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[], config?: ChartConfig) => void>();
+  const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
 
   const clear = useCallback(() => {
-    chart.clear();
+    chartRef.current?.destroy();
+    chartRef.current = undefined;
     setTooltipKey(new Date().getTime());
-  }, [chart, setTooltipKey]);
+  }, [setTooltipKey]);
 
   const create = useCallback(() => {
     // If the config is empty or there is no special config, return null;
@@ -62,6 +65,7 @@ const useChart = (options: UseChartProps) => {
       return;
     }
     const theme = getTheme(context?.theme);
+    const [genLegends, queue, hasDashedLegend] = getLegends(config.type, legendList);
     const tooltip =
       config.tooltip !== false
         ? {
@@ -77,56 +81,65 @@ const useChart = (options: UseChartProps) => {
             },
           }
         : false;
-    const chartConfig = {
-      ...config,
-      tooltip,
-    };
-    // const [genLegends, queue, hasDashedLegend] = getLegends(config.type, legendList);
-    chart.render(
+    const {
+      chart,
+      views = [],
+      update,
+    } = callChart(
       {
         id: rootRef.current,
         data,
         dict,
-        // legends: legendObject.mapping,
-        // hasDashed: legendObject.hasDashed,
+        legends: genLegends,
+        hasDashed: hasDashedLegend,
         interceptors,
         theme: theme,
-        // hasLegend: legendObject.support,
-        legendObject,
+        hasLegend: config.legend !== false && queue.length > 0,
         hasTitle: !!title,
         ...(defaultOptions || {}),
       },
-      chartConfig
+      {
+        ...config,
+        tooltip,
+      }
     );
-    if (chart.instance) {
+    if (chart) {
       configRef.current = cloneDeep(config);
       dataRef.current = cloneDeep(data);
-      // setLegends(genLegends, queue, hasDashedLegend);
-      interceptors?.bindElementEvents(chart.instance);
+      chartRef.current = chart;
+      viewRef.current = views;
+      updateRef.current = update;
+      setLegends(genLegends, queue, hasDashedLegend);
+      interceptors?.bindElementEvents(chart);
     }
   }, [
     rootRef,
     tooltipRef,
     data,
-    legendObject,
+    legendList,
     config,
-    chart,
+    callChart,
     tooltipItemRegister,
     defaultOptions,
     interceptors,
-    // setLegends,
+    setLegends,
     context,
     dict,
     title,
   ]);
 
   const updateChart = useCallback(() => {
+    if (config && legendList) {
+      setLegends(...getLegends(config.chartType, legendList));
+    }
+    const chart = chartRef.current;
+    const update = updateRef.current;
     const changedData = !isEqual(dataRef.current, data);
-    if (changedData) {
-      chart.update?.(data as Datum[]);
+    if (update && chart && changedData) {
+      update({ chart, views: viewRef.current }, data as Datum[], config);
       dataRef.current = cloneDeep(data);
     }
-  }, [data, chart]);
+  }, [data, config]);
 
   const hasChangedConfig = !isEqual(configRef.current, config);
   const hasChangedData = !isEqual(dataRef.current, data);
@@ -135,34 +148,34 @@ const useChart = (options: UseChartProps) => {
     // 如果equalConfig有变化，则进入创建或者清楚通道
     if (hasChangedConfig) {
       // 如果已经有了chartRef.current，需要先销毁
-      if (chart.instance) {
+      if (chartRef.current) {
         clear();
       } else {
         create();
       }
     }
-  }, [chart, create, clear, hasChangedConfig, config, tooltipKey, legendObject]);
-
-  const chartOptions = useMemo(
-    () => ({
-      ...defaultOptions,
-      chart,
-      // legends: legendObject.mapping,
-      // hasDashed: legendObject.hasDashed,
-      // legendQueue: legendObject.quene,
-      // hasLegend: legendObject.support,
-      legendObject,
-      title,
-      hasTitle: !!title,
-    }),
-    [defaultOptions, chart, config, title, legendObject]
-  );
+  }, [create, clear, hasChangedConfig, config, tooltipKey, legendList]);
 
   if (!hasChangedConfig && hasChangedData) {
     updateChart();
   }
 
-  return { updateLegends: legendObject.update, chartOptions };
+  const chartOptions = useMemo(
+    () => ({
+      ...defaultOptions,
+      chart: chartRef.current,
+      views: viewRef.current,
+      legends,
+      hasDashed,
+      legendQueue,
+      title,
+      hasLegend: config?.legend !== false && legendQueue?.length > 0,
+      hasTitle: !!title,
+    }),
+    [defaultOptions, config, legends, legendQueue, hasDashed, title]
+  );
+
+  return { updateLegends, chartOptions };
 };
 
 export default useChart;

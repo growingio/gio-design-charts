@@ -31,7 +31,14 @@ describe('LegendLayout', () => {
     };
     render(
       <IntlProvider defaultLocale="zh-CN" locale="zh-CN" messages={en}>
-        <LegendLayout config={newConfig} data={data} legendList={legends as any} chart={area} width={1050} />
+        <LegendLayout
+          config={newConfig}
+          data={data}
+          legendList={legends as any}
+          callChart={area.render}
+          handleLegend={area.legend}
+          width={1050}
+        />
       </IntlProvider>
     );
 

@@ -26,7 +26,8 @@ const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
       legendList={legendProps}
       config={config}
       sourceData={data}
-      chart={funnel}
+      callChart={funnel.render}
+      handleLegend={funnel.legend}
     />
   );
 };

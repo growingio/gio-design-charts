@@ -1,5 +1,5 @@
 import { ChartType } from '../../interfaces';
-import { LegendObject } from '../useLegends';
+import { getLegends } from '../../hooks/useLegends';
 import Legends from '../Legends';
 import Docs from './Legends.mdx';
 import { ComponentStory } from '@storybook/react';
@@ -23,7 +23,7 @@ const Template: ComponentStory<typeof Legends> = (args) => <Legends {...args} />
 
 export const lineLegends = Template.bind({});
 lineLegends.args = {
-  legends: new LegendObject({ type: ChartType.LINE }, shortlegendList).quene,
+  legends: getLegends(ChartType.LINE, shortlegendList)[1],
 };
 lineLegends.storyName = '线图图例';
 
@@ -37,7 +37,7 @@ const contrastLegends = [
 ];
 export const lineContrastLegends = Template.bind({});
 lineContrastLegends.args = {
-  legends: new LegendObject({ type: ChartType.LINE }, contrastLegends).quene,
+  legends: getLegends(ChartType.LINE, contrastLegends)[1],
   offsetWidth: 1000,
 };
 lineContrastLegends.storyName = '线图图例(同一维度不同时间对比）';
@@ -55,18 +55,18 @@ const longLegendLast = [
 
 export const lineLongLegends = Template.bind({});
 lineLongLegends.args = {
-  legends: new LegendObject({ type: ChartType.LINE }, longLegendLast).quene,
+  legends: getLegends(ChartType.LINE, longLegendLast)[1],
 };
 lineLongLegends.storyName = '线图图例（其他）';
 
 export const barLegends = Template.bind({});
 barLegends.args = {
-  legends: new LegendObject({ type: ChartType.BAR }, shortlegendList).quene,
+  legends: getLegends(ChartType.BAR, shortlegendList)[1],
 };
 barLegends.storyName = '方块图例';
 
 export const barLongLegends = Template.bind({});
 barLongLegends.args = {
-  legends: new LegendObject({ type: ChartType.BAR }, longLegendLast).quene,
+  legends: getLegends(ChartType.BAR, longLegendLast)[1],
 };
 barLongLegends.storyName = '方块图例（其他）';
