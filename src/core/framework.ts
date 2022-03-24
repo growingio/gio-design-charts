@@ -1,5 +1,4 @@
 import { Chart, registerInteraction, View } from '@antv/g2';
-import Interval from '@antv/g2/lib/geometry/interval';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import { isEmpty } from 'lodash';
 import { Actions, ChartConfig, ChartOptions, Legends } from '../interfaces';
