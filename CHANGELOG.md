@@ -1,3 +1,16 @@
+## [1.3.21](https://github.com/growingio/gio-design-charts/compare/v1.3.20...v1.3.21) (2022-03-24)
+
+
+### Bug Fixes
+
+* **Funnel:** support update data ([#252](https://github.com/growingio/gio-design-charts/issues/252)) ([1c06b92](https://github.com/growingio/gio-design-charts/commit/1c06b9299f76ed9f5f3a863323625594219ac662))
+* **Title:** update title style ([#251](https://github.com/growingio/gio-design-charts/issues/251)) ([28968a6](https://github.com/growingio/gio-design-charts/commit/28968a695a7cbbed2326ada611fc41f018ee07fa))
+
+
+### Reverts
+
+* Revert "fix(Funnel): support update data" ([57ddfb1](https://github.com/growingio/gio-design-charts/commit/57ddfb1b1f882dcbd250ffccf7babcf2bde5fe61))
+
 ## [1.3.20](https://github.com/growingio/gio-design-charts/compare/v1.3.19...v1.3.20) (2022-03-15)
 
 
