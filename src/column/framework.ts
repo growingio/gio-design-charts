@@ -80,7 +80,7 @@ export const handleInterval = (
   intervalConfig: IntervalConfig = {},
   type = 'column'
 ) => {
-  const { legendObject, hasDashed, defaultStyles = {} } = options;
+  const { legendObject, defaultStyles = {} } = options;
 
   const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
 
@@ -100,7 +100,7 @@ export const handleInterval = (
   );
 
   // 若有条纹柱子，需要再次绘制
-  if (hasDashed) {
+  if (legendObject?.hasDashed) {
     intervalShape(
       chart,
       options,

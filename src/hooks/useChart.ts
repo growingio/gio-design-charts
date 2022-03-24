@@ -149,6 +149,7 @@ const useChart = (options: UseChartProps) => {
     if (hasChangedConfig) {
       // 如果已经有了chartRef.current，需要先销毁
       if (chart.instance) {
+        /* istanbul ignore next */
         clear();
       } else {
         create();
@@ -168,10 +169,11 @@ const useChart = (options: UseChartProps) => {
       title,
       hasTitle: !!title,
     }),
-    [defaultOptions, chart, config, title, legendObject]
+    [defaultOptions, chart, title, legendObject]
   );
 
   if (!hasChangedConfig && hasChangedData) {
+    /* istanbul ignore next */
     updateChart();
   }
 

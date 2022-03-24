@@ -131,6 +131,7 @@ export class Funnel extends BaseChart {
       this.instance.render();
       interceptors?.bindElementEvents(this.instance, { more: true });
     } catch (err) {
+      /* istanbul ignore next */
       console.log(err);
     }
   };

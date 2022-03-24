@@ -19,6 +19,7 @@ export class Bar extends BaseChart {
     this.config = config;
     const { id, report, data } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     this.instance = generateChart(options, config);

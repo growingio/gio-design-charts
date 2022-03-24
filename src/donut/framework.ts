@@ -100,7 +100,6 @@ export class Donut extends BaseChart {
 
     fetchTooltip(this.instance, config);
     this.instance.render();
-
     this.instance.render(true);
 
     this.donutView = donutView;
