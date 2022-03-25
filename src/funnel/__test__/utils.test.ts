@@ -15,6 +15,7 @@ describe('funnel utils', () => {
       source: singleData,
       covert: convertSingleData1,
       texts: ['0.00%', '0.00%'],
+      elementCount: 3,
       isGroup: false,
     };
     expect(getSingleData(singleData as LooseObject[])).toEqual(convertSingleData);
