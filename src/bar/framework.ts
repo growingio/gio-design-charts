@@ -11,7 +11,7 @@ import { bindBarCoordination } from '../utils/frameworks/coordinate';
 import { getbackgroundState } from '../utils/tools/shapeState';
 import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
-import { getColorByGroupModel, getColorByModel } from '../utils/tools/utils';
+import { getColorByGroupModel } from '../utils/tools/utils';
 
 export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
   const linkView = views?.[0];

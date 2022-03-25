@@ -45,7 +45,7 @@ const config = {
     // shared: true,
   },
 
-  scale: ['value', { nice: true }],
+  scale: ['value', { range: [0, 1] }],
 };
 
 const labelConfig = [
@@ -337,7 +337,7 @@ Sort.args = {
       autoFit: true,
       height: 300,
     },
-    scale: ['usr_$first_day', { nice: true, type: 'cat' }],
+    scale: ['usr_$first_day', { range: [0, 1], type: 'cat' }],
     axises: [
       [
         'users_count',
