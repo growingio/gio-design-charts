@@ -1,3 +1,10 @@
+## [1.3.23](https://github.com/growingio/gio-design-charts/compare/v1.3.22...v1.3.23) (2022-03-25)
+
+
+### Bug Fixes
+
+* **tooltip:** support offset ([#258](https://github.com/growingio/gio-design-charts/issues/258)) ([7ce7a7b](https://github.com/growingio/gio-design-charts/commit/7ce7a7b4ec641f132af0a3ab744a6316ac68f445))
+
 ## [1.3.22](https://github.com/growingio/gio-design-charts/compare/v1.3.21...v1.3.22) (2022-03-24)
 
 
