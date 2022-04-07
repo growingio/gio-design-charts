@@ -1,3 +1,10 @@
+## [1.3.24](https://github.com/growingio/gio-design-charts/compare/v1.3.23...v1.3.24) (2022-04-07)
+
+
+### Bug Fixes
+
+* **LayoutLegend:** ignore re-render when resize doesn't with ([#263](https://github.com/growingio/gio-design-charts/issues/263)) ([9c86b95](https://github.com/growingio/gio-design-charts/commit/9c86b9593327f91de469b085f1e0091592a12fef))
+
 ## [1.3.23](https://github.com/growingio/gio-design-charts/compare/v1.3.22...v1.3.23) (2022-03-25)
 
 
