@@ -1,3 +1,10 @@
+## [1.3.25](https://github.com/growingio/gio-design-charts/compare/v1.3.24...v1.3.25) (2022-05-11)
+
+
+### Bug Fixes
+
+* **ResizeObserver:** use resize-observer-polyfill ([#270](https://github.com/growingio/gio-design-charts/issues/270)) ([d8ca7c5](https://github.com/growingio/gio-design-charts/commit/d8ca7c518cdc3dac208bf2053d66cacdd84925be))
+
 ## [1.3.24](https://github.com/growingio/gio-design-charts/compare/v1.3.23...v1.3.24) (2022-04-07)
 
 
