@@ -1,3 +1,11 @@
+## [1.3.26](https://github.com/growingio/gio-design-charts/compare/v1.3.25...v1.3.26) (2022-05-12)
+
+
+### Bug Fixes
+
+* **gio-design-utils:** move this repo to peerDependencies ([#272](https://github.com/growingio/gio-design-charts/issues/272)) ([1342bf4](https://github.com/growingio/gio-design-charts/commit/1342bf4692ccf6016d5db777b80b4b0469b74de2))
+* **react-intl:** move react-intl into devDenpendecies ([#271](https://github.com/growingio/gio-design-charts/issues/271)) ([a9e2630](https://github.com/growingio/gio-design-charts/commit/a9e263097f9175095f2b9178340b1536f81d6472))
+
 ## [1.3.25](https://github.com/growingio/gio-design-charts/compare/v1.3.24...v1.3.25) (2022-05-11)
 
 
