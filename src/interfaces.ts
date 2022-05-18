@@ -24,6 +24,7 @@ export enum ChartType {
   DONUT = 'donut',
   BUBBLE = 'bubble',
   GAUGE = 'gauge',
+  SANKEY = 'sankey',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -149,6 +150,13 @@ export interface LineConfig extends ChartConfig {
    * 用来创建折线图的配置
    */
   line: Shape;
+}
+
+export interface SankeyConfig extends ChartConfig {
+  /**
+   * 用来创建折线图的配置
+   */
+  sankey: Shape;
 }
 
 export interface GaugeConfig extends ChartConfig {
