@@ -1,5 +1,5 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType, ScaleOption } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
 import {
   fetchTooltip,
   fetchViewConfig,
@@ -11,7 +11,7 @@ import {
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { LooseObject } from '@antv/g-base';
 import { ChartType } from '..';
-import { cloneDeep, forEach, merge } from 'lodash';
+import { cloneDeep, forEach, get, merge } from 'lodash';
 import { getAxisFields } from '../utils/frameworks/axis';
 import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
@@ -60,6 +60,8 @@ export class Line {
     const range = (max - current) / (max - 1) || 0;
     return range > 0 ? range : 0;
   };
+
+  getSecondRange = (current: number, max: number) => 1 - this.getFirstRange(current, max);
 
   contrastViewQueue = (dataMapping: LooseObject, legends: Legends) => {
     return (
@@ -152,10 +154,19 @@ export class Line {
 
       const viewOptions = { theme: getDefaultViewTheme(config) };
 
+      const rangeAlignLeft = get(config, `scale.${xField}.rangeAlignLeft`);
+
       // render history view, the label should hide;
       const historyView = (updatedData: LooseObject[], maxCount: number) => {
         const historyScale = {
-          scale: { [xField]: { range: [this.getFirstRange(updatedData.length, maxCount), 1] } },
+          scale: {
+            [xField]: {
+              range: [
+                rangeAlignLeft ? this.getFirstRange(updatedData.length, maxCount) : 0,
+                rangeAlignLeft ? 1 : this.getSecondRange(updatedData.length, maxCount),
+              ],
+            },
+          },
         };
         const view = this.contrastView(
           chart,
@@ -168,7 +179,14 @@ export class Line {
       // render current view, the label should show;
       const currentView = (updatedData: LooseObject[], maxCount: number) => {
         const currentScale = {
-          scale: { [xField]: { range: [this.getFirstRange(updatedData.length, maxCount), 1] } },
+          scale: {
+            [xField]: {
+              range: [
+                rangeAlignLeft ? this.getFirstRange(updatedData.length, maxCount) : 0,
+                rangeAlignLeft ? 1 : this.getSecondRange(updatedData.length, maxCount),
+              ],
+            },
+          },
         };
         const view = this.contrastView(
           chart,
