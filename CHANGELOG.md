@@ -1,3 +1,10 @@
+## [1.3.27](https://github.com/growingio/gio-design-charts/compare/v1.3.26...v1.3.27) (2022-06-27)
+
+
+### Bug Fixes
+
+* **ContrastLine:** fix the issue of the compare lengths are different ([#282](https://github.com/growingio/gio-design-charts/issues/282)) ([6cafeb0](https://github.com/growingio/gio-design-charts/commit/6cafeb08db65320c6f46a31948d91ad36829b6ef))
+
 ## [1.3.26](https://github.com/growingio/gio-design-charts/compare/v1.3.25...v1.3.26) (2022-05-12)
 
 
