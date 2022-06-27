@@ -1215,14 +1215,14 @@ export const contrastData = [
     NxDLPLD7_value: 61,
     NxDLPLD7_name: '访问的总次数(上周)',
   },
-  {
-    tm: '1636732800000',
-    NxDLPLD7_value: 50,
-    NxDLPLD7_name: '访问的总次数(上周)',
-  },
-  {
-    tm: '1636819200000',
-    NxDLPLD7_value: 14,
-    NxDLPLD7_name: '访问的总次数(上周)',
-  },
+  // {
+  //   tm: '1636732800000',
+  //   NxDLPLD7_value: 50,
+  //   NxDLPLD7_name: '访问的总次数(上周)',
+  // },
+  // {
+  //   tm: '1636819200000',
+  //   NxDLPLD7_value: 14,
+  //   NxDLPLD7_name: '访问的总次数(上周)',
+  // },
 ];

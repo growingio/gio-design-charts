@@ -221,7 +221,7 @@ const ContrastLineExampleArgs = {
         nice: true,
         max: 2000,
       },
-      tm: { range: [0, 1] },
+      tm: { range: [0, 1], rangeAlignLeft: false },
     },
     axises: [
       [

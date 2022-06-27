@@ -11,7 +11,7 @@ import {
 import { getShapeConfig } from '../utils/tools/configUtils';
 import { LooseObject } from '@antv/g-base';
 import { ChartType } from '..';
-import { forEach } from 'lodash';
+import { cloneDeep, forEach, get, merge } from 'lodash';
 import { getAxisFields } from '../utils/frameworks/axis';
 import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
@@ -21,7 +21,7 @@ export class Line {
   options: ChartOptions | undefined = undefined;
   chart: Chart | undefined = undefined;
   views: View[] = [];
-  finnalView: View | undefined = undefined;
+  finalView: View | undefined = undefined;
 
   getDataByColor = (color: string, xField: string, yField: string, data: LooseObject[]): [number, LooseObject] => {
     const dataMapping: LooseObject = {};
@@ -56,19 +56,33 @@ export class Line {
     return view;
   };
 
+  getFirstRange = (current: number, max: number) => {
+    const range = (max - current) / (max - 1) || 0;
+    return range > 0 ? range : 0;
+  };
+
+  getSecondRange = (current: number, max: number) => 1 - this.getFirstRange(current, max);
+
   contrastViewQueue = (dataMapping: LooseObject, legends: Legends) => {
-    return (contrastView: (data: LooseObject[]) => void, finalView: (data: LooseObject[]) => void) => {
+    return (
+      contrastView: (data: LooseObject[], count: number) => void,
+      finalView: (data: LooseObject[], count: number) => void
+    ) => {
       let leadData = undefined;
+      let maxCount = 0;
+      const contrastData = [] as any[];
       forEach(dataMapping, (v, k) => {
+        maxCount = v.length > maxCount ? v.length : maxCount;
         const legend: LooseObject = legends[k] || {};
         if (!legend.hide && legend.role !== 'lead') {
-          contrastView?.(v);
+          contrastData.push(v);
         }
         if (legend.role === 'lead') {
           leadData = v;
         }
       });
-      leadData && finalView?.(leadData);
+      contrastData.forEach((item) => contrastView(item, maxCount));
+      leadData && finalView?.(leadData, maxCount);
     };
   };
 
@@ -116,8 +130,8 @@ export class Line {
         view?.render(true);
       },
       (updatedData: LooseObject[]) => {
-        this.finnalView?.changeData(updatedData);
-        this.finnalView?.render(true);
+        this.finalView?.changeData(updatedData);
+        this.finalView?.render(true);
       }
     );
 
@@ -140,16 +154,47 @@ export class Line {
 
       const viewOptions = { theme: getDefaultViewTheme(config) };
 
+      const rangeAlignLeft = get(config, `scale.${xField}.rangeAlignLeft`);
+
       // render history view, the label should hide;
-      const historyView = (updatedData: LooseObject[]) => {
-        const view = this.contrastView(chart, { ...options, data: updatedData }, config, viewOptions);
+      const historyView = (updatedData: LooseObject[], maxCount: number) => {
+        const historyScale = {
+          scale: {
+            [xField]: {
+              range: [
+                rangeAlignLeft ? this.getFirstRange(updatedData.length, maxCount) : 0,
+                rangeAlignLeft ? 1 : this.getSecondRange(updatedData.length, maxCount),
+              ],
+            },
+          },
+        };
+        const view = this.contrastView(
+          chart,
+          { ...options, data: updatedData },
+          merge(cloneDeep(config), historyScale),
+          viewOptions
+        );
         views.push(view);
       };
       // render current view, the label should show;
-      const currentView = (updatedData: LooseObject[]) => {
-        const view = this.contrastView(chart, { ...options, data: updatedData }, config);
+      const currentView = (updatedData: LooseObject[], maxCount: number) => {
+        const currentScale = {
+          scale: {
+            [xField]: {
+              range: [
+                rangeAlignLeft ? this.getFirstRange(updatedData.length, maxCount) : 0,
+                rangeAlignLeft ? 1 : this.getSecondRange(updatedData.length, maxCount),
+              ],
+            },
+          },
+        };
+        const view = this.contrastView(
+          chart,
+          { ...options, data: updatedData },
+          merge(cloneDeep(config), currentScale)
+        );
         views.push(view);
-        this.finnalView = view;
+        this.finalView = view;
       };
       this.contrastViewQueue(dataMapping, legends)(historyView, currentView);
 
