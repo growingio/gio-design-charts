@@ -7,8 +7,7 @@ const getTextWidth = (text: string) => {
   const canvas = document.createElement('canvas');
   const context: any = canvas.getContext('2d');
   context.font = '14px';
-  const dimension = context?.measureText(text);
-  return dimension?.width;
+  return context?.measureText(text)?.width || 0;
 };
 
 class IntervalBarLabel extends GeometryLabel {
@@ -29,11 +28,12 @@ class IntervalBarLabel extends GeometryLabel {
     // style.shadowBlur = 3;
 
     const blankWidth = get(labelCfg, 'coordinate.width') - get(labelCfg, 'mappingData.x');
-    console.log('====>>>', blankWidth, labelPoint, labelCfg, getTextWidth(get(labelCfg, 'content[0]') || 0));
-    const labelWidth = getTextWidth(get(labelCfg, 'content[0]') || 0);
-    if (blankWidth < labelWidth) {
-      style.fill = '#ffffff';
-      return { x: -labelWidth - 24, y };
+    if (blankWidth < 200) {
+      const labelWidth = getTextWidth(get(labelCfg, 'content[0]') || 0);
+      if (blankWidth < labelWidth) {
+        style.fill = '#ffffff';
+        return { x: -labelWidth - 24, y };
+      }
     }
     return { x, y };
   }
