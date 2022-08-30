@@ -1,3 +1,10 @@
+## [1.3.28](https://github.com/growingio/gio-design-charts/compare/v1.3.27...v1.3.28) (2022-08-30)
+
+
+### Bug Fixes
+
+* **DragBar:** 修改DragBar的label显示 ([#294](https://github.com/growingio/gio-design-charts/issues/294)) ([d457aae](https://github.com/growingio/gio-design-charts/commit/d457aaeabf7ec64f60a1589eff1cd15b8a1f1be4))
+
 ## [1.3.27](https://github.com/growingio/gio-design-charts/compare/v1.3.26...v1.3.27) (2022-06-27)
 
 
