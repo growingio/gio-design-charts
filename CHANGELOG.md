@@ -1,3 +1,66 @@
+## [1.3.28](https://github.com/growingio/gio-design-charts/compare/v1.3.27...v1.3.28) (2022-08-30)
+
+
+### Bug Fixes
+
+* **DragBar:** 修改DragBar的label显示 ([#294](https://github.com/growingio/gio-design-charts/issues/294)) ([d457aae](https://github.com/growingio/gio-design-charts/commit/d457aaeabf7ec64f60a1589eff1cd15b8a1f1be4))
+
+## [1.3.27](https://github.com/growingio/gio-design-charts/compare/v1.3.26...v1.3.27) (2022-06-27)
+
+
+### Bug Fixes
+
+* **ContrastLine:** fix the issue of the compare lengths are different ([#282](https://github.com/growingio/gio-design-charts/issues/282)) ([6cafeb0](https://github.com/growingio/gio-design-charts/commit/6cafeb08db65320c6f46a31948d91ad36829b6ef))
+
+## [1.3.26](https://github.com/growingio/gio-design-charts/compare/v1.3.25...v1.3.26) (2022-05-12)
+
+
+### Bug Fixes
+
+* **gio-design-utils:** move this repo to peerDependencies ([#272](https://github.com/growingio/gio-design-charts/issues/272)) ([1342bf4](https://github.com/growingio/gio-design-charts/commit/1342bf4692ccf6016d5db777b80b4b0469b74de2))
+* **react-intl:** move react-intl into devDenpendecies ([#271](https://github.com/growingio/gio-design-charts/issues/271)) ([a9e2630](https://github.com/growingio/gio-design-charts/commit/a9e263097f9175095f2b9178340b1536f81d6472))
+
+## [1.3.25](https://github.com/growingio/gio-design-charts/compare/v1.3.24...v1.3.25) (2022-05-11)
+
+
+### Bug Fixes
+
+* **ResizeObserver:** use resize-observer-polyfill ([#270](https://github.com/growingio/gio-design-charts/issues/270)) ([d8ca7c5](https://github.com/growingio/gio-design-charts/commit/d8ca7c518cdc3dac208bf2053d66cacdd84925be))
+
+## [1.3.24](https://github.com/growingio/gio-design-charts/compare/v1.3.23...v1.3.24) (2022-04-07)
+
+
+### Bug Fixes
+
+* **LayoutLegend:** ignore re-render when resize doesn't with ([#263](https://github.com/growingio/gio-design-charts/issues/263)) ([9c86b95](https://github.com/growingio/gio-design-charts/commit/9c86b9593327f91de469b085f1e0091592a12fef))
+
+## [1.3.23](https://github.com/growingio/gio-design-charts/compare/v1.3.22...v1.3.23) (2022-03-25)
+
+
+### Bug Fixes
+
+* **tooltip:** support offset ([#258](https://github.com/growingio/gio-design-charts/issues/258)) ([7ce7a7b](https://github.com/growingio/gio-design-charts/commit/7ce7a7b4ec641f132af0a3ab744a6316ac68f445))
+
+## [1.3.22](https://github.com/growingio/gio-design-charts/compare/v1.3.21...v1.3.22) (2022-03-24)
+
+
+### Bug Fixes
+
+* **chart:** re-render chart when legend list is changed ([#256](https://github.com/growingio/gio-design-charts/issues/256)) ([2ad5435](https://github.com/growingio/gio-design-charts/commit/2ad543518ed3fb1d1b53db369b6761776f926e53))
+
+## [1.3.21](https://github.com/growingio/gio-design-charts/compare/v1.3.20...v1.3.21) (2022-03-24)
+
+
+### Bug Fixes
+
+* **Funnel:** support update data ([#252](https://github.com/growingio/gio-design-charts/issues/252)) ([1c06b92](https://github.com/growingio/gio-design-charts/commit/1c06b9299f76ed9f5f3a863323625594219ac662))
+* **Title:** update title style ([#251](https://github.com/growingio/gio-design-charts/issues/251)) ([28968a6](https://github.com/growingio/gio-design-charts/commit/28968a695a7cbbed2326ada611fc41f018ee07fa))
+
+
+### Reverts
+
+* Revert "fix(Funnel): support update data" ([57ddfb1](https://github.com/growingio/gio-design-charts/commit/57ddfb1b1f882dcbd250ffccf7babcf2bde5fe61))
+
 ## [1.3.20](https://github.com/growingio/gio-design-charts/compare/v1.3.19...v1.3.20) (2022-03-15)
 
 

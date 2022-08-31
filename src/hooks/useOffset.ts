@@ -1,5 +1,6 @@
 import { debounce } from 'lodash';
 import { useCallback, useEffect, RefObject, useRef, MutableRefObject } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export interface Offset {
   width: number;

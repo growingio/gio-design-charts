@@ -16,6 +16,9 @@ const LegendLayout = (props: LayoutProps) => {
       const autoFit = config?.chart?.autoFit;
       // we needn't support scroll-x for autoFit chart.
       const divWidth = resetOffset.width;
+      if (offsetWidth === divWidth) {
+        return;
+      }
       if (autoFit) {
         chart?.forceFit();
         setOffsetWidth(divWidth);

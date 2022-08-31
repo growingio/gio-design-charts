@@ -7,7 +7,7 @@ import { isEqual } from '@antv/util';
 import { ChartConfig, Legend } from '../interfaces';
 import useLegends, { getLegends } from './useLegends';
 import { getTheme, inValidConfig } from '../utils/chart';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isObject } from 'lodash';
 import { DesignContext } from '@gio-design/utils';
 import { useIntlDict } from './useIntlDict';
 
@@ -25,6 +25,13 @@ export interface UseChartProps {
   setTooltipKey: any;
   title?: string;
 }
+
+const changedDatalength = (source: any, target: any) => {
+  if (isObject(source)) {
+    return (source as any)?.source?.length === (target as any)?.source?.length;
+  }
+  return source?.length === target?.length;
+};
 
 // This is a hook which is used to create Chart object and update the chart.
 const useChart = (options: UseChartProps) => {
@@ -141,12 +148,12 @@ const useChart = (options: UseChartProps) => {
     }
   }, [data, config]);
 
-  const hasChangedConfig = !isEqual(configRef.current, config);
+  const hasChangedConfig = !isEqual(configRef.current, config) || !changedDatalength(data, dataRef.current);
   const hasChangedData = !isEqual(dataRef.current, data);
 
   useEffect(() => {
     // 如果equalConfig有变化，则进入创建或者清楚通道
-    if (hasChangedConfig || hasChangedData) {
+    if (hasChangedConfig) {
       // 如果已经有了chartRef.current，需要先销毁
       if (chartRef.current) {
         clear();
@@ -156,10 +163,9 @@ const useChart = (options: UseChartProps) => {
     }
   }, [create, clear, hasChangedConfig, hasChangedData, config, tooltipKey, legendList]);
 
-  // if (!hasChangedConfig && hasChangedData) {
-  //   console.log('update ...');
-  //   updateChart();
-  // }
+  if (!hasChangedConfig && hasChangedData) {
+    updateChart();
+  }
 
   const chartOptions = useMemo(
     () => ({

@@ -97,6 +97,7 @@ const FunnelWith3ColumnsArgs = {
       showContent: true,
       // shared: true,
       showMarkers: false,
+      clickOffset: 62,
       render: (options: any) => {
         return <DrillDownCard options={options} />;
       },
