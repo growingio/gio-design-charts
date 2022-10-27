@@ -39,6 +39,15 @@ const Dashboard = () => {
         <div>
           <Frame type="left" title={BaiscLine.storyName} path="/?path=/story/charts-折线图-line--baisc-line">
             <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
           </Frame>
           <Frame
             type="right"
@@ -46,6 +55,13 @@ const Dashboard = () => {
             path="/?path=/story/charts-折线图-line--contrast-line"
           >
             <ContrastLineExample {...(ContrastLineExample.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
+            <BaiscLine {...(BaiscLine.args as LineProps)} />
           </Frame>
         </div>
         <div>

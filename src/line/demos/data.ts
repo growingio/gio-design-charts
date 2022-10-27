@@ -1,34 +1,29 @@
-export const dataWithOneLine = [
-  { type: '步步盈增', tm: '06/04 周五1', value: 0 },
-  { type: '步步盈增', tm: '06/04 周五2', value: 0 },
-  { type: '步步盈增', tm: '06/04 周五', value: 10900 },
-  { type: '步步盈增', tm: '06/05 周六', value: 7200 },
-  { type: '步步盈增', tm: '06/06 周日', value: 13900 },
-  { type: '步步盈增', tm: '06/07 周一', value: 11100 },
-  { type: '步步盈增', tm: '06/08 周二', value: 6500 },
-  { type: '步步盈增', tm: '06/09 周三', value: 4800 },
-  { type: '步步盈增', tm: '06/10 周四', value: 8123 },
-  { type: '步步盈增', tm: '06/11 周五', value: 9865 },
-];
+export const dataWithOneLine = new Array(200).fill(0).map((d, i) => {
+  return ({
+    type: '步步盈增',
+    tm: `0${Math.floor(i / 27) + 1}/${i % 27 + 1}`,
+    value: Math.random()
+  })
+});
 
-export const dataWithTwoLine = [
-  { type: '步步盈增', tm: '06/04 周五', value: 10900 },
-  { type: '步步盈增（上个月）', tm: '06/04 周五', value: 6000 },
-  { type: '步步盈增', tm: '06/05 周六', value: 7200 },
-  { type: '步步盈增（上个月）', tm: '06/05 周六', value: 5840 },
-  { type: '步步盈增', tm: '06/06 周日', value: 13900 },
-  { type: '步步盈增（上个月）', tm: '06/06 周日', value: 11200 },
-  { type: '步步盈增', tm: '06/07 周一', value: 11100 },
-  { type: '步步盈增（上个月）', tm: '06/07 周一', value: 7802 },
-  { type: '步步盈增', tm: '06/08 周二', value: 6500 },
-  { type: '步步盈增（上个月）', tm: '06/08 周二', value: 4800 },
-  { type: '步步盈增', tm: '06/09 周三', value: 4800 },
-  { type: '步步盈增（上个月）', tm: '06/09 周三', value: 5890 },
-  { type: '步步盈增', tm: '06/10 周四', value: 8123 },
-  { type: '步步盈增（上个月）', tm: '06/10 周四', value: 7201 },
-  { type: '步步盈增', tm: '06/11 周五', value: 9865 },
-  { type: '步步盈增（上个月）', tm: '06/11 周五', value: 8028 },
-];
+// export const dataWithTwoLine = [
+//   { type: '步步盈增', tm: '06/04 周五', value: 10900 },
+//   { type: '步步盈增（上个月）', tm: '06/04 周五', value: 6000 },
+//   { type: '步步盈增', tm: '06/05 周六', value: 7200 },
+//   { type: '步步盈增（上个月）', tm: '06/05 周六', value: 5840 },
+//   { type: '步步盈增', tm: '06/06 周日', value: 13900 },
+//   { type: '步步盈增（上个月）', tm: '06/06 周日', value: 11200 },
+//   { type: '步步盈增', tm: '06/07 周一', value: 11100 },
+//   { type: '步步盈增（上个月）', tm: '06/07 周一', value: 7802 },
+//   { type: '步步盈增', tm: '06/08 周二', value: 6500 },
+//   { type: '步步盈增（上个月）', tm: '06/08 周二', value: 4800 },
+//   { type: '步步盈增', tm: '06/09 周三', value: 4800 },
+//   { type: '步步盈增（上个月）', tm: '06/09 周三', value: 5890 },
+//   { type: '步步盈增', tm: '06/10 周四', value: 8123 },
+//   { type: '步步盈增（上个月）', tm: '06/10 周四', value: 7201 },
+//   { type: '步步盈增', tm: '06/11 周五', value: 9865 },
+//   { type: '步步盈增（上个月）', tm: '06/11 周五', value: 8028 },
+// ];
 
 export const dataWithDash = [
   {
