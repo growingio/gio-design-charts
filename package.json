@@ -101,7 +101,7 @@
     "conventional-changelog-cli": "^2.2.2",
     "css-loader": "5.2.7",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.3.0",
     "father-build": "^1.21.1",
