@@ -1,11 +1,8 @@
 import { Chart, View } from '@antv/g2';
 import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
-import { ChartConfig, ChartOptions, Legend, Legends, ChartType, Shape } from '../interfaces';
+import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
-import { Datum, MappingDatum } from '@antv/g2/lib/interface';
-import { getDefaultTheme } from '../utils/chart';
-
-
+import { Datum } from '@antv/g2/lib/interface';
 
 export class Box {
   chart: Chart | undefined = undefined;
@@ -36,10 +33,24 @@ export class Box {
     const chart = generateChart(options, config);
     const boxView = chart.createView();
     fetchConfig(boxView, options, config);
-    
-    boxView.schema().position(boxCfg.position).shape('box').style(boxCfg.color, boxCfg.style || defaultStyles.box).adjust(boxCfg.adjust);
-    boxView.point().position('x*avg').size(3).style(boxCfg.color, boxCfg.style || defaultStyles.point).adjust(boxCfg.adjust);
+
+    boxView
+      .schema({
+        maxColumnWidth: 40,
+        minColumnWidth: 40,
+      })
+      .position(boxCfg.position)
+      .shape('box')
+      .style(boxCfg.color, boxCfg.style || defaultStyles.box)
+      .adjust(boxCfg.adjust);
+    boxView
+      .point()
+      .position('x*avg')
+      .size(3)
+      .style(boxCfg.color, boxCfg.style || defaultStyles.point)
+      .adjust(boxCfg.adjust);
     boxView.interaction('active-region');
+    boxView.interaction('element-highlight-by-color');
 
     fetchTooltip(chart, config);
     chart.render();
