@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Box as BoxCls } from './framework';
 import { ChartType, ChartProps, BoxConfig } from '../interfaces';
-import { LegendLayout } from '../layouts';
+import { LegendLayout, ScrollXLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { isEmpty } from 'lodash';
 import { colors } from '../theme';
@@ -48,9 +48,10 @@ const Box: React.FC<BoxProps> = (props: BoxProps) => {
   }, [legendProps]);
 
   return (
-    <LegendLayout
+    <ScrollXLayout
       title={title}
       data={data}
+      sourceData={data}
       defaultOptions={defaultOptions}
       legendList={legendProps}
       config={config}

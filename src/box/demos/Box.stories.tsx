@@ -50,11 +50,18 @@ const BasicBoxArgs = {
         max: 35,
         min: 0,
         nice: true,
+      },
+      'x': {
+        nice: true
       }
     },
     axis: ['avg', false],
     box: {
       position: 'x*range',
+      color: 'Species',
+    },
+    point: {
+      position: 'x*avg',
       color: 'Species',
     },
     tooltip: {
@@ -66,7 +73,9 @@ const BasicBoxArgs = {
             math: ['最小值', '下四分位', '中位数', '上四分位', '最大值', '平均数'][i],
             value: d
           }})
-        })
+        });
+        data?.push({data: {math: '平均值', value: options.data?.[0]?.data.avg}});
+
         return <InfoCard forwardKey={'math'} valueKey={'value'} data={data} title={title} />;
       },
     },
@@ -103,6 +112,11 @@ const GroupBoxArgs = {
       color: 'Species',
       adjust: { type: 'dodge', dodgeBy: 'Species' },
     },
+    point: {
+      position: 'x*avg',
+      color: 'Species',
+      adjust: { type: 'dodge', dodgeBy: 'Species' },
+    },
     tooltip: {
       shared: true,
       // showCrosshairs: true,
@@ -114,7 +128,8 @@ const GroupBoxArgs = {
             math: ['最小值', '下四分位', '中位数', '上四分位', '最大值'][i],
             value: d
           }})
-        })
+        });
+        data?.push({data: {math: '平均值', value: options.data?.[0]?.data.avg}});
         return <InfoCard forwardKey={'math'} valueKey={'value'} data={data} title={title} />;
       },
     },

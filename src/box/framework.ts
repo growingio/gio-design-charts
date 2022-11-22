@@ -29,6 +29,7 @@ export class Box {
     }
 
     const boxCfg = getShapeConfig(config, ChartType.BOX);
+    const pointCfg = getShapeConfig(config, 'point');
 
     const chart = generateChart(options, config);
     const boxView = chart.createView();
@@ -36,8 +37,9 @@ export class Box {
 
     boxView
       .schema({
-        maxColumnWidth: 40,
-        minColumnWidth: 40,
+        maxColumnWidth: 60,
+        minColumnWidth: 16,
+        columnWidthRatio: 0.5
       })
       .position(boxCfg.position)
       .shape('box')
@@ -45,9 +47,9 @@ export class Box {
       .adjust(boxCfg.adjust);
     boxView
       .point()
-      .position('x*avg')
-      .size(3)
-      .style(boxCfg.color, boxCfg.style || defaultStyles.point)
+      .position(pointCfg.position)
+      .size(pointCfg?.size || 3)
+      .style(pointCfg.color, pointCfg.style || defaultStyles.point)
       .adjust(boxCfg.adjust);
     boxView.interaction('active-region');
     boxView.interaction('element-highlight-by-color');
