@@ -4,11 +4,16 @@ import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { PercentArea } from '../../area/demos/Area.stories';
 import { Area } from '../../area';
 import { AreaProps } from '../../area/Area';
+import { IntlProvider } from 'react-intl';
 
 export const chartComponentTestid = 'chart-component';
 export const ChartCom = () => {
   const rootRef: RefObject<HTMLDivElement> = React.createRef();
-  return <div ref={rootRef} data-testid={chartComponentTestid} />;
+  return (
+    <IntlProvider locale="zh-CH" messages={{}}>
+      <div ref={rootRef} data-testid={chartComponentTestid} />
+    </IntlProvider>
+  );
 };
 
 describe('common', () => {

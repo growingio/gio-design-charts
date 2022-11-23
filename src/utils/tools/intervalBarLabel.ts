@@ -11,7 +11,7 @@ const getTextWidth = (text: string) => {
 };
 
 class IntervalBarLabel extends GeometryLabel {
-  protected getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
+  getLabelOffsetPoint(labelCfg: LabelCfg, index: number, total: number) {
     const labelPoint = super.getLabelOffsetPoint(labelCfg, index, total);
     const { x, y } = labelPoint;
 

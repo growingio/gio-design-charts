@@ -37,9 +37,10 @@ const reduceElements = (elements: Element[], callback: (prev: Element, current: 
   }
 };
 
-const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []) => {
+const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = [], showLabel: boolean = false) => {
   try {
     if (view.foregroundGroup.destroyed) {
+      /* istanbul ignore next */
       return;
     }
     const linkGroup = view.foregroundGroup.addGroup({
@@ -53,7 +54,7 @@ const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []
     groups.push(textGroup);
     reduceElements(elements, (prev: Element, next: Element, index: number) => {
       addLinkShape(group, prev, next);
-      if (texts.length < FUNNEL_CRITICAL_COUNT) {
+      if (showLabel) {
         addTextShape(textGroup, prev, next, texts[index]);
       }
     });
@@ -63,17 +64,17 @@ const linkByElement = (view: View, groups: GroupCfg[] = [], texts: string[] = []
 };
 
 export const addLinkByElement = (view: View, group: GroupCfg[], options: LinkElementOptions) => {
-  const { delay = 600, texts = [] } = options;
+  const { delay = 600, texts = [], showLabel } = options;
   if (!view) {
     return 0;
   }
   if (delay <= 0) {
-    linkByElement(view, group, texts);
+    linkByElement(view, group, texts, showLabel);
     return 0;
   }
 
   return setTimeout(() => {
-    linkByElement(view, group, texts);
+    linkByElement(view, group, texts, showLabel);
   }, delay);
 };
 

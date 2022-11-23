@@ -60,6 +60,7 @@ const useChart = (options: UseChartProps) => {
   const updateRef = useRef<(charts: { chart: Chart; views?: View[] }, data: Datum[], config?: ChartConfig) => void>();
   const { legends, legendQueue, hasDashed, setLegends, updateLegends } = useLegends();
 
+  /* istanbul ignore next */
   const clear = useCallback(() => {
     chartRef.current?.destroy();
     chartRef.current = undefined;
@@ -71,6 +72,17 @@ const useChart = (options: UseChartProps) => {
     if (inValidConfig(config)) {
       return;
     }
+
+    /* istanbul ignore next */
+    const tooltipCustomItems = (originalItems: TooltipItem[]) => {
+      // it will be get error when mouseover quickly on chart before funnl chart is rendered
+      // debounce will resolve it.
+      // use setHoverItem will make sure the tooltip marker style is right
+      // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
+      tooltipItemRegister(originalItems);
+      return originalItems;
+    };
+
     const theme = getTheme(context?.theme);
     const [genLegends, queue, hasDashedLegend] = getLegends(config.type, legendList);
     const tooltip =
@@ -78,14 +90,7 @@ const useChart = (options: UseChartProps) => {
         ? {
             ...config.tooltip,
             container: tooltipRef.current,
-            customItems: (originalItems: TooltipItem[]) => {
-              // it will be get error when mouseover quickly on chart before funnl chart is rendered
-              // debounce will resolve it.
-              // use setHoverItem will make sure the tooltip marker style is right
-              // config.type === ChartType.FUNNEL ? setHoverItemD(originalItems) : setHoverItem(originalItems);
-              tooltipItemRegister(originalItems);
-              return originalItems;
-            },
+            customItems: tooltipCustomItems,
           }
         : false;
     const {
@@ -135,6 +140,7 @@ const useChart = (options: UseChartProps) => {
     title,
   ]);
 
+  /* istanbul ignore next */
   const updateChart = useCallback(() => {
     if (config && legendList) {
       setLegends(...getLegends(config.chartType, legendList));

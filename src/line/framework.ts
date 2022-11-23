@@ -129,6 +129,7 @@ export class Line {
         view?.changeData(updatedData);
         view?.render(true);
       },
+      /* istanbul ignore next */
       (updatedData: LooseObject[]) => {
         this.finalView?.changeData(updatedData);
         this.finalView?.render(true);
@@ -141,6 +142,7 @@ export class Line {
   contrast = (options: ChartOptions, config: ChartConfig = {}) => {
     const { id, data, legends = {} } = options;
     if (!id) {
+      /* istanbul ignore next */
       return {};
     }
     const chart = generateChart(options, config);
@@ -226,7 +228,7 @@ export class Line {
   };
 
   legend = <LineConfig>(charts: (Chart | View)[], legends: Legends, config: LineConfig) => {
-    const lineConfig = getShapeConfig(config, 'line');
+    const lineConfig = getShapeConfig(config as ChartConfig, 'line');
     if (lineConfig.color) {
       charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, lineConfig.color));
     }

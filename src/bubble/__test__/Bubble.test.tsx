@@ -30,6 +30,38 @@ describe('Bubble Chart', () => {
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 
+  test('render Chart with number size', async () => {
+    const { size, ...withoutSizeBubbleCfg } = (SameSize.args as BubbleProps).config.bubble;
+    SameSize.args = {
+      ...SameSize.args,
+      config: {
+        ...(SameSize.args as BubbleProps).config,
+        bubble: { ...withoutSizeBubbleCfg, size: 10 },
+      },
+    };
+    render(<Bubble {...(SameSize.args as BubbleProps)} />);
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  });
+
+  test('render Chart with array size', async () => {
+    const { size, ...withoutSizeBubbleCfg } = (SameSize.args as BubbleProps).config.bubble;
+    SameSize.args = {
+      ...SameSize.args,
+      config: {
+        ...(SameSize.args as BubbleProps).config,
+        bubble: { ...withoutSizeBubbleCfg, size: [10, 60] },
+      },
+    };
+    render(<Bubble {...(SameSize.args as BubbleProps)} />);
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  });
+
   test('render Chart width dark theme', async () => {
     render(<Bubble {...(Dark.args as BubbleProps)} />);
     act(() => {

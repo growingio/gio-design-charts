@@ -1,5 +1,6 @@
+import { ChartConfig } from '../../interfaces';
 import { BAR_TEXTURE } from '../../theme';
-import { getLegendStyles } from '../styles';
+import { getLegendStyles, isDarkTheme } from '../styles';
 
 describe('test styles', () => {
   test('call getLegendStyles', () => {
@@ -21,5 +22,13 @@ describe('test styles', () => {
       height: 0,
       width: '12px',
     });
+  });
+
+  test('call isDarkTheme', () => {
+    const config = {} as ChartConfig;
+    expect(isDarkTheme(config)).toBeFalsy();
+
+    config.chart = { theme: 'dark' };
+    expect(isDarkTheme(config)).toBeTruthy();
   });
 });

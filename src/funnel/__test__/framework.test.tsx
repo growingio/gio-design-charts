@@ -9,7 +9,7 @@ import { Chart } from '@antv/g2';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 import { getSingleData } from '../utils';
 
-const { config, legends: legendList, data: sourceData } = FunnelWith3Columns.args as ChartProps;
+const { config, legends: legendList, data: sourceData, title } = FunnelWith3Columns.args as ChartProps;
 const data = getSingleData(sourceData);
 const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('funnel fromework', () => {

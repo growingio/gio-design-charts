@@ -7,6 +7,7 @@ const useInterceptors = () => {
   const tooltipRef = useRef<HTMLDivElement | null>();
 
   const getTrigger = useCallback(() => triggerActionRef.current, [triggerActionRef]);
+  /* istanbul ignore next */
   const setTrigger = useCallback(
     (trigger) => {
       triggerActionRef.current = trigger;
