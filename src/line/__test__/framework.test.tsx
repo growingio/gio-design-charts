@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { Line as LineCls, ContrastLine as ContrastLineCls } from '../framework';
+import { Line as LineCls } from '../framework';
 import { BaiscLine, ContrastLineExample } from '../demos/Line.stories';
 import { ChartType } from '../../interfaces';
 import { getLegends } from '../../hooks/useLegends';
@@ -16,6 +16,7 @@ const [legends] = getLegends(ChartType.AREA, legendList as any);
 describe('line fromework', () => {
   test('call lineChart', () => {
     render(<ChartCom />);
+    const line = new LineCls();
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
@@ -44,47 +45,47 @@ describe('line fromework', () => {
   });
 });
 
-describe('ContrastLine framework', () => {
-  const { config, title, legends: legendList, data } = ContrastLineExample.args as LineProps;
-  const line = new ContrastLineCls();
-  beforeAll(() => {
-    config.type = ChartType.LINE;
-    render(
-      <IntlProvider locale="zh-CH" messages={{}}>
-        <LegendLayout config={config} title={title} data={data} legendList={legendList || []} chart={line} />
-      </IntlProvider>
-    );
-  });
+// describe('ContrastLine framework', () => {
+//   const { config, title, legends: legendList, data } = ContrastLineExample.args as LineProps;
+//   const line = new ContrastLineCls();
+//   beforeAll(() => {
+//     config.type = ChartType.LINE;
+//     render(
+//       <IntlProvider locale="zh-CH" messages={{}}>
+//         <LegendLayout config={config} title={title} data={data} legendList={legendList || []} chart={line} />
+//       </IntlProvider>
+//     );
+//   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(testid)).toBeTruthy();
-    line.update(data);
-  });
-});
+//   // test('render', async () => {
+//   //   expect(await screen.findByTestId(testid)).toBeTruthy();
+//   //   line.update(data);
+//   // });
+// });
 
-describe('handleLegend', () => {
-  test('call it', () => {
-    const line = new LineCls();
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-      legends,
-    };
-    const { chart } = line.render(options, config);
-    line.legend([chart as Chart], legends, config);
-  });
-  test('call it without config', () => {
-    const line = new LineCls();
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-      legends,
-    };
-    const { chart } = line.render(options, config);
-    line.legend([chart as Chart], legends, {});
-  });
-});
+// describe('handleLegend', () => {
+//   test('call it', () => {
+//     const line = new LineCls();
+//     render(<ChartCom />);
+//     const element = screen.getByTestId(chartComponentTestid);
+//     const options = {
+//       id: element,
+//       data,
+//       legends,
+//     };
+//     const { chart } = line.render(options, config);
+//     line.legend([chart as Chart], legends, config);
+//   });
+//   test('call it without config', () => {
+//     const line = new LineCls();
+//     render(<ChartCom />);
+//     const element = screen.getByTestId(chartComponentTestid);
+//     const options = {
+//       id: element,
+//       data,
+//       legends,
+//     };
+//     const { chart } = line.render(options, config);
+//     line.legend([chart as Chart], legends, {});
+//   });
+// });
