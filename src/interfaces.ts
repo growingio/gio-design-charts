@@ -12,6 +12,7 @@ export enum ChartType {
   DONUT = 'donut',
   BUBBLE = 'bubble',
   GAUGE = 'gauge',
+  BOX = 'box',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -123,6 +124,13 @@ export interface AreaConfig extends ChartConfig {
    * 用来创建面积图的配置
    */
   area: Shape;
+}
+
+export interface BoxConfig extends ChartConfig {
+  /**
+   * 用来创建箱型图的配置
+   */
+  box: Shape;
 }
 
 export interface BubbleConfig extends ChartConfig {
