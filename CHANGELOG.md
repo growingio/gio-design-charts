@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/growingio/gio-design-charts/compare/v1.3.28...v1.4.0) (2022-11-23)
+
+
+### Features
+
+* **box:** 新增箱型图 ([#306](https://github.com/growingio/gio-design-charts/issues/306)) ([4e9152d](https://github.com/growingio/gio-design-charts/commit/4e9152d6a746b9012921f5541478468e575c0539))
+* 升级Chart Design ([#313](https://github.com/growingio/gio-design-charts/issues/313)) ([4030ba7](https://github.com/growingio/gio-design-charts/commit/4030ba7216c3cc75f737a7def3be7537a42b3ec1)), closes [#254](https://github.com/growingio/gio-design-charts/issues/254) [#257](https://github.com/growingio/gio-design-charts/issues/257)
+
 ## [1.3.28](https://github.com/growingio/gio-design-charts/compare/v1.3.27...v1.3.28) (2022-08-30)
 
 
