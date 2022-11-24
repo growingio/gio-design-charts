@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/growingio/gio-design-charts/compare/v1.5.0...v2.0.0) (2022-11-24)
+
+
+### Features
+
+* refactor ([#316](https://github.com/growingio/gio-design-charts/issues/316)) ([1fea016](https://github.com/growingio/gio-design-charts/commit/1fea01680aaf5ff9bfac4e9715035288087b2828))
+
+
+### BREAKING CHANGES
+
+* 重构代码
+
+Co-authored-by: YanHui <yanhui@growingio.com>
+
 # [1.5.0](https://github.com/growingio/gio-design-charts/compare/v1.4.0...v1.5.0) (2022-11-24)
 
 
