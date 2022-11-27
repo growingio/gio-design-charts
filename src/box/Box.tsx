@@ -22,6 +22,7 @@ const Box: React.FC<BoxProps> = (props: BoxProps) => {
           box: () => ({
             color: colors[0],
             fill: colors[0],
+            stroke: colors[0],
             fillOpacity: 0.2,
           }),
           point: () => ({

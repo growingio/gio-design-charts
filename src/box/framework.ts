@@ -1,4 +1,4 @@
-import { Chart, View } from '@antv/g2';
+import { Chart, Element, registerInteraction, View } from '@antv/g2';
 import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
@@ -22,7 +22,7 @@ export class Box {
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
-    const { id, legends = {}, defaultStyles = {}, data } = options;
+    const { id, defaultStyles = {}, data } = options;
     if (!id) {
       /* istanbul ignore next */
       return {};
@@ -34,30 +34,36 @@ export class Box {
     const chart = generateChart(options, config);
     const boxView = chart.createView();
     fetchConfig(boxView, options, config);
-
+    console.log(data, boxCfg.color, boxCfg.position);
     boxView
       .schema({
         maxColumnWidth: 60,
         minColumnWidth: 16,
-        columnWidthRatio: 0.5
+        columnWidthRatio: 0.5,
       })
       .position(boxCfg.position)
+      .color(boxCfg.color)
       .shape('box')
-      .style(boxCfg.color, boxCfg.style || defaultStyles.box)
+      .style(boxCfg.color, defaultStyles.box)
+      .state({
+        active: {
+          style: (element: Element) => (element as any)?.statesStyle?.default,
+        },
+      })
       .adjust(boxCfg.adjust);
     boxView
       .point()
       .position(pointCfg.position)
+      .color(boxCfg.color)
       .size(pointCfg?.size || 3)
       .style(pointCfg.color, pointCfg.style || defaultStyles.point)
       .adjust(boxCfg.adjust);
-    boxView.interaction('active-region');
-    boxView.interaction('element-highlight-by-color');
+    boxView.render();
 
     fetchTooltip(chart, config);
+    boxView.interaction('element-active');
+    boxView.interaction('element-highlight-by-color');
     chart.render();
-
-    chart.render(true);
 
     this.chart = chart;
     this.boxView = boxView;
