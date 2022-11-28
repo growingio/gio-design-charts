@@ -34,7 +34,6 @@ export class Box {
     const chart = generateChart(options, config);
     const boxView = chart.createView();
     fetchConfig(boxView, options, config);
-    console.log(data, boxCfg.color, boxCfg.position);
     boxView
       .schema({
         maxColumnWidth: 60,
@@ -61,6 +60,7 @@ export class Box {
     boxView.render();
 
     fetchTooltip(chart, config);
+    boxView.interaction('active-region');
     boxView.interaction('element-active');
     boxView.interaction('element-highlight-by-color');
     chart.render();
