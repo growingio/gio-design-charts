@@ -65,7 +65,7 @@ const BasicBoxArgs = {
       color: 'Species',
     },
     tooltip: {
-      shared: true,
+      shared: false,
       showMarkers: false,
       render: (options: any) => {
         const title = options.data?.[0]?.data?.x;
@@ -120,7 +120,7 @@ const GroupBoxArgs = {
       adjust: { type: 'dodge', dodgeBy: 'Species' },
     },
     tooltip: {
-      shared: true,
+      shared: false,
       showMarkers: false,
       // showCrosshairs: true,
       // formatter: (val: string) => formatPercent(val, 2, true),

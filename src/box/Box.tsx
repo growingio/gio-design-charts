@@ -1,19 +1,40 @@
 import React, { useState, useMemo } from 'react';
 import { Box as BoxCls } from './framework';
 import { ChartType, ChartProps, BoxConfig } from '../interfaces';
-import { LegendLayout, ScrollXLayout } from '../layouts';
+import { ScrollXLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { isEmpty } from 'lodash';
 import { colors } from '../theme';
+import { hasDodge } from '../utils/interval';
 
 export interface BoxProps extends ChartProps {
   config: BoxConfig;
+  size?: 'normal' | 'small'
 }
 
 const Box: React.FC<BoxProps> = (props: BoxProps) => {
-  const { data, legends: legendProps = [], title, config } = props;
+  const { data, legends: legendProps = [], title, config, size = 'normal' } = props;
+  const isDodge = useMemo(() => hasDodge(config?.['box']), [config]);
+
+  const customSizeConfig = useMemo(() => 
+    size === 'small' ? {
+      intervalPadding: isDodge ? 30 : 12,
+      dodgePadding: 16,
+      columnWidth: 16,
+      maxColumnWidth: 20,
+      minColumnWidth: 16,
+    } : {
+      intervalPadding: isDodge ? 60 : 16,
+      dodgePadding: 16,
+      columnWidth: 16,
+      maxColumnWidth: 60,
+      minColumnWidth: 16,
+    }
+  , [size, isDodge]);
+
   const [box] = useState(new BoxCls());
   config.type = ChartType.BOX;
+  config.customSizeConfig = customSizeConfig;
 
   const defaultOptions = useMemo(() => {
     if (!legendProps || isEmpty(legendProps)) {

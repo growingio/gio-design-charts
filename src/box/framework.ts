@@ -1,4 +1,4 @@
-import { Chart, Element, registerInteraction, View } from '@antv/g2';
+import { Chart, Element, View } from '@antv/g2';
 import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
 import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/configUtils';
@@ -36,8 +36,8 @@ export class Box {
     fetchConfig(boxView, options, config);
     boxView
       .schema({
-        maxColumnWidth: 60,
-        minColumnWidth: 16,
+        maxColumnWidth: config?.customSizeConfig?.maxColumnWidth || 60,
+        minColumnWidth: config?.customSizeConfig?.minColumnWidth || 16,
         columnWidthRatio: 0.5,
       })
       .position(boxCfg.position)
