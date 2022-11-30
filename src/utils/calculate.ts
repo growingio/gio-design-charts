@@ -58,9 +58,9 @@ export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) =
   const isStack = hasStack(shapeConfig);
   const isDodge = hasDodge(shapeConfig);
 
-  const intervalPadding = 40;
-  const dodgePadding = 4;
-  const columnWidth = 40;
+  const intervalPadding = config?.customSizeConfig?.intervalPadding || 40;
+  const dodgePadding = config?.customSizeConfig?.dodgePadding || 4;
+  const columnWidth = config?.customSizeConfig?.columnWidth || 40;
   const fixedWidth = 8;
 
   dv.transform({
