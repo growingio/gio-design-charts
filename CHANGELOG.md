@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/growingio/gio-design-charts/compare/v2.0.0...v2.0.1) (2022-11-30)
+
+
+### Bug Fixes
+
+* 修改box的样式 ([#317](https://github.com/growingio/gio-design-charts/issues/317)) ([321243d](https://github.com/growingio/gio-design-charts/commit/321243dbd7466545a4ab9d9b0e87c5cc9652b9ed))
+
 # [2.0.0](https://github.com/growingio/gio-design-charts/compare/v1.5.0...v2.0.0) (2022-11-24)
 
 
