@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/growingio/gio-design-charts/compare/v2.0.1...v2.0.2) (2022-12-09)
+
+
+### Bug Fixes
+
+* **box:** fix box legend alias ([#320](https://github.com/growingio/gio-design-charts/issues/320)) ([c7e7637](https://github.com/growingio/gio-design-charts/commit/c7e7637d320ff80581cba93770a5a83d3a335716))
+
 ## [2.0.1](https://github.com/growingio/gio-design-charts/compare/v2.0.0...v2.0.1) (2022-11-30)
 
 
