@@ -48,6 +48,9 @@ export class Box {
         active: {
           style: (element: Element) => (element as any)?.statesStyle?.default,
         },
+        inactive: {
+          style: (element: Element) => ({...(element as any)?.statesStyle?.default, opacity: 0.2}),
+        }
       })
       .adjust(boxCfg.adjust);
     boxView
@@ -56,6 +59,14 @@ export class Box {
       .color(boxCfg.color)
       .size(pointCfg?.size || 3)
       .style(pointCfg.color, pointCfg.style || defaultStyles.point)
+      .state({
+        active: {
+          style: (element: Element) => (element as any)?.statesStyle?.default,
+        },
+        inactive: {
+          style: (element: Element) => ({...(element as any)?.statesStyle?.default, opacity: 0.2}),
+        }
+      })
       .adjust(boxCfg.adjust);
     boxView.render();
 

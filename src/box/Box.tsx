@@ -56,13 +56,13 @@ const Box: React.FC<BoxProps> = (props: BoxProps) => {
       return {
         defaultStyles: {
           box: (legend: any) => ({
-            stroke: colors[legendProps.findIndex((l) => l === (legend?.name ?? legend)) % colors.length],
-            fill: colors[legendProps.findIndex((l) => l === (legend?.name ?? legend)) % colors.length],
+            stroke: colors[legendProps.findIndex((l) => (l?.name ?? l) === (legend?.name ?? legend)) % colors.length],
+            fill: colors[legendProps.findIndex((l) => (l?.name ?? l)  === (legend?.name ?? legend)) % colors.length],
             fillOpacity: 0.2,
           }),
           point: (legend: any) => ({
             lineWidth: 0,
-            fill: colors[legendProps.findIndex((l) => l === (legend?.name ?? legend)) % colors.length],
+            fill: colors[legendProps.findIndex((l) => (l?.name ?? l)  === (legend?.name ?? legend)) % colors.length],
           }),
         },
       };
