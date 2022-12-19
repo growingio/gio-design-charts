@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/growingio/gio-design-charts/compare/v2.0.2...v2.0.3) (2022-12-19)
+
+
+### Bug Fixes
+
+* 更新funnel chart的arrow ([#322](https://github.com/growingio/gio-design-charts/issues/322)) ([c560cb3](https://github.com/growingio/gio-design-charts/commit/c560cb3ce0cd6c5fc2a510340d2c63b628a76fa0))
+
 ## [2.0.2](https://github.com/growingio/gio-design-charts/compare/v2.0.1...v2.0.2) (2022-12-09)
 
 
