@@ -36,11 +36,13 @@ const fetchInterval = (chart: Chart | View, options: ChartOptions, config: Chart
 
 const bindLinkEvent = (linkView: View, addLinkByElement: any, data?: LooseObject) => {
   const sourceData = data?.source || [];
+  const elementCount = data?.elementCount ?? 0;
   const texts = data?.texts || [];
   const isGroup = data?.isGroup;
   linkView?.on('afterrender', function (event: Event) {
     if (event && !isGroup && sourceData.length !== 0) {
-      addLinkByElement(event.view as any, { texts });
+      const boxWidth = event.view.viewBBox.width;
+      addLinkByElement(event.view as any, { texts, showLabel: (boxWidth - 60) / elementCount > 130 });
     }
   });
 };
