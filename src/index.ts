@@ -7,6 +7,8 @@ export * from './funnel';
 export * from './gauge';
 export * from './line';
 export * from './tiny-area';
+export * from './combine-bar';
+export * from './combine-colunm'
 
 export { InfoCard } from './info-card';
 
