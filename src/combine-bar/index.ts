@@ -1,1 +1,1 @@
-export { default, default as CombineBar } from './CombineBar';
+export { default, default as CombineBar } from './ScrollBar';

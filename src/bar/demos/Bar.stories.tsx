@@ -328,16 +328,31 @@ const SortTemplate: ComponentStory<typeof Bar> = (args) => (
 
 export const Sort = SortTemplate.bind({});
 Sort.storyName = 'DragBar 修改Label';
+// 瑞哥看 
 Sort.args = {
-  legends: ['Apple', { name: 'Facebook', dashed: true }, 'Google'],
-  data: sortData,
+  legends: ['目标群组','对照组'],
+  data: [
+    {
+      tag_1123pf: '8',
+      users_count: 89,
+      name: '用户量',
+      group: '对照组',
+    },
+    {
+      tag_1123pf: '8',
+      users_count: 1,
+      name: '用户量',
+      group: '目标群组',
+    },
+   
+  ],
   config: {
     ...config,
     chart: {
       autoFit: true,
       height: 300,
     },
-    scale: ['usr_$first_day', { range: [0, 1], type: 'cat' }],
+    scale: ['tag_1123pf', {type: 'cat' }],
     axises: [
       [
         'users_count',
@@ -347,25 +362,20 @@ Sort.args = {
         },
       ],
       [
-        'usr_$first_day',
-        {
-          line: null,
-          tickLine: null,
-          label: {
-            formatter: (text: string) => {
-              return `${text}_U`;
-            },
-          },
-        },
+        'tag_1123pf',
+       {
+        type: 'cat',
+       }
       ],
     ],
     bar: {
-      position: 'usr_$first_day*users_count',
-      color: 'name',
+      position: 'tag_1123pf*users_count',
+      color: 'group',
       adjust: [
         {
           type: 'dodge',
-          marginRatio: 0,
+          // marginRatio: 0,
+          dodgeBy:'group',
         },
       ],
     },

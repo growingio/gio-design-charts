@@ -23,13 +23,13 @@ export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[
 };
 
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
-  console.log('%c [ config ]-26', 'font-size:13px; background:pink; color:#bf2c9f;', config)
-  const { id, report, data } = options;
+  const { id, report, data,legends } = options;
   if (!id) {
     return {};
   }
   const {point,annotation} = config;
-  const {color='',position='',shape='circle',size=1} = point;
+  const {color='',position='',shape='circle',size=1,adjust=[]} = point;
+
   const {line={},text={}} = annotation;
   const chart = generateChart(options, config);
   try {
@@ -38,11 +38,12 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
     });
 
     fetchViewConfig(linkView, { ...options, data: data?.slice()?.reverse() }, config);
-    linkView.point().color(color).position(position).size(size).shape(shape).style('continent', (val) => {
+    linkView.point().color(color).position(position).size(size).shape(shape).style(color, (val) => {
+      const legend = (legends as any)?.[val]
       return {
-        stroke:color,
+        fill: legend?.pointColor||legend?.color
       };
-    });
+    }).adjust(adjust[0]);
     linkView.annotation().line(line).text(text);
     handleInterval(linkView, options, config, {}, ChartType.BAR);
     linkView.coordinate().transpose();
@@ -52,11 +53,12 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
         report?.({ scale: geometries.getXScale(), elements: geometries.elements });
       }
     });
-    linkView.point().color(color).position(position).size(size).shape(shape).style('continent', (val) => {
+    linkView.point().color(color).position(position).size(size).shape(shape).style(color, (val) => {
+      const legend = (legends as any)?.[val]
       return {
-        stroke:color,
+        fill: legend?.pointColor||legend?.color
       };
-    });
+    }).adjust(adjust[0]);
     linkView.render();
 
     fetchTooltip(chart, config);
@@ -159,7 +161,7 @@ export class Bar {
       /* istanbul ignore next */
       return {};
     }
-   
+
     const reverseData = data?.slice()?.reverse();
     this.options = options;
     this.config = config;
@@ -180,7 +182,7 @@ export class Bar {
     bindBarCoordination(leadView);
     fetchViewConfig(leadView, { ...options, data: reverseData }, config);
     handleInterval(leadView, options, config, {}, ChartType.BAR);
-   
+
     const textView = chart.createView();
     bindBarCoordination(textView);
     this.textView = textView;

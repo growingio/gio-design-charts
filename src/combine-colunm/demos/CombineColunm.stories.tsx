@@ -61,8 +61,14 @@ const config = {
 export const ColumnWithTs = Template.bind({});
 
 const ColumnWithTsArgs2 = {
-  legends: ['步步盈增'],
-  data: dataWithTs,
+  legends: [{name:'步步盈增', pointColor: '#ff00FF',style:{
+    borderRadius:'50%',
+  }},'步步盈增2'],
+  data: [
+    
+    { ts: '2021-08-16', value: 1367, color: '步步盈增' ,tgi:160},
+    { ts: '2021-08-16', value: 667, color: '步步盈增2' ,tgi:100},
+  ],
   config: {
     chart: {
       autoFit: true,
@@ -72,6 +78,9 @@ const ColumnWithTsArgs2 = {
     column: {
       position: 'ts*value',
       color: 'color',
+      adjust:{
+        type:'dodge'
+      }
     },
     axises: [tsLabelConfig, valueLabelConfig,['tgi',false]],
     // axis: {
@@ -87,9 +96,12 @@ const ColumnWithTsArgs2 = {
     tooltip: tooltipConfig,
     point:{
       position:'ts*tgi',
-      color:'#1248E9',
+      color:'color',
       shape:'circle',
-      size:8
+      size:8,
+      adjust:[{
+        type:'dodge'
+      }]
     },
     annotation:{
       line:{
