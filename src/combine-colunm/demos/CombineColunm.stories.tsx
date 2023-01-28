@@ -23,7 +23,7 @@ const tooltipConfig = {
 };
 
 const tsLabelConfig = [
-  'ts',
+  'dimensionValue',
   {
     label: {
       formatter: (text: string, item: any, index: number) => {
@@ -33,7 +33,7 @@ const tsLabelConfig = [
   },
 ];
 
-const valueLabelConfig = ['value', { label: { formatter: (val: string) => formatNumber(Number(val)) },
+const valueLabelConfig = ['userCount', { label: { formatter: (val: string) => formatNumber(Number(val)) },
 position:'left' }];
 
 const Template: ComponentStory<typeof CombineColunm> = (args) => (
@@ -61,23 +61,56 @@ const config = {
 export const ColumnWithTs = Template.bind({});
 
 const ColumnWithTsArgs2 = {
-  legends: [{name:'步步盈增', pointColor: '#ff00FF',style:{
-    borderRadius:'50%',
-  }},'步步盈增2'],
-  data: [
-    
-    { ts: '2021-08-16', value: 1367, color: '步步盈增' ,tgi:160},
-    { ts: '2021-08-16', value: 667, color: '步步盈增2' ,tgi:100},
+  legends: [
+    { name: '目标群组', color: '#5F87FF', pointColor: '#1248E9',shapeType:'circle' },
+    { name: '目标群组TGI', color: '#1248E9' },
+    { name: '对照组', color: '#FFDD63', pointColor: '#FAA937' },
+    { name: '对照组TGI', color: '#FAA937' },
   ],
+  data: [
+    {
+        "dimensionValue": "张三",
+        "userCount": 2,
+        "tgi": 100.00133,
+        "name": "用户量",
+        "group": "目标群组"
+    },
+    {
+        "dimensionValue": "张三",
+        "userCount": 2,
+        "tgi": 2373774.2,
+        "name": "用户量",
+        "group": "对照组"
+    },
+    {
+        "dimensionValue": "183@163.com",
+        "userCount": 2,
+        "tgi": 100.00133,
+        "name": "用户量",
+        "group": "目标群组"
+    },
+    {
+        "dimensionValue": "183@163.com",
+        "userCount": 2,
+        "tgi": 2373774.2,
+        "name": "用户量",
+        "group": "对照组"
+    }
+] ,
+  // data: [
+    
+  //   { ts: '2021-08-16', value: 1367, color: '步步盈增' ,tgi:160},
+  //   { ts: '2021-08-16', value: 667, color: '步步盈增2' ,tgi:100},
+  // ],
   config: {
     chart: {
       autoFit: true,
       height: 300,
     },
-    scale:['value', { nice: true }],
+    scale:['userCount', { nice: true }],
     column: {
-      position: 'ts*value',
-      color: 'color',
+      position: 'dimensionValue*userCount',
+      color: 'group',
       adjust:{
         type:'dodge'
       }
@@ -95,13 +128,12 @@ const ColumnWithTsArgs2 = {
     axis:[['tgi', false]],
     tooltip: tooltipConfig,
     point:{
-      position:'ts*tgi',
-      color:'color',
+      position:'dimensionValue*tgi',
+      color:'group',
       shape:'circle',
       size:8,
-      adjust:[{
-        type:'dodge'
-      }]
+      adjust: [{ type: 'dodge', }],
+
     },
     annotation:{
       line:{

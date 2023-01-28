@@ -13,24 +13,28 @@ export interface LegendProps {
 }
 
 const Legend = (props: LegendProps) => {
-  const { label, alias, data, onClick, textColor } = props;
+  const { label, alias, data, onClick, textColor, } = props;
   const onClickLabel = useCallback(() => {
     onClick && onClick(label);
   }, [label, onClick]);
-  const { active, color, lineDash, type, dashed, width } = data || {};
+  const { active, color, lineDash, type, dashed, width,shapeType} = data || {};
 
   const backgroundImage = dashed ? getBackgroundImage(type) : {};
-  const stylesLine = lineDash
+  let stylesLine = lineDash
     ? {
         border: `1px dashed ${active ? color : DISABLE_COLOR}`,
         height: 0,
         width: 12,
+        ...shapeType,
         ...(textColor ? { backgroundColor: '#000' } : {}),
         ...backgroundImage,
       }
     : { backgroundColor: active ? color : DISABLE_COLOR, ...backgroundImage };
 
   const textStyles = textColor ? { color: textColor } : {};
+if (shapeType === 'circle') {
+  stylesLine = {...stylesLine, borderRadius: '100px'}
+}
 
   return (
     <span
