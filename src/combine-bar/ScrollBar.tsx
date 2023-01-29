@@ -1,13 +1,15 @@
 import React from 'react';
-import { barChart, handleLegend } from './framework';
+// import { barChart, handleLegend } from './framework';
 
 import { ChartType, BarConfig } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { BarProps } from './CombineBar';
+import CombineBar from './framework';
 
 const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
+  const combineBar = new CombineBar();
 
   config.type = ChartType.BAR;
 
@@ -33,8 +35,9 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={barChart}
-      handleLegend={handleLegend}
+      // callChart={barChart}
+      // handleLegend={handleLegend}
+      chart={combineBar}
     />
   );
 };
