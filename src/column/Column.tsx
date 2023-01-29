@@ -14,7 +14,7 @@ export interface ColumnProps extends ChartProps {
 
 const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
   const { data, legends: legendProps = [], config, useScroll, title } = props;
-  const [assginConfig, setAssignConfig] = useState({});
+  const [assignConfig, setAssignConfig] = useState({});
 
   const column = useMemo(() => new ColumnCls(), []);
 
@@ -50,7 +50,7 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
       data={data}
       sourceData={data}
       legendList={legendProps}
-      config={assginConfig}
+      config={assignConfig}
       defaultOptions={defaultOptions}
       chart={column}
     />
@@ -59,7 +59,7 @@ const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
       title={title}
       data={data}
       legendList={legendProps}
-      config={assginConfig}
+      config={assignConfig}
       defaultOptions={defaultOptions}
       chart={column}
     />

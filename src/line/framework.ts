@@ -3,8 +3,8 @@ import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } 
 import { BaseChart, fetchTooltip, fetchViewConfig, generateChart, renderChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { LooseObject } from '@antv/g-base';
-import { ChartType } from '..';
-import { cloneDeep, forEach, get, merge } from 'lodash';
+import { ChartType } from '../index';
+import { forEach, get } from 'lodash';
 import { getAxisFields } from '../utils/frameworks/axis';
 import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
