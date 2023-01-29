@@ -7,8 +7,8 @@ import {
   DEFAULT_MIN_HEIGHT,
   BAR_TEXTURE,
   COLUMN_TEXTURE,
-  DEFAULT_REDIUS_BOTTOM,
-  DEFAULT_REDIUS_BAR,
+  DEFAULT_RADIUS_BOTTOM,
+  DEFAULT_RADIUS_BAR,
 } from '../../theme';
 import {
   getChartType,
@@ -109,9 +109,9 @@ function drawRect(
   // 在堆积图中，最上面的rect需要有圆角，在中间和下面的rect，是不需要圆角的
   // 最上面的rect，取决于传入data的第一条数据
   // 所以，当rect是堆积图，并且不是最高的bar，则需要隐藏radius
-  let radiusObj: LooseObject = { radius: isNeg ? DEFAULT_REDIUS_BOTTOM : radius };
+  let radiusObj: LooseObject = { radius: isNeg ? DEFAULT_RADIUS_BOTTOM : radius };
   if (type === ChartType.BAR) {
-    radiusObj = { radius: DEFAULT_REDIUS_BAR };
+    radiusObj = { radius: DEFAULT_RADIUS_BAR };
   }
   let fetchStyles: LooseObject = {};
   radiusObj = stack && !topBar ? {} : radiusObj;

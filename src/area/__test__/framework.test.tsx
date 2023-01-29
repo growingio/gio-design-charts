@@ -5,7 +5,7 @@ import { Area as AreaCls } from '../framework';
 import { AreaStack } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interfaces';
 import { LegendObject } from '../../legends/useLegends';
-import { DEFAULT_LINEDASH } from '../../theme';
+import { DEFAULT_LINE_DASH } from '../../theme';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
@@ -35,7 +35,7 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
+      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINE_DASH } },
     };
     area.render(options, config);
   });
@@ -62,7 +62,7 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
+      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINE_DASH } },
     };
     const { adjust, ...areaConfig } = config.area;
     area.render(options, { ...config, area: areaConfig });

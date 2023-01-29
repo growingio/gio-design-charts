@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
-import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
+import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_RADIUS, DEFAULT_RADIUS_BAR } from '../theme';
 import { BaseChart, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
@@ -82,7 +82,7 @@ export const handleInterval = (
 ) => {
   const { legendObject, defaultStyles = {} } = options;
 
-  const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
+  const radius = type === 'column' ? DEFAULT_RADIUS : DEFAULT_RADIUS_BAR;
 
   // 渲染出基本柱状图
   intervalShape(

@@ -1,7 +1,7 @@
 import { Chart, Event, View } from '@antv/g2';
 import { cloneDeep, isEmpty, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legend } from '../interfaces';
-import { colors, DEFAULT_REDIUS } from '../theme';
+import { colors, DEFAULT_RADIUS } from '../theme';
 import { intervalShape } from '../column/framework';
 import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
@@ -27,7 +27,7 @@ export class Funnel extends BaseChart {
           stroke: '#fff',
           strokeWidth: 1,
           fill: legend.color,
-          radius: DEFAULT_REDIUS,
+          radius: DEFAULT_RADIUS,
           ...defaultStyles,
         };
       }

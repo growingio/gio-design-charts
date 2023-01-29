@@ -4,7 +4,7 @@ import { ChartCanvasProps } from '../../core/core';
 
 import './styles/index.less';
 import LegendLayout from '../legend';
-import { DEAULT_CHART_HEIGHT } from '../../theme';
+import { DEFAULT_CHART_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
 import { ChartConfig } from '../../interfaces';
 
@@ -24,7 +24,7 @@ export interface ScrolYLayoutProps extends ChartCanvasProps {
 const ScrollYLayout = (props: ScrolYLayoutProps) => {
   const { config, data, isDrag, sizeRegister, renderChildren, hasOutTitle, fullHeight } = props;
 
-  const frameHeight = config?.chart?.height || DEAULT_CHART_HEIGHT;
+  const frameHeight = config?.chart?.height || DEFAULT_CHART_HEIGHT;
   const chartHeight = calculateBarHeight(config, data as LooseObject[]);
   const newConfig = {
     ...config,

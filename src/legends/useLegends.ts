@@ -1,6 +1,6 @@
 import { LooseObject } from '@antv/component';
 import { ChartConfig, ChartType, Legend, Legends } from '../interfaces';
-import { colors, DEFAULT_LINEDASH } from '../theme';
+import { colors, DEFAULT_LINE_DASH } from '../theme';
 
 // export const getLegends = (type: ChartType, legendProps: Array<string | Legend>): [Legends, Legend[], boolean] => {
 //   const legends = {} as Legends;
@@ -18,7 +18,7 @@ import { colors, DEFAULT_LINEDASH } from '../theme';
 //       const { lineDash, dashed } = legend;
 //       const lineDashCfg = {} as LooseObject;
 //       if (lineDash === true) {
-//         lineDashCfg.lineDash = DEFAULT_LINEDASH;
+//         lineDashCfg.lineDash = DEFAULT_LINE_DASH;
 //       } else if (lineDash) {
 //         lineDashCfg.lineDash = lineDash;
 //       }
@@ -113,7 +113,7 @@ export class LegendObject {
         const { lineDash, dashed } = legend;
         const lineDashCfg = {} as LooseObject;
         if (lineDash === true) {
-          lineDashCfg.lineDash = DEFAULT_LINEDASH;
+          lineDashCfg.lineDash = DEFAULT_LINE_DASH;
         } else if (lineDash) {
           lineDashCfg.lineDash = lineDash;
         }
