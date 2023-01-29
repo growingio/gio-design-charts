@@ -10,13 +10,12 @@ export const getShapeState = (options: ChartOptions) => {
         // 在element.stateStyle.default中设置的颜色为最真实的颜色，但stateStyle是私有方法，无法直接获取
         // 在这里采取Element中设置stateStyle的方法，获取stateStyle，并获取其中的fill颜色
 
-        const defaultColor = options?.defaultStyles?.color;
+        // const defaultColor = options?.defaultStyles?.color;
         const modelFill = element?.getModel?.()?.style?.fill;
         const modelColor = element?.getModel?.()?.color;
-
         return {
           lineWidth: 2,
-          stroke: defaultColor || modelColor || modelFill || '#000',
+          stroke: modelFill || modelColor || '#000',
           strokeOpacity: 0.5,
         };
       },
