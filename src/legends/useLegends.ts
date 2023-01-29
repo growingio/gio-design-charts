@@ -145,10 +145,10 @@ export class LegendObject {
       // 修改点击的legend的active状态，以及controlKey和当前点击的内容一致的
       if (controlKey === key || legend.controlKey === controlKey) {
         legend.active = active;
-      }
-      if (legend.controlKey) {
-        const controlLegend = this.mapping?.[legend.controlKey];
-        controlLegend.active = active;
+        if (legend.controlKey) {
+          const controlLegend = this.mapping?.[legend.controlKey];
+          controlLegend.active = active;
+        }
       }
     });
     this.quene = this.quene.map((le) => (le.name === label ? this.mapping[label] : le));
