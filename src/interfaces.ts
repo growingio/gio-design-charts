@@ -37,6 +37,11 @@ export interface Legend {
    */
   type?: ChartType | string;
 
+  /**
+   * 控制label的key，与控制图形的color一致
+   */
+  controlKey?: string;
+
   // 图例Legend的名称
   name: string;
 

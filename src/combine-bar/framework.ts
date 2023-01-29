@@ -4,15 +4,6 @@ import { handleInterval } from '../column/framework';
 import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
 import { Datum } from '@antv/g2/lib/interface';
 
-export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
-  const linkView = views?.[0];
-  linkView?.changeData(data.slice().reverse());
-  linkView?.render(true);
-
-  chart.render(true);
-  chart.forceFit();
-};
-
 class CombineBar extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig) => {
     console.log(options);
@@ -20,6 +11,9 @@ class CombineBar extends BaseChart {
     if (!id) {
       return {};
     }
+    this.config = config;
+    this.options = options;
+
     const { point, annotation } = config;
     const { color = '', position = '', shape = 'circle', size = 1, adjust = [] } = point;
 
@@ -119,11 +113,18 @@ class CombineBar extends BaseChart {
       this.instance = chart;
       this.views = [linkView];
       // this.update = updateChart;
-      return { chart, views: [linkView], update: updateChart };
     } catch (err) {
       // show error
     }
-    return { chart, update: updateChart };
+  };
+
+  update = (data: Datum[]) => {
+    const linkView = this.views?.[0];
+    linkView?.changeData(data.slice().reverse());
+    linkView?.render(true);
+
+    this.instance?.render(true);
+    this.instance?.forceFit();
   };
 }
 

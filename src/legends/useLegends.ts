@@ -1,4 +1,5 @@
 import { LooseObject } from '@antv/component';
+import { forEach } from 'lodash';
 import { ChartConfig, ChartType, Legend, Legends } from '../interfaces';
 import { colors, DEFAULT_LINE_DASH } from '../theme';
 
@@ -137,10 +138,19 @@ export class LegendObject {
   // update Legends in mapping
   update = (label: string) => {
     this.updated = new Date().getTime();
-    this.mapping = {
-      ...this.mapping,
-      [label]: { ...this.mapping?.[label], active: !this.mapping?.[label]?.active },
-    };
+    const clickLegend = this.mapping?.[label];
+    const active = !clickLegend?.active;
+    const controlKey = clickLegend?.controlKey || clickLegend?.name;
+    forEach(this.mapping, (legend: Legend, key: string) => {
+      // 修改点击的legend的active状态，以及controlKey和当前点击的内容一致的
+      if (controlKey === key || legend.controlKey === controlKey) {
+        legend.active = active;
+      }
+      if (legend.controlKey) {
+        const controlLegend = this.mapping?.[legend.controlKey];
+        controlLegend.active = active;
+      }
+    });
     this.quene = this.quene.map((le) => (le.name === label ? this.mapping[label] : le));
     return this.mapping;
   };

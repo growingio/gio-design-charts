@@ -17,6 +17,8 @@ class CombineColumn extends BaseChart {
     if (!id) {
       return {};
     }
+    this.config = config;
+    this.options = options;
     const chart = renderChart(options, config);
     // 允许绘制点图 和 标志线
     const { point, annotation } = config;
