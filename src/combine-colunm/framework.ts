@@ -4,6 +4,7 @@ import { BaseChart, renderChart } from '../core/framework';
 import '../utils/tools/intervalShape';
 import _ from 'lodash';
 import { handleInterval } from '../column/framework';
+import { Chart, Element, View } from '@antv/g2';
 
 export interface IntervalConfig {
   styles?: ShapeStyle;
@@ -13,7 +14,7 @@ export interface IntervalConfig {
 
 class CombineColumn extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig = {}) => {
-    const { id, legends } = options;
+    const { id, legendObject } = options;
     if (!id) {
       return {};
     }
@@ -24,21 +25,40 @@ class CombineColumn extends BaseChart {
     const { point, annotation } = config;
     const { color = '', position = '', shape = 'circle', size = 1, adjust = [] } = point;
     const { line = {}, text = {} } = annotation;
-    try {
-      chart
+
+    const renderPoint = (pointView: View | Chart) => {
+      pointView
         .point()
         .color(color)
         .position(position)
         .size(size)
         .shape(shape)
         .style(color, (val) => {
-          const legend = (legends as any)?.[val];
+          const legend: any = legendObject?.getLegend(val);
           return {
-            stroke: color,
+            zIndex: 1000,
             fill: legend?.pointColor || legend?.color,
           };
         })
+        .state({
+          active: {
+            style: (element: Element) => {
+              const modelFill = element?.getModel?.()?.style?.fill;
+              const modelColor = element?.getModel?.()?.color;
+              return {
+                lineWidth: 2,
+                stroke: modelFill || modelColor || '#000',
+                strokeOpacity: 0.5,
+              };
+            },
+          },
+        })
         .adjust(adjust[0]);
+    };
+
+    try {
+      renderPoint(chart);
+
       chart.annotation().line(line).text(text);
       handleInterval(chart, options, config, {
         styles: {
@@ -46,20 +66,8 @@ class CombineColumn extends BaseChart {
           minColumnWidth: 40,
         },
       });
-      chart
-        .point()
-        .color(color)
-        .position(position)
-        .size(size)
-        .shape(shape)
-        .style(color, (val) => {
-          const legend = (legends as any)?.[val];
-          return {
-            stroke: color,
-            fill: legend?.pointColor || legend?.color,
-          };
-        })
-        .adjust(adjust[0]);
+      renderPoint(chart);
+
       chart.interaction('element-active');
       chart.render();
       this.instance = chart;

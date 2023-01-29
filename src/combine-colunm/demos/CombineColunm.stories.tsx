@@ -33,8 +33,10 @@ const tsLabelConfig = [
   },
 ];
 
-const valueLabelConfig = ['userCount', { label: { formatter: (val: string) => formatNumber(Number(val)) },
-position:'left' }];
+const valueLabelConfig = [
+  'userCount',
+  { label: { formatter: (val: string) => formatNumber(Number(val)) }, position: 'left' },
+];
 
 const Template: ComponentStory<typeof CombineColunm> = (args) => (
   <Card>
@@ -62,43 +64,43 @@ export const ColumnWithTs = Template.bind({});
 
 const ColumnWithTsArgs2 = {
   legends: [
-    { name: '目标群组', color: '#5F87FF', pointColor: '#1248E9',shapeType:'circle' },
-    { name: '目标群组TGI', color: '#1248E9' },
+    { name: '目标群组', color: '#5F87FF', pointColor: '#1248E9', shapeType: 'circle' },
+    { name: '目标群组TGI', controlKey: '目标群组', color: '#1248E9' },
     { name: '对照组', color: '#FFDD63', pointColor: '#FAA937' },
     { name: '对照组TGI', color: '#FAA937' },
   ],
   data: [
     {
-        "dimensionValue": "张三",
-        "userCount": 2,
-        "tgi": 100.00133,
-        "name": "用户量",
-        "group": "目标群组"
+      dimensionValue: '张三',
+      userCount: 2,
+      tgi: 100.00133,
+      name: '用户量',
+      group: '目标群组',
     },
     {
-        "dimensionValue": "张三",
-        "userCount": 2,
-        "tgi": 2373774.2,
-        "name": "用户量",
-        "group": "对照组"
+      dimensionValue: '张三',
+      userCount: 2,
+      tgi: 2373774.2,
+      name: '用户量',
+      group: '对照组',
     },
     {
-        "dimensionValue": "183@163.com",
-        "userCount": 2,
-        "tgi": 100.00133,
-        "name": "用户量",
-        "group": "目标群组"
+      dimensionValue: '183@163.com',
+      userCount: 2,
+      tgi: 100.00133,
+      name: '用户量',
+      group: '目标群组',
     },
     {
-        "dimensionValue": "183@163.com",
-        "userCount": 2,
-        "tgi": 2373774.2,
-        "name": "用户量",
-        "group": "对照组"
-    }
-] ,
+      dimensionValue: '183@163.com',
+      userCount: 2,
+      tgi: 2373774.2,
+      name: '用户量',
+      group: '对照组',
+    },
+  ],
   // data: [
-    
+
   //   { ts: '2021-08-16', value: 1367, color: '步步盈增' ,tgi:160},
   //   { ts: '2021-08-16', value: 667, color: '步步盈增2' ,tgi:100},
   // ],
@@ -107,15 +109,15 @@ const ColumnWithTsArgs2 = {
       autoFit: true,
       height: 300,
     },
-    scale:['userCount', { nice: true }],
+    scale: ['userCount', { nice: true }],
     column: {
       position: 'dimensionValue*userCount',
       color: 'group',
-      adjust:{
-        type:'dodge'
-      }
+      adjust: {
+        type: 'dodge',
+      },
     },
-    axises: [tsLabelConfig, valueLabelConfig,['tgi',false]],
+    axises: [tsLabelConfig, valueLabelConfig, ['tgi', false]],
     // axis: {
     //   tgi:false,
     //   value:{
@@ -125,18 +127,17 @@ const ColumnWithTsArgs2 = {
     //['value',{
     //   position:'left'
     // }]
-    axis:[['tgi', false]],
+    axis: [['tgi', false]],
     tooltip: tooltipConfig,
-    point:{
-      position:'dimensionValue*tgi',
-      color:'group',
-      shape:'circle',
-      size:8,
-      adjust: [{ type: 'dodge', }],
-
+    point: {
+      position: 'dimensionValue*tgi',
+      color: 'group',
+      shape: 'circle',
+      size: 8,
+      adjust: [{ type: 'dodge' }],
     },
-    annotation:{
-      line:{
+    annotation: {
+      line: {
         start: ['start', 100],
         end: ['end', 100],
         style: {
@@ -153,10 +154,9 @@ const ColumnWithTsArgs2 = {
           },
           content: 'TGI 100',
           offsetY: -7,
-        offsetX:-110,
-
+          offsetX: -110,
         },
-      }
+      },
     },
   },
 };
