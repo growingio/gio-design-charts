@@ -1,5 +1,5 @@
 import React from 'react';
-import { default as CombineBarCls, barChart, handleLegend } from './framework';
+import { default as CombineBarCls } from './framework';
 
 import { ChartType, ChartProps, BarConfig } from '../interfaces';
 import { LegendLayout } from '../layouts';
