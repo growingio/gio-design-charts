@@ -11,7 +11,7 @@ import { getDefaultViewTheme } from '../utils/chart';
 import { Datum } from '@antv/g2/lib/interface';
 
 export class LineBase extends BaseChart {
-  finnalView: View | undefined = undefined;
+  finalView: View | undefined = undefined;
 
   getDataByColor = (color: string, xField: string, yField: string, data: LooseObject[]): [number, LooseObject] => {
     const dataMapping: LooseObject = {};
