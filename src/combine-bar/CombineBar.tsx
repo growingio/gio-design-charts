@@ -1,5 +1,5 @@
 import React from 'react';
-import { barChart, handleLegend } from './framework';
+import { default as CombineBarCls, barChart, handleLegend } from './framework';
 
 import { ChartType, ChartProps, BarConfig } from '../interfaces';
 import { LegendLayout } from '../layouts';
@@ -24,6 +24,8 @@ export interface DragBarProps extends BarProps {
 const CombineBar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
+  const combineBar = new CombineBarCls();
+
   config.type = ChartType.BAR;
   config.chart = {
     ...(config.chart || {}),
@@ -45,8 +47,9 @@ const CombineBar: React.FC<BarProps> = (props: BarProps) => {
       data={data}
       legendList={legendProps}
       config={config}
-      callChart={barChart}
-      handleLegend={handleLegend}
+      // callChart={barChart}
+      chart={combineBar}
+      // handleLegend={handleLegend}
     />
   );
 };

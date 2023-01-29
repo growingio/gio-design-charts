@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import { ChartType, ChartProps, ColumnConfig } from '../interfaces';
-import { columnChart, handleLegend } from './framework';
+import { default as CombineColumnCls } from './framework';
 import { colors } from '../theme';
 import { LegendLayout, ScrollXLayout } from '../layouts';
 import { defaultGroupInterval, defaultInterval, hasDodge } from '../utils/interval';
@@ -12,9 +12,11 @@ export interface ColumnProps extends ChartProps {
   useScroll?: boolean;
 }
 
-const CombineColunm: React.FC<ColumnProps> = (props: ColumnProps) => {
+const CombineColumn: React.FC<ColumnProps> = (props: ColumnProps) => {
   const { data, legends: legendProps = [], config, useScroll, title } = props;
-  const [assginConfig, setAssignConfig] = useState({});
+  const [assignConfig, setAssignConfig] = useState({});
+
+  const combineColumn = new CombineColumnCls();
 
   useEffect(() => {
     const newConfig = config || {};
@@ -48,22 +50,24 @@ const CombineColunm: React.FC<ColumnProps> = (props: ColumnProps) => {
       data={data}
       sourceData={data}
       legendList={legendProps}
-      config={assginConfig}
+      config={assignConfig}
       defaultOptions={defaultOptions}
-      callChart={columnChart}
-      handleLegend={handleLegend}
+      // callChart={columnChart}
+      // handleLegend={handleLegend}
+      chart={combineColumn}
     />
   ) : (
     <LegendLayout
       title={title}
       data={data}
       legendList={legendProps}
-      config={assginConfig}
+      config={assignConfig}
       defaultOptions={defaultOptions}
-      callChart={columnChart}
-      handleLegend={handleLegend}
+      // callChart={columnChart}
+      // handleLegend={handleLegend}
+      chart={combineColumn}
     />
   );
 };
 
-export default fetchChart<ColumnProps>(CombineColunm);
+export default fetchChart<ColumnProps>(CombineColumn);

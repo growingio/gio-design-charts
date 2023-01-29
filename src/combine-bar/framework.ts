@@ -1,8 +1,7 @@
 import { Chart, Element, Event, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
 import { handleInterval, intervalShape } from '../column/framework';
-import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
 import { Datum } from '@antv/g2/lib/interface';
 import { getAxisFields } from '../utils/frameworks/axis';
 import { LooseObject } from '@antv/g-base';
@@ -12,6 +11,7 @@ import { getBackgroundState } from '../utils/tools/shapeState';
 import { DEFAULT_APPEND_PADDING, DEFAULT_FONT_COLOR, colors } from '../theme';
 import { getDefaultViewTheme } from '../utils/chart';
 import { getColorByGroupModel } from '../utils/tools/utils';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 
 export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[]) => {
   const linkView = views?.[0];
@@ -22,15 +22,81 @@ export const updateChart = ({ chart, views = [] }: { chart: Chart; views?: View[
   chart.forceFit();
 };
 
+class CombineBar extends BaseChart {
+  render = (options: ChartOptions, config: ChartConfig) => {
+    const { id, report, data, legends } = options;
+    if (!id) {
+      return {};
+    }
+    const { point, annotation } = config;
+    const { color = '', position = '', shape = 'circle', size = 1, adjust = [] } = point;
+
+    const { line = {}, text = {} } = annotation;
+    const chart = generateChart(options, config);
+    try {
+      const linkView = chart.createView({
+        region: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+      });
+
+      fetchViewConfig(linkView, { ...options, data: data?.slice()?.reverse() }, config);
+      linkView
+        .point()
+        .color(color)
+        .position(position)
+        .size(size)
+        .shape(shape)
+        .style(color, (val) => {
+          const legend = (legends as any)?.[val];
+          return {
+            fill: legend?.pointColor || legend?.color,
+          };
+        })
+        .adjust(adjust[0]);
+      linkView.annotation().line(line).text(text);
+      handleInterval(linkView, options, config, {}, ChartType.BAR);
+      linkView.coordinate().transpose();
+      linkView.on('afterrender', function (event: Event) {
+        const geometries = event.view.geometries[0];
+        if (geometries && geometries.elements) {
+          report?.({ scale: geometries.getXScale(), elements: geometries.elements });
+        }
+      });
+      linkView
+        .point()
+        .color(color)
+        .position(position)
+        .size(size)
+        .shape(shape)
+        .style(color, (val) => {
+          const legend = (legends as any)?.[val];
+          return {
+            fill: legend?.pointColor || legend?.color,
+          };
+        })
+        .adjust(adjust[0]);
+      linkView.render();
+
+      fetchTooltip(chart, config);
+      chart.coordinate().transpose();
+      chart.legend(false);
+      chart.render();
+      return { chart, views: [linkView], update: updateChart };
+    } catch (err) {
+      // show error
+    }
+    return { chart, update: updateChart };
+  };
+}
+
 export const barChart = (options: ChartOptions, config: ChartConfig) => {
-  const { id, report, data,legends } = options;
+  const { id, report, data, legends } = options;
   if (!id) {
     return {};
   }
-  const {point,annotation} = config;
-  const {color='',position='',shape='circle',size=1,adjust=[]} = point;
+  const { point, annotation } = config;
+  const { color = '', position = '', shape = 'circle', size = 1, adjust = [] } = point;
 
-  const {line={},text={}} = annotation;
+  const { line = {}, text = {} } = annotation;
   const chart = generateChart(options, config);
   try {
     const linkView = chart.createView({
@@ -38,12 +104,19 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
     });
 
     fetchViewConfig(linkView, { ...options, data: data?.slice()?.reverse() }, config);
-    linkView.point().color(color).position(position).size(size).shape(shape).style(color, (val) => {
-      const legend = (legends as any)?.[val]
-      return {
-        fill: legend?.pointColor||legend?.color
-      };
-    }).adjust(adjust[0]);
+    linkView
+      .point()
+      .color(color)
+      .position(position)
+      .size(size)
+      .shape(shape)
+      .style(color, (val) => {
+        const legend = (legends as any)?.[val];
+        return {
+          fill: legend?.pointColor || legend?.color,
+        };
+      })
+      .adjust(adjust[0]);
     linkView.annotation().line(line).text(text);
     handleInterval(linkView, options, config, {}, ChartType.BAR);
     linkView.coordinate().transpose();
@@ -53,12 +126,19 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
         report?.({ scale: geometries.getXScale(), elements: geometries.elements });
       }
     });
-    linkView.point().color(color).position(position).size(size).shape(shape).style(color, (val) => {
-      const legend = (legends as any)?.[val]
-      return {
-        fill: legend?.pointColor||legend?.color
-      };
-    }).adjust(adjust[0]);
+    linkView
+      .point()
+      .color(color)
+      .position(position)
+      .size(size)
+      .shape(shape)
+      .style(color, (val) => {
+        const legend = (legends as any)?.[val];
+        return {
+          fill: legend?.pointColor || legend?.color,
+        };
+      })
+      .adjust(adjust[0]);
     linkView.render();
 
     fetchTooltip(chart, config);
@@ -75,7 +155,7 @@ export const barChart = (options: ChartOptions, config: ChartConfig) => {
 export const handleLegend = <BarConfig>(charts: (Chart | View)[], legends: Legends, config: BarConfig) => {
   const barConfig = getShapeConfig(config as ChartConfig, ChartType.BAR);
   if (barConfig.color) {
-    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+    // charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
   }
 };
 
@@ -155,7 +235,7 @@ export class Bar {
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
-    console.log('%c [ config ]-141', 'font-size:13px; background:pink; color:#bf2c9f;', config)
+    console.log('%c [ config ]-141', 'font-size:13px; background:pink; color:#bf2c9f;', config);
     const { id, data } = options;
     if (!id) {
       /* istanbul ignore next */
@@ -211,3 +291,5 @@ export class Bar {
     return { chart, views: [leadView, backView, textView], update: this.updateTimeInterval };
   };
 }
+
+export default CombineBar;

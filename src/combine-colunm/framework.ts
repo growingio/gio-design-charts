@@ -1,15 +1,16 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, Legends, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
-import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_REDIUS, DEFAULT_REDIUS_BAR } from '../theme';
-import { handleLegendBehavior, renderChart, updateChart } from '../core/framework';
+import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_RADIUS, DEFAULT_RADIUS_BAR } from '../theme';
+import { BaseChart, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
-import { getShapeConfig, setCustomInfo } from '../utils/tools/configUtils';
+import { setCustomInfo } from '../utils/tools/configUtils';
 import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';
 import { isSingleDodge } from '../utils/interval';
 import _ from 'lodash';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 
 export interface IntervalConfig {
   styles?: ShapeStyle;
@@ -82,7 +83,7 @@ export const handleInterval = (
 ) => {
   const { legends = {}, hasDashed, defaultStyles = {} } = options;
 
-  const radius = type === 'column' ? DEFAULT_REDIUS : DEFAULT_REDIUS_BAR;
+  const radius = type === 'column' ? DEFAULT_RADIUS : DEFAULT_RADIUS_BAR;
 
   // 渲染出基本柱状图
   intervalShape(
@@ -127,47 +128,66 @@ export const handleInterval = (
   return chart;
 };
 
-export const columnChart = (options: ChartOptions, config: ChartConfig = {}) => {
-  const { id ,legends} = options;
-  if (!id) {
-    return {};
-  }
-  const chart = renderChart(options, config);
-  // 允许绘制点图 和 标志线
-  const {point,annotation} = config;
-  const {color='',position='',shape='circle',size=1,adjust=[]} = point;
-  const {line={},text={}} = annotation;
-  try {
-    chart.point().color(color).position(position).size(size).shape(shape).style(color, (val) => {
-      const legend = (legends as any)?.[val]
-      return {
-        stroke:color,
-        fill: legend?.pointColor||legend?.color
-      };
-    }).adjust(adjust[0]);
-    chart.annotation().line(line).text(text);
-    handleInterval(chart, options, config, {
-      styles: {
-        maxColumnWidth: 200,
-        minColumnWidth: 40,
-      },
-    });
-     chart.point().color(color).position(position).size(size).shape(shape).style(color, (val) => {
-      const legend = (legends as any)?.[val]
-      return {
-        stroke:color,
-        fill: legend?.pointColor||legend?.color
-      };
-    }).adjust(adjust[0]);
-    chart.interaction('element-active');
-    chart.render();
-  } catch (err) {}
-  return { chart, update: updateChart };
-};
+class CombineColumn extends BaseChart {
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
+    const { id, legends } = options;
+    if (!id) {
+      return {};
+    }
+    const chart = renderChart(options, config);
+    // 允许绘制点图 和 标志线
+    const { point, annotation } = config;
+    const { color = '', position = '', shape = 'circle', size = 1, adjust = [] } = point;
+    const { line = {}, text = {} } = annotation;
+    try {
+      chart
+        .point()
+        .color(color)
+        .position(position)
+        .size(size)
+        .shape(shape)
+        .style(color, (val) => {
+          const legend = (legends as any)?.[val];
+          return {
+            stroke: color,
+            fill: legend?.pointColor || legend?.color,
+          };
+        })
+        .adjust(adjust[0]);
+      chart.annotation().line(line).text(text);
+      handleInterval(chart, options, config, {
+        styles: {
+          maxColumnWidth: 200,
+          minColumnWidth: 40,
+        },
+      });
+      chart
+        .point()
+        .color(color)
+        .position(position)
+        .size(size)
+        .shape(shape)
+        .style(color, (val) => {
+          const legend = (legends as any)?.[val];
+          return {
+            stroke: color,
+            fill: legend?.pointColor || legend?.color,
+          };
+        })
+        .adjust(adjust[0]);
+      chart.interaction('element-active');
+      chart.render();
+      this.instance = chart;
+    } catch (err) {}
+    return { chart, update: this.update };
+  };
+}
 
-export const handleLegend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
-  const barConfig = getShapeConfig(config as ChartConfig, 'column');
-  if (barConfig.color) {
-    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
-  }
-};
+// export const handleLegend = <ColumnConfig>(charts: (Chart | View)[], legends: Legends, config: ColumnConfig) => {
+//   const barConfig = getShapeConfig(config as ChartConfig, 'column');
+//   if (barConfig.color) {
+//     charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
+//   }
+// };
+
+export default CombineColumn;
