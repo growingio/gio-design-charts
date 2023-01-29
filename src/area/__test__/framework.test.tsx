@@ -1,18 +1,19 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { areaChart, handleLegend } from '../framework';
+import { Area as AreaCls } from '../framework';
 import { AreaStack } from '../demos/Area.stories';
 import { ChartProps, ChartType } from '../../interfaces';
-import { getLegends } from '../../hooks/useLegends';
-import { DEFAULT_LINEDASH } from '../../theme';
-import { Chart } from '@antv/g2';
+import { LegendObject } from '../../legends/useLegends';
+import { DEFAULT_LINE_DASH } from '../../theme';
 
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
 
 const { config, legends: legendList, data } = AreaStack.args as ChartProps;
-const [legends] = getLegends(ChartType.AREA, legendList as any);
+
+const legendObject = new LegendObject({ type: ChartType.AREA }, legendList as any);
 describe('areaChart', () => {
+  const area = new AreaCls();
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -23,9 +24,9 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
 
   test('call areaChart with lineDash', () => {
@@ -34,9 +35,9 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
+      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINE_DASH } },
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
   test('call areaChart without legends', () => {
     render(<ChartCom />);
@@ -45,14 +46,14 @@ describe('areaChart', () => {
       id: element,
       data,
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
 
   test('call areaChart without id', () => {
     const options = {
       data,
     };
-    areaChart(options, config);
+    area.render(options, config);
   });
 
   test('call areaChart without adjust', () => {
@@ -61,35 +62,25 @@ describe('areaChart', () => {
     const options = {
       id: element,
       data,
-      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINEDASH } },
+      legends: { 北京: { name: '北京', color: '#5F87FF', active: true, type: 'area', lineDash: DEFAULT_LINE_DASH } },
     };
     const { adjust, ...areaConfig } = config.area;
-    areaChart(options, { ...config, area: areaConfig });
+    area.render(options, { ...config, area: areaConfig });
   });
 });
 
 describe('handleLegend', () => {
+  const area = new AreaCls();
   test('call it', () => {
     render(<ChartCom />);
     const element = screen.getByTestId(chartComponentTestid);
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
-    const { chart } = areaChart(options, config);
-    handleLegend([chart as Chart], legends, config);
-  });
-  test('call it without config', () => {
-    render(<ChartCom />);
-    const element = screen.getByTestId(chartComponentTestid);
-    const options = {
-      id: element,
-      data,
-      legends,
-    };
-    const { chart } = areaChart(options, config);
-    handleLegend([chart as Chart], legends, {});
+    area.render(options, config);
+    area.legend(legendObject.mapping);
   });
 
   test('call it without legends', () => {
@@ -98,9 +89,9 @@ describe('handleLegend', () => {
     const options = {
       id: element,
       data,
-      legends,
+      legendObject,
     };
-    const { chart } = areaChart(options, config);
-    handleLegend([chart as Chart], undefined as any, config);
+    area.render(options, config);
+    area.legend(undefined as any);
   });
 });

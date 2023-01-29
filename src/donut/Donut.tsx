@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import { ChartProps, DonutConfig, ChartType } from '../interfaces';
 import { Donut as DonutCls } from './framework';
 import { LegendLayout } from '../layouts';
@@ -10,19 +10,10 @@ export interface DonutProps extends ChartProps {
 
 const Donut: React.FC<DonutProps> = (props: DonutProps) => {
   const { data, legends: legendProps = [], config, title } = props;
-  const [donut] = useState(new DonutCls());
+  const donut = useMemo(() => new DonutCls(), []);
   config.type = ChartType.DONUT;
 
-  return (
-    <LegendLayout
-      title={title}
-      data={data}
-      legendList={legendProps}
-      config={config}
-      callChart={donut.render}
-      handleLegend={donut.legend}
-    />
-  );
+  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={donut} />;
 };
 
 export default fetchChart<DonutProps>(Donut);

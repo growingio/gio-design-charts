@@ -24,15 +24,15 @@ const useInterceptors = () => {
       bindTooltip(r: any) {
         tooltipRef.current = r?.current;
       },
-      bindElementEvents(chart: Chart, options: { more?: boolean; offsetY?: number } = {}) {
+      bindElementEvents(chart: Chart, options: { more?: boolean } = {}) {
         chartRef.current = chart;
         chart.on('element:click', () => {
-          const { more, offsetY = 62 } = options;
-          if (triggerActionRef.current !== 'click' && tooltipRef.current && more) {
+          /* istanbul ignore next */
+          if (triggerActionRef.current !== 'click' && tooltipRef.current && options.more) {
             const { top = '' } = tooltipRef?.current?.style || {};
             const y = Number(top.replace('px', ''));
-            if (y && y > offsetY) {
-              tooltipRef.current.style.top = `${y - offsetY}px`;
+            if (y && y > 70) {
+              tooltipRef.current.style.top = `${y - 70}px`;
             }
           }
           triggerActionRef.current = 'click';

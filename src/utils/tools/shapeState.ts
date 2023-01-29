@@ -13,9 +13,10 @@ export const getShapeState = (options: ChartOptions) => {
         const defaultColor = options?.defaultStyles?.color;
         const modelFill = element?.getModel?.()?.style?.fill;
         const modelColor = element?.getModel?.()?.color;
+
         return {
           lineWidth: 2,
-          stroke: defaultColor || modelFill || modelColor || '#000',
+          stroke: defaultColor || modelColor || modelFill || '#000',
           strokeOpacity: 0.5,
         };
       },

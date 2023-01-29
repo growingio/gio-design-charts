@@ -1,5 +1,5 @@
-import React from 'react';
-import { barChart, handleLegend } from './framework';
+import React, { useMemo } from 'react';
+import { Bar as BarCls } from './framework';
 
 import { ChartType, BarConfig } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
@@ -10,6 +10,8 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   config.type = ChartType.BAR;
+
+  const bar = useMemo(() => new BarCls(), []);
 
   config.chart = {
     ...(config.chart || {}),
@@ -27,16 +29,7 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
     },
   };
 
-  return (
-    <ScrollYLayout
-      title={title}
-      data={data}
-      legendList={legendProps}
-      config={config}
-      callChart={barChart}
-      handleLegend={handleLegend}
-    />
-  );
+  return <ScrollYLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} />;
 };
 
 export default fetchChart<BarProps>(ScrollBar);

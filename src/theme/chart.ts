@@ -97,7 +97,7 @@ export const gioTheme = {
 };
 
 export const viewTheme = {
-  // set default colors, althought we have set default color for each legend.
+  // set default colors, although we have set default color for each legend.
   // but it's still necessary to add default colors for theme
   components: {
     axis: {

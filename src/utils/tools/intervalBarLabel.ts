@@ -15,17 +15,11 @@ class IntervalBarLabel extends GeometryLabel {
     const labelPoint = super.getLabelOffsetPoint(labelCfg, index, total);
     const { x, y } = labelPoint;
 
-    // const element = this.geometry.elementsMap[labelCfg.elementId];
-    // const model = element?.getModel();
-    // const color = getColorByModel(model);
     const style = labelCfg?.style || {};
 
     style.fontSize = FONT_SIZE_12;
     style.fontFamily = DEFAULT_FONT_FAMILY;
-    // style.fill = '#ffffff';
     style.fill = DEFAULT_FONT_COLOR;
-    // style.shadowColor = color;
-    // style.shadowBlur = 3;
 
     const blankWidth = get(labelCfg, 'coordinate.width') - get(labelCfg, 'mappingData.x');
     if (blankWidth < 200) {

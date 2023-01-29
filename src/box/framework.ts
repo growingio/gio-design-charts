@@ -1,24 +1,24 @@
 import { Chart, Element, View } from '@antv/g2';
-import { fetchConfig, fetchTooltip, generateChart, handleLegendBehavior } from '../core/framework';
-import { ChartConfig, ChartOptions, Legends, ChartType } from '../interfaces';
-import { getShapeConfig } from '../utils/tools/configUtils';
+import { BaseChart, fetchConfig, fetchTooltip, generateChart } from '../core/framework';
+import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { Datum } from '@antv/g2/lib/interface';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 
-export class Box {
+export class Box extends BaseChart {
   chart: Chart | undefined = undefined;
   boxView: View | undefined = undefined;
   options: ChartOptions | undefined = undefined;
   config: ChartConfig | undefined = undefined;
 
-  update = ({ chart, views = [] }: { chart: Chart; views?: View[] }, data: Datum[], config: ChartConfig) => {
-    const [boxView] = views;
+  update = (data: Datum[]) => {
+    const [boxView] = this.views;
     if (Array.isArray(data)) {
       boxView?.changeData(data);
     }
     boxView?.render(true);
-    chart.forceFit();
-    chart.render(true);
-    chart.render(true);
+    this.instance?.forceFit();
+    this.instance?.render(true);
+    this.instance?.render(true);
   };
 
   render = (options: ChartOptions, config: ChartConfig) => {
@@ -49,8 +49,8 @@ export class Box {
           style: (element: Element) => (element as any)?.statesStyle?.default,
         },
         inactive: {
-          style: (element: Element) => ({...(element as any)?.statesStyle?.default, opacity: 0.2}),
-        }
+          style: (element: Element) => ({ ...(element as any)?.statesStyle?.default, opacity: 0.2 }),
+        },
       })
       .adjust(boxCfg.adjust);
     boxView
@@ -64,8 +64,8 @@ export class Box {
           style: (element: Element) => (element as any)?.statesStyle?.default,
         },
         inactive: {
-          style: (element: Element) => ({...(element as any)?.statesStyle?.default, opacity: 0.2}),
-        }
+          style: (element: Element) => ({ ...(element as any)?.statesStyle?.default, opacity: 0.2 }),
+        },
       })
       .adjust(boxCfg.adjust);
     boxView.render();
@@ -77,17 +77,19 @@ export class Box {
     chart.render();
 
     this.chart = chart;
+    this.instance = chart;
     this.boxView = boxView;
     this.options = options;
     this.config = config;
+    this.views = [boxView];
     return { chart, views: [boxView], update: this.update };
   };
 
-  legend = <BoxConfig>(charts: (Chart | View)[], legends: Legends, config: BoxConfig) => {
-    const box = getShapeConfig(config as ChartConfig, 'box');
-    if (box.color) {
-      charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, box.color));
-      this.chart?.render(true);
-    }
-  };
+  // legend = <BoxConfig>(legends: Legends) => {
+  //   const box = getShapeConfig(this.config as ChartConfig, 'box');
+  //   if (box.color) {
+  //     handleLegendBehavior(this.instance, legends, box.color);
+  //     this.chart?.render(true);
+  //   }
+  // };
 }

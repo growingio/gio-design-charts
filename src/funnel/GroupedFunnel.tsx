@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ChartType } from '../interfaces';
-import { funnelChart, handleLegend } from './framework';
+import { Funnel as FunnelCls } from './framework';
 import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';
 import { fetchChart } from '../boundary';
@@ -8,6 +8,8 @@ import { FunnelProps } from './Funnel';
 
 const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   const { data, legends: legendProps = [], config, title } = props;
+
+  const funnel = useMemo(() => new FunnelCls(), []);
 
   const [comparativeData, setComparativeData] = useState({});
   if (config) {
@@ -24,8 +26,7 @@ const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
       legendList={legendProps}
       config={config}
       sourceData={data}
-      callChart={funnelChart}
-      handleLegend={handleLegend}
+      chart={funnel}
     />
   );
 };

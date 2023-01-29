@@ -10,7 +10,7 @@ const BaldLayout: React.FC<LayoutProps> = (props: LayoutProps) => {
 
   /* istanbul ignore next */
   const watchReset = useCallback(() => {
-    chart?.forceFit();
+    chart?.instance?.forceFit();
   }, [chart]);
   useOffset(baldRef, watchReset);
   return (

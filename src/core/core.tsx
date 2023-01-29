@@ -1,13 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { InfoCardBox } from '../info-card';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
+import { Actions, ChartConfig, ChartOptions, Legend } from '../interfaces';
 import useInterceptors from '../hooks/useInterceptors';
 import useTunnel from '../hooks/useTunnel';
 
-import { Chart, View } from '@antv/g2';
 import { LooseObject } from '@antv/component';
 import './styles/base.less';
 import useChart from '../hooks/useChart';
+import { LegendObject } from '../legends/useLegends';
 
 export interface LayoutProps {
   options: ChartOptions;
@@ -19,9 +19,9 @@ export interface LayoutProps {
 
 export interface ChartCanvasProps {
   // type: ChartType;
-  callChart: (options: ChartOptions, config: ChartConfig) => { chart?: Chart; views?: View[] };
+  // callChart?: (options: ChartOptions, config: ChartConfig) => { chart?: Chart; views?: View[] };
   legendList: (string | Legend)[];
-  handleLegend: <T extends ChartConfig>(charts: (Chart | View)[], legends: Legends, config: T) => void;
+  // handleLegend?: <T extends ChartConfig>(charts: (Chart | View)[], legends: Legends, config: T) => void;
   config: ChartConfig;
   defaultOptions?: ChartOptions;
   data: LooseObject | LooseObject[];
@@ -30,28 +30,32 @@ export interface ChartCanvasProps {
   sizeRegister?: any;
   title?: string;
   fullHeight?: boolean;
+  chart: Actions;
 }
 
 // In core, we only force on render chart and provide basic chart options
 const core = (HighComponent: React.FC<LayoutProps>) => {
   return (props: ChartCanvasProps) => {
-    const { config, callChart, data, legendList, handleLegend, defaultOptions, width, title } = props;
+    const { config, data, legendList, chart, defaultOptions, width, title } = props;
     const root = useRef<HTMLDivElement | null>(null);
     const tooltipRef = useRef<HTMLDivElement | null>(null);
     const [register, acceptor] = useTunnel();
 
     const { getTrigger, setTrigger, interceptors } = useInterceptors();
-    interceptors.bindTooltip(tooltipRef)
+    interceptors.bindTooltip(tooltipRef);
     const [tooltipKey, setTooltipKey] = useState(1);
 
-    const { chartOptions, updateLegends } = useChart({
+    const legendObject = useMemo(() => new LegendObject(config, legendList), [config, legendList]);
+    const [, refresh] = useState(0);
+
+    const { chartOptions } = useChart({
       rootRef: root,
       tooltipRef,
-      callChart,
+      chart,
       tooltipItemRegister: register,
       config,
       data,
-      legendList,
+      legendObject,
       interceptors,
       defaultOptions,
       tooltipKey,
@@ -60,12 +64,12 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
     });
     const onClickLegend = useCallback(
       (label: string) => {
-        const newLegends = updateLegends(label);
-        if (chartOptions?.chart) {
-          handleLegend([chartOptions?.chart, ...(chartOptions?.views || [])], newLegends, config);
-        }
+        const newLegends = legendObject.update(label);
+        chart?.legend(newLegends);
+
+        refresh(new Date().getTime());
       },
-      [chartOptions, config, handleLegend, updateLegends]
+      [chart, legendObject]
     );
 
     return (

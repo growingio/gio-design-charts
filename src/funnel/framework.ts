@@ -1,138 +1,138 @@
 import { Chart, Event, View } from '@antv/g2';
 import { cloneDeep, isEmpty, merge } from 'lodash';
-import { ChartConfig, ChartOptions, Legend, Legends } from '../interfaces';
-import { colors, DEFAULT_REDIUS } from '../theme';
+import { ChartConfig, ChartOptions, Legend } from '../interfaces';
+import { colors, DEFAULT_RADIUS } from '../theme';
 import { intervalShape } from '../column/framework';
-import { fetchTooltip, fetchViewConfig, generateChart, handleLegendBehavior } from '../core/framework';
+import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core/framework';
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
-import { getShapeConfig } from '../utils/tools/configUtils';
 import gioTheme, { viewTheme } from '../theme/chart';
 import { LooseObject } from '@antv/g-base';
 
-const fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
-  const { legends, defaultStyles } = options;
-  return intervalShape(
-    chart,
-    options,
-    config,
-    {
-      styles: {
-        dodgePadding: 4,
-        minColumnWidth: 40,
+export class Funnel extends BaseChart {
+  fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
+    const { legendObject, defaultStyles } = options;
+    return intervalShape(
+      chart,
+      options,
+      config,
+      {
+        styles: {
+          dodgePadding: 4,
+          minColumnWidth: 40,
+        },
       },
-    },
-    (label: string) => {
-      const legend = legends?.[label] || ({} as Legend);
-      return {
-        stroke: '#fff',
-        strokeWidth: 1,
-        fill: legend.color,
-        radius: DEFAULT_REDIUS,
-        ...defaultStyles,
-      };
-    }
-  );
-};
+      (label: string) => {
+        const legend = legendObject?.getLegend(label) || ({} as Legend);
+        return {
+          stroke: '#fff',
+          strokeWidth: 1,
+          fill: legend.color,
+          radius: DEFAULT_RADIUS,
+          ...defaultStyles,
+        };
+      }
+    );
+  };
 
-const bindLinkEvent = (linkView: View, addLinkByElement: any, data?: LooseObject) => {
-  const sourceData = data?.source || [];
-  const elementCount = data?.elementCount ?? 0;
-  const texts = data?.texts || [];
-  const isGroup = data?.isGroup;
-  linkView?.on('afterrender', function (event: Event) {
-    if (event && !isGroup && sourceData.length !== 0) {
-      const boxWidth = event.view.viewBBox.width;
-      addLinkByElement(event.view as any, { texts, showLabel: (boxWidth - 60) / elementCount > 130 });
-    }
-  });
-};
-
-export const updateHoc = () => {
-  const addLinkByElement = addLinkByElementHigh();
-  return [
-    addLinkByElement,
-    ({ chart, views = [] }: { chart: Chart; views: View[] }, data: LooseObject) => {
-      const sourceData = data?.source || [];
-      const covertData = data?.covert || [];
-      const [linkView, backgroundView] = views;
-      backgroundView?.changeData(covertData);
-      backgroundView?.render(true);
-
-      linkView?.changeData(sourceData);
-      bindLinkEvent(linkView, addLinkByElement, data);
-
-      linkView?.render(true);
-      chart.render(true);
-    },
-  ];
-};
-
-export const funnelChart = (options: ChartOptions, config: ChartConfig = {}) => {
-  const { id } = options;
-  if (!id || isEmpty(options.data)) {
-    return {};
-  }
-  const { interceptors, legends } = options;
-  const chart = generateChart(options, config);
-  const [addLinkByElement, updateFunnel] = updateHoc();
-  try {
-    const sourceData = (options.data as LooseObject)?.source || [];
-    const covertData = (options.data as LooseObject)?.covert || [];
-    const isGroup = (options.data as LooseObject)?.isGroup;
-
-    const emptyLegends = isEmpty(legends);
-
-    // Use viewTheme to set the label of axis is white
-    const backgroundView = chart.createView({
-      theme: merge(cloneDeep(gioTheme), viewTheme),
+  bindLinkEvent = (linkView: View, addLinkByElement: any, data?: LooseObject) => {
+    const sourceData = data?.source || [];
+    const elementCount = data?.elementCount ?? 0;
+    const texts = data?.texts || [];
+    const isGroup = data?.isGroup;
+    linkView?.on('afterrender', function (event: Event) {
+      if (event && !isGroup && sourceData.length !== 0) {
+        const boxWidth = event.view.viewBBox.width;
+        addLinkByElement(event.view as any, { texts, showLabel: (boxWidth - 60) / elementCount > 130 });
+      }
     });
-    const backgroundOptions = {
-      ...options,
-      data: covertData,
-      control: {
-        hideLabel: true,
-      },
-      defaultStyles: {
-        opacity: 0.2,
-        color: !isGroup || emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
-      },
-    };
-    fetchViewConfig(backgroundView, backgroundOptions, { ...config });
-    fetchInterval(backgroundView, backgroundOptions, config);
-    backgroundView.interaction('element-active');
-    backgroundView.render();
+  };
 
-    const linkView = chart.createView();
-    const linkOptions = {
-      ...options,
-      data: sourceData,
-      defaultStyles: {
-        color: !isGroup || emptyLegends ? colors[0] : '',
+  updateHoc = () => {
+    const addLinkByElement = addLinkByElementHigh();
+    return [
+      addLinkByElement,
+      (data: LooseObject) => {
+        const sourceData = data?.source || [];
+        const covertData = data?.covert || [];
+        const [linkView, backgroundView] = this.views;
+        backgroundView?.changeData(covertData);
+        backgroundView?.render(true);
+
+        linkView?.changeData(sourceData);
+        this.bindLinkEvent(linkView, addLinkByElement, data);
+
+        linkView?.render(true);
+        this.instance?.render(true);
       },
-    };
-    bindLinkEvent(linkView, addLinkByElement, options.data);
-    // should add view.render() for linkView, it can trigger afterrender event.
-    if (isGroup) {
-      linkView.interaction('element-highlight-by-color');
-      linkView.interaction('element-link');
+    ];
+  };
+
+  render = (options: ChartOptions, config: ChartConfig = {}) => {
+    this.options = options;
+    this.config = config;
+
+    const { id } = options;
+    if (!id || isEmpty(options.data)) {
+      return {};
     }
-    fetchViewConfig(linkView, linkOptions, config);
-    fetchInterval(linkView, linkOptions, config);
-    linkView.render();
+    const { interceptors, legendObject } = options;
+    this.instance = generateChart(options, config);
+    const [addLinkByElement, updateFunnel] = this.updateHoc();
+    this.update = updateFunnel as any;
+    try {
+      const sourceData = (options.data as LooseObject)?.source || [];
+      const covertData = (options.data as LooseObject)?.covert || [];
+      const isGroup = (options.data as LooseObject)?.isGroup;
 
-    fetchTooltip(chart, config);
-    chart.legend(false);
-    chart.render();
-    interceptors?.bindElementEvents(chart, { more: true, offsetY: config?.tooltip?.clickOffset });
-    return { chart, views: [linkView, backgroundView], update: updateFunnel };
-  } catch (err) {
-    return { chart, update: updateFunnel };
-  }
-};
+      const emptyLegends = isEmpty(legendObject?.mapping);
 
-export const handleLegend = <FunnelConfig>(charts: (Chart | View)[], legends: Legends, config: FunnelConfig) => {
-  const barConfig = getShapeConfig(config, 'funnel');
-  if (barConfig.color) {
-    charts.forEach((chart: Chart | View) => handleLegendBehavior(chart, legends, barConfig.color));
-  }
-};
+      // Use viewTheme to set the label of axis is white
+      const backgroundView = this.instance.createView({
+        theme: merge(cloneDeep(gioTheme), viewTheme),
+      });
+      const backgroundOptions = {
+        ...options,
+        data: covertData,
+        control: {
+          hideLabel: true,
+        },
+        defaultStyles: {
+          opacity: 0.2,
+          color: !isGroup || emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
+        },
+      };
+      fetchViewConfig(backgroundView, backgroundOptions, { ...config });
+      this.fetchInterval(backgroundView, backgroundOptions, config);
+      backgroundView.interaction('element-active');
+      backgroundView.render();
+      this.views.push(backgroundView);
+
+      const linkView = this.instance.createView();
+      const linkOptions = {
+        ...options,
+        data: sourceData,
+        defaultStyles: {
+          color: !isGroup || emptyLegends ? colors[0] : '',
+        },
+      };
+      this.bindLinkEvent(linkView, addLinkByElement, options.data);
+      // should add view.render() for linkView, it can trigger afterrender event.
+      if (isGroup) {
+        linkView.interaction('element-highlight-by-color');
+        linkView.interaction('element-link');
+      }
+      fetchViewConfig(linkView, linkOptions, config);
+      this.fetchInterval(linkView, linkOptions, config);
+      linkView.render();
+      this.views.push(linkView);
+
+      fetchTooltip(this.instance, config);
+      this.instance.legend(false);
+      this.instance.render();
+      interceptors?.bindElementEvents(this.instance, { more: true });
+    } catch (err) {
+      /* istanbul ignore next */
+      console.log(err);
+    }
+  };
+}

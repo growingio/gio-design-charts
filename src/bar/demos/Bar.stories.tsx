@@ -104,7 +104,7 @@ ScrollBarDefault.storyName = '条形图(滚动模式)';
 export const BarMulti = Template.bind({});
 const BarMultiArgs = {
   legends: [],
-  data,
+  data: data.reverse(),
   config: {
     ...config,
 

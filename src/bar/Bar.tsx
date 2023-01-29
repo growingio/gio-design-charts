@@ -1,5 +1,5 @@
-import React from 'react';
-import { barChart, handleLegend } from './framework';
+import React, { useMemo } from 'react';
+import { Bar as BarCls } from './framework';
 
 import { ChartType, ChartProps, BarConfig } from '../interfaces';
 import { LegendLayout } from '../layouts';
@@ -24,6 +24,8 @@ export interface DragBarProps extends BarProps {
 const Bar: React.FC<BarProps> = (props: BarProps) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
+  const bar = useMemo(() => new BarCls(), []);
+
   config.type = ChartType.BAR;
   config.chart = {
     ...(config.chart || {}),
@@ -39,16 +41,7 @@ const Bar: React.FC<BarProps> = (props: BarProps) => {
       minColumnWidth: 16,
     },
   };
-  return (
-    <LegendLayout
-      title={title}
-      data={data}
-      legendList={legendProps}
-      config={config}
-      callChart={barChart}
-      handleLegend={handleLegend}
-    />
-  );
+  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} />;
 };
 
 export default fetchChart<BarProps>(Bar);

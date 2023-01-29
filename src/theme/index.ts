@@ -24,17 +24,16 @@ export const FONT_SIZE_10 = 10;
 export const FONT_SIZE_8 = 8;
 
 // 图表Chart的默认高度
-export const DEAULT_CHART_HEIGHT = 300;
-export const DEFAULT_OTERH_COLOR = '#CACEDB';
+export const DEFAULT_CHART_HEIGHT = 300;
+export const DEFAULT_OTHER_COLOR = '#CACEDB';
 export const DISABLE_COLOR = '#ADB2C2';
-export const DEFAULT_LINEDASH = [2, 5];
+export const DEFAULT_LINE_DASH = [2, 5];
 export const DEFAULT_MIN_HEIGHT = 4;
-export const DEFAULT_REDIUS = [4, 4, 0, 0];
-export const DEFAULT_REDIUS_BOTTOM = [0, 0, 4, 4];
-export const DEFAULT_REDIUS_BAR = [2, 2, 2, 2];
+export const DEFAULT_RADIUS = [4, 4, 0, 0];
+export const DEFAULT_RADIUS_BOTTOM = [0, 0, 4, 4];
+export const DEFAULT_RADIUS_BAR = [2, 2, 2, 2];
 export const DEFAULT_APPEND_PADDING = 8;
 export const DEFAULT_TINY_APPEND_PADDING = 2;
-export const DEFAULT_CHART_HEIGHT = 120;
 
 export const DEFAULT_AUTO_FIT = true;
 export const DEFAULT_HEIGHT = 200;

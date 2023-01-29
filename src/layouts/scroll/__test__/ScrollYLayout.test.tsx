@@ -3,24 +3,19 @@ import { render, screen } from '@testing-library/react';
 import ScrollYLayout from '../ScrollYLayout';
 import { StackingDiagramBar } from '../../../bar/demos/Bar.stories';
 import { ChartProps } from '../../../interfaces';
-import { barChart, handleLegend } from '../../../bar/framework';
+import { Bar as BarCls } from '../../../bar/framework';
 import { IntlProvider } from 'react-intl';
 import en from '../../../locales/en.json';
 
 describe('ScrollYLayout', () => {
   const scrollyTestId = 'scroll-y-layout';
   const { legends: legendList, config, data } = StackingDiagramBar.args as ChartProps;
+  const bar = new BarCls();
 
   test('render', async () => {
     render(
       <IntlProvider defaultLocale="zh-CN" locale="zh-CN" messages={en}>
-        <ScrollYLayout
-          config={config}
-          data={data}
-          legendList={legendList as any}
-          handleLegend={handleLegend}
-          callChart={barChart}
-        />
+        <ScrollYLayout config={config} data={data} legendList={legendList as any} chart={bar} />
       </IntlProvider>
     );
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
@@ -29,13 +24,7 @@ describe('ScrollYLayout', () => {
   test('render without config', async () => {
     render(
       <IntlProvider defaultLocale="zh-CN" locale="zh-CN" messages={en}>
-        <ScrollYLayout
-          config={undefined as any}
-          data={data}
-          legendList={legendList as any}
-          handleLegend={handleLegend}
-          callChart={barChart}
-        />
+        <ScrollYLayout config={undefined as any} data={data} legendList={legendList as any} chart={bar} />
       </IntlProvider>
     );
     expect(await screen.findByTestId(scrollyTestId)).toBeTruthy();
