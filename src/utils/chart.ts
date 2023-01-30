@@ -29,11 +29,11 @@ export const getDefaultViewTheme = (config?: ChartConfig) => {
 };
 
 export const fixedHeight = (options: ChartOptions, config: ChartConfig) => {
-  const { hasLegend, hasTitle } = options;
+  const { legendObject, hasTitle } = options;
   const basicConfig = config.chart || {};
   const defaultHeight = basicConfig.height || DEFAULT_HEIGHT;
   if (config.size === 'tiny') {
     return defaultHeight;
   }
-  return defaultHeight - (hasLegend ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0);
+  return defaultHeight - (legendObject?.support ? LEGEND_HEIGHT : 0) - (hasTitle ? LEGEND_HEIGHT : 0);
 };
