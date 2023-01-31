@@ -1,9 +1,10 @@
 import { isString, lowerCase } from 'lodash';
 import { TriggerItem } from '../info-card/InfoCardBox';
-import { Legend, Legends, ChartOptions, ChartConfig, ChartType } from '../interfaces';
+import { Legend, ChartOptions, ChartConfig, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE } from '../theme';
 import { getDodgeBy } from './interval';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
+import { LegendObject } from '../legends/useLegends';
 
 export const getBackgroundImage = (type: string | ChartType) => ({
   backgroundImage: `url("${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}")`,
@@ -15,14 +16,14 @@ export const getInfoCardStyles = (
   options: ChartOptions,
   config: ChartConfig,
   item: TriggerItem,
-  legends: Legends,
+  legendObject: LegendObject,
   firstPosition: string
 ) => {
   // Get legend config
   const shapeConfig = getShapeConfig(config);
   const dodgeBy = getDodgeBy(shapeConfig);
   const legendName = item.data?.[dodgeBy] || item.name;
-  const legend = legends?.[legendName] || {};
+  const legend = legendObject?.getLegend(legendName) || {};
 
   const singleColor = options?.singleColor;
   // Get default color

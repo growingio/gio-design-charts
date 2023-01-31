@@ -78,7 +78,7 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
           <div className="gio-d-charts_tooltip-content" key={tooltipKey} style={{ width, position: 'relative' }}>
             <div ref={tooltipRef} className="g2-tooltip">
               <InfoCardBox
-                legends={chartOptions.legends}
+                legendObject={chartOptions.legendObject}
                 acceptor={acceptor}
                 options={{ ...chartOptions }}
                 getTrigger={getTrigger}
