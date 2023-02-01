@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/growingio/gio-design-charts/compare/v2.0.3...v2.1.0) (2023-02-01)
+
+
+### Features
+
+* **Class:** 使用Class对象编写各种chart framework ([#329](https://github.com/growingio/gio-design-charts/issues/329)) ([b7f124a](https://github.com/growingio/gio-design-charts/commit/b7f124ab2b7d0269cdda15987d5f04c5a0416bda)), closes [#246](https://github.com/growingio/gio-design-charts/issues/246) [#247](https://github.com/growingio/gio-design-charts/issues/247) [#247](https://github.com/growingio/gio-design-charts/issues/247) [#247](https://github.com/growingio/gio-design-charts/issues/247) [#247](https://github.com/growingio/gio-design-charts/issues/247) [#250](https://github.com/growingio/gio-design-charts/issues/250) [#254](https://github.com/growingio/gio-design-charts/issues/254)
+
 ## [2.0.3](https://github.com/growingio/gio-design-charts/compare/v2.0.2...v2.0.3) (2022-12-19)
 
 
