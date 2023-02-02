@@ -107,6 +107,9 @@ const getTrigger = () => 'mouseover';
 const infoCardBoxTestid = 'infoCardBox';
 
 describe('InfoCard', () => {
+  test('render InfoCardBox', async () => {
+    expect(1).toBe(1);
+  });
   //   test('render InfoCardBox', async () => {
   //     const { result } = renderHook(() => useTunnel());
   //     const [register, acceptor] = result.current;

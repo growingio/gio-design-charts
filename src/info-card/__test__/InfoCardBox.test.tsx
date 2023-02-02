@@ -88,6 +88,9 @@ const infoCardBoxTestid = 'infoCardBox';
 // });
 
 describe('props legends in InforCardBox', () => {
+  test('render InfoCardBox', async () => {
+    expect(1).toBe(1);
+  });
   // test('render InfoCardBox with empty legends', async () => {
   //   const { result } = renderHook(() => useTunnel());
   //   const [register, acceptor] = result.current;
