@@ -34,7 +34,6 @@ export interface InfoCardProps {
 
 const InfoCardBox = (props: InfoCardProps) => {
   const { acceptor, legendObject, getTrigger, options, config, setTrigger } = props;
-  console.log(legendObject);
   const chartType = config?.type;
   const forwardKey = config?.[chartType]?.color;
   const height = config?.chart?.height || 360;

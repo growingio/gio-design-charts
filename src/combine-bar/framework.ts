@@ -6,7 +6,6 @@ import { Datum } from '@antv/g2/lib/interface';
 
 class CombineBar extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig) => {
-    console.log(options);
     const { id, report, data, legendObject } = options;
     if (!id) {
       return {};
@@ -69,40 +68,6 @@ class CombineBar extends BaseChart {
           report?.({ scale: geometries.getXScale(), elements: geometries.elements });
         }
       });
-
-      // linkView
-      //   .point()
-      //   .color(color)
-      //   .position(position)
-      //   .size(size)
-      //   .shape(shape)
-      //   .style(color, (val) => {
-      //     const legend: any = legendObject?.getLegend(val);
-      //     console.log(legend, legend?.pointColor, legend?.color);
-      //     return {
-      //       default: { fill: '#002200' || legend?.color },
-      //       active: {
-      //         lineWidth: 2,
-      //         stroke: legend?.pointColor || legend?.color,
-      //         strokeOpacity: 0.5,
-      //       },
-      //     };
-      //   })
-      //   // .style({
-      //   //   active: {
-      //   //     style: (val: string) => {
-      //   //       const legend: any = legendObject?.getLegend(val);
-      //   //       console.log(legend);
-      //   //       return {
-      //   //         lineWidth: 2,
-      //   //         stroke: legend?.pointColor || legend?.color,
-      //   //         strokeOpacity: 0.5,
-      //   //       };
-      //   //     },
-      //   //   },
-      //   // })
-      //   .adjust(adjust[0]);
-      console.log(line, text);
 
       linkView.render();
 
