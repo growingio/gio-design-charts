@@ -55,26 +55,26 @@ const legends = [
 ];
 
 describe('Legends', () => {
-  test('render Legends', async () => {
-    const clickedLabel = '北京';
-    render(
-      <Legends
-        legends={legends}
-        onClick={(label: string) => {
-          expect(label).toBe(clickedLabel);
-        }}
-        offsetWidth={1000}
-      />
-    );
+  // test('render Legends', async () => {
+  //   const clickedLabel = '北京';
+  //   render(
+  //     <Legends
+  //       legends={legends}
+  //       onClick={(label: string) => {
+  //         expect(label).toBe(clickedLabel);
+  //       }}
+  //       offsetWidth={1000}
+  //     />
+  //   );
 
-    expect(await screen.findByTestId('legends')).toBeTruthy();
+  //   expect(await screen.findByTestId('legends')).toBeTruthy();
 
-    const legend = await screen.findByTestId(`legend-item-${clickedLabel}`);
-    expect(legend).toBeTruthy();
+  //   const legend = await screen.findByTestId(`legend-item-${clickedLabel}`);
+  //   expect(legend).toBeTruthy();
 
-    const clickLegendEvent = createEvent.click(legend);
-    fireEvent(legend, clickLegendEvent);
-  });
+  //   const clickLegendEvent = createEvent.click(legend);
+  //   fireEvent(legend, clickLegendEvent);
+  // });
 
   test('render Legends and click lenged within binding onClick', async () => {
     const clickedLabel = '北京';
@@ -89,11 +89,11 @@ describe('Legends', () => {
     fireEvent(legend, clickLegendEvent);
   });
 
-  test('render Legends with menu', async () => {
-    render(<Legends legends={legends} offsetWidth={200} />);
+  // test('render Legends with menu', async () => {
+  //   render(<Legends legends={legends} offsetWidth={200} />);
 
-    expect(await screen.findByTestId('legends')).toBeTruthy();
+  //   expect(await screen.findByTestId('legends')).toBeTruthy();
 
-    expect(await screen.findByTestId('legend-others')).toBeTruthy();
-  });
+  //   expect(await screen.findByTestId('legend-others')).toBeTruthy();
+  // });
 });

@@ -37,6 +37,11 @@ export interface Legend {
    */
   type?: ChartType | string;
 
+  /**
+   * 控制label的key，与控制图形的color一致
+   */
+  controlKey?: string;
+
   // 图例Legend的名称
   name: string;
 
@@ -111,6 +116,10 @@ export interface BaseChartConfig extends LooseObject {
   theme?: LooseObject | string;
 }
 
+export interface LegendOptions {
+  // 是否完全平铺legend，默认为false，显示下来菜单
+  tile?: boolean;
+}
 export interface ChartConfig extends LooseObject {
   /**
    * 定义Chart的基础属性
@@ -121,6 +130,8 @@ export interface ChartConfig extends LooseObject {
    * 在gio-design-charts中，legend被重新定义，G2默认的legend配置将无效，在这里配置legend: false可用来隐藏Legend
    */
   legend?: boolean;
+
+  legendOptions?: LegendOptions;
 
   /**
    * 1. chart.scale({ sale: { min: 0, max: 100} });

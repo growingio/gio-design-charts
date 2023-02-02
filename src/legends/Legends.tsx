@@ -20,6 +20,8 @@ const Legends = (props: LegendsProps) => {
   const [tiled, setTiled] = useState([] as Legend[]);
   const [grouped, setGrouped] = useState([] as Legend[]);
 
+  const isTiled = config?.legendOptions?.tile;
+
   const onClickLegend = useCallback(
     (label: string) => {
       const enableClick = legends.length > 1;
@@ -31,17 +33,21 @@ const Legends = (props: LegendsProps) => {
   useEffect(() => {
     let count = 0;
     let totalWidth = 0;
-    legends?.forEach((legend) => {
-      totalWidth += legend?.width || 125;
-      if (totalWidth <= offsetWidth - 125) {
-        count += 1;
-      }
-    });
+    if (isTiled) {
+      count = legends?.length || 0;
+    } else {
+      legends?.forEach((legend) => {
+        totalWidth += legend?.width || 125;
+        if (totalWidth <= offsetWidth - 125) {
+          count += 1;
+        }
+      });
+    }
     if (legends && legends.length > 0) {
       setTiled(legends.slice(0, count));
       setGrouped(legends.slice(count));
     }
-  }, [legends, offsetWidth]);
+  }, [isTiled, legends, offsetWidth]);
 
   const textColor = getThemeColor(config);
 

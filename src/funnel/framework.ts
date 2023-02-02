@@ -1,5 +1,5 @@
 import { Chart, Event, View } from '@antv/g2';
-import { cloneDeep, isEmpty, merge } from 'lodash';
+import { cloneDeep, get, isEmpty, merge } from 'lodash';
 import { ChartConfig, ChartOptions, Legend } from '../interfaces';
 import { colors, DEFAULT_RADIUS } from '../theme';
 import { intervalShape } from '../column/framework';
@@ -129,7 +129,7 @@ export class Funnel extends BaseChart {
       fetchTooltip(this.instance, config);
       this.instance.legend(false);
       this.instance.render();
-      interceptors?.bindElementEvents(this.instance, { more: true });
+      interceptors?.bindElementEvents(this.instance, { more: true, offset: get(config, 'tooltip.clickOffset') });
     } catch (err) {
       /* istanbul ignore next */
       console.log(err);

@@ -7,6 +7,7 @@ import { debounce, first, last, set } from 'lodash';
 import './styles/infocard.less';
 import { LooseObject } from '@antv/g-base';
 import { TooltipItem } from '@antv/g2/lib/interface';
+import { LegendObject } from '../legends/useLegends';
 
 export interface TriggerItem extends Omit<TooltipItem, 'color'> {
   title?: string;
@@ -21,7 +22,7 @@ export interface InfoCardData extends Legend {
 }
 
 export interface InfoCardProps {
-  legends: Legends;
+  legendObject: LegendObject;
   getTrigger?: () => string;
   // triggerItems: TriggerItem[];
   acceptor: any;
@@ -32,7 +33,7 @@ export interface InfoCardProps {
 }
 
 const InfoCardBox = (props: InfoCardProps) => {
-  const { acceptor, legends, getTrigger, options, config, setTrigger } = props;
+  const { acceptor, legendObject, getTrigger, options, config, setTrigger } = props;
   const chartType = config?.type;
   const forwardKey = config?.[chartType]?.color;
   const height = config?.chart?.height || 360;
@@ -60,7 +61,7 @@ const InfoCardBox = (props: InfoCardProps) => {
           if (!item) {
             return {} as InfoCardData;
           }
-          const [legend, color] = getInfoCardStyles(options, config, item, legends, nameKey);
+          const [legend, color] = getInfoCardStyles(options, config, item, legendObject, nameKey);
           // Set color for trigger item, it will change the point color when mouseover the column bar
           item.color = color;
           const itemData = item.data;
@@ -81,7 +82,7 @@ const InfoCardBox = (props: InfoCardProps) => {
       setTitle(showTitle);
       setItems(covertItems);
     });
-  }, [acceptor, chartType, nameKey, legends, options, config, setHoverItemD]);
+  }, [acceptor, chartType, nameKey, legendObject, options, config, setHoverItemD]);
 
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
