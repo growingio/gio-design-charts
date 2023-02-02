@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/growingio/gio-design-charts/compare/v2.1.0...v2.2.0) (2023-02-02)
+
+
+### Features
+
+* **combineChart:** colunm bar ([#326](https://github.com/growingio/gio-design-charts/issues/326)) ([5810df3](https://github.com/growingio/gio-design-charts/commit/5810df35f6b87dbbf3b23e350b907142492f494d))
+
 # [2.1.0](https://github.com/growingio/gio-design-charts/compare/v2.0.3...v2.1.0) (2023-02-01)
 
 
