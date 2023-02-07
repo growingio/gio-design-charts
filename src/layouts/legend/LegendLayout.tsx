@@ -51,7 +51,7 @@ const LegendLayout = (props: LayoutProps) => {
       {legendObject?.support && (
         <Legends
           config={config}
-          legends={legendObject.quene}
+          legends={legendObject.queue}
           offsetWidth={offsetWidth || offset.width}
           onClick={onClickLegend}
         />

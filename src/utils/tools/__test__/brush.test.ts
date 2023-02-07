@@ -23,7 +23,7 @@ describe('test fromework brush', () => {
       type: 'polygon',
       attrs: {
         fill: '#fff',
-        stroke: '#F1F2F8',
+        stroke: '#5F87FF',
         points: [
           [1, 1],
           [2, 2],

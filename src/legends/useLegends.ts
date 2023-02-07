@@ -71,7 +71,7 @@ export class LegendObject {
   // Each chart show have the only legend object
   source: (Legend | string)[] = [];
   // Transform source to legend object and store in quene
-  quene: Legend[] = [];
+  queue: Legend[] = [];
   // {key: Legend} mapping is used for query
   mapping: { [key: string]: Legend } = {};
   // whether there is dashed series
@@ -83,7 +83,7 @@ export class LegendObject {
 
   constructor(config: ChartConfig, source: (Legend | string)[]) {
     this.source = source;
-    this.quene = [];
+    this.queue = [];
     this.mapping = {};
     this.hasDashed = false;
     this.setLegends(config, source);
@@ -97,11 +97,11 @@ export class LegendObject {
 
   getLegend = (label: string): Legend => this?.mapping?.[label] || ({} as Legend);
 
-  // transform source to quene and mapping
+  // transform source to queue and mapping
   transform = (type: ChartType) => {
     const legends = {} as Legends;
     let hasDashed = false;
-    this.quene = this.source?.map((legend: string | Legend, index: number) => {
+    this.queue = this.source?.map((legend: string | Legend, index: number) => {
       if (typeof legend === 'string') {
         legends[legend] = {
           name: legend,
@@ -151,7 +151,7 @@ export class LegendObject {
         }
       }
     });
-    this.quene = this.quene.map((le) => (le.name === label ? this.mapping[label] : le));
+    this.queue = this.queue.map((le) => (le.name === label ? this.mapping[label] : le));
     return this.mapping;
   };
 }

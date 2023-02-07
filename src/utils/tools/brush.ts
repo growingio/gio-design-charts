@@ -1,25 +1,25 @@
 import { DEFAULT_FONT_COLOR, DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } from '../../theme';
 import { ShapeCfg } from '@antv/g-base/lib/types';
 
-export const drawLinkPath = (path: (string | number)[][]): ShapeCfg => {
+export const drawLinkPath = (path: (string | number)[][], color: string = '#5F87FF'): ShapeCfg => {
   return {
     type: 'path',
     attrs: {
       opacity: 0.1,
       // fill: '#5F87FF',
-      fill: 'l(270) 0:#ffffff 1:#5F87FF',
+      fill: `l(270) 0:#ffffff 1:${color}`,
       path,
     },
   };
 };
 
-export const drawPolygon = (points: [number, number][]): ShapeCfg => {
+export const drawPolygon = (points: [number, number][], color: string = '#5F87FF'): ShapeCfg => {
   return {
     type: 'polygon',
     attrs: {
       points,
       fill: '#fff',
-      stroke: '#F1F2F8',
+      stroke: color,
     },
   };
 };
