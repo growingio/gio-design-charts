@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, isObject } from 'lodash';
 import React, { useMemo, useEffect, useState } from 'react';
 import { ChartType, ChartProps, FunnelConfig } from '../interfaces';
 import { Funnel as FunnelCls } from './framework';
@@ -25,6 +25,8 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
           color: colors[0],
         },
       };
+    } else if (legendProps?.length === 1 && isObject(legendProps[0])) {
+      return { singleColor: legendProps[0]?.color || colors[0] };
     }
     return { singleColor: colors[0] };
   }, [legendProps]);

@@ -1,5 +1,4 @@
 import { LooseObject } from '@antv/component';
-import React from 'react';
 import { formatNumber, formatPercent } from '../../utils/formatNumber';
 import { InfoCard } from '../../info-card';
 import './drilldown-card.less';
@@ -43,7 +42,7 @@ const DrilldownCard = ({ options }: LooseObject) => {
         {...options}
         title={realTitle}
         data={realData}
-        forwardKey='type'
+        forwardKey="type"
         injectComponent={() => (trigger === 'click' ? clickContent : null)}
       />
     </div>
