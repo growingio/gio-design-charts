@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/growingio/gio-design-charts/compare/v2.2.0...v2.2.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* **Funnel:** 单柱Funnel图支持修改颜色 ([#333](https://github.com/growingio/gio-design-charts/issues/333)) ([24ca87b](https://github.com/growingio/gio-design-charts/commit/24ca87b6d854427822256ea22ae29c945ac57218))
+
 # [2.2.0](https://github.com/growingio/gio-design-charts/compare/v2.1.0...v2.2.0) (2023-02-02)
 
 
