@@ -90,6 +90,11 @@ export class Funnel extends BaseChart {
       const backgroundView = this.instance.createView({
         theme: merge(cloneDeep(gioTheme), viewTheme),
       });
+      let defaultColorForSingle = '';
+      if (!isGroup) {
+        defaultColorForSingle = emptyLegends ? colors[0] : (legendObject?.queue?.[0]?.color as string);
+      }
+
       const backgroundOptions = {
         ...options,
         data: covertData,
@@ -98,7 +103,7 @@ export class Funnel extends BaseChart {
         },
         defaultStyles: {
           opacity: 0.2,
-          color: !isGroup || emptyLegends ? `l(270) 0:#ffffff 1:${colors[0]}` : '',
+          color: `l(270) 0:#ffffff 1:${defaultColorForSingle}`,
         },
       };
       fetchViewConfig(backgroundView, backgroundOptions, { ...config });
@@ -112,7 +117,7 @@ export class Funnel extends BaseChart {
         ...options,
         data: sourceData,
         defaultStyles: {
-          color: !isGroup || emptyLegends ? colors[0] : '',
+          color: !isGroup || emptyLegends ? defaultColorForSingle : '',
         },
       };
       this.bindLinkEvent(linkView, addLinkByElement, options.data);

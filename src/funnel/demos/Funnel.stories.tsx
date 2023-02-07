@@ -82,14 +82,14 @@ const configLabel = [
 
 export const FunnelWith3Columns = Template.bind({});
 const FunnelWith3ColumnsArgs = {
-  legends: [],
+  legends: [{ name: 'legend', color: '#62CE6C' }],
   data: dataWith3Columns,
   config: {
     ...config,
     funnel: {
       position: 'type*value',
       // position,
-      color: 'type',
+      color: 'color',
       label: configLabel,
     },
     tooltip: {
