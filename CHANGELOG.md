@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/growingio/gio-design-charts/compare/v2.2.1...v2.2.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **Funnel:** 修改Funnel InfoCard颜色 ([#334](https://github.com/growingio/gio-design-charts/issues/334)) ([6a0c1aa](https://github.com/growingio/gio-design-charts/commit/6a0c1aa0e895b670f19f6ded2e364bdfe83cc530))
+
 ## [2.2.1](https://github.com/growingio/gio-design-charts/compare/v2.2.0...v2.2.1) (2023-02-07)
 
 
