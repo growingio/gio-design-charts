@@ -1,7 +1,7 @@
 import { LooseObject } from '@antv/component';
 import DataSet from '@antv/data-set';
 import { ChartConfig } from '../interfaces';
-import { DEFAULT_APPEND_PADDING, DEFAULT_CHART_HEIGHT } from '../theme';
+import { DEFAULT_APPEND_PADDING, DEFAULT_CHART_HEIGHT, DEFAULT_HEIGHT } from '../theme';
 import { hasDodge, hasStack } from './interval';
 
 export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => {
@@ -10,6 +10,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
   const configType = config?.type;
   const shapeConfig = config?.[configType];
   const color = shapeConfig?.color;
+  const settingHeight = config?.chart?.height || DEFAULT_HEIGHT;
 
   const positionFirst = shapeConfig?.position?.split('*')?.[0];
   const isStack = hasStack(shapeConfig);
@@ -44,7 +45,7 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
     }
   });
   const calculatedHeight = height + fixedHeight;
-  return calculatedHeight < DEFAULT_CHART_HEIGHT ? DEFAULT_CHART_HEIGHT : calculatedHeight;
+  return calculatedHeight < settingHeight ? settingHeight : height;
 };
 
 export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) => {

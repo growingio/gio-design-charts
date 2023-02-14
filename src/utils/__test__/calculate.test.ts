@@ -3,7 +3,7 @@ import { calculateBarHeight, calculateColumnWidth } from '../calculate';
 
 describe('test calculateBarHeight', () => {
   test('call calculateBarHeight without config', () => {
-    expect(calculateBarHeight(null as any, [])).toBe(DEFAULT_CHART_HEIGHT);
+    expect(calculateBarHeight(null as any, [])).toBe(200);
   });
 });
 
