@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/growingio/gio-design-charts/compare/v2.2.2...v2.2.3) (2023-02-14)
+
+
+### Bug Fixes
+
+* 修改bar chart高度的问题 ([#336](https://github.com/growingio/gio-design-charts/issues/336)) ([6742a09](https://github.com/growingio/gio-design-charts/commit/6742a09b239b29c61ba64cfd86a01f861d3af337))
+
 ## [2.2.2](https://github.com/growingio/gio-design-charts/compare/v2.2.1...v2.2.2) (2023-02-08)
 
 
