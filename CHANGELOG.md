@@ -1,3 +1,10 @@
+## [2.2.5](https://github.com/growingio/gio-design-charts/compare/v2.2.4...v2.2.5) (2023-03-10)
+
+
+### Bug Fixes
+
+* 给line添加默认的颜色 ([#341](https://github.com/growingio/gio-design-charts/issues/341)) ([0c685f5](https://github.com/growingio/gio-design-charts/commit/0c685f5bd26fdd1e199e72b36b5d5126c964dd29))
+
 ## [2.2.4](https://github.com/growingio/gio-design-charts/compare/v2.2.3...v2.2.4) (2023-02-14)
 
 
