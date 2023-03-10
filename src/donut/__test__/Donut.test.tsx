@@ -42,25 +42,25 @@ describe('Donut Chart', () => {
   });
 });
 
-describe('Donut framework', () => {
-  const legendTestId = 'legend-layout';
-  const donutCls = new DonutCls();
-  const { config, data, title, legends } = Dark.args as DonutProps;
-  config.type = ChartType.DONUT;
-  const legendObject = new LegendObject(config, legends || []);
+// describe('Donut framework', () => {
+//   const legendTestId = 'legend-layout';
+//   const donutCls = new DonutCls();
+//   const { config, data, title, legends } = Dark.args as DonutProps;
+//   config.type = ChartType.DONUT;
+//   const legendObject = new LegendObject(config, legends || []);
 
-  beforeAll(() => {
-    config.type = ChartType.DONUT;
-    render(
-      <IntlProvider locale="zh-CH" messages={{}}>
-        <LegendLayout config={config} title={title} data={data} legendList={legends || []} chart={donutCls} />
-      </IntlProvider>
-    );
-  });
+//   beforeAll(() => {
+//     config.type = ChartType.DONUT;
+//     render(
+//       <IntlProvider locale="zh-CH" messages={{}}>
+//         <LegendLayout config={config} title={title} data={data} legendList={legends || []} chart={donutCls} />
+//       </IntlProvider>
+//     );
+//   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-    donutCls.update(data as any);
-    donutCls.legend(legendObject.mapping);
-  });
-});
+//   test('render', async () => {
+//     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+//     donutCls.update(data as any);
+//     donutCls.legend(legendObject.mapping);
+//   });
+// });

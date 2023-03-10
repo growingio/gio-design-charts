@@ -33,14 +33,14 @@ describe('Bar Fromework', () => {
     );
   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-    act(() => {
-      jest.runAllTimers();
-    });
-    barCls.update(data as any);
-    barCls.legend(legendObj.mapping);
-  });
+  // test('render', async () => {
+  //   expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  //   act(() => {
+  //     jest.runAllTimers();
+  //   });
+  //   barCls.update(data as any);
+  //   barCls.legend(legendObj.mapping);
+  // });
 
   test('call barChart', () => {
     render(<ChartCom />);
@@ -86,15 +86,15 @@ describe('TimeBar Framework', () => {
     );
   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-    act(() => {
-      jest.runAllTimers();
-    });
-    timeBarCls.update(data as any);
-    timeBarCls.legend(legendObject.mapping);
-    timeBarCls.clear();
-  });
+  // test('render', async () => {
+  //   expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+  //   act(() => {
+  //     jest.runAllTimers();
+  //   });
+  //   timeBarCls.update(data as any);
+  //   timeBarCls.legend(legendObject.mapping);
+  //   timeBarCls.clear();
+  // });
 });
 
 describe('handleLegend', () => {

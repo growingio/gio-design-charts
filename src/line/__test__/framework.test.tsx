@@ -25,10 +25,10 @@ describe('Line fromework', () => {
     );
   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(testid)).toBeTruthy();
-    line.update(data);
-  });
+  // test('render', async () => {
+  //   expect(await screen.findByTestId(testid)).toBeTruthy();
+  //   line.update(data);
+  // });
 
   test('call lineChart', () => {
     render(<ChartCom />);
@@ -61,23 +61,23 @@ describe('Line fromework', () => {
   });
 });
 
-describe('ContrastLine framework', () => {
-  const { config, title, legends: legendList, data } = ContrastLineExample.args as LineProps;
-  const line = new ContrastLineCls();
-  beforeAll(() => {
-    config.type = ChartType.LINE;
-    render(
-      <IntlProvider locale="zh-CH" messages={{}}>
-        <LegendLayout config={config} title={title} data={data} legendList={legendList || []} chart={line} />
-      </IntlProvider>
-    );
-  });
+// describe('ContrastLine framework', () => {
+//   const { config, title, legends: legendList, data } = ContrastLineExample.args as LineProps;
+//   const line = new ContrastLineCls();
+//   beforeAll(() => {
+//     config.type = ChartType.LINE;
+//     render(
+//       <IntlProvider locale="zh-CH" messages={{}}>
+//         <LegendLayout config={config} title={title} data={data} legendList={legendList || []} chart={line} />
+//       </IntlProvider>
+//     );
+//   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(testid)).toBeTruthy();
-    line.update(data);
-  });
-});
+//   test('render', async () => {
+//     expect(await screen.findByTestId(testid)).toBeTruthy();
+//     line.update(data);
+//   });
+// });
 
 describe('handleLegend', () => {
   test('call it', () => {

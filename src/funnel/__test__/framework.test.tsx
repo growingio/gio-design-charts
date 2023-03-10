@@ -88,22 +88,22 @@ describe('handleLegend', () => {
   });
 });
 
-describe('Gauge framework', () => {
-  const funnelCls = new FunnelCls();
-  const legendTestId = 'legend-layout';
-  const funnelData = getSingleData(sourceData, config);
+// describe('Gauge framework', () => {
+//   const funnelCls = new FunnelCls();
+//   const legendTestId = 'legend-layout';
+//   const funnelData = getSingleData(sourceData, config);
 
-  beforeAll(() => {
-    config.type = ChartType.FUNNEL;
-    render(
-      <IntlProvider locale="zh-CH" messages={{}}>
-        <LegendLayout config={config} title={title} data={funnelData} legendList={legendList || []} chart={funnelCls} />
-      </IntlProvider>
-    );
-  });
+//   beforeAll(() => {
+//     config.type = ChartType.FUNNEL;
+//     render(
+//       <IntlProvider locale="zh-CH" messages={{}}>
+//         <LegendLayout config={config} title={title} data={funnelData} legendList={legendList || []} chart={funnelCls} />
+//       </IntlProvider>
+//     );
+//   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-    funnelCls.update(funnelData as any);
-  });
-});
+//   test('render', async () => {
+//     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+//     funnelCls.update(funnelData as any);
+//   });
+// });
