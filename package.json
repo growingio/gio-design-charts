@@ -138,8 +138,7 @@
     "react-intl": ">=5.24.6"
   },
   "resolutions": {
-    "babel-loader": "8.2.3",
-    "source-map": "^0.7.4"
+    "babel-loader": "8.2.3"
   },
   "config": {
     "commitizen": {

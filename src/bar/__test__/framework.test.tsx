@@ -66,36 +66,36 @@ describe('Bar Fromework', () => {
   });
 });
 
-describe('TimeBar Framework', () => {
-  const timeBarCls = new TimeBarCls();
-  const { config, legends: legendList, data, title } = Contrast.args as BarProps;
-  config.type = ChartType.BAR;
-  const legendObject = new LegendObject(config, legendList || []);
+// describe('TimeBar Framework', () => {
+//   const timeBarCls = new TimeBarCls();
+//   const { config, legends: legendList, data, title } = Contrast.args as BarProps;
+//   config.type = ChartType.BAR;
+//   const legendObject = new LegendObject(config, legendList || []);
 
-  beforeAll(() => {
-    config.type = ChartType.BAR;
-    const newData = [
-      { name: '页面浏览的总数量', value: 120124 },
-      { name: '访问推出的总数量', value: -241234 },
-      { name: '步步盈增的用户量', value: -343455 },
-    ];
-    render(
-      <IntlProvider locale="zh-CH" messages={{}}>
-        <LegendLayout config={config} title={title} data={newData} legendList={legendList || []} chart={timeBarCls} />
-      </IntlProvider>
-    );
-  });
+//   beforeAll(() => {
+//     config.type = ChartType.BAR;
+//     const newData = [
+//       { name: '页面浏览的总数量', value: 120124 },
+//       { name: '访问推出的总数量', value: -241234 },
+//       { name: '步步盈增的用户量', value: -343455 },
+//     ];
+//     render(
+//       <IntlProvider locale="zh-CH" messages={{}}>
+//         <LegendLayout config={config} title={title} data={newData} legendList={legendList || []} chart={timeBarCls} />
+//       </IntlProvider>
+//     );
+//   });
 
-  // test('render', async () => {
-  //   expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-  //   act(() => {
-  //     jest.runAllTimers();
-  //   });
-  //   timeBarCls.update(data as any);
-  //   timeBarCls.legend(legendObject.mapping);
-  //   timeBarCls.clear();
-  // });
-});
+//   // test('render', async () => {
+//   //   expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+//   //   act(() => {
+//   //     jest.runAllTimers();
+//   //   });
+//   //   timeBarCls.update(data as any);
+//   //   timeBarCls.legend(legendObject.mapping);
+//   //   timeBarCls.clear();
+//   // });
+// });
 
 describe('handleLegend', () => {
   const bar = new BarCls();
