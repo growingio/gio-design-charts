@@ -92,9 +92,7 @@ export class LineBase extends BaseChart {
     line.style(shapeConfig.color, (label: string) => {
       const legend = legendObject?.getLegend(label) || ({} as Legend);
       const style = {} as LooseObject;
-      if (legend.color) {
-        style.stroke = legend.color;
-      }
+      style.stroke = legend?.color || '#5F87FF';
       if (legend.lineDash) {
         style.lineDash = legend.lineDash;
       }

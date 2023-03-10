@@ -6,9 +6,9 @@ export * from './donut';
 export * from './funnel';
 export * from './gauge';
 export * from './line';
-export * from './tiny-area';
-export * from './combine-bar';
-export * from './combine-colunm'
+export { TinyArea } from './tiny-area';
+export { CombineBar } from './combine-bar';
+export { CombineColunm } from './combine-colunm';
 
 export { InfoCard } from './info-card';
 

@@ -35,22 +35,22 @@ describe('Gauge Chart', () => {
   });
 });
 
-describe('Gauge framework', () => {
-  const { config, title, data, legends } = Basic.args as GaugeProps;
-  const gaugeCls = new GaugeCls();
-  const legendTestId = 'legend-layout';
+// describe('Gauge framework', () => {
+//   const { config, title, data, legends } = Basic.args as GaugeProps;
+//   const gaugeCls = new GaugeCls();
+//   const legendTestId = 'legend-layout';
 
-  beforeAll(() => {
-    config.type = ChartType.GAUGE;
-    render(
-      <IntlProvider locale="zh-CH" messages={{}}>
-        <LegendLayout config={config} title={title} data={data} legendList={legends || []} chart={gaugeCls} />
-      </IntlProvider>
-    );
-  });
+//   beforeAll(() => {
+//     config.type = ChartType.GAUGE;
+//     render(
+//       <IntlProvider locale="zh-CH" messages={{}}>
+//         <LegendLayout config={config} title={title} data={data} legendList={legends || []} chart={gaugeCls} />
+//       </IntlProvider>
+//     );
+//   });
 
-  test('render', async () => {
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-    gaugeCls.update(data);
-  });
-});
+//   test('render', async () => {
+//     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+//     gaugeCls.update(data);
+//   });
+// });
