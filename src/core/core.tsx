@@ -1,6 +1,6 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { InfoCardBox } from '../info-card';
-import { Actions, ChartConfig, ChartOptions, Legend } from '../interfaces';
+import { Actions, ChartConfig, ChartOptions, ChartRef, Legend } from '../interfaces';
 import useInterceptors from '../hooks/useInterceptors';
 import useTunnel from '../hooks/useTunnel';
 
@@ -35,7 +35,7 @@ export interface ChartCanvasProps {
 
 // In core, we only force on render chart and provide basic chart options
 const core = (HighComponent: React.FC<LayoutProps>) => {
-  return (props: ChartCanvasProps) => {
+  return React.forwardRef<ChartRef, ChartCanvasProps>((props: ChartCanvasProps, forwardRef) => {
     const { config, data, legendList, chart, defaultOptions, width, title } = props;
     const root = useRef<HTMLDivElement | null>(null);
     const tooltipRef = useRef<HTMLDivElement | null>(null);
@@ -47,6 +47,17 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
 
     const legendObject = useMemo(() => new LegendObject(config, legendList), [config, legendList]);
     const [, refresh] = useState(0);
+
+    const chartRef = useRef<any>();
+    chartRef.current = chart;
+
+    useImperativeHandle(
+      forwardRef,
+      () => ({
+        getInstance: () => chartRef.current?.instance,
+      }),
+      [chart]
+    );
 
     const { chartOptions } = useChart({
       rootRef: root,
@@ -91,6 +102,6 @@ const core = (HighComponent: React.FC<LayoutProps>) => {
         </div>
       </HighComponent>
     );
-  };
+  });
 };
 export default core;

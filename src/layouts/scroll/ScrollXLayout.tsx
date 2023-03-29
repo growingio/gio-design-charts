@@ -4,7 +4,7 @@ import { ChartCanvasProps } from '../../core/core';
 import './styles/index.less';
 import LegendLayout from '../legend';
 import { calculateColumnWidth } from '../../utils/calculate';
-import { ChartConfig } from '../../interfaces';
+import { ChartConfig, ChartRef } from '../../interfaces';
 import { LooseObject } from '@antv/g-base';
 
 export interface ScrollXLayoutProps extends ChartCanvasProps {
@@ -19,7 +19,7 @@ export interface ScrollXLayoutProps extends ChartCanvasProps {
  * @param props {ScrollXLayoutProps}
  * @returns
  */
-const ScrollXLayout = (props: ScrollXLayoutProps) => {
+const ScrollXLayout: React.ForwardRefRenderFunction<ChartRef, ScrollXLayoutProps> = (props, forwardRef) => {
   const { config, sourceData, title } = props;
   const xLayoutRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,9 +46,9 @@ const ScrollXLayout = (props: ScrollXLayoutProps) => {
   }, [config, width, sourceData]);
   return (
     <div className="gio-d-charts gio-scroll-x-layout" data-testid="scroll-x-layout" ref={xLayoutRef}>
-      <LegendLayout {...props} config={resetConfig} title={title} width={width} />
+      <LegendLayout {...props} config={resetConfig} title={title} width={width} ref={forwardRef} />
     </div>
   );
 };
 
-export default ScrollXLayout;
+export default React.forwardRef(ScrollXLayout);

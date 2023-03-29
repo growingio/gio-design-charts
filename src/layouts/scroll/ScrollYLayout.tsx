@@ -6,9 +6,9 @@ import './styles/index.less';
 import LegendLayout from '../legend';
 import { DEFAULT_CHART_HEIGHT, LEGEND_HEIGHT } from '../../theme';
 import { calculateBarHeight } from '../../utils/calculate';
-import { ChartConfig } from '../../interfaces';
+import { ChartConfig, ChartRef } from '../../interfaces';
 
-export interface ScrolYLayoutProps extends ChartCanvasProps {
+export interface ScrollYLayoutProps extends ChartCanvasProps {
   renderChildren?: (props: ChartCanvasProps) => React.ReactNode;
   hasOutTitle?: boolean;
 }
@@ -21,7 +21,7 @@ export interface ScrolYLayoutProps extends ChartCanvasProps {
  * @param props {ChartCanvasProps}
  * @returns
  */
-const ScrollYLayout = (props: ScrolYLayoutProps) => {
+const ScrollYLayout: React.ForwardRefRenderFunction<ChartRef, ScrollYLayoutProps> = (props, forwardRef) => {
   const { config, data, isDrag, sizeRegister, renderChildren, hasOutTitle, fullHeight } = props;
 
   const frameHeight = config?.chart?.height || DEFAULT_CHART_HEIGHT;
@@ -46,10 +46,10 @@ const ScrollYLayout = (props: ScrolYLayoutProps) => {
       {renderChildren ? (
         renderChildren({ ...props, config: newConfig })
       ) : (
-        <LegendLayout {...props} config={newConfig} />
+        <LegendLayout {...props} config={newConfig} ref={forwardRef} />
       )}
     </div>
   );
 };
 
-export default ScrollYLayout;
+export default React.forwardRef(ScrollYLayout);

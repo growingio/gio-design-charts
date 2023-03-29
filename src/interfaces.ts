@@ -205,7 +205,12 @@ export interface FunnelConfig extends ChartConfig {
   funnel: Shape & { contrast?: string };
 }
 
+export interface ChartRef {
+  getInstance?: () => Chart;
+}
+
 export interface ChartProps {
+  children?: React.ReactNode;
   /**
    * 显示图表的title
    */

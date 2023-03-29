@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Box as BoxCls } from './framework';
-import { ChartType, ChartProps, BoxConfig } from '../interfaces';
+import { ChartType, ChartProps, BoxConfig, ChartRef } from '../interfaces';
 import { ScrollXLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { isEmpty } from 'lodash';
@@ -12,7 +12,7 @@ export interface BoxProps extends ChartProps {
   size?: 'normal' | 'small';
 }
 
-const Box: React.FC<BoxProps> = (props: BoxProps) => {
+const Box: React.ForwardRefRenderFunction<ChartRef, BoxProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], title, config, size = 'normal' } = props;
   const isDodge = useMemo(() => hasDodge(config?.['box']), [config]);
 
@@ -80,6 +80,7 @@ const Box: React.FC<BoxProps> = (props: BoxProps) => {
 
   return (
     <ScrollXLayout
+      ref={forwardRef}
       title={title}
       data={data}
       sourceData={data}

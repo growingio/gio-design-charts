@@ -12,6 +12,7 @@ import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 import { formatNumber } from '../../utils/formatNumber';
 import { InfoCard } from '../../info-card';
+import { useRef } from 'react';
 
 export default {
   title: 'Charts/折线图 Line',
@@ -26,11 +27,18 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof Line> = (args) => (
-  <Card>
-    <Line {...args} />
-  </Card>
-);
+const Template: ComponentStory<typeof Line> = (args) => {
+  const ref = useRef<any>();
+  const onClick = () => {
+    console.log(ref.current?.getInstance());
+  };
+  return (
+    <Card>
+      <button onClick={onClick}>Click</button>
+      <Line {...args} ref={ref} />
+    </Card>
+  );
+};
 
 const scalaAxisConfig = {
   scale: {

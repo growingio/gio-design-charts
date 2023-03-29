@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Bar as BarCls } from './framework';
 
-import { ChartType, BarConfig } from '../interfaces';
+import { ChartType, BarConfig, ChartRef } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { BarProps } from './Bar';
 
-const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
+const ScrollBar: React.ForwardRefRenderFunction<ChartRef, BarProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   config.type = ChartType.BAR;
@@ -29,7 +29,9 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
     },
   };
 
-  return <ScrollYLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} />;
+  return (
+    <ScrollYLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} ref={forwardRef} />
+  );
 };
 
 export default fetchChart<BarProps>(ScrollBar);
