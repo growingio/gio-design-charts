@@ -22,13 +22,14 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(
   React.forwardRef((props: T, forwardRef) => {
     const { errorTemplate, noData, data, loading, config } = props;
     const height = config?.chart?.height;
+    const context = useContext(DesignContext);
+
     if (loading) {
       return <Loading height={height} />;
     }
     if (!data || isEmpty(data)) {
       return noData ? noData() : <NoData height={height} />;
     }
-    const context = useContext(DesignContext);
     const localeCode = context?.locale?.code || 'zh-CN';
     const Com = React.forwardRef<ChartRef, T & React.RefAttributes<ChartRef>>(ChartComponent);
     return (
