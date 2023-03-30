@@ -1,7 +1,7 @@
 import React from 'react';
 import { default as CombineBarCls } from './framework';
 
-import { ChartType, ChartProps, BarConfig } from '../interfaces';
+import { ChartType, ChartProps, BarConfig, ChartRef } from '../interfaces';
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
@@ -21,7 +21,7 @@ export interface DragBarProps extends BarProps {
   fullHeight?: boolean;
 }
 
-const CombineBar: React.FC<BarProps> = (props: BarProps) => {
+const CombineBar: React.ForwardRefRenderFunction<ChartRef, BarProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   const combineBar = new CombineBarCls();
@@ -43,6 +43,7 @@ const CombineBar: React.FC<BarProps> = (props: BarProps) => {
   };
   return (
     <LegendLayout
+      ref={forwardRef}
       title={title}
       data={data}
       legendList={legendProps}

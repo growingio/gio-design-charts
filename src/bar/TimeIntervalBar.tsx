@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { TimeBar } from './framework';
 
-import { ChartType, ChartProps, BarConfig } from '../interfaces';
+import { ChartType, ChartProps, BarConfig, ChartRef } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
@@ -17,7 +17,7 @@ export interface DragBarProps extends BarProps {
   total?: number;
 }
 
-const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
+const TimeIntervalBar: React.ForwardRefRenderFunction<ChartRef, BarProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title, fullHeight } = props;
 
   const bar = useMemo(() => new TimeBar(), []);
@@ -39,6 +39,7 @@ const TimeIntervalBar: React.FC<BarProps> = (props: BarProps) => {
   };
   return (
     <ScrollYLayout
+      ref={forwardRef}
       title={title}
       data={data}
       legendList={legendProps}

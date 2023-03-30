@@ -12,6 +12,7 @@ import { ContentMenu } from '../../bar/Bar';
 import { getThemeColor } from '../../utils/styles';
 import { LegendLayout } from '../legend';
 import { getTextFormatter } from '../../utils/frameworks/axis';
+import { ChartRef } from '../../interfaces';
 
 export interface DragLayoutProps extends ChartCanvasProps {
   title?: string;
@@ -27,7 +28,7 @@ export interface DragLayoutProps extends ChartCanvasProps {
  * @param props {ChartCanvasProps}
  * @returns
  */
-const DragLayout = (props: DragLayoutProps) => {
+const DragLayout: React.ForwardRefRenderFunction<ChartRef, DragLayoutProps> = (props, forwardRef) => {
   const { title, content: { title: subTitle, total } = {}, config } = props;
   const [register, acceptor] = useTunnel();
   const [sizeRegister, sizeAcceptor] = useTunnel();
@@ -68,7 +69,7 @@ const DragLayout = (props: DragLayoutProps) => {
               )}
             </Resizable>
             <div className="drag-layout-content">
-              <LegendLayout {...childPorps} defaultOptions={{ report: register }} />
+              <LegendLayout {...childPorps} defaultOptions={{ report: register }} ref={forwardRef} />
             </div>
           </div>
         )}
@@ -77,4 +78,4 @@ const DragLayout = (props: DragLayoutProps) => {
   );
 };
 
-export default DragLayout;
+export default React.forwardRef(DragLayout);

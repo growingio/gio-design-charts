@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import { ChartType, ChartProps, ColumnConfig } from '../interfaces';
+import { ChartType, ChartProps, ColumnConfig, ChartRef } from '../interfaces';
 import { default as CombineColumnCls } from './framework';
 import { colors } from '../theme';
 import { LegendLayout, ScrollXLayout } from '../layouts';
@@ -12,7 +12,7 @@ export interface ColumnProps extends ChartProps {
   useScroll?: boolean;
 }
 
-const CombineColumn: React.FC<ColumnProps> = (props: ColumnProps) => {
+const CombineColumn: React.ForwardRefRenderFunction<ChartRef, ColumnProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config, useScroll, title } = props;
   const [assignConfig, setAssignConfig] = useState({});
 
@@ -46,6 +46,7 @@ const CombineColumn: React.FC<ColumnProps> = (props: ColumnProps) => {
 
   return useScroll ? (
     <ScrollXLayout
+      ref={forwardRef}
       title={title}
       data={data}
       sourceData={data}
@@ -58,6 +59,7 @@ const CombineColumn: React.FC<ColumnProps> = (props: ColumnProps) => {
     />
   ) : (
     <LegendLayout
+      ref={forwardRef}
       title={title}
       data={data}
       legendList={legendProps}

@@ -1,6 +1,6 @@
 import { isEmpty, isObject } from 'lodash';
 import React, { useMemo, useEffect, useState } from 'react';
-import { ChartType, ChartProps, FunnelConfig } from '../interfaces';
+import { ChartType, ChartProps, FunnelConfig, ChartRef } from '../interfaces';
 import { Funnel as FunnelCls } from './framework';
 import { colors } from '../theme';
 import { ScrollXLayout } from '../layouts';
@@ -12,7 +12,7 @@ export interface FunnelProps extends ChartProps {
   config: FunnelConfig;
 }
 
-const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
+const Funnel: React.ForwardRefRenderFunction<ChartRef, FunnelProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config, title } = props;
 
   const funnel = useMemo(() => new FunnelCls(), []);
@@ -41,6 +41,7 @@ const Funnel: React.FC<FunnelProps> = (props: FunnelProps) => {
   }, [data, config]);
   return (
     <ScrollXLayout
+      ref={forwardRef}
       title={title}
       data={comparativeData}
       legendList={legendProps}

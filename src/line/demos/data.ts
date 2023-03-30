@@ -30,6 +30,25 @@ export const dataWithTwoLine = [
   { type: '步步盈增（上个月）', tm: '06/11 周五', value: 8028 },
 ];
 
+export const dataWithSplit = [
+  { type: '步步盈增', tm: '06/04 周五', value: 10900 },
+  { type: '步步盈增（上个月）', tm: '06/04 周五', value: 6000 },
+  { type: '步步盈增', tm: '06/05 周六', value: 7200 },
+  { type: '步步盈增（上个月）', tm: '06/05 周六', value: 5840 },
+  { type: '步步盈增', tm: '06/06 周日', value: 13900 },
+  { type: '步步盈增（上个月）', tm: '06/06 周日', value: 11200 },
+  { type: '步步盈增', tm: '06/07 周一', value: 11100 },
+  { type: '步步盈增（上个月）', tm: '06/07 周一', value: 7802 },
+  { type: '步步盈增', tm: '06/08 周二', value: 6500 },
+  { type: '步步盈增（上个月）', tm: '06/08 周二', value: 4800 },
+  { type: '步步盈增', tm: '06/09 周三', value: 4800, divide: true },
+  { type: '步步盈增（上个月）', tm: '06/09 周三', value: 5890, divide: true },
+  { type: '步步盈增', tm: '06/10 周四', value: 8123 },
+  { type: '步步盈增（上个月）', tm: '06/10 周四', value: 7201 },
+  { type: '步步盈增', tm: '06/11 周五', value: 9865 },
+  { type: '步步盈增（上个月）', tm: '06/11 周五', value: 8028 },
+];
+
 export const dataWithDash = [
   {
     month: '一月',

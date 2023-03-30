@@ -1,13 +1,13 @@
 import React from 'react';
 // import { barChart, handleLegend } from './framework';
 
-import { ChartType, BarConfig } from '../interfaces';
+import { ChartType, BarConfig, ChartRef } from '../interfaces';
 import { ScrollYLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 import { BarProps } from './CombineBar';
 import CombineBar from './framework';
 
-const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
+const ScrollBar: React.ForwardRefRenderFunction<ChartRef, BarProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
   const combineBar = new CombineBar();
 
@@ -31,6 +31,7 @@ const ScrollBar: React.FC<BarProps> = (props: BarProps) => {
 
   return (
     <ScrollYLayout
+      ref={forwardRef}
       title={title}
       data={data}
       legendList={legendProps}

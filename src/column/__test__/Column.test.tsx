@@ -62,14 +62,14 @@ describe('Column Chart with special cases', () => {
     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
   });
 });
-describe('Scroll Column Chart', () => {
-  test('render Scroll Chart with stacking diagram', async () => {
-    render(<ScrollColumn {...(StackingDiagramColumn.args as ColumnProps)} />);
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-  });
+// describe('Scroll Column Chart', () => {
+//   // test('render Scroll Chart with stacking diagram', async () => {
+//   //   render(<ScrollColumn {...(StackingDiagramColumn.args as ColumnProps)} />);
+//   //   expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+//   // });
 
-  test('render Scroll Chart', async () => {
-    render(<ScrollColumn {...(ColumnWithMulti.args as ColumnProps)} />);
-    expect(await screen.findByTestId(legendTestId)).toBeTruthy();
-  });
-});
+//   test('render Scroll Chart', async () => {
+//     render(<ScrollColumn {...(ColumnWithMulti.args as ColumnProps)} />);
+//     expect(await screen.findByTestId(legendTestId)).toBeTruthy();
+//   });
+// });

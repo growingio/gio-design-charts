@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Bar as BarCls } from './framework';
 
-import { ChartType, ChartProps, BarConfig } from '../interfaces';
+import { ChartType, ChartProps, BarConfig, ChartRef } from '../interfaces';
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
@@ -21,7 +21,7 @@ export interface DragBarProps extends BarProps {
   fullHeight?: boolean;
 }
 
-const Bar: React.FC<BarProps> = (props: BarProps) => {
+const Bar: React.ForwardRefRenderFunction<ChartRef, BarProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
   const bar = useMemo(() => new BarCls(), []);
@@ -41,7 +41,9 @@ const Bar: React.FC<BarProps> = (props: BarProps) => {
       minColumnWidth: 16,
     },
   };
-  return <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} />;
+  return (
+    <LegendLayout title={title} data={data} legendList={legendProps} config={config} chart={bar} ref={forwardRef} />
+  );
 };
 
 export default fetchChart<BarProps>(Bar);

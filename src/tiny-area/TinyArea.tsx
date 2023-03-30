@@ -2,12 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { BaldLayout } from '../layouts';
 
 import { Area as AreaCls } from '../area/framework';
-import { ChartType, TinyChartProps, AreaConfig, Legend } from '../interfaces';
+import { ChartType, TinyChartProps, AreaConfig, Legend, ChartRef } from '../interfaces';
 
 import { fetchChart } from '../boundary';
 import { LooseObject } from '@antv/g-base';
 
-const TinyArea: React.FC<TinyChartProps> = (props: TinyChartProps) => {
+const TinyArea: React.ForwardRefRenderFunction<ChartRef, TinyChartProps> = (props, forwardRef) => {
   const { data, config } = props;
   const [areaData, setAreaData] = useState<LooseObject[]>([]);
   const [areaConfig, setAreaConfig] = useState<AreaConfig>({} as AreaConfig);
@@ -43,7 +43,7 @@ const TinyArea: React.FC<TinyChartProps> = (props: TinyChartProps) => {
   areaConfig.type = ChartType.AREA;
   areaConfig.size = 'tiny';
 
-  return <BaldLayout data={areaData} legendList={legends} config={areaConfig} chart={area} />;
+  return <BaldLayout data={areaData} legendList={legends} config={areaConfig} chart={area} ref={forwardRef} />;
 };
 
 export default fetchChart<TinyChartProps>(TinyArea);

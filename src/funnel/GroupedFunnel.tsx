@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ChartType } from '../interfaces';
+import { ChartRef, ChartType } from '../interfaces';
 import { Funnel as FunnelCls } from './framework';
 import { ScrollXLayout } from '../layouts';
 import { getGroupData } from './utils';
 import { fetchChart } from '../boundary';
 import { FunnelProps } from './Funnel';
 
-const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
+const GroupedFunnel: React.ForwardRefRenderFunction<ChartRef, FunnelProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config, title } = props;
 
   const funnel = useMemo(() => new FunnelCls(), []);
@@ -21,6 +21,7 @@ const GroupedFunnel: React.FC<FunnelProps> = (props: FunnelProps) => {
 
   return (
     <ScrollXLayout
+      ref={forwardRef}
       title={title}
       data={comparativeData}
       legendList={legendProps}
