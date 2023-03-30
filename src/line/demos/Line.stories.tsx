@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 import Line from '../Line';
-import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, contrastData } from './data';
+import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, contrastData, dataWithSplit } from './data';
 import Card from '../../demos/card';
 import Docs from './Line.mdx';
 import { colors } from '../../theme';
@@ -197,6 +197,50 @@ const LineWithOneLineDateArgs = {
 };
 LineWithOneLineDate.storyName = '时间*数字';
 LineWithOneLineDate.args = { ...LineWithOneLineDateArgs };
+
+export const SplitLine = Template.bind({});
+const SplitLineConfig = {
+  chart: {
+    autoFit: true,
+    height: 400,
+  },
+  scale: {
+    tm: {
+      range: [0, 1],
+    },
+    value: {
+      // min: 0,
+      // type: 'quantize',
+      // type: 'quantile',
+      // ticks: [0, 2000, 4000, 8000, 10000],
+      // tickCount: 5,
+      nice: true,
+      formatter: (x: string) => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+    },
+  },
+  tooltip: {
+    showCrosshairs: true,
+    shared: true,
+    enterable: true,
+    render: (options: any) => {
+      return <InfoCard {...options} title={formatDateByTs(options.title)} />;
+    },
+  },
+
+  line: {
+    position: 'tm*value',
+    color: 'type',
+    shape: 'split-line',
+  },
+};
+
+const SplitLineConfigArgs = {
+  legends: ['步步盈增', '步步盈增（上个月）'],
+  data: dataWithSplit,
+  config: SplitLineConfig,
+};
+SplitLine.storyName = '线图分割';
+SplitLine.args = { ...SplitLineConfigArgs };
 
 const ContrastTemplate: ComponentStory<any> = (args) => (
   <div style={{ ...args.style }}>

@@ -10,6 +10,8 @@ import { integerCeil } from '../utils/number';
 import { getDefaultViewTheme } from '../utils/chart';
 import { Datum } from '@antv/g2/lib/interface';
 
+import '../utils/tools/shapes/lineSplitLine';
+
 export class LineBase extends BaseChart {
   finalView: View | undefined = undefined;
 
@@ -88,18 +90,23 @@ export class LineBase extends BaseChart {
       line.adjust.call(line, shapeConfig.adjust as AdjustOtptionType);
     }
     line.position(shapeConfig.position);
-    line.color(shapeConfig.color);
-    line.style(shapeConfig.color, (label: string) => {
-      const legend = legendObject?.getLegend(label) || ({} as Legend);
-      const style = {} as LooseObject;
-      style.stroke = legend?.color || '#5F87FF';
-      if (legend.lineDash) {
-        style.lineDash = legend.lineDash;
-      }
-      // default width of line is 2px
-      style.lineWidth = 2;
-      return style;
-    });
+    if (shapeConfig.color) {
+      line.color(shapeConfig.color);
+      line.style(shapeConfig.color, (label: string) => {
+        const legend = legendObject?.getLegend(label) || ({} as Legend);
+        const style = {} as LooseObject;
+        style.stroke = legend?.color || '#5F87FF';
+        if (legend.lineDash) {
+          style.lineDash = legend.lineDash;
+        }
+        // default width of line is 2px
+        style.lineWidth = 2;
+        return style;
+      });
+    }
+    if (shapeConfig?.shape) {
+      line.shape('split-line');
+    }
     return line;
   };
 
