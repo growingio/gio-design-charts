@@ -1,3 +1,10 @@
+## [2.2.6](https://github.com/growingio/gio-design-charts/compare/v2.2.5...v2.2.6) (2023-03-30)
+
+
+### Bug Fixes
+
+* **Ref:** Chart支持导出Ref ([#343](https://github.com/growingio/gio-design-charts/issues/343)) ([0b8685c](https://github.com/growingio/gio-design-charts/commit/0b8685c12fd88a582ff4bda5b498c3101f1d7091))
+
 ## [2.2.5](https://github.com/growingio/gio-design-charts/compare/v2.2.4...v2.2.5) (2023-03-10)
 
 
