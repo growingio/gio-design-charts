@@ -1,3 +1,10 @@
+## [2.2.7](https://github.com/growingio/gio-design-charts/compare/v2.2.6...v2.2.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* split-line样式，cursor和tooltip的新支持 ([#344](https://github.com/growingio/gio-design-charts/issues/344)) ([903889a](https://github.com/growingio/gio-design-charts/commit/903889a4d4955d5df45c1f8a4b6d84f78938c911))
+
 ## [2.2.6](https://github.com/growingio/gio-design-charts/compare/v2.2.5...v2.2.6) (2023-03-30)
 
 
