@@ -5,9 +5,10 @@ export interface InterceptorOptions {
   visible?: boolean;
   offsetY?: number;
   fixedOffsetY?: number;
-  more?: boolean;
-  offset?: number;
-  fixedOffset?: number;
+}
+export interface Interceptor {
+  bindTooltip: (ref: any) => void;
+  bindElementEvents: (chart: Chart, options?: InterceptorOptions) => void;
 }
 
 const useInterceptors = () => {
@@ -28,26 +29,23 @@ const useInterceptors = () => {
 
   const [, updated] = useState(0);
 
-  const interceptors = useMemo(() => {
+  const interceptors: Interceptor = useMemo(() => {
     return {
       bindTooltip(r: any) {
         tooltipRef.current = r?.current;
       },
-      bindElementEvents(chart: Chart, options: InterceptorOptions = {}) {
+      bindElementEvents(chart: Chart, options?: InterceptorOptions) {
         chartRef.current = chart;
         chart.on('element:click', () => {
           /* istanbul ignore next */
-          if (triggerActionRef.current !== 'click' && tooltipRef.current && options.more) {
+          if (triggerActionRef.current !== 'click' && tooltipRef.current && options?.visible) {
             const tipStyles = window.getComputedStyle(tooltipRef?.current);
             const top = parseInt(tipStyles.top);
             const height = parseInt(tipStyles.height);
 
-            const { offset = 70, fixedOffset } = options;
-            if (fixedOffset) {
-              tooltipRef.current.style.top = `${top + height - fixedOffset}px`;
-            } else if (top && top > offset) {
-              tooltipRef.current.style.top = `${top - offset}px`;
-            }
+            const { offsetY = 70, fixedOffsetY } = options;
+            const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
+            tooltipRef.current.style.top = `${revisedOffsetY}px`;
           }
           triggerActionRef.current = 'click';
           chart.lockTooltip();

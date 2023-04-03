@@ -2,6 +2,7 @@ import { LooseObject, ShapeAttrs } from '@antv/g-base';
 import { Chart, Element, Scale, View } from '@antv/g2';
 import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
+import { Interceptor } from './hooks/useInterceptors';
 import { LegendObject } from './legends/useLegends';
 
 export interface Actions {
@@ -95,6 +96,7 @@ export interface ChartOptions extends LooseObject {
    * set default styles for line or interval
    */
   defaultStyles?: ShapeStyle;
+  interceptors?: Interceptor;
 }
 
 export interface BaseChartConfig extends LooseObject {

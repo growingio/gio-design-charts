@@ -7,6 +7,7 @@ import { BaseChart, fetchTooltip, fetchViewConfig, generateChart } from '../core
 import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import gioTheme, { viewTheme } from '../theme/chart';
 import { LooseObject } from '@antv/g-base';
+import { InterceptorOptions } from '../hooks/useInterceptors';
 
 export class Funnel extends BaseChart {
   fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
@@ -134,11 +135,12 @@ export class Funnel extends BaseChart {
       fetchTooltip(this.instance, config);
       this.instance.legend(false);
       this.instance.render();
-      interceptors?.bindElementEvents(this.instance, {
-        more: true,
-        offset: get(config, 'tooltip.clickOffset'),
-        fixedOffset: get(config, 'tooltip.clickFixedOffset'),
-      });
+
+      const clickVisible = get(config, 'tooltip.clickOptions.visible');
+      interceptors?.bindElementEvents?.(this.instance, {
+        ...get(config, 'tooltip.clickOptions'),
+        visible: clickVisible === undefined ? true : clickVisible,
+      } as InterceptorOptions);
     } catch (err) {
       /* istanbul ignore next */
       console.log(err);

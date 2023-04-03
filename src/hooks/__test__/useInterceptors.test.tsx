@@ -10,7 +10,7 @@ describe('test useInterceptors', () => {
     (chartObj as any).lockTooltip = jest.fn;
     (chartObj as any).unlockTooltip = jest.fn;
     act(() => {
-      result.current.interceptors.bindElementEvents(chartObj as any);
+      result.current.interceptors?.bindElementEvents(chartObj as any);
     });
 
     act(() => {

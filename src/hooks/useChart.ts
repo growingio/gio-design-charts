@@ -114,11 +114,7 @@ const useChart = (options: UseChartProps) => {
       configRef.current = cloneDeep(config);
       dataRef.current = cloneDeep(data);
       // setLegends(genLegends, queue, hasDashedLegend);
-      interceptors?.bindElementEvents(chart.instance, {
-        more: get(config, 'tooltip.clickOffset'),
-        offset: get(config, 'tooltip.clickOffset'),
-        fixedOffset: get(config, 'tooltip.clickFixedOffset'),
-      });
+      interceptors?.bindElementEvents?.(chart.instance, get(config, 'tooltip.clickOptions'));
     }
   }, [
     rootRef,
