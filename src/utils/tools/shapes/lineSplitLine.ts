@@ -42,7 +42,9 @@ registerShape('line', 'split-line', {
     group.addShape('path', {
       attrs: {
         path: path1,
-        stroke: cfg.color,
+        // cfg?.style?.stroke 为通过style()设定的stroke颜色
+        // cfg.color 为默认的颜色
+        stroke: cfg?.style?.stroke || cfg.color,
         lineWidth: 2,
       },
     });
@@ -58,7 +60,7 @@ registerShape('line', 'split-line', {
     group.addShape('path', {
       attrs: {
         path: path2,
-        stroke: cfg.color,
+        stroke: cfg?.style?.stroke || cfg.color,
         lineWidth: 2,
         lineDash: [5, 2],
         opacity: 0.7,

@@ -95,9 +95,12 @@ const FunnelWith3ColumnsArgs = {
     tooltip: {
       enterable: true,
       showContent: true,
-      // shared: true,
       showMarkers: false,
-      clickOffset: 62,
+      clickOptions: {
+        visible: true,
+        offsetY: 62,
+        fixedOffsetY: 100,
+      },
       render: (options: any) => {
         return <DrillDownCard options={options} />;
       },

@@ -90,6 +90,9 @@ export class LineBase extends BaseChart {
       line.adjust.call(line, shapeConfig.adjust as AdjustOtptionType);
     }
     line.position(shapeConfig.position);
+    if (shapeConfig?.shape) {
+      line.shape('split-line');
+    }
     if (shapeConfig.color) {
       line.color(shapeConfig.color);
       line.style(shapeConfig.color, (label: string) => {
@@ -103,9 +106,6 @@ export class LineBase extends BaseChart {
         style.lineWidth = 2;
         return style;
       });
-    }
-    if (shapeConfig?.shape) {
-      line.shape('split-line');
     }
     return line;
   };
@@ -149,7 +149,7 @@ export class Line extends LineBase {
       this.lineShape(this.instance, options, lineConfig);
       this.instance.render();
       // Sometimes, chart will render wrong axis labels, render again will be fine.
-      this.instance.render(true);
+      // this.instance.render(true);
     } catch (err) {
       /* istanbul ignore next */
       console.log(err);

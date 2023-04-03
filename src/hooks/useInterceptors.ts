@@ -1,6 +1,16 @@
 import { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
 import { Chart, Event } from '@antv/g2';
 
+export interface InterceptorOptions {
+  visible?: boolean;
+  offsetY?: number;
+  fixedOffsetY?: number;
+}
+export interface Interceptor {
+  bindTooltip: (ref: any) => void;
+  bindElementEvents: (chart: Chart, options?: InterceptorOptions) => void;
+}
+
 const useInterceptors = () => {
   const triggerActionRef: MutableRefObject<string> = useRef('');
   const chartRef: MutableRefObject<Chart | null> = useRef(null);
@@ -19,22 +29,23 @@ const useInterceptors = () => {
 
   const [, updated] = useState(0);
 
-  const interceptors = useMemo(() => {
+  const interceptors: Interceptor = useMemo(() => {
     return {
       bindTooltip(r: any) {
         tooltipRef.current = r?.current;
       },
-      bindElementEvents(chart: Chart, options: { more?: boolean; offset?: number } = {}) {
+      bindElementEvents(chart: Chart, options?: InterceptorOptions) {
         chartRef.current = chart;
         chart.on('element:click', () => {
           /* istanbul ignore next */
-          if (triggerActionRef.current !== 'click' && tooltipRef.current && options.more) {
-            const { top = '' } = tooltipRef?.current?.style || {};
-            const y = Number(top.replace('px', ''));
-            const offset = options.offset || 70;
-            if (y && y > offset) {
-              tooltipRef.current.style.top = `${y - offset}px`;
-            }
+          if (triggerActionRef.current !== 'click' && tooltipRef.current && options?.visible) {
+            const tipStyles = window.getComputedStyle(tooltipRef?.current);
+            const top = parseInt(tipStyles.top);
+            const height = parseInt(tipStyles.height);
+
+            const { offsetY = 70, fixedOffsetY } = options;
+            const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
+            tooltipRef.current.style.top = `${revisedOffsetY}px`;
           }
           triggerActionRef.current = 'click';
           chart.lockTooltip();

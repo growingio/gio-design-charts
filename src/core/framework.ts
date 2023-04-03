@@ -1,5 +1,6 @@
-import { Chart, registerInteraction, View } from '@antv/g2';
+import { Chart, registerAction, registerInteraction, View } from '@antv/g2';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
+import CursorAction from '@antv/g2/lib/interaction/action/cursor';
 import { isEmpty } from 'lodash';
 import { Actions, ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT, DEFAULT_TINY_APPEND_PADDING } from '../theme';
@@ -12,6 +13,8 @@ registerInteraction('element-highlight-by-color', {
   start: [{ trigger: 'element:mouseenter', action: 'element-highlight-by-color:highlight' }],
   end: [{ trigger: 'element:mouseleave', action: 'element-highlight-by-color:reset' }],
 });
+
+registerAction('cursor', CursorAction);
 
 export const generateChart = (options: ChartOptions, config: ChartConfig) => {
   const { id, theme } = options;
@@ -95,8 +98,10 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
 
   // We don't use default legend
   chart.legend(false);
-  chart.interaction('element-active');
-
+  chart.interaction('element-active', {
+    start: [{ trigger: 'element:mouseenter', action: 'cursor:pointer' }],
+    end: [{ trigger: 'element:mouseleave', action: 'cursor:pointer' }],
+  });
   return chart;
 };
 
