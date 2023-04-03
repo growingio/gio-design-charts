@@ -1,6 +1,15 @@
 import { useCallback, useRef, useMemo, MutableRefObject, useState } from 'react';
 import { Chart, Event } from '@antv/g2';
 
+export interface InterceptorOptions {
+  visible?: boolean;
+  offsetY?: number;
+  fixedOffsetY?: number;
+  more?: boolean;
+  offset?: number;
+  fixedOffset?: number;
+}
+
 const useInterceptors = () => {
   const triggerActionRef: MutableRefObject<string> = useRef('');
   const chartRef: MutableRefObject<Chart | null> = useRef(null);
@@ -24,16 +33,20 @@ const useInterceptors = () => {
       bindTooltip(r: any) {
         tooltipRef.current = r?.current;
       },
-      bindElementEvents(chart: Chart, options: { more?: boolean; offset?: number } = {}) {
+      bindElementEvents(chart: Chart, options: InterceptorOptions = {}) {
         chartRef.current = chart;
         chart.on('element:click', () => {
           /* istanbul ignore next */
           if (triggerActionRef.current !== 'click' && tooltipRef.current && options.more) {
-            const { top = '' } = tooltipRef?.current?.style || {};
-            const y = Number(top.replace('px', ''));
-            const offset = options.offset || 70;
-            if (y && y > offset) {
-              tooltipRef.current.style.top = `${y - offset}px`;
+            const tipStyles = window.getComputedStyle(tooltipRef?.current);
+            const top = parseInt(tipStyles.top);
+            const height = parseInt(tipStyles.height);
+
+            const { offset = 70, fixedOffset } = options;
+            if (fixedOffset) {
+              tooltipRef.current.style.top = `${top + height - fixedOffset}px`;
+            } else if (top && top > offset) {
+              tooltipRef.current.style.top = `${top - offset}px`;
             }
           }
           triggerActionRef.current = 'click';

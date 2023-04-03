@@ -134,7 +134,11 @@ export class Funnel extends BaseChart {
       fetchTooltip(this.instance, config);
       this.instance.legend(false);
       this.instance.render();
-      interceptors?.bindElementEvents(this.instance, { more: true, offset: get(config, 'tooltip.clickOffset') });
+      interceptors?.bindElementEvents(this.instance, {
+        more: true,
+        offset: get(config, 'tooltip.clickOffset'),
+        fixedOffset: get(config, 'tooltip.clickFixedOffset'),
+      });
     } catch (err) {
       /* istanbul ignore next */
       console.log(err);

@@ -235,7 +235,7 @@ const SplitLineConfig = {
 };
 
 const SplitLineConfigArgs = {
-  legends: ['步步盈增', '步步盈增（上个月）'],
+  legends: ['步步盈增', { name: '步步盈增（上个月）', color: '#ea0606' }],
   data: dataWithSplit,
   config: SplitLineConfig,
 };

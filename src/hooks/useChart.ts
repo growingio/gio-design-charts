@@ -6,7 +6,7 @@ import { isEqual } from '@antv/util';
 import { Actions, ChartConfig } from '../interfaces';
 import { LegendObject } from '../legends/useLegends';
 import { getTheme, inValidConfig } from '../utils/chart';
-import { cloneDeep, isObject } from 'lodash';
+import { cloneDeep, get, isObject } from 'lodash';
 import { DesignContext } from '@gio-design/utils';
 import { useIntlDict } from './useIntlDict';
 
@@ -114,7 +114,11 @@ const useChart = (options: UseChartProps) => {
       configRef.current = cloneDeep(config);
       dataRef.current = cloneDeep(data);
       // setLegends(genLegends, queue, hasDashedLegend);
-      interceptors?.bindElementEvents(chart.instance);
+      interceptors?.bindElementEvents(chart.instance, {
+        more: get(config, 'tooltip.clickOffset'),
+        offset: get(config, 'tooltip.clickOffset'),
+        fixedOffset: get(config, 'tooltip.clickFixedOffset'),
+      });
     }
   }, [
     rootRef,
