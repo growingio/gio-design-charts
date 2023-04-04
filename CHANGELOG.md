@@ -1,3 +1,10 @@
+## [2.2.8](https://github.com/growingio/gio-design-charts/compare/v2.2.7...v2.2.8) (2023-04-04)
+
+
+### Bug Fixes
+
+* 修改分割线图的单个点时的样式 ([#345](https://github.com/growingio/gio-design-charts/issues/345)) ([8f071ed](https://github.com/growingio/gio-design-charts/commit/8f071ed7df212509d96835651c7b8213560e49f8))
+
 ## [2.2.7](https://github.com/growingio/gio-design-charts/compare/v2.2.6...v2.2.7) (2023-04-03)
 
 
