@@ -37,7 +37,7 @@ const useInterceptors = () => {
       },
       bindElementEvents(chart: Chart, options?: InterceptorOptions) {
         chartRef.current = chart;
-        chart.on('element:click', () => {
+        chart.on('element:click', (event: Event) => {
           /* istanbul ignore next */
           if (triggerActionRef.current !== 'click' && tooltipRef.current && options?.visible) {
             const tipStyles = window.getComputedStyle(tooltipRef?.current);
@@ -48,7 +48,9 @@ const useInterceptors = () => {
             const { offsetX = 0, offsetY = 70, fixedOffsetY } = options;
             const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
             tooltipRef.current.style.top = `${revisedOffsetY}px`;
-            tooltipRef.current.style.left = `${left + offsetX}px`;
+
+            const revisedOffsetX = event.x < left ? left + offsetX : left - offsetX;
+            tooltipRef.current.style.left = `${revisedOffsetX}px`;
           }
           triggerActionRef.current = 'click';
           chart.lockTooltip();
