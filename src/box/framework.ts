@@ -72,7 +72,7 @@ export class Box extends BaseChart {
 
     fetchTooltip(chart, config);
     boxView.interaction('active-region');
-    boxView.interaction('element-active');
+    // boxView.interaction('element-active');
     boxView.interaction('element-highlight-by-color');
     chart.render();
 

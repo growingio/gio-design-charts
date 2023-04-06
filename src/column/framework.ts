@@ -145,7 +145,7 @@ export class Column extends BaseChart {
           minColumnWidth: 40,
         },
       });
-      this.instance.interaction('element-active');
+      // this.instance.interaction('element-active');
       this.instance.render();
     } catch (err) {}
   };
