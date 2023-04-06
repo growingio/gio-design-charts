@@ -3,6 +3,7 @@ import { Chart, Event } from '@antv/g2';
 
 export interface InterceptorOptions {
   visible?: boolean;
+  offsetX?: number;
   offsetY?: number;
   fixedOffsetY?: number;
 }
@@ -41,11 +42,13 @@ const useInterceptors = () => {
           if (triggerActionRef.current !== 'click' && tooltipRef.current && options?.visible) {
             const tipStyles = window.getComputedStyle(tooltipRef?.current);
             const top = parseInt(tipStyles.top);
+            const left = parseInt(tipStyles.left);
             const height = parseInt(tipStyles.height);
 
-            const { offsetY = 70, fixedOffsetY } = options;
+            const { offsetX = 0, offsetY = 70, fixedOffsetY } = options;
             const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
             tooltipRef.current.style.top = `${revisedOffsetY}px`;
+            tooltipRef.current.style.left = `${left + offsetX}px`;
           }
           triggerActionRef.current = 'click';
           chart.lockTooltip();

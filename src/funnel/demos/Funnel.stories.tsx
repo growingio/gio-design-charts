@@ -98,6 +98,7 @@ const FunnelWith3ColumnsArgs = {
       showMarkers: false,
       clickOptions: {
         visible: true,
+        offsetX: -10,
         offsetY: 62,
         fixedOffsetY: 100,
       },

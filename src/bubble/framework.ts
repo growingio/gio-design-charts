@@ -34,7 +34,7 @@ export class Bubble extends BaseChart {
 
     fetchTooltip(this.instance, config);
     this.instance.interaction('element-highlight');
-    this.instance.interaction('brush');
+    // this.instance.interaction('brush');
     this.instance.render();
   };
 }
