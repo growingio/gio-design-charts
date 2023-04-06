@@ -1,3 +1,11 @@
+## [2.2.10](https://github.com/growingio/gio-design-charts/compare/v2.2.9...v2.2.10) (2023-04-06)
+
+
+### Bug Fixes
+
+* Column和box支持小手cursor ([#347](https://github.com/growingio/gio-design-charts/issues/347)) ([a8b9a97](https://github.com/growingio/gio-design-charts/commit/a8b9a977eea7201a577b87adcef680206c804360))
+* 对offsetX的特殊设定 ([#348](https://github.com/growingio/gio-design-charts/issues/348)) ([0035721](https://github.com/growingio/gio-design-charts/commit/0035721eb46a085927acbbb5849ed84e9ef21f96))
+
 ## [2.2.9](https://github.com/growingio/gio-design-charts/compare/v2.2.8...v2.2.9) (2023-04-06)
 
 
