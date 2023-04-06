@@ -1,3 +1,10 @@
+## [2.2.9](https://github.com/growingio/gio-design-charts/compare/v2.2.8...v2.2.9) (2023-04-06)
+
+
+### Bug Fixes
+
+* tooltip支持offsetX ([#346](https://github.com/growingio/gio-design-charts/issues/346)) ([a3d4ac4](https://github.com/growingio/gio-design-charts/commit/a3d4ac4b43ec6d7d771a34a1aab1ab2cbf95cc82))
+
 ## [2.2.8](https://github.com/growingio/gio-design-charts/compare/v2.2.7...v2.2.8) (2023-04-04)
 
 
