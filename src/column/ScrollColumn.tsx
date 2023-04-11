@@ -6,4 +6,4 @@ const ScrollColumn: React.ForwardRefRenderFunction<ChartRef, ColumnProps> = (pro
   return <Column {...props} useScroll={true} ref={forwardRef} />;
 };
 
-export default ScrollColumn;
+export default React.forwardRef(ScrollColumn);
