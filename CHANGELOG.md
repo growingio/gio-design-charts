@@ -1,3 +1,10 @@
+## [2.2.11](https://github.com/growingio/gio-design-charts/compare/v2.2.10...v2.2.11) (2023-04-11)
+
+
+### Bug Fixes
+
+* 添加React.forwardRef ([#349](https://github.com/growingio/gio-design-charts/issues/349)) ([b88b0f5](https://github.com/growingio/gio-design-charts/commit/b88b0f572c37ec0f5f53c9583391ccc13ddcbf34))
+
 ## [2.2.10](https://github.com/growingio/gio-design-charts/compare/v2.2.9...v2.2.10) (2023-04-06)
 
 
