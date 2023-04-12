@@ -1,3 +1,10 @@
+## [2.2.12](https://github.com/growingio/gio-design-charts/compare/v2.2.11...v2.2.12) (2023-04-12)
+
+
+### Bug Fixes
+
+* 支持配置annotations ([#350](https://github.com/growingio/gio-design-charts/issues/350)) ([dd10688](https://github.com/growingio/gio-design-charts/commit/dd10688abc00177ac88f9047948097927a0b68c6))
+
 ## [2.2.11](https://github.com/growingio/gio-design-charts/compare/v2.2.10...v2.2.11) (2023-04-11)
 
 
