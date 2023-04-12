@@ -130,6 +130,7 @@ export class LineBase extends BaseChart {
         this.finalView?.render(true);
       }
     );
+    this.annotations();
     this.instance?.render(true);
   };
 }
@@ -147,6 +148,9 @@ export class Line extends LineBase {
     try {
       const lineConfig = getShapeConfig(config, 'line');
       this.lineShape(this.instance, options, lineConfig);
+
+      this.annotations();
+
       this.instance.render();
       // Sometimes, chart will render wrong axis labels, render again will be fine.
       // this.instance.render(true);
@@ -177,8 +181,6 @@ export class ContrastLine extends LineBase {
       const views: View[] = [];
 
       const viewOptions = { theme: getDefaultViewTheme(config) };
-
-      const rangeAlignLeft = get(config, `scale.${xField}.rangeAlignLeft`);
 
       // render history view, the label should hide;
       const historyView = (updatedData: LooseObject[]) => {
