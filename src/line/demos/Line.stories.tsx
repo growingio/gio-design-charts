@@ -13,6 +13,7 @@ import { zhCN } from 'date-fns/locale';
 import { formatNumber } from '../../utils/formatNumber';
 import { InfoCard } from '../../info-card';
 import { useRef } from 'react';
+import { AnnotationPosition } from '@antv/g2/lib/interface';
 
 export default {
   title: 'Charts/折线图 Line',
@@ -232,6 +233,53 @@ const SplitLineConfig = {
     color: 'type',
     shape: 'split-line',
   },
+  annotations: [
+    {
+      type: 'line',
+      start: ['06/05 周六', 'start'] as AnnotationPosition,
+      end: ['06/05 周六', 'max'] as AnnotationPosition,
+      style: {
+        stroke: '#7B819C',
+        lineWidth: 1,
+        lineDash: [6, 4],
+      },
+      text: {
+        position: 'end',
+        style: {
+          fill: '#7B819C',
+          fontSize: 14,
+          fontWeight: 400,
+        },
+        content: '预警线 65%',
+        autoRotate: false,
+        offsetY: 20,
+        offsetX: 8,
+      },
+    },
+
+    {
+      type: 'line',
+      start: ['06/07 周一', 'start'] as AnnotationPosition,
+      end: ['06/07 周一', 'max'] as AnnotationPosition,
+      style: {
+        stroke: '#7B819C',
+        lineWidth: 1,
+        lineDash: [6, 4],
+      },
+      text: {
+        position: 'end',
+        style: {
+          fill: '#7B819C',
+          fontSize: 14,
+          fontWeight: 400,
+        },
+        content: '预警线 85%',
+        autoRotate: false,
+        offsetY: 20,
+        offsetX: 8,
+      },
+    },
+  ],
 };
 
 const SplitLineConfigArgs = {

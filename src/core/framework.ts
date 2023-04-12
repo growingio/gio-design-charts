@@ -2,12 +2,13 @@ import { Chart, registerAction, registerInteraction, View } from '@antv/g2';
 import { AxisOption, Datum, ScaleOption } from '@antv/g2/lib/interface';
 import CursorAction from '@antv/g2/lib/interaction/action/cursor';
 import { isEmpty } from 'lodash';
-import { Actions, ChartConfig, ChartOptions, Legends } from '../interfaces';
+import { Actions, Annotation, ChartConfig, ChartOptions, Legends } from '../interfaces';
 import { DEFAULT_APPEND_PADDING, DEFAULT_AUTO_FIT, DEFAULT_TINY_APPEND_PADDING } from '../theme';
 import { fixedHeight, getDefaultTheme } from '../utils/chart';
 
 import '../utils/tools';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
+import { getAxisFields } from '../utils/frameworks/axis';
 
 registerInteraction('element-highlight-by-color', {
   start: [{ trigger: 'element:mouseenter', action: 'element-highlight-by-color:highlight' }],
@@ -125,6 +126,11 @@ export class BaseChart implements Actions {
   options: ChartOptions | undefined = undefined;
   config: ChartConfig | undefined = undefined;
 
+  getAxisFields = () => {
+    const shapeConfig = getShapeConfig(this.config);
+    return getAxisFields(shapeConfig?.position || '');
+  };
+
   render: (options: ChartOptions, config: ChartConfig) => void = () => {
     // this is parent render function
     // each child needs realize this function
@@ -144,6 +150,7 @@ export class BaseChart implements Actions {
 
   update = (data: Datum[]) => {
     if (this.instance && data) {
+      this.annotations();
       this.instance.changeData(data);
       this.instance.render(true);
     }
@@ -153,5 +160,19 @@ export class BaseChart implements Actions {
     this.instance?.destroy();
     this.instance = undefined;
     this.views = [];
+  };
+
+  annotations = () => {
+    const annotations = this.config?.annotations;
+    if (!annotations) {
+      return;
+    }
+    this.instance?.annotation().clear();
+    const annotationController = this.instance?.annotation?.();
+    for (const annotation of annotations) {
+      if (annotation?.type) {
+        annotationController?.annotation?.(annotation);
+      }
+    }
   };
 }

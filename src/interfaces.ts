@@ -1,18 +1,26 @@
 import { LooseObject, ShapeAttrs } from '@antv/g-base';
-import { Chart, Element, Scale, View } from '@antv/g2';
+import { Chart, Element, Scale, Types, View } from '@antv/g2';
 import { AdjustOption, AdjustType, ScaleOption } from '@antv/g2/lib/interface';
 import { PropsWithChildren } from 'react';
 import { Interceptor } from './hooks/useInterceptors';
 import { LegendObject } from './legends/useLegends';
 
 export interface Actions {
+  // G2 Chart instance.
   instance: Chart | undefined;
+  // G2 View instances.
   views: View[];
+  // Chart Config which contains all configuration for g2 chart.
   config: ChartConfig | undefined;
+  // Chart Options which contains all information for charts repo.
   options: ChartOptions | undefined;
+  // Render the chart
   render: any;
+  // Update the chart when there are something changed
   update: any;
+  // Update the legend
   legend: any;
+  // clear or destroy the charts
   clear: any;
 }
 
@@ -142,6 +150,8 @@ export interface ChartConfig extends LooseObject {
    * 更多内容请参考： https://g2.antv.vision/zh/docs/api/general/scale#scaleoptionmintickinterval
    */
   scale?: Record<string, ScaleOption> | (string | ScaleOption)[];
+
+  annotations?: Annotation[];
 }
 
 export interface AreaConfig extends ChartConfig {
@@ -283,3 +293,17 @@ export interface CustomInfo {
   yField?: string;
   zField?: string;
 }
+
+type AnnotationOption =
+  | Types.ArcOption
+  | Types.ImageOption
+  | Types.LineOption
+  | Types.TextOption
+  | Types.RegionOption
+  | Types.RegionFilterOption
+  | Types.DataMarkerOption
+  | Types.DataRegionOption
+  | Types.ShapeAnnotationOption
+  | Types.HtmlAnnotationOption;
+
+export type Annotation = { id?: string } & AnnotationOption;
