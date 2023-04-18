@@ -1,3 +1,10 @@
+## [2.2.13](https://github.com/growingio/gio-design-charts/compare/v2.2.12...v2.2.13) (2023-04-18)
+
+
+### Bug Fixes
+
+* 更新funnel的背景色条 ([#351](https://github.com/growingio/gio-design-charts/issues/351)) ([b1e10a0](https://github.com/growingio/gio-design-charts/commit/b1e10a0a0f76e7ae371d603d1045439ce57cca8e))
+
 ## [2.2.12](https://github.com/growingio/gio-design-charts/compare/v2.2.11...v2.2.12) (2023-04-12)
 
 
