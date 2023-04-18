@@ -97,7 +97,7 @@ function drawRect(
   const styles =
     useDash && legend.dashed
       ? { fill: `p(a)${chartType === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}` }
-      : { fill: defaultStyles.color || legend.color || shapeInfo.color };
+      : { fill: defaultStyles.color || legend.color || shapeInfo.color, opacity: defaultStyles.opacity };
   const newAttrs = {
     ...attrs,
     ...handleRectAttrs(points, stack, isNeg), // 获取 rect 绘图信息
