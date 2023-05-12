@@ -39,6 +39,12 @@ Basic.args = {
     tooltip: {
       showMarkers: false,
       showCrosshairs: false,
+      clickOptions: {
+        visible: true,
+        // offsetX: 10,
+        offsetY: 62,
+        // fixedOffsetY: 100,
+      },
       render: (options: any) => {
         const itemData = options.data?.[0] || {};
         const newData = [

@@ -3,8 +3,11 @@ import { Chart, Event } from '@antv/g2';
 
 export interface InterceptorOptions {
   visible?: boolean;
+  // tooltip相对于当前的位置，发生的偏移量
   offsetX?: number;
+  // tooltip相对当前的位置，向上移动发生的偏移量
   offsetY?: number;
+  // tooltip相对于点击的位置，向上移动发生的偏移量，这是解决有固定高度的tooltip弹窗而设计的偏移量
   fixedOffsetY?: number;
 }
 export interface Interceptor {
@@ -45,12 +48,15 @@ const useInterceptors = () => {
             const left = parseInt(tipStyles.left);
             const height = parseInt(tipStyles.height);
 
-            const { offsetX = 0, offsetY = 70, fixedOffsetY } = options;
-            const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
-            tooltipRef.current.style.top = `${revisedOffsetY}px`;
-
-            const revisedOffsetX = event.x < left ? left + offsetX : left - offsetX;
-            tooltipRef.current.style.left = `${revisedOffsetX}px`;
+            const { offsetX = 0, offsetY = 0, fixedOffsetY } = options;
+            if (fixedOffsetY || offsetY) {
+              const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
+              tooltipRef.current.style.top = `${revisedOffsetY}px`;
+            }
+            if (offsetX) {
+              const revisedOffsetX = event.x < left ? left + offsetX : left - offsetX;
+              tooltipRef.current.style.left = `${revisedOffsetX}px`;
+            }
           }
           triggerActionRef.current = 'click';
           chart.lockTooltip();
