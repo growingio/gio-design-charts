@@ -113,7 +113,7 @@ const useChart = (options: UseChartProps) => {
     if (chart.instance) {
       configRef.current = cloneDeep(config);
       dataRef.current = cloneDeep(data);
-      // setLegends(genLegends, queue, hasDashedLegend);
+      interceptors?.bindTooltip?.(tooltipRef);
       interceptors?.bindElementEvents?.(chart.instance, get(config, 'tooltip.clickOptions'));
     }
   }, [
