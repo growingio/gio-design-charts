@@ -1,3 +1,10 @@
+## [2.2.15](https://github.com/growingio/gio-design-charts/compare/v2.2.14...v2.2.15) (2023-05-15)
+
+
+### Bug Fixes
+
+* **master:**  修改点击tooltip的偏移的问题 ([#353](https://github.com/growingio/gio-design-charts/issues/353)) ([ee5c3f8](https://github.com/growingio/gio-design-charts/commit/ee5c3f8de999382e256a47e086558ad4e042ecb8))
+
 ## [2.2.14](https://github.com/growingio/gio-design-charts/compare/v2.2.13...v2.2.14) (2023-05-12)
 
 
