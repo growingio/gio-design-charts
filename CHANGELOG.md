@@ -1,3 +1,10 @@
+## [2.2.16](https://github.com/growingio/gio-design-charts/compare/v2.2.15...v2.2.16) (2023-05-15)
+
+
+### Bug Fixes
+
+* 修改绑定tooltipRef ([#354](https://github.com/growingio/gio-design-charts/issues/354)) ([b822e61](https://github.com/growingio/gio-design-charts/commit/b822e619774fc699aa5f84debc1c88f464b7522e))
+
 ## [2.2.15](https://github.com/growingio/gio-design-charts/compare/v2.2.14...v2.2.15) (2023-05-15)
 
 
