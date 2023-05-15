@@ -46,15 +46,17 @@ const useInterceptors = () => {
             const tipStyles = window.getComputedStyle(tooltipRef?.current);
             const top = parseInt(tipStyles.top);
             const left = parseInt(tipStyles.left);
-            const height = parseInt(tipStyles.height);
 
             const { offsetX = 0, offsetY = 0, fixedOffsetY } = options;
+            const { x: clickX, y: clickY } = event;
+
             if (fixedOffsetY || offsetY) {
-              const revisedOffsetY = fixedOffsetY ? top + height - fixedOffsetY : top - offsetY;
+              let revisedOffsetY = fixedOffsetY ? clickY - fixedOffsetY : top - offsetY;
+              revisedOffsetY = revisedOffsetY < 0 ? 0 : revisedOffsetY;
               tooltipRef.current.style.top = `${revisedOffsetY}px`;
             }
             if (offsetX) {
-              const revisedOffsetX = event.x < left ? left + offsetX : left - offsetX;
+              const revisedOffsetX = clickX < left ? left + offsetX : left - offsetX;
               tooltipRef.current.style.left = `${revisedOffsetX}px`;
             }
           }

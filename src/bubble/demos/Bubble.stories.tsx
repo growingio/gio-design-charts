@@ -42,8 +42,8 @@ Basic.args = {
       clickOptions: {
         visible: true,
         // offsetX: 10,
-        offsetY: 62,
-        // fixedOffsetY: 100,
+        offsetY: 10,
+        // fixedOffsetY: 10,
       },
       render: (options: any) => {
         const itemData = options.data?.[0] || {};
