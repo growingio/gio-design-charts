@@ -1,3 +1,10 @@
+## [2.2.17](https://github.com/growingio/gio-design-charts/compare/v2.2.16...v2.2.17) (2023-05-29)
+
+
+### Bug Fixes
+
+* forwardRef ([#356](https://github.com/growingio/gio-design-charts/issues/356)) ([337cae9](https://github.com/growingio/gio-design-charts/commit/337cae9b00880d3242ea911f2dd026963c959630))
+
 ## [2.2.16](https://github.com/growingio/gio-design-charts/compare/v2.2.15...v2.2.16) (2023-05-15)
 
 
