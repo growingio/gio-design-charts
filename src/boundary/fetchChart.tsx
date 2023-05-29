@@ -18,8 +18,9 @@ const MESSAGES: LooseObject = {
 
 const fetchChart = <T extends ChartProps | TinyChartProps>(
   ChartComponent: React.ForwardRefRenderFunction<ChartRef, T>
-) =>
-  React.forwardRef((props: T, forwardRef) => {
+) => {
+  const Com = React.forwardRef<ChartRef, T & React.RefAttributes<ChartRef>>(ChartComponent);
+  return React.forwardRef((props: T, forwardRef) => {
     const { errorTemplate, noData, data, loading, config } = props;
     const height = config?.chart?.height;
     const context = useContext(DesignContext);
@@ -31,7 +32,6 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(
       return noData ? noData() : <NoData height={height} />;
     }
     const localeCode = context?.locale?.code || 'zh-CN';
-    const Com = React.forwardRef<ChartRef, T & React.RefAttributes<ChartRef>>(ChartComponent);
     return (
       <IntlProvider defaultLocale="zh-CN" locale={localeCode} messages={MESSAGES[localeCode] ?? {}}>
         <ErrorBoundary errorTemplate={errorTemplate}>
@@ -41,5 +41,6 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(
       </IntlProvider>
     );
   });
+};
 
 export default fetchChart;
