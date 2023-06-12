@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/growingio/gio-design-charts/compare/v2.2.17...v2.3.0) (2023-06-12)
+
+
+### Features
+
+* **DoubleAxes:** 支持双轴图表 ([#357](https://github.com/growingio/gio-design-charts/issues/357)) ([1d3e394](https://github.com/growingio/gio-design-charts/commit/1d3e39492a7d5625a7027db6e9878ce06a34dfe0))
+
 ## [2.2.17](https://github.com/growingio/gio-design-charts/compare/v2.2.16...v2.2.17) (2023-05-29)
 
 
