@@ -8,7 +8,8 @@ export * from './gauge';
 export * from './line';
 export { TinyArea } from './tiny-area';
 export { CombineBar } from './combine-bar';
-export { CombineColunm } from './combine-colunm';
+export * from './double-axes';
+export { CombineColunm, CombineColunm as CombineColumn } from './combine-colunm';
 
 export { InfoCard } from './info-card';
 
