@@ -63,7 +63,6 @@ export class DoubleAxes extends BaseChart {
 
   update = (data: Datum[]) => {
     const [donutView, textView] = this.views;
-    console.log(data);
     if (Array.isArray(data)) {
       this.instance?.changeData(data);
     }
@@ -116,9 +115,7 @@ export class DoubleAxes extends BaseChart {
   };
 
   legend = (legends: Legends) => {
-    console.log(this.instance?.geometries);
     this.instance?.geometries?.[0]?.getElementsBy?.((element: Element) => {
-      console.log(element);
       return true;
     });
     const filter = (chartType: ChartType) => {

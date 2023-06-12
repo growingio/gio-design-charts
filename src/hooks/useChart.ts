@@ -93,7 +93,6 @@ const useChart = (options: UseChartProps) => {
       ...config,
       tooltip,
     };
-    console.log('cjcjfjfjjfjffjjfjffjj');
     // const [genLegends, queue, hasDashedLegend] = getLegends(config.type, legendList);
     chart.render(
       {
