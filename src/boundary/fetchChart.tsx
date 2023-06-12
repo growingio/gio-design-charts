@@ -31,8 +31,8 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(
     if (!data || isEmpty(data)) {
       return noData ? noData() : <NoData height={height} />;
     }
-    // const localeCode = context?.locale?.code || 'zh-CN';
-    const localeCode = 'en-US';
+    const localeCode = localStorage.getItem('locale') || (context?.locale?.code || 'zh-CN');
+
     return (
       <IntlProvider defaultLocale="zh-CN" locale={localeCode} messages={MESSAGES[localeCode] ?? {}}>
         <ErrorBoundary errorTemplate={errorTemplate}>
