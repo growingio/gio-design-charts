@@ -131,7 +131,6 @@ export class DoubleAxes extends BaseChart {
       return true;
     });
     this.instance?.geometries?.[1]?.getElementsBy?.((element: Element) => {
-      console.log(element);
       const colorData = first(element?.getData() as Datum[])?.[lineColor];
       element.changeVisible(!!legends[colorData]?.active);
       return true;

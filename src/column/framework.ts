@@ -53,7 +53,6 @@ export const intervalShape = (
     interval.position(barConfig.position);
   }
   if (barConfig.color) {
-    console.log('customInfo.chartType', customInfo.chartType);
     interval.color(barConfig.color);
     interval.shape(barConfig.color, [`${customInfo.chartType || 'column'}-element`]);
   }
