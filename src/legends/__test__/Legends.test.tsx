@@ -1,5 +1,6 @@
 import React from 'react';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
 
 import Legends from '../Legends';
 
@@ -78,7 +79,8 @@ describe('Legends', () => {
 
   test('render Legends and click lenged within binding onClick', async () => {
     const clickedLabel = '北京';
-    render(<Legends legends={legends} offsetWidth={1000} />);
+
+    render(<IntlProvider locale="zh-CH" messages={{}}><Legends legends={legends} offsetWidth={1000} /></IntlProvider>);
 
     expect(await screen.findByTestId('legends')).toBeTruthy();
 
