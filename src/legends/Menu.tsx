@@ -1,6 +1,7 @@
 import React from 'react';
 import { Legend } from '../interfaces';
 import { default as LegendComponent } from './Legend';
+import { useIntlDict } from '../hooks/useIntlDict';
 
 export interface MenuProps {
   legends: Legend[];
@@ -10,9 +11,10 @@ export interface MenuProps {
 
 const Menu = (props: MenuProps) => {
   const { legends, onClick, height } = props;
+  const intlDict = useIntlDict();
   return (
     <div className="gio-d-charts-legends_dropdown">
-      <span data-testid="legend-others">其余{legends?.length || 0}项</span>
+      <span data-testid="legend-others">{intlDict.otherOptions(legends?.length || 0)}</span>
       <div className={`gio-d-charts-legends_dropdown-content dropdown-controller`} style={{ maxHeight: height - 80 }}>
         {legends?.map((legend: Legend) => {
           const { name, alias } = legend;

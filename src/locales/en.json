@@ -16,5 +16,19 @@
       "type": 0,
       "value": "Ratio："
     }
+  ],
+  "others": [
+    {
+      "type": 0,
+      "value": "Other "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " item(s)"
+    }
   ]
 }
