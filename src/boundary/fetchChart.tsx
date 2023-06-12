@@ -31,6 +31,7 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(
     if (!data || isEmpty(data)) {
       return noData ? noData() : <NoData height={height} />;
     }
+
     const localeCode = localStorage.getItem('locale') || (context?.locale?.code || 'zh-CN');
 
     return (
