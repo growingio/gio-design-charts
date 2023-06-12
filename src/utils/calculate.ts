@@ -71,14 +71,16 @@ export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[]) =
     ...(isStack || isDodge ? { groupBy: [isStack ? positionFirst : color] } : {}),
   });
   let width = 0;
+  const maxRowCount = Math.max(...dv.rows.map((r) => r?.totalCount))
+  
   dv.rows.forEach((row: LooseObject) => {
     const { totalCount } = row;
     if (isStack) {
       width += columnWidth;
       width += intervalPadding;
     } else if (isDodge) {
-      width += columnWidth * totalCount;
-      width += dodgePadding * totalCount;
+      width += columnWidth * maxRowCount;
+      width += dodgePadding * maxRowCount;
       width += intervalPadding;
     } else {
       // dv.rows只有一条，根据条数计算高度，间距为intervalPadding，宽度为columnWidth
