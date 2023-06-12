@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/growingio/gio-design-charts/compare/v2.3.1...v2.3.2) (2023-06-12)
+
+
+### Bug Fixes
+
+* 修改翻译 ([#361](https://github.com/growingio/gio-design-charts/issues/361)) ([55ea181](https://github.com/growingio/gio-design-charts/commit/55ea181fca20677b9de5ea7f81d4228df0a55f54))
+
 ## [2.3.1](https://github.com/growingio/gio-design-charts/compare/v2.3.0...v2.3.1) (2023-06-12)
 
 
