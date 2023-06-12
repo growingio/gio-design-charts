@@ -8,6 +8,8 @@ import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { donutText } from '../utils/frameworks/text';
 import { formatNumber, formatPercent } from '../utils/formatNumber';
 import { bindDonutCoordination } from '../utils/frameworks/coordinate';
+import { DEFAULT_RADIUS } from '../theme';
+import { first } from 'lodash';
 
 export class DoubleAxes extends BaseChart {
   donutView: View | undefined = undefined;
@@ -95,6 +97,7 @@ export class DoubleAxes extends BaseChart {
         const legend = legendObject?.getLegend(label) || ({} as Legend);
         return {
           fill: legend.color || defaultStyles.color,
+          radius: DEFAULT_RADIUS,
         };
       }
     );
@@ -114,21 +117,24 @@ export class DoubleAxes extends BaseChart {
     }, 0);
   };
 
+  getColor = (type: ChartType) => {
+    const shapeCfg = getShapeConfig(this.config, type);
+    return shapeCfg?.color || '';
+  };
+
   legend = (legends: Legends) => {
+    const lineColor = this.getColor(ChartType.LINE);
+    const columnColor = this.getColor(ChartType.COLUMN);
     this.instance?.geometries?.[0]?.getElementsBy?.((element: Element) => {
+      const colorData = element?.getData()?.[columnColor];
+      element.changeVisible(!!legends[colorData]?.active);
       return true;
     });
-    const filter = (chartType: ChartType) => {
-      const shapeCfg = getShapeConfig(this.config, chartType);
-      if (shapeCfg.color) {
-        const filteredData = this.options?.data?.filter((item: LooseObject) => legends[item[shapeCfg.color]].active);
-        this.setTotal(filteredData, shapeCfg);
-        this.updateText(this.textView as View, filteredData, this.config as ChartConfig);
-        this.defaultLegendBehavior(legends);
-        this.instance?.render(true);
-      }
-    };
-    filter(ChartType.COLUMN);
-    filter(ChartType.LINE);
+    this.instance?.geometries?.[1]?.getElementsBy?.((element: Element) => {
+      console.log(element);
+      const colorData = first(element?.getData() as Datum[])?.[lineColor];
+      element.changeVisible(!!legends[colorData]?.active);
+      return true;
+    });
   };
 }

@@ -1,9 +1,10 @@
 import { ComponentStory } from '@storybook/react';
 import DoubleAxes from '../DoubleAxes';
 import Card from '../../demos/card';
-import { data } from './data';
+import { data, updatedData } from './data';
 import { InfoCard } from '../../info-card';
 import { cloneDeep } from 'lodash';
+import { useState } from 'react';
 
 export default {
   title: 'Charts/双轴图 DoubleAxes',
@@ -18,13 +19,20 @@ export default {
   },
 };
 
-const Template: ComponentStory<any> = (args) => (
-  <div style={args.style}>
-    <Card>
-      <DoubleAxes {...args} />
-    </Card>
-  </div>
-);
+const Template: ComponentStory<any> = (args) => {
+  const [chartData, setChartData] = useState(data);
+  const updateData = () => {
+    setChartData(updatedData);
+  };
+  return (
+    <div style={args.style}>
+      <button onClick={updateData}>Update</button>
+      <Card>
+        <DoubleAxes {...args} data={chartData} />
+      </Card>
+    </div>
+  );
+};
 
 export const Basic = Template.bind({});
 Basic.args = {
