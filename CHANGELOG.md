@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/growingio/gio-design-charts/compare/v2.3.0...v2.3.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **DoubleAxes:** 支持legend图例的功能 ([#358](https://github.com/growingio/gio-design-charts/issues/358)) ([a03a4f9](https://github.com/growingio/gio-design-charts/commit/a03a4f98a4ee4099e3e29921665e8f5b5489705d))
+* 分组箱型图图形压盖 ([#360](https://github.com/growingio/gio-design-charts/issues/360)) ([c21408f](https://github.com/growingio/gio-design-charts/commit/c21408ff0e6de04a86f459798fa32208a103b8ad))
+* 导出双轴图表 ([#359](https://github.com/growingio/gio-design-charts/issues/359)) ([0a4a176](https://github.com/growingio/gio-design-charts/commit/0a4a17605932230737a585da25b4960fdfccdff1))
+
 # [2.3.0](https://github.com/growingio/gio-design-charts/compare/v2.2.17...v2.3.0) (2023-06-12)
 
 
