@@ -34,6 +34,7 @@ export enum ChartType {
   BUBBLE = 'bubble',
   GAUGE = 'gauge',
   BOX = 'box',
+  DoubleAxes = 'column',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -217,6 +218,17 @@ export interface FunnelConfig extends ChartConfig {
   funnel: Shape & { contrast?: string };
 }
 
+export interface DoubleAxesConfig extends ChartConfig {
+  /**
+   * 用来创建柱状图的配置
+   */
+  column: Shape;
+  /**
+   * 用来创建折线图的配置
+   */
+  line: Shape;
+}
+
 export interface ChartRef {
   getInstance?: () => Chart;
 }
@@ -255,7 +267,7 @@ export interface AdjustOpt extends Omit<AdjustOption, 'type'> {
   dodgeBy?: string;
 }
 
-export type AdjustOtptionType = string | string[] | AdjustOption | AdjustOption[];
+export type AdjustOptionType = string | string[] | AdjustOption | AdjustOption[];
 
 // this is used to resolve the {type: AdjustType | string} issue
 export type AdjustOptType = string | string[] | AdjustOpt | AdjustOpt[];

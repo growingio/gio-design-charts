@@ -111,7 +111,7 @@ export class LegendObject {
         };
         return legends[legend];
       } else {
-        const { lineDash, dashed } = legend;
+        const { lineDash, dashed, type: customType } = legend;
         const lineDashCfg = {} as LooseObject;
         if (lineDash === true) {
           lineDashCfg.lineDash = DEFAULT_LINE_DASH;
@@ -125,7 +125,7 @@ export class LegendObject {
           ...legend,
           color: legend.color || colors[index % colors.length],
           active: true,
-          type,
+          type: customType || type,
           ...lineDashCfg,
         };
         return legends[legend.name];

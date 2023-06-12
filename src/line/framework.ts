@@ -1,5 +1,5 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOtptionType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Legends, Shape, AdjustOptionType } from '../interfaces';
 import { BaseChart, fetchTooltip, fetchViewConfig, generateChart, renderChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { LooseObject } from '@antv/g-base';
@@ -87,7 +87,7 @@ export class LineBase extends BaseChart {
     });
 
     if (shapeConfig.adjust) {
-      line.adjust.call(line, shapeConfig.adjust as AdjustOtptionType);
+      line.adjust.call(line, shapeConfig.adjust as AdjustOptionType);
     }
     line.position(shapeConfig.position);
     if (shapeConfig?.shape) {

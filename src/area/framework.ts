@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { ShapeAttrs } from '@antv/g-base';
-import { ChartConfig, ChartOptions, Legend, Shape, AdjustOtptionType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Shape, AdjustOptionType } from '../interfaces';
 import { BaseChart, renderChart } from '../core/framework';
 import { Line as LineCls } from '../line/framework';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
@@ -17,7 +17,7 @@ export class Area extends BaseChart {
     area.position(shapeConfig.position);
     area.color(shapeConfig.color);
     if (shapeConfig.adjust) {
-      area.adjust.call(area, shapeConfig.adjust as AdjustOtptionType);
+      area.adjust.call(area, shapeConfig.adjust as AdjustOptionType);
     }
     area.style(shapeConfig.color, (label: string) => {
       const legend = legendObject?.getLegend(label) || ({} as Legend);

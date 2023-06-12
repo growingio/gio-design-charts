@@ -34,7 +34,7 @@
     "@antv/util" "^2.0.9"
     tslib "^2.0.3"
 
-"@antv/component@^0.8.17", "@antv/component@^0.8.7":
+"@antv/component@0.8.19", "@antv/component@^0.8.17", "@antv/component@^0.8.7":
   version "0.8.19"
   resolved "https://registry.yarnpkg.com/@antv/component/-/component-0.8.19.tgz#731d2805d6521188d1c8a1aaebf84a3fd85dfb81"
   integrity sha512-H6BrnaqEreP9oWsQKpeaXV46IowQyKmDGitMWbK75jUbR+QxCObrN0v3klM4kjRWCVuIUeTChz/akaKsZhe6FQ==
@@ -57,7 +57,7 @@
     "@antv/util" "~2.0.12"
     tslib "^2.1.0"
 
-"@antv/data-set@^0.11.8":
+"@antv/data-set@0.11.8", "@antv/data-set@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@antv/data-set/-/data-set-0.11.8.tgz#7413e900624863d5a5f3b46841fd009fc4f2a4ff"
   integrity sha512-8/YDsfk4wNQdo/J9tfmzOuo9Y5nl0mB+sSZO+tEZsHFLUhMrioJGBMPkuW51Pn0zcVZPNivuMBi2sQKYCpCeew==
@@ -86,29 +86,12 @@
   dependencies:
     tslib "^2.0.3"
 
-"@antv/event-emitter@^0.1.1", "@antv/event-emitter@^0.1.2", "@antv/event-emitter@~0.1.0":
+"@antv/event-emitter@0.1.2", "@antv/event-emitter@^0.1.1", "@antv/event-emitter@^0.1.2", "@antv/event-emitter@~0.1.0":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@antv/event-emitter/-/event-emitter-0.1.2.tgz#a17b7cb86e6d071880dc6bfb232756f88624ecbc"
   integrity sha512-6C6NJOdoNVptCr5y9BVOhKkCgW7LFs/SpcRyAExUeSjAm0zJqcqNkSIRGsXYhj4PJI+CZICHzGwwiSnIsE68Ug==
 
-"@antv/g-base@0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@antv/g-base/-/g-base-0.5.6.tgz#d96da5fbf6c5f8b073072751e15e5eec70b393fc"
-  integrity sha512-szxqFQ/xdCnfaeSEEC2kVjXdKxJnvKKJNT0MvaOG3UXOfsjPDLgb3IKLr+bU3sLvTAQfPhsbtYh7mWb03+mGjA==
-  dependencies:
-    "@antv/event-emitter" "^0.1.1"
-    "@antv/g-math" "^0.1.6"
-    "@antv/matrix-util" "^3.1.0-beta.1"
-    "@antv/path-util" "~2.0.5"
-    "@antv/util" "~2.0.0"
-    "@types/d3-timer" "^2.0.0"
-    d3-ease "^1.0.5"
-    d3-interpolate "^1.3.2"
-    d3-timer "^1.0.9"
-    detect-browser "^5.1.0"
-    tslib "^2.0.3"
-
-"@antv/g-base@^0.5.3", "@antv/g-base@^0.5.9", "@antv/g-base@~0.5.6":
+"@antv/g-base@0.5.6", "@antv/g-base@0.5.9", "@antv/g-base@^0.5.3", "@antv/g-base@^0.5.9", "@antv/g-base@~0.5.6":
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/@antv/g-base/-/g-base-0.5.9.tgz#58d0e11d85157ada1408fbdf24f4f468f40e59cd"
   integrity sha512-IAzuCLRmz9cKCWUKR3cKWgLZ/6OQYpTCIOgxAP8Bc+HRw0mu8iC3OTz+tWKGv9L8unpvCvpQd1H+OTTjdg/TpQ==
@@ -156,6 +139,27 @@
     "@antv/util" "~2.0.0"
     detect-browser "^5.0.0"
     tslib "^2.0.3"
+
+"@antv/g2@4.1.29":
+  version "4.1.29"
+  resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-4.1.29.tgz#a249c798003dbba6a367fa86e723744bbfd6bf0f"
+  integrity sha512-P7ai0gd1dwcZtW2bmGh9sQ/i1w6N4NVs82Lj0ZYwAqwjo0CxCRTrhEEmC279xyDEjYrytU1v4RWf06aqsbjbTQ==
+  dependencies:
+    "@antv/adjust" "^0.2.1"
+    "@antv/attr" "^0.3.1"
+    "@antv/color-util" "^2.0.2"
+    "@antv/component" "^0.8.7"
+    "@antv/coord" "^0.3.0"
+    "@antv/dom-util" "^2.0.2"
+    "@antv/event-emitter" "~0.1.0"
+    "@antv/g-base" "~0.5.6"
+    "@antv/g-canvas" "~0.5.10"
+    "@antv/g-svg" "~0.5.6"
+    "@antv/matrix-util" "^3.1.0-beta.1"
+    "@antv/path-util" "^2.0.3"
+    "@antv/scale" "^0.3.7"
+    "@antv/util" "~2.0.5"
+    tslib "^2.0.0"
 
 "@antv/g2@^4.1.29":
   version "4.1.30"
