@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/growingio/gio-design-charts/compare/v2.3.2...v2.3.3) (2023-06-13)
+
+
+### Bug Fixes
+
+* locale ([#363](https://github.com/growingio/gio-design-charts/issues/363)) ([5415220](https://github.com/growingio/gio-design-charts/commit/5415220942ace26cc58ac540b7cddca00accb843))
+
 ## [2.3.2](https://github.com/growingio/gio-design-charts/compare/v2.3.1...v2.3.2) (2023-06-12)
 
 
