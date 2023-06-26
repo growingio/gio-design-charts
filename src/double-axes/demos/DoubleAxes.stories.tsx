@@ -50,8 +50,10 @@ Basic.args = {
     tooltip: {
       showMarkers: false,
       showCrosshairs: false,
+      shared: true,
       render: (options: any) => {
         const itemData = options.data?.[0] || {};
+        console.log(options);
         const newData = [
           {
             ...cloneDeep(itemData),

@@ -1,9 +1,12 @@
 import { Shape } from '@antv/component/lib/annotation';
-import { ChartConfig } from '../../interfaces';
+import { ChartConfig, ChartType } from '../../interfaces';
 
 export const getShapeConfig = (config: ChartConfig = {}, type?: string) => {
   if (type) {
     return config[type] || {};
+  }
+  if (config.type === ChartType.DoubleAxes) {
+    return config.column || config.line;
   }
   if (config.type) {
     return config[config.type] || {};

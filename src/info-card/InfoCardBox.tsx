@@ -8,6 +8,7 @@ import './styles/infocard.less';
 import { LooseObject } from '@antv/g-base';
 import { TooltipItem } from '@antv/g2/lib/interface';
 import { LegendObject } from '../legends/useLegends';
+import { getShapeConfig } from '../utils/tools/shapeConfig';
 
 export interface TriggerItem extends Omit<TooltipItem, 'color'> {
   title?: string;
@@ -56,8 +57,15 @@ const InfoCardBox = (props: InfoCardProps) => {
 
   useEffect(() => {
     acceptor((triggerItems: any) => {
+      let fixedItems = triggerItems;
+
+      // 对于双轴图，在tooltip shared模式下，triggerItems中包含折线图和柱状图的两种数据；
+      // 但在绘制双轴图时，折线图和柱状图使用的数据时相同的，所以需要在这里去重，只需要保留柱状图部分的数据即可；
+      if (config?.tooltip?.shared && config?.type === ChartType.DoubleAxes) {
+        fixedItems = fixedItems.filter((item: any) => legendObject.getLegend(item.name)?.type === ChartType.DoubleAxes);
+      }
       const covertItems: InfoCardData[] =
-        triggerItems?.map((item: TriggerItem): InfoCardData => {
+        fixedItems?.map((item: TriggerItem): InfoCardData => {
           if (!item) {
             return {} as InfoCardData;
           }

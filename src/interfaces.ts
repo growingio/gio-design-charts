@@ -34,7 +34,7 @@ export enum ChartType {
   BUBBLE = 'bubble',
   GAUGE = 'gauge',
   BOX = 'box',
-  DoubleAxes = 'column',
+  DoubleAxes = 'double-axes',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
