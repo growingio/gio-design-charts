@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/growingio/gio-design-charts/compare/v2.3.3...v2.3.4) (2023-06-26)
+
+
+### Bug Fixes
+
+* **Tooltip:** 在双轴图中，tooltip绑定数据去重 ([#364](https://github.com/growingio/gio-design-charts/issues/364)) ([ae12e16](https://github.com/growingio/gio-design-charts/commit/ae12e1615ae66c367f1b51db33d2d6ff07e0bfa3))
+
 ## [2.3.3](https://github.com/growingio/gio-design-charts/compare/v2.3.2...v2.3.3) (2023-06-13)
 
 
