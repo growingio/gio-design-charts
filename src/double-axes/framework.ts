@@ -92,7 +92,7 @@ export class DoubleAxes extends BaseChart {
       this.instance,
       options,
       config,
-      { ...columnCfg, customInfo: { chartType: ChartType.DoubleAxes, useDash: false } },
+      { ...columnCfg, customInfo: { chartType: ChartType.COLUMN, useDash: false } },
       (label: string) => {
         const legend = legendObject?.getLegend(label) || ({} as Legend);
         return {

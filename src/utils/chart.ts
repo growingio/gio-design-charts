@@ -1,12 +1,13 @@
 import { LooseObject } from '@antv/g-base';
 import { Datum } from '@antv/g2/lib/interface';
 import { cloneDeep, isEmpty, isString, lowerCase, merge } from 'lodash';
-import { ChartConfig, ChartOptions } from '../interfaces';
+import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { DEFAULT_HEIGHT, LEGEND_HEIGHT } from '../theme';
 import gioTheme, { darkTheme, darkViewTheme, viewTheme } from '../theme/chart';
 
 export const inValidConfig = (config: ChartConfig) => {
-  return isEmpty(config) || !config?.chart || !config?.[config?.type] || !config?.[config?.type]?.position;
+  const fixedType = config?.type === ChartType.DoubleAxes ? ChartType.COLUMN : config?.type;
+  return isEmpty(config) || !config?.chart || !config?.[fixedType] || !config?.[fixedType]?.position;
 };
 
 export const getTheme = (theme?: string | LooseObject | Datum) => {
