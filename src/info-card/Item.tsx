@@ -14,7 +14,8 @@ const Item = (props: ItemProps) => {
   const item = data?.data;
   const value = item?.[valueKey] || item?.value || 0;
   const defaultConvertValue = isNaN(Number(value)) ? value : formatNumber(Number(value));
-  const formatedValue = formatter ? formatter(value) : defaultConvertValue;
+  const formateValue = formatter ? formatter(value) : defaultConvertValue;
+
   return (
     <div className="gio-d-charts-infocard_item" data-testid="legend-item">
       <span className="gio-d-charts-infocard_label">
@@ -24,7 +25,7 @@ const Item = (props: ItemProps) => {
         />
         {item?.[forwardKey]}
       </span>
-      <span className="gio-d-charts-infocard_value">{formatedValue}</span>
+      <span className="gio-d-charts-infocard_value">{formateValue}</span>
     </div>
   );
 };

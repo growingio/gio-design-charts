@@ -3,8 +3,12 @@ import { ChartConfig, ChartType } from '../../interfaces';
 
 export const getShapeConfig = (config: ChartConfig = {}, type?: string) => {
   if (type) {
+    if (type === ChartType.DoubleAxes) {
+      return config.column || config.line;
+    }
     return config[type] || {};
   }
+
   if (config.type === ChartType.DoubleAxes) {
     return config.column || config.line;
   }

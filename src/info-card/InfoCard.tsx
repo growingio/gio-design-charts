@@ -33,6 +33,7 @@ const InfoCard = (props: InfoCardProps) => {
   const tooltipFormatter = config?.tooltip?.formatter;
 
   const formatter = tooltipFormatter || propFormatter;
+
   return (
     <>
       {renderTooltip ? (
@@ -52,7 +53,12 @@ const InfoCard = (props: InfoCardProps) => {
           <div className="gio-d-charts-infocard_label-content">
             {data.map((item: InfoCardData, index: number) => (
               <div key={`${item.data?.[forwardKey]}-${index}` || `empty-item-${index}`}>
-                <Item data={item} forwardKey={forwardKey} formatter={formatter} valueKey={valueKey} />
+                <Item
+                  data={item}
+                  forwardKey={item.xField || forwardKey}
+                  formatter={formatter}
+                  valueKey={item.yField || valueKey}
+                />
               </div>
             ))}
           </div>

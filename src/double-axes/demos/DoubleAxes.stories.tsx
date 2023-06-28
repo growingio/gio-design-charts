@@ -52,19 +52,7 @@ Basic.args = {
       showCrosshairs: false,
       shared: true,
       render: (options: any) => {
-        const itemData = options.data?.[0] || {};
-        console.log(options);
-        const newData = [
-          {
-            ...cloneDeep(itemData),
-            data: { ...itemData, showValue: itemData.data?.count, showTitle: itemData.data?.name },
-          },
-          {
-            ...cloneDeep(itemData),
-            data: { ...itemData, showValue: `${itemData.data?.percent * 100}%`, showTitle: '占比' },
-          },
-        ];
-        return <InfoCard {...options} title="用户量" data={newData} forwardKey="showTitle" valueKey="showValue" />;
+        return <InfoCard {...options} title="用户量" data={options?.data} />;
       },
     },
     column: {
