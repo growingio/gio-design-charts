@@ -1,3 +1,10 @@
+## [2.3.5](https://github.com/growingio/gio-design-charts/compare/v2.3.4...v2.3.5) (2023-06-28)
+
+
+### Bug Fixes
+
+* 修改infocard支持显示DoubleAxes ([#365](https://github.com/growingio/gio-design-charts/issues/365)) ([fa6bcb1](https://github.com/growingio/gio-design-charts/commit/fa6bcb1caec1a2a5f2563eaebbf0b9af3d58f646))
+
 ## [2.3.4](https://github.com/growingio/gio-design-charts/compare/v2.3.3...v2.3.4) (2023-06-26)
 
 
