@@ -105,6 +105,7 @@ export class Funnel extends BaseChart {
         defaultStyles: {
           opacity: 0.2,
           color: defaultColorForSingle ? `l(270) 0:#ffffff 1:${defaultColorForSingle}` : '',
+          minHeight: 8,
         },
       };
       fetchViewConfig(backgroundView, backgroundOptions, { ...config });
