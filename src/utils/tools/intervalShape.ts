@@ -93,8 +93,6 @@ function drawRect(
   const yFieldValue = getReactValue(shapeInfo);
   const isNeg = yFieldValue < 0;
 
-  console.log('defaultStyles', defaultStyles);
-
   const attrs = getFillAttrs(shapeInfo);
   const group = container.addGroup();
   const points = main.parsePoints(shapeInfo.points as Point[]); // 转换为画布坐标
