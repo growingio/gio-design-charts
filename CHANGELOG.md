@@ -1,3 +1,10 @@
+## [2.3.6](https://github.com/growingio/gio-design-charts/compare/v2.3.5...v2.3.6) (2023-08-03)
+
+
+### Bug Fixes
+
+* **Code:** 修改代码Sornar检测 ([#367](https://github.com/growingio/gio-design-charts/issues/367)) ([7200ea5](https://github.com/growingio/gio-design-charts/commit/7200ea5e525921876fea7c39c95f8ec68484c6dd))
+
 ## [2.3.5](https://github.com/growingio/gio-design-charts/compare/v2.3.4...v2.3.5) (2023-06-28)
 
 
