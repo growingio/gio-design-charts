@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Area> = (args) => {
     data.forEach((item) => {
       item.value = item.value + 1001;
     });
-    setData(data);
+    setData([...data]);
     reRender(new Date().getTime());
   };
 

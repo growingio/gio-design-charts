@@ -177,7 +177,7 @@ const UpdateCom = React.memo(() => {
       ].concat(newData)
     );
     (newLegends || []).unshift('乌鲁木齐');
-    setLegends(newLegends);
+    setLegends([...newLegends]);
   };
   return (
     <Card>
