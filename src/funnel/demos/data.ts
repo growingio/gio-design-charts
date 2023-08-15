@@ -6,8 +6,8 @@ export const dataWithBasicFunnel = [
 
 export const dataWith3Columns = [
   { type: '1.商品详情页｜浏览', count: 21734, value: 1, color: 'legend' },
-  { type: '2.加入购物车', count: 12734, value: 0.585902272936413, color: 'legend' },
-  { type: '3.进入购物车', count: 6230, value: 0.28664764884512745, color: 'legend' },
+  { type: '2.加入购物车', count: 12734, value: 0.00037939351237093843, color: 'legend' },
+  { type: '3.进入购物车', count: 6230, value: 0.00018969675618546922, color: 'legend' },
 ];
 
 export const dataWith6Columns = [
