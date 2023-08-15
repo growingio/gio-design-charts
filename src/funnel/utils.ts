@@ -14,7 +14,14 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
       covertData.push({ ...item });
     } else {
       texts.push(`${((item?.[contrastKey] / prev[contrastKey] || 0) * 100).toFixed(2)}%`);
-      covertData.push({ ...item, [contrastKey]: prev[contrastKey] || 0, prev: { ...prev }, column: { ...item } });
+      covertData.push({
+        ...item,
+        // [contrastKey]: prev[contrastKey] || 0,
+        [contrastKey]:
+          item?.[contrastKey] < 0.01 ? prev?.[contrastKey] - item?.[contrastKey] : prev?.[contrastKey] || 0,
+        prev: { ...prev },
+        column: { ...item },
+      });
       prev = item;
     }
   });
@@ -39,7 +46,9 @@ const getCovertData = (data: LooseObject[], forwardKey: string, contrastKey: str
           prevs[item[forwardKey]] = item;
           covertData.push({
             ...item,
-            [contrastKey]: prevItem[contrastKey] || 0,
+            // [contrastKey]: prevItem[contrastKey] || 0,
+            [contrastKey]:
+              item?.[contrastKey] < 0.01 ? prevItem?.[contrastKey] - item?.[contrastKey] : prevItem?.[contrastKey] || 0,
             prev: { ...prevItem },
             column: { ...item },
           });
