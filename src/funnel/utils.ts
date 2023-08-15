@@ -17,7 +17,8 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
       covertData.push({
         ...item,
         // [contrastKey]: prev[contrastKey] || 0,
-        [contrastKey]: item[contrastKey] < 0.01 ? prev[contrastKey] - item[contrastKey] : prev[contrastKey] || 0,
+        [contrastKey]:
+          item?.[contrastKey] < 0.01 ? prev?.[contrastKey] - item?.[contrastKey] : prev?.[contrastKey] || 0,
         prev: { ...prev },
         column: { ...item },
       });
@@ -47,7 +48,7 @@ const getCovertData = (data: LooseObject[], forwardKey: string, contrastKey: str
             ...item,
             // [contrastKey]: prevItem[contrastKey] || 0,
             [contrastKey]:
-              item[contrastKey] < 0.01 ? prevItem[contrastKey] - item[contrastKey] : prevItem[contrastKey] || 0,
+              item?.[contrastKey] < 0.01 ? prevItem?.[contrastKey] - item?.[contrastKey] : prevItem?.[contrastKey] || 0,
             prev: { ...prevItem },
             column: { ...item },
           });
