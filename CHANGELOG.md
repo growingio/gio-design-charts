@@ -1,3 +1,10 @@
+## [2.3.7](https://github.com/growingio/gio-design-charts/compare/v2.3.6...v2.3.7) (2023-08-15)
+
+
+### Bug Fixes
+
+* **Funnel:** 修改最低高度 ([#368](https://github.com/growingio/gio-design-charts/issues/368)) ([cd1b93c](https://github.com/growingio/gio-design-charts/commit/cd1b93c19e9b234d766b947f7dc97e5f3a4054f9))
+
 ## [2.3.6](https://github.com/growingio/gio-design-charts/compare/v2.3.5...v2.3.6) (2023-08-03)
 
 
