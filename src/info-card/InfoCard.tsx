@@ -55,9 +55,9 @@ const InfoCard = (props: InfoCardProps) => {
               <div key={`${item.data?.[forwardKey]}-${index}`}>
                 <Item
                   data={item}
-                  forwardKey={item.xField || forwardKey}
+                  forwardKey={(forwardKey || item.xField) as string}
                   formatter={formatter}
-                  valueKey={item.yField || valueKey}
+                  valueKey={valueKey || item.yField}
                 />
               </div>
             ))}
