@@ -1,3 +1,10 @@
+## [2.3.9](https://github.com/growingio/gio-design-charts/compare/v2.3.8...v2.3.9) (2023-09-18)
+
+
+### Bug Fixes
+
+* 修改infocard标题title的样式 ([#370](https://github.com/growingio/gio-design-charts/issues/370)) ([678780e](https://github.com/growingio/gio-design-charts/commit/678780e5d98cb12bf5f7299d831054302825dc22))
+
 ## [2.3.8](https://github.com/growingio/gio-design-charts/compare/v2.3.7...v2.3.8) (2023-09-01)
 
 
