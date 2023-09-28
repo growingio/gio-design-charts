@@ -5,9 +5,65 @@ export const dataWithBasicFunnel = [
 ];
 
 export const dataWith3Columns = [
-  { type: '1.商品详情页｜浏览', count: 21734, value: 1, color: 'legend' },
+  {
+    type: '1./UserNameUserNameUserNameUserNameUserNameUserNameUserNameUserNameUserNameUserNameUserNameUserNameUserNameUserName',
+    count: 21734,
+    value: 1,
+    color: 'legend',
+  },
   { type: '2.加入购物车', count: 12734, value: 0.00037939351237093843, color: 'legend' },
   { type: '3.进入购物车', count: 6230, value: 0.00018969675618546922, color: 'legend' },
+];
+
+export const data1 = [
+  {
+    metric: '1.wyl_test_new01',
+    count: 1140,
+    dim: '-undefined',
+    color: '#5F87FF',
+    groupIndex: 0,
+    value: 1,
+  },
+  {
+    metric: '2.wyl_test_new02',
+    count: 50,
+    dim: '-undefined',
+    color: '#5F87FF',
+    groupIndex: 1,
+    value: 0.043859649122807015,
+  },
+  {
+    metric: '3.wyl_test_new03',
+    count: 47,
+    dim: '-undefined',
+    color: '#5F87FF',
+    groupIndex: 2,
+    value: 0.0412280701754386,
+  },
+  {
+    metric: '4.test4',
+    count: 46,
+    dim: '-undefined',
+    color: '#5F87FF',
+    groupIndex: 3,
+    value: 0.04035087719298246,
+  },
+  {
+    metric: '5.test5',
+    count: 2,
+    dim: '-undefined',
+    color: '#5F87FF',
+    groupIndex: 4,
+    value: 0.0017543859649122807,
+  },
+  {
+    metric: '6.test6',
+    count: 1,
+    dim: '-undefined',
+    color: '#5F87FF',
+    groupIndex: 5,
+    value: 0.0008771929824561404,
+  },
 ];
 
 export const dataWith6Columns = [
