@@ -7,7 +7,7 @@ import { ChartConfig } from '../interfaces';
  * @param dst 当前环节的总量（留存量+流失量）
  * @returns 修复后的留存量和总量（仅作为数据展示的）
  */
-const fixedYAxisValue = (src: number, dst: number) => {
+const fixedYAxisValue = (src: number = 0, dst: number = 0) => {
   if (src === dst) {
     return [src, dst];
   }
@@ -37,7 +37,7 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
     } else {
       texts.push(`${((item?.[yAxis] / prev[yAxis] || 0) * 100).toFixed(2)}%`);
       const covertYAxisVal = item?.[yAxis] < 0.01 ? prev?.[yAxis] - item?.[yAxis] : prev?.[yAxis] || 0;
-      const [src, dst] = fixedYAxisValue(item[yAxis], covertYAxisVal);
+      const [src, dst] = fixedYAxisValue(item?.[yAxis], covertYAxisVal);
       covertData.push({
         ...item,
         // [yAxis]: prev[yAxis] || 0,
@@ -45,7 +45,9 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
         prev: { ...prev },
         column: { ...item },
       });
-      item[yAxis] = src;
+      if (item) {
+        item[yAxis] = src;
+      }
       prev = item;
     }
   });
@@ -77,7 +79,9 @@ const getCovertData = (data: LooseObject[], forwardKey: string, yAxis: string) =
             prev: { ...prevItem },
             column: { ...item },
           });
-          item[yAxis] = src;
+          if (item) {
+            item[yAxis] = src;
+          }
         } else {
           covertData.push({ ...item, column: { ...item } });
         }

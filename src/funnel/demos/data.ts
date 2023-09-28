@@ -178,7 +178,7 @@ export const covertData1 = [
   {
     type: '3.进入购物车',
     city: '北京',
-    value: 21734,
+    value: 1,
     column: {
       city: '北京',
       type: '3.进入购物车',
@@ -194,7 +194,7 @@ export const covertData1 = [
   {
     type: '3.进入购物车',
     city: '上海',
-    value: 21000,
+    value: 1,
     column: {
       city: '上海',
       type: '3.进入购物车',
@@ -209,10 +209,11 @@ export const covertData1 = [
   {
     type: '4.完成购买',
     city: '北京',
-    value: 0,
+    value: 0.015,
     prev: {
       city: '北京',
       type: '3.进入购物车',
+      value: 0,
     },
     column: {
       city: '北京',
@@ -223,7 +224,7 @@ export const covertData1 = [
   {
     type: '4.完成购买',
     city: '上海',
-    value: 8539,
+    value: 1,
     column: {
       city: '上海',
       type: '4.完成购买',
@@ -232,7 +233,7 @@ export const covertData1 = [
     prev: {
       city: '上海',
       type: '3.进入购物车',
-      value: 8539,
+      value: 0.985,
     },
   },
 ];
@@ -243,7 +244,7 @@ export const convertSingleData1 = [
   {
     type: '详情',
     city: '上海',
-    value: 21734,
+    value: 1,
     prev: {
       city: '北京',
       type: '商品',
@@ -259,6 +260,7 @@ export const convertSingleData1 = [
     prev: {
       city: '上海',
       type: '详情',
+      value: 0,
     },
     column: {},
   },
