@@ -1,3 +1,10 @@
+## [2.3.10](https://github.com/growingio/gio-design-charts/compare/v2.3.9...v2.3.10) (2023-09-28)
+
+
+### Bug Fixes
+
+* **Funnel:** 增加留存图的间距 ([#371](https://github.com/growingio/gio-design-charts/issues/371)) ([286e2a2](https://github.com/growingio/gio-design-charts/commit/286e2a2c02459ecddf3f1b48cbded36064c525d8))
+
 ## [2.3.9](https://github.com/growingio/gio-design-charts/compare/v2.3.8...v2.3.9) (2023-09-18)
 
 
