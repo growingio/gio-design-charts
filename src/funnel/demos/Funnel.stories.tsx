@@ -6,6 +6,7 @@ import DrillDownCard from './drilldown-card';
 import {
   contrastData,
   contrastGroupedData,
+  data1,
   dataWith3Columns,
   dataWith6Columns,
   dataWith7Columns,
@@ -83,13 +84,13 @@ const configLabel = [
 export const FunnelWith3Columns = Template.bind({});
 const FunnelWith3ColumnsArgs = {
   legends: [{ name: 'legend', color: '#62CE6C' }],
-  data: dataWith3Columns,
+  data: data1,
   config: {
     ...config,
     funnel: {
-      position: 'type*value',
+      position: 'metric*value',
       // position,
-      color: 'color',
+      color: 'dim',
       label: configLabel,
     },
     tooltip: {
