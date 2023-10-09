@@ -15,12 +15,29 @@ export interface Interceptor {
   bindElementEvents: (chart: Chart, options?: InterceptorOptions) => void;
 }
 
+export interface TriggerInfo {
+  x?: number;
+  y?: number;
+  clientX?: number;
+  clientY?: number;
+  tipX?: number;
+  tipY?: number;
+  type?: string;
+}
+
 const useInterceptors = () => {
   const triggerActionRef: MutableRefObject<string> = useRef('');
   const chartRef: MutableRefObject<Chart | null> = useRef(null);
   const tooltipRef = useRef<HTMLDivElement | null>();
+  const triggerEventRef = useRef<TriggerInfo | null>();
 
-  const getTrigger = useCallback(() => triggerActionRef.current, [triggerActionRef]);
+  const getTrigger = useCallback(
+    (): TriggerInfo => ({
+      type: triggerActionRef.current,
+      ...(triggerEventRef.current || {}),
+    }),
+    [triggerActionRef]
+  );
   /* istanbul ignore next */
   const setTrigger = useCallback(
     (trigger) => {
@@ -34,6 +51,19 @@ const useInterceptors = () => {
   const [, updated] = useState(0);
 
   const interceptors: Interceptor = useMemo(() => {
+    const setPosition = (e: Event) => {
+      const position: TriggerInfo = {
+        x: e.x,
+        y: e.y,
+        clientX: e.clientX,
+        clientY: e.clientY,
+      };
+      const top = +String(tooltipRef.current?.style?.top).replace('px', '') || 0;
+      const left = +String(tooltipRef.current?.style?.left).replace('px', '') || 0;
+      position.tipX = (position.clientX || 0) - ((position.x || 0) - left);
+      position.tipY = (position.clientY || 0) - (position.y || 0) + top;
+      triggerEventRef.current = position;
+    };
     return {
       bindTooltip(r: any) {
         tooltipRef.current = r?.current;
@@ -60,15 +90,18 @@ const useInterceptors = () => {
               tooltipRef.current.style.left = `${revisedOffsetX}px`;
             }
           }
+          setPosition(event);
           triggerActionRef.current = 'click';
           chart.lockTooltip();
           updated(new Date().getTime());
         });
-        chart.on('element:mouseover', () => {
+        chart.on('element:mouseover', (event: Event) => {
+          // setPosition(event);
           triggerActionRef.current = 'mouseover';
         });
         chart.on('element:mouseout', (e: Event) => {
           triggerActionRef.current = 'mouseover';
+          triggerEventRef.current = undefined;
           if (!e.event.relatedTarget) {
             chart.unlockTooltip();
             updated(new Date().getTime());
