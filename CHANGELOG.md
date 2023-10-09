@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/growingio/gio-design-charts/compare/v2.3.10...v2.4.0) (2023-10-09)
+
+
+### Features
+
+* 图表点击事件支持tooltip的position显示 ([#372](https://github.com/growingio/gio-design-charts/issues/372)) ([326743a](https://github.com/growingio/gio-design-charts/commit/326743aeb292aa1ceb5460ad8bd4c5fd04b46cad))
+
 ## [2.3.10](https://github.com/growingio/gio-design-charts/compare/v2.3.9...v2.3.10) (2023-09-28)
 
 
