@@ -10,6 +10,7 @@ import { TooltipItem } from '@antv/g2/lib/interface';
 import { LegendObject } from '../legends/useLegends';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { getAxisFields } from '../utils/frameworks/axis';
+import { TriggerInfo } from '../hooks/useInterceptors';
 
 export interface TriggerItem extends Omit<TooltipItem, 'color'> {
   title?: string;
@@ -30,7 +31,7 @@ export interface InfoCardData extends Legend {
 
 export interface InfoCardProps {
   legendObject: LegendObject;
-  getTrigger?: () => string;
+  getTrigger?: () => TriggerInfo;
   // triggerItems: TriggerItem[];
   acceptor: any;
   options: ChartOptions;
@@ -53,7 +54,7 @@ const InfoCardBox = (props: InfoCardProps) => {
 
   const [, update] = useState(0);
 
-  const trigger = getTrigger?.();
+  const triggerInfo = getTrigger?.();
 
   /* istanbul ignore next */
   const onMouseLeave = () => {
@@ -130,7 +131,7 @@ const InfoCardBox = (props: InfoCardProps) => {
       <InfoCard
         title={title}
         data={items}
-        trigger={trigger}
+        triggerInfo={triggerInfo}
         forwardKey={forwardKey}
         valueKey={valueKey}
         config={config}

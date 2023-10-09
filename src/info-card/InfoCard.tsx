@@ -4,6 +4,7 @@ import { InfoCardData } from './InfoCardBox';
 import Item from './Item';
 
 import './styles/infocard.less';
+import { TriggerInfo } from '../hooks/useInterceptors';
 
 export interface InfoCardProps {
   title: string;
@@ -12,9 +13,14 @@ export interface InfoCardProps {
   forwardKey: string;
   valueKey: string;
   formatter?: (value: string | number) => string | number;
-  trigger?: string;
+  triggerInfo?: TriggerInfo;
   config?: ChartConfig;
-  injectComponent?: (options: { data: LooseObject; trigger?: string; forwardKey: string }) => JSX.Element;
+  injectComponent?: (options: {
+    data: LooseObject;
+    trigger?: string;
+    triggerInfo?: TriggerInfo;
+    forwardKey: string;
+  }) => JSX.Element;
 }
 
 const InfoCard = (props: InfoCardProps) => {
@@ -22,7 +28,7 @@ const InfoCard = (props: InfoCardProps) => {
     title,
     subTitle,
     data = [],
-    trigger,
+    triggerInfo,
     forwardKey,
     valueKey,
     config,
@@ -37,7 +43,7 @@ const InfoCard = (props: InfoCardProps) => {
   return (
     <>
       {renderTooltip ? (
-        renderTooltip({ title, data, trigger, forwardKey, formatter })
+        renderTooltip({ title, data, trigger: triggerInfo?.type, triggerInfo, forwardKey, formatter })
       ) : (
         <div data-testid="infoCard" key="default-infocard">
           {title && (
@@ -62,7 +68,7 @@ const InfoCard = (props: InfoCardProps) => {
               </div>
             ))}
           </div>
-          {injectComponent?.({ data, trigger, forwardKey })}
+          {injectComponent?.({ data, trigger: triggerInfo?.type, triggerInfo, forwardKey })}
         </div>
       )}
     </>
