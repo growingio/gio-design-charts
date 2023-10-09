@@ -98,7 +98,6 @@ const AreaStackArgs = {
       showCrosshairs: true,
       enterable: true,
       render: (options: any) => {
-        console.log(options.triggerInfo);
         const title = options.data?.[0]?.data?.tm || options.title;
         return <InfoCard {...options} title={title} />;
       },

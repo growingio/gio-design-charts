@@ -118,7 +118,6 @@ const InfoCardBox = (props: InfoCardProps) => {
       setItems(covertItems);
     });
   }, [acceptor, chartType, nameKey, legendObject, options, config, setHoverItemD]);
-  console.log(getTrigger?.());
 
   // Though it will run many times when items are changed.
   // That is expected to update items, it seams it's better to direct use without useEffect.
