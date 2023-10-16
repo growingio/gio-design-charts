@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/growingio/gio-design-charts/compare/v2.4.0...v2.4.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* 修复图表最小值的问题 ([#373](https://github.com/growingio/gio-design-charts/issues/373)) ([ad0a7a5](https://github.com/growingio/gio-design-charts/commit/ad0a7a5bea31a539f1be63a0e7f6f6d5428f217e))
+
 # [2.4.0](https://github.com/growingio/gio-design-charts/compare/v2.3.10...v2.4.0) (2023-10-09)
 
 
