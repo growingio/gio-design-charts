@@ -18,6 +18,9 @@ const fixedYAxisValue = (src: number = 0, dst: number = 0) => {
   const fixedDst = Math.min(MAX_VALUE, dst + D_VALUE);
   // 留存值，和总量值应该至少相差D_VALUE，且不能小于0；
   let fixedSrc = Math.min(src, fixedDst - D_VALUE);
+  if (fixedDst - D_VALUE <= 0) {
+    fixedSrc = src;
+  }
   fixedSrc = Math.max(0, fixedSrc);
 
   return [fixedSrc, fixedDst];

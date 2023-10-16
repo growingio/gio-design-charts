@@ -46,7 +46,7 @@ export const data1 = [
     dim: '-undefined',
     color: '#5F87FF',
     groupIndex: 3,
-    value: 0.04035087719298246,
+    value: 0.0017543859649122807,
   },
   {
     metric: '5.test5',
