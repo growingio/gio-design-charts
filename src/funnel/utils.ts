@@ -1,6 +1,8 @@
 import { LooseObject } from '@antv/component';
 import { ChartConfig } from '../interfaces';
 
+export const getFixedFieldY = (y: string) => `__${y}`;
+
 /**
  *
  * @param src 当前环节的留存量；
@@ -28,28 +30,32 @@ const fixedYAxisValue = (src: number = 0, dst: number = 0) => {
 
 export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
   const yAxis = config?.funnel?.contrast || 'value';
+  const fieldY = getFixedFieldY(yAxis);
   const covertData = [] as LooseObject[];
   const texts = [] as string[];
   let prev = {} as LooseObject;
   data.forEach((item: LooseObject, index: number) => {
+    if (!item) {
+      return;
+    }
+    item[fieldY] = item[yAxis];
     if (index === 0) {
       covertData.push({ ...item });
       prev = item;
     } else if (item?.isPlaceholder) {
       covertData.push({ ...item });
     } else {
-      texts.push(`${((item?.[yAxis] / prev[yAxis] || 0) * 100).toFixed(2)}%`);
-      const covertYAxisVal = item?.[yAxis] < 0.01 ? prev?.[yAxis] - item?.[yAxis] : prev?.[yAxis] || 0;
-      const [src, dst] = fixedYAxisValue(item?.[yAxis], covertYAxisVal);
+      texts.push(`${((item?.[fieldY] / prev[fieldY] || 0) * 100).toFixed(2)}%`);
+      const covertYAxisVal = item?.[fieldY] < 0.01 ? prev?.[fieldY] - item?.[fieldY] : prev?.[fieldY] || 0;
+      const [src, dst] = fixedYAxisValue(item?.[fieldY], covertYAxisVal);
       covertData.push({
         ...item,
-        // [yAxis]: prev[yAxis] || 0,
-        [yAxis]: dst,
+        [fieldY]: dst,
         prev: { ...prev },
         column: { ...item },
       });
       if (item) {
-        item[yAxis] = src;
+        item[fieldY] = src;
       }
       prev = item;
     }
@@ -66,24 +72,28 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
 
 const getCovertData = (data: LooseObject[], forwardKey: string, yAxis: string) => {
   const covertData = [] as LooseObject[];
+  const fieldY = getFixedFieldY(yAxis);
   if (forwardKey) {
     const prevs = {} as LooseObject;
     data.forEach((item: LooseObject) => {
+      if (!item) {
+        return;
+      }
+      item[fieldY] = item[yAxis];
       const prevItem = prevs[item?.[forwardKey]];
       if (prevItem) {
         if (!item.isPlaceholder) {
           prevs[item[forwardKey]] = item;
-          const covertYAxisVal = item?.[yAxis] < 0.01 ? prevItem?.[yAxis] - item?.[yAxis] : prevItem?.[yAxis] || 0;
-          const [src, dst] = fixedYAxisValue(item[yAxis], covertYAxisVal);
+          const covertYAxisVal = item?.[fieldY] < 0.01 ? prevItem?.[fieldY] - item?.[fieldY] : prevItem?.[fieldY] || 0;
+          const [src, dst] = fixedYAxisValue(item[fieldY], covertYAxisVal);
           covertData.push({
             ...item,
-            // [yAxis]: prevItem[yAxis] || 0,
-            [yAxis]: dst,
+            [fieldY]: dst,
             prev: { ...prevItem },
             column: { ...item },
           });
           if (item) {
-            item[yAxis] = src;
+            item[fieldY] = src;
           }
         } else {
           covertData.push({ ...item, column: { ...item } });
