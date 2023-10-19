@@ -56,9 +56,10 @@ function getRectAttrs(points: Point[], stack = false, isNeg?: boolean, styles?: 
   const width = Math.abs(points[0].x - points[2].x);
   const height = Math.abs(points[0].y - points[2].y);
   const offsetMinHeight = styles?.minHeight || DEFAULT_MIN_HEIGHT;
-  const defaultHeight = stack ? height : offsetMinHeight;
-  const hookHeight = height === 0 ? 0 : defaultHeight;
+  // const defaultHeight = stack ? height : offsetMinHeight;
+  const hookHeight = height === 0 ? 0 : offsetMinHeight;
   const fixedHeight = height < offsetMinHeight ? hookHeight : height - 1;
+
   if (isNeg) {
     /* istanbul ignore next */
     return {
@@ -69,9 +70,13 @@ function getRectAttrs(points: Point[], stack = false, isNeg?: boolean, styles?: 
     };
   }
 
+  const rectX = (points[0].x + points[1].x) / 2;
+  const rectY =
+    fixedHeight <= offsetMinHeight && fixedHeight !== 0 ? points[1].y - (fixedHeight - height) - 1 : points[1].y;
+
   return {
-    x: (points[0].x + points[1].x) / 2,
-    y: fixedHeight <= offsetMinHeight && fixedHeight !== 0 ? points[1].y - (fixedHeight - height) - 1 : points[1].y,
+    x: rectX,
+    y: rectY,
     width,
     height: fixedHeight,
   };

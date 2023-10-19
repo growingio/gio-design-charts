@@ -8,6 +8,7 @@ import { addLinkByElementHigh } from '../utils/tools/elementLink';
 import gioTheme, { viewTheme } from '../theme/chart';
 import { LooseObject } from '@antv/g-base';
 import { InterceptorOptions } from '../hooks/useInterceptors';
+import { getFixedFieldY } from './utils';
 
 export class Funnel extends BaseChart {
   fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
@@ -86,6 +87,10 @@ export class Funnel extends BaseChart {
       const isGroup = (options.data as LooseObject)?.isGroup;
 
       const emptyLegends = isEmpty(legendObject?.mapping);
+
+      const [xField, yField] = this.getAxisFields();
+      const funnelConfig = { ...config.funnel, position: `${xField}*${getFixedFieldY(yField)}` };
+      config.funnel = funnelConfig;
 
       // Use viewTheme to set the label of axis is white
       const backgroundView = this.instance.createView({
