@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/growingio/gio-design-charts/compare/v2.4.1...v2.4.2) (2023-10-19)
+
+
+### Bug Fixes
+
+* 修改柱状图显示的问题 ([#374](https://github.com/growingio/gio-design-charts/issues/374)) ([8f37297](https://github.com/growingio/gio-design-charts/commit/8f37297c936d3fba59330edb773760382eab5342))
+
 ## [2.4.1](https://github.com/growingio/gio-design-charts/compare/v2.4.0...v2.4.1) (2023-10-16)
 
 
