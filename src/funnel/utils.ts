@@ -35,6 +35,9 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
   const texts = [] as string[];
   let prev = {} as LooseObject;
   data.forEach((item: LooseObject, index: number) => {
+    if (!item) {
+      return;
+    }
     item[fieldY] = item[yAxis];
     if (index === 0) {
       covertData.push({ ...item });
@@ -73,6 +76,9 @@ const getCovertData = (data: LooseObject[], forwardKey: string, yAxis: string) =
   if (forwardKey) {
     const prevs = {} as LooseObject;
     data.forEach((item: LooseObject) => {
+      if (!item) {
+        return;
+      }
       item[fieldY] = item[yAxis];
       const prevItem = prevs[item?.[forwardKey]];
       if (prevItem) {
