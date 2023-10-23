@@ -1,5 +1,6 @@
 import { LooseObject } from '@antv/component';
 import { ChartConfig } from '../interfaces';
+import { formatNumber, formatPercent } from '../utils';
 
 export const getFixedFieldY = (y: string) => `__${y}`;
 
@@ -41,11 +42,13 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
     item[fieldY] = item[yAxis];
     if (index === 0) {
       covertData.push({ ...item });
+      item.__rate = 1;
       prev = item;
     } else if (item?.isPlaceholder) {
       covertData.push({ ...item });
     } else {
-      texts.push(`${((item?.[fieldY] / prev[fieldY] || 0) * 100).toFixed(2)}%`);
+      const rate: number = item?.[yAxis] / prev[yAxis] || 0;
+      texts.push(formatPercent(rate) as string);
       const covertYAxisVal = item?.[fieldY] < 0.01 ? prev?.[fieldY] - item?.[fieldY] : prev?.[fieldY] || 0;
       const [src, dst] = fixedYAxisValue(item?.[fieldY], covertYAxisVal);
       covertData.push({
@@ -57,6 +60,8 @@ export const getSingleData = (data: LooseObject[], config?: ChartConfig) => {
       if (item) {
         item[fieldY] = src;
       }
+
+      item.__rate = rate;
       prev = item;
     }
   });
