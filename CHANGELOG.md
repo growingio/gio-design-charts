@@ -1,3 +1,10 @@
+## [2.4.3](https://github.com/growingio/gio-design-charts/compare/v2.4.2...v2.4.3) (2023-10-23)
+
+
+### Bug Fixes
+
+* **Funnel:** 修改Funnel箭头的数据 ([#375](https://github.com/growingio/gio-design-charts/issues/375)) ([3c4f9f1](https://github.com/growingio/gio-design-charts/commit/3c4f9f140c79765dc7dec3fae03010cb40142619))
+
 ## [2.4.2](https://github.com/growingio/gio-design-charts/compare/v2.4.1...v2.4.2) (2023-10-19)
 
 
