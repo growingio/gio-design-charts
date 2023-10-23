@@ -20,7 +20,8 @@ export const formatNumber = (value: number | string, decimalCount = 2, intSuffix
   } else {
     decimalValueStr = decimalValue.toFixed(decimalCount);
   }
-  const result = String(Number((intValue + parseFloat(decimalValueStr)).toFixed(decimalCount)));
+
+  const result = String(Number(intValue + parseFloat(decimalValueStr)));
 
   const fillStr = intSuffixZeroFill ? '.' + '0'.repeat(decimalCount) : '';
   const decimalPart = result.indexOf('.') >= 0 ? result.slice(result.indexOf('.')) : fillStr;
