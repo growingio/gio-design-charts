@@ -1,3 +1,10 @@
+## [2.4.4](https://github.com/growingio/gio-design-charts/compare/v2.4.3...v2.4.4) (2023-10-30)
+
+
+### Bug Fixes
+
+* 漏斗图的修复 ([#376](https://github.com/growingio/gio-design-charts/issues/376)) ([b6d0364](https://github.com/growingio/gio-design-charts/commit/b6d036452a178f3a9c6e96f6fe047a53055aff9a))
+
 ## [2.4.3](https://github.com/growingio/gio-design-charts/compare/v2.4.2...v2.4.3) (2023-10-23)
 
 
