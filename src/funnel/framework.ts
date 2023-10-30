@@ -9,6 +9,7 @@ import gioTheme, { viewTheme } from '../theme/chart';
 import { LooseObject } from '@antv/g-base';
 import { InterceptorOptions } from '../hooks/useInterceptors';
 import { getFixedFieldY } from './utils';
+import { AxisOption } from '@antv/g2/lib/interface';
 
 export class Funnel extends BaseChart {
   fetchInterval = (chart: Chart | View, options: ChartOptions, config: ChartConfig) => {
@@ -47,6 +48,36 @@ export class Funnel extends BaseChart {
         addLinkByElement(event.view as any, { texts, showLabel: (boxWidth - 60) / elementCount > 130 });
       }
     });
+  };
+
+  bindFixedConfig = (chart: Chart, config: ChartConfig, yField: string) => {
+    const scale = config.scale;
+    if (scale) {
+      if (Array.isArray(scale)) {
+        if (scale?.[0] === yField && (scale as any)?.[1]) {
+          chart.scale('__value', (scale as any)?.[1]);
+        }
+      } else {
+        if (scale?.[yField]) {
+          chart.scale('__value', scale?.[yField]);
+        }
+      }
+    }
+
+    const axis = config.axis;
+    if (axis !== false) {
+      if (axis) {
+        if (axis?.[0] === yField && (axis as any)?.[1]) {
+          chart.axis('__value', (axis as any)?.[1]);
+        }
+      }
+      const axises = config.axises;
+      axises?.forEach((a: [string, AxisOption]) => {
+        if (a?.[0] === yField && a?.[1]) {
+          chart.axis('__value', a?.[1]);
+        }
+      });
+    }
   };
 
   updateHoc = () => {
@@ -91,6 +122,8 @@ export class Funnel extends BaseChart {
       const [xField, yField] = this.getAxisFields();
       const funnelConfig = { ...config.funnel, position: `${xField}*${getFixedFieldY(yField)}` };
       config.funnel = funnelConfig;
+
+      this.bindFixedConfig(this.instance, config, yField);
 
       // Use viewTheme to set the label of axis is white
       const backgroundView = this.instance.createView({
