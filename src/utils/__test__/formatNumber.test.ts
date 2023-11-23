@@ -13,6 +13,7 @@ describe('test formatNumber', () => {
   test('formatNumber decimalCount', () => {
     expect(formatNumber(0.23, 0)).toBe('0');
     expect(formatNumber(0.26123123, 1)).toBe('0.3');
+    expect(formatNumber(1.89, 2)).toBe('1.89');
     expect(formatNumber(123415454.23, 0)).toBe('123,415,454');
     expect(formatNumber(123415454.6, 0)).toBe('123,415,455');
   });
