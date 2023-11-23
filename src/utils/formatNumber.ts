@@ -15,25 +15,43 @@ export const formatNumber = (value: number | string, decimalCount = 2, intSuffix
   const intValue = parseInt(value + '', 10);
   const decimalValue = (value as number) - intValue;
   let decimalValueStr;
+  let valueStr = value;
+
   if (intValue === 0 && decimalCount > 0) {
     decimalValueStr = decimalValue.toPrecision(decimalCount);
+    valueStr = `${intValue + parseFloat(decimalValueStr)}`;
   } else {
     decimalValueStr = decimalValue.toFixed(decimalCount);
+    valueStr = `${(intValue + parseFloat(decimalValueStr)).toFixed(decimalCount)}`;
   }
 
-  const result = String(Number(intValue + parseFloat(decimalValueStr)));
+  let i = valueStr.length - 1;
+  if (valueStr.indexOf('.') >= 0) {
+    while (i >= 0 && (valueStr[i] === '.' || valueStr[i] === '0')) {
+      i--;
+      if (valueStr[i] === '.') {
+        i--;
+        break;
+      }
+    }
+  }
 
-  const fillStr = intSuffixZeroFill ? '.' + '0'.repeat(decimalCount) : '';
-  const decimalPart = result.indexOf('.') >= 0 ? result.slice(result.indexOf('.')) : fillStr;
-
+  const result = valueStr.slice(0, i + 1);
+  const decimalPart =
+    result.indexOf('.') >= 0
+      ? result.slice(result.indexOf('.'))
+      : intSuffixZeroFill
+      ? `.${'0'.repeat(decimalCount)}`
+      : '';
   let intPart = result.slice(0, result.indexOf('.') >= 0 ? result.indexOf('.') : result.length);
   intPart = intPart
     .split('')
-    .map((char, index) => {
+    .map((i, index) => {
       const dotIndex = intPart.length - index - 1;
-      return dotIndex % 3 === 0 && dotIndex !== 0 ? char + ',' : char;
+      return dotIndex % 3 === 0 && dotIndex !== 0 ? `${i},` : i;
     })
     .join('');
+
   return sign + intPart + decimalPart;
 };
 
