@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/growingio/gio-design-charts/compare/v2.4.4...v2.5.0) (2023-11-27)
+
+
+### Features
+
+* update formatNumber ([#377](https://github.com/growingio/gio-design-charts/issues/377)) ([b99867e](https://github.com/growingio/gio-design-charts/commit/b99867ee510443e7f7d367b49b0634f9263d6e25))
+
 ## [2.4.4](https://github.com/growingio/gio-design-charts/compare/v2.4.3...v2.4.4) (2023-10-30)
 
 
