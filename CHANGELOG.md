@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/growingio/gio-design-charts/compare/v2.5.0...v2.5.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* **GroupFunnel:** Add __rate for GroupFunnel data ([#378](https://github.com/growingio/gio-design-charts/issues/378)) ([d5f2c01](https://github.com/growingio/gio-design-charts/commit/d5f2c01ea69d27feb03d99d9bafa66621ef487fd))
+
 # [2.5.0](https://github.com/growingio/gio-design-charts/compare/v2.4.4...v2.5.0) (2023-11-27)
 
 
