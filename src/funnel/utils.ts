@@ -79,17 +79,18 @@ const getCovertData = (data: LooseObject[], forwardKey: string, yAxis: string) =
   const covertData = [] as LooseObject[];
   const fieldY = getFixedFieldY(yAxis);
   if (forwardKey) {
-    const prevs = {} as LooseObject;
+    const prefixItems = {} as LooseObject;
     data.forEach((item: LooseObject) => {
       if (!item) {
         return;
       }
       item[fieldY] = item[yAxis];
-      const prevItem = prevs[item?.[forwardKey]];
+      const prevItem = prefixItems[item?.[forwardKey]];
       if (prevItem) {
         if (!item.isPlaceholder) {
-          prevs[item[forwardKey]] = item;
+          prefixItems[item[forwardKey]] = item;
           const covertYAxisVal = item?.[fieldY] < 0.01 ? prevItem?.[fieldY] - item?.[fieldY] : prevItem?.[fieldY] || 0;
+          const rate = (item?.[yAxis] / prevItem?.[yAxis]) || 0
           const [src, dst] = fixedYAxisValue(item[fieldY], covertYAxisVal);
           covertData.push({
             ...item,
@@ -97,6 +98,7 @@ const getCovertData = (data: LooseObject[], forwardKey: string, yAxis: string) =
             prev: { ...prevItem },
             column: { ...item },
           });
+          item.__rate = rate
           if (item) {
             item[fieldY] = src;
           }
@@ -105,9 +107,10 @@ const getCovertData = (data: LooseObject[], forwardKey: string, yAxis: string) =
         }
       } else {
         if (!item?.isPlaceholder) {
-          prevs[item?.[forwardKey]] = item;
+          prefixItems[item?.[forwardKey]] = item;
         }
-        covertData.push({ ...item });
+        item.__rate = 1;
+        covertData.push({ ...item, __rate: 1 });
       }
     });
   }
