@@ -13,31 +13,32 @@ export class HotMap extends BaseChart {
     if (!id || isEmpty(data)) {
       return {};
     }
-
-    config.legend = {
-      position: 'bottom-left',
-      label: {
-        formatter: (text: any) => `${formatPercent(text || 0)}`,
-        style: {
-          fill: '#313E75',
-        },
-      },
-      rail: {
-        size: 16,
-        style: {
-          fill: '#fff',
-        },
-      },
-    };
-
-    this.instance = generateChart(options, config);
-    fetchConfig(this.instance, options, config);
-
     const shapeConfig = getShapeConfig(config, ChartType.HotMap);
 
     const { xField, yField, zField } = shapeConfig;
 
     const { source } = (data || {}) as any;
+
+    if (!isEmpty(source) && source?.length >= 1) {
+      config.legend = {
+        position: 'bottom-left',
+        label: {
+          formatter: (text: any) => `${formatPercent(text || 0)}`,
+          style: {
+            fill: '#313E75',
+          },
+        },
+        rail: {
+          size: 16,
+          style: {
+            fill: '#fff',
+          },
+        },
+      };
+    }
+
+    this.instance = generateChart(options, config);
+    fetchConfig(this.instance, options, config);
 
     this.instance.data(source);
 
