@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/growingio/gio-design-charts/compare/v2.5.1...v2.6.0) (2024-04-08)
+
+
+### Features
+
+* **HotMap:** 添加hotmap图表 ([#379](https://github.com/growingio/gio-design-charts/issues/379)) ([c72d953](https://github.com/growingio/gio-design-charts/commit/c72d9536a08f49ead0dbdc9b47e6ddd8f70410a4))
+
 ## [2.5.1](https://github.com/growingio/gio-design-charts/compare/v2.5.0...v2.5.1) (2023-11-28)
 
 
