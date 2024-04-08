@@ -35,6 +35,7 @@ export enum ChartType {
   GAUGE = 'gauge',
   BOX = 'box',
   DoubleAxes = 'double-axes',
+  HotMap = 'hotMap',
 }
 
 export interface ShapeStyle extends Omit<ShapeAttrs, 'lineDash'> {
@@ -218,6 +219,13 @@ export interface FunnelConfig extends ChartConfig {
   funnel: Shape & { contrast?: string };
 }
 
+export interface HotMapConfig extends ChartConfig {
+  /**
+   * 用来创建漏斗图的配置
+   */
+  hotMap: Shape & { contrast?: string };
+}
+
 export interface DoubleAxesConfig extends ChartConfig {
   /**
    * 用来创建柱状图的配置
@@ -273,7 +281,10 @@ export type AdjustOptionType = string | string[] | AdjustOption | AdjustOption[]
 export type AdjustOptType = string | string[] | AdjustOpt | AdjustOpt[];
 
 export interface Shape extends LooseObject {
-  position: string;
+  position?: string;
+  xField?: string;
+  yField?: string;
+  zField?: string;
   /**
    * 设置数据调整方式
    * 参考: https://g2.antv.vision/zh/docs/api/general/adjust
@@ -283,7 +294,7 @@ export interface Shape extends LooseObject {
   /**
    * 颜色通道
    */
-  color: string;
+  color?: string;
 }
 
 export interface ReportThing {

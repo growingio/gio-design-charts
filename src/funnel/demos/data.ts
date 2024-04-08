@@ -66,6 +66,339 @@ export const data1 = [
   },
 ];
 
+export const data2 = [
+  {
+      "metric": "1.MAP_交互行为",
+      "count": 14,
+      "dim": "_all_-全部",
+      "color": "#5F87FF",
+      "comparison_value": "_all_",
+      "realDim": "全部",
+      "groupIndex": 0,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "2.UBA_交互行为",
+      "count": 7,
+      "dim": "_all_-全部",
+      "color": "#5F87FF",
+      "comparison_value": "_all_",
+      "realDim": "全部",
+      "groupIndex": 1,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "3.UBA_交互行为",
+      "count": 7,
+      "dim": "_all_-全部",
+      "color": "#5F87FF",
+      "comparison_value": "_all_",
+      "realDim": "全部",
+      "groupIndex": 2,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "4.UBA_交互行为",
+      "count": 7,
+      "dim": "_all_-全部",
+      "color": "#5F87FF",
+      "comparison_value": "_all_",
+      "realDim": "全部",
+      "groupIndex": 3,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "5.UBA_交互行为",
+      "count": 7,
+      "dim": "_all_-全部",
+      "color": "#5F87FF",
+      "comparison_value": "_all_",
+      "realDim": "全部",
+      "groupIndex": 4,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "1.MAP_交互行为",
+      "count": 8,
+      "dim": "6a0ae07d1ca3fb267d5cd1d31fa6d008-空间管理员",
+      "color": "#FFDD63",
+      "comparison_value": "6a0ae07d1ca3fb267d5cd1d31fa6d008",
+      "realDim": "空间管理员",
+      "groupIndex": 0,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "2.UBA_交互行为",
+      "count": 5,
+      "dim": "6a0ae07d1ca3fb267d5cd1d31fa6d008-空间管理员",
+      "color": "#FFDD63",
+      "comparison_value": "6a0ae07d1ca3fb267d5cd1d31fa6d008",
+      "realDim": "空间管理员",
+      "groupIndex": 1,
+      "value": 0.625,
+      "__value": 0.625
+  },
+  {
+      "metric": "3.UBA_交互行为",
+      "count": 5,
+      "dim": "6a0ae07d1ca3fb267d5cd1d31fa6d008-空间管理员",
+      "color": "#FFDD63",
+      "comparison_value": "6a0ae07d1ca3fb267d5cd1d31fa6d008",
+      "realDim": "空间管理员",
+      "groupIndex": 2,
+      "value": 0.625,
+      "__value": 0.625
+  },
+  {
+      "metric": "4.UBA_交互行为",
+      "count": 5,
+      "dim": "6a0ae07d1ca3fb267d5cd1d31fa6d008-空间管理员",
+      "color": "#FFDD63",
+      "comparison_value": "6a0ae07d1ca3fb267d5cd1d31fa6d008",
+      "realDim": "空间管理员",
+      "groupIndex": 3,
+      "value": 0.625,
+      "__value": 0.625
+  },
+  {
+      "metric": "5.UBA_交互行为",
+      "count": 5,
+      "dim": "6a0ae07d1ca3fb267d5cd1d31fa6d008-空间管理员",
+      "color": "#FFDD63",
+      "comparison_value": "6a0ae07d1ca3fb267d5cd1d31fa6d008",
+      "realDim": "空间管理员",
+      "groupIndex": 4,
+      "value": 0.625,
+      "__value": 0.625
+  },
+  {
+      "metric": "1.MAP_交互行为",
+      "count": 4,
+      "dim": "bfc532e5dc07961207e9ad3eb6209bb2-空间负责人",
+      "color": "#62CE6C",
+      "comparison_value": "bfc532e5dc07961207e9ad3eb6209bb2",
+      "realDim": "空间负责人",
+      "groupIndex": 0,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "2.UBA_交互行为",
+      "count": 3,
+      "dim": "bfc532e5dc07961207e9ad3eb6209bb2-空间负责人",
+      "color": "#62CE6C",
+      "comparison_value": "bfc532e5dc07961207e9ad3eb6209bb2",
+      "realDim": "空间负责人",
+      "groupIndex": 1,
+      "value": 0.75,
+      "__value": 0.75
+  },
+  {
+      "metric": "3.UBA_交互行为",
+      "count": 3,
+      "dim": "bfc532e5dc07961207e9ad3eb6209bb2-空间负责人",
+      "color": "#62CE6C",
+      "comparison_value": "bfc532e5dc07961207e9ad3eb6209bb2",
+      "realDim": "空间负责人",
+      "groupIndex": 2,
+      "value": 0.75,
+      "__value": 0.75
+  },
+  {
+      "metric": "4.UBA_交互行为",
+      "count": 3,
+      "dim": "bfc532e5dc07961207e9ad3eb6209bb2-空间负责人",
+      "color": "#62CE6C",
+      "comparison_value": "bfc532e5dc07961207e9ad3eb6209bb2",
+      "realDim": "空间负责人",
+      "groupIndex": 3,
+      "value": 0.75,
+      "__value": 0.75
+  },
+  {
+      "metric": "5.UBA_交互行为",
+      "count": 3,
+      "dim": "bfc532e5dc07961207e9ad3eb6209bb2-空间负责人",
+      "color": "#62CE6C",
+      "comparison_value": "bfc532e5dc07961207e9ad3eb6209bb2",
+      "realDim": "空间负责人",
+      "groupIndex": 4,
+      "value": 0.75,
+      "__value": 0.75
+  },
+  {
+      "metric": "1.MAP_交互行为",
+      "count": 3,
+      "dim": "b6f4a2ec6356bbd56d49f2096bf9d3d3-Owner",
+      "color": "#FFA455",
+      "comparison_value": "b6f4a2ec6356bbd56d49f2096bf9d3d3",
+      "realDim": "Owner",
+      "groupIndex": 0,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "2.UBA_交互行为",
+      "count": 3,
+      "dim": "b6f4a2ec6356bbd56d49f2096bf9d3d3-Owner",
+      "color": "#FFA455",
+      "comparison_value": "b6f4a2ec6356bbd56d49f2096bf9d3d3",
+      "realDim": "Owner",
+      "groupIndex": 1,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "3.UBA_交互行为",
+      "count": 3,
+      "dim": "b6f4a2ec6356bbd56d49f2096bf9d3d3-Owner",
+      "color": "#FFA455",
+      "comparison_value": "b6f4a2ec6356bbd56d49f2096bf9d3d3",
+      "realDim": "Owner",
+      "groupIndex": 2,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "4.UBA_交互行为",
+      "count": 3,
+      "dim": "b6f4a2ec6356bbd56d49f2096bf9d3d3-Owner",
+      "color": "#FFA455",
+      "comparison_value": "b6f4a2ec6356bbd56d49f2096bf9d3d3",
+      "realDim": "Owner",
+      "groupIndex": 3,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "5.UBA_交互行为",
+      "count": 3,
+      "dim": "b6f4a2ec6356bbd56d49f2096bf9d3d3-Owner",
+      "color": "#FFA455",
+      "comparison_value": "b6f4a2ec6356bbd56d49f2096bf9d3d3",
+      "realDim": "Owner",
+      "groupIndex": 4,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "1.MAP_交互行为",
+      "count": 2,
+      "dim": "eff39d6862f7d7497131d49b053a8352-分析师",
+      "color": "#60BCFA",
+      "comparison_value": "eff39d6862f7d7497131d49b053a8352",
+      "realDim": "分析师",
+      "groupIndex": 0,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "2.UBA_交互行为",
+      "count": 1,
+      "dim": "eff39d6862f7d7497131d49b053a8352-分析师",
+      "color": "#60BCFA",
+      "comparison_value": "eff39d6862f7d7497131d49b053a8352",
+      "realDim": "分析师",
+      "groupIndex": 1,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "3.UBA_交互行为",
+      "count": 1,
+      "dim": "eff39d6862f7d7497131d49b053a8352-分析师",
+      "color": "#60BCFA",
+      "comparison_value": "eff39d6862f7d7497131d49b053a8352",
+      "realDim": "分析师",
+      "groupIndex": 2,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "4.UBA_交互行为",
+      "count": 1,
+      "dim": "eff39d6862f7d7497131d49b053a8352-分析师",
+      "color": "#60BCFA",
+      "comparison_value": "eff39d6862f7d7497131d49b053a8352",
+      "realDim": "分析师",
+      "groupIndex": 3,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "5.UBA_交互行为",
+      "count": 1,
+      "dim": "eff39d6862f7d7497131d49b053a8352-分析师",
+      "color": "#60BCFA",
+      "comparison_value": "eff39d6862f7d7497131d49b053a8352",
+      "realDim": "分析师",
+      "groupIndex": 4,
+      "value": 0.5,
+      "__value": 0.5
+  },
+  {
+      "metric": "1.MAP_交互行为",
+      "count": 2,
+      "dim": "7b7bc2512ee1fedcd76bdc68926d4f7b-Administrator",
+      "color": "#DB7892",
+      "comparison_value": "7b7bc2512ee1fedcd76bdc68926d4f7b",
+      "realDim": "Administrator",
+      "groupIndex": 0,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "2.UBA_交互行为",
+      "count": 2,
+      "dim": "7b7bc2512ee1fedcd76bdc68926d4f7b-Administrator",
+      "color": "#DB7892",
+      "comparison_value": "7b7bc2512ee1fedcd76bdc68926d4f7b",
+      "realDim": "Administrator",
+      "groupIndex": 1,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "3.UBA_交互行为",
+      "count": 2,
+      "dim": "7b7bc2512ee1fedcd76bdc68926d4f7b-Administrator",
+      "color": "#DB7892",
+      "comparison_value": "7b7bc2512ee1fedcd76bdc68926d4f7b",
+      "realDim": "Administrator",
+      "groupIndex": 2,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "4.UBA_交互行为",
+      "count": 2,
+      "dim": "7b7bc2512ee1fedcd76bdc68926d4f7b-Administrator",
+      "color": "#DB7892",
+      "comparison_value": "7b7bc2512ee1fedcd76bdc68926d4f7b",
+      "realDim": "Administrator",
+      "groupIndex": 3,
+      "value": 1,
+      "__value": 1
+  },
+  {
+      "metric": "5.UBA_交互行为",
+      "count": 2,
+      "dim": "7b7bc2512ee1fedcd76bdc68926d4f7b-Administrator",
+      "color": "#DB7892",
+      "comparison_value": "7b7bc2512ee1fedcd76bdc68926d4f7b",
+      "realDim": "Administrator",
+      "groupIndex": 4,
+      "value": 1,
+      "__value": 1
+  }
+]
+
 export const dataWith6Columns = [
   { type: '1.商品详情页｜浏览', count: 21734, value: 1 },
   { type: '2.加入购物车', count: 18734, value: 0.8619674243121377 },

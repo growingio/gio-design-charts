@@ -13,7 +13,7 @@ export const getShapeConfig = (config: ChartConfig = {}, type?: string) => {
     return config.column || config.line;
   }
   if (config.type) {
-    return config[config.type] || {};
+    return config[config.type] || ({} as Shape);
   }
   return config.bar || config.column || config.line || config.funnel || ({} as Shape);
 };

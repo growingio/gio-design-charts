@@ -110,7 +110,7 @@ export class Donut extends BaseChart {
   };
   setTotal = (data: LooseObject[], donutCfg: Shape) => {
     this.totalCount = data.reduce((total: number, item: LooseObject) => {
-      return total + item[donutCfg?.position];
+      return total + item[(donutCfg as any)?.position];
     }, 0);
   };
 

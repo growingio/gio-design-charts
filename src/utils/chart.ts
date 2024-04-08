@@ -7,7 +7,12 @@ import gioTheme, { darkTheme, darkViewTheme, viewTheme } from '../theme/chart';
 
 export const inValidConfig = (config: ChartConfig) => {
   const fixedType = config?.type === ChartType.DoubleAxes ? ChartType.COLUMN : config?.type;
-  return isEmpty(config) || !config?.chart || !config?.[fixedType] || !config?.[fixedType]?.position;
+  return (
+    isEmpty(config) ||
+    !config?.chart ||
+    !config?.[fixedType] ||
+    (!config?.[fixedType]?.position && !config?.[fixedType]?.xField)
+  );
 };
 
 export const getTheme = (theme?: string | LooseObject | Datum) => {

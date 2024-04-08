@@ -1,0 +1,10 @@
+import { Subtitle, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+
+# HotMap Chart 热力图
+
+## 柱图拆解
+
+- 转化柱底色遵循颜色序列。
+- 流失柱颜色为维度颜色的 20%透明度。
+- element-link 颜色为 background: linear-gradient(180deg, rgba(「维度色」, 0.1) 0%, rgba(「维度色」, 0) 100%);

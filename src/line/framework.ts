@@ -89,7 +89,7 @@ export class LineBase extends BaseChart {
     if (shapeConfig.adjust) {
       line.adjust.call(line, shapeConfig.adjust as AdjustOptionType);
     }
-    line.position(shapeConfig.position);
+    line.position((shapeConfig as any).position);
     if (shapeConfig?.shape) {
       line.shape('split-line');
     }

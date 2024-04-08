@@ -14,12 +14,13 @@ export class Area extends BaseChart {
         strokeWidth: 0,
       },
     });
-    area.position(shapeConfig.position);
-    area.color(shapeConfig.color);
+    const { position, color } = shapeConfig || {};
+    area.position(position as string);
+    area.color(color as string);
     if (shapeConfig.adjust) {
       area.adjust.call(area, shapeConfig.adjust as AdjustOptionType);
     }
-    area.style(shapeConfig.color, (label: string) => {
+    area.style(color as string, (label: string) => {
       const legend = legendObject?.getLegend(label) || ({} as Legend);
       const style = {} as ShapeAttrs;
       style.fillOpacity = 0.8;
