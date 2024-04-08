@@ -13,6 +13,23 @@ export class HotMap extends BaseChart {
     if (!id || isEmpty(data)) {
       return {};
     }
+
+    config.legend = {
+      position: 'bottom-left',
+      label: {
+        formatter: (text: any) => `${formatPercent(text || 0)}`,
+        style: {
+          fill: '#313E75',
+        },
+      },
+      rail: {
+        size: 16,
+        style: {
+          fill: '#fff',
+        },
+      },
+    };
+
     this.instance = generateChart(options, config);
     fetchConfig(this.instance, options, config);
 
@@ -45,18 +62,6 @@ export class HotMap extends BaseChart {
         stroke: '#fff',
       });
 
-    this.instance.legend({
-      position: 'bottom-left',
-      label: {
-        formatter: (text) => `${formatPercent(text || 0)}`,
-      },
-      rail: {
-        size: 16,
-        style: {
-          fill: '#fff',
-        },
-      },
-    });
     this.instance.interaction('element-active');
 
     this.instance.render();

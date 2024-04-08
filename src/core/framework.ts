@@ -98,7 +98,11 @@ export const fetchConfig = (chart: Chart | View, options: ChartOptions, config: 
   }
 
   // We don't use default legend
-  chart.legend(false);
+  if (config.legend) {
+    chart.legend(config.legend);
+  } else {
+    chart.legend(false);
+  }
   chart.interaction('element-active', {
     start: [{ trigger: 'element:mouseenter', action: 'cursor:pointer' }],
     end: [{ trigger: 'element:mouseleave', action: 'cursor:pointer' }],
