@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { BaseChart, fetchConfig, generateChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
-import { formatNumber, formatPercent } from '../utils';
+import { formatPercent } from '../utils';
 
 export class HotMap extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig = {}) => {

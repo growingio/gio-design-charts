@@ -165,21 +165,15 @@ const BaseHotMapArgs = {
       autoFit: true,
       height: 276,
     },
-    scales: [
-      [
-        'colDimensionValue',
-        {
-          nice: true,
+    scale: [
+      {
+        colDimensionValue: {
           type: 'cat',
         },
-      ],
-      [
-        'rowDimensionValue',
-        {
-          nice: true,
+        rowDimensionValue: {
           type: 'cat',
         },
-      ],
+      },
     ],
     axises: [
       [
