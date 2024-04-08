@@ -7,6 +7,7 @@ import {
   contrastData,
   contrastGroupedData,
   data1,
+  data2,
   dataWith3Columns,
   dataWith6Columns,
   dataWith7Columns,
@@ -200,12 +201,12 @@ const GroupTemplate: ComponentStory<typeof Funnel> = (args) => {
 export const FunnelWithGroup = GroupTemplate.bind({});
 const FunnelWithGroupArgs = {
   legends: [{ name: '北京', alias: '北京 Alias' }, '上海', '南京', '深圳', '广东'],
-  data: dataWithGroup,
+  data: data2,
   config: {
     ...config,
     funnel: {
-      position,
-      color: 'city',
+      position: 'metric*value',
+      color: 'realDim',
       adjust: ['dodge'],
       label: configLabel,
     },

@@ -5,7 +5,6 @@ import { BAR_TEXTURE, COLUMN_TEXTURE } from '../theme';
 import { getDodgeBy } from './interval';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { LegendObject } from '../legends/useLegends';
-import { Chart } from '@antv/g2';
 
 export const getBackgroundImage = (type: string | ChartType) => ({
   backgroundImage: `url("${type === ChartType.COLUMN ? COLUMN_TEXTURE : BAR_TEXTURE}")`,
@@ -23,7 +22,8 @@ export const getInfoCardStyles = (
   // Get legend config
   const shapeConfig = getShapeConfig(config);
   const dodgeBy = getDodgeBy(shapeConfig);
-  const legendName = config?.type === ChartType.DoubleAxes ? item.name : item.data?.[dodgeBy] || item.name;
+  const legendName =
+    config?.type === ChartType.DoubleAxes ? item.name : (item.data as any)?.[dodgeBy as any] || item.name;
   const legend = legendObject?.getLegend(legendName) || {};
 
   const singleColor = options?.singleColor;

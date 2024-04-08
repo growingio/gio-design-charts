@@ -107,7 +107,7 @@ export const hasContrastDodge = (config: Shape) => {
  */
 export const isSingleDodge = (options: ChartOptions, config: Shape) => {
   const data = options.data || [];
-  const [xField] = getAxisFields(config.position);
+  const [xField] = getAxisFields((config as any).position);
   if (xField) {
     const groups = Array.from(new Set(data.map((item: LooseObject) => item[xField])));
     return groups.length <= 1;

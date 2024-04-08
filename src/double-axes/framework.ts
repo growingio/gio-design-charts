@@ -1,13 +1,12 @@
 import { LooseObject } from '@antv/g-base';
 import { Chart, Element, View } from '@antv/g2';
-import { Datum, MappingDatum } from '@antv/g2/lib/interface';
+import { Datum } from '@antv/g2/lib/interface';
 import { intervalShape } from '../column/framework';
-import { BaseChart, fetchConfig, fetchTooltip, generateChart, renderChart } from '../core/framework';
+import { BaseChart, fetchTooltip, renderChart } from '../core/framework';
 import { ChartConfig, ChartOptions, Legend, Legends, ChartType, Shape, AdjustOptionType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { donutText } from '../utils/frameworks/text';
-import { formatNumber, formatPercent } from '../utils/formatNumber';
-import { bindDonutCoordination } from '../utils/frameworks/coordinate';
+import { formatNumber } from '../utils/formatNumber';
 import { DEFAULT_RADIUS } from '../theme';
 import { first } from 'lodash';
 
@@ -29,7 +28,7 @@ export class DoubleAxes extends BaseChart {
     if (shapeConfig.adjust) {
       line.adjust.call(line, shapeConfig.adjust as AdjustOptionType);
     }
-    line.position(shapeConfig.position);
+    line.position((shapeConfig as any).position);
     if (shapeConfig?.shape) {
       line.shape('split-line');
     }
@@ -113,7 +112,7 @@ export class DoubleAxes extends BaseChart {
   };
   setTotal = (data: LooseObject[], donutCfg: Shape) => {
     this.totalCount = data.reduce((total: number, item: LooseObject) => {
-      return total + item[donutCfg?.position];
+      return total + item[(donutCfg as any)?.position];
     }, 0);
   };
 

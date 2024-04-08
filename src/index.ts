@@ -6,6 +6,7 @@ export * from './donut';
 export * from './funnel';
 export * from './gauge';
 export * from './line';
+export * from './hot-map';
 export { TinyArea } from './tiny-area';
 export { CombineBar } from './combine-bar';
 export * from './double-axes';
