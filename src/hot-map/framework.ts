@@ -45,6 +45,18 @@ export class HotMap extends BaseChart {
         stroke: '#fff',
       });
 
+    this.instance.legend({
+      position: 'bottom-left',
+      label: {
+        formatter: (text) => `${formatPercent(text || 0)}`,
+      },
+      rail: {
+        size: 16,
+        style: {
+          fill: '#fff',
+        },
+      },
+    });
     this.instance.interaction('element-active');
 
     this.instance.render();
