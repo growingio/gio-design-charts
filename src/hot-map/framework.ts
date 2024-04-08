@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
-import { BaseChart, generateChart } from '../core/framework';
+import { BaseChart, fetchConfig, generateChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
 import { formatNumber, formatPercent } from '../utils';
 
@@ -14,6 +14,7 @@ export class HotMap extends BaseChart {
       return {};
     }
     this.instance = generateChart(options, config);
+    fetchConfig(this.instance, options, config);
 
     const shapeConfig = getShapeConfig(config, ChartType.HotMap);
 
@@ -22,46 +23,6 @@ export class HotMap extends BaseChart {
     const { source } = (data || {}) as any;
 
     this.instance.data(source);
-    this.instance.scale(xField, {
-      type: 'cat',
-      values: (data as any)?.[xField] || [],
-    });
-    this.instance.scale(yField, {
-      type: 'cat',
-      values: (data as any)?.[yField] || [],
-    });
-    this.instance.scale('value', {
-      nice: true,
-    });
-    this.instance.axis(xField, {
-      tickLine: null,
-      grid: {
-        alignTick: false,
-        line: {
-          style: {
-            lineWidth: 1,
-            lineDash: null,
-            stroke: '#f0f0f0',
-          },
-        },
-      },
-    });
-
-    this.instance.axis(yField, {
-      title: null,
-      grid: {
-        alignTick: false,
-        line: {
-          style: {
-            lineWidth: 1,
-            lineDash: null,
-            stroke: '#f0f0f0',
-          },
-        },
-      },
-    });
-
-    this.instance.tooltip(config.tooltip);
 
     this.instance
       .polygon()
@@ -69,7 +30,6 @@ export class HotMap extends BaseChart {
       .color(zField, '#F2F3FF-#8EABFF-#0052D9')
       .label(zField, {
         offset: -2,
-
         style: {
           fill: '#fff',
           fontSize: 14,

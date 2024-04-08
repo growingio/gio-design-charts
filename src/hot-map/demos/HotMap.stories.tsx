@@ -80,7 +80,8 @@ const sourceData = [
   },
   {
     rowDimensionValue: 'N/A',
-    colDimensionValue: '1*****0',
+    colDimensionValue:
+      '1*****01*****01*****01*****01*****01*****01*****01*****01*****01*****01*****01*****01*****01*****01*****0',
     userCount: 6,
     userRatio: 0.0116,
     name: '用户量',
@@ -164,13 +165,62 @@ const BaseHotMapArgs = {
       autoFit: true,
       height: 276,
     },
-    scale: [
-      'userRatio',
-      {
-        nice: true,
-      },
+    scales: [
+      [
+        'colDimensionValue',
+        {
+          nice: true,
+          type: 'cat',
+        },
+      ],
+      [
+        'rowDimensionValue',
+        {
+          nice: true,
+          type: 'cat',
+        },
+      ],
     ],
-    axises: [['userRatio', {}]],
+    axises: [
+      [
+        'colDimensionValue',
+        {
+          tickLine: null,
+          grid: {
+            alignTick: false,
+            line: {
+              style: {
+                lineWidth: 1,
+                lineDash: null,
+                stroke: '#f0f0f0',
+              },
+            },
+          },
+          label: {
+            style: {
+              width: 120,
+            },
+            autoEllipsis: true,
+          },
+        },
+      ],
+      [
+        'rowDimensionValue',
+        {
+          title: null,
+          grid: {
+            alignTick: false,
+            line: {
+              style: {
+                lineWidth: 1,
+                lineDash: null,
+                stroke: '#f0f0f0',
+              },
+            },
+          },
+        },
+      ],
+    ],
     hotMap: {
       xField: 'rowDimensionValue',
       yField: 'colDimensionValue',
