@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/growingio/gio-design-charts/compare/v2.6.0...v2.6.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* **HotMap:** 更新hotmap ([#380](https://github.com/growingio/gio-design-charts/issues/380)) ([7552883](https://github.com/growingio/gio-design-charts/commit/75528837d81cfcec1b7a7ce1e7ff8d2f73e44854))
+
 # [2.6.0](https://github.com/growingio/gio-design-charts/compare/v2.5.1...v2.6.0) (2024-04-08)
 
 
