@@ -141,7 +141,7 @@ export interface ChartConfig extends LooseObject {
    * 用来显示或隐藏Legend图例
    * 在gio-design-charts中，legend被重新定义，G2默认的legend配置将无效，在这里配置legend: false可用来隐藏Legend
    */
-  legend?: boolean;
+  legend?: boolean | LooseObject;
 
   legendOptions?: LegendOptions;
 
