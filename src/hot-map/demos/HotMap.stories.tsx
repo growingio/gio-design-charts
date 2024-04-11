@@ -230,6 +230,7 @@ const BaseHotMapArgs = {
         offsetY: 62,
         fixedOffsetY: 100,
       },
+      className: 'custom-tooltip-class',
       render(options) {
         const { data, onClick } = options;
         const sourceData = data?.[0]?.data;

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { ChartConfig, ChartOptions, Legends, Legend, ChartType } from '../interfaces';
 import { getInfoCardStyles, getLegendStyles } from '../utils/styles';
 import InfoCard from './InfoCard';
-import { debounce, first, last, set } from 'lodash';
+import { debounce, first, get, last, set } from 'lodash';
 
 import './styles/infocard.less';
 import { LooseObject } from '@antv/g-base';
@@ -51,6 +51,8 @@ const InfoCardBox = (props: InfoCardProps) => {
   const [items, setItems] = useState<InfoCardData[]>([]);
   const [title, setTitle] = useState('');
   const setHoverItemD = useMemo(() => debounce(setItems, 20), [setItems]);
+
+  const tipClassName = get(config, 'tooltip.className');
 
   const [, update] = useState(0);
 
@@ -123,7 +125,7 @@ const InfoCardBox = (props: InfoCardProps) => {
   // That is expected to update items, it seams it's better to direct use without useEffect.
   return (
     <div
-      className={`gio-d-charts-infocard `}
+      className={`gio-d-charts-infocard ${tipClassName}`}
       data-testid="infoCardBox"
       onMouseLeave={onMouseLeave}
       style={{ maxHeight: (height - 60) * 0.75 }}
