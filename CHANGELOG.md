@@ -1,3 +1,10 @@
+## [2.6.2](https://github.com/growingio/gio-design-charts/compare/v2.6.1...v2.6.2) (2024-04-11)
+
+
+### Bug Fixes
+
+* **HotMap:** 更新HotMap字体颜色 ([#381](https://github.com/growingio/gio-design-charts/issues/381)) ([a95bd82](https://github.com/growingio/gio-design-charts/commit/a95bd82a16403dbcf8cd82c602aa2817c445e469))
+
 ## [2.6.1](https://github.com/growingio/gio-design-charts/compare/v2.6.0...v2.6.1) (2024-04-09)
 
 
