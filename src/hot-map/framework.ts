@@ -20,7 +20,7 @@ export class HotMap extends BaseChart {
     const { source } = (data || {}) as any;
 
     if (!isEmpty(source) && source?.length >= 1) {
-      config.legend = {
+      config.legend = config.legend || {
         position: 'bottom-left',
         label: {
           formatter: (text: any) => `${formatPercent(text || 0)}`,
