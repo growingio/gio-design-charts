@@ -54,9 +54,11 @@ export class HotMap extends BaseChart {
           // shadowBlur: 2,
           shadowColor: 'rgba(0, 0, 0)',
         },
-        content: (val) => {
-          return `${formatPercent(val?.[zField] || 0)}`;
-        },
+        content:
+          shapeConfig?.content ||
+          ((val) => {
+            return `${formatPercent(val?.[zField] || 0)}`;
+          }),
       })
       .style({
         lineWidth: 1,
