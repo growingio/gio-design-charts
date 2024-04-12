@@ -1,3 +1,10 @@
+## [2.6.3](https://github.com/growingio/gio-design-charts/compare/v2.6.2...v2.6.3) (2024-04-12)
+
+
+### Bug Fixes
+
+* **HotMap:** 修改label ([#382](https://github.com/growingio/gio-design-charts/issues/382)) ([9e0135e](https://github.com/growingio/gio-design-charts/commit/9e0135e347cbb9c52e205ef2a16deb84ca59b97f))
+
 ## [2.6.2](https://github.com/growingio/gio-design-charts/compare/v2.6.1...v2.6.2) (2024-04-11)
 
 
