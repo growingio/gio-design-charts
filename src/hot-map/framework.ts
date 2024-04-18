@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { ChartConfig, ChartOptions, ChartType } from '../interfaces';
 import { BaseChart, fetchConfig, generateChart } from '../core/framework';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
@@ -51,10 +51,9 @@ export class HotMap extends BaseChart {
         style: {
           fill: '#fff',
           fontSize: 14,
-          // shadowBlur: 2,
-          shadowColor: 'rgba(0, 0, 0)',
         },
         content:
+          shapeConfig?.label?.content ||
           shapeConfig?.content ||
           ((val) => {
             return `${formatPercent(val?.[zField] || 0)}`;
@@ -63,6 +62,21 @@ export class HotMap extends BaseChart {
       .style({
         lineWidth: 1,
         stroke: '#fff',
+      })
+      .state({
+        active: {
+          style: (style) => {
+            const currentColor = get(style, 'shape.cfg.attrs.fill');
+            return {
+              lineWidth: 1,
+              stroke: '#fff',
+              shadowColor: `${currentColor}10`,
+              shadowBlur: 5,
+              cursor: 'pointer',
+              fill: currentColor,
+            };
+          },
+        },
       });
 
     this.instance.interaction('element-active');
