@@ -1,3 +1,10 @@
+## [2.6.5](https://github.com/growingio/gio-design-charts/compare/v2.6.4...v2.6.5) (2024-04-18)
+
+
+### Bug Fixes
+
+* **HotMap:** 修改HotMap hover的时样式 ([#384](https://github.com/growingio/gio-design-charts/issues/384)) ([a8c361a](https://github.com/growingio/gio-design-charts/commit/a8c361aa81e0743a36fa715d70f0fff5c84aed1e))
+
 ## [2.6.4](https://github.com/growingio/gio-design-charts/compare/v2.6.3...v2.6.4) (2024-04-16)
 
 
