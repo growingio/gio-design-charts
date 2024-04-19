@@ -45,7 +45,7 @@ export class HotMap extends BaseChart {
     this.instance
       .polygon()
       .position(`${xField}*${yField}`)
-      .color(zField, shapeConfig?.color || '#F2F3FF-#B5C7FF-#618DFF')
+      .color(zField, shapeConfig?.color || '#D9E1FF-#8EABFF-#2770EF')
       .label(zField, {
         offset: -2,
         style: {
