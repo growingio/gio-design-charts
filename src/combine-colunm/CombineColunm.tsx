@@ -16,7 +16,9 @@ const CombineColumn: React.ForwardRefRenderFunction<ChartRef, ColumnProps> = (pr
   const { data, legends: legendProps = [], config, useScroll, title } = props;
   const [assignConfig, setAssignConfig] = useState({});
 
-  const combineColumn = new CombineColumnCls();
+  const combineColumn = useMemo(() => {
+    return new CombineColumnCls();
+  }, []);
 
   useEffect(() => {
     const newConfig = config || {};

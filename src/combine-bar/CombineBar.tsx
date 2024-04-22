@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { default as CombineBarCls } from './framework';
 
 import { ChartType, ChartProps, BarConfig, ChartRef } from '../interfaces';
@@ -24,7 +24,9 @@ export interface DragBarProps extends BarProps {
 const CombineBar: React.ForwardRefRenderFunction<ChartRef, BarProps> = (props, forwardRef) => {
   const { data, legends: legendProps = [], config = {} as BarConfig, title } = props;
 
-  const combineBar = new CombineBarCls();
+  const combineBar = useMemo(() => {
+    return new CombineBarCls();
+  }, []);
 
   config.type = ChartType.BAR;
   config.chart = {
