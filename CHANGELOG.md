@@ -1,3 +1,10 @@
+## [2.6.7](https://github.com/growingio/gio-design-charts/compare/v2.6.6...v2.6.7) (2024-04-22)
+
+
+### Bug Fixes
+
+* **TGI:** 图表重复渲染的问题 ([#386](https://github.com/growingio/gio-design-charts/issues/386)) ([ffcf374](https://github.com/growingio/gio-design-charts/commit/ffcf37486b5671a476a02ddbb7a0c2a336d79c23))
+
 ## [2.6.6](https://github.com/growingio/gio-design-charts/compare/v2.6.5...v2.6.6) (2024-04-19)
 
 
