@@ -1,3 +1,10 @@
+## [2.6.8](https://github.com/growingio/gio-design-charts/compare/v2.6.7...v2.6.8) (2024-04-23)
+
+
+### Bug Fixes
+
+* **CombineColumn:** 修改Legend ([#387](https://github.com/growingio/gio-design-charts/issues/387)) ([087eb5c](https://github.com/growingio/gio-design-charts/commit/087eb5c3f27d551111b551e7e0a52276f2b2541c))
+
 ## [2.6.7](https://github.com/growingio/gio-design-charts/compare/v2.6.6...v2.6.7) (2024-04-22)
 
 
