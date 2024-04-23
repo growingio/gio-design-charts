@@ -69,6 +69,7 @@ class CombineColumn extends BaseChart {
       renderPoint(chart);
 
       chart.interaction('element-active');
+      chart.legend(false);
       chart.render();
       this.instance = chart;
     } catch (err) {}
