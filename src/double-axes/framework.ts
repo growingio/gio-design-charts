@@ -105,6 +105,7 @@ export class DoubleAxes extends BaseChart {
     this.lineShape(this.instance, options, lineCfg);
 
     fetchTooltip(this.instance, config);
+    this.instance.legend(false);
     this.instance.render();
     this.instance.render(true);
 

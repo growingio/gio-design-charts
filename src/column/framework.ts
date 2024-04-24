@@ -70,6 +70,7 @@ export const intervalShape = (
   }
   interval.state(getShapeState(options));
   interval.customInfo(setCustomInfo(options, config, customInfo));
+
   return interval;
 };
 
@@ -146,6 +147,7 @@ export class Column extends BaseChart {
         },
       });
       // this.instance.interaction('element-active');
+      this.instance.legend(false);
       this.instance.render();
     } catch (err) {}
   };

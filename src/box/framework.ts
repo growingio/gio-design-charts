@@ -82,6 +82,7 @@ export class Box extends BaseChart {
     this.options = options;
     this.config = config;
     this.views = [boxView];
+    this.instance.legend(false);
     return { chart, views: [boxView], update: this.update };
   };
 
