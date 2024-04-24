@@ -99,6 +99,7 @@ export class Donut extends BaseChart {
     textView.render();
 
     fetchTooltip(this.instance, config);
+    this.instance.legend(false);
     this.instance.render();
     this.instance.render(true);
 

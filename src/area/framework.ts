@@ -57,6 +57,7 @@ export class Area extends BaseChart {
       this.instance.interaction('element-highlight-by-color');
       this.instance.render();
       // like Line framework, render twice to fix wrong label issue.
+      this.instance.legend(false);
       this.instance.render(true);
     } catch (err) {
       /* istanbul ignore next */

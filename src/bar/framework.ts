@@ -186,6 +186,7 @@ export class TimeBar extends Bar {
     leadView.render();
     textView.render();
     fetchTooltip(this.instance, config);
+    this.instance.legend(false);
     this.instance.render();
   };
 }
