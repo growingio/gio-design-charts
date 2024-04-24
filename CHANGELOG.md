@@ -1,3 +1,10 @@
+## [2.6.9](https://github.com/growingio/gio-design-charts/compare/v2.6.8...v2.6.9) (2024-04-24)
+
+
+### Bug Fixes
+
+* **master:** 不使用默认legend ([#388](https://github.com/growingio/gio-design-charts/issues/388)) ([73e6b86](https://github.com/growingio/gio-design-charts/commit/73e6b862f422fb2b53e2ac0c96f9b1b37a0ae711))
+
 ## [2.6.8](https://github.com/growingio/gio-design-charts/compare/v2.6.7...v2.6.8) (2024-04-23)
 
 
