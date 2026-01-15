@@ -74,7 +74,7 @@
     "@babel/core": "^7.17.2",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@formatjs/cli": "^4.7.1",
-    "@gio-design/utils": "^22.0.2",
+    "@gio-design/utils": "^23.0.0",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.2",
