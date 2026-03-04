@@ -11,19 +11,20 @@ export const dataWithMultiBar = [
   { company: '字节跳动', value: 5 },
 ];
 
-export const dataWithTs = [
-  { ts: '2021-08-07', value: 6500, color: '步步盈增' },
-  { ts: '2021-08-08', value: 8100, color: '步步盈增' },
-  { ts: '2021-08-09', value: 10876, color: '步步盈增' },
-  { ts: '2021-08-10', value: 13490, color: '步步盈增' },
-  { ts: '2021-08-11', value: 10902, color: '步步盈增' },
-  { ts: '2021-08-12', value: 6687, color: '步步盈增' },
-  { ts: '2021-08-13', value: 8920, color: '步步盈增' },
-  { ts: '2021-08-14', value: 2789, color: '步步盈增' },
-  { ts: '2021-08-15', value: 1789, color: '步步盈增' },
-  { ts: '2021-08-16', value: 1367, color: '步步盈增' },
-  { ts: '2021-08-17', value: 667, color: '步步盈增' },
-];
+export const dataWithTs = (days = 70, color = '步步盈增') => {
+  const data: { ts: string; value: number; color: string }[] = [];
+  const startDate = new Date('2021-08-07');
+
+  for (let i = 0; i < days; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+    const ts = currentDate.toISOString().split('T')[0];
+    const value = Math.round(Math.random() * 12000 + 1000);
+    data.push({ ts, value, color });
+  }
+
+  return data;
+};
 
 export const dataWithActive = [
   {
@@ -78,23 +79,25 @@ export const dataWithComponsive = [
   { ts: '2021-08-12', value: 11234, color: '步步盈增(对比)' },
 ];
 
-export const dataWithGroupByTs = [
-  { city: '北京', ts: '2021-08-07', value: 7920 },
-  { city: '上海', ts: '2021-08-07', value: 10230 },
-  { city: '天津', ts: '2021-08-07', value: 5782 },
-  { city: '北京', ts: '2021-08-08', value: 7523 },
-  { city: '上海', ts: '2021-08-08', value: 8923 },
-  { city: '天津', ts: '2021-08-08', value: 6532 },
-  { city: '北京', ts: '2021-08-09', value: 7823 },
-  { city: '上海', ts: '2021-08-09', value: 12146 },
-  { city: '天津', ts: '2021-08-09', value: 9403 },
-  { city: '北京', ts: '2021-08-10', value: 3812 },
-  { city: '上海', ts: '2021-08-10', value: 10432 },
-  { city: '天津', ts: '2021-08-10', value: 7120 },
-  { city: '北京', ts: '2021-08-11', value: 8102 },
-  { city: '上海', ts: '2021-08-11', value: 13432 },
-  { city: '天津', ts: '2021-08-11', value: 5720 },
-];
+export const dataWithGroupByTs = (days = 25) => {
+  const cities = ['北京', '上海', '天津'];
+  const data: { city: string; ts: string; value: number }[] = [];
+  const startDate = new Date('2021-08-07');
+
+  for (let i = 0; i < days; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+    const ts = currentDate.toISOString().split('T')[0];
+
+    cities.forEach((city) => {
+      const baseValue = Math.random() * 10000 + 3000;
+      const value = Math.round(baseValue);
+      data.push({ city, ts, value });
+    });
+  }
+
+  return data;
+};
 
 export const dataWithGroup = [
   { company: 'Apple', type: '整体', value: 30 },

@@ -28,7 +28,7 @@ const Column: React.ForwardRefRenderFunction<ChartRef, ColumnProps> = (props: Co
     const isGroup = hasDodge(column);
     const defaultConfig = isGroup ? defaultGroupInterval : defaultInterval;
 
-    newConfig.column = { ...column, ...defaultConfig };
+    newConfig.column = { ...column };
     newConfig.type = ChartType.COLUMN;
 
     setAssignConfig(Object.assign({}, newConfig));

@@ -33,6 +33,11 @@ const Funnel: React.ForwardRefRenderFunction<ChartRef, FunnelProps> = (props, fo
 
   if (config) {
     config.type = ChartType.FUNNEL;
+    config.customSizeConfig = {
+      dodgePadding: 4,
+      maxColumnWidth: 64,
+      minColumnWidth: 40,
+    };
   }
 
   const [comparativeData, setComparativeData] = useState<LooseObject>({});

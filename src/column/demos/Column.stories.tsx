@@ -65,7 +65,7 @@ const config = {
 export const ColumnWithTs = Template.bind({});
 const ColumnWithTsArgs = {
   legends: ['步步盈增'],
-  data: dataWithTs,
+  data: dataWithTs(200),
   config: {
     ...config,
     column: {
@@ -74,6 +74,10 @@ const ColumnWithTsArgs = {
     },
     axises: [tsLabelConfig, valueLabelConfig],
     tooltip: tooltipConfig,
+    // customSizeConfig: {
+    //   maxColumnWidth: 200,
+    //   minColumnWidth: 20,
+    // },
   },
 };
 ColumnWithTs.args = { ...ColumnWithTsArgs };
@@ -110,7 +114,7 @@ ColumnWithComponsive.storyName = '分组多维度';
 export const ColumnWithGroup = Template.bind({});
 const ColumnWithGroupArgs = {
   legends: ['北京', '上海', '天津'],
-  data: dataWithGroupByTs,
+  data: dataWithGroupByTs(30),
   config: {
     ...config,
     axises: [tsLabelConfig, valueLabelConfig],
@@ -128,7 +132,7 @@ ColumnWithGroup.storyName = '分组多维度柱状图';
 export const StackingDiagramColumn = Template.bind({ title: '堆积图' });
 const StackingDiagramColumnArgs = {
   legends: ['北京', '上海', '天津'],
-  data: dataWithGroupByTs,
+  data: dataWithGroupByTs(20),
   config: {
     ...config,
     axises: [tsLabelConfig, valueLabelConfig],
