@@ -154,6 +154,13 @@ export interface ChartConfig extends LooseObject {
   scale?: Record<string, ScaleOption> | (string | ScaleOption)[];
 
   annotations?: Annotation[];
+
+  customSizeConfig?: {
+    minColumnWidth?: number;
+    maxColumnWidth?: number;
+    intervalPadding?: number;
+    dodgePadding?: number;
+  };
 }
 
 export interface AreaConfig extends ChartConfig {

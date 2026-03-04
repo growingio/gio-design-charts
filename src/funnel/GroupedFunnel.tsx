@@ -14,6 +14,11 @@ const GroupedFunnel: React.ForwardRefRenderFunction<ChartRef, FunnelProps> = (pr
   const [comparativeData, setComparativeData] = useState({});
   if (config) {
     config.type = ChartType.FUNNEL;
+    config.customSizeConfig = {
+      dodgePadding: 4,
+      maxColumnWidth: 64,
+      minColumnWidth: 40,
+    };
   }
   useEffect(() => {
     setComparativeData(getGroupData(data, config));

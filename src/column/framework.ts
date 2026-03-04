@@ -10,6 +10,7 @@ import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';
 import { isSingleDodge } from '../utils/interval';
+import { DEFAULT_MIN_COLUMN_WIDTH, DEFAULT_MAX_COLUMN_WIDTH } from '../utils/calculate';
 
 export interface IntervalConfig {
   styles?: ShapeStyle;
@@ -42,11 +43,12 @@ export const intervalShape = (
   const singleDodge = isSingleDodge(options, barConfig);
 
   const renderIntervalConfig = { ...shapeConfig, ...intervalStyles };
-  const { dodgePadding, ...rest } = renderIntervalConfig;
+  const { dodgePadding, intervalPadding, ...rest } = renderIntervalConfig;
 
   const interval: Interval = chart.interval({
     ...rest,
     ...(singleDodge ? {} : { dodgePadding }),
+    ...(intervalPadding !== undefined ? { intervalPadding } : {}),
   });
 
   if (barConfig.position) {
@@ -140,12 +142,20 @@ export class Column extends BaseChart {
     }
     this.instance = renderChart(options, config);
     try {
+      const columnIntervalConfig = config?.column?.interval || {};
+      const minColumnWidth = columnIntervalConfig.minColumnWidth ?? DEFAULT_MIN_COLUMN_WIDTH;
+      const maxColumnWidth = columnIntervalConfig.maxColumnWidth ?? DEFAULT_MAX_COLUMN_WIDTH;
+      const dodgePadding = columnIntervalConfig.dodgePadding;
+      const intervalPadding = columnIntervalConfig.intervalPadding;
       handleInterval(this.instance, options, config, {
         styles: {
-          maxColumnWidth: 200,
-          minColumnWidth: 40,
+          maxColumnWidth,
+          minColumnWidth,
+          dodgePadding,
+          intervalPadding,
         },
       });
+      // this.instance.interval('column', config);
       // this.instance.interaction('element-active');
       this.instance.legend(false);
       this.instance.render();
