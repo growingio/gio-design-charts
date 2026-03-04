@@ -1,3 +1,10 @@
+## [2.6.10](https://github.com/growingio/gio-design-charts/compare/v2.6.9...v2.6.10) (2026-03-04)
+
+
+### Bug Fixes
+
+* scroll x layout for column ([889234c](https://github.com/growingio/gio-design-charts/commit/889234ca8c107261d92ebf212cb94c6e3978ecd3))
+
 ## [2.6.9](https://github.com/growingio/gio-design-charts/compare/v2.6.8...v2.6.9) (2024-04-24)
 
 
