@@ -1,0 +1,15 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  integration:
+    uses: growingio/.github/.github/workflows/ci-nodejs.yml@master
+
