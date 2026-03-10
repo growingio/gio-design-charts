@@ -58,6 +58,15 @@ export const calculateBarHeight = (config: ChartConfig, data: LooseObject[]) => 
   return calculatedHeight < DEFAULT_CHART_HEIGHT ? DEFAULT_CHART_HEIGHT : calculatedHeight;
 };
 
+interface ColumnWidthResult {
+  needScroll: boolean;
+  width: number;
+  columnWidth: number;
+  intervalPadding: number;
+  dodgePadding: number;
+  columnWidthRatio?: number;
+}
+
 export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[], containerWidth?: number) => {
   const ds = new DataSet();
   const dv = ds.createView().source(data);
@@ -89,7 +98,7 @@ export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[], c
 
   let calculatedWidth: number;
   if (isDodge) {
-    calculatedWidth = ((minColumnWidth + dodgePadding) * groupItemCount + intervalPadding) * groupCount + fixedWidth + extraPadding;
+    calculatedWidth = ((minColumnWidth + dodgePadding) * groupItemCount - dodgePadding + intervalPadding) * groupCount + fixedWidth + extraPadding;
   } else if (isStack) {
     calculatedWidth = (minColumnWidth + intervalPadding) * groupItemCount + fixedWidth + extraPadding;
   }else{
@@ -106,11 +115,19 @@ export const calculateColumnWidth = (config: ChartConfig, data: LooseObject[], c
     };
   }
 
-  return {
+  const result: ColumnWidthResult = {
     needScroll: false,
     width: calculatedWidth,
     columnWidth: maxColumnWidth,
     intervalPadding: intervalPadding,
     dodgePadding: config?.customSizeConfig?.dodgePadding || DEFAULT_DODGE_PADDING,
   };
+
+  if (isDodge && containerWidth !== undefined) {
+    const rawRatio = ((maxColumnWidth + dodgePadding) * groupItemCount - dodgePadding) * groupCount / (containerWidth);
+    result.columnWidthRatio = Math.ceil(rawRatio * 10000) / 10000;
+    result.columnWidthRatio = Math.min(0.5, result.columnWidthRatio);
+  }
+
+  return result;
 };
