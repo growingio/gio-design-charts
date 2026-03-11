@@ -1,5 +1,5 @@
 import { ComponentStory } from '@storybook/react';
-import Column from '../Column';
+import Column from '../ScrollColumn';
 import Card from '../../demos/card';
 import { dataWithComponsive, dataWithGroupByTs, dataWithTs, percentData } from './data';
 import Docs from './Column.mdx';
@@ -65,7 +65,7 @@ const config = {
 export const ColumnWithTs = Template.bind({});
 const ColumnWithTsArgs = {
   legends: ['步步盈增'],
-  data: dataWithTs(200),
+  data: dataWithTs(20),
   config: {
     ...config,
     column: {
@@ -114,7 +114,7 @@ ColumnWithComponsive.storyName = '分组多维度';
 export const ColumnWithGroup = Template.bind({});
 const ColumnWithGroupArgs = {
   legends: ['北京', '上海', '天津'],
-  data: dataWithGroupByTs(30),
+  data: dataWithGroupByTs(20),
   config: {
     ...config,
     axises: [tsLabelConfig, valueLabelConfig],
@@ -132,7 +132,7 @@ ColumnWithGroup.storyName = '分组多维度柱状图';
 export const StackingDiagramColumn = Template.bind({ title: '堆积图' });
 const StackingDiagramColumnArgs = {
   legends: ['北京', '上海', '天津'],
-  data: dataWithGroupByTs(20),
+  data: dataWithGroupByTs(10),
   config: {
     ...config,
     axises: [tsLabelConfig, valueLabelConfig],

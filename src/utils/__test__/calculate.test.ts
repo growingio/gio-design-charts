@@ -37,7 +37,7 @@ describe('test calculateColumnWidth', () => {
     const result = calculateColumnWidth(config as any, data, 200);
     const groupCount = 2;
     const maxRowCount = 2;
-    const expectedWidth = ((DEFAULT_MIN_COLUMN_WIDTH + DEFAULT_DODGE_PADDING) * maxRowCount + DEFAULT_INTERVAL_PADDING) * groupCount + DEFAULT_APPEND_PADDING + DEFAULT_PADDING;
+    const expectedWidth = ((DEFAULT_MIN_COLUMN_WIDTH + DEFAULT_DODGE_PADDING) * maxRowCount - DEFAULT_DODGE_PADDING + DEFAULT_INTERVAL_PADDING) * groupCount + DEFAULT_APPEND_PADDING + DEFAULT_PADDING;
     expect(result.width).toBe(expectedWidth);
   });
 

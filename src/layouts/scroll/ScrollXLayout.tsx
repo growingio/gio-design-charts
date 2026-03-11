@@ -17,6 +17,7 @@ interface ColumnWidthResult {
   columnWidth: number;
   intervalPadding: number;
   dodgePadding: number;
+  columnWidthRatio?: number;
 }
 
 const ScrollXLayout: React.ForwardRefRenderFunction<ChartRef, ScrollXLayoutProps> = (props, forwardRef) => {
@@ -43,6 +44,7 @@ const ScrollXLayout: React.ForwardRefRenderFunction<ChartRef, ScrollXLayoutProps
 
       const isFunnel = config?.type === ChartType.FUNNEL;
       const needIntervalPadding = !isFunnel && columnWidthResult.needScroll;
+      const needColumnWidthRatio = !columnWidthResult.needScroll && columnWidthResult.columnWidthRatio !== undefined;
 
       const newConfig: ChartConfig = {
         ...config,
@@ -58,6 +60,7 @@ const ScrollXLayout: React.ForwardRefRenderFunction<ChartRef, ScrollXLayoutProps
             maxColumnWidth: columnWidthResult.needScroll ? columnWidthResult.columnWidth : maxColumnWidth,
             dodgePadding: dodgePadding,
             ...(needIntervalPadding ? { intervalPadding: columnWidthResult.intervalPadding } : {}),
+            ...(needColumnWidthRatio ? { columnWidthRatio: columnWidthResult.columnWidthRatio } : {}),
           },
         },
         bar: {
@@ -68,6 +71,7 @@ const ScrollXLayout: React.ForwardRefRenderFunction<ChartRef, ScrollXLayoutProps
             maxColumnWidth: columnWidthResult.needScroll ? columnWidthResult.columnWidth : maxColumnWidth,
             dodgePadding: dodgePadding,
             ...(needIntervalPadding ? { intervalPadding: columnWidthResult.intervalPadding } : {}),
+            ...(needColumnWidthRatio ? { columnWidthRatio: columnWidthResult.columnWidthRatio } : {}),
           },
         },
       };
