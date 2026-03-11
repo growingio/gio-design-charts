@@ -1,3 +1,10 @@
+## [2.6.11](https://github.com/growingio/gio-design-charts/compare/v2.6.10...v2.6.11) (2026-03-11)
+
+
+### Bug Fixes
+
+* **Column:**  fix column dodgePadding ([#396](https://github.com/growingio/gio-design-charts/issues/396)) ([48b17bc](https://github.com/growingio/gio-design-charts/commit/48b17bc8de3434ea5bb7f669575f0ef17c7caa8b))
+
 ## [2.6.10](https://github.com/growingio/gio-design-charts/compare/v2.6.9...v2.6.10) (2026-03-04)
 
 
