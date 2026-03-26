@@ -57,8 +57,9 @@ function getRectAttrs(points: Point[], stack = false, isNeg?: boolean, styles?: 
   const height = Math.abs(points[0].y - points[2].y);
   const offsetMinHeight = styles?.minHeight || DEFAULT_MIN_HEIGHT;
   // const defaultHeight = stack ? height : offsetMinHeight;
-  const hookHeight = height === 0 ? 0 : offsetMinHeight;
+  const hookHeight = stack && height === 0 ? 0 : offsetMinHeight;
   const fixedHeight = height < offsetMinHeight ? hookHeight : height - 1;
+  
 
   if (isNeg) {
     /* istanbul ignore next */

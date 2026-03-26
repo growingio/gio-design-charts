@@ -19,7 +19,7 @@ export const dataWithTs = (days = 70, color = '步步盈增') => {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
     const ts = currentDate.toISOString().split('T')[0];
-    const value = Math.round(Math.random() * 12000 + 1000);
+    const value = (i === 5 || i === 15 || i === 25) ? 0 : Math.round(Math.random() * 12000 + 1000);
     data.push({ ts, value, color });
   }
 

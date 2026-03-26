@@ -160,6 +160,7 @@ export interface ChartConfig extends LooseObject {
     maxColumnWidth?: number;
     intervalPadding?: number;
     dodgePadding?: number;
+    minHeight?: number;
   };
 }
 

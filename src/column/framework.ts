@@ -1,6 +1,6 @@
 import { Chart, View } from '@antv/g2';
 import { ChartConfig, ChartOptions, Legend, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
-import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_RADIUS, DEFAULT_RADIUS_BAR } from '../theme';
+import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_MIN_HEIGHT, DEFAULT_RADIUS, DEFAULT_RADIUS_BAR } from '../theme';
 import { BaseChart, renderChart } from '../core/framework';
 
 import '../utils/tools/intervalShape';
@@ -142,11 +142,19 @@ export class Column extends BaseChart {
     }
     this.instance = renderChart(options, config);
     try {
+      const barConfig = getShapeConfig(config);
       const columnIntervalConfig = config?.column?.interval || {};
       const minColumnWidth = columnIntervalConfig.minColumnWidth ?? DEFAULT_MIN_COLUMN_WIDTH;
       const maxColumnWidth = columnIntervalConfig.maxColumnWidth ?? DEFAULT_MAX_COLUMN_WIDTH;
       const dodgePadding = columnIntervalConfig.dodgePadding;
       const intervalPadding = columnIntervalConfig.intervalPadding;
+      if (barConfig.adjust !== 'stack') {
+        const minHeight = columnIntervalConfig.minHeight ?? DEFAULT_MIN_HEIGHT;
+        options.defaultStyles = {
+          ...options.defaultStyles,
+          minHeight,
+        };
+      }
       handleInterval(this.instance, options, config, {
         styles: {
           maxColumnWidth,
