@@ -110,26 +110,58 @@ export class LineBase extends BaseChart {
     return line;
   };
 
+  /**
+   * 渲染双y轴折线图：
+   * line 与 line2 两条折线渲染在同一个 view 上（与双轴图 DoubleAxes 保持一致），
+   * 以便 shared tooltip 能同时收集到两条折线的数据；line2 对应的 y 轴放在右侧形成双 y 轴。
+   */
+  dualAxisRender = (chart: Chart, options: ChartOptions, config: ChartConfig) => {
+    const lineCfg = getShapeConfig(config, ChartType.LINE);
+    const line2Cfg = ((config as ChartConfig) || { line2: undefined }).line2 as Shape;
+    const [, yField2] = getAxisFields(line2Cfg.position as string);
+
+    // 双y轴折线图：line 与 line2 两条折线保持在同一个 view 上渲染，
+    // 这样 G2 的 shared tooltip 才能同时收集到两条折线的数据（与双轴图 DoubleAxes 保持一致）。
+    this.lineShape(chart, options, lineCfg);
+    this.lineShape(chart, options, line2Cfg);
+
+    // 将 line2 对应的 y 轴放到右侧，形成双 y 轴
+    if (yField2) {
+      chart.axis(yField2, { position: 'right', grid: null });
+    }
+
+    return chart;
+  };
+
   update = (data: Datum[]) => {
+    const hasDualAxis = !!((this.config as ChartConfig) || { line2: undefined }).line2;
     const lineCfg = getShapeConfig(this.config, ChartType.LINE);
     const [xField, yField] = getAxisFields(lineCfg.position);
     const [maxValue, dataMapping] = this.getDataByColor(lineCfg.color, xField, yField, data);
     this.setMax(yField, maxValue, this.config as ChartConfig);
+    if (hasDualAxis) {
+      const line2Cfg = ((this.config as ChartConfig) || { line2: undefined }).line2 as Shape;
+      const [, yField2] = getAxisFields(line2Cfg.position as string);
+      this.setMax(yField2, maxValue, this.config as ChartConfig);
 
-    const legends = this.options?.legends || {};
-    const viewCount = 0;
-    this.contrastViewQueue(dataMapping, legends)(
-      (updatedData) => {
-        const view = this.views?.[viewCount];
-        view?.changeData(updatedData);
-        view?.render(true);
-      },
-      /* istanbul ignore next */
-      (updatedData: LooseObject[]) => {
-        this.finalView?.changeData(updatedData);
-        this.finalView?.render(true);
-      }
-    );
+      // 双轴场景：两条折线在同一 view 上，数据变更时直接更新实例数据后重绘即可
+      this.instance?.changeData(data);
+    } else {
+      const legends = this.options?.legends || {};
+      const viewCount = 0;
+      this.contrastViewQueue(dataMapping, legends)(
+        (updatedData) => {
+          const view = this.views?.[viewCount];
+          view?.changeData(updatedData);
+          view?.render(true);
+        },
+        /* istanbul ignore next */
+        (updatedData: LooseObject[]) => {
+          this.finalView?.changeData(updatedData);
+          this.finalView?.render(true);
+        }
+      );
+    }
     this.annotations();
     this.instance?.render(true);
   };
@@ -146,11 +178,17 @@ export class Line extends LineBase {
     }
     this.instance = renderChart(options, config);
     try {
-      const lineConfig = getShapeConfig(config, 'line');
-      this.lineShape(this.instance, options, lineConfig);
+      const hasDualAxis = !!((config as ChartConfig) || { line2: undefined }).line2;
+      if (hasDualAxis) {
+        this.dualAxisRender(this.instance, options, config);
+      } else {
+        const lineConfig = getShapeConfig(config, 'line');
+        this.lineShape(this.instance, options, lineConfig);
+      }
 
       this.annotations();
 
+      // fetchTooltip(this.instance, config);
       this.instance.render();
       // Sometimes, chart will render wrong axis labels, render again will be fine.
       // this.instance.render(true);

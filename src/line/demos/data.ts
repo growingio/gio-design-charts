@@ -1245,3 +1245,14 @@ export const contrastData = [
   //   NxDLPLD7_name: '访问的总次数(上周)',
   // },
 ];
+
+export const dataWithDualAxis = [
+  { type1: '指标1',type2: '指标2', tm: '06/04 周五', value: 10900, value2: 10 },
+  { type1: '指标1',type2: '指标2', tm: '06/05 周六', value: 7200, value2: 72 },
+  { type1: '指标1',type2: '指标2', tm: '06/06 周日', value: 13900, value2: 13 },
+  { type1: '指标1',type2: '指标2', tm: '06/07 周一', value: 11100, value2: 11 },
+  { type1: '指标1',type2: '指标2', tm: '06/08 周二', value: 6500, value2: 65 },
+  { type1: '指标1',type2: '指标2', tm: '06/09 周三', value: 4800, value2: 48 },
+  { type1: '指标1',type2: '指标2', tm: '06/10 周四', value: 8123, value2: 81 },
+  { type1: '指标1',type2: '指标2', tm: '06/11 周五', value: 9865, value2: 98 },
+]

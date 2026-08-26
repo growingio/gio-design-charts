@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 import Line from '../Line';
-import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, contrastData, dataWithSplit } from './data';
+import { dataWithOneLine, dataWithMenu, dataWithOnelineDate, contrastData, dataWithSplit,dataWithDualAxis } from './data';
 import Card from '../../demos/card';
 import Docs from './Line.mdx';
 import { colors } from '../../theme';
@@ -109,6 +109,49 @@ const BaiscLineArgs = {
 };
 BaiscLine.storyName = '基础折线图';
 BaiscLine.args = { ...BaiscLineArgs };
+
+const DualAxisTemplate: ComponentStory<typeof Line> = (args) => (
+  <Card>
+    <Line {...args} />
+  </Card>
+);
+
+export const DualAxisLine = DualAxisTemplate.bind({});
+const DualAxisLineArgs = {
+  legends: [
+    '指标1',
+    '指标2',
+  ],
+  data: dataWithDualAxis,
+  config: {
+    chart: {
+      autoFit: true,
+      height: 300,
+    },
+    axises: [['value2', {  grid: null }]],
+    scale: {
+      value: { nice: true, min: 0 },
+      value2: { nice: true, min: 0 },
+    },
+    tooltip: {
+      showCrosshairs: false,
+      shared: false,
+      render: (options: any) => {
+        return <InfoCard {...options} data={options?.data} forwardKey={null} />;
+      },
+    },
+    line: {
+      position: 'tm*value',
+      color: 'type1',
+    },
+    line2: {
+      position: 'tm*value2',
+      color: 'type2',
+    },
+  },
+};
+DualAxisLine.storyName = '双y轴折线图';
+DualAxisLine.args = { ...DualAxisLineArgs };
 
 export const MultiLine = Template.bind({});
 const MultiLineArgs = {

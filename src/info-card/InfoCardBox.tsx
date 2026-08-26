@@ -76,9 +76,15 @@ const InfoCardBox = (props: InfoCardProps) => {
       fixedItems = fixedItems.map((item: any) => {
         const legend = legendObject.getLegend(item.name);
         item.type = legend?.type || config?.type;
-        const shapeConfig = getShapeConfig(config, item.type);
-        const [, yField] = getAxisFields(shapeConfig.position);
+        let shapeConfig = getShapeConfig(config, item.type);
 
+        // 双y轴折线图（line + line2）：两条折线分布在不同 y 轴上，
+        // 需要根据 item 所属的颜色字段判断它属于 line 还是 line2，从而读取对应的 y 轴字段
+        const line2Cfg = (config as ChartConfig)?.line2;
+        if (line2Cfg && item?.data?.[line2Cfg.color] === item.name) {
+          shapeConfig = line2Cfg;
+        }
+        const [, yField] = getAxisFields(shapeConfig.position);
         item.xField = shapeConfig.color;
         item.yField = yField;
         return item;
@@ -89,7 +95,11 @@ const InfoCardBox = (props: InfoCardProps) => {
           if (!item) {
             return {} as InfoCardData;
           }
-          const [legend, color] = getInfoCardStyles(options, config, item, legendObject, nameKey);
+          let [legend, color] = getInfoCardStyles(options, config, item, legendObject, nameKey);
+          const line2Cfg = (config as ChartConfig)?.line2;
+          if (line2Cfg && item?.data?.[line2Cfg.color] === item.name) {
+            [legend, color] = getInfoCardStyles(options, { ...config, line: line2Cfg }, item, legendObject, nameKey);
+          }
           // Set color for trigger item, it will change the point color when mouseover the column bar
           item.color = color;
           const itemData = item.data;

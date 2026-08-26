@@ -52,7 +52,7 @@ Basic.args = {
       showCrosshairs: false,
       shared: true,
       render: (options: any) => {
-        return <InfoCard {...options} title="用户量" data={options?.data} />;
+        return <InfoCard {...options} title="用户量" data={options?.data} forwardKey={null} />;
       },
     },
     column: {
