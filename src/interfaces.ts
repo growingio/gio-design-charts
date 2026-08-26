@@ -190,6 +190,11 @@ export interface LineConfig extends ChartConfig {
    * 用来创建折线图的配置
    */
   line: Shape;
+  /**
+   * 第二组折线配置，用于双y轴折线图。
+   * 配置后会渲染到右侧的第二个 y 轴，与 line 共享 x 轴。
+   */
+  line2?: Shape;
 }
 
 export interface GaugeConfig extends ChartConfig {
