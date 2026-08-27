@@ -1,5 +1,5 @@
 import { Chart, View } from '@antv/g2';
-import { ChartConfig, ChartOptions, Legend, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, Shape, ShapeStyle, CustomInfo, ChartType } from '../interfaces';
 import { BAR_TEXTURE, COLUMN_TEXTURE, DEFAULT_MIN_HEIGHT, DEFAULT_RADIUS, DEFAULT_RADIUS_BAR } from '../theme';
 import { BaseChart, renderChart } from '../core/framework';
 
@@ -10,6 +10,7 @@ import Interval from '@antv/g2/lib/geometry/interval';
 import { StyleCallback } from '@antv/g2/lib/interface';
 import { getShapeState } from '../utils/tools/shapeState';
 import { isSingleDodge } from '../utils/interval';
+import { getAxisFields } from '../utils/frameworks/axis';
 import { DEFAULT_MIN_COLUMN_WIDTH, DEFAULT_MAX_COLUMN_WIDTH } from '../utils/calculate';
 
 export interface IntervalConfig {
@@ -131,6 +132,40 @@ export const handleInterval = (
   return chart;
 };
 
+/**
+ * 渲染双 y 轴柱状图：通过 config.column2 配置第二组柱。
+ * 第二组柱与主柱渲染在同一个 view 上（共享 x 带），并设置其 y 轴位于右侧，形成双 y 轴。
+ * 为了让左右轴柱子分组对齐而非重叠，主柱与第二组柱必须使用相同的 dodge 分组字段
+ * （即两者的 color 字段一致，如 'series'），G2 会按相同的分组数排布，使柱子相邻。
+ * @param chart
+ * @param options
+ * @param config
+ * @param intervalConfig
+ * @returns
+ */
+export const handleColumn2 = (
+  chart: Chart | View,
+  options: ChartOptions,
+  config: ChartConfig,
+  intervalConfig: IntervalConfig = {}
+) => {
+  const column2Cfg = ((config as ChartConfig & { column2?: Shape }) || { column2: undefined }).column2;
+  if (!column2Cfg) {
+    return chart;
+  }
+
+  // 将第二组柱对应的 y 轴放到右侧，形成双 y 轴
+  const [, yField2] = getAxisFields(column2Cfg.position as string);
+  if (yField2) {
+    chart.axis(yField2, { position: 'right', grid: null });
+  }
+
+  // 复用主柱渲染逻辑，基于 column2 配置渲染第二组柱
+  handleInterval(chart, options, { ...config, column: column2Cfg }, intervalConfig, 'column');
+
+  return chart;
+};
+
 export class Column extends BaseChart {
   render = (options: ChartOptions, config: ChartConfig = {}) => {
     this.options = options;
@@ -161,6 +196,13 @@ export class Column extends BaseChart {
           minColumnWidth,
           dodgePadding,
           intervalPadding,
+        },
+      });
+      // 若配置了 column2，额外渲染第二组柱以支持双 y 轴
+      handleColumn2(this.instance, options, config, {
+        styles: {
+          maxColumnWidth,
+          minColumnWidth,
         },
       });
       // this.instance.interval('column', config);

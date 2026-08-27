@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
 import Column from '../ScrollColumn';
 import Card from '../../demos/card';
-import { dataWithComponsive, dataWithGroupByTs, dataWithTs, percentData } from './data';
+import { dataWithComponsive, dataWithGroupByTs, dataWithTs, percentData,dataWithDualAxis } from './data';
 import Docs from './Column.mdx';
 import { colors, formatNumber, InfoCard } from '../..';
 import formatDateByTs from '../../utils/formatDate';
@@ -172,3 +172,39 @@ const PercentColumnArgs = {
 };
 PercentColumn.args = PercentColumnArgs;
 PercentColumn.storyName = '百分比柱状图';
+
+// 双 y 轴柱状图 demo：主柱（value，左轴）与 column2 第二组柱（value2，右轴）分组显示。
+// 为了让左右轴柱子分组对齐而非重叠：主柱与 column2 必须使用相同的 dodge 分组字段
+// （此处用 'series'），且同一 x 上分组数一致，因此将原始数据拆分为每系列独立行。
+const dualAxisColumnData = dataWithDualAxis.flatMap((d) => [
+  { tm: d.tm, series: d.type1, value: d.value, value2: null },
+  { tm: d.tm, series: d.type2, value: null, value2: d.value2 },
+]);
+
+export const ColumnWithDualAxis = Template.bind({});
+const ColumnWithDualAxisArgs = {
+  legends: ['指标1', '指标2'],
+  data: dualAxisColumnData,
+  config: {
+    ...config,
+    tooltip: {
+      ...config.tooltip,
+      shared: false,
+      render: (options: any) => {
+        return <InfoCard {...options} data={options?.data} forwardKey={null} />;
+      },
+    },
+    column: {
+      position: 'tm*value',
+      color: 'series',
+      adjust: 'dodge',
+    },
+    column2: {
+      position: 'tm*value2',
+      color: 'series',
+      adjust: 'dodge',
+    },
+  },
+};
+ColumnWithDualAxis.args = ColumnWithDualAxisArgs;
+ColumnWithDualAxis.storyName = '双Y轴柱状图';
