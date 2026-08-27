@@ -80,9 +80,9 @@ const InfoCardBox = (props: InfoCardProps) => {
 
         // 双y轴折线图（line + line2）：两条折线分布在不同 y 轴上，
         // 需要根据 item 所属的颜色字段判断它属于 line 还是 line2，从而读取对应的 y 轴字段
-        const line2Cfg = (config as ChartConfig)?.line2;
-        if (line2Cfg && item?.data?.[line2Cfg.color] === item.name) {
-          shapeConfig = line2Cfg;
+        const axis2Cfg = (config as ChartConfig)?.line2 || (config as ChartConfig)?.column2;
+        if (axis2Cfg && item?.data?.[axis2Cfg.color] === item.name) {
+          shapeConfig = axis2Cfg;
         }
         const [, yField] = getAxisFields(shapeConfig.position);
         item.xField = shapeConfig.color;
@@ -96,9 +96,9 @@ const InfoCardBox = (props: InfoCardProps) => {
             return {} as InfoCardData;
           }
           let [legend, color] = getInfoCardStyles(options, config, item, legendObject, nameKey);
-          const line2Cfg = (config as ChartConfig)?.line2;
-          if (line2Cfg && item?.data?.[line2Cfg.color] === item.name) {
-            [legend, color] = getInfoCardStyles(options, { ...config, line: line2Cfg }, item, legendObject, nameKey);
+          const axis2Cfg = (config as ChartConfig)?.line2 || (config as ChartConfig)?.column2;
+          if (axis2Cfg && item?.data?.[axis2Cfg.color] === item.name) {
+            [legend, color] = getInfoCardStyles(options, { ...config, line: (config as ChartConfig)?.line2 ? axis2Cfg: null, column: (config as ChartConfig)?.column2 ? axis2Cfg: null }, item, legendObject, nameKey);
           }
           // Set color for trigger item, it will change the point color when mouseover the column bar
           item.color = color;
