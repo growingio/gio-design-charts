@@ -125,10 +125,6 @@ export class LineBase extends BaseChart {
     this.lineShape(chart, options, lineCfg);
     this.lineShape(chart, options, line2Cfg);
 
-    // 将 line2 对应的 y 轴放到右侧，形成双 y 轴
-    if (yField2) {
-      chart.axis(yField2, { position: 'right', grid: null });
-    }
 
     return chart;
   };

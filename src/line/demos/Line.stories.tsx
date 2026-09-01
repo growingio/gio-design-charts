@@ -142,11 +142,11 @@ const DualAxisLineArgs = {
     },
     line: {
       position: 'tm*value',
-      color: 'type1',
+      color: 'type',
     },
     line2: {
       position: 'tm*value2',
-      color: 'type2',
+      color: 'type',
     },
   },
 };
