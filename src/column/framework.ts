@@ -154,12 +154,6 @@ export const handleColumn2 = (
     return chart;
   }
 
-  // 将第二组柱对应的 y 轴放到右侧，形成双 y 轴
-  const [, yField2] = getAxisFields(column2Cfg.position as string);
-  if (yField2) {
-    chart.axis(yField2, { position: 'right', grid: null });
-  }
-
   // 复用主柱渲染逻辑，基于 column2 配置渲染第二组柱
   handleInterval(chart, options, { ...config, column: column2Cfg }, intervalConfig, 'column');
 
