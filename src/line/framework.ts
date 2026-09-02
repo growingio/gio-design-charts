@@ -187,7 +187,7 @@ export class Line extends LineBase {
       // fetchTooltip(this.instance, config);
       this.instance.render();
       // Sometimes, chart will render wrong axis labels, render again will be fine.
-      // this.instance.render(true);
+      this.instance.render(true);
     } catch (err) {
       /* istanbul ignore next */
       console.log(err);
