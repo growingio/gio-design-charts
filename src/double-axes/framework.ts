@@ -1,14 +1,10 @@
 import { LooseObject } from '@antv/g-base';
-import { Chart, Element, View } from '@antv/g2';
-import { Datum } from '@antv/g2/lib/interface';
+import { Chart, View } from '@antv/g2';
 import { intervalShape } from '../column/framework';
 import { BaseChart, fetchTooltip, renderChart } from '../core/framework';
-import { ChartConfig, ChartOptions, Legend, Legends, ChartType, Shape, AdjustOptionType } from '../interfaces';
+import { ChartConfig, ChartOptions, Legend, ChartType, Shape, AdjustOptionType } from '../interfaces';
 import { getShapeConfig } from '../utils/tools/shapeConfig';
-import { donutText } from '../utils/frameworks/text';
-import { formatNumber } from '../utils/formatNumber';
 import { DEFAULT_RADIUS } from '../theme';
-import { first } from 'lodash';
 
 export class DoubleAxes extends BaseChart {
   donutView: View | undefined = undefined;
@@ -49,31 +45,6 @@ export class DoubleAxes extends BaseChart {
     return line;
   };
 
-  addText = (chart: Chart | View, data: LooseObject[], config: ChartConfig) => {
-    const donutCfg = getShapeConfig(config, ChartType.DONUT);
-    const { title, subTitle } = donutCfg;
-    donutText(title, subTitle ? subTitle : formatNumber(this.totalCount), chart, config);
-  };
-
-  updateText = (textView: View, data: LooseObject[], config: ChartConfig) => {
-    textView?.clear();
-    this.addText(textView, data, config);
-    textView?.render(true);
-    textView?.render(true);
-  };
-
-  update = (data: Datum[]) => {
-    const [donutView, textView] = this.views;
-    if (Array.isArray(data)) {
-      this.instance?.changeData(data);
-    }
-    donutView?.render(true);
-    this.updateText(textView, data, this.config as ChartConfig);
-    this.instance?.forceFit();
-    this.instance?.render(true);
-    this.instance?.render(true);
-  };
-
   render = (options: ChartOptions, config: ChartConfig) => {
     const { id, legendObject, defaultStyles = {} } = options;
     if (!id) {
@@ -110,30 +81,5 @@ export class DoubleAxes extends BaseChart {
     this.instance.render(true);
 
     this.options = options;
-  };
-  setTotal = (data: LooseObject[], donutCfg: Shape) => {
-    this.totalCount = data.reduce((total: number, item: LooseObject) => {
-      return total + item[(donutCfg as any)?.position];
-    }, 0);
-  };
-
-  getColor = (type: ChartType) => {
-    const shapeCfg = getShapeConfig(this.config, type);
-    return shapeCfg?.color || '';
-  };
-
-  legend = (legends: Legends) => {
-    const lineColor = this.getColor(ChartType.LINE);
-    const columnColor = this.getColor(ChartType.COLUMN);
-    this.instance?.geometries?.[0]?.getElementsBy?.((element: Element) => {
-      const colorData = element?.getData()?.[columnColor];
-      element.changeVisible(!!legends[colorData]?.active);
-      return true;
-    });
-    this.instance?.geometries?.[1]?.getElementsBy?.((element: Element) => {
-      const colorData = first(element?.getData() as Datum[])?.[lineColor];
-      element.changeVisible(!!legends[colorData]?.active);
-      return true;
-    });
   };
 }

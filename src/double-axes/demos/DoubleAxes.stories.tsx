@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
 import DoubleAxes from '../DoubleAxes';
 import Card from '../../demos/card';
-import { data, updatedData } from './data';
+import {  data, updatedData } from './data';
 import { InfoCard } from '../../info-card';
 import { cloneDeep } from 'lodash';
 import { useState } from 'react';
@@ -37,7 +37,6 @@ const Template: ComponentStory<any> = (args) => {
 export const Basic = Template.bind({});
 Basic.args = {
   legends: ['参与人数', '触发人数', { name: '参与率(%)', type: 'line' }, { name: '出发率(%)', type: 'line' }],
-  data,
   config: {
     chart: {
       autoFit: true,
@@ -45,8 +44,9 @@ Basic.args = {
     },
     scale: {
       lineValue: { nice: true, min: 0 },
+      col: { nice: true, min: 0 },
     },
-    axises: [['lineValue', { label: null, grid: null }]],
+    axises: [['lineValue', {  grid: null }]],
     tooltip: {
       showMarkers: false,
       showCrosshairs: false,
@@ -58,11 +58,11 @@ Basic.args = {
     column: {
       position: 'time*col',
       color: 'label',
-      adjust: 'dodge',
+      adjust: 'stack',
     },
     line: {
       position: 'time*lineValue',
-      color: 'lineLabel',
+      color: 'label',
     },
   },
 };
