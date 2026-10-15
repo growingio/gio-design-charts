@@ -2,7 +2,6 @@ import React, { useRef, useCallback, useState } from 'react';
 import Legends from '../../legends';
 import useOffset, { Offset } from '../../hooks/useOffset';
 import core, { LayoutProps } from '../../core/core';
-import { View } from '@antv/g2';
 import { getThemeColor } from '../../utils/styles';
 import { fixedHeight } from '../../utils/chart';
 
@@ -29,8 +28,7 @@ const LegendLayout = (props: LayoutProps) => {
       const useWidth = Number(width) > divWidth + 40 ? Number(width) : divWidth;
       if (config?.chart?.height && chart?.instance?.canvas?.get('el')) {
         chart?.instance?.changeSize(useWidth, fixedHeight(options, config));
-        chart.views?.forEach((view: View) => view.render(true));
-        chart.instance?.render(true);
+        // 只经主 Chart 渲染一次：逐 View render(true) 会绕过 syncViewPadding 产生未同步的中间绘制
         chart.instance?.render(true);
       }
       setOffsetWidth(divWidth);

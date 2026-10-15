@@ -12,7 +12,7 @@ export const data = [
   { time: '2023-03-29', label: '触发人数', col: 200 },
   { time: '2023-03-30', label: '参与人数', col: 300 },
   { time: '2023-03-30', label: '触发人数', col: 200 },
-  { time: '2023-03-25', label: '参与率(%)', lineValue: 30 },
+  { time: '2023-03-25', label: '参与率(%)', lineValue: 0 },
   { time: '2023-03-25', label: '出发率(%)', lineValue: 70 },
   { time: '2023-03-26', label: '参与率(%)', lineValue: 40 },
   { time: '2023-03-26', label: '出发率(%)', lineValue: 60 },
