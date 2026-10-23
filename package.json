@@ -1,6 +1,6 @@
 {
   "name": "@gio-design/charts",
-  "version": "2.6.13",
+  "version": "2.6.14",
   "main": "lib/index.js",
   "module": "es/index.js",
   "unpkg": "dist/charts.umd.min.js",

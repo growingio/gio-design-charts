@@ -90,6 +90,21 @@ const InfoCardBox = (props: InfoCardProps) => {
         return item;
       });
 
+      // tooltip 条目顺序以 legends 配置顺序为准：多 View 图表（如双轴图）中 G2 的 triggerItems
+      // 按 View 创建顺序排列，与 legend 顺序可能不一致；未出现在 legend 中的条目保持原相对顺序排在最后
+      const legendQueue = legendObject?.queue || [];
+      if (legendQueue.length > 0) {
+        const legendIndex = new Map(legendQueue.map((legend: Legend, index: number) => [legend.name, index]));
+        fixedItems = fixedItems
+          .map((item: any, index: number) => ({ item, index }))
+          .sort((a: any, b: any) => {
+            const ia = legendIndex.has(a.item?.name) ? (legendIndex.get(a.item?.name) as number) : Number.MAX_SAFE_INTEGER;
+            const ib = legendIndex.has(b.item?.name) ? (legendIndex.get(b.item?.name) as number) : Number.MAX_SAFE_INTEGER;
+            return ia === ib ? a.index - b.index : ia - ib;
+          })
+          .map((entry: any) => entry.item);
+      }
+
       const covertItems: InfoCardData[] =
         fixedItems?.map((item: TriggerItem): InfoCardData => {
           if (!item) {
