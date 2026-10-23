@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
 import DoubleAxes from '../DoubleAxes';
 import Card from '../../demos/card';
-import {  data, updatedData } from './data';
+import {  data, updatedData, scrollData } from './data';
 import { InfoCard } from '../../info-card';
 import { cloneDeep } from 'lodash';
 import { useState } from 'react';
@@ -20,7 +20,7 @@ export default {
 };
 
 const Template: ComponentStory<any> = (args) => {
-  const [chartData, setChartData] = useState(data);
+  const [chartData, setChartData] = useState(args.data || data);
   const updateData = () => {
     setChartData(updatedData);
   };
@@ -65,6 +65,23 @@ Basic.args = {
       color: 'label',
     },
   },
+};
+
+// 横向滚动布局：60 个 x 类目超出容器宽度时自动切换横向滚动
+// 滚动宽度仅按柱数据计算，折线数据不参与
+export const Scroll = Template.bind({});
+Scroll.args = {
+  ...Basic.args,
+  data: scrollData,
+  useScroll: true,
+  config: {
+    ...Basic.args.config,
+    column: {
+      position: 'time*col',
+      color: 'label',
+      adjust: 'dodge',
+    },
+  }
 };
 
 // export const Dark = Template.bind({});

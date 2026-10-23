@@ -1,9 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 
 import { DoubleAxes as DoubleAxesCls } from '../framework';
+import DoubleAxesComponent from '../DoubleAxes';
 import { ChartType } from '../../interfaces';
 import { chartComponentTestid, ChartCom } from '../../core/__test__/framework.test';
+import { calculateColumnWidth } from '../../utils/calculate';
 
 const config = {
   type: ChartType.DoubleAxes,
@@ -59,5 +61,45 @@ describe('DoubleAxes framework', () => {
     chart.update(makeData(300000, 3));
     const [columnPad3, linePad3] = getViewPaddings(chart);
     expect(columnPad3).not.toEqual(linePad3);
+  });
+});
+
+describe('DoubleAxes scroll layout', () => {
+  const scrollConfig = {
+    type: ChartType.DoubleAxes,
+    column: { position: 'time*col', color: 'label', adjust: 'dodge' },
+    line: { position: 'time*lineValue', color: 'label' },
+  };
+
+  test('width calculation counts only column data, ignoring line data', () => {
+    const chart = new DoubleAxesCls();
+    const data = makeData(100000, 5);
+    const columnData = chart.filterDataByPosition(data, 'time*col');
+
+    // 柱数据 12 条（2 个 label × 6 个 x），折线记录被过滤掉
+    expect(columnData).toHaveLength(12);
+
+    const calcConfig = { ...scrollConfig, type: ChartType.COLUMN } as any;
+    // 同一容器宽度下：混合数据的 dodge 分组是 4 个 label，纯柱数据只有 2 个
+    const mixedWidth = calculateColumnWidth(calcConfig, data as any, 10000).width;
+    const columnOnlyWidth = calculateColumnWidth(calcConfig, columnData as any, 10000).width;
+    expect(mixedWidth).toBeGreaterThan(columnOnlyWidth);
+  });
+
+  test('useScroll renders scroll layout and chart', async () => {
+    jest.useFakeTimers();
+    render(
+      <DoubleAxesComponent
+        data={makeData(100000, 5) as any}
+        config={scrollConfig as any}
+        useScroll
+      />
+    );
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    expect(await screen.findByTestId('scroll-x-layout')).toBeTruthy();
+    expect(await screen.findByTestId('legend-layout')).toBeTruthy();
+    jest.useRealTimers();
   });
 });

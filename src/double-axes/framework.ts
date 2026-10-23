@@ -17,8 +17,9 @@ export class DoubleAxes extends BaseChart {
   /**
    * 根据 Shape 的 position 配置，从完整数据中过滤出该 shape 对应的数据子集
    * 过滤依据：Y 轴字段有值的记录才属于该 shape
+   * （公开方法：DoubleAxes 组件计算横向滚动宽度时也用它过滤出纯柱数据）
    */
-  private filterDataByPosition(data: Datum[], position: string | undefined): Datum[] {
+  filterDataByPosition(data: Datum[], position: string | undefined): Datum[] {
     if (!position || !Array.isArray(data) || data.length === 0) {
       return data || [];
     }
