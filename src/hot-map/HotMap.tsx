@@ -4,7 +4,14 @@ import { HotMap as HatMapCls } from './framework';
 import { LegendLayout } from '../layouts';
 import { fetchChart } from '../boundary';
 
-export interface HotMapProps extends ChartProps {
+/** Heatmap records are carried in source; optional dimension lists stay alongside it. */
+export interface HotMapData {
+  source: ChartProps['data'];
+  [dimension: string]: unknown;
+}
+
+export interface HotMapProps extends Omit<ChartProps, 'data'> {
+  data: HotMapData;
   config: HotMapConfig;
 }
 

@@ -2,12 +2,13 @@ import { DesignContext } from '@gio-design/utils';
 import { isEmpty } from 'lodash';
 import React, { useContext } from 'react';
 import { IntlProvider } from 'react-intl';
-import { ChartProps, ChartRef, TinyChartProps } from '../interfaces';
+import { ChartProps, ChartRef } from '../interfaces';
 import ErrorBoundary from './ErrorBoundary';
 import { Loading } from './Loading';
 import NoData from './NoData';
 import en from '../locales/en.json';
 import { LooseObject } from '@antv/g-base';
+import { readStoredLocale } from '../utils/locale';
 
 const MESSAGES: LooseObject = {
   'en-US': en,
@@ -16,7 +17,7 @@ const MESSAGES: LooseObject = {
   zh: {},
 };
 
-const fetchChart = <T extends ChartProps | TinyChartProps>(
+const fetchChart = <T extends Omit<ChartProps, 'data'> & { data: unknown }>(
   ChartComponent: React.ForwardRefRenderFunction<ChartRef, T>
 ) => {
   const Com = React.forwardRef<ChartRef, T & React.RefAttributes<ChartRef>>(ChartComponent);
@@ -32,7 +33,7 @@ const fetchChart = <T extends ChartProps | TinyChartProps>(
       return noData ? noData() : <NoData height={height} />;
     }
 
-    const localeCode = localStorage.getItem('locale') || (context?.locale?.code || 'zh-CN');
+    const localeCode = readStoredLocale() || (context?.locale?.code || 'zh-CN');
 
     return (
       <IntlProvider defaultLocale="zh-CN" locale={localeCode} messages={MESSAGES[localeCode] ?? {}}>
