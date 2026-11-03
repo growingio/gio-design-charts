@@ -4,6 +4,8 @@ import { formatDateByTs } from '../formatDate';
 describe('locale without browser storage', () => {
   const descriptor = Object.getOwnPropertyDescriptor(window, 'localStorage')!;
   afterEach(() => {
+    // Node 16 的 VM 全局属性需先删除，才能从数据属性恢复为访问器。
+    Reflect.deleteProperty(window, 'localStorage');
     Object.defineProperty(window, 'localStorage', descriptor);
     localStorage.clear();
     jest.restoreAllMocks();
