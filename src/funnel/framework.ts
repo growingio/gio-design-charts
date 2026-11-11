@@ -131,7 +131,9 @@ export class Funnel extends BaseChart {
       });
       let defaultColorForSingle = '';
       if (!isGroup) {
-        defaultColorForSingle = emptyLegends ? colors[0] : (legendObject?.queue?.[0]?.color as string);
+        // 取 mapping 的第一项：即使该项被配置为 hidden，单组漏斗也使用它的颜色
+        const firstLegend = Object.values(legendObject?.mapping || {})[0];
+        defaultColorForSingle = emptyLegends ? colors[0] : (firstLegend?.color as string) || colors[0];
       }
 
       const backgroundOptions = {

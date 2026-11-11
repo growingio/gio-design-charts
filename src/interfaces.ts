@@ -79,6 +79,9 @@ export interface Legend {
   dodgeBy?: string;
 
   width?: number;
+
+  // 为true时不在图例栏中渲染该项，但图形、颜色与图例点击联动仍然生效
+  hidden?: boolean;
 }
 
 export interface Legends {

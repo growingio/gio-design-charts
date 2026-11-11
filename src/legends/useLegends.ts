@@ -92,7 +92,7 @@ export class LegendObject {
   setLegends = (config: ChartConfig, source: (Legend | string)[]) => {
     this.source = source;
     this.transform(config.type);
-    this.support = config?.legend !== false && this.source?.length > 0;
+    this.support = config?.legend !== false && this.queue?.length > 0;
   };
 
   getLegend = (label: string): Legend => this?.mapping?.[label] || ({} as Legend);
@@ -100,16 +100,17 @@ export class LegendObject {
   // transform source to queue and mapping
   transform = (type: ChartType) => {
     const legends = {} as Legends;
+    const queue: Legend[] = [];
     let hasDashed = false;
-    this.queue = this.source?.map((legend: string | Legend, index: number) => {
+    this.source?.forEach((legend: string | Legend, index: number) => {
+      let nextLegend: Legend;
       if (typeof legend === 'string') {
-        legends[legend] = {
+        nextLegend = {
           name: legend,
           color: colors[index % colors.length],
           active: true,
           type,
         };
-        return legends[legend];
       } else {
         const { lineDash, dashed, type: customType } = legend;
         const lineDashCfg = {} as LooseObject;
@@ -121,18 +122,24 @@ export class LegendObject {
         if (dashed) {
           hasDashed = true;
         }
-        legends[legend.name] = {
+        nextLegend = {
           ...legend,
           color: legend.color || colors[index % colors.length],
           active: true,
           type: customType || type,
           ...lineDashCfg,
         };
-        return legends[legend.name];
+      }
+      // mapping 保留全部图例，颜色与图例点击联动都依赖它
+      legends[nextLegend.name] = nextLegend;
+      // 声明了 hidden 的图例不进入渲染队列，因而不会显示在图例栏中
+      if (!nextLegend.hidden) {
+        queue.push(nextLegend);
       }
     });
     this.hasDashed = hasDashed;
     this.mapping = legends;
+    this.queue = queue;
   };
 
   // update Legends in mapping

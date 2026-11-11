@@ -92,7 +92,8 @@ const InfoCardBox = (props: InfoCardProps) => {
 
       // tooltip 条目顺序以 legends 配置顺序为准：多 View 图表（如双轴图）中 G2 的 triggerItems
       // 按 View 创建顺序排列，与 legend 顺序可能不一致；未出现在 legend 中的条目保持原相对顺序排在最后
-      const legendQueue = legendObject?.queue || [];
+      // 使用 mapping 而非 queue，隐藏了图例项（hidden）的系列仍保持其在 legends 中的顺序
+      const legendQueue = Object.values(legendObject?.mapping || {}) as Legend[];
       if (legendQueue.length > 0) {
         const legendIndex = new Map(legendQueue.map((legend: Legend, index: number) => [legend.name, index]));
         fixedItems = fixedItems

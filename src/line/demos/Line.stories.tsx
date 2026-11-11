@@ -178,6 +178,19 @@ const MultiLineArgs = {
 MultiLine.args = { ...MultiLineArgs };
 MultiLine.storyName = '多纬度折线图';
 
+// 被隐藏的图例项仍参与绘制与颜色映射，只是不显示在图例栏中
+const hiddenLegendNames = ['上海', '杭州', '广州'];
+export const HiddenLegendLine = Template.bind({});
+const HiddenLegendLineArgs = {
+  legends: MultiLineArgs.legends.map((name) =>
+    hiddenLegendNames.includes(name) ? { name, hidden: true } : name
+  ),
+  data: dataWithMenu,
+  config,
+};
+HiddenLegendLine.args = { ...HiddenLegendLineArgs };
+HiddenLegendLine.storyName = '隐藏部分图例';
+
 export const LineWithOneLineDate = Template.bind({});
 
 const LineWithOneLineDateConfig = {
