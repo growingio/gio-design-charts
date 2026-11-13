@@ -30,6 +30,12 @@ $ npm install @gio-design/charts
 yarn storybook
 ```
 
+## Sandboxed previews
+
+Charts can render inside an iframe with `sandbox="allow-scripts"`. When browser storage is unavailable, chart labels use `DesignContext`'s locale and then `zh-CN`; `formatDateByTs` defaults to Chinese. When storage is available, its `locale` preference retains priority. The embedding application owns script execution and network restrictions.
+
+`HotMap` accepts `HotMapData`: an object with a `source` array and optional dimension lists, matching the heatmap Storybook examples. Other chart components retain their existing array inputs.
+
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgrowingio%2Fgio-design.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fgrowingio%2Fgio-design?ref=badge_large)
